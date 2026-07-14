@@ -17,3 +17,15 @@ Initial decision queue:
 11. Provider supported-version and licensing matrix.
 12. Custom script/action sandbox.
 13. Original 300-cosmetic catalogue and asset licensing.
+
+## Accepted owner decisions
+
+| ADR | Decision | Resolves |
+|---|---|---|
+| [ADR-0001](ADR-0001-resource-scarcity.md) | RESOURCE SCARCITY is the original eleventh Private Games modifier | RC-072 |
+| [ADR-0002](ADR-0002-original-content-provenance.md) | Original/configurable starter content and default-deny asset provenance | RC-073 |
+| [ADR-0003](ADR-0003-discord-provider-topology.md) | Optional webhook, external-bot and custom Discord providers | RC-074 |
+| [ADR-0004](ADR-0004-minecraft-1-8-fallbacks.md) | Mandatory Minecraft 1.8 adapters and safe compatibility fallbacks | RC-075 |
+| [ADR-0005](ADR-0005-dependency-licensing.md) | Exact-version, default-deny dependency and redistribution audit | RC-076 |
+
+Accepted ADRs settle policy and architecture; they do not claim implementation. Their execution gates remain in the PRD, traceability matrix and milestone exit criteria.

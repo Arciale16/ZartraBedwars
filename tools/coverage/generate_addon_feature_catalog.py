@@ -175,6 +175,14 @@ ADDONS: tuple[Addon, ...] = (
             "Expose private-state, host and active-modifier queries/events/placeholders with privacy-safe fallbacks",
         ),
         source="https://polymart.org/resource/1620/",
+        config="addons/private-games.yml: modifiers, modifiers.resource-scarcity, presets and per-mode/arena/group overrides",
+        gui="Private Game host settings GUI with modifier permissions, Resource Scarcity preset/custom multiplier editor, preview, reset and lock state",
+        commands="/zbw private modifier resource-scarcity preset|set|reset|show; /zbw admin private-games reload|validate|inspect",
+        permissions="zartrabedwars.private.games.host; zartrabedwars.private.games.modifier.resource_scarcity; zartrabedwars.admin.private.games.*",
+        api="PrivateGameModifierRegistry and ResourceScarcityPolicy API; cancellable pre-change and immutable applied/failed events",
+        papi="zartra_private_game_modifier_resource_scarcity, zartra_private_resource_<id>_multiplier and preset placeholders",
+        tests="Unit multiplier/preset rules; native/custom generator contract tests; GUI/permission/rejoin/proxy and mid-game mutation E2E",
+        docs="Private Games and Resource Scarcity player/operator/configuration/command/permission/API/event/placeholder reference",
         security="Signed reservations; invitation/party authorization; staff audit; no public leakage of private rosters",
     ),
     addon(
@@ -911,6 +919,22 @@ ADDONS: tuple[Addon, ...] = (
 )
 
 
+# Append-only amendments preserve every pre-existing stable ID. Do not move these
+# features into an addon's base tuple: doing so would renumber later requirements.
+APPENDED_FEATURES: tuple[tuple[str, str], ...] = (
+    ("private-games", "Register RESOURCE SCARCITY as the original eleventh built-in Private Games modifier"),
+    ("private-games", "Configure and validate the RESOURCE SCARCITY iron generation multiplier independently"),
+    ("private-games", "Configure and validate the RESOURCE SCARCITY gold generation multiplier independently"),
+    ("private-games", "Configure and validate the RESOURCE SCARCITY diamond generation multiplier independently"),
+    ("private-games", "Configure and validate the RESOURCE SCARCITY emerald generation multiplier independently"),
+    ("private-games", "Configure RESOURCE SCARCITY multipliers independently for every registered custom resource ID"),
+    ("private-games", "Provide original Scarce, Reduced, Normal, Abundant and Extreme RESOURCE SCARCITY presets with versioned values"),
+    ("private-games", "Let authorized hosts select a preset or edit each multiplier through a validated GUI with preview, reset and lock feedback"),
+    ("private-games", "Expose RESOURCE SCARCITY configuration, commands, granular permissions, API events and PlaceholderAPI state"),
+    ("private-games", "Apply RESOURCE SCARCITY deterministically to native and custom generators without duplicate scheduling, item loss or unsafe mid-game mutation"),
+)
+
+
 def esc(value: str) -> str:
     return value.replace("|", "\\|").replace("\n", " ")
 
@@ -920,7 +944,31 @@ def identifiers() -> list[tuple[str, Addon, str]]:
     for entry in ADDONS:
         for feature in entry.features:
             rows.append((f"ZBW-ADDON-{len(rows) + 1:03d}", entry, feature))
+    if len(rows) != 463:
+        raise ValueError(f"Stable base must remain exactly ZBW-ADDON-001..463, found {len(rows)} rows")
+    addons_by_key = {entry.key: entry for entry in ADDONS}
+    for key, feature in APPENDED_FEATURES:
+        if key not in addons_by_key:
+            raise ValueError(f"Unknown append-only addon key: {key}")
+        rows.append((f"ZBW-ADDON-{len(rows) + 1:03d}", addons_by_key[key], feature))
     return rows
+
+
+def compact_id_spans(rows: list[tuple[str, Addon, str]]) -> str:
+    numbers = [int(requirement_id.rsplit("-", 1)[1]) for requirement_id, _, _ in rows]
+    groups: list[tuple[int, int]] = []
+    start = previous = numbers[0]
+    for number in numbers[1:]:
+        if number == previous + 1:
+            previous = number
+            continue
+        groups.append((start, previous))
+        start = previous = number
+    groups.append((start, previous))
+    return "; ".join(
+        f"ZBW-ADDON-{start:03d}" if start == end else f"ZBW-ADDON-{start:03d}–ZBW-ADDON-{end:03d}"
+        for start, end in groups
+    )
 
 
 def validate() -> None:
@@ -932,8 +980,8 @@ def validate() -> None:
     import re
 
     core_ids = set(re.findall(r"^\| (ZBW-[A-Z]+-\d{3}) \|", PRD.read_text(encoding="utf-8-sig"), re.MULTILINE))
-    if len(core_ids) != 144:
-        raise ValueError(f"Expected 144 core PRD IDs for overlap validation, found {len(core_ids)}")
+    if len(core_ids) != 179:
+        raise ValueError(f"Expected 179 Part I PRD IDs for overlap validation, found {len(core_ids)}")
     architecture_modules = {
         "zbw-application", "zbw-arena", "zbw-bungeecord", "zbw-cloudnet",
         "zbw-command-api", "zbw-command-paper", "zbw-compat-api", "zbw-config",
@@ -968,6 +1016,8 @@ def validate() -> None:
     ids = [row[0] for row in identifiers()]
     if len(ids) != len(set(ids)):
         raise ValueError("Duplicate requirement IDs")
+    if ids != [f"ZBW-ADDON-{index:03d}" for index in range(1, 474)]:
+        raise ValueError("Addon IDs must be the append-only range ZBW-ADDON-001..473")
 
 
 def render() -> str:
@@ -1009,7 +1059,7 @@ def render() -> str:
     ]
     for index, entry in enumerate(ADDONS, 1):
         addon_rows = by_key[entry.key]
-        span = f"{addon_rows[0][0]}–{addon_rows[-1][0]}"
+        span = compact_id_spans(addon_rows)
         lines.append(
             f"| {index} | {entry.tier} | {esc(entry.name)} | {esc(entry.purpose)} | {span} | {len(addon_rows)} | {esc(entry.overlaps)} | {entry.milestone} | {esc(entry.module)} | COVERED |"
         )
@@ -1069,16 +1119,16 @@ def render() -> str:
         "- Atomic features with `MISSING` status: **0**.",
         "- Addon functional coverage: **100%**.",
         "",
-        "`python tools/coverage/generate_addon_feature_catalog.py --check` is the required drift check. It validates inventory cardinality, tier split, unique append-only ID allocation, nonempty atomic feature lists, complete mapping surfaces and byte-for-byte generated output. `python tools/coverage/generate_master_prompt_coverage.py --check` validates the combined Master Prompt plus owner-supplied-addon baseline.",
+        "`python tools/coverage/generate_addon_feature_catalog.py --check` is the required drift check. It validates inventory cardinality, tier split, unique append-only ID allocation, nonempty atomic feature lists, complete mapping surfaces and byte-for-byte generated output. `python tools/coverage/generate_master_prompt_coverage.py --check` validates the combined Master Prompt plus owner-supplied-addon baseline. `python tools/coverage/validate_preimplementation_decisions.py --check` validates the RC-072..076 IDs, ADRs, required catalogues, published totals and no-Java gate.",
         "",
-        "## 6. Open content and technical decisions (scope preserved)",
+        "## 6. Resolved policy decisions and remaining execution gates",
         "",
-        "1. **Private Games modifier source mismatch:** the public product page advertises eleven modifiers but publicly enumerates ten. The ten named modifiers are separate requirements, and the validated custom-modifier registry preserves the broader extensibility. The owner must still select the eleventh built-in original default before content freeze.",
-        "2. **Original content definitions:** exact names, art, sounds, models, particles and balance values for 300+ cosmetics, five Armed weapons, Lucky Block outcomes, rotating items and mode abilities require original design/content packs and provenance approval. The functional counts and systems remain mandatory.",
-        "3. **Discord bot topology:** one shared bot with adapters or separately deployable bot processes remains an ADR choice; both must implement the same API, privacy, rate-limit and secret-management contracts.",
-        "4. **Legacy client fallbacks:** exact visual fallbacks where 1.8 lacks modern packets/materials/boss bars require compatibility fixtures and UX approval; the feature itself may not be disabled silently.",
+        "1. **Private Games modifier:** RC-072 is resolved by the original RESOURCE SCARCITY requirements `ZBW-ADDON-464..473`, including independent native/custom resource multipliers and five presets.",
+        "2. **Original content:** RC-073 is resolved by `ZBW-CONTENT-001..011`, `docs/ORIGINAL_STARTER_CATALOG.md` and `docs/ASSET_PROVENANCE.md`; production content still requires provenance approval before packaging.",
+        "3. **Discord topology:** RC-074 is resolved by the provider architecture in `docs/DISCORD_ARCHITECTURE.md`; Discord remains optional and failure-isolated.",
+        "4. **Legacy fallbacks:** RC-075 is resolved by `docs/COMPATIBILITY_FALLBACKS.md`; every implemented fallback still requires its compatibility fixture before the affected milestone exits.",
         "5. **Trademark/runtime naming:** addon and network names remain requirements-source references. Original runtime names and migration aliases require legal/product review without reducing behavior.",
-        "6. **Third-party integration terms:** DiscordSRV, CloudNet, PlaceholderAPI, proxy and any optional library versions/licenses must pass the dependency and redistribution audit before release.",
+        "6. **Dependency selection:** RC-076's default-deny licensing policy is resolved. Exact versions remain blocked under RC-021/024/027 until their audit rows are approved; no unselected candidate may enter a build.",
         "",
         "## 7. Source and provenance notes",
         "",

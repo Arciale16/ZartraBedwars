@@ -2,7 +2,7 @@
 
 ## 1. Architectural drivers
 
-This architecture implements the 144 requirements in the PRD plus every normative `MP-L####` child in the atomic coverage matrix. Its primary runtime is Paper 1.21.1/Java 21; its compatibility design keeps all Bukkit, packet, material and provider details outside the domain so separately built adapters can cover server versions 1.8–1.21.x. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
+This architecture implements all 652 semantic requirements in the PRD and addon catalogue plus every normative `MP-L####` child in the atomic coverage matrix. Its primary runtime is Paper 1.21.1/Java 21; its compatibility design keeps all Bukkit, packet, material and provider details outside the domain so separately built adapters can cover server versions 1.8–1.21.x. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
 
 Non-negotiable qualities are deterministic game behavior, no blocking I/O on a server tick thread, idempotent distributed mutations, bounded resource use, least privilege, secret redaction, schema/version compatibility and observable recovery.
 
@@ -66,6 +66,7 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-redis-api`, `zbw-redis` | Versioned coordination contracts and Redis adapter | application ports | Durable source-of-truth decisions |
 | `zbw-game`, `zbw-arena`, `zbw-world` | Game state machine and arena/world use cases | application/domain | Concrete world providers |
 | `zbw-shop`, `zbw-progression`, `zbw-statistics` | Their domain policies, projections and use cases | application/domain | GUI/provider implementations |
+| `zbw-content` | Versioned starter catalogues, configurable content packs, semantic effect IDs and provenance references | application/domain/config | Platform rendering or unlicensed asset files |
 | `zbw-replay-api`, `zbw-replay-engine` | Replay model, capture/codec/playback/retention ports | application/domain | NMS packet code/storage backend specifics |
 | `zbw-atlas` | Cases, anonymization, reservation, verdict/reputation/abuse policies | replay API, progression/reward ports | Punishment-provider implementation |
 | `zbw-ui-api`, `zbw-ui-paper` | Page model and Paper inventory renderer | API/application | Feature rules or synchronous DB access |
@@ -77,6 +78,8 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-proxy-api`, `zbw-velocity`, `zbw-bungeecord` | Routing contracts and proxy bootstraps | API/message contracts | Game rules |
 | `zbw-cloudnet` | Service discovery/scaling adapter | provider SPI | Queue/game policy |
 | `zbw-integration-*` | PlaceholderAPI, Vault, LuckPerms, ProtocolLib, world, NPC, hologram, party, Grim, Vulcan, Via, Geyser/Floodgate adapters | Provider SPIs | Cross-provider business logic |
+| `zbw-integration-discord-api` | Secure provider-neutral Discord DTOs, scopes, events and outbox contracts | Public API/application ports | Bot SDK or webhook implementation details |
+| `zbw-integration-discord-webhook`, `zbw-integration-discord-external` | Optional embedded-webhook and external-bot adapters | Discord integration API | Gameplay authority or mandatory startup dependency |
 | `zbw-sdk`, `zbw-example-extension` | Addon tooling, metadata validator and complete example | Public API only | Internal classes |
 | `zbw-testkit`, `zbw-benchmarks` | Fakes, contract suites, E2E harness, JMH/load scenarios | Test scopes | Production activation |
 
@@ -108,6 +111,8 @@ Every provider exposes `id`, semantic adapter version, supported capabilities, h
 | `ServiceDiscoveryProvider` | service create/drain/stop, templates, capacity and health |
 | `ReplayPayloadStore`, `ReplayTelemetryProvider` | streaming payload operations, integrity/retention/hold and sourced telemetry |
 | `ExternalModerationProvider`, `ExternalStatsProvider` | scoped actions/queries with authentication, audit and rate limiting |
+| `DiscordIntegrationProvider` | scoped account-link/stat/leaderboard/notification operations, versioned event delivery, health and optional no-op behavior |
+| `ContentPackProvider`, `AssetProvenanceProvider` | versioned catalogue registration/override, schema validation, semantic asset lookup and provenance/licence approval queries |
 
 Provider selection is config-driven. Startup rejects mutually incompatible mandatory providers; safe fallback is only permitted when declared by the port and shown in diagnostics.
 
@@ -121,6 +126,7 @@ Provider selection is config-driven. Startup rejects mutually incompatible manda
 6. Cancellation propagates on disconnect, arena abort and plugin shutdown. A timeout returns a structured error and cannot leave a half-applied domain transaction.
 7. Map clone/reset is a pipeline: snapshot and file work async; world attach/unload and required provider calls on the documented owner thread; cleanup async only when the provider contract permits it.
 8. Public APIs document caller thread and completion thread. Async APIs return completion stages/results; no hidden blocking join is allowed on the server thread.
+9. Discord webhooks, external-bot delivery and custom providers consume a bounded transactional outbox on dedicated I/O executors. Provider timeout, retry exhaustion or circuit opening never delays a match lane or server tick.
 
 ## 8. Persistence and consistency
 
@@ -175,6 +181,8 @@ The primary modern artifact is built/tested for Paper 1.21.1 on Java 21. Support
 
 No version adapter changes game rules. Contract suites run against every supported server/provider matrix; a version is declared supported only after the matrix passes. “Latest stable” is a moving target added through a new adapter/matrix row, not a claim of untested automatic compatibility.
 
+Minecraft 1.8 is a mandatory server-runtime target, not merely a client-protocol target. Every visual or platform capability resolves through `zbw-compat-api` to a tested native, emulated or legacy-equivalent implementation documented in [COMPATIBILITY_FALLBACKS.md](COMPATIBILITY_FALLBACKS.md). An adapter must reject or replace unsupported materials, particles, sounds, entities, packets, text and inventory components before they reach the platform. Gameplay remains intact; only a purely decorative effect with no safe equivalent may be suppressed, with an explicit matrix row and diagnostic.
+
 ## 13. GUI, commands, authorization and localization
 
 Feature modules publish declarative page and command models; platform adapters render/execute them. GUI loads bounded pages asynchronously and revalidates permission/version when clicked. Destructive actions require a confirm token tied to actor/action/target/expiry. Command and GUI paths call the same application use case.
@@ -187,6 +195,8 @@ Permissions are action/resource nodes, resolved through an authorization port; r
 - Validate length/type/range/schema/authorization at adapters and domain invariants again in use cases.
 - Use prepared SQL, TLS/auth where supported, signed/replay-protected proxy messages, scoped external API credentials, rate limits and bounded payloads.
 - Secrets use references/environment/protected files and central redaction. Sanitized diagnostic export has an allowlist, not a blacklist.
+- Discord bot credentials are never required by the Minecraft runtime and are resolved through the secrets port; normal configuration stores only secret references. Discord providers are optional, circuit-broken and unable to mutate gameplay outside explicitly authorized application use cases.
+- Assets and content resolve through stable semantic IDs. Packaging fails unless every distributed file has an approved provenance row and every third-party dependency has an exact-version licence decision.
 - Currency/reward/stat/case operations use idempotency keys, uniqueness constraints and audit trails.
 - Replay/chat/profile/Atlas data has purpose, visibility, retention, export/deletion and legal-hold policy. Deletion anonymizes evidence that must legally be retained rather than violating an active hold.
 - Script/custom action hooks are disabled by default and run only through allowlisted, permissioned actions with time/resource budgets; arbitrary JVM/shell execution is not a supported configuration feature.
@@ -210,11 +220,16 @@ Performance gates use the PRD budgets and a reproducible workload/hardware manif
 - JMH microbenchmarks and scenario load harness for the PRD matrix.
 - Architecture/static tests for forbidden dependencies, API compatibility, docs/config/command/permission/placeholder inventories and no production TODO/stub markers.
 - A deterministic documentation gate hashes `MASTER_PROMPT.md`, assigns one stable `MP-L####` entry to every non-empty source assertion, validates every mapped `ZBW-*` ID against the PRD and requires all requested audit categories plus exactly 100% `COVERED` status before any Java module may be introduced. The generated Markdown is Part II of traceability, not a best-effort report.
+- Decision-document validation proves RC-072–RC-076 IDs exist in both PRD and traceability, the Resource Scarcity addon children remain append-only, accepted ADRs and required catalogues exist, and the published requirement totals agree.
 
 ## 17. Build, packaging and compatibility artifacts
 
 Maven toolchains compile each runtime line with its required JDK. The BOM pins dependencies; reproducible builds create checksummed Paper, Velocity, BungeeCord, CloudNet, API, docs and example artifacts. Optional integrations are `provided`/isolated and detected through bootstrap adapters. The documentation-only atomic coverage verifier requires Python 3.11+ and the standard library; M01 pins its CI patch version, and it is not shipped in runtime plugin artifacts. CI tests primary target on every change and the broader compatibility matrix on scheduled/release workflows. Dependency/license/vulnerability reports and the atomic-coverage verification result are release inputs.
 
-## 18. Decisions required before implementation
+The dependency gate in [DEPENDENCY_LICENSE_AUDIT.md](DEPENDENCY_LICENSE_AUDIT.md) is default-deny: an exact artifact, version and checksum must have verified source, licence, redistribution, shading, modification, attribution and commercial-use decisions before it may enter a build or release. `UNSELECTED`, `UNKNOWN` or contradictory metadata blocks selection or bundling. Official integration APIs are compile-only/provided where feasible; proprietary plugin binaries are never stored or redistributed. Release notices are generated from the approved dependency and [asset provenance](ASSET_PROVENANCE.md) manifests.
 
-The ADR queue in `docs/RISKS_AND_CONFLICTS.md` must resolve server-runtime compatibility/toolchains, reference benchmark hardware/workload, canonical permission/command namespace, supported provider versions/licensing, data privacy jurisdiction/retention, replay fidelity/storage defaults, distributed consistency policy, scripting sandbox and the 300-cosmetic asset/content plan. These decisions refine implementation; none removes the corresponding PRD capability.
+## 18. Decision state before implementation
+
+RC-072 through RC-076 are accepted in ADR-0001 through ADR-0005: Resource Scarcity is the original eleventh Private Games modifier; original/licensed starter content is externally configurable; Discord uses optional providers; Minecraft 1.8 uses mandatory compatibility adapters and fallbacks; dependency and asset redistribution are default-deny until verified.
+
+The remaining pre-code ADR queue in `docs/RISKS_AND_CONFLICTS.md` includes exact runtime/provider versions and licences, reference benchmark hardware/workload, canonical permission/command namespace, data privacy jurisdiction/retention, replay fidelity/storage defaults, distributed consistency policy and scripting sandbox. Content production must still reach the requested 300+ cosmetic catalogue during its milestone, but its originality/provenance policy is no longer undecided. These decisions refine implementation; none removes the corresponding PRD capability.

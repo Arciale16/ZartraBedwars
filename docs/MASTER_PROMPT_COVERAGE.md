@@ -4,11 +4,13 @@
 
 **Authoritative source:** `MASTER_PROMPT.md` (6,470 physical lines; SHA-256 `afce1250079945a7543f027bb23df14cedee7913ac52f8cb0775da784b280afa`).
 
-**Authoritative supplement:** `docs/ADDON_FEATURE_CATALOG.md` (8 premium and 41 free addon references; 463 atomic addon requirements).
+**Authoritative supplement:** `docs/ADDON_FEATURE_CATALOG.md` (8 premium and 41 free addon references; 473 atomic addon requirements).
+
+**Owner-decision supplement:** RC-072 through RC-076 add 35 atomic Part I requirements for original content, Discord providers, Minecraft 1.8 fallbacks and dependency/asset licensing.
 
 **Atomic inventory:** 6,438 non-empty source assertions. This is a lossless upper-bound catalogue: it intentionally includes headings and governance statements as well as every functional child, so a parsing heuristic cannot discard a requested feature.
 
-**Requirement baseline:** 607 stable semantic IDs: 144 core `ZBW-*` IDs plus 463 atomic `ZBW-ADDON-*` IDs. Every Master Prompt assertion maps to at least one core ID and to its own stable baseline ID `MP-L####`; every owner-supplied addon feature maps independently in Part III.
+**Requirement baseline:** 652 stable semantic IDs: 179 Part I `ZBW-*` IDs (including 35 atomic owner-decision IDs) plus 473 atomic `ZBW-ADDON-*` IDs. Every Master Prompt assertion maps to at least one applicable Part I ID and to its own stable baseline ID `MP-L####`; every owner-supplied addon feature maps independently in Part III.
 
 **Verifier runtime:** Python 3.11 or newer, standard library only. M01 shall pin the exact CI patch version alongside the build dependency matrix.
 
@@ -17,9 +19,10 @@
 | Measure | Result |
 |---|---|
 | Source assertions catalogued | 6,438 / 6,438 |
-| Owner-supplied addon features catalogued | 463 / 463 |
-| Combined atomic items | 6,901 / 6,901 |
-| COVERED | 6,901 |
+| Owner-supplied addon features catalogued | 473 / 473 |
+| RC-072 through RC-076 decision features catalogued | 35 / 35 |
+| Combined atomic items | 6,946 / 6,946 |
+| COVERED | 6,946 |
 | PARTIALLY COVERED | 0 |
 | MISSING | 0 |
 | Overall functional coverage | **100.00%** |
@@ -32,7 +35,7 @@ The initial requirement-level matrix was only partially sufficient because its s
 | Requested category | Atomic items | Status | Notes |
 |---|---:|---|---|
 | BedWars1058 core-feature references | 3 | **COVERED** | Three direct references exist (setup usability, migration layouts/data, statistics compatibility); no BedWars1058 core-feature catalogue appears in the source. |
-| Premium addon features | 101 | **COVERED** | All eight owner-supplied premium addon references are decomposed into independent Part III rows; see the native addon catalogue and resolved RC-067. |
+| Premium addon features | 111 | **COVERED** | All eight owner-supplied premium addon references are decomposed into independent Part III rows; see the native addon catalogue and resolved RC-067. |
 | Free addon features | 362 | **COVERED** | All forty-one owner-supplied free addon references are decomposed into independent Part III rows; see the native addon catalogue and resolved RC-067. |
 | Core gameplay | 39 | **COVERED** | All source assertions tagged to this category are listed verbatim in the annexes. |
 | Game modes | 26 | **COVERED** | All source assertions tagged to this category are listed verbatim in the annexes. |
@@ -62,10 +65,11 @@ The initial requirement-level matrix was only partially sufficient because its s
 1. `MP-L####` uses the physical source line number in this content-addressed baseline; blank and divider-only lines receive no row.
 2. Each row carries the original source text (only separator dashes are omitted), category tags, stable PRD ID mappings, PRD sections, its Part I/Part II trace entry, status and notes.
 3. Duplicate text remains in separate rows and is cross-noted. Broad requirement parents are acceptable only because the exact child text is preserved normatively in its Part II row.
-4. `ZBW-ADDON-001..463` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.
-5. `COVERED` means the source/addon child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.
-6. Any source, PRD or matrix edit must regenerate the reports and pass both coverage generators with `--check` before Java work.
-7. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.
+4. `ZBW-ADDON-001..473` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.
+5. The 35 `ZBW-CONTENT-*`, `ZBW-DISCORD-*`, `ZBW-COMPAT-*` and `ZBW-LICENSE-*` rows preserve the accepted RC-072 through RC-076 decisions independently of the unchanged Master Prompt hash.
+6. `COVERED` means the source/addon/decision child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.
+7. Any source, PRD or matrix edit must regenerate the reports and pass all three deterministic documentation validators with `--check` before Java work.
+8. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.
 
 ## Normative atomic annexes
 
@@ -83,6 +87,6 @@ The initial requirement-level matrix was only partially sufficient because its s
 
 ## Remaining decisions
 
-Coverage is complete, but coverage is not the same as product-decision closure. RC-067 is resolved by the owner-supplied native addon catalogue. The remaining blocking pre-code ADR/policy decisions, including original content design/provenance, licensing, legacy visual fallbacks and Discord topology, remain listed in `docs/RISKS_AND_CONFLICTS.md`.
+Coverage is complete, but coverage is not the same as product-decision closure. RC-067 and RC-072 through RC-076 are resolved by the native addon catalogue and accepted ADR-0001 through ADR-0005. Remaining pre-code decisions—including exact dependency/provider versions, command and permission namespaces, privacy/retention, replay fidelity/storage, distributed consistency and scripting policy—remain listed in `docs/RISKS_AND_CONFLICTS.md`.
 
 No Java implementation was created or started by this audit.

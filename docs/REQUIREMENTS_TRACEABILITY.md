@@ -2,7 +2,7 @@
 
 ## Rules and legend
 
-This baseline contains 607 stable semantic requirement IDs. Part I contains exactly one row for each of the 144 core PRD IDs. Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Part III is `docs/ADDON_FEATURE_CATALOG.md`, containing one complete mapping row for each of the 463 owner-supplied native-addon requirements. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior and must include a reason; it never omits documentation or verification.
+This baseline contains 652 stable semantic requirement IDs. Part I contains exactly one row for each of the 179 PRD IDs (144 original core IDs plus 35 accepted owner-decision IDs). Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Part III is `docs/ADDON_FEATURE_CATALOG.md`, containing one complete mapping row for each of the 473 owner-supplied native-addon requirements. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior and must include a reason; it never omits documentation or verification.
 
 - **Cmd/Perm:** command family and canonical permission family; exact subcommands/nodes are frozen before the implementation milestone.
 - **API/Evt:** public API service/provider and event family.
@@ -223,8 +223,8 @@ This baseline contains 607 stable semantic requirement IDs. Part I contains exac
 | ZBW-QA-003 | replay/Atlas/stat/rank/PH suites | test fixtures | — | tested surfaces | tested APIs | full PH test | mandated cases | test report; M16–M18 |
 | ZBW-QA-004 | benchmark/load harness + result store | benchmark manifest | benchmark run / developer | performance dashboard | benchmark API | performance metrics | all workload PT | benchmark report; M24 |
 | ZBW-QA-005 | release static/inventory/vulnerability gates | CI policy | — | — | API compatibility gate | PH inventory gate | release gates | release checklist; M24 |
-| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 607-semantic-ID audit plus atomic annex evidence | final compliance; M24 |
-| ZBW-QA-007 | deterministic atomic coverage verifiers | Master/addon manifest rules | coverage verify / maintainer | combined coverage reports | coverage report schema | coverage percentage/counts | 6,438 Master rows + 463 addon rows/hash/tier/mapping/status gate | coverage audits; M00/M01/M24 |
+| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 652-semantic-ID audit plus atomic annex evidence | final compliance; M24 |
+| ZBW-QA-007 | deterministic atomic coverage verifiers | Master/addon/decision manifest rules | coverage verify / maintainer | combined coverage reports | coverage report schema | coverage percentage/counts | 6,438 Master + 473 addon + 35 decision rows and document/ADR gate | coverage audits; M00/M01/M24 |
 
 ## Ecosystem and migration (5)
 
@@ -236,17 +236,73 @@ This baseline contains 607 stable semantic requirement IDs. Part I contains exac
 | ZBW-ECO-004 | migration/Doctor provider registries | migration/doctor/performance | doctor/migrate / admin | Doctor/migration | Doctor/Migration SPIs | health | provider extension CT | operations SDK; M23 |
 | ZBW-ECO-005 | AI suggestion-only ports/policy | security/integrations (disabled) | future provider manage / admin | reviewed suggestion surface | AI suggestion SPI | none | threat/design CT before enable | future API policy; post-M24 MAY |
 
+## Original content and provenance (11)
+
+| Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
+|---|---|---|---|---|---|---|---|---|
+| ZBW-CONTENT-001 | clean-room/content-rights gate | content/licence allowlists | content audit / maintainer | provenance report | content metadata API | provenance status only | copied-content/hash scan | starter catalogue + provenance; M01/M24 |
+| ZBW-CONTENT-002 | shop balance definition pack | `content.yml`, `shops.yml` | content shop validate/preview / content.manage | shop profile editor | BalanceProfile API/events | active shop profile | schema/golden/E2E | original starter catalogue; M11 |
+| ZBW-CONTENT-003 | per-mode balance definition packs | `content.yml`, `modes.yml` | content mode validate/preview / content.manage | mode balance editor | ModeBalance API/events | active mode profile | mode matrix/PT | original starter catalogue; M10/M11 |
+| ZBW-CONTENT-004 | quest seed definitions | `quests.yml`, `content.yml` | quest validate/import / quest.manage | quest editor | Quest registry/events | quest ID/progress | objective/config E2E | original starter catalogue; M13 |
+| ZBW-CONTENT-005 | achievement seed definitions | `achievements.yml`, `content.yml` | achievement validate/import / achievement.manage | achievement editor | Achievement registry/events | achievement ID/tier | tier/MT/E2E | original starter catalogue; M13 |
+| ZBW-CONTENT-006 | starter season/tier definitions | `battlepass.yml`, `content.yml` | pass validate/import / battlepass.manage | pass editor | BattlePass registry/events | season/tier/track | claim/rollover/MT | original starter catalogue; M13 |
+| ZBW-CONTENT-007 | cosmetic seed + 300-definition gate | `cosmetics.yml`, content packs | cosmetics validate/import / cosmetics.manage | cosmetics/provenance editor | Cosmetic registry/events | catalogue/provenance counts | 300-count/hash/PT | starter/provenance guides; M14 |
+| ZBW-CONTENT-008 | private preset definitions | private-games/content config | private preset validate/preview / private.manage | host/admin preset editor | PrivatePreset API/events | active preset/multipliers | GUI/generator E2E | Resource Scarcity catalogue; M20 |
+| ZBW-CONTENT-009 | semantic feedback/effect definitions | content/compatibility/messages | effect validate/preview / content.manage | effect preview | SemanticEffect API/events | selected effect/fallback | adapter/usability CT | starter + fallback matrix; M06/M14 |
+| ZBW-CONTENT-010 | content-pack registry/version/migration | `content.yml`, pack manifests | content pack validate/reload/migrate / content.manage | content pack manager | ContentPack SPI/events | pack version/health | extension/reload/MT CT | content SDK; M02/M03 |
+| ZBW-CONTENT-011 | asset provenance/hash registry | provenance manifest | provenance audit / maintainer | provenance report | provenance schema/report API | approved/blocked counts | file/hash/licence CI | `docs/ASSET_PROVENANCE.md`; M01/M14/M24 |
+
+## Discord provider topology (8)
+
+| Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
+|---|---|---|---|---|---|---|---|---|
+| ZBW-DISCORD-001 | scoped integration gateway/event outbox | discord event allowlists/scopes | discord status/debug / admin.discord | integration diagnostics | DiscordIntegration API/envelopes | safe delivery health | schema/scope/idempotency ST | Discord architecture; M02/M16 |
+| ZBW-DISCORD-002 | provider SPI/registry/lifecycle | provider selection/capabilities | provider list/reload/drain / admin.discord | provider manager | DiscordProvider SPI/events | provider capability/health | provider contract/PT | provider SDK; M02/M16 |
+| ZBW-DISCORD-003 | embedded webhook adapter | destination/event/rate + SecretRef | webhook validate/test / admin.discord.webhook | webhook settings/status | webhook delivery events | webhook health only | timeout/rate/allowlist ST | webhook guide; M16 |
+| ZBW-DISCORD-004 | external bot transport + link records | transport/scopes/link policy + secrets | link/unlink + bot diagnose / discord.* | link/privacy/bot health | external protocol/link events | consented link state | auth/replay/link CT/ST | external bot protocol; M16 |
+| ZBW-DISCORD-005 | custom provider SDK/metadata | extension metadata | provider validate / developer.manage | extension manager | custom provider SPI | provider health only | sample provider CT/ST | custom provider guide; M16/M23 |
+| ZBW-DISCORD-006 | disabled/no-op provider | `enabled: false` default | discord status / use | disabled state | no-op provider | disabled | no-provider full E2E | install/default guide; M03/M16 |
+| ZBW-DISCORD-007 | bounded outbox/retry/circuit/dead letter | queue/deadline/backoff/rate budgets | discord retry/drain / admin.discord | queue/circuit dashboard | delivery/failure events | queue/circuit health | outage/saturation/PT | failure runbook; M05/M16 |
+| ZBW-DISCORD-008 | secret resolution/redaction/rotation | secret references/env names only | secret diagnose/rotate / admin.security | redacted status only | SecretRef integration | — (secrets prohibited) | seeded-secret/export ST | security/Discord guides; M03/M16 |
+
+## Mandatory Minecraft 1.8 fallbacks (9)
+
+| Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
+|---|---|---|---|---|---|---|---|---|
+| ZBW-COMPAT-001 | separate legacy artifact/toolchain/bootstrap | version matrix/toolchains | compat status / debug | compatibility report | capability/version API | server/adapter version | 1.8 startup/gameplay | fallback matrix; M01/M22 |
+| ZBW-COMPAT-002 | `zbw-compat-v1_8` adapter only | adapter selection | compat inspect / debug | capability diagnostics | Compatibility SPI | capability health | forbidden import/startup CT | compatibility architecture; M06 |
+| ZBW-COMPAT-003 | legacy material/data/NBT registry | material fallbacks | compat material test / debug | mapping inspector | material/item capability API | fallback material ID | round-trip/tamper/MT | fallback matrix; M06/M22 |
+| ZBW-COMPAT-004 | legacy particle renderer | particle fallbacks/budgets | compat particle preview / debug | effect preview | particle capability API | fallback/suppression state | packet/budget/usability CT | fallback matrix; M06/M22 |
+| ZBW-COMPAT-005 | legacy sound renderer | sound fallbacks/volume | compat sound preview / debug | sound preview | sound capability API | fallback/suppression state | mapping/usability CT | fallback matrix; M06/M22 |
+| ZBW-COMPAT-006 | legacy text/action renderer | text/action fallback rules | compat text preview / debug | rendered preview | text capability API | renderer class | task/format/Unicode E2E | fallback matrix; M06/M22 |
+| ZBW-COMPAT-007 | entity/packet/GUI/input fallback providers | entity/packet/gui mappings | compat component inspect / debug | component diagnostics | packet/entity/UI capabilities | capability/fallback | packet/cleanup/input E2E | fallback matrix; M06/M22 |
+| ZBW-COMPAT-008 | typed degradation/last-known-good policy | suppression/fallback order | compat validate / admin.validate | validation report | fallback decision events | suppression reason | mutation/fault CT | compatibility policy; M06/M22 |
+| ZBW-COMPAT-009 | generated complete fallback inventory | compatibility manifest | compat report / maintainer | compatibility matrix | report schema | coverage counts | row/fixture/link validator | `docs/COMPATIBILITY_FALLBACKS.md`; M01/M22/M24 |
+
+## Dependency licensing and redistribution (7)
+
+| Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
+|---|---|---|---|---|---|---|---|---|
+| ZBW-LICENSE-001 | exact dependency/SBOM audit registry | approved dependency policy | licences audit / maintainer | licence report | SBOM/report schema | — (build governance) | inventory/transitive scan | dependency audit; M01/M24 |
+| ZBW-LICENSE-002 | version/checksum lock and drift gate | lock/update policy | dependencies verify / maintainer | dependency diff | dependency metadata API | build version only | dynamic/drift CI | dependency audit; M01 |
+| ZBW-LICENSE-003 | default-deny redistribution classifier | licence allow/deny policy | licences validate / maintainer | distribution decision report | — (governance only) | — (governance only) | release artifact scan | licensing guide; M01/M24 |
+| ZBW-LICENSE-004 | shading/modification/obligation scanner | relocation/modification declarations | licences shade-report / maintainer | shaded-content report | SBOM relations | — (build governance) | package/source-offer scan | dependency audit/notices; M01/M24 |
+| ZBW-LICENSE-005 | compile-only/provided integration scopes | dependency scopes/provider versions | integrations validate / admin | integration manager | provider SPIs | provider presence/version | artifact/scope/provider CT | integration guides; M01/M21 |
+| ZBW-LICENSE-006 | proprietary binary repository/artifact denylist | binary/hash deny rules | licences proprietary-scan / maintainer | violation report | — (governance only) | — (security) | repository/release scan | contributor/legal guide; M01/M24 |
+| ZBW-LICENSE-007 | generated notices/SBOM/provenance release gate | notice/provenance policy | licences notices/verify / maintainer | compliance report | notice/SBOM schemas | approved/blocked counts | reproducibility/licence CI | `THIRD_PARTY_NOTICES.md`; M01/M24 |
+
 ## Coverage controls
 
 The following checks are required from M01 onward:
 
-1. Extract the 144 core Part I IDs from this file/PRD and the append-only `ZBW-ADDON-001..463` Part III IDs from the addon catalogue; fail on a missing, duplicate, reordered or extra semantic ID.
+1. Extract the 179 Part I IDs from this file/PRD and the append-only `ZBW-ADDON-001..473` Part III IDs from the addon catalogue; fail on a missing, duplicate or extra semantic ID. The generated catalogue may display an append-only amendment beside its owning addon, but numeric allocation history remains immutable and validator-sorted.
 2. Fail when an implementation milestone closes while its rows still contain only generic planned locations.
 3. Generate command, permission, GUI, config, API/event and placeholder inventories and compare them with the exact references derived from this matrix.
 4. Require test and documentation links for every final compliance row.
-5. Regenerate Part III with `tools/coverage/generate_addon_feature_catalog.py`; fail unless all 49 references, 8/41 tier split, 463 atomic IDs, required mapping surfaces and `COVERED` statuses match.
-6. Regenerate Part II and the combined report with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, unknown semantic ID, absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
-7. Treat the owner-supplied addon inventory as a normative supplement, while preserving the factual distinction that it was not present in the original Master Prompt baseline.
+5. Regenerate Part III with `tools/coverage/generate_addon_feature_catalog.py`; fail unless all 49 references, 8/41 tier split, 473 atomic IDs, required mapping surfaces and `COVERED` statuses match.
+6. Run `tools/coverage/validate_preimplementation_decisions.py`; fail unless all 35 Part I decision IDs, `ZBW-ADDON-464..473`, five accepted ADRs, required documents/fields and resolved RC-072..076 rows match.
+7. Regenerate Part II and the combined report with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, unknown semantic ID, absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
+8. Treat owner-supplied addon and decision inventories as normative supplements while preserving the factual distinction that they were not present in the original Master Prompt baseline.
 
 ## Part II — Atomic source-to-PRD coverage matrix
 
@@ -254,7 +310,7 @@ The following checks are required from M01 onward:
 
 ## Part III — Native addon atomic feature matrix
 
-`docs/ADDON_FEATURE_CATALOG.md` is incorporated here by reference as Part III. Its 463 `ZBW-ADDON-*` rows are semantic requirements, not informative examples. Every row maps its atomic capability to PRD §4.17/§8.9, the retained Part I overlap, milestone, module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI, performance, security, tests and documentation. The catalogue's `Trace entry` cell is the canonical matrix location for that ID. All 49 addon references remain explicit even where their behavior overlaps a core requirement.
+`docs/ADDON_FEATURE_CATALOG.md` is incorporated here by reference as Part III. Its 473 `ZBW-ADDON-*` rows are semantic requirements, not informative examples. Every row maps its atomic capability to PRD §4.17/§8.9, the retained Part I overlap, milestone, module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI, performance, security, tests and documentation. The catalogue's `Trace entry` cell is the canonical matrix location for that ID. All 49 addon references remain explicit even where their behavior overlaps a core requirement.
 
 ## Source-to-PRD coverage audit
 

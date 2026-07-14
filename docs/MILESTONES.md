@@ -10,28 +10,28 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M00 — Requirements and architecture baseline
 
-- **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, architecture/plan portions of all 607 semantic IDs.
+- **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, architecture/plan portions of all 652 semantic IDs.
 - **Entry:** `MASTER_PROMPT.md` available and read completely.
-- **Deliver:** PRD, architecture, milestones, requirement-level traceability, deterministic Master/addon atomic coverage reports, risks/conflicts, ADR templates and repository instructions.
-- **Exit:** 607 unique semantic IDs (144 core plus 463 addon); Part I has one row per core ID, Part II has one row per non-empty source assertion and Part III has one complete mapping row per addon ID; source hash/line count, 49-addon inventory and 8/41 split validate; all atomic rows are `COVERED`, combined functional coverage is 100%, unresolved decisions are explicit and no Java source/build scaffold exists.
+- **Deliver:** PRD, architecture, milestones, requirement-level traceability, deterministic Master/addon/decision coverage reports, resolved RC-072..076 ADRs and documents, risks/conflicts and repository instructions.
+- **Exit:** 652 unique semantic IDs (179 Part I plus 473 addon); Parts I–III and all five decision-document inventories validate; source hash/line count, 49-addon inventory, 8/41 split, five accepted ADRs and required schemas match; all atomic rows are `COVERED`, combined functional coverage is 100%, remaining decisions are explicit and no Java source/build scaffold exists.
 
 ### M01 — Resolve blocking ADRs and establish build governance
 
-- **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007.
+- **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007, CONTENT-001/011, COMPAT-001/009, LICENSE-001..007.
 - **Entry:** M00 approved; owners available for blocking decisions.
-- **Deliver:** accepted ADRs for runtime/toolchains, module graph, dependency versions/licenses, benchmark baseline, namespace, privacy, original-content provenance and addon runtime naming; Maven parent/BOM/toolchains; pinned Python 3.11+ documentation-verifier runtime; CI skeleton and static architecture rules.
-- **Exit:** clean empty multi-module build on primary JDK; both deterministic coverage drift checks pass; supported-version/provider matrix and content/dependency licence policy are pinned; no functional production path is claimed.
+- **Deliver:** accepted remaining runtime/toolchain/module/dependency-version ADRs; exact-version dependency approvals, SBOM/notices/provenance gates, legacy compatibility matrix, Maven parent/BOM/toolchains, pinned Python validator runtime, CI skeleton and static architecture rules.
+- **Exit:** clean empty multi-module build on primary JDK; all documentation validators and licence/provenance gates pass; no dependency remains `UNSELECTED` in the build; supported-version/provider matrix is pinned; no functional production path is claimed.
 
 ### M02 — Public API, domain primitives and extension metadata
 
-- **Requirements:** ARC-003/004/009/010, ECO-002/003.
+- **Requirements:** ARC-003/004/009/010, ECO-002/003, CONTENT-010, DISCORD-001/002/005.
 - **Entry:** M01 module/API ADR accepted.
 - **Deliver:** typed IDs, clocks/results/events, public API versioning, provider/extension contracts and metadata validator.
 - **Exit:** binary/API contract tests and example metadata pass; no Bukkit/store dependency in domain/API; JavaDoc documents thread/error/version rules.
 
 ### M03 — Configuration, localization, permissions and validation foundations
 
-- **Requirements:** OPS-001..004, UX-004/005, OPS-002/003.
+- **Requirements:** OPS-001..004, UX-004/005, OPS-002/003, DISCORD-006/008, content/compatibility schema foundations.
 - **Entry:** M02 types/events stable enough for schemas.
 - **Deliver:** typed versioned configuration, comments/docs generator, transactional targeted reload, localization and authorization ports, startup/manual validator.
 - **Exit:** malformed/unknown/dependency/secret cases tested; every initial option has metadata; reload never partially applies; permission checks are centralized.
@@ -52,7 +52,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M06 — Compatibility and world-provider foundation
 
-- **Requirements:** ARC-002/007, ARENA-005/006, INT-004/005, INT-010 architecture subset.
+- **Requirements:** ARC-002/007, ARENA-005/006, INT-004/005, INT-010 architecture subset, COMPAT-002..009, CONTENT-009.
 - **Entry:** M01 compatibility ADR and M05 scheduler ready.
 - **Deliver:** compatibility capability API, primary 1.21.1 adapter, world provider contracts and at least native primary adapter; version-neutral material/effect/item representations.
 - **Exit:** primary Paper world load/clone/reset/unload E2E passes; file work vs owner-thread calls proven; provider contract suite reusable for later adapters.
@@ -80,14 +80,14 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M10 — Modes, matchmaking and selectors
 
-- **Requirements:** GAME-004/005/007/009; ZBW-ADDON-092..101, 115..123, 131..140, 155..163, 236..244.
+- **Requirements:** GAME-004/005/007/009; CONTENT-003; ZBW-ADDON-092..101, 115..123, 131..140, 155..163, 236..244.
 - **Entry:** M08/M09 complete.
 - **Deliver:** standard/custom mode SPI, all named modes, selectors/queues/spectator/staff controls on shared server.
 - **Exit:** gameplay matrix passes for every mode/team size and rejoin/disconnect; each mode has independent config/stats/shop/generator/upgrade/event/placeholder contracts.
 
 ### M11 — Shop, item, generator and upgrade platform
 
-- **Requirements:** SHOP-001..007; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452.
+- **Requirements:** SHOP-001..007; CONTENT-002/003; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452.
 - **Entry:** M08 event engine, M09 UI and M10 mode SPI complete.
 - **Deliver:** catalog/purchase/tender services, Quick Buy, generators, upgrades/traps and all original utility items/custom action SPI.
 - **Exit:** item/purchase matrices, atomicity/exploit and high-GUI-load tests pass; scripts/actions meet sandbox policy; admin/API/config/docs surfaces complete.
@@ -101,14 +101,14 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M13 — Objectives, quests, achievements and battle pass
 
-- **Requirements:** PROG-009/010/012/013; ZBW-ADDON-081..091.
+- **Requirements:** PROG-009/010/012/013; CONTENT-004..006; ZBW-ADDON-081..091.
 - **Entry:** M12 reward/progression core and M09 UI ready.
 - **Deliver:** reusable objective engine, every listed objective/scope, quest/achievement/challenge/pass definitions and editors.
 - **Exit:** objective/reward catalog tests, season rollover, claims/rerolls/chains and migration/security E2E pass; no duplicated objective logic.
 
 ### M14 — Cosmetics, profiles and calendar rewards
 
-- **Requirements:** PROG-006..008/014; ZBW-ADDON-026..040, 369..378.
+- **Requirements:** PROG-006..008/014; CONTENT-007/009/011; ZBW-ADDON-026..040, 369..378.
 - **Entry:** M12/M13 complete; original content/license ADR accepted.
 - **Deliver:** 300 original definitions, rarity/ownership/equipment/effects, profile/privacy/settings and holiday/calendar rewards.
 - **Exit:** catalog count/license scan, ownership/expiry/preset/migration and rate-limit load tests pass; low-performance/emergency controls meet budgets.
@@ -122,7 +122,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M16 — PlaceholderAPI and external statistics surfaces
 
-- **Requirements:** PAPI-001..006, OPS-007; ZBW-ADDON-071..080, 202..209, 357..362, 453..463.
+- **Requirements:** PAPI-001..006, OPS-007, DISCORD-001..008; ZBW-ADDON-071..080, 202..209, 357..362, 453..463.
 - **Entry:** M12–M15 visible data contracts stable; M05 metrics ready.
 - **Deliver:** native expansion, dynamic contexts/families/formatters/admin tools/docs generator and secured external/Discord provider APIs.
 - **Exit:** placeholder inventory/context/offline/fallback/cache/parser tests pass; zero sync I/O and p95 budget verified; privacy/scope/rate tests pass.
@@ -150,7 +150,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M20 — Proxy networking and scalable deployment
 
-- **Requirements:** DEPLOY-002..004, distributed portions of GAME/PROG/STATS/REPLAY/ATLAS/INT-009; ZBW-ADDON-041..060, 102..107, 164..173, 252..259, 291..299.
+- **Requirements:** DEPLOY-002..004, distributed portions of GAME/PROG/STATS/REPLAY/ATLAS/INT-009; CONTENT-008; ZBW-ADDON-041..060, 102..107, 164..173, 252..259, 291..299, 464..473.
 - **Entry:** M19 complete and M10 routing contracts stable.
 - **Deliver:** Velocity and Bungee adapters, backend registry/reservations/transfers/failover/drain and cross-server user flows.
 - **Exit:** provider-equivalence and signed-message security tests pass; crash/retry/fallback/duplicate player and cross-server queue/party/rejoin/play-again E2E pass.
@@ -164,7 +164,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M22 — Full 1.8–1.21.x and Bedrock compatibility matrix
 
-- **Requirements:** INT-010, remaining ARENA/SHOP/REPLAY/UX compatibility acceptance.
+- **Requirements:** INT-010, COMPAT-001..009, remaining ARENA/SHOP/REPLAY/UX compatibility acceptance.
 - **Entry:** M06 adapter contract proven and all feature semantics stable.
 - **Deliver:** separate version-family bootstraps/adapters/toolchains, mappings, Via integrations and Geyser/Floodgate alternatives.
 - **Exit:** every claimed matrix row passes build/startup/gameplay/GUI/item/packet/replay tests on its required JDK; unsupported limitations are explicit and owner-approved alternatives exist where necessary.
@@ -178,10 +178,10 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M24 — Security, performance and release qualification
 
-- **Requirements:** QA-001..007, GOV-007/011, OPS-008 and final acceptance of all 607 semantic IDs and atomic children.
+- **Requirements:** QA-001..007, GOV-007/011, OPS-008, CONTENT-001/011, LICENSE-001..007 and final acceptance of all 652 semantic IDs and atomic children.
 - **Entry:** M01–M23 complete with no mandatory open implementation work.
 - **Deliver:** threat/privacy/license review, compatibility report, full benchmark/security report, recovery exercise, reproducible artifacts, final compliance report and release notes.
-- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 144 core IDs, 463 addon IDs and every `MP-L####` child has an allowed final status and evidence; atomic functional coverage remains 100%; no unresolved mandatory requirement.
+- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 179 Part I IDs, 473 addon IDs and every `MP-L####` child has an allowed final status and evidence; dependency/asset SBOM, notices and fallback matrices match artifacts; atomic functional coverage remains 100%; no unresolved mandatory requirement.
 
 ## Native addon allocation summary
 
@@ -199,10 +199,20 @@ The authoritative row-level allocation is the `Milestone` column of `docs/ADDON_
 | M15 | Winstreak (`217..225`); KDR/FKDR/WLR (`260..265`); GroupStats (`350..356`) |
 | M16 | DiscordStats (`071..080`); Discord/Corebot adapter (`202..209`); Per Group Stats (`357..362`); DiscordUtils (`453..463`) |
 | M18 | AdminAddon controlled tools (`323..333`) |
-| M20 | Private Games (`041..060`); Spectate (`102..107`); BedWarsProxy (`164..173`); MapSelector (`252..259`); Play Again (`291..299`) |
+| M20 | Private Games (`041..060`, `464..473`); Spectate (`102..107`); BedWarsProxy (`164..173`); MapSelector (`252..259`); Play Again (`291..299`) |
 | M21 | CloudNet Support (`226..235`) |
 | M23 | lawful layout migrator (`283..290`) |
-| M24 | final verification of `ZBW-ADDON-001..463` |
+| M24 | final verification of `ZBW-ADDON-001..473` |
+
+## Resolved decision requirement allocation
+
+| Decision | Stable IDs | Foundation milestone | Feature milestone | Final evidence |
+|---|---|---|---|---|
+| RC-072 RESOURCE SCARCITY | `ZBW-ADDON-464..473`, CONTENT-008 | M02/M03 generator/modifier/config contracts | M20 Private Games | Host GUI/permission/API/custom-generator E2E |
+| RC-073 original content/provenance | CONTENT-001..011 | M01 provenance gate; M02/M03 content registry | M10–M14 and M20 by catalogue family | M24 asset/content/SBOM scan |
+| RC-074 Discord providers | DISCORD-001..008 | M02 API/SPI, M03 secrets/default, M05 failure substrate | M16 | No-provider/outage/security/protocol tests |
+| RC-075 1.8 fallbacks | COMPAT-001..009 | M01 toolchain matrix, M06 adapter/fallback foundation | M22 full matrix | Every fallback row/fixture passes |
+| RC-076 dependency licensing | LICENSE-001..007 | M01 exact artifact approvals before Java | Continuous dependency changes | M24 reproducible notices/SBOM/artifact audit |
 
 ## Critical dependency chain
 

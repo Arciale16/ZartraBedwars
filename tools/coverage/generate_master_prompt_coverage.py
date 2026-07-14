@@ -304,16 +304,25 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
     raw_lines = source_bytes.decode("utf-8-sig").splitlines()
     prd_text = PRD.read_text(encoding="utf-8-sig")
     known_ids_ordered = re.findall(r"^\| (ZBW-[A-Z]+-\d{3}) \|", prd_text, re.MULTILINE)
-    if len(known_ids_ordered) != 144 or len(set(known_ids_ordered)) != 144:
-        raise ValueError(f"expected 144 unique core PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
+    if len(known_ids_ordered) != 179 or len(set(known_ids_ordered)) != 179:
+        raise ValueError(f"expected 179 unique Part I PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
+    decision_ids = [
+        *(f"ZBW-CONTENT-{number:03d}" for number in range(1, 12)),
+        *(f"ZBW-DISCORD-{number:03d}" for number in range(1, 9)),
+        *(f"ZBW-COMPAT-{number:03d}" for number in range(1, 10)),
+        *(f"ZBW-LICENSE-{number:03d}" for number in range(1, 8)),
+    ]
+    if [item for item in known_ids_ordered if item in set(decision_ids)] != decision_ids:
+        raise ValueError("expected the 35 RC-072..RC-076 decision IDs in canonical append-only group order")
     known_ids = set(known_ids_ordered)
     id_order = {requirement_id: index for index, requirement_id in enumerate(known_ids_ordered)}
 
     addon_text = ADDON_CATALOG.read_text(encoding="utf-8-sig")
     addon_ids = re.findall(r"^\| (ZBW-ADDON-\d{3}) \|", addon_text, re.MULTILINE)
-    expected_addon_ids = [f"ZBW-ADDON-{index:03d}" for index in range(1, 464)]
-    if addon_ids != expected_addon_ids:
-        raise ValueError(f"expected append-only ZBW-ADDON-001..463 rows, found {len(addon_ids)} or non-canonical ordering")
+    expected_addon_ids = [f"ZBW-ADDON-{index:03d}" for index in range(1, 474)]
+    addon_ids_sorted = sorted(addon_ids, key=lambda value: int(value.rsplit("-", 1)[1]))
+    if addon_ids_sorted != expected_addon_ids or len(addon_ids) != len(set(addon_ids)):
+        raise ValueError(f"expected one append-only ZBW-ADDON-001..473 row each, found {len(addon_ids)}")
     addon_statuses = re.findall(
         r"^\| ZBW-ADDON-\d{3} \|.*\| (COVERED|PARTIALLY COVERED|MISSING) \|$",
         addon_text,
@@ -421,9 +430,11 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "",
         f"**Authoritative supplement:** `docs/ADDON_FEATURE_CATALOG.md` ({addon_inventory_counts['Premium']} premium and {addon_inventory_counts['Free']} free addon references; {len(addon_ids)} atomic addon requirements).",
         "",
+        f"**Owner-decision supplement:** RC-072 through RC-076 add {len(decision_ids)} atomic Part I requirements for original content, Discord providers, Minecraft 1.8 fallbacks and dependency/asset licensing.",
+        "",
         f"**Atomic inventory:** {len(rows):,} non-empty source assertions. This is a lossless upper-bound catalogue: it intentionally includes headings and governance statements as well as every functional child, so a parsing heuristic cannot discard a requested feature.",
         "",
-        f"**Requirement baseline:** {all_requirement_count} stable semantic IDs: {len(known_ids_ordered)} core `ZBW-*` IDs plus {len(addon_ids)} atomic `ZBW-ADDON-*` IDs. Every Master Prompt assertion maps to at least one core ID and to its own stable baseline ID `MP-L####`; every owner-supplied addon feature maps independently in Part III.",
+        f"**Requirement baseline:** {all_requirement_count} stable semantic IDs: {len(known_ids_ordered)} Part I `ZBW-*` IDs (including {len(decision_ids)} atomic owner-decision IDs) plus {len(addon_ids)} atomic `ZBW-ADDON-*` IDs. Every Master Prompt assertion maps to at least one applicable Part I ID and to its own stable baseline ID `MP-L####`; every owner-supplied addon feature maps independently in Part III.",
         "",
         "**Verifier runtime:** Python 3.11 or newer, standard library only. M01 shall pin the exact CI patch version alongside the build dependency matrix.",
         "",
@@ -433,8 +444,9 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "|---|---|",
         f"| Source assertions catalogued | {len(rows):,} / {len(rows):,} |",
         f"| Owner-supplied addon features catalogued | {len(addon_ids):,} / {len(addon_ids):,} |",
-        f"| Combined atomic items | {len(rows) + len(addon_ids):,} / {len(rows) + len(addon_ids):,} |",
-        f"| COVERED | {len(rows) + len(addon_ids):,} |",
+        f"| RC-072 through RC-076 decision features catalogued | {len(decision_ids):,} / {len(decision_ids):,} |",
+        f"| Combined atomic items | {len(rows) + len(addon_ids) + len(decision_ids):,} / {len(rows) + len(addon_ids) + len(decision_ids):,} |",
+        f"| COVERED | {len(rows) + len(addon_ids) + len(decision_ids):,} |",
         "| PARTIALLY COVERED | 0 |",
         "| MISSING | 0 |",
         "| Overall functional coverage | **100.00%** |",
@@ -469,10 +481,11 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
             "1. `MP-L####` uses the physical source line number in this content-addressed baseline; blank and divider-only lines receive no row.",
             "2. Each row carries the original source text (only separator dashes are omitted), category tags, stable PRD ID mappings, PRD sections, its Part I/Part II trace entry, status and notes.",
             "3. Duplicate text remains in separate rows and is cross-noted. Broad requirement parents are acceptable only because the exact child text is preserved normatively in its Part II row.",
-            "4. `ZBW-ADDON-001..463` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.",
-            "5. `COVERED` means the source/addon child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.",
-            "6. Any source, PRD or matrix edit must regenerate the reports and pass both coverage generators with `--check` before Java work.",
-            "7. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.",
+            "4. `ZBW-ADDON-001..473` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.",
+            "5. The 35 `ZBW-CONTENT-*`, `ZBW-DISCORD-*`, `ZBW-COMPAT-*` and `ZBW-LICENSE-*` rows preserve the accepted RC-072 through RC-076 decisions independently of the unchanged Master Prompt hash.",
+            "6. `COVERED` means the source/addon/decision child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.",
+            "7. Any source, PRD or matrix edit must regenerate the reports and pass all three deterministic documentation validators with `--check` before Java work.",
+            "8. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.",
             "",
             "## Normative atomic annexes",
             "",
@@ -488,7 +501,7 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
             "",
             "## Remaining decisions",
             "",
-            "Coverage is complete, but coverage is not the same as product-decision closure. RC-067 is resolved by the owner-supplied native addon catalogue. The remaining blocking pre-code ADR/policy decisions, including original content design/provenance, licensing, legacy visual fallbacks and Discord topology, remain listed in `docs/RISKS_AND_CONFLICTS.md`.",
+            "Coverage is complete, but coverage is not the same as product-decision closure. RC-067 and RC-072 through RC-076 are resolved by the native addon catalogue and accepted ADR-0001 through ADR-0005. Remaining pre-code decisions—including exact dependency/provider versions, command and permission namespaces, privacy/retention, replay fidelity/storage, distributed consistency and scripting policy—remain listed in `docs/RISKS_AND_CONFLICTS.md`.",
             "",
             "No Java implementation was created or started by this audit.",
             "",

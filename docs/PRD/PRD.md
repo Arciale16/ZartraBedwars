@@ -1,10 +1,10 @@
 # ZartraBedWars Product Requirements Document
 
-**Document status:** Baseline v1.2 (native addon scope supplement)
+**Document status:** Baseline v1.3 (resolved RC-072–RC-076 decisions)
 
-**Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md` and the owner's 2026-07-14 native-addon scope supplement preserved in `docs/ADDON_FEATURE_CATALOG.md`. If this document and implementation differ, implementation changes unless the owner approves a requirement change.
+**Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md`, the owner's native-addon scope supplement and the accepted 2026-07-14 decisions RC-072 through RC-076. If this document and implementation differ, implementation changes unless the owner approves a requirement change.
 
-**Requirement count:** 607 (144 core IDs plus 463 atomic addon IDs)
+**Requirement count:** 652 (179 Part I PRD IDs plus 473 atomic addon IDs)
 
 **Implementation status:** all requirements are `NOT STARTED` at this baseline.
 
@@ -27,7 +27,9 @@ Every enumerated capability in a requirement is normative and must receive an in
 
 Every non-empty normative source assertion in `MASTER_PROMPT.md` is also an explicit child scope item. The stable `MP-L####` catalog in `docs/MASTER_PROMPT_COVERAGE.md` is incorporated into this PRD and into Part II of the requirements traceability matrix. A broad parent requirement is not sufficient unless the child assertion appears in that catalog with its original text, mapped requirement ID(s), PRD section, traceability entry and final coverage status.
 
-Every atomic capability in the owner's native-addon supplement is independently normative. `docs/ADDON_FEATURE_CATALOG.md` and its stable `ZBW-ADDON-001` through `ZBW-ADDON-463` records are incorporated into this PRD and Part III of the requirements traceability matrix. Addon names are organisational/source-reference labels only and never replace their atomic child requirements. Overlap with a core ID preserves both records.
+Every atomic capability in the owner's native-addon supplement is independently normative. `docs/ADDON_FEATURE_CATALOG.md` and its stable `ZBW-ADDON-001` through `ZBW-ADDON-473` records are incorporated into this PRD and Part III of the requirements traceability matrix. Addon names are organisational/source-reference labels only and never replace their atomic child requirements. Overlap with a core ID preserves both records.
+
+The 35 `ZBW-CONTENT-*`, `ZBW-DISCORD-*`, `ZBW-COMPAT-*` and `ZBW-LICENSE-*` requirements below are atomic owner-decision requirements for RC-073 through RC-076. Together with `ZBW-ADDON-464..473` for RC-072, they are incorporated into the combined coverage gate. Their documents and accepted ADRs are normative.
 
 ## 3. Requirement record impact profiles
 
@@ -48,7 +50,7 @@ For every profile, completion requires implementation, clean compilation, applic
 
 Provisional measurable budgets, to be fixed in an ADR with reference hardware before implementation, are: no synchronous database/Redis/filesystem/network access on the Paper tick thread; no unbounded queue/cache/poll loop; cached placeholder p95 ≤ 1 ms and zero database calls during evaluation; steady shared-server benchmark at 40 managed worlds/10 active arenas maintains ≥19.5 TPS with platform p95 tick contribution ≤2 ms and p99 ≤5 ms; every external operation has a timeout; replay enqueue p99 ≤200 μs on the tick thread; operator/player list GUIs page results and never materialize an unbounded dataset. Failing a budget blocks `VERIFIED` or requires owner-approved revised evidence, never a silent waiver.
 
-Java implementation is additionally gated on 100% `COVERED` atomic coverage across both authoritative inputs and successful Master-source hash plus addon ID/tier/inventory/mapping validation under ZBW-GOV-011 and ZBW-QA-007.
+Java implementation is additionally gated on 100% `COVERED` atomic coverage across all authoritative inputs and successful Master-source, addon-catalogue and pre-implementation-decision validation under ZBW-GOV-011 and ZBW-QA-007. Exact dependency versions must also be approved in `docs/DEPENDENCY_LICENSE_AUDIT.md`; an `UNSELECTED` or non-approved row blocks Java work.
 
 ## 4. Requirement catalog
 
@@ -263,8 +265,8 @@ Java implementation is additionally gated on 100% `COVERED` atomic coverage acro
 | ZBW-QA-003 | CRITICAL MUST | Replay/Atlas/stat/leaderboard/placeholder tests cover every specific verification case in §8.7. | REPLAY-001..010, ATLAS-001..013, STATS-001..008, PAPI-001..006 | CI matrix | GOV |
 | ZBW-QA-004 | CRITICAL MUST | Benchmark one/ten active arenas, 40 worlds, concurrent resets, high shop/placeholder/cosmetic/quest load, replay/Atlas, large stats DB, Redis, proxy, NPC/holograms and report startup/arena/reset/clone/duplicate/queues/throughput/memory/CPU/TPS/MSPT/chunks/entities/threads against §3 budgets. | Implemented systems | reproducible PT | GOV |
 | ZBW-QA-005 | MUST | Release gates reject TODO/FIXME/temp/debug leftovers, unused assets, duplicate logic, major warnings, missing docs/config/permission/command/placeholder/migration/version/changelog and dependency vulnerabilities above approved policy. | OPS-008 | CI | GOV |
-| ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row for each of all 607 semantic requirement IDs with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
-| ZBW-QA-007 | CRITICAL MUST | Run both deterministic atomic coverage verifiers before Java work and on every source/PRD/traceability/addon-catalog change. They shall fail unless the `MASTER_PROMPT.md` SHA-256 and line count match; every non-empty source assertion has one stable `MP-L####` row; all 49 addon references, the 8/41 tier split and `ZBW-ADDON-001..463` rows match; every mapping surface is present; every referenced ID exists; all requested categories are declared; no item is `PARTIALLY COVERED` or `MISSING`; and combined functional coverage is exactly 100%. | GOV-011, QA-005/006 | both generator self-checks, CI | GOV |
+| ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row for each of all 652 semantic requirement IDs with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility/licensing evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
+| ZBW-QA-007 | CRITICAL MUST | Run all deterministic documentation/coverage validators before Java work and on every source/PRD/traceability/addon/decision-document change. They shall fail unless the Master hash/rows, 49-addon 8/41 inventory, `ZBW-ADDON-001..473`, all 35 decision IDs, required documents/ADRs/mapping surfaces, requested categories and status counts match; no item is `PARTIALLY COVERED` or `MISSING`; and combined functional coverage is exactly 100%. | GOV-011, QA-005/006 | all documentation validator self-checks, CI | GOV |
 
 ### 4.16 Ecosystem, migration and evolution (5)
 
@@ -276,29 +278,83 @@ Java implementation is additionally gated on 100% `COVERED` atomic coverage acro
 | ZBW-ECO-004 | SHOULD | Extensible migration assistants and Plugin Doctor/provider checks cover config, DB, replay, stats, placeholders, permissions, worlds and arenas; future schedulers/compression/cache/Redis/distributed stores can be added through SPIs. | ECO-001, OPS-006, ARC-007 | provider CT | OPS |
 | ZBW-ECO-005 | MAY | AI-ready internal APIs may later provide configuration/diagnostic/optimization/balancing/replay/suspicion/documentation/migration suggestions; no AI action is trusted or enforcement-capable without validation, authorization, privacy review and human-controlled policy. | ARC-003, OPS-002/007 | threat/design review | CORE |
 
-### 4.17 Native addon-equivalent atomic requirements (463)
+### 4.17 Native addon-equivalent atomic requirements (473)
 
-`docs/ADDON_FEATURE_CATALOG.md` is incorporated here verbatim as the requirement table for `ZBW-ADDON-001` through `ZBW-ADDON-463`. Every row is priority `MUST`, implementation status `NOT STARTED`, independently accepted and independently traced. Each row defines its atomic behavior, retained core overlap, PRD/trace entry, milestone, native module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI applicability, performance, security, tests, documentation and `COVERED` specification status. `COVERED` does not claim implementation.
+`docs/ADDON_FEATURE_CATALOG.md` is incorporated here verbatim as the requirement table for `ZBW-ADDON-001` through `ZBW-ADDON-473`. Every row is priority `MUST`, implementation status `NOT STARTED`, independently accepted and independently traced. Each row defines its atomic behavior, retained core overlap, PRD/trace entry, milestone, native module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI applicability, performance, security, tests, documentation and `COVERED` specification status. `COVERED` does not claim implementation.
 
 The catalogue covers all 49 owner-supplied references (8 premium and 41 free) and deliberately keeps explicit requirements for overlapping behavior. Implementations shall be original clean-room equivalents: reference names do not authorize copying source, bytecode, messages, configuration text, assets, GUI layouts, balance tables, brands or other proprietary content.
+
+### 4.18 Original content, starter catalogue and provenance (11)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-CONTENT-001 | CRITICAL MUST | All shipped code, asset IDs/names, cosmetic content, sounds, models, textures, messages and balancing presets are independently authored or have an approved exact licence/provenance row; no proprietary source/assets/exact protected content from Hypixel, BedWars1058 or addon authors may be copied, traced, extracted or adapted without rights. | GOV-009 | provenance/legal scan, DR | GOV |
+| ZBW-CONTENT-002 | MUST | Ship the versioned original shop-balancing starter profiles in `docs/ORIGINAL_STARTER_CATALOG.md`, covering price, tender, cooldown, stock, personal/team limits and deterministic rounding; every value has validation and golden tests. | SHOP-001..004 | config UT/E2E | FULL |
+| ZBW-CONTENT-003 | MUST | Ship original versioned balance profiles for every required game mode, including generator/event/respawn/damage and mode-specific policy values, with isolation, admin preview and golden gameplay tests. | GAME-004/005, SHOP-006/007 | mode matrix E2E/PT | FULL |
+| ZBW-CONTENT-004 | MUST | Ship the original quest starter catalogue with stable IDs, schedules, typed objectives, targets, eligibility and reward definitions; validate references and idempotent progress. | PROG-009..011 | objective/config E2E | FULL |
+| ZBW-CONTENT-005 | MUST | Ship the original achievement starter catalogue with stable IDs, tier criteria, points, rewards and progression references; validate uniqueness, monotonic tiers and migrations. | PROG-010/012 | config/MT/E2E | FULL |
+| ZBW-CONTENT-006 | MUST | Ship the original battle-pass starter season with stable season/tier/track/reward IDs, free and premium seed tracks, validation and extension-safe migration. | PROG-011/013 | season/claim/MT E2E | FULL |
+| ZBW-CONTENT-007 | MUST | Ship the original cosmetic starter catalogue and expand it to the separately mandatory 300+ approved built-in definitions; every asset-bearing entry is blocked from packaging until provenance is approved. | PROG-006..008, CONTENT-011 | catalogue/license/PT | FULL |
+| ZBW-CONTENT-008 | MUST | Ship original private-game presets including all five RESOURCE SCARCITY presets and versioned bundle presets, with per-value overrides and validated host preview. | ADDON-464..473 | config/GUI/E2E | FULL |
+| ZBW-CONTENT-009 | MUST | Ship a semantic original sound/visual-effect starter catalogue whose platform mappings are configurable and whose mandatory 1.8 fallbacks retain informational cues. | COMPAT-003..009 | adapter CT/usability | FULL |
+| ZBW-CONTENT-010 | CRITICAL MUST | All starter catalogues use immutable namespaced IDs and versioned schemas and can be replaced or extended through validated configuration and public registries/APIs without editing core; reload is atomic and migrations preserve IDs. | ARC-008/010, OPS-001/004 | API/config/MT CT | CORE |
+| ZBW-CONTENT-011 | CRITICAL MUST | Maintain `docs/ASSET_PROVENANCE.md` with asset ID, origin, author, exact licence, permitted use, redistribution status and modification status plus source/hash/path/approval. Only approved rows may enter release packaging; asset/hash drift fails CI. | GOV-009, LICENSE-007 | manifest/hash/license gate | GOV |
+
+### 4.19 Discord provider topology (8)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-DISCORD-001 | CRITICAL MUST | Expose a secure internal Discord integration API and versioned outbound event stream with immutable/idempotent envelopes, typed IDs, sensitivity classification, scoped read-only queries, redaction and no direct game-state mutation. | ARC-003/004, OPS-002/007 | API/security CT/ST | INTEGRATION |
+| ZBW-DISCORD-002 | MUST | Define a public provider SPI with capability negotiation, asynchronous delivery, lifecycle/drain, health, retry classification and contract tests; provider callbacks never run gameplay or block the Minecraft owner thread. | DISCORD-001, ARC-005/007 | provider CT/PT | INTEGRATION |
+| ZBW-DISCORD-003 | MUST | Provide an embedded outbound HTTPS webhook provider for allowlisted simple notifications, with `SecretRef`, destination allowlist, bounded queue, deadlines, rate limits, circuit breaker and no inbound commands/linking. | DISCORD-002, OPS-002 | failure/security IT | INTEGRATION |
+| ZBW-DISCORD-004 | MUST | Provide a separately deployed external Discord-bot provider for commands, statistics, leaderboards and verified account linking over authenticated encrypted, scoped, replay-protected transport; the bot token never enters the Minecraft process. | DISCORD-001/002, STATS-007 | protocol/link ST/CT | INTEGRATION |
+| ZBW-DISCORD-005 | MUST | Publish a custom-provider API/SDK whose implementations receive only canonical scoped data and must pass the same version, timeout, redaction, failure and security contracts as built-ins. | DISCORD-002, ARC-010 | sample provider CT/ST | INTEGRATION |
+| ZBW-DISCORD-006 | CRITICAL MUST | The disabled/no-op provider is the default; the plugin starts and every gameplay/reward/statistics path works when Discord is absent, disabled or unconfigured. | DISCORD-002 | no-provider E2E | INTEGRATION |
+| ZBW-DISCORD-007 | CRITICAL MUST | Discord/provider outages, exceptions, backpressure, malformed responses, rate limits and shutdown affect only integration delivery/health. Use an integration outbox, bounded retries/dead letters and observability; gameplay transactions never wait for Discord. | DISCORD-001/002, OPS-005/006 | fault/PT/E2E | INTEGRATION |
+| ZBW-DISCORD-008 | CRITICAL MUST | Webhook URLs, bot tokens, service keys and private endpoints resolve through approved secret/environment mechanisms, never normal exported YAML; secrets are rotated, scoped and redacted from GUI, placeholders, logs, exceptions and debug bundles. | OPS-002, DISCORD-003/004 | seeded-secret ST | OPS |
+
+### 4.20 Mandatory Minecraft 1.8 fallbacks (9)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-COMPAT-001 | CRITICAL MUST | Minecraft server runtime 1.8 is a mandatory tested target with the same game semantics; separate legacy artifacts/toolchains/JDK baselines are permitted and Via-only client compatibility is insufficient. | ARC-002, INT-010 | startup/gameplay matrix | CORE |
+| ZBW-COMPAT-002 | CRITICAL MUST | Isolate all version-specific materials, metadata, particles, sounds, text, entities, packets, GUI/input and scheduler logic behind `zbw-compat-api` and a narrow `zbw-compat-v1_8` adapter; core never loads modern platform classes on 1.8. | ARC-002/005/007 | forbidden dependency/startup CT | CORE |
+| ZBW-COMPAT-003 | CRITICAL MUST | Map every unsupported modern material/block/item component to a validated configurable legacy material/data/NBT representation while preserving item identity, price, action, ownership and anti-forgery behavior. | COMPAT-002, SHOP-007 | mapping/tamper/MT CT | CORE |
+| ZBW-COMPAT-004 | MUST | Map every unsupported particle to a safe supported legacy particle and bounded density, retaining non-colour-only informational cues; suppress only ambient decoration with declared fallback. | COMPAT-002, CONTENT-009 | packet/budget/usability CT | CORE |
+| ZBW-COMPAT-005 | MUST | Map every unsupported sound to a safe legacy sound or visible informational cue with validated volume/pitch; absence of a decorative sound never disables the gameplay action. | COMPAT-002, CONTENT-009 | mapping/usability CT | CORE |
+| ZBW-COMPAT-006 | CRITICAL MUST | Convert modern text/RGB/hover/click/title/toast behavior to legacy-compatible formatting and an equivalent command/GUI/chat action without losing warnings, choices or accessibility. | COMPAT-002, UX-005/006 | rendering/task E2E | CORE |
+| ZBW-COMPAT-007 | CRITICAL MUST | Provide safe fallbacks for unsupported entities, camera/outline behavior, packets, off-hand input, boss bars and inventory components; never send or instantiate an unsupported type and clean up every fallback on exit/reset. | COMPAT-002, GAME-009, UX-001 | packet/cleanup E2E/ST | CORE |
+| ZBW-COMPAT-008 | CRITICAL MUST | Disable only a purely decorative sub-effect when no safe equivalent exists; record the suppression, expose diagnostics and preserve the complete gameplay capability. Unsupported data produces a typed validation error/last-known-good fallback, never a crash. | COMPAT-003..007, OPS-003/005 | mutation/fault CT | CORE |
+| ZBW-COMPAT-009 | CRITICAL MUST | Maintain `docs/COMPATIBILITY_FALLBACKS.md` as the complete fallback matrix with feature/semantic ID, configuration, preferred and actual fallback, gameplay impact, suppression, adapter/version and tests; new capabilities cannot implement before their row/fixture exists. | COMPAT-001..008, QA-002/005 | matrix/fixture gate | GOV |
+
+### 4.21 Dependency licensing and redistribution (7)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-LICENSE-001 | CRITICAL MUST | Maintain `docs/DEPENDENCY_LICENSE_AUDIT.md` with one row for every direct, transitive, build, test and optional runtime dependency recording name, exact version, source/checksum, licence, redistribution, shading, modification, attribution, packaging and commercial-use compatibility. | GOV-009, OPS-008 | inventory/SBOM audit | GOV |
+| ZBW-LICENSE-002 | CRITICAL MUST | Approval applies only to an immutable exact artifact/version/checksum and recorded licence text. Dynamic/range/SNAPSHOT release dependencies and unselected rows are blocked; any version/source/classifier/patch change triggers re-audit. | LICENSE-001 | lock/drift CI | GOV |
+| ZBW-LICENSE-003 | CRITICAL MUST | Default deny bundling/redistribution: include no dependency unless the exact licence/contract explicitly permits the intended commercial distribution and every condition is satisfied. | LICENSE-001/002 | artifact/legal scan | GOV |
+| ZBW-LICENSE-004 | CRITICAL MUST | Shade, relocate or modify a dependency only when explicitly permitted; record derivative/source-offer/notice obligations and modification details and test for package/licence drift. | LICENSE-001/003 | shaded-content scan | GOV |
+| ZBW-LICENSE-005 | MUST | Prefer official APIs and compile-only/provided dependencies for external plugins, with runtime capability/version detection and safe absence; do not package an external plugin to simplify installation. | ARC-007, INT-001..010 | dependency-scope CT | INTEGRATION |
+| ZBW-LICENSE-006 | CRITICAL MUST | Never commit, cache as a fixture or distribute proprietary plugin binaries, marketplace downloads or protected assets in repository/build/release artifacts; operators install authorized runtime products separately. | GOV-009, LICENSE-003 | repository/artifact scan | GOV |
+| ZBW-LICENSE-007 | CRITICAL MUST | Generate `THIRD_PARTY_NOTICES.md`, dependency/content SBOM and required attribution/licence/source-offer notices from approved audit/provenance rows; release fails on missing, stale, incompatible or commercially unapproved content. | LICENSE-001..006, CONTENT-011 | reproducible notice/release gate | GOV |
 
 ## 5. Commands, permissions, GUI, API, placeholder and configuration acceptance
 
 The exact feature inventories are consolidated in §8, the verbatim Master children are cataloged in `docs/MASTER_PROMPT_COVERAGE.md`, and the owner-supplied addon children are cataloged in `docs/ADDON_FEATURE_CATALOG.md`; none is optional because an item appears in a grouped requirement. The reports are Parts II and III of `docs/REQUIREMENTS_TRACEABILITY.md`, so their `MP-L####` and `ZBW-ADDON-*` entries are traceability rows rather than informative appendices. Before implementation of each milestone, planned surface families must be replaced with exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
 
-Configuration files planned by contract are: `config.yml`, `deployment.yml`, `database.yml`, `redis.yml`, `proxy.yml`, `cloudnet.yml`, `arenas.yml`, `maps.yml`, `modes.yml`, `shops.yml`, `upgrades.yml`, `generators.yml`, `items.yml`, `quests.yml`, `achievements.yml`, `challenges.yml`, `battlepass.yml`, `cosmetics.yml`, `rewards.yml`, `statistics.yml`, `placeholders.yml`, `replay.yml`, `atlas.yml`, `anticheat.yml`, `parties.yml`, `npcs.yml`, `holograms.yml`, `gui.yml`, `messages.yml`, `permissions.yml`, `performance.yml`, `security.yml`, and `integrations.yml`. Physical splitting may change via ADR, but all logical sections and metadata remain.
+Configuration files planned by contract are: `config.yml`, `deployment.yml`, `database.yml`, `redis.yml`, `proxy.yml`, `cloudnet.yml`, `arenas.yml`, `maps.yml`, `modes.yml`, `shops.yml`, `upgrades.yml`, `generators.yml`, `items.yml`, `quests.yml`, `achievements.yml`, `challenges.yml`, `battlepass.yml`, `cosmetics.yml`, `content.yml`, `rewards.yml`, `statistics.yml`, `placeholders.yml`, `replay.yml`, `atlas.yml`, `anticheat.yml`, `parties.yml`, `npcs.yml`, `holograms.yml`, `gui.yml`, `messages.yml`, `permissions.yml`, `compatibility.yml`, `performance.yml`, `security.yml`, `integrations.yml` and `integrations/discord.yml`. Physical splitting may change via ADR, but all logical sections and metadata remain.
 
 ## 6. Assumptions requiring owner confirmation
 
 These assumptions preserve the broadest scope and remain requirements until changed by owner-approved ADR:
 
-1. “Minecraft 1.8–1.21.x” means server-runtime compatibility, not only old clients connecting through ViaVersion; separate legacy artifacts/toolchains are allowed.
-2. “At least 300 built-in cosmetics” means 300 original definitions and any necessary original/licensed assets, not 300 placeholders.
-3. Staff Atlas access means possession of the dedicated staff/admin permission, not a hardcoded rank label.
-4. “Display-name change must not modify database” means relational identity/statistics/references are unchanged; persisting the new display name is allowed.
-5. DDL “rollback” may be implemented as verified backup restore/forward repair when a database cannot transactionally reverse DDL.
-6. “Where feasible/practical” features remain MUST targets; a limitation requires evidence and an owner-approved alternative, not silent omission.
-7. Reference benchmark hardware and workload details will be frozen by ADR before performance implementation; the provisional budgets in §3 apply meanwhile.
+1. “At least 300 built-in cosmetics” means 300 original definitions and any necessary original/licensed assets, not 300 placeholders.
+2. Staff Atlas access means possession of the dedicated staff/admin permission, not a hardcoded rank label.
+3. “Display-name change must not modify database” means relational identity/statistics/references are unchanged; persisting the new display name is allowed.
+4. DDL “rollback” may be implemented as verified backup restore/forward repair when a database cannot transactionally reverse DDL.
+5. “Where feasible/practical” features remain MUST targets; a limitation requires evidence and an owner-approved alternative, not silent omission.
+6. Reference benchmark hardware and workload details will be frozen by ADR before performance implementation; the provisional budgets in §3 apply meanwhile.
 
 ## 7. Requirement change procedure
 
@@ -390,9 +446,17 @@ These inventories are part of the referenced requirements. They make grouped req
 - **Events:** arena/game lifecycle, player join/leave/rejoin, team assignment, bed destruction, kill/final kill, respawn/elimination/victory/draw, shop/upgrade purchase, generator spawn, quest progress/completion, achievement completion, pass progress, cosmetic equip, reward grant, currency transaction, statistic update, replay start/save, Atlas case/verdict, anticheat alert, proxy transfer, DB migration, config reload and integration-state change.
 - **SDK extensions:** game modes, shops, upgrades, generators, quest/achievement types, pass rewards, cosmetics, replay events, Atlas integrations, statistics, placeholders, GUI pages, commands, NPC/world providers and matchmaking algorithms. Marketplace metadata declares compatibility/version/dependencies/APIs/permissions/config and Minecraft/ZartraBedWars version ranges.
 
-### 8.9 Native addon-equivalent inventory (ZBW-ADDON-001..463)
+### 8.9 Native addon-equivalent inventory (ZBW-ADDON-001..473)
 
-- **Normative catalogue:** `docs/ADDON_FEATURE_CATALOG.md` contains the complete 49-addon inventory and 463 independently verifiable atomic requirements.
-- **Coverage rule:** all 463 rows must remain `COVERED`; a parent addon name or a broad core overlap is never sufficient. New detail appends a new stable ID and updates PRD, Part III traceability, milestones, risks, tests and documentation.
+- **Normative catalogue:** `docs/ADDON_FEATURE_CATALOG.md` contains the complete 49-addon inventory and 473 independently verifiable atomic requirements, including RESOURCE SCARCITY at `ZBW-ADDON-464..473`.
+- **Coverage rule:** all 473 rows must remain `COVERED`; a parent addon name or a broad core overlap is never sufficient. New detail appends a new stable ID and updates PRD, Part III traceability, milestones, risks, tests and documentation.
 - **Required surfaces:** every row explicitly maps configuration, GUI, commands, permissions, API/events, PlaceholderAPI or a reasoned non-applicability, performance, security, tests and documentation.
 - **Originality:** only original native equivalents may ship. Third-party pages are functional references, not dependencies or permission to copy proprietary code/assets/content/branding.
+
+### 8.10 Resolved pre-implementation decision inventory
+
+- **Content/provenance:** `ZBW-CONTENT-001..011`; `docs/ORIGINAL_STARTER_CATALOG.md`; `docs/ASSET_PROVENANCE.md`; accepted ADR-0002.
+- **Discord:** `ZBW-DISCORD-001..008`; `docs/DISCORD_ARCHITECTURE.md`; accepted ADR-0003.
+- **Minecraft 1.8:** `ZBW-COMPAT-001..009`; `docs/COMPATIBILITY_FALLBACKS.md`; accepted ADR-0004.
+- **Dependency licensing:** `ZBW-LICENSE-001..007`; `docs/DEPENDENCY_LICENSE_AUDIT.md`; `THIRD_PARTY_NOTICES.md`; accepted ADR-0005.
+- **Validation:** `tools/coverage/validate_preimplementation_decisions.py` rejects missing IDs/documents/fields/ADRs, unresolved RC-072..076 or stale combined counts before Java work.
