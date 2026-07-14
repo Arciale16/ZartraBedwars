@@ -5,6 +5,8 @@
 **Requirements:** `ZBW-COMPAT-001..009`<br>
 **Implementation status:** NOT STARTED
 
+The exact server distributions, build hashes, JDKs, artifact families and client-protocol certification dimensions are normative in `RUNTIME_COMPATIBILITY_MATRIX.md`. This file owns semantic fallbacks; the runtime matrix owns which exact environments must prove them.
+
 ## 1. Compatibility guarantee
 
 Minecraft server runtime 1.8 is a mandatory supported target, not merely a modern server accepting 1.8 clients through a protocol translator. Shared gameplay/domain semantics remain version-neutral. Separate bootstrap/toolchain and narrow compatibility artifacts may be used because a Java 21-only artifact cannot safely run on legacy JVM/server baselines.
@@ -64,7 +66,7 @@ Operators may override a visual mapping only with a value validated as supported
 
 Every new material, sound, particle, entity, packet, GUI component, text feature or input path must either reuse an existing semantic mapping or append a row before implementation. The compatibility validator fails on an unmapped semantic ID. The public API exposes semantic capabilities and fallback classification, never version-specific platform types.
 
-The generated compatibility report records server artifact/JDK, adapter version, feature, preferred renderer, actual renderer, suppressed decorative portion, configuration key, test fixture and known limitation.
+The generated compatibility report records exact server artifact/build/SHA-256/JDK, adapter version, client-protocol path, feature, preferred renderer, actual renderer, suppressed decorative portion, configuration key, test fixture and known limitation.
 
 ## 6. Acceptance
 

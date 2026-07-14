@@ -1,6 +1,6 @@
 # ZartraBedWars Asset Provenance Manifest
 
-**Status:** normative empty-at-code-baseline manifest<br>
+**Status:** normative empty PRE-CODE READY manifest<br>
 **Decision:** RC-073<br>
 **Requirement:** `ZBW-CONTENT-011`<br>
 **Last reviewed:** 2026-07-14
@@ -9,7 +9,7 @@
 
 The repository contains no production textures, models, sounds, skins, fonts, maps or other distributable binary creative assets at this documentation-only baseline. Therefore the approved-asset inventory is correctly empty. No future asset may be packaged merely because it is mentioned in `docs/ORIGINAL_STARTER_CATALOG.md`.
 
-Data definitions and original names in the starter catalogue are specifications, not evidence that a binary asset has been created or licensed.
+Data definitions and original names in the starter catalogue, balancing baseline and five-batch cosmetic production plan are specifications, not evidence that a binary asset has been created or licensed. Each of the 300 cosmetic definitions must link to approved rows here before it can count as release-ready.
 
 ## 2. Mandatory manifest fields
 
@@ -50,4 +50,4 @@ Do not extract, trace, recolour or adapt proprietary assets, exact protected con
 
 ## 6. Verification
 
-M01 establishes an asset scanner that inventories production resource paths and compares every file hash with this manifest. M14 requires the 300+ cosmetic definition/content audit, and M24 requires a clean provenance report and matching `THIRD_PARTY_NOTICES.md`. Until then, no asset-bearing requirement may be marked implemented or distributable.
+M01 establishes an asset scanner that inventories production resource paths and compares every file hash with this manifest. M14 applies `COSMETIC_PRODUCTION_PLAN.md` and requires the 300+ definition/content audit. M24 requires a clean provenance report, project licensing release gate and matching `THIRD_PARTY_NOTICES.md`. Until then, no asset-bearing requirement may be marked implemented or distributable.

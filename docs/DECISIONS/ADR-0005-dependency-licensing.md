@@ -16,7 +16,7 @@ Adopt the default-deny process in `docs/DEPENDENCY_LICENSE_AUDIT.md`. A dependen
 
 Prefer official compile-only/provided APIs for optional plugins. Never commit or redistribute proprietary plugin binaries. Generate SBOM and `THIRD_PARTY_NOTICES.md` from approved rows; fail release on drift or missing obligations.
 
-`UNSELECTED` is blocking, not an allowed version. RC-021/024/027 remain responsible for choosing exact versions/libraries before Java implementation; this is an explicit gate, not an unresolved licensing-policy decision.
+An absent checksum/licence record is blocking. RC-021/024/027 were subsequently resolved by ADR-0007 and the exact selection baseline; the immutable pre-resolution acquisition gate remains mandatory before Java build resolution.
 
 ## Alternatives considered
 

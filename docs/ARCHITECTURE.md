@@ -2,7 +2,7 @@
 
 ## 1. Architectural drivers
 
-This architecture implements all 652 semantic requirements in the PRD and addon catalogue plus every normative `MP-L####` child in the atomic coverage matrix. Its primary runtime is Paper 1.21.1/Java 21; its compatibility design keeps all Bukkit, packet, material and provider details outside the domain so separately built adapters can cover server versions 1.8–1.21.x. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
+This architecture implements all 672 semantic requirements in the PRD and addon catalogue plus every normative `MP-L####` child in the atomic coverage matrix. Paper 1.21.1/Java 21 remains the primary behavior baseline and Paper 1.21.11 is the certified upper baseline; separately compiled adapters and exact toolchains cover the mandatory server matrix from 1.8.8 through 1.21.11 without platform logic in core. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
 
 Non-negotiable qualities are deterministic game behavior, no blocking I/O on a server tick thread, idempotent distributed mutations, bounded resource use, least privilege, secret redaction, schema/version compatibility and observable recovery.
 
@@ -67,11 +67,14 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-game`, `zbw-arena`, `zbw-world` | Game state machine and arena/world use cases | application/domain | Concrete world providers |
 | `zbw-shop`, `zbw-progression`, `zbw-statistics` | Their domain policies, projections and use cases | application/domain | GUI/provider implementations |
 | `zbw-content` | Versioned starter catalogues, configurable content packs, semantic effect IDs and provenance references | application/domain/config | Platform rendering or unlicensed asset files |
+| `zbw-scripting-api`, `zbw-scripting-engine` | Declarative action graph, capability/scopes, compiler/interpreter, quotas and audit | API/application immutable snapshots | General JVM code, host/file/process/network access or main-thread evaluation |
 | `zbw-replay-api`, `zbw-replay-engine` | Replay model, capture/codec/playback/retention ports | application/domain | NMS packet code/storage backend specifics |
 | `zbw-atlas` | Cases, anonymization, reservation, verdict/reputation/abuse policies | replay API, progression/reward ports | Punishment-provider implementation |
 | `zbw-ui-api`, `zbw-ui-paper` | Page model and Paper inventory renderer | API/application | Feature rules or synchronous DB access |
 | `zbw-command-api`, `zbw-command-paper` | Command tree, validation/help/audit adapter | API/application | Feature rules |
 | `zbw-observability` | Health, metrics, Plugin Doctor, sanitized diagnostics | All health ports | Secrets or mutable domain state |
+| `zbw-security-network` | Canonical authenticated envelopes, peer/key registry, replay/dedupe/rate controls and epoch leases | application/redis/proxy ports | Business rules or direct provider credentials |
+| `zbw-privacy` | Purpose/visibility/retention/hold/export/delete policies and identity separation | application/storage/replay ports | Payload codecs, platform UI or secret material |
 | `zbw-compat-api` | Materials/sounds/particles/items/scheduler/packets/capabilities | API | Version implementation |
 | `zbw-compat-v1_8` … `zbw-compat-v1_21` | Narrow version-family implementations | compat API, matching compile API | Core business logic |
 | `zbw-paper` | Paper bootstrap and standard assembly | application plus selected adapters | Domain duplication |
@@ -134,7 +137,7 @@ Provider selection is config-driven. Startup rejects mutually incompatible manda
 
 SQL is authoritative for identities, player/progression/statistics, configuration metadata, audit, replay metadata and Atlas cases. Repositories are aggregate-oriented; prepared statements and explicit transactions are mandatory. Schema changes are ordered, checksum-verified migrations. Before destructive migration, create and validate a backup. When DDL cannot roll back transactionally, rollback means restore/forward-repair with a tested runbook.
 
-SQLite uses a serialized write lane and WAL where supported. MySQL/MariaDB use HikariCP, timeouts, deadlock-aware bounded retry and indexed query plans. No SQL exists in gameplay/GUI/command classes.
+SQLite uses a serialized write lane and WAL where supported and is valid only inside one shared-server JVM. `SCALABLE_PROXY` startup requires an approved MySQL/MariaDB writer and cannot fall back to SQLite. MySQL/MariaDB use HikariCP, timeouts, deadlock-aware bounded retry and indexed query plans. No SQL exists in gameplay/GUI/command classes.
 
 ### Transactional event flow
 
@@ -148,7 +151,7 @@ Caches are bounded, metricized and keyed by typed IDs. Entries carry data/schema
 
 Redis key names include installation namespace, environment and schema version. Pub/Sub is used for disposable invalidations/announcements; Streams/outbox-backed delivery is used when replayable delivery matters. Locks use unique fencing tokens, TTL and bounded acquisition; they never substitute for SQL constraints. Leader election is limited to singleton schedulers such as global season rollover.
 
-Messages are versioned envelopes with message/operation ID, producer, timestamp/deadline and payload type. Consumers deduplicate and accept current plus declared previous schemas during rolling upgrades. Reconnect uses exponential jittered backoff and circuit breaking. When Redis is unavailable, cross-server admission/finalization that cannot be made safe is paused; local non-distributed play may continue only under the configured, documented degradation policy.
+Messages use the canonical authenticated envelope in `NETWORK_SECURITY.md`: installation/environment/audience, UUID message and operation IDs, producer/boot epoch, timestamp/deadline, 128-bit nonce, schema/type/length, key ID and HMAC-SHA-256 or equivalent mTLS integrity. Receivers authenticate before parsing, apply clock/replay/dedupe/size/rate limits and accept only declared rolling schemas. Reconnect uses exponential jittered backoff and circuit breaking. When Redis is unavailable, cross-server admission/finalization that cannot be made safe is paused; local non-distributed play may continue only under the configured degradation policy.
 
 ## 10. Proxy and CloudNet protocol
 
@@ -168,11 +171,10 @@ Atlas stores real identity in restricted case data and a separate anonymized pro
 
 ## 12. Minecraft 1.8–1.21.x compatibility
 
-The primary modern artifact is built/tested for Paper 1.21.1 on Java 21. Supporting old server runtimes in one JAR is technically unsafe because JVM baselines and APIs differ. The architecture therefore permits a distribution family:
+The exact distribution family is mandatory in `RUNTIME_COMPATIBILITY_MATRIX.md`. Paper 1.21.1/Java 21 is the primary behavior baseline and 1.21.11 the upper baseline. Supporting old server runtimes in one JAR is technically unsafe because JVM baselines and APIs differ. The architecture therefore uses:
 
-- shared domain/protocol source and schemas with the lowest viable bytecode/library subset determined by ADR;
-- modern Paper bootstrap/adapters using Java 21;
-- legacy bootstrap/adapters compiled with the server's supported JDK/toolchain;
+- shared platform-independent domain/protocol source and schemas at Java 8 bytecode;
+- modern Paper/Velocity bootstrap/adapters using Java 21, intermediate Java 11/16/17 server artifacts and legacy Java 8 server/Bungee artifacts;
 - version-family compatibility modules selected at build/bootstrap, never reflective version switches scattered in core;
 - a capability matrix for material names/data values, PDC versus legacy NBT, sounds, particles, titles/bossbars, inventory behavior, Adventure/RGB downgrade, scheduler, entity/packet metadata and client protocol;
 - ProtocolLib when compatible, with an internal packet port and narrow direct packet adapter only where necessary;
@@ -193,13 +195,13 @@ Permissions are action/resource nodes, resolved through an authorization port; r
 
 - Threat boundaries: player input, commands/chat, plugin messages, Redis, SQL, HTTP/Discord, configs/imports, replay payloads and third-party provider callbacks.
 - Validate length/type/range/schema/authorization at adapters and domain invariants again in use cases.
-- Use prepared SQL, TLS/auth where supported, signed/replay-protected proxy messages, scoped external API credentials, rate limits and bounded payloads.
+- Use prepared SQL, authenticated TLS where supported, signed/replay-protected canonical network envelopes, scoped per-peer credentials, rate limits and bounded payloads under `NETWORK_SECURITY.md`.
 - Secrets use references/environment/protected files and central redaction. Sanitized diagnostic export has an allowlist, not a blacklist.
 - Discord bot credentials are never required by the Minecraft runtime and are resolved through the secrets port; normal configuration stores only secret references. Discord providers are optional, circuit-broken and unable to mutate gameplay outside explicitly authorized application use cases.
 - Assets and content resolve through stable semantic IDs. Packaging fails unless every distributed file has an approved provenance row and every third-party dependency has an exact-version licence decision.
 - Currency/reward/stat/case operations use idempotency keys, uniqueness constraints and audit trails.
-- Replay/chat/profile/Atlas data has purpose, visibility, retention, export/deletion and legal-hold policy. Deletion anonymizes evidence that must legally be retained rather than violating an active hold.
-- Script/custom action hooks are disabled by default and run only through allowlisted, permissioned actions with time/resource budgets; arbitrary JVM/shell execution is not a supported configuration feature.
+- Replay/chat/profile/Atlas data follows `PRIVACY_AND_RETENTION.md`: chat off, metadata-only default, fixed retention, identity-separated hold, export/deletion and privacy-by-default visibility.
+- Script/custom action hooks follow `SCRIPTING_SECURITY.md`: disabled-by-default declarative capability graphs with bounded off-thread interpretation, no host/JVM/file/process/network/reflection/classloader access and no direct mutation.
 
 ## 15. Observability, failure and performance
 
@@ -207,7 +209,7 @@ Every provider and bounded resource exports health, saturation, errors, latency 
 
 Failure results distinguish unavailable, timeout, rejected, conflict, invalid, unauthorized, corrupt and unsupported. Retriable operations have bounded exponential backoff; non-idempotent work is never blindly retried. Circuit breakers expose state. Shutdown stops admission, drains matches/outbox/replay within configured deadlines, persists recovery markers and releases providers in dependency order.
 
-Performance gates use the PRD budgets and a reproducible workload/hardware manifest. Profiling reviews allocations, heap retention, thread/queue counts, chunk/entity load, query plans, Redis traffic, placeholder calls and packet/effect rates.
+Performance gates use all hardware, workload, percentile and hard thresholds in `BENCHMARK_BASELINE.md`; quality uses `QUALITY_GATES.md`. Profiling reviews allocations, heap retention, thread/queue counts, chunk/entity load, query plans, Redis traffic, placeholder calls and packet/effect rates. A hard failure or ≥10% regression blocks verification.
 
 ## 16. Testing architecture
 
@@ -220,16 +222,16 @@ Performance gates use the PRD budgets and a reproducible workload/hardware manif
 - JMH microbenchmarks and scenario load harness for the PRD matrix.
 - Architecture/static tests for forbidden dependencies, API compatibility, docs/config/command/permission/placeholder inventories and no production TODO/stub markers.
 - A deterministic documentation gate hashes `MASTER_PROMPT.md`, assigns one stable `MP-L####` entry to every non-empty source assertion, validates every mapped `ZBW-*` ID against the PRD and requires all requested audit categories plus exactly 100% `COVERED` status before any Java module may be introduced. The generated Markdown is Part II of traceability, not a best-effort report.
-- Decision-document validation proves RC-072–RC-076 IDs exist in both PRD and traceability, the Resource Scarcity addon children remain append-only, accepted ADRs and required catalogues exist, and the published requirement totals agree.
+- Decision-document validation proves all 25 resolved pre-code decisions have their 55 Part I IDs, Resource Scarcity children remain append-only, sixteen accepted ADRs/specifications exist, no orphan decision mapping remains and the 672-requirement/6,966-atomic-item totals agree.
 
 ## 17. Build, packaging and compatibility artifacts
 
-Maven toolchains compile each runtime line with its required JDK. The BOM pins dependencies; reproducible builds create checksummed Paper, Velocity, BungeeCord, CloudNet, API, docs and example artifacts. Optional integrations are `provided`/isolated and detected through bootstrap adapters. The documentation-only atomic coverage verifier requires Python 3.11+ and the standard library; M01 pins its CI patch version, and it is not shipped in runtime plugin artifacts. CI tests primary target on every change and the broader compatibility matrix on scheduled/release workflows. Dependency/license/vulnerability reports and the atomic-coverage verification result are release inputs.
+Maven 3.9.11 toolchains compile the exact artifact rows with the JDKs in the runtime matrix. The locked BOM uses the accepted dependency selections; a pre-resolution gate records checksum/licence before a build may download an artifact. Reproducible builds create checksummed server/proxy/API/docs/example artifacts, never server runtime binaries. Optional integrations are `provided`/isolated and detected through bootstrap adapters. The documentation-only atomic coverage verifier requires Python 3.11+ and the standard library; M01 pins its CI patch version, and it is not shipped in runtime plugin artifacts. CI tests the primary target on every change and the complete matrix on scheduled/release workflows. SBOM/licence/vulnerability/quality/performance/coverage results are release inputs.
 
-The dependency gate in [DEPENDENCY_LICENSE_AUDIT.md](DEPENDENCY_LICENSE_AUDIT.md) is default-deny: an exact artifact, version and checksum must have verified source, licence, redistribution, shading, modification, attribution and commercial-use decisions before it may enter a build or release. `UNSELECTED`, `UNKNOWN` or contradictory metadata blocks selection or bundling. Official integration APIs are compile-only/provided where feasible; proprietary plugin binaries are never stored or redistributed. Release notices are generated from the approved dependency and [asset provenance](ASSET_PROVENANCE.md) manifests.
+The dependency gate in [DEPENDENCY_LICENSE_AUDIT.md](DEPENDENCY_LICENSE_AUDIT.md) is default-deny: an exact selected artifact, version and checksum must have verified source, licence, redistribution, shading, modification, attribution and commercial-use decisions before it may enter a build or release. Missing checksum/licence evidence, an unknown transitive or contradictory metadata blocks resolution/bundling. Official integration APIs are compile-only/provided where feasible; proprietary plugin binaries are never stored or redistributed. Release notices are generated from the approved dependency and [asset provenance](ASSET_PROVENANCE.md) manifests.
 
-## 18. Decision state before implementation
+## 18. Pre-code-ready decision state
 
-RC-072 through RC-076 are accepted in ADR-0001 through ADR-0005: Resource Scarcity is the original eleventh Private Games modifier; original/licensed starter content is externally configurable; Discord uses optional providers; Minecraft 1.8 uses mandatory compatibility adapters and fallbacks; dependency and asset redistribution are default-deny until verified.
+ADR-0001 through ADR-0016 accept Resource Scarcity, original content/provenance, Discord topology, 1.8 fallbacks, dependency redistribution, multi-artifact runtime/toolchains, exact dependency/provider/framework selection, declarative scripting, benchmark/quality gates, privacy/retention/visibility, network authority/security, 300-cosmetic production, clean-room addon provenance, original balancing, operational recovery and project licensing.
 
-The remaining pre-code ADR queue in `docs/RISKS_AND_CONFLICTS.md` includes exact runtime/provider versions and licences, reference benchmark hardware/workload, canonical permission/command namespace, data privacy jurisdiction/retention, replay fidelity/storage defaults, distributed consistency policy and scripting sandbox. Content production must still reach the requested 300+ cosmetic catalogue during its milestone, but its originality/provenance policy is no longer undecided. These decisions refine implementation; none removes the corresponding PRD capability.
+`PRE_CODE_DECISIONS.md` maps each resolved risk to affected IDs and measurable evidence. `PRE_CODE_READINESS_REPORT.md` is the final gate. External artifact checksum/licence acquisition and executed public-release legal text remain deterministic acquisition/release evidence, not unresolved architecture or permission to reduce scope. No Java implementation existed when this baseline was accepted.

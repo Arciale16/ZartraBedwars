@@ -8,19 +8,19 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ## Plan
 
-### M00 — Requirements and architecture baseline
+### M00 — Requirements, architecture and pre-code decision baseline
 
-- **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, architecture/plan portions of all 652 semantic IDs.
+- **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, ZBW-READY-001..020, architecture/plan portions of all 672 semantic IDs.
 - **Entry:** `MASTER_PROMPT.md` available and read completely.
-- **Deliver:** PRD, architecture, milestones, requirement-level traceability, deterministic Master/addon/decision coverage reports, resolved RC-072..076 ADRs and documents, risks/conflicts and repository instructions.
-- **Exit:** 652 unique semantic IDs (179 Part I plus 473 addon); Parts I–III and all five decision-document inventories validate; source hash/line count, 49-addon inventory, 8/41 split, five accepted ADRs and required schemas match; all atomic rows are `COVERED`, combined functional coverage is 100%, remaining decisions are explicit and no Java source/build scaffold exists.
+- **Deliver:** PRD, architecture, milestones, requirement-level traceability, deterministic Master/addon/decision coverage reports; all 25 pre-code decision outcomes, sixteen ADRs and normative runtime/performance/privacy/network/scripting/licensing/content/operations/quality specifications; risks/conflicts and repository instructions.
+- **Exit:** 672 unique semantic IDs (199 Part I plus 473 addon); Parts I–III and all decision-document inventories validate; source hash/line count, 49-addon inventory, 8/41 split, sixteen accepted ADRs and required schemas match; all atomic rows are `COVERED`, combined functional coverage is 100%, the pre-code readiness report has no unresolved pre-code decision and no Java source/build scaffold exists.
 
-### M01 — Resolve blocking ADRs and establish build governance
+### M01 — Materialize the accepted build governance baseline
 
-- **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007, CONTENT-001/011, COMPAT-001/009, LICENSE-001..007.
-- **Entry:** M00 approved; owners available for blocking decisions.
-- **Deliver:** accepted remaining runtime/toolchain/module/dependency-version ADRs; exact-version dependency approvals, SBOM/notices/provenance gates, legacy compatibility matrix, Maven parent/BOM/toolchains, pinned Python validator runtime, CI skeleton and static architecture rules.
-- **Exit:** clean empty multi-module build on primary JDK; all documentation validators and licence/provenance gates pass; no dependency remains `UNSELECTED` in the build; supported-version/provider matrix is pinned; no functional production path is claimed.
+- **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007, CONTENT-001/011, COMPAT-001/009, LICENSE-001..007, READY-001/002/005/006/008/009/012/017/019/020.
+- **Entry:** M00 PRE-CODE READY baseline approved; exact selections and architecture are not reopened without an ADR.
+- **Deliver:** Maven parent/BOM/wrapper/toolchains; pre-resolution checksum/licence lock generator; SBOM/notices/provenance gates; empty module graph; pinned validator runtime; CI, static architecture/bytecode/quality rules and private runtime-fixture manifest.
+- **Exit:** clean empty multi-module build on all compile JDKs; all documentation/licence/provenance/dependency-lock gates pass; every resolved build artifact has exact checksum/licence evidence; runtime/provider matrix is immutable; no functional production path is claimed.
 
 ### M02 — Public API, domain primitives and extension metadata
 
@@ -178,10 +178,10 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M24 — Security, performance and release qualification
 
-- **Requirements:** QA-001..007, GOV-007/011, OPS-008, CONTENT-001/011, LICENSE-001..007 and final acceptance of all 652 semantic IDs and atomic children.
+- **Requirements:** QA-001..007, GOV-007/011, OPS-008, CONTENT-001/011, LICENSE-001..007, READY-001..020 and final acceptance of all 672 semantic IDs and atomic children.
 - **Entry:** M01–M23 complete with no mandatory open implementation work.
 - **Deliver:** threat/privacy/license review, compatibility report, full benchmark/security report, recovery exercise, reproducible artifacts, final compliance report and release notes.
-- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 179 Part I IDs, 473 addon IDs and every `MP-L####` child has an allowed final status and evidence; dependency/asset SBOM, notices and fallback matrices match artifacts; atomic functional coverage remains 100%; no unresolved mandatory requirement.
+- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 199 Part I IDs, 473 addon IDs and every `MP-L####` child has an allowed final status and evidence; dependency/asset SBOM, notices and fallback matrices match artifacts; atomic functional coverage remains 100%; no unresolved mandatory requirement.
 
 ## Native addon allocation summary
 
@@ -213,6 +213,24 @@ The authoritative row-level allocation is the `Milestone` column of `docs/ADDON_
 | RC-074 Discord providers | DISCORD-001..008 | M02 API/SPI, M03 secrets/default, M05 failure substrate | M16 | No-provider/outage/security/protocol tests |
 | RC-075 1.8 fallbacks | COMPAT-001..009 | M01 toolchain matrix, M06 adapter/fallback foundation | M22 full matrix | Every fallback row/fixture passes |
 | RC-076 dependency licensing | LICENSE-001..007 | M01 exact artifact approvals before Java | Continuous dependency changes | M24 reproducible notices/SBOM/artifact audit |
+
+## Consolidated readiness decision allocation
+
+Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-READY-003`, `ZBW-READY-004`, `ZBW-READY-005`, `ZBW-READY-006`, `ZBW-READY-007`, `ZBW-READY-008`, `ZBW-READY-009`, `ZBW-READY-010`, `ZBW-READY-011`, `ZBW-READY-012`, `ZBW-READY-013`, `ZBW-READY-014`, `ZBW-READY-015`, `ZBW-READY-016`, `ZBW-READY-017`, `ZBW-READY-018`, `ZBW-READY-019`, `ZBW-READY-020`.
+
+| Decisions | Stable IDs | Foundation milestone | Dependent feature milestones | Final evidence |
+|---|---|---|---|---|
+| RC-003/004/022 runtime matrix | READY-001/002/006 | M01 artifacts/toolchains/fixtures | M06 compatibility; M22 all runtime/client rows | Per-row boot/game/fallback evidence |
+| RC-021/024/027 dependencies/providers | READY-005/007/008 | M01 immutable lock and module stack | M02 provider SPIs; M21 integrations | Reproducible SBOM/licence/provider CT |
+| RC-018 scripting | READY-004 | M02 capability API; M03 schema/auth; M05 bounded workers | M11 items/shop custom logic; M23 SDK | Escape/fuzz/budget/no-main-thread ST |
+| RC-029/062 performance/quality | READY-009/017 | M01 harness/gates | Every milestone supplies evidence | M24 three-profile benchmark and all quality gates |
+| RC-040/041/065 privacy | READY-010/011/018 | M03 auth/privacy schema; M04 retention storage | M15 stats, M17 replay, M18 Atlas | No-chat/export/delete/hold/visibility ST/MT |
+| RC-043/071 clean-room scope | READY-012/020 | M01 provenance/legal scans | Every addon/content/migration milestone | M24 49/473 + artifact/content release gate |
+| RC-046/050 network authority | READY-013/014 | M03 secrets/envelopes; M04 outbox/inbox | M19 Redis, M20 proxy, M21 CloudNet | Forge/replay/duplicate/partition/rolling CT/ST |
+| RC-059 balance | READY-015 | M03 content schema/validation | M10 modes; M11 shop/generator; M13 rewards | Golden deterministic mode/economy simulations |
+| RC-061 operations | READY-016 | M04 backup/recovery; M05 failure substrate | M17 evidence, M19/M20 distributed | RPO/RTO/restore/chaos drill evidence |
+| RC-017 cosmetics | READY-003 | M02 content API; M03 schema; M06 renderers | M14 five 60-item batches | M24 300 count/provenance/visual/PT gate |
+| RC-066 licensing | READY-019 | M01 build/release classifier | M23 SDK/marketplace | M24 executed legal terms and artifact audit |
 
 ## Critical dependency chain
 

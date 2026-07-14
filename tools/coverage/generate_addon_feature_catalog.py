@@ -980,8 +980,8 @@ def validate() -> None:
     import re
 
     core_ids = set(re.findall(r"^\| (ZBW-[A-Z]+-\d{3}) \|", PRD.read_text(encoding="utf-8-sig"), re.MULTILINE))
-    if len(core_ids) != 179:
-        raise ValueError(f"Expected 179 Part I PRD IDs for overlap validation, found {len(core_ids)}")
+    if len(core_ids) != 199:
+        raise ValueError(f"Expected 199 Part I PRD IDs for overlap validation, found {len(core_ids)}")
     architecture_modules = {
         "zbw-application", "zbw-arena", "zbw-bungeecord", "zbw-cloudnet",
         "zbw-command-api", "zbw-command-paper", "zbw-compat-api", "zbw-config",

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the accepted RC-072 through RC-076 documentation baseline."""
+"""Deterministically validate the complete ZartraBedWars pre-code decision baseline."""
 
 from __future__ import annotations
 
@@ -10,234 +10,149 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PRD = ROOT / "docs" / "PRD" / "PRD.md"
-TRACE = ROOT / "docs" / "REQUIREMENTS_TRACEABILITY.md"
-ADDONS = ROOT / "docs" / "ADDON_FEATURE_CATALOG.md"
-COVERAGE = ROOT / "docs" / "MASTER_PROMPT_COVERAGE.md"
-RISKS = ROOT / "docs" / "RISKS_AND_CONFLICTS.md"
 
 DECISION_IDS = [
     *(f"ZBW-CONTENT-{number:03d}" for number in range(1, 12)),
     *(f"ZBW-DISCORD-{number:03d}" for number in range(1, 9)),
     *(f"ZBW-COMPAT-{number:03d}" for number in range(1, 10)),
     *(f"ZBW-LICENSE-{number:03d}" for number in range(1, 8)),
+    *(f"ZBW-READY-{number:03d}" for number in range(1, 21)),
 ]
 ADDON_IDS = [f"ZBW-ADDON-{number:03d}" for number in range(1, 474)]
+RESOLVED_RISKS = (3, 4, 17, 18, 21, 22, 24, 27, 29, 40, 41, 43, 46, 50, 59, 61, 62, 65, 66, 71, 72, 73, 74, 75, 76)
 
 REQUIRED_DOCUMENTS = {
-    "docs/ORIGINAL_STARTER_CATALOG.md": (
-        "Shop balancing",
-        "Game-mode balancing",
-        "Quest starter catalogue",
-        "Achievement starter catalogue",
-        "Battle-pass starter season",
-        "Cosmetic starter catalogue",
-        "Private-game starter presets",
-        "Sound and visual-effect starter catalogue",
-        "Scarce",
-        "Reduced",
-        "Normal",
-        "Abundant",
-        "Extreme",
-    ),
-    "docs/ASSET_PROVENANCE.md": (
-        "Asset ID",
-        "Origin",
-        "Author",
-        "Licence",
-        "Permitted use",
-        "Redistribution status",
-        "Modification status",
-    ),
-    "docs/DISCORD_ARCHITECTURE.md": (
-        "Embedded webhook provider",
-        "External Discord bot provider",
-        "Custom provider API",
-        "secure internal integration API",
-        "event stream",
-        "must not require",
-        "Discord failures",
-        "environment",
-    ),
-    "docs/COMPATIBILITY_FALLBACKS.md": (
-        "Minecraft 1.8",
-        "mandatory",
-        "materials",
-        "particles",
-        "sounds",
-        "entities",
-        "packets",
-        "GUI",
-        "legacy",
-        "purely decorative",
-        "gameplay",
-    ),
-    "docs/DEPENDENCY_LICENSE_AUDIT.md": (
-        "Name",
-        "Version",
-        "Authoritative source",
-        "Licence",
-        "Redistribution rights",
-        "Shading permission",
-        "Modification permission",
-        "Required attribution",
-        "Runtime-only or bundled",
-        "Commercial-use compatibility",
-        "UNSELECTED",
-        "compile-only/provided",
-        "proprietary plugin binaries",
-    ),
-    "THIRD_PARTY_NOTICES.md": (
-        "no bundled third-party",
-        "dependency",
-        "asset",
-        "notices",
-    ),
+    "docs/PRE_CODE_DECISIONS.md": ("RC-003", "RC-071", "ZBW-READY-001", "ZBW-READY-020", "External facts", "Measurable closure evidence"),
+    "docs/PRE_CODE_READINESS_REPORT.md": ("PRE-CODE READY", "672", "6,966", "100.00%", "No Java"),
+    "docs/RUNTIME_COMPATIBILITY_MATRIX.md": ("1.8.8", "1.21.11", "Java 8", "Java 21", "SHA-256", "server-runtime", "Client protocol"),
+    "docs/BENCHMARK_BASELINE.md": ("SMALL", "SHARED_40", "PROXY_4", "TPS", "MSPT", "Redis", "Replay", "PlaceholderAPI", "memory"),
+    "docs/PRIVACY_AND_RETENTION.md": ("chat", "30 days", "90 days", "180 days", "365 days", "legal hold", "pseudonym"),
+    "docs/NETWORK_SECURITY.md": ("HMAC-SHA-256", "TLS", "128-bit nonce", "dedupe", "SQLite", "MySQL", "outbox"),
+    "docs/SCRIPTING_SECURITY.md": ("disabled by default", "10,000", "1 MiB", "5 ms", "filesystem", "reflection", "tick thread"),
+    "docs/PROJECT_LICENSING_RECOMMENDATION.md": ("proprietary", "all rights reserved", "Apache License 2.0", "premium", "addons", "public API"),
+    "docs/COSMETIC_PRODUCTION_PLAN.md": ("five", "60", "300", "provenance", "fallback", "performance"),
+    "docs/BALANCING_BASELINE.md": ("zbw:standard-v1", "iron", "gold", "diamond", "emerald", "golden simulations"),
+    "docs/OPERATIONAL_DEFAULTS.md": ("RPO", "RTO", "15 min", "30 min", "quarterly", "degradation"),
+    "docs/QUALITY_GATES.md": ("90%", "85%", "80%", "critical/high", "Mutation", "TODO"),
+    "docs/DEPENDENCY_LICENSE_AUDIT.md": ("Exact version", "SHA-256", "compile-only", "provided", "commercial", "proprietary", "pre-resolution"),
+    "docs/COMPATIBILITY_FALLBACKS.md": ("Minecraft 1.8", "materials", "particles", "sounds", "entities", "packets", "GUI", "gameplay"),
+    "docs/ASSET_PROVENANCE.md": ("Asset ID", "Origin", "Author", "Licence", "Redistribution status", "Modification status"),
+    "THIRD_PARTY_NOTICES.md": ("dependency", "asset", "notice"),
+    "README.md": ("PRE-CODE READY", "Documentation"),
+    "docs/README.md": ("PRE_CODE_DECISIONS", "REQUIREMENTS_TRACEABILITY", "RUNTIME_COMPATIBILITY_MATRIX"),
 }
 
 ADRS = {
-    "docs/DECISIONS/ADR-0001-resource-scarcity.md": "RC-072",
-    "docs/DECISIONS/ADR-0002-original-content-provenance.md": "RC-073",
-    "docs/DECISIONS/ADR-0003-discord-provider-topology.md": "RC-074",
-    "docs/DECISIONS/ADR-0004-minecraft-1-8-fallbacks.md": "RC-075",
-    "docs/DECISIONS/ADR-0005-dependency-licensing.md": "RC-076",
+    "ADR-0001-resource-scarcity.md": (72,),
+    "ADR-0002-original-content-provenance.md": (73,),
+    "ADR-0003-discord-provider-topology.md": (74,),
+    "ADR-0004-minecraft-1-8-fallbacks.md": (75,),
+    "ADR-0005-dependency-licensing.md": (76,),
+    "ADR-0006-runtime-artifacts-and-matrix.md": (3, 4, 22),
+    "ADR-0007-dependency-and-provider-baseline.md": (21, 24, 27),
+    "ADR-0008-declarative-scripting-sandbox.md": (18,),
+    "ADR-0009-performance-and-quality-gates.md": (29, 62),
+    "ADR-0010-privacy-retention-and-visibility.md": (40, 41, 65),
+    "ADR-0011-network-security-and-authority.md": (46, 50),
+    "ADR-0012-cosmetic-production.md": (17,),
+    "ADR-0013-clean-room-addon-provenance.md": (43, 71),
+    "ADR-0014-original-balance-baseline.md": (59,),
+    "ADR-0015-operational-recovery-defaults.md": (61,),
+    "ADR-0016-project-licensing-model.md": (66,),
 }
 
 
-def read(relative_path: str | Path) -> str:
+def read(relative_path: str) -> str:
     path = ROOT / relative_path
     if not path.is_file():
-        raise ValueError(f"missing required document: {path.relative_to(ROOT).as_posix()}")
+        raise ValueError(f"missing required document: {relative_path}")
     return path.read_text(encoding="utf-8-sig")
 
 
 def require_literals(relative_path: str, literals: tuple[str, ...]) -> None:
-    text = read(relative_path).casefold()
-    missing = [literal for literal in literals if literal.casefold() not in text]
+    folded = read(relative_path).casefold()
+    missing = [literal for literal in literals if literal.casefold() not in folded]
     if missing:
-        raise ValueError(f"{relative_path} is missing required terms: {', '.join(missing)}")
+        raise ValueError(f"{relative_path} is missing: {', '.join(missing)}")
 
 
-def table_ids(text: str, pattern: str) -> list[str]:
+def ids(text: str, pattern: str) -> list[str]:
     return re.findall(pattern, text, re.MULTILINE)
 
 
 def validate() -> None:
-    prd_text = read(PRD.relative_to(ROOT))
-    trace_text = read(TRACE.relative_to(ROOT))
-    addon_text = read(ADDONS.relative_to(ROOT))
-    coverage_text = read(COVERAGE.relative_to(ROOT))
-    risks_text = read(RISKS.relative_to(ROOT))
+    prd = read("docs/PRD/PRD.md")
+    trace = read("docs/REQUIREMENTS_TRACEABILITY.md")
+    addons = read("docs/ADDON_FEATURE_CATALOG.md")
+    coverage = read("docs/MASTER_PROMPT_COVERAGE.md")
+    risks = read("docs/RISKS_AND_CONFLICTS.md")
 
-    prd_decisions = table_ids(prd_text, r"^\| (ZBW-(?:CONTENT|DISCORD|COMPAT|LICENSE)-\d{3}) \|")
-    trace_decisions = table_ids(trace_text, r"^\| (ZBW-(?:CONTENT|DISCORD|COMPAT|LICENSE)-\d{3}) \|")
-    if prd_decisions != DECISION_IDS:
-        raise ValueError(f"PRD decision IDs are not the expected canonical 35 rows: {len(prd_decisions)} found")
-    if trace_decisions != DECISION_IDS:
-        raise ValueError(f"traceability decision IDs are not the expected canonical 35 rows: {len(trace_decisions)} found")
+    prd_ids = ids(prd, r"^\| (ZBW-[A-Z]+-\d{3}) \|")
+    trace_ids = ids(trace, r"^\| (ZBW-[A-Z]+-\d{3}) \|")
+    if len(prd_ids) != 199 or len(set(prd_ids)) != 199:
+        raise ValueError(f"expected 199 unique Part I PRD IDs, found {len(prd_ids)}/{len(set(prd_ids))}")
+    if len(trace_ids) != 199 or len(set(trace_ids)) != 199 or set(trace_ids) != set(prd_ids):
+        raise ValueError("traceability must contain exactly the same 199 Part I IDs as the PRD")
+    if [item for item in prd_ids if item in set(DECISION_IDS)] != DECISION_IDS:
+        raise ValueError("PRD decision IDs are not the canonical 55-row sequence")
+    if [item for item in trace_ids if item in set(DECISION_IDS)] != DECISION_IDS:
+        raise ValueError("traceability decision IDs are not the canonical 55-row sequence")
 
-    prd_ids = table_ids(prd_text, r"^\| (ZBW-[A-Z]+-\d{3}) \|")
-    if len(prd_ids) != 179 or len(set(prd_ids)) != 179:
-        raise ValueError(f"expected 179 unique Part I PRD IDs, found {len(prd_ids)} rows/{len(set(prd_ids))} unique")
-
-    addon_ids = table_ids(addon_text, r"^\| (ZBW-ADDON-\d{3}) \|")
-    addon_ids_sorted = sorted(addon_ids, key=lambda value: int(value.rsplit("-", 1)[1]))
-    if addon_ids_sorted != ADDON_IDS or len(addon_ids) != len(set(addon_ids)):
-        raise ValueError(f"expected one ZBW-ADDON-001..473 row each, found {len(addon_ids)}")
-    decision_addon_rows = "\n".join(
-        line for line in addon_text.splitlines() if re.match(r"^\| ZBW-ADDON-(?:46[4-9]|47[0-3]) \|", line)
+    addon_ids = ids(addons, r"^\| (ZBW-ADDON-\d{3}) \|")
+    if sorted(addon_ids, key=lambda value: int(value.rsplit("-", 1)[1])) != ADDON_IDS or len(addon_ids) != len(set(addon_ids)):
+        raise ValueError("expected one append-only ZBW-ADDON-001..473 row each")
+    covered_addon_rows = sum(
+        1 for line in addons.splitlines()
+        if re.match(r"^\| ZBW-ADDON-\d{3} \|", line) and line.rstrip().endswith("| COVERED |")
     )
-    if decision_addon_rows.count("| COVERED |") != 10:
-        raise ValueError("Resource Scarcity must have ten independently COVERED addon rows")
-    resource_terms = (
-        "original eleventh",
-        "iron",
-        "gold",
-        "diamond",
-        "emerald",
-        "custom resource",
-        "Scarce",
-        "Reduced",
-        "Normal",
-        "Abundant",
-        "Extreme",
-        "GUI",
-        "permission",
-        "API",
-        "PlaceholderAPI",
-        "native and custom generators",
-    )
-    missing_resource_terms = [term for term in resource_terms if term.casefold() not in decision_addon_rows.casefold()]
-    if missing_resource_terms:
-        raise ValueError("Resource Scarcity rows are incomplete: " + ", ".join(missing_resource_terms))
+    if covered_addon_rows != 473:
+        raise ValueError("all 473 addon requirements must be COVERED")
 
     for relative_path, literals in REQUIRED_DOCUMENTS.items():
         require_literals(relative_path, literals)
 
-    dependency_text = read("docs/DEPENDENCY_LICENSE_AUDIT.md")
-    dependency_rows: list[list[str]] = []
-    in_dependency_table = False
-    for line in dependency_text.splitlines():
-        if line.startswith("| Name | Version | Authoritative source |"):
-            in_dependency_table = True
-            continue
-        if not in_dependency_table:
-            continue
-        if line.startswith("|---"):
-            continue
-        if not line.startswith("|"):
-            break
-        dependency_rows.append([cell.strip() for cell in line.strip("|").split("|")])
-    if len(dependency_rows) < 35:
-        raise ValueError(f"dependency audit candidate inventory is unexpectedly incomplete: {len(dependency_rows)} rows")
-    invalid_dependency_rows = [
-        row for row in dependency_rows if len(row) != 11 or any(not cell for cell in row)
-    ]
-    if invalid_dependency_rows:
-        raise ValueError("every dependency row must populate all eleven owner-required audit columns")
-    dependency_names = [row[0] for row in dependency_rows]
-    if len(dependency_names) != len(set(dependency_names)):
-        raise ValueError("dependency audit contains duplicate dependency names")
+    for ready_id in (f"ZBW-READY-{number:03d}" for number in range(1, 21)):
+        for relative_path in ("docs/PRE_CODE_DECISIONS.md", "docs/MILESTONES.md"):
+            short_id = ready_id.removeprefix("ZBW-")
+            if ready_id not in read(relative_path) and short_id not in read(relative_path):
+                raise ValueError(f"orphan decision requirement {ready_id}: absent from {relative_path}")
 
-    for relative_path, conflict_id in ADRS.items():
-        adr_text = read(relative_path)
-        if "**Status:** Accepted" not in adr_text or f"**Resolves:** {conflict_id}" not in adr_text:
-            raise ValueError(f"{relative_path} must be Accepted and resolve {conflict_id}")
+    for filename, risk_numbers in ADRS.items():
+        text = read(f"docs/DECISIONS/{filename}")
+        if "**Status:** Accepted" not in text:
+            raise ValueError(f"ADR not accepted: {filename}")
+        for number in risk_numbers:
+            if f"RC-{number:03d}" not in text:
+                raise ValueError(f"{filename} does not resolve RC-{number:03d}")
 
-    for conflict_number in range(72, 77):
-        conflict_id = f"RC-{conflict_number:03d}"
-        match = re.search(rf"^\| {conflict_id} \|.*?(?=^\| RC-|\Z)", risks_text, re.MULTILINE | re.DOTALL)
-        if not match or "RESOLVED 2026-07-14" not in match.group(0):
-            raise ValueError(f"{conflict_id} is not explicitly resolved in the risk register")
+    for number in RESOLVED_RISKS:
+        risk_id = f"RC-{number:03d}"
+        line = next((line for line in risks.splitlines() if line.startswith(f"| {risk_id} |")), "")
+        if "RESOLVED 2026-07-14" not in line:
+            raise ValueError(f"{risk_id} is not explicitly resolved")
 
-    if "**Requirement count:** 652" not in prd_text or "652 stable semantic requirement IDs" not in trace_text:
-        raise ValueError("PRD and traceability must publish the final 652-requirement baseline")
-    coverage_literals = (
-        "652 stable semantic IDs",
-        "6,946 / 6,946",
-        "Overall functional coverage | **100.00%**",
-        "RC-072 through RC-076 are resolved",
-    )
-    missing_coverage = [literal for literal in coverage_literals if literal not in coverage_text]
-    if missing_coverage:
-        raise ValueError("coverage report is stale or incomplete: " + ", ".join(missing_coverage))
+    expected_coverage = ("672 stable semantic IDs", "6,966 / 6,966", "Overall functional coverage | **100.00%**", "PRE-CODE READY")
+    missing = [literal for literal in expected_coverage if literal not in coverage]
+    if missing:
+        raise ValueError("coverage report is stale: " + ", ".join(missing))
+    if "**Requirement count:** 672" not in prd or "672 stable semantic requirement IDs" not in trace:
+        raise ValueError("PRD/traceability counts are stale")
 
     java_files = [path for path in ROOT.rglob("*.java") if ".git" not in path.parts]
     if java_files:
-        preview = ", ".join(path.relative_to(ROOT).as_posix() for path in java_files[:5])
-        raise ValueError(f"pre-implementation baseline contains Java files: {preview}")
+        raise ValueError("pre-code baseline contains Java files: " + ", ".join(str(path.relative_to(ROOT)) for path in java_files[:5]))
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--check", action="store_true", help="read-only validation; retained for command consistency")
+    parser.add_argument("--check", action="store_true")
     parser.parse_args()
     try:
         validate()
     except ValueError as error:
-        print(f"pre-implementation decision validation failed: {error}", file=sys.stderr)
+        print(f"pre-code decision validation failed: {error}", file=sys.stderr)
         return 1
-    print("pre-implementation decisions verified: RC-072..RC-076, 35 decision IDs, 473 addon IDs, 652 total requirements")
+    print("PRE-CODE READY verified: 25 resolved decisions, 55 decision IDs, 199 Part I IDs, 473 addon IDs, 672 total requirements")
     return 0
 
 

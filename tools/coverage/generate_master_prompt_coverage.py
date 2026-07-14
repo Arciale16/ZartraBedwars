@@ -304,16 +304,17 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
     raw_lines = source_bytes.decode("utf-8-sig").splitlines()
     prd_text = PRD.read_text(encoding="utf-8-sig")
     known_ids_ordered = re.findall(r"^\| (ZBW-[A-Z]+-\d{3}) \|", prd_text, re.MULTILINE)
-    if len(known_ids_ordered) != 179 or len(set(known_ids_ordered)) != 179:
-        raise ValueError(f"expected 179 unique Part I PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
+    if len(known_ids_ordered) != 199 or len(set(known_ids_ordered)) != 199:
+        raise ValueError(f"expected 199 unique Part I PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
     decision_ids = [
         *(f"ZBW-CONTENT-{number:03d}" for number in range(1, 12)),
         *(f"ZBW-DISCORD-{number:03d}" for number in range(1, 9)),
         *(f"ZBW-COMPAT-{number:03d}" for number in range(1, 10)),
         *(f"ZBW-LICENSE-{number:03d}" for number in range(1, 8)),
+        *(f"ZBW-READY-{number:03d}" for number in range(1, 21)),
     ]
     if [item for item in known_ids_ordered if item in set(decision_ids)] != decision_ids:
-        raise ValueError("expected the 35 RC-072..RC-076 decision IDs in canonical append-only group order")
+        raise ValueError("expected the 55 accepted decision IDs in canonical append-only group order")
     known_ids = set(known_ids_ordered)
     id_order = {requirement_id: index for index, requirement_id in enumerate(known_ids_ordered)}
 
@@ -430,7 +431,7 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "",
         f"**Authoritative supplement:** `docs/ADDON_FEATURE_CATALOG.md` ({addon_inventory_counts['Premium']} premium and {addon_inventory_counts['Free']} free addon references; {len(addon_ids)} atomic addon requirements).",
         "",
-        f"**Owner-decision supplement:** RC-072 through RC-076 add {len(decision_ids)} atomic Part I requirements for original content, Discord providers, Minecraft 1.8 fallbacks and dependency/asset licensing.",
+        f"**Owner-decision supplement:** the accepted pre-code decision passes add {len(decision_ids)} atomic Part I requirements for original content, Discord providers, Minecraft compatibility, dependency/licensing and consolidated readiness controls.",
         "",
         f"**Atomic inventory:** {len(rows):,} non-empty source assertions. This is a lossless upper-bound catalogue: it intentionally includes headings and governance statements as well as every functional child, so a parsing heuristic cannot discard a requested feature.",
         "",
@@ -444,13 +445,13 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "|---|---|",
         f"| Source assertions catalogued | {len(rows):,} / {len(rows):,} |",
         f"| Owner-supplied addon features catalogued | {len(addon_ids):,} / {len(addon_ids):,} |",
-        f"| RC-072 through RC-076 decision features catalogued | {len(decision_ids):,} / {len(decision_ids):,} |",
+        f"| Accepted pre-code decision features catalogued | {len(decision_ids):,} / {len(decision_ids):,} |",
         f"| Combined atomic items | {len(rows) + len(addon_ids) + len(decision_ids):,} / {len(rows) + len(addon_ids) + len(decision_ids):,} |",
         f"| COVERED | {len(rows) + len(addon_ids) + len(decision_ids):,} |",
         "| PARTIALLY COVERED | 0 |",
         "| MISSING | 0 |",
         "| Overall functional coverage | **100.00%** |",
-        "| Java precondition | **PASS for coverage only**; the independent ADR decision gate in `docs/RISKS_AND_CONFLICTS.md` remains in force |",
+        "| Java precondition | **PASS — PRE-CODE READY documentation baseline**; artifact acquisition and milestone gates remain mandatory |",
         "",
         "The initial requirement-level matrix was only partially sufficient because its source audit used broad line ranges and the original source did not contain the later owner-supplied addon inventory. ZBW-GOV-011 and ZBW-QA-007, the Part II source rows, the Part III addon catalogue and deterministic verifiers now cover both authoritative inputs without partial or missing items.",
         "",
@@ -482,10 +483,10 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
             "2. Each row carries the original source text (only separator dashes are omitted), category tags, stable PRD ID mappings, PRD sections, its Part I/Part II trace entry, status and notes.",
             "3. Duplicate text remains in separate rows and is cross-noted. Broad requirement parents are acceptable only because the exact child text is preserved normatively in its Part II row.",
             "4. `ZBW-ADDON-001..473` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.",
-            "5. The 35 `ZBW-CONTENT-*`, `ZBW-DISCORD-*`, `ZBW-COMPAT-*` and `ZBW-LICENSE-*` rows preserve the accepted RC-072 through RC-076 decisions independently of the unchanged Master Prompt hash.",
+            "5. The 55 `ZBW-CONTENT-*`, `ZBW-DISCORD-*`, `ZBW-COMPAT-*`, `ZBW-LICENSE-*` and `ZBW-READY-*` rows preserve all accepted pre-code decisions independently of the unchanged Master Prompt hash.",
             "6. `COVERED` means the source/addon/decision child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.",
             "7. Any source, PRD or matrix edit must regenerate the reports and pass all three deterministic documentation validators with `--check` before Java work.",
-            "8. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.",
+            "8. Facts, owner decisions, technical constraints, assumptions and external verification facts remain distinguished in `docs/RISKS_AND_CONFLICTS.md` and `docs/PRE_CODE_DECISIONS.md`; mapping alone never resolves a conflict.",
             "",
             "## Normative atomic annexes",
             "",
@@ -499,9 +500,9 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
     report_lines.extend(
         (
             "",
-            "## Remaining decisions",
+            "## Pre-code decision status",
             "",
-            "Coverage is complete, but coverage is not the same as product-decision closure. RC-067 and RC-072 through RC-076 are resolved by the native addon catalogue and accepted ADR-0001 through ADR-0005. Remaining pre-code decisions—including exact dependency/provider versions, command and permission namespaces, privacy/retention, replay fidelity/storage, distributed consistency and scripting policy—remain listed in `docs/RISKS_AND_CONFLICTS.md`.",
+            "Coverage and the requested pre-code decision pass are complete. RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/071, RC-067 and RC-072 through RC-076 are resolved by stable requirements, the addon catalogue, normative specifications and accepted ADR-0001 through ADR-0016. External checksum/licence acquisition and executed public-release legal terms remain deterministic build/release evidence, not unresolved architecture.",
             "",
             "No Java implementation was created or started by this audit.",
             "",

@@ -2,7 +2,7 @@
 
 ## Rules and legend
 
-This baseline contains 652 stable semantic requirement IDs. Part I contains exactly one row for each of the 179 PRD IDs (144 original core IDs plus 35 accepted owner-decision IDs). Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Part III is `docs/ADDON_FEATURE_CATALOG.md`, containing one complete mapping row for each of the 473 owner-supplied native-addon requirements. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior and must include a reason; it never omits documentation or verification.
+This baseline contains 672 stable semantic requirement IDs. Part I contains exactly one row for each of the 199 PRD IDs (144 original core IDs plus 55 accepted owner-decision IDs). Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Part III is `docs/ADDON_FEATURE_CATALOG.md`, containing one complete mapping row for each of the 473 owner-supplied native-addon requirements. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior and must include a reason; it never omits documentation or verification.
 
 - **Cmd/Perm:** command family and canonical permission family; exact subcommands/nodes are frozen before the implementation milestone.
 - **API/Evt:** public API service/provider and event family.
@@ -223,8 +223,8 @@ This baseline contains 652 stable semantic requirement IDs. Part I contains exac
 | ZBW-QA-003 | replay/Atlas/stat/rank/PH suites | test fixtures | — | tested surfaces | tested APIs | full PH test | mandated cases | test report; M16–M18 |
 | ZBW-QA-004 | benchmark/load harness + result store | benchmark manifest | benchmark run / developer | performance dashboard | benchmark API | performance metrics | all workload PT | benchmark report; M24 |
 | ZBW-QA-005 | release static/inventory/vulnerability gates | CI policy | — | — | API compatibility gate | PH inventory gate | release gates | release checklist; M24 |
-| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 652-semantic-ID audit plus atomic annex evidence | final compliance; M24 |
-| ZBW-QA-007 | deterministic atomic coverage verifiers | Master/addon/decision manifest rules | coverage verify / maintainer | combined coverage reports | coverage report schema | coverage percentage/counts | 6,438 Master + 473 addon + 35 decision rows and document/ADR gate | coverage audits; M00/M01/M24 |
+| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 672-semantic-ID audit plus atomic annex evidence | final compliance; M24 |
+| ZBW-QA-007 | deterministic atomic coverage verifiers | Master/addon/decision manifest rules | coverage verify / maintainer | combined coverage reports | coverage report schema | coverage percentage/counts | 6,438 Master + 473 addon + 55 decision rows and document/ADR gate | coverage audits; M00/M01/M24 |
 
 ## Ecosystem and migration (5)
 
@@ -291,16 +291,41 @@ This baseline contains 652 stable semantic requirement IDs. Part I contains exac
 | ZBW-LICENSE-006 | proprietary binary repository/artifact denylist | binary/hash deny rules | licences proprietary-scan / maintainer | violation report | — (governance only) | — (security) | repository/release scan | contributor/legal guide; M01/M24 |
 | ZBW-LICENSE-007 | generated notices/SBOM/provenance release gate | notice/provenance policy | licences notices/verify / maintainer | compliance report | notice/SBOM schemas | approved/blocked counts | reproducibility/licence CI | `THIRD_PARTY_NOTICES.md`; M01/M24 |
 
+## Consolidated pre-code readiness decisions (20)
+
+| Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
+|---|---|---|---|---|---|---|---|---|
+| ZBW-READY-001 | multi-artifact toolchains, platform-free shared core, bytecode lock | runtime/toolchains manifest | runtime verify / `zartra.admin.runtime.verify` | runtime report | RuntimeCapability API/events | server/artifact version | forbidden import/bytecode/boot CT | runtime matrix + ADR-0006; M01/M22 |
+| ZBW-READY-002 | exact server/client certification registry | compatibility matrix | compatibility certify / `.runtime.certify` | server/client matrix | CompatibilityReport API | sanitized support row | full lifecycle/fallback E2E | runtime/fallback matrices; M01/M22 |
+| ZBW-READY-003 | 300-definition registry, batch/provenance migration | cosmetics/content/provenance | cosmetics catalogue audit / `.content.cosmetics.audit` | catalogue/provenance/preview | CosmeticRegistry/events | public counts/equipped only | count/hash/visual/cleanup/PT | cosmetic plan; M14/M24 |
+| ZBW-READY-004 | declarative DSL compiler/interpreter/audit | scripting disabled, limits/capabilities | scripts validate/enable/audit / `.scripts.*` | script review/audit | ScriptCapability API/events | none — security | escape/fuzz/budget/tick ST | scripting security + ADR-0008; M03/M05/M11 |
+| ZBW-READY-005 | dependency lock, private immutable mirror, SBOM | dependency policy | dependencies verify / `.dependencies.verify` | dependency/licence report | build report schema | build version only | drift/checksum/licence/repro CI | dependency audit + ADR-0007; M01 |
+| ZBW-READY-006 | exact fixture acquisition/hash registry | runtime fixture lock | runtime fixtures verify / `.runtime.verify` | fixture status | FixtureReport API | support status | hash/boot/game CT | runtime matrix; M01/M22 |
+| ZBW-READY-007 | Grim adapter + neutral Vulcan/no-provider SPI | anticheat provider/SecretRef | anticheat diagnose / `.integration.anticheat.*` | integration health | AntiCheatProvider/events | sanitized provider health | licence/API/absence/provider CT | dependency audit/integration guide; M21 |
+| ZBW-READY-008 | selected framework/tool stack and architectural rules | build BOM/tool versions | build stack report / maintainer | quality dependency report | project-owned command/GUI/provider SPIs | none — build governance | architecture/licence/tool CT | dependency audit + ADR-0007; M01 |
+| ZBW-READY-009 | deterministic load harness/results store | performance profiles | benchmark run/report / `.performance.*` | benchmark/health report | BenchmarkResult SPI/events | sanitized health only | small/shared/proxy PT | benchmark baseline + ADR-0009; M01/M24 |
+| ZBW-READY-010 | purpose-classified replay schema/encryption/access | replay privacy profile, chat off | replay privacy/export / `.privacy.replay.*` | replay privacy/export | ReplayPrivacy API/events | none — private | no-chat/access/export/encryption ST | privacy policy + ADR-0010; M03/M17 |
+| ZBW-READY-011 | retention/hold/tombstone scheduler and schema | retention classes | privacy delete/hold/release / `.privacy.*` | retention/hold workflow | Retention/Hold events | none — private | clock/delete/hold/backup MT/ST | privacy policy; M04/M17/M18 |
+| ZBW-READY-012 | provenance/clean-room/migration gate | brand/provenance allowlists | provenance audit / `.content.provenance.*` | provenance report | ProvenanceReport API | approved/blocked counts | repository/content/migration scan | project licensing/provenance; M01/M23/M24 |
+| ZBW-READY-013 | authenticated envelope/key/dedupe services | network security/SecretRefs | network peer/key rotate/diagnose / `.network.*` | peer/key/security report | SecureEnvelope API/events | none — security | forge/replay/rotation/fuzz ST | network security + ADR-0011; M03/M19/M20 |
+| ZBW-READY-014 | SQL authority, leases, outbox/inbox, SQLite topology guard | deployment/database/redis | topology/consistency diagnose / `.network.*` | authority/lease health | transaction/lease/events | health only | duplicate/retry/partition IT/ST | network security; M04/M19/M20 |
+| ZBW-READY-015 | immutable balance profile registry/migration | balance/content/modes/shops | balance validate/activate / `.content.balance.*` | balance editor/preview | BalanceProfile API/events | active version | schema/golden/simulation/PT | balance baseline + ADR-0014; M03/M10/M11 |
+| ZBW-READY-016 | backup/recovery/quota/degradation coordinators | operations/backup/quotas | backup restore drill / `.backup.*` | recovery/quota health | Recovery API/events | sanitized health only | fault/restore/RPO/RTO MT | operational defaults + ADR-0015; M04/M05/M24 |
+| ZBW-READY-017 | module-aware CI/release gates | quality policy | quality verify/report / maintainer | quality report | machine-readable quality reports | none — build governance | coverage/mutation/static/vuln CI | quality gates + ADR-0009; M01/M24 |
+| ZBW-READY-018 | visibility policy/tombstone/consent migration | privacy visibility defaults | privacy visibility/export / `.privacy.*` | player privacy + staff restricted views | PrivacyPreference/events | consented public fields only | permission/privacy E2E/ST | privacy policy; M03/M15/M17/M18 |
+| ZBW-READY-019 | release licence classifier/gate | licensing policy | licence release verify / maintainer | licensing report | SDK licence metadata | none — legal | artefact/notice/legal checklist | licensing recommendation + ADR-0016; M01/M23/M24 |
+| ZBW-READY-020 | 49/473 clean-room addon provenance gate | content/addon provenance | addons provenance verify / maintainer | addon coverage/provenance | addon metadata report | coverage counts | 49/473/provenance/legal CI | addon catalogue + ADR-0013; M01/M24 |
+
 ## Coverage controls
 
 The following checks are required from M01 onward:
 
-1. Extract the 179 Part I IDs from this file/PRD and the append-only `ZBW-ADDON-001..473` Part III IDs from the addon catalogue; fail on a missing, duplicate or extra semantic ID. The generated catalogue may display an append-only amendment beside its owning addon, but numeric allocation history remains immutable and validator-sorted.
+1. Extract the 199 Part I IDs from this file/PRD and the append-only `ZBW-ADDON-001..473` Part III IDs from the addon catalogue; fail on a missing, duplicate or extra semantic ID. The generated catalogue may display an append-only amendment beside its owning addon, but numeric allocation history remains immutable and validator-sorted.
 2. Fail when an implementation milestone closes while its rows still contain only generic planned locations.
 3. Generate command, permission, GUI, config, API/event and placeholder inventories and compare them with the exact references derived from this matrix.
 4. Require test and documentation links for every final compliance row.
 5. Regenerate Part III with `tools/coverage/generate_addon_feature_catalog.py`; fail unless all 49 references, 8/41 tier split, 473 atomic IDs, required mapping surfaces and `COVERED` statuses match.
-6. Run `tools/coverage/validate_preimplementation_decisions.py`; fail unless all 35 Part I decision IDs, `ZBW-ADDON-464..473`, five accepted ADRs, required documents/fields and resolved RC-072..076 rows match.
+6. Run `tools/coverage/validate_preimplementation_decisions.py`; fail unless all 55 Part I decision IDs, `ZBW-ADDON-464..473`, sixteen accepted ADRs, required documents/fields and resolved RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/071/072..076 rows match.
 7. Regenerate Part II and the combined report with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, unknown semantic ID, absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
 8. Treat owner-supplied addon and decision inventories as normative supplements while preserving the factual distinction that they were not present in the original Master Prompt baseline.
 
