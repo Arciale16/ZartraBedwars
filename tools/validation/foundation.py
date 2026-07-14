@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 EXCLUDED_PARTS = {".git", ".tools", ".m2", "target"}
 MAVEN_NAMESPACE = {"m": "http://maven.apache.org/POM/4.0.0"}
+MASTER_PROMPT_SHA256 = "afce1250079945a7543f027bb23df14cedee7913ac52f8cb0775da784b280afa"
 
 
 def read_json(relative: str) -> dict[str, object]:
@@ -209,5 +210,24 @@ def validate_ci() -> list[str]:
     return errors
 
 
+def validate_authoritative_source() -> list[str]:
+    errors: list[str] = []
+    source_hash = hashlib.sha256((ROOT / "MASTER_PROMPT.md").read_bytes()).hexdigest()
+    if source_hash != MASTER_PROMPT_SHA256:
+        errors.append(f"MASTER_PROMPT.md byte hash drift: {source_hash}")
+    attributes = (ROOT / ".gitattributes").read_text(encoding="utf-8").splitlines()
+    if "/MASTER_PROMPT.md -text !eol" not in attributes:
+        errors.append("MASTER_PROMPT.md must bypass cross-platform line-ending conversion")
+    return errors
+
+
 def validate_all() -> list[str]:
-    return validate_module_graph() + validate_bytecode() + validate_fixtures() + validate_assets() + validate_quality() + validate_ci()
+    return (
+        validate_module_graph()
+        + validate_bytecode()
+        + validate_fixtures()
+        + validate_assets()
+        + validate_quality()
+        + validate_ci()
+        + validate_authoritative_source()
+    )

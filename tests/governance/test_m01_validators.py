@@ -42,6 +42,9 @@ class FoundationValidationTests(unittest.TestCase):
         self.assertEqual([], foundation.validate_quality())
         self.assertEqual([], foundation.validate_bytecode())
 
+    def test_authoritative_source_bytes_are_cross_platform_stable(self) -> None:
+        self.assertEqual([], foundation.validate_authoritative_source())
+
     def test_sbom_generation_is_deterministic(self) -> None:
         lock = json.loads((ROOT / "build" / "dependency-lock.json").read_text(encoding="utf-8"))
         first = lock_dependencies.canonical_json(lock_dependencies.make_sbom(lock))

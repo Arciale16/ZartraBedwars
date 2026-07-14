@@ -53,11 +53,13 @@ Every row records exact source, integrity, licence text hash, scope, product red
 
 The Maven reactor resolves no plug-in or Java library. All selected dependency versions in the BOM and parent remain unavailable to a build until a verified lock row exists. No third-party or server binary is committed or included in a product artifact.
 
+The accepted `MASTER_PROMPT.md` SHA-256 is byte-sensitive. Its canonical Git blob is therefore stored with the approved CRLF representation and exempted from checkout line-ending conversion. This is a byte-governance correction only: all 6,470 semantic lines remain identical, and the foundation gate rejects either hash or attribute drift on every platform.
+
 ## Validation and CI
 
 `tools/validation/run_m01_validation.py` is the single deterministic local governance entry point. It runs:
 
-- nine Python standard-library unit/structural tests;
+- ten Python standard-library unit/structural tests, including the cross-platform authoritative-source byte guard;
 - module graph, cycle, layer, class-major and zero-Java checks;
 - exact runtime fixture inventory and no-certification-claim checks;
 - asset provenance and prohibited binary scans;
@@ -80,7 +82,7 @@ CI is split into two least-privilege, SHA-pinned workflows:
 | Java 16 / Maven 3.9.11 clean empty reactor | PASS — 3/3; 0.112 s |
 | Java 17 / Maven 3.9.11 clean empty reactor | PASS — 3/3; 0.101 s |
 | Java 21 / Maven 3.9.11 clean empty reactor | PASS — 3/3; 0.143 s |
-| Governance unit tests | PASS — 9/9 |
+| Governance unit tests | PASS — 10/10 |
 | Foundation/static gate | PASS |
 | Dependency/licence/SBOM gate | PASS — 14/14 build/CI artifacts; zero product binaries |
 | Addon catalogue | PASS — 49 addons, 473 requirements, 100% |
