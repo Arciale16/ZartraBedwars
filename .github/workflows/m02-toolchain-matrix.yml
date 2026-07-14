@@ -1,22 +1,22 @@
-name: M01 Toolchain Matrix
+name: M02 Java Toolchain Matrix
 
 on:
   pull_request:
   push:
-    branches: [main, agent/milestone-01-foundation]
+    branches: [main, agent/milestone-02-public-api-domain]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: m01-toolchains-${{ github.ref }}
+  group: m02-toolchains-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  empty-reactor:
+  api-reactor:
     runs-on: ubuntu-22.04
-    timeout-minutes: 25
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -30,5 +30,7 @@ jobs:
           python-version: 3.12.13
       - name: Install checksum-locked Temurin toolchain
         run: python tools/build/install_jdk.py --id "${{ matrix.jdk }}" --github-env "$GITHUB_ENV" --github-path "$GITHUB_PATH"
-      - name: Build empty Maven reactor from a clean workspace
+      - name: Restore checksum-locked Maven repository
+        run: python tools/dependencies/maven_lock.py restore
+      - name: Build and test M02 from a clean workspace
         run: python tools/build/clean_build.py --jdk "${{ matrix.jdk }}"

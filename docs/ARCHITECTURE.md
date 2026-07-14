@@ -88,6 +88,12 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 
 Feature modules may be split further when package size or independent deployment requires it; the dependency direction remains unchanged.
 
+### M02 materialization
+
+M02 materializes only `zbw-api`, `zbw-domain`, `zbw-application`, `zbw-sdk` and `zbw-integration-discord-api`. All compile to Java 8 bytecode. The API owns typed identities, version/result/time/event/capability/provider/extension/content contracts; domain owns generator and RESOURCE SCARCITY values; application owns immutable assembly policies; SDK owns metadata parsing/validation; the Discord artifact owns provider-neutral optional integration contracts. `build/module-graph.json` is the machine-enforced dependency graph.
+
+Extension metadata schema 1 is the restricted `Reader`-based UTF-8 format selected by ADR-0017. It performs no filesystem access or class loading and reports sorted typed validation issues. The binary surface is locked in `build/api-signature-baseline.txt`. M02 architecture tests reject platform, storage and filesystem imports in API/domain/application and reject any M03 path.
+
 ## 5. Core domain model
 
 - `ArenaDefinition` is configuration; `ArenaInstance` is a runtime allocation; `Match` is an immutable-identity state machine. A world is a leased resource, not arena identity.

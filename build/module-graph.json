@@ -9,12 +9,19 @@
   "materialized_build_modules": [
     {"id": "zartrabedwars-parent", "path": "pom.xml", "packaging": "pom", "responsibility": "reactor and approved plugin version governance"},
     {"id": "zbw-bom", "path": "build/zbw-bom/pom.xml", "packaging": "pom", "responsibility": "approved exact dependency selections"},
-    {"id": "zbw-build-tools", "path": "build/zbw-build-tools/pom.xml", "packaging": "pom", "responsibility": "deterministic build-governance descriptor"}
+    {"id": "zbw-build-tools", "path": "build/zbw-build-tools/pom.xml", "packaging": "pom", "responsibility": "deterministic build-governance descriptor"},
+    {"id": "zbw-api", "path": "api/zbw-api/pom.xml", "packaging": "jar", "responsibility": "versioned public contracts and platform-neutral primitives"},
+    {"id": "zbw-domain", "path": "domain/zbw-domain/pom.xml", "packaging": "jar", "responsibility": "platform-neutral generator and private-game domain contracts"},
+    {"id": "zbw-application", "path": "application/zbw-application/pom.xml", "packaging": "jar", "responsibility": "immutable content and provider capability policies"},
+    {"id": "zbw-sdk", "path": "sdk/zbw-sdk/pom.xml", "packaging": "jar", "responsibility": "extension metadata reader and deterministic validator"},
+    {"id": "zbw-integration-discord-api", "path": "integrations/discord/zbw-integration-discord-api/pom.xml", "packaging": "jar", "responsibility": "optional Discord provider and integration contracts"}
   ],
   "planned_production_modules": [
     {"id": "zbw-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": []},
     {"id": "zbw-domain", "layer": "domain", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
     {"id": "zbw-application", "layer": "application", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api", "zbw-domain"]},
+    {"id": "zbw-sdk", "layer": "sdk", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
+    {"id": "zbw-integration-discord-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
     {"id": "zbw-config", "layer": "adapter", "bytecode": 8, "first_milestone": "M03", "depends_on": ["zbw-api", "zbw-application"]},
     {"id": "zbw-storage-api", "layer": "api", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-api", "zbw-domain"]},
     {"id": "zbw-storage-sql", "layer": "adapter", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-storage-api"]},
