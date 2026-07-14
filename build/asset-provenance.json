@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "requirements": ["ZBW-CONTENT-001", "ZBW-CONTENT-011", "ZBW-READY-012", "ZBW-READY-020"],
+  "approved_assets": []
+}

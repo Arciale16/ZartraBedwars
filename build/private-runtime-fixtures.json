@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "requirements": ["ZBW-COMPAT-001", "ZBW-COMPAT-009", "ZBW-READY-001", "ZBW-READY-002", "ZBW-READY-006"],
+  "policy": {
+    "repository_binaries_allowed": false,
+    "release_redistribution_allowed": false,
+    "support_claim_before_certification_allowed": false,
+    "legacy_sha256_required_before_acquisition": true
+  },
+  "fixtures": [
+    {"minecraft": "1.8.8", "distribution": "PRIVATE_BUILDTOOLS", "build": "--rev 1.8.8", "jdk": "8", "adapter": "compat-v1_8", "sha256_state": "PRIVATE_LOCK_REQUIRED", "certification": "NOT_STARTED"},
+    {"minecraft": "1.9.4", "distribution": "PRIVATE_BUILDTOOLS", "build": "--rev 1.9.4", "jdk": "8", "adapter": "compat-v1_9", "sha256_state": "PRIVATE_LOCK_REQUIRED", "certification": "NOT_STARTED"},
+    {"minecraft": "1.10.2", "distribution": "PRIVATE_BUILDTOOLS", "build": "--rev 1.10.2", "jdk": "8", "adapter": "compat-v1_10", "sha256_state": "PRIVATE_LOCK_REQUIRED", "certification": "NOT_STARTED"},
+    {"minecraft": "1.11.2", "distribution": "PRIVATE_BUILDTOOLS", "build": "--rev 1.11.2", "jdk": "8", "adapter": "compat-v1_11", "sha256_state": "PRIVATE_LOCK_REQUIRED", "certification": "NOT_STARTED"},
+    {"minecraft": "1.12.2", "distribution": "PAPER", "build": "1620", "jdk": "11", "adapter": "compat-v1_12", "sha256": "3a2041807f492dcdc34ebb324a287414946e3e05ec3df6fd03f5b5f7d9afc210", "certification": "NOT_STARTED"},
+    {"minecraft": "1.13.2", "distribution": "PAPER", "build": "657", "jdk": "11", "adapter": "compat-v1_13", "sha256": "11e828d0565ab76a0a0e180c056364a95de44958cfd6a6af3f9b1dc70b03e9cd", "certification": "NOT_STARTED"},
+    {"minecraft": "1.14.4", "distribution": "PAPER", "build": "245", "jdk": "11", "adapter": "compat-v1_14", "sha256": "bd8ec5cdb22370d37816a6de26798df3d2b0d6f9c7c96c88ca45a1303fea50e8", "certification": "NOT_STARTED"},
+    {"minecraft": "1.15.2", "distribution": "PAPER", "build": "393", "jdk": "11", "adapter": "compat-v1_15", "sha256": "bd2dd6f2cc489cf9e2bb800cb4fb6d63e9d293945d3ac10b09dd9c6098fa9f34", "certification": "NOT_STARTED"},
+    {"minecraft": "1.16.5", "distribution": "PAPER", "build": "794", "jdk": "16", "adapter": "compat-v1_16", "sha256": "e67da4851d08cde378ab2b89be58849238c303351ed2482181a99c2c2b489276", "certification": "NOT_STARTED"},
+    {"minecraft": "1.17.1", "distribution": "PAPER", "build": "411", "jdk": "17", "adapter": "compat-v1_17", "sha256": "6cc1ee2f94253ce10b5374ed85fffc735a97d8f1b64db293683dfa24dd3cc05f", "certification": "NOT_STARTED"},
+    {"minecraft": "1.18.2", "distribution": "PAPER", "build": "388", "jdk": "17", "adapter": "compat-v1_18", "sha256": "0578f18f4d632b494b468ec56b3b414b5b56fea087ee7d39cf6dcdf4c9d01f05", "certification": "NOT_STARTED"},
+    {"minecraft": "1.19.4", "distribution": "PAPER", "build": "550", "jdk": "17", "adapter": "compat-v1_19", "sha256": "e587d78cba3e99ef8c4bc24cf20cc3bdbbe89e33b0b572070446af4eb6be5ccf", "certification": "NOT_STARTED"},
+    {"minecraft": "1.20.1", "distribution": "PAPER", "build": "196", "jdk": "21", "adapter": "compat-v1_20", "sha256": "234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea", "certification": "NOT_STARTED"},
+    {"minecraft": "1.20.2", "distribution": "PAPER", "build": "318", "jdk": "21", "adapter": "compat-v1_20", "sha256": "ba340a835ac40b8563aa7eda1cd6479a11a7623409c89a2c35cd9d7490ed17a7", "certification": "NOT_STARTED"},
+    {"minecraft": "1.20.4", "distribution": "PAPER", "build": "499", "jdk": "21", "adapter": "compat-v1_20", "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b", "certification": "NOT_STARTED"},
+    {"minecraft": "1.20.6", "distribution": "PAPER", "build": "151", "jdk": "21", "adapter": "compat-v1_20", "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.1", "distribution": "PAPER", "build": "133", "jdk": "21", "adapter": "compat-v1_21", "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.3", "distribution": "PAPER", "build": "83", "jdk": "21", "adapter": "compat-v1_21", "sha256": "87e973e1d338e869e7fdbc4b8fadc1579d7bb0246a0e0cf6e5700ace6c8bc17e", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.4", "distribution": "PAPER", "build": "232", "jdk": "21", "adapter": "compat-v1_21", "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.8", "distribution": "PAPER", "build": "60", "jdk": "21", "adapter": "compat-v1_21", "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.10", "distribution": "PAPER", "build": "130", "jdk": "21", "adapter": "compat-v1_21", "sha256": "158703f75a26f842ea656b3dc6d75bf3d1ec176b97a2c36384d0b80b3871af53", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.11", "distribution": "PAPER", "build": "132", "jdk": "21", "adapter": "compat-v1_21", "sha256": "5ffef465eeeb5f2a3c23a24419d97c51afd7dbb4923ff42df9a3f58bba1ccfba", "certification": "NOT_STARTED"}
+  ]
+}

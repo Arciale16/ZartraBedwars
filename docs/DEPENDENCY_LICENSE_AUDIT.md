@@ -1,13 +1,13 @@
 # Dependency and Licence Audit
 
-**Status:** exact selection baseline accepted; immutable checksum acquisition is mandatory before first use
+**Status:** exact selection baseline accepted; M01 build/CI acquisition lock verified; Java libraries and plug-ins remain unresolved
 **Decisions:** RC-021, RC-024, RC-027, RC-076
 **Requirements:** `ZBW-READY-005..008`, `ZBW-LICENSE-001..007`
 **Audit date:** 2026-07-14
 
 ## Binding acquisition rule
 
-No dependency is currently resolved because no Java build exists. The exact versions below are the only approved selections. Before an artifact enters a local/CI dependency cache, the acquisition gate downloads it from the authoritative repository, records SHA-256 and embedded licence text in the generated lock/SBOM, and compares both on every build. A missing/mismatched artifact is rejected rather than substituted.
+No Java library, Maven plug-in or platform/provider API is resolved because M01 contains no Java or functional module. The exact versions below remain the only approved selections. M01 did acquire the build toolchains required to verify the empty reactor: 14 Maven, Temurin, Python and SHA-pinned GitHub Actions artifacts are recorded in `build/dependency-lock.json`. Before an artifact enters a local/CI dependency cache, the acquisition gate downloads it from the authoritative repository, records SHA-256 or immutable Git commit plus exact licence-text hash in the generated lock/SBOM, and compares both. A missing/mismatched artifact is rejected rather than substituted.
 
 Dynamic versions, version ranges, `LATEST`, `RELEASE` and mutable `SNAPSHOT` release coordinates are prohibited. When an official API is only published as a snapshot, the gate resolves one unique timestamped artifact tied to the recorded upstream tag/commit, verifies its checksum, mirrors it privately under `io.zartra.thirdparty-lock:<name>:<upstream-version>-<short-commit>`, and never redistributes the upstream binary. This is an immutable coordinate, not a floating snapshot.
 
@@ -29,7 +29,10 @@ The generated immutable lock expands these fields into separate machine-readable
 
 | Name / coordinates | Exact version | Authoritative source | Licence | Rights and obligations | Packaging / commercial decision |
 |---|---|---|---|---|---|
-| Apache Maven Wrapper | `3.9.11` | Apache Maven distribution | Apache-2.0 | Redistribution permitted with licence/notice; no modification planned | BUILD-ONLY, approved selection |
+| Apache Maven distribution + original Zartra launcher | `3.9.11` | Apache Maven distribution | Apache-2.0 | Archive SHA-256/SHA-512 and embedded LICENSE/NOTICE hashes locked; not product-distributed | BUILD-ONLY, acquired and verified in M01 |
+| Eclipse Temurin compile JDKs | `8u442-b06`, `11.0.26+4`, `16.0.2+7`, `17.0.14+7`, `21.0.6+7` | Adoptium release API/GitHub binaries | GPL-2.0 with Classpath Exception | Linux and Windows x64 archive and licence/assembly-exception hashes locked; never product-bundled | BUILD-ONLY, acquired and verified in M01 |
+| CPython validator runtime | `3.12.13` | CPython/actions python-versions release | Python-2.0 | Ubuntu 22.04 x64 asset digest and CPython licence hash locked | BUILD-ONLY, acquired and verified in M01 |
+| `actions/checkout`, `actions/setup-python` | immutable commits `34e1148…`, `a26af69…` | Official GitHub Actions repositories | MIT | Commit identity and exact licence hash locked; least-privilege CI only | CI-ONLY, acquired and verified in M01 |
 | Maven Compiler Plugin | `3.14.1` | Apache Maven Central/source | Apache-2.0 | Notice in build SBOM | BUILD-ONLY |
 | Maven Surefire/Failsafe | `3.5.4` | Apache Maven Central/source | Apache-2.0 | Notice in build SBOM | BUILD-ONLY |
 | Maven Enforcer Plugin | `3.6.1` | Apache Maven Central/source | Apache-2.0 | Notice in build SBOM | BUILD-ONLY |
@@ -105,5 +108,7 @@ Provider versions are certification baselines, not automatic compatibility range
 4. Scan release JARs for provided/proprietary/server classes and licence files. Any match blocks release.
 5. Generate `THIRD_PARTY_NOTICES.md` from actual bundled selections and preserve source-offer/notice obligations.
 6. Re-audit on every version, source, classifier, patch, relocation or packaging change.
+
+M01 materializes these gates in `tools/dependencies/lock_dependencies.py`. Its deterministic outputs are `build/dependency-lock.json`, `build/sbom.cdx.json` and `build/THIRD_PARTY_BUILD_NOTICES.md`; the empty reactor runs offline and rejects direct plug-in goals, so BOM/plugin-version declarations cannot trigger unverified resolution.
 
 The architecture/library/version choices for RC-021/024/027 are resolved. Artifact checksum and exact licence-text acquisition is an automated pre-resolution fact check; until it passes, that artifact cannot be downloaded by the build. It is not an open design decision and never permits a floating replacement.

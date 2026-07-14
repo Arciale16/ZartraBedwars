@@ -138,7 +138,12 @@ def validate() -> None:
     if "**Requirement count:** 672" not in prd or "672 stable semantic requirement IDs" not in trace:
         raise ValueError("PRD/traceability counts are stale")
 
-    java_files = [path for path in ROOT.rglob("*.java") if ".git" not in path.parts]
+    excluded_build_paths = {".git", ".tools", ".m2", "target"}
+    java_files = [
+        path
+        for path in ROOT.rglob("*.java")
+        if not any(part in excluded_build_paths for part in path.parts)
+    ]
     if java_files:
         raise ValueError("pre-code baseline contains Java files: " + ", ".join(str(path.relative_to(ROOT)) for path in java_files[:5]))
 

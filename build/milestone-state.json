@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "active_milestone": "M01",
+  "completed_milestones": ["M00", "M01"],
+  "functional_production_path": false,
+  "java_implementation_started": false
+}

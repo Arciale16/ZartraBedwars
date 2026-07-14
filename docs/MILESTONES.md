@@ -17,10 +17,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M01 — Materialize the accepted build governance baseline
 
+- **Implementation status:** VERIFIED on 2026-07-14; evidence in `docs/IMPLEMENTATION_M01.md`. This status covers only the M01 allocation of requirements that also continue into later milestones.
 - **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007, CONTENT-001/011, COMPAT-001/009, LICENSE-001..007, READY-001/002/005/006/008/009/012/017/019/020.
 - **Entry:** M00 PRE-CODE READY baseline approved; exact selections and architecture are not reopened without an ADR.
 - **Deliver:** Maven parent/BOM/wrapper/toolchains; pre-resolution checksum/licence lock generator; SBOM/notices/provenance gates; empty module graph; pinned validator runtime; CI, static architecture/bytecode/quality rules and private runtime-fixture manifest.
 - **Exit:** clean empty multi-module build on all compile JDKs; all documentation/licence/provenance/dependency-lock gates pass; every resolved build artifact has exact checksum/licence evidence; runtime/provider matrix is immutable; no functional production path is claimed.
+- **Exit evidence:** five local checksum-locked Temurin builds (8/11/16/17/21) pass the three-POM offline reactor; 9 governance tests and all static, dependency/licence/SBOM, asset, fixture and documentation gates pass; 14 build/CI artifacts are locked; zero `.java`, feature module, product binary or certified Minecraft runtime exists.
 
 ### M02 — Public API, domain primitives and extension metadata
 

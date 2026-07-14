@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "functional_modules_materialized_in_m01": 0,
+    "platform_imports_forbidden_in": ["api", "domain", "application"],
+    "cycles_allowed": false,
+    "unlisted_module_dependencies_allowed": false
+  },
+  "materialized_build_modules": [
+    {"id": "zartrabedwars-parent", "path": "pom.xml", "packaging": "pom", "responsibility": "reactor and approved plugin version governance"},
+    {"id": "zbw-bom", "path": "build/zbw-bom/pom.xml", "packaging": "pom", "responsibility": "approved exact dependency selections"},
+    {"id": "zbw-build-tools", "path": "build/zbw-build-tools/pom.xml", "packaging": "pom", "responsibility": "deterministic build-governance descriptor"}
+  ],
+  "planned_production_modules": [
+    {"id": "zbw-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": []},
+    {"id": "zbw-domain", "layer": "domain", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
+    {"id": "zbw-application", "layer": "application", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api", "zbw-domain"]},
+    {"id": "zbw-config", "layer": "adapter", "bytecode": 8, "first_milestone": "M03", "depends_on": ["zbw-api", "zbw-application"]},
+    {"id": "zbw-storage-api", "layer": "api", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-api", "zbw-domain"]},
+    {"id": "zbw-storage-sql", "layer": "adapter", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-storage-api"]},
+    {"id": "zbw-observability", "layer": "adapter", "bytecode": 8, "first_milestone": "M05", "depends_on": ["zbw-api", "zbw-application"]},
+    {"id": "zbw-compat-api", "layer": "api", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api"]},
+    {"id": "zbw-compat-v1_8", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_9", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_10", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_11", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_12-v1_16_4", "layer": "platform", "bytecode": 11, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_16_5", "layer": "platform", "bytecode": 16, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_17-v1_19", "layer": "platform", "bytecode": 17, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-compat-v1_20-v1_21", "layer": "platform", "bytecode": 21, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
+    {"id": "zbw-paper-legacy", "layer": "bootstrap", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_8"]},
+    {"id": "zbw-paper-j11", "layer": "bootstrap", "bytecode": 11, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_12-v1_16_4"]},
+    {"id": "zbw-paper-j16", "layer": "bootstrap", "bytecode": 16, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_16_5"]},
+    {"id": "zbw-paper-j17", "layer": "bootstrap", "bytecode": 17, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_17-v1_19"]},
+    {"id": "zbw-paper-modern", "layer": "bootstrap", "bytecode": 21, "first_milestone": "M06", "depends_on": ["zbw-application", "zbw-compat-v1_20-v1_21"]},
+    {"id": "zbw-proxy-api", "layer": "api", "bytecode": 8, "first_milestone": "M20", "depends_on": ["zbw-api"]},
+    {"id": "zbw-bungeecord", "layer": "bootstrap", "bytecode": 8, "first_milestone": "M20", "depends_on": ["zbw-proxy-api"]},
+    {"id": "zbw-velocity", "layer": "bootstrap", "bytecode": 21, "first_milestone": "M20", "depends_on": ["zbw-proxy-api"]}
+  ]
+}

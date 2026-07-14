@@ -1,0 +1,34 @@
+name: M01 Toolchain Matrix
+
+on:
+  pull_request:
+  push:
+    branches: [main, agent/milestone-01-foundation]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m01-toolchains-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  empty-reactor:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        jdk: ['8', '11', '16', '17', '21']
+    steps:
+      - name: Check out immutable source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Install pinned validator runtime
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.12.13
+      - name: Install checksum-locked Temurin toolchain
+        run: python tools/build/install_jdk.py --id "${{ matrix.jdk }}" --github-env "$GITHUB_ENV" --github-path "$GITHUB_PATH"
+      - name: Build empty Maven reactor from a clean workspace
+        run: python tools/build/clean_build.py --jdk "${{ matrix.jdk }}"
