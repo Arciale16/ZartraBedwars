@@ -1,0 +1,288 @@
+# ZartraBedWars Product Requirements Document
+
+**Document status:** Baseline v1.0  
+**Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md`. If this document and implementation differ, implementation changes unless the owner approves a requirement change.  
+**Requirement count:** 142  
+**Implementation status:** all requirements are `NOT STARTED` at this baseline.
+
+## 1. Product outcome and scope
+
+ZartraBedWars is an original, enterprise-grade BedWars platform, not a monolithic minigame plugin. The primary delivery target is Paper 1.21.1 on Java 21. The architecture shall permit separately tested compatibility adapters for server versions 1.8 through 1.21.x and later stable versions where technically feasible. It shall run in a many-arena shared Paper server and in a horizontally scalable Velocity/BungeeCord network, while retaining equivalent game rules and data semantics.
+
+The product includes game lifecycle, arenas and worlds, setup, shops and items, progression, cosmetics, quests, achievements, battle pass, replay/evidence, Atlas community review, statistics, leaderboards, parties/private games, proxy/cloud/Redis coordination, integrations, user and administration interfaces, public APIs, localization, migration, observability, security, testing, packaging and documentation. Original code and assets are mandatory; proprietary code, maps, textures, sounds, branding and protected content shall not be copied.
+
+## 2. Normative language, status and verification
+
+- **CRITICAL MUST:** absence blocks production use.
+- **MUST:** required for the first stable release.
+- **SHOULD:** may be deferred only through an approved decision recording scope, impact and replacement plan.
+- **MAY:** optional after all higher priorities.
+- Lifecycle states are `NOT STARTED`, `PLANNED`, `IN PROGRESS`, `IMPLEMENTED`, `TESTED`, `DOCUMENTED`, `VERIFIED`, `DEPRECATED`, and `REMOVED` (owner approval required). A final compliance report may only use `IMPLEMENTED AND VERIFIED` or `TECHNICALLY IMPOSSIBLE WITH APPROVED ALTERNATIVE`.
+- Verification codes: **UT** unit, **IT** integration, **CT** compatibility/contract, **E2E** end-to-end server, **PT** performance/load, **ST** security/abuse, **MT** migration/recovery, **DR** document/design review.
+
+Every enumerated capability in a requirement is normative and must receive an individual acceptance check. “Where applicable” means applicability is decided in the traceability matrix or an approved ADR, never silently by an implementer.
+
+## 3. Requirement record impact profiles
+
+Every catalog row is a complete requirement record. Its profile supplies the listed impacts unless the row overrides it.
+
+| Profile | Commands and permissions | GUI | API and PlaceholderAPI | Configuration and migration | Performance and security | Required verification/documentation |
+|---|---|---|---|---|---|---|
+| **CORE** | Diagnostic/admin command only when operable; dedicated least-privilege node | Health/status view when operator-facing | Versioned interface and events; no placeholder unless visible state exists | Validated, commented config; schema/config migration on format change | No blocking I/O on server thread; bounded work; threat review | UT, IT, CT, PT/ST as relevant; JavaDoc, architecture and operator guide |
+| **FULL** | Player/admin commands for every action; argument, context, cooldown and audit validation; granular nodes | Player and admin flows with search, paging, filters, back/close, confirmation, loading/error states | Versioned service/events; placeholders for every meaningful visible value | Fully commented validated files; dry-run, backup, rollback/restore and ID mapping where prior data exists | Async persistence, bounded queues/caches, rate limits, idempotency and audit of sensitive actions | UT, IT, E2E, regression, PT, ST, MT/CT as relevant; user/admin/API references |
+| **DATA** | Inspect/repair/import/export/migrate commands and separate permissions | Inspector, health, repair and migration views | Repository/service API and change events; cached visible values only | Versioned schema, backup/restore, import/export, conflict handling | Atomic/idempotent updates, prepared statements, timeouts, encryption/secrets controls | UT, DB/Redis IT, concurrency PT/ST, corruption and migration MT; data guide |
+| **INTEGRATION** | Status/reload/diagnose commands; use/manage/debug permissions | Integration state and diagnostics | Provider SPI plus normalized events; placeholders only for safe health/public data | Provider selection, version constraints, credentials by secret reference, safe fallback | Event-driven, rate-limited, circuit breaker and no secret/unsafe payload logging | Provider contract CT, supported-version matrix, failure IT, PT/ST; integration guide |
+| **OPS** | Full operator commands with audit; no unsafe defaults | Dashboard/editor/validator with confirmation | Health/metrics/config APIs; sanitized public placeholders | Commented config, backups, targeted reload and migration | Explicit budgets, redaction, authorization, bounded telemetry | UT/IT/E2E/PT/ST/MT as applicable; runbook and reference |
+| **GOV** | N/A unless stated | N/A | Compatibility/versioning policies where relevant | Document version and change history | Review gates include performance/security | DR plus repository checks; governance documentation |
+
+### Global acceptance baseline
+
+For every profile, completion requires implementation, clean compilation, applicable automated tests, documentation, configuration, localization, permissions, GUI/API/placeholders, migration, compatibility, performance and security evidence. No TODO, FIXME, stub, mock-only production path, silent failure, undocumented surface or unapproved scope reduction is accepted.
+
+Provisional measurable budgets, to be fixed in an ADR with reference hardware before implementation, are: no synchronous database/Redis/filesystem/network access on the Paper tick thread; no unbounded queue/cache/poll loop; cached placeholder p95 ≤ 1 ms and zero database calls during evaluation; steady shared-server benchmark at 40 managed worlds/10 active arenas maintains ≥19.5 TPS with platform p95 tick contribution ≤2 ms and p99 ≤5 ms; every external operation has a timeout; replay enqueue p99 ≤200 μs on the tick thread; operator/player list GUIs page results and never materialize an unbounded dataset. Failing a budget blocks `VERIFIED` or requires owner-approved revised evidence, never a silent waiver.
+
+## 4. Requirement catalog
+
+### 4.1 Governance and product contract (10)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile / impact override |
+|---|---|---|---|---|---|
+| ZBW-GOV-001 | CRITICAL MUST | Maintain this PRD as the single source of truth; every change identifies affected IDs, reason, compatibility, migration, performance, security, testing and documentation impact before code changes. | None | DR | GOV |
+| ZBW-GOV-002 | CRITICAL MUST | Preserve all mandatory scope; functionality may be removed or an ID changed only with explicit owner approval. Hard implementation is resolved architecturally, not by simplification. | GOV-001 | DR | GOV |
+| ZBW-GOV-003 | MUST | Use stable IDs, declared parent/child/blocking/optional/related/mutually-exclusive dependencies, lifecycle state and complete traceability with no orphan requirement. | GOV-001 | DR, repository check | GOV |
+| ZBW-GOV-004 | MUST | Record every major architecture decision in an ADR containing decision, reason, alternatives, trade-offs and performance, security, compatibility, migration and future impact. | GOV-001 | DR | GOV |
+| ZBW-GOV-005 | MUST | Apply SOLID, DRY, KISS, clean architecture/code, repository and service layers, factories/strategies/builders/observers, event-driven design, interface segregation, DI where appropriate and composition over inheritance; exceptions require an ADR. | ARC-001 | static review | GOV |
+| ZBW-GOV-006 | MUST | Enforce readable, explicit, single-responsibility packages/classes/methods; avoid god classes, global utility containers, duplicate logic and unjustified methods over roughly 50–80 lines. | GOV-005 | static analysis, review | GOV |
+| ZBW-GOV-007 | CRITICAL MUST | A requirement is complete only after the global baseline and its acceptance criteria pass; final compliance uses only the two final statuses defined in §2 and records implementation, surfaces, tests, evidence and limitations. | All requirements | DR, CI | GOV |
+| ZBW-GOV-008 | MUST | Use small, buildable, testable, reviewable, documented and mergeable milestones; perform self-review and correct discovered errors with tests, migration and docs. | QA-001 | CI/DR | GOV |
+| ZBW-GOV-009 | MUST | Use original source and assets and retain third-party licenses/notices; migration may read legally accessible formats but shall not copy proprietary code/assets/branding. | OPS-008, INT-* | legal/license review | GOV |
+| ZBW-GOV-010 | SHOULD | Discover and add missing enterprise requirements (validation, recovery, logging, APIs, configuration, tests, GUI, commands, permissions, placeholders, diagnostics) before implementing them, without weakening existing IDs. | GOV-001 | DR | GOV |
+
+### 4.2 Architecture and platform foundations (10)
+
+| ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-ARC-001 | CRITICAL MUST | Deliver independently buildable domain, public API, Paper bootstrap, game, arena/world, player/team, shop, progression, replay, Atlas, statistics, storage, Redis, proxy/cloud, GUI, command, permission, configuration, integration, observability, test and documentation modules with interface-only inward dependencies and no cycles. | GOV-005 | architecture tests, DR | CORE |
+| ZBW-ARC-002 | CRITICAL MUST | Keep domain/core free of Bukkit/Paper/NMS/proxy/provider classes; all platform calls cross ports and adapters. Version-specific code exists only in compatibility modules. | ARC-001 | forbidden-dependency test, CT | CORE |
+| ZBW-ARC-003 | CRITICAL MUST | Provide a versioned public API/SDK for every module named in the master specification, documented with JavaDoc, examples, thread context, exceptions, SemVer, deprecation and compatibility policy. | ARC-001 | API binary/contract tests | CORE |
+| ZBW-ARC-004 | CRITICAL MUST | Provide cancellable/non-cancellable event APIs for all listed arena/game/player/team/combat/shop/generator/progression/reward/stat/replay/Atlas/anticheat/proxy/migration/config/integration transitions, with ordering, mutability and thread context documented. | ARC-003 | UT, IT | CORE |
+| ZBW-ARC-005 | CRITICAL MUST | Enforce thread ownership: world/entity/inventory operations on the owning server/region thread; DB, Redis, network, filesystem, encoding, backup/import/export and large calculations off-thread; results return through safe schedulers. | ARC-002 | thread-guard IT, PT | CORE |
+| ZBW-ARC-006 | MUST | Provide bounded executors/queues, backpressure, cancellation, deadlines, structured failure results and shutdown draining; rejected work has a documented recovery/degradation policy. | ARC-005 | concurrency IT/PT | CORE |
+| ZBW-ARC-007 | CRITICAL MUST | Implement provider SPIs for storage, cache, proxy, service discovery, scheduler, world, packet, NPC, hologram, party, economy, permissions/chat, anticheat, replay storage/telemetry and external moderation/statistics. | ARC-001, ARC-003 | provider CT | CORE |
+| ZBW-ARC-008 | MUST | Version configuration, DB schema, Redis messages/keys, replay format, public API, placeholders and migrations independently under SemVer-compatible policies. | DATA/OPS foundations | compatibility/migration CT | CORE |
+| ZBW-ARC-009 | MUST | Standardize IDs as immutable collision-resistant values for maps, arenas, matches, replays, cases, definitions and GUI pages; display names are mutable snapshots and never relational identity. | ARC-003, DATA | UT/MT | CORE |
+| ZBW-ARC-010 | MUST | Expose extension registries so official/third-party modules can add modes, shops, upgrades, generators, objectives, rewards, cosmetics, replay events, Atlas providers, statistics, placeholders, GUIs, commands, NPC/world/matchmaking providers without editing core. | ARC-003, ARC-007 | sample-extension CT | CORE |
+
+### 4.3 Core game and modes (10)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-GAME-001 | CRITICAL MUST | A deterministic state machine implements waiting, queue, countdown, force/auto start, assignment/balancing/party placement, playing, end and reset; invalid transitions are rejected and recovery is idempotent. | ARC-004, ARENA-001 | UT, E2E | FULL |
+| ZBW-GAME-002 | CRITICAL MUST | Implement disconnect, reconnect/rejoin, respawn, bed destruction, final kill, player/team elimination, victory, draw, timeout, sudden death, dragon, border and custom events with configurable timing/rules. | GAME-001 | UT, E2E | FULL |
+| ZBW-GAME-003 | CRITICAL MUST | End-game atomically distributes rewards, updates statistics/progression, closes replay, restores player inventory/location/state and schedules arena reset; retries cannot duplicate effects. | GAME-001, PROG-011, STATS-001, REPLAY-001 | failure E2E | FULL |
+| ZBW-GAME-004 | MUST | Supply Solo, Doubles, 3v3v3v3, 4v4v4v4, custom teams/team size/player count, Rush, Ultimate, Armed, Voidless, LuckyBlock, BedSteal, Swappage and Adventure modes. | GAME-001, SHOP-*, ARENA-* | mode matrix E2E | FULL |
+| ZBW-GAME-005 | MUST | Every mode has independent configuration, statistics, generators, shop, upgrades, events and placeholders and can be registered through the mode API. | GAME-004, ARC-010 | CT/E2E | FULL |
+| ZBW-GAME-006 | MUST | Provide main/per-mode/per-group/waiting lobbies with spawn/protection, scoreboard, bossbar, NPC, hologram, hotbar, visibility selector, double jump, void protection, join/leave messages and announcements. | ARENA-*, UX-001, INT-006/007 | E2E | FULL |
+| ZBW-GAME-007 | MUST | Provide quick/random join plus map/arena/mode/group selection through NPC, GUI, command and sign, with capacity, eligibility, queue and deployment-aware routing validation. | GAME-001, DEPLOY-003 | E2E/PT | FULL |
+| ZBW-GAME-008 | MUST | Provide separate configurable hotbars for lobby, waiting, playing, spectator, setup, staff, private games, Atlas, replay and GUI editor states; transitions cannot leak items/actions. | GAME-001, UX-001 | UT/E2E | FULL |
+| ZBW-GAME-009 | MUST | Implement spectator controls, player follow/teleport, visibility and safe exit; staff extensions include vanish, freeze, inventory/ender-chest inspection, ping/CPS/reach/movement evidence, staff/admin chat and moderation hooks. | GAME-001, REPLAY-006, INT-008 | ST/E2E | FULL |
+| ZBW-GAME-010 | CRITICAL MUST | Recover cleanly from server/world/provider failures: persist recoverable match identity/state, prevent duplicate completion, route players safely, notify admins and avoid player/world/data corruption. | GAME-001, ARENA-006, OPS-005 | failure E2E/MT | FULL |
+
+### 4.4 Arena, map, world and setup (9)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-ARENA-001 | CRITICAL MUST | Arena service provides create/edit/delete, enable/disable, clone, import/export, backup/restore, validate, group, priority/rotation/weight, templates, tags, metadata/version/status/health/diagnostics and public API. | ARC-007, DATA | E2E/MT | FULL |
+| ZBW-ARENA-002 | CRITICAL MUST | Each map stores immutable ID, mutable display name, timestamps, version, template/group, author/description, supported modes/team sizes, metadata and validation state. Rename changes presentation only, not IDs, relations, stats, proxy/replay/API/placeholder identity. | ARC-009 | UT/MT | FULL |
+| ZBW-ARENA-003 | MUST | Map IDs are automatic, globally collision-resistant and never reused; export/import, backup/restore, proxy transfer and DB migration preserve identity, while duplicate/clone always issues a new ID and mapping. | ARENA-002, DATA, DEPLOY-006 | MT/CT | FULL |
+| ZBW-ARENA-004 | MUST | Duplicate map copies world/template, spawns, beds, generators, NPCs, shops/upgrades, regions, void/build limits, protected regions, arena config/metadata/speeds/events/rules and yields independent config, stats and metadata. | ARENA-002, ARENA-005 | E2E/MT | FULL |
+| ZBW-ARENA-005 | CRITICAL MUST | World provider supports native Bukkit, templates, SlimeWorldManager, Multiverse-Core, WorldEdit, FAWE and WorldGuard operations: load/unload, clone, import/export, snapshot, backup/restore, selection/regions, validation, conversion, fast reset and provider migration/fallback. | ARC-007, INT-005 | provider CT/E2E | INTEGRATION |
+| ZBW-ARENA-006 | CRITICAL MUST | Reset pipeline performs asynchronous file work and scheduler-safe world operations, chunk/entity/item/fire/explosion cleanup and memory release; concurrent resets are bounded and never touch world APIs off owner thread. | ARC-005/006, ARENA-005 | E2E/PT | CORE |
+| ZBW-ARENA-007 | MUST | Setup offers wizard, GUI, commands, hotbar tools, particles, boss/action bars, clickable chat, confirmation, validation and completion percentage for every listed step from arena/world selection through teams, shops, regions, metadata, save and enable. | ARENA-001/005, UX-* | E2E usability | FULL |
+| ZBW-ARENA-008 | MUST | Validator detects missing/unsafe spawns, beds, duplicate teams, missing shops/generators/NPC/metadata, invalid regions/world/group/ID, broken references, display-name conflicts and configuration errors, with actionable severity and block-enable policy. | ARENA-007, OPS-003 | UT/E2E | OPS |
+| ZBW-ARENA-009 | MUST | Arena/map/world admin GUI and commands expose every lifecycle action with granular view/create/edit/delete/duplicate/import/export/enable/disable/backup/restore/migrate/force/debug permissions and audited destructive confirmations. | ARENA-001..008, UX-001/002 | E2E/ST | FULL |
+
+### 4.5 Shop, upgrades, generators and items (7)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-SHOP-001 | MUST | Shop implements Quick Buy/favourites/editor; default and custom categories; blocks/melee/armor/tools/ranged/potions/utility; rotating/seasonal/custom/hidden/disabled/limited items; per-mode/arena/group/team catalogs. | GAME-005, UX-001 | E2E | FULL |
+| ZBW-SHOP-002 | MUST | Configure category/icon/slot/lore/name/order/visibility/permission/condition, currencies/discounts/rules/cooldowns and animations/sounds/particles/messages; GUI supplies search, paging, category/back/confirmation, purchase history, favourites, shift/number/hotkeys, drag-drop Quick Buy and previews. | SHOP-001 | GUI E2E | FULL |
+| ZBW-SHOP-003 | MUST | Purchase service supports normal/bulk/confirmed purchase, full inventory, atomic resource removal, insufficiency, player/team/arena limits, cooldowns and custom conditions; API registers categories/items/prices/validators/restrictions/events/GUI extensions. | SHOP-001, PROG-004 | concurrency/ST | FULL |
+| ZBW-SHOP-004 | MUST | Currency tender supports iron/gold/diamond/emerald, custom/multiple/virtual, Vault, command and permission sources through atomic quoted transactions. | SHOP-003, INT-002, PROG-004 | UT/IT/ST | FULL |
+| ZBW-SHOP-005 | MUST | Upgrade shop implements sharpness, protection, haste, forge, heal pool, dragon buff, queued/multiple traps and custom command/potion/generator/permission/API upgrades; levels/prices/icons/lore/messages/requirements/restrictions/permissions/animations/layout are configurable with preview/progress/search. | GAME-005, SHOP-003 | E2E | FULL |
+| ZBW-SHOP-006 | MUST | Generators implement iron/gold/diamond/emerald/custom resources per team/arena/group/mode, upgrade/split, speed/drops/particles/sounds/models/events, hologram/countdown/progress, caps/merge/overflow, radius/multiple spawn points and custom types. | ARENA-001, GAME-005 | UT/E2E/PT | FULL |
+| ZBW-SHOP-007 | MUST | Item framework provides original fireball, TNT, bridge egg, defender, bed bug, magic milk/milk, sponge, pop-up tower, water, rescue platform, tracker, knockback stick, silverfish/golem, jump/speed/invisibility potions, golden apple and custom throwable/consumable/utility actions; every definition supports material/name/lore/price/currency/cooldown/effects/permission/condition/version-safe data/enchant/model/API plus command/effect/entity/firework/block/script hooks sandboxed by policy. | SHOP-003, ARC-002/010 | item matrix E2E/ST/CT | FULL |
+
+### 4.6 Progression, rewards and player systems (14)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-PROG-001 | MUST | One event-to-projection pipeline updates experience, levels/prestiges, currencies, quests, achievements, challenges, battle pass, cosmetics, seasons, winstreaks, stats, leaderboards, profile, replay timeline and developer events exactly once. | ARC-004, DATA | concurrency E2E | FULL |
+| ZBW-PROG-002 | MUST | Experience supports all gameplay/win/kill/final/bed/quest/achievement/pass/command/API sources, rank/event/season/party/booster multipliers, daily/first-win/performance/participation bonuses and custom sources, with farming/duplicate prevention. | PROG-001 | UT/ST | FULL |
+| ZBW-PROG-003 | MUST | Levels track current/required/lifetime XP, percentage/bar, configurable/unlimited formulas with preview/validation/recalculation/migration/history/admin adjustment; level events, rewards, permissions, unlocks, cosmetics, quests, shop/Atlas/matchmaking access and audiovisual/GUI summary are available. | PROG-002 | UT/E2E/MT | FULL |
+| ZBW-PROG-004 | MUST | Currency framework supports coins, tokens, credits, event/season/cosmetic/pass/custom, Vault/command/DB providers; atomic idempotent balances/history/audit, multipliers/conversion/caps/no-negative, admin add/remove/set/reset, migration, API/placeholders/GUI. | DATA, INT-002 | concurrency/ST/MT | DATA + FULL surfaces |
+| ZBW-PROG-005 | MUST | Prestige supports unlimited definitions, ranges/formulas, names/formats/colors/RGB/gradients/MiniMessage/icons/symbols, rewards/permissions/cosmetics/titles/chat/tab/scoreboard/leaderboard, seasonal/hidden/staff/event types, editor/preview/migration/API/placeholders with legacy rendering fallback. | PROG-003, UX-005 | CT/E2E | FULL |
+| ZBW-PROG-006 | MUST | Cosmetics platform provides at least 300 original configurable built-in definitions plus unlimited custom definitions across every category listed in the master specification; definitions include ID/display/category/rarity/icon/model/preview, unlock/price/requirements/availability/state, effects/actions/hooks/localization/persistence. | PROG-004, ARC-010 | catalog check/E2E/legal review | FULL |
+| ZBW-PROG-007 | MUST | Cosmetic rarities, ownership (permanent/temporary/trial/rental/seasonal/permission/rank/gift/reward/purchase/admin/import with history/expiry), equipment (random/favourites/presets by mode/group/season) and all player/admin GUI/API grant/revoke/preview flows are complete. | PROG-006 | E2E/ST/MT | FULL |
+| ZBW-PROG-008 | MUST | Cosmetic runtime enforces rate/particle/entity/packet limits, distance/world/arena/spectator visibility, per-player/low-performance settings, global emergency disable, metrics/profiling and invalid/disabled fallback. | PROG-006, OPS-006 | PT/E2E | FULL |
+| ZBW-PROG-009 | MUST | Quest engine supports all daily/weekly/monthly/season/event/one-time/repeatable/hidden/challenge/party/team/personal/community/global types; chains/branches/categories/tiers/prerequisites/dependencies/cooldown/expiry/reset/reroll/abandon/pin/track/history/fail/complete/manual-auto claim. | PROG-001, ARC-010 | UT/E2E | FULL |
+| ZBW-PROG-010 | MUST | Shared objective engine implements every listed gameplay, economy, item, survival, win-condition, mode/map/group/party, progression, Atlas/replay/private-game and custom objective, including composite AND/OR/sequential/timed; progress types/scopes are atomic, duplicate/rollback safe, migratable/importable/exportable. | PROG-009, GAME-* | objective matrix/MT | FULL |
+| ZBW-PROG-011 | MUST | Unified reward engine supplies every listed XP/currency/cosmetic/permission/command/item/title/badge/pass/points/token/loot/booster/unlock/custom, multiple/random/weighted/choice/claim/auto reward; transactional idempotency, rollback/retry/failure queue/audit/expiry/delay/offline/cross-server delivery and post-game chat/GUI/title/boss/action/Discord/API/placeholder summary. | PROG-001/004, DATA, DEPLOY-006 | concurrency/failure E2E | FULL |
+| ZBW-PROG-012 | MUST | Achievements reuse objectives and rewards and provide categories, tiers, one-time/repeatable/hidden/secret/season/event/mode/map/group/team/party/community/staff/custom, chains/prerequisites/points/dates/history; GUI/editor/API and chat/title/action/boss/sound/particle/firework/toast/Discord/custom notifications. | PROG-010/011 | E2E | FULL |
+| ZBW-PROG-013 | MUST | Challenges and battle pass provide all daily/weekly/season/rotating/hardcore/mode/private/party/community/streak/timed variants and leaderboards; pass supports free/premium/multiple tracks, seasons/grace/archive/migrate/reset/extend, tiers/XP/missions/boost/catch-up, permission/currency/store/gift premium, complete reward types, player/admin GUIs/commands/API. | PROG-010/011 | E2E/MT/ST | FULL |
+| ZBW-PROG-014 | MUST | Profile/settings show level/prestige/XP/currencies/stats/streaks/cosmetics/quests/achievements/pass/titles/badges/recent games/rewards/replays/Atlas/party/language/privacy/favourites; holiday/calendar/login/first-win/weekend/anniversary rewards honor timezone/windows/limits/requirements; progression data supports SQL stores/cache/atomic async sync/repair/GDPR-style deletion and full commands, permissions, editors, migration. | PROG-001..013, DATA/DEPLOY | E2E/MT/ST | FULL |
+
+### 4.7 Replay and evidence (10)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-REPLAY-001 | CRITICAL MUST | Record structured, versioned match/event state for normal playback, staff/Atlas/anticheat/report/tournament/bug/history/audit uses; every replay has immutable collision-resistant IDs and all identity, timing, participant/team/result, version, integrity, retention and reference metadata listed in the master specification. | GAME-001, ARC-008/009 | lifecycle E2E | FULL |
+| ZBW-REPLAY-002 | CRITICAL MUST | Capture all listed player transform/movement/inventory/combat/status, world/block/explosion/projectile/entity, purchase/generator/resource/trap/bed/kill/game/report/anticheat/staff/Atlas events using configurable event/snapshot/hybrid/adaptive recording, compression/deltas/batches and async persistence. | REPLAY-001, ARC-005/006 | recording E2E/PT | FULL |
+| ZBW-REPLAY-003 | CRITICAL MUST | Preserve event order/timing and label each telemetry value exact, sampled, estimated, unavailable or derived; estimated reach/paths and unreliable damage never appear as exact. | REPLAY-002 | timing/semantic tests | FULL |
+| ZBW-REPLAY-004 | MUST | Viewer implements open/close/pause/resume/restart/start/end, rewind/forward/frame-step where feasible, timeline scrubbing, 0.10/0.25/0.50/0.75/1/1.5/2/4/custom safe speeds, slow/fast, free/first/third-person/follow/select/teleport/camera/interface/exit controls. | REPLAY-002, ARC-002 | playback E2E/CT | FULL |
+| ZBW-REPLAY-005 | MUST | Searchable/filterable timeline contains every listed lifecycle/combat/bed/team/purchase/upgrade/trap/generator/resource/item/projectile/suspicion/anticheat/report/staff/Atlas/custom event with timestamp, actors, team, location, metadata, severity, evidence link and jump action. | REPLAY-002 | E2E | FULL |
+| ZBW-REPLAY-006 | MUST | Telemetry and staff investigation expose available ping/TPS/MSPT/delay/CPS/reach/hit/attack/rotation/velocity/knockback/movement/placement/click/projectile/target/violation values with source/confidence; staff can follow, visualize paths/rays/graphs, annotate, create/link/escalate/assign cases and export evidence. | REPLAY-003, INT-008 | E2E/ST | FULL |
+| ZBW-REPLAY-007 | MUST | Replay browser/player access includes all recent/player/map/mode/reported/flagged/Atlas/staff/favourite/archive/search/detail/timeline/telemetry/settings/storage/admin views; permissions prevent players seeing private staff/report/identity/anticheat/chat data and audit restricted access. | REPLAY-001, UX-001 | E2E/ST | FULL |
+| ZBW-REPLAY-008 | CRITICAL MUST | Storage SPI supports local/network filesystem, DB metadata + file payload, object/custom providers, compression, optional encryption, checksums/integrity/versioning, quotas, backup/restore/migration/archive; retention by age/size/type/status preserves protected/open/legal-hold evidence unless forced by authorized admin. | ARC-007, DATA | provider CT/MT/ST | DATA |
+| ZBW-REPLAY-009 | CRITICAL MUST | Detect/recover interrupted/partial/corrupt recordings, validate checksum, attempt repair, quarantine failures and notify/log; recording uses buffers/batches/deltas/bounded queues/backpressure/adaptive sampling and prioritizes evidence with explicit emergency degradation. | REPLAY-002/008, OPS-005 | failure MT/PT | OPS |
+| ZBW-REPLAY-010 | MUST | Privacy supports anonymized names/UUID hiding, chat off by default/metadata-only/explicit lawful full chat, staff evidence, history settings, Atlas identity protection, export/deletion/retention transparency; all listed `/replay` commands, permissions and API operations are implemented and documented. | REPLAY-007/008, UX-004 | ST/E2E | FULL |
+
+### 4.8 Atlas community review and anticheat evidence (13)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-ATLAS-001 | CRITICAL MUST | Provide original community evidence review: qualified reviewers inspect anonymized replays and submit evidence-based verdicts; default policy is community review + reputation evaluation + staff final decision, never silent permanent punishment. | REPLAY-*, PROG-011 | E2E/ST | FULL |
+| ZBW-ATLAS-002 | MUST | Eligibility defaults to level 20 AND 100 games and is configurable; access can derive from requirements, staff/admin/VIP/dedicated permissions, temporary approval or whitelist, never hardcoded rank names. | PROG-003, STATS-001, INT-003 | UT/ST | FULL |
+| ZBW-ATLAS-003 | MUST | Cases originate from reports, Grim/Vulcan/internal/manual/replay/threshold/multiple/cross-team/boost/exploit sources and store complete ID, anonymized/staff identity, match/category/source/time/priority/evidence/alerts/reports/review/verdict/staff/integrity metadata. | ATLAS-001, INT-008 | E2E | DATA + FULL surfaces |
+| ZBW-ATLAS-004 | CRITICAL MUST | Community view hides real name/UUID/rank/guild/party/friends/profile/punishment/reporter/staff notes and biasing metadata; stable per-case aliases are used and reveal requires dedicated audited staff permission. | ATLAS-003, REPLAY-010 | privacy ST | FULL |
+| ZBW-ATLAS-005 | MUST | Reservation/review flow implements all eligibility/menu/load/instruction/evidence/replay/perspective/speed/telemetry/skip/verdict/reason/confirm/submit/interaction tracking/session restore steps; prevents duplicate/self/current-party/conflict reviews and concurrent reservations, and recovers abandonment/failure/disconnect. | ATLAS-003/004 | concurrency E2E/ST | FULL |
+| ZBW-ATLAS-006 | MUST | Built-in verdicts and reasons listed in the master specification plus custom definitions have stable ID, presentation, category/permission/reason/watch-time/reward/staff-map/reputation/localization/API/placeholder metadata. | ATLAS-005, ARC-010 | catalog/CT | FULL |
+| ZBW-ATLAS-007 | MUST | Reviewer profile tracks all listed status/tier/reputation/accuracy/count/duration/watch/interaction/category/streak/reward/warning/suspension/history fields. Reputation adjusts for trusted accuracy/quality/engagement and penalizes random/fast/farming/collusive/conflicted/abusive behavior. | ATLAS-005/006 | UT/E2E | DATA + FULL surfaces |
+| ZBW-ATLAS-008 | MUST | Accuracy uses configurable lifetime/recent/category/weighted/confidence/min-sample/decay/staff-weight formulas based primarily on trusted staff/ban/appeal/verified/admin/tournament outcomes; community majority is not absolute by default. | ATLAS-007 | formula UT | FULL |
+| ZBW-ATLAS-009 | CRITICAL MUST | Anti-abuse detects every listed random/instant/unwatched/pattern/macro/multi-account/farming/collusion/brigading/conflict/skip/corruption/VPN-lawful/anomalous manipulation behavior and supports warning, lock/suspension/removal, reward/reputation reversal, invalidation/reassignment, investigation, audit, appeal and false-positive review. | ATLAS-005/007 | abuse ST/PT | FULL |
+| ZBW-ATLAS-010 | MUST | Configurable meaningful interaction gates (watch time/percentage, timeline/perspective/evidence/pause/speed actions) and transactional duplicate-protected review/accuracy/streak/goal/tier/expertise rewards integrate quests, achievements and the shared reward engine without incentivizing rapid low-quality voting. | ATLAS-005/009, PROG-009/012 | E2E/ST | FULL |
+| ZBW-ATLAS-011 | MUST | Implement every listed player/staff Atlas GUI, command, granular `zartrabedwars.atlas.*` permission, placeholder and API operation; normalize duplicate permission spellings through one documented canonical namespace plus migration aliases. | ATLAS-001..010, UX-* | surface inventory/E2E | FULL |
+| ZBW-ATLAS-012 | CRITICAL MUST | Staff review displays replay, real identity, distribution/reviewer quality, reasons, alerts/reports/evidence/telemetry/history/punishments/notes and can confirm/reject/override/request/close/reopen/escalate/protect/archive/punish by integration; automation requires explicit policy thresholds and never silently enables permanent punishment. | ATLAS-003..011 | ST/E2E | FULL |
+| ZBW-ATLAS-013 | MUST | Atlas uses separable replay service, async/cached profiles/queues/leaderboards, bounded reservations, Redis sync, deduplication, rate-limited GUI and adaptive loading; health/performance metrics demonstrate gameplay budgets. | DEPLOY-*, OPS-006 | PT/failure IT | OPS |
+
+### 4.9 Statistics, winstreaks and leaderboards (8)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-STATS-001 | CRITICAL MUST | One authoritative game-event projection tracks every lifetime statistic listed in the master specification, including match results/combat/beds/time/resources/purchases/blocks/items/projectiles/deaths/connectivity/perfect games/damage when reliable/replay/reports/Atlas. | ARC-004, GAME-* | event matrix UT/E2E | DATA |
+| ZBW-STATS-002 | MUST | Dimensions include lifetime/daily/weekly/monthly/season/event/mode/map ID/arena/group/team size/server/backend/proxy/public/private/ranked/tournament/party/solo/party queue; private/test data is separate by default. | STATS-001 | query IT | DATA |
+| ZBW-STATS-003 | MUST | Compute KDR, FKDR, WLR, bed ratios, per-game rates, average duration, win/final-death/disconnect/rejoin rates with configured precision, rounding, format, minimum denominator and zero fallback. | STATS-001 | formula UT | FULL |
+| ZBW-STATS-004 | MUST | Track current/best and mode/group/team-size/season/daily/party/ranked streak, history/start/end/reason/rewards/milestones/protection/admin/migration/rollback; private games do not affect public streaks by default. | STATS-001, PROG-011 | UT/MT | FULL |
+| ZBW-STATS-005 | CRITICAL MUST | Updates are atomic, idempotent, duplicate-protected, recoverable, cross-server safe and auditable; repeated match end, replay processing, private/test matches and retries cannot pollute live totals. | STATS-001, DEPLOY-006 | concurrency/failure IT | DATA |
+| ZBW-STATS-006 | MUST | Administration provides view/set/add/remove/reset/recalculate/repair/merge/export/import/migrate/cache-DB compare/dry-run/rollback through commands and GUI with audit and granular permissions. | STATS-005 | E2E/MT/ST | FULL |
+| ZBW-STATS-007 | MUST | Unified leaderboard supports every listed stat/progression/Atlas/custom source and lifetime/time/mode/map/group/team/server/network/friends/guild/party dimensions, presented in GUI/hologram/NPC/chat/command/scoreboard/Discord/external API/placeholders with privacy/exclusions. | STATS-001..006, INT-006/007 | ranking IT/E2E | FULL |
+| ZBW-STATS-008 | MUST | Rankings use indexed/precomputed/materialized top-N/player caches, scheduled/incremental/async refresh, Redis sync and stale-while-revalidate; ties, resets, hidden/banned/test exclusions and large datasets pass correctness/load tests. | STATS-007, DEPLOY-006 | PT/IT | DATA |
+
+### 4.10 PlaceholderAPI (6)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-PAPI-001 | CRITICAL MUST | Ship a native expansion under stable `%zartrabedwars_<identifier>%`; names are documented, validated, backward-compatible and versioned with aliases/migration. | ARC-008, INT-001 | registration CT | INTEGRATION |
+| ZBW-PAPI-002 | MUST | Expose every listed player statistic and lifetime/daily/weekly/monthly/season/mode/map ID/arena group/team-size dynamic dimension, raw and formatted. | STATS-* | placeholder matrix | INTEGRATION |
+| ZBW-PAPI-003 | MUST | Expose all listed progression/profile/currency/custom currency/quest/achievement/pass/cosmetic/title/badge/reward/season/challenge values. | PROG-* | placeholder matrix | INTEGRATION |
+| ZBW-PAPI-004 | MUST | Expose all listed arena/map/team/server/backend/proxy/deployment/player/arena/world/queue/Redis/DB/CloudNet health, replay/Atlas and leaderboard values with player/offline/arena/team/server/no-player contexts. | GAME/ARENA/DEPLOY/REPLAY/ATLAS/STATS | context CT | INTEGRATION |
+| ZBW-PAPI-005 | CRITICAL MUST | Evaluation performs zero synchronous DB/Redis/network/filesystem operations, uses cached/precomputed/batched/per-tick-deduplicated values with bounded expiry, safe configurable fallback, slow-call metrics and the §3 latency budget. | PAPI-001..004, OPS-006 | PT/failure CT | CORE |
+| ZBW-PAPI-006 | MUST | Provide raw/formatted/compact/duration/percentage/precision/locale/color/null/unknown formatting; list/search/test/debug/performance/cache/reload/docs commands and developer registration/unregistration/family/formatter/context/metadata/error APIs. | PAPI-001, UX-005 | E2E/API CT | FULL |
+
+### 4.11 Deployment, database, Redis, proxy and cloud (9)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-DEPLOY-001 | CRITICAL MUST | `SHARED_SERVER` runs multiple arenas on one Paper server with native/template/slime/multiverse worlds and at least 40 managed worlds/100 configured arenas under explicit load/unload/chunk/entity/reset budgets. | ARC-*, ARENA-* | E2E/PT | CORE |
+| ZBW-DEPLOY-002 | CRITICAL MUST | `SCALABLE_PROXY` supports one/many arenas and one/many groups per backend, static/dynamic registration, health, synchronized state and cross-server queues/parties/private games/rejoin/play-again/stats/punishments/Atlas/replays/maintenance/announcements. | ARC-007, DEPLOY-005/006 | network E2E/PT | CORE |
+| ZBW-DEPLOY-003 | CRITICAL MUST | Deployment/provider config validates required services at startup and manual/GUI validation; changing mode does not rewrite arena definitions and failed dependencies enter an explicit safe state. | DEPLOY-001/002, OPS-003 | config/failure E2E | OPS |
+| ZBW-DEPLOY-004 | MUST | Dedicated Velocity and BungeeCord adapters share one proxy domain and provide equivalent registration/status/transfer/queue/rejoin/play-again/maintenance, signed/versioned messaging, heartbeat/failover/drain/retry/fallback/duplicate-player protection, commands/permissions/events/API/diagnostics. | DEPLOY-002, ARC-007 | provider CT/ST | INTEGRATION |
+| ZBW-DEPLOY-005 | MUST | CloudNet adapter supplies dynamic create/shutdown, template/group deploy, metadata/health/capacity, min/max/warm-pool/idle/crash replacement/allocation/queue auto-scaling, private/replay services, events/commands/permissions/GUI/diagnostics. | DEPLOY-002 | provider CT/failure E2E | INTEGRATION |
+| ZBW-DEPLOY-006 | CRITICAL MUST | Redis synchronizes all listed player/arena/queue/party/private/server/streak/cache/punishment/Atlas/replay/announcement state using versioned deduplicated pub/sub/streams, locks/leader election only where required, expiry/namespaces/pools/reconnect/circuit-breaker/backpressure/auth/TLS/health/cleanup; no unbounded polling. | DEPLOY-002, OPS-002 | Redis IT/PT/ST | DATA |
+| ZBW-DEPLOY-007 | CRITICAL MUST | Repositories support SQLite, MySQL and MariaDB through HikariCP where applicable with versioned automatic validated migrations, restore-based rollback where DDL rollback is unsafe, metrics, optional read/write routing, transactions/retry/deadlock/timeout/prepared/batch/index/constraints/backup/restore/import/export/repair/delete/conflict consistency and health surfaces. | ARC-005/007/008 | DB IT/MT/PT/ST | DATA |
+| ZBW-DEPLOY-008 | MUST | Cross-server messages and mutations carry operation ID, schema version, origin, timestamp/deadline and authorization/integrity data; consumers are idempotent, order-aware and compatible across rolling upgrades. | DEPLOY-004/006/007 | chaos/rolling CT | CORE |
+| ZBW-DEPLOY-009 | CRITICAL MUST | Network partitions, DB/Redis/proxy/cloud failure and backend crash have documented circuit/open/degraded/recovery behavior; no split-brain reward/stat/case finalization and no silent data loss. | DEPLOY-002..008, OPS-005 | chaos E2E/MT | OPS |
+
+### 4.12 External integrations and version compatibility (10)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-INT-001 | CRITICAL MUST | PlaceholderAPI adapter is native and optional-at-runtime: absence disables dependent presentation with actionable diagnostics but does not corrupt core state. | PAPI-* | CT | INTEGRATION |
+| ZBW-INT-002 | MUST | Vault adapters provide economy/permission/chat metadata without making Vault the sole provider; financial operations retain internal transaction/idempotency rules. | ARC-007, PROG-004 | provider CT/ST | INTEGRATION |
+| ZBW-INT-003 | MUST | LuckPerms adapter supports prefix/suffix/meta/contexts/temporary permissions and configured rank/context cosmetic, Atlas, reward, private-game and queue policies with responsible invalidation/cache. | ARC-007 | provider CT | INTEGRATION |
+| ZBW-INT-004 | MUST | ProtocolLib/internal packet SPI isolates all NPC/cosmetic/replay/spectator/hologram/fake entity/tab/scoreboard/effect packets, validates client/server capability and rate limits traffic; gameplay has no packet implementation dependency. | ARC-002/007 | multi-version CT/PT/ST | INTEGRATION |
+| ZBW-INT-005 | MUST | WorldEdit, FAWE, WorldGuard, SlimeWorldManager and Multiverse-Core adapters meet ARENA-005 contracts, publish supported-version limits and fail safely when absent/incompatible. | ARENA-005 | provider CT | INTEGRATION |
+| ZBW-INT-006 | MUST | Internal packet NPC, Citizens and ZNPCs Plus providers implement every listed selector/shop/menu/admin purpose and skin/name/hologram/animation/rotation/cooldown/permission/visibility/scope/import/export/switch/diagnostic capability. | ARC-007, UX-001 | provider CT/E2E | INTEGRATION |
+| ZBW-INT-007 | MUST | Internal/DecentHolograms providers display listed leaderboards/generator/arena/map/NPC/quest/stats/replay/Atlas/setup/diagnostic content with cached rate-limited updates. | ARC-007, STATS-007 | provider CT/PT | INTEGRATION |
+| ZBW-INT-008 | MUST | Grim and Vulcan adapters ingest normalized event alerts and every listed check/player/match/server/evidence field, group/rate-limit/deduplicate, mark replay/create Atlas/staff cases, notify staff/Discord/punishment hooks, expose GUI/history/API/placeholders and never poll or duplicate expensive checks. | REPLAY-*, ATLAS-*, ARC-007 | provider CT/PT/ST | INTEGRATION |
+| ZBW-INT-009 | MUST | Native party plus AlessioDP Parties provider implement create/invite/accept/decline/leave/disband/kick/promote/transfer/chat/settings/privacy/queue/team/private/map/mode/cross-server/rejoin/play-again/shared progress and API/events/placeholders/commands/permissions/GUI/provider migration. | GAME-007, DEPLOY-002 | E2E/CT/MT | FULL |
+| ZBW-INT-010 | CRITICAL MUST | Compatibility matrix covers server 1.8–1.21.x via isolated adapters and ViaVersion/ViaBackwards/ViaRewind client capability checks; material/sound/particle/data/packet/GUI differences and PDC absence have mappings. Geyser/Floodgate receive Bedrock-safe GUI/chat/command/NPC/replay/Atlas/team/communication/item alternatives and documented limitations. | ARC-002, UX-* | version matrix CT/E2E | INTEGRATION |
+
+### 4.13 GUI, commands, permissions and localization (6)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-UX-001 | CRITICAL MUST | One GUI framework provides stable IDs, consistent layout/navigation/back/close/paging/search/filter/sort/confirmation/error/loading/permission/localization/sound/animation/rendering/placeholders/async state retention; all mandatory player and admin GUIs listed in the master specification exist. | ARC-003/005 | GUI inventory/E2E | FULL |
+| ZBW-UX-002 | MUST | In-game GUI editor controls slot/icon/name/lore/action/permission/condition/sound/animation/model/placeholders/navigation/paging/search, preview/validate/duplicate/import/export/reset and safe undo with audit and schema migration. | UX-001, OPS-003 | E2E/MT/ST | FULL |
+| ZBW-UX-003 | CRITICAL MUST | Unified command framework implements all listed player, staff and admin commands with aliases, syntax/argument/context validation, tab completion, localization, console/player rules, clickable help/examples, cooldown, structured errors, API/docs and sensitive-action audit. | ARC-003, UX-005 | command inventory/E2E/ST | FULL |
+| ZBW-UX-004 | CRITICAL MUST | Permission framework uses canonical granular action nodes (view/use/create/edit/delete/duplicate/import/export/enable/disable/start/stop/force/reload/reset/backup/restore/migrate/inspect/debug/bypass/manage/grant/revoke/set/add/remove/approve/reject/override/identity/hidden/private); roles are recommendations, never hardcoded authorization. | UX-003, INT-003 | permission matrix/ST | FULL |
+| ZBW-UX-005 | MUST | Localization supports server/per-player/fallback language, Adventure/MiniMessage, RGB/gradient with legacy fallback, plural/parameters/placeholders/click/hover, GUI/help/error localization, live switch, import/export and completeness reports. | ARC-002, UX-001/003 | locale CT/E2E | FULL |
+| ZBW-UX-006 | SHOULD | Interfaces provide readable text, scalable layouts, colorblind-friendly cues not based only on color, keyboard/number-key alternatives where inventory protocols allow and Bedrock-safe alternatives; documented platform limits are acceptance evidence. | UX-001/005, INT-010 | accessibility review/E2E | FULL |
+
+### 4.14 Configuration, operations, security and delivery (9)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-OPS-001 | CRITICAL MUST | Logically separated config covers every operator system/file listed in the master specification; every option documents purpose/default/accepted/example/dependencies/performance/security/reload/restart/compatibility/deprecation/migration and avoids mutable hardcoding. | ARC-008 | schema/doc check | OPS |
+| ZBW-OPS-002 | CRITICAL MUST | Secrets are supplied by protected config/environment/secret references, never committed or exposed in logs/exports/diagnostics/crashes; DB/Redis/API/proxy credentials, tokens, keys and private URLs are redacted and access-controlled. | OPS-001 | secret scan/ST | OPS |
+| ZBW-OPS-003 | CRITICAL MUST | Startup/manual/GUI validation detects unknown/missing/type/range/dependency/permission/material/sound/particle/world/arena/placeholder/migration errors and all installation-validator faults listed in the master, backs up before migration and gives actionable reports. | OPS-001, INT-* | config mutation IT | OPS |
+| ZBW-OPS-004 | MUST | Safe targeted reload exists for messages, GUI, shop, quest, cosmetics, integrations, placeholders and arena config where safe; transactional validation prevents partial state and clearly requires restart for unsafe changes. | OPS-003 | reload E2E | OPS |
+| ZBW-OPS-005 | CRITICAL MUST | Every world/DB/Redis/proxy/NPC/filesystem/config/replay/provider failure is structured, logged without secrets, recoverable where possible, administrator-visible and corruption/crash/silent-failure safe. | ARC-006, OPS-002 | fault injection | OPS |
+| ZBW-OPS-006 | CRITICAL MUST | Native observability includes Plugin Doctor, health/performance/memory/thread/replay/Redis/DB/proxy/CloudNet/arena/world dashboards, validators, metrics/benchmarks/slow-operation detection and sanitized exportable debug reports. | OPS-002/005 | E2E/PT/ST | OPS |
+| ZBW-OPS-007 | MUST | Optional external statistics/Discord adapters use versioned provider APIs, authentication/scopes/rate limits/pagination/cache/audit/privacy/disable control and never expose staff/report/anticheat/Atlas identity without authorization. | STATS-007, OPS-002 | API ST/PT | INTEGRATION |
+| ZBW-OPS-008 | MUST | Repository delivers Maven multi-module build, README, license/third-party notices, changelog, GitHub Actions build/unit/integration/static analysis/Checkstyle/SpotBugs/vulnerability scan/package/docs/release, checksums/tags/snapshot/release artifacts for Paper/Velocity/Bungee/CloudNet/API/docs/example extension. | QA-*, GOV-009 | clean CI build | OPS |
+| ZBW-OPS-009 | MUST | Produce every installation/operator/deployment/integration/feature/API/migration/backup/performance/security/troubleshooting/FAQ/reference/compatibility/testing/CI/release document and example named in the master specification; no public surface is undocumented. | All | doc inventory/link check | GOV |
+
+### 4.15 Quality, testing and performance evidence (6)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-QA-001 | CRITICAL MUST | Every module/milestone has unit, integration, regression, compatibility and applicable performance/security/migration/recovery tests; every practical bug fix adds regression coverage and the clean build must pass. | ARC-001 | CI | GOV |
+| ZBW-QA-002 | CRITICAL MUST | Gameplay matrix tests every listed mode/team configuration, public/private, shared/proxy, rejoin/disconnect/crash/reset/duplication scenario. | GAME/ARENA/DEPLOY | E2E matrix | GOV |
+| ZBW-QA-003 | CRITICAL MUST | Replay/Atlas/stat/leaderboard/placeholder tests cover every case explicitly enumerated under master “Testing Requirements,” including timing/order/corruption/privacy/eligibility/anonymization/abuse/reward/duplicates/ratios/cross-server/ties/cache/context/format/dynamic parsing. | Relevant domains | CI matrix | GOV |
+| ZBW-QA-004 | CRITICAL MUST | Benchmark one/ten active arenas, 40 worlds, concurrent resets, high shop/placeholder/cosmetic/quest load, replay/Atlas, large stats DB, Redis, proxy, NPC/holograms and report startup/arena/reset/clone/duplicate/queues/throughput/memory/CPU/TPS/MSPT/chunks/entities/threads against §3 budgets. | Implemented systems | reproducible PT | GOV |
+| ZBW-QA-005 | MUST | Release gates reject TODO/FIXME/temp/debug leftovers, unused assets, duplicate logic, major warnings, missing docs/config/permission/command/placeholder/migration/version/changelog and dependency vulnerabilities above approved policy. | OPS-008 | CI | GOV |
+| ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row per ID with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
+
+### 4.16 Ecosystem, migration and evolution (5)
+
+| ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
+|---|---|---|---|---|---|
+| ZBW-ECO-001 | MUST | Migration framework supports legally/technically appropriate BedWars/stat/level/currency/cosmetic/quest/achievement/BedWars1058-layout/winstreak/ratio/group/replay/leaderboard/placeholder data using dry run, validation, backup, progress, error/audit report, duplicate detection, ID mapping and rollback/restore. | DATA, relevant domains | MT/legal review | OPS |
+| ZBW-ECO-002 | SHOULD | Marketplace-ready module metadata declares compatibility/version/dependencies/APIs/permissions/configuration and supported Minecraft/ZartraBedWars versions; module installation never edits core and all communication uses documented APIs. | ARC-010 | sample module CT | CORE |
+| ZBW-ECO-003 | SHOULD | SDK enables all extension types listed in the master specification and ships an example extension; APIs deprecate before removal, document replacement and maintain a reasonable compatibility window with migration reports. | ARC-003/010 | API CT | CORE |
+| ZBW-ECO-004 | SHOULD | Extensible migration assistants and Plugin Doctor/provider checks cover config, DB, replay, stats, placeholders, permissions, worlds and arenas; future schedulers/compression/cache/Redis/distributed stores can be added through SPIs. | ECO-001, OPS-006, ARC-007 | provider CT | OPS |
+| ZBW-ECO-005 | MAY | AI-ready internal APIs may later provide configuration/diagnostic/optimization/balancing/replay/suspicion/documentation/migration suggestions; no AI action is trusted or enforcement-capable without validation, authorization, privacy review and human-controlled policy. | ARC-003, OPS-002/007 | threat/design review | CORE |
+
+## 5. Commands, permissions, GUI, API, placeholder and configuration acceptance
+
+The exact inventories in `MASTER_PROMPT.md` have been consolidated into the domain requirements above; none are optional because they appear in a grouped requirement. Before implementation of each milestone, `docs/REQUIREMENTS_TRACEABILITY.md` must be expanded from planned surface families to exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
+
+Configuration files planned by contract are: `config.yml`, `deployment.yml`, `database.yml`, `redis.yml`, `proxy.yml`, `cloudnet.yml`, `arenas.yml`, `maps.yml`, `modes.yml`, `shops.yml`, `upgrades.yml`, `generators.yml`, `items.yml`, `quests.yml`, `achievements.yml`, `challenges.yml`, `battlepass.yml`, `cosmetics.yml`, `rewards.yml`, `statistics.yml`, `placeholders.yml`, `replay.yml`, `atlas.yml`, `anticheat.yml`, `parties.yml`, `npcs.yml`, `holograms.yml`, `gui.yml`, `messages.yml`, `permissions.yml`, `performance.yml`, `security.yml`, and `integrations.yml`. Physical splitting may change via ADR, but all logical sections and metadata remain.
+
+## 6. Assumptions requiring owner confirmation
+
+These assumptions preserve the broadest scope and remain requirements until changed by owner-approved ADR:
+
+1. “Minecraft 1.8–1.21.x” means server-runtime compatibility, not only old clients connecting through ViaVersion; separate legacy artifacts/toolchains are allowed.
+2. “At least 300 built-in cosmetics” means 300 original definitions and any necessary original/licensed assets, not 300 placeholders.
+3. Staff Atlas access means possession of the dedicated staff/admin permission, not a hardcoded rank label.
+4. “Display-name change must not modify database” means relational identity/statistics/references are unchanged; persisting the new display name is allowed.
+5. DDL “rollback” may be implemented as verified backup restore/forward repair when a database cannot transactionally reverse DDL.
+6. “Where feasible/practical” features remain MUST targets; a limitation requires evidence and an owner-approved alternative, not silent omission.
+7. Reference benchmark hardware and workload details will be frozen by ADR before performance implementation; the provisional budgets in §3 apply meanwhile.
+
+## 7. Requirement change procedure
+
+Propose a PRD edit with stable-ID impact, create/update an ADR for architectural changes, update traceability/milestones/risks/tests/docs, obtain owner approval for removal or weakening, then implement. Never edit the PRD merely to make existing code appear compliant.
