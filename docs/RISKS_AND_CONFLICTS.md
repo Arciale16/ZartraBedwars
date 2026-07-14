@@ -104,6 +104,15 @@ No item below removes a requested capability.
 | RC-065 | Fact | Default privacy visibility for profiles/replays/leaderboards/Atlas history is not consistently stated. | Privacy-by-default ADR; moderation evidence remains staff-accessible under purpose/permission/audit. |
 | RC-066 | Fact | Release licensing model (open/premium/enterprise modules) and API redistribution terms are absent. | Choose licenses before publishing artifacts/marketplace SDK; align dependency licenses and notices. |
 
+## G. Atomic coverage findings
+
+| ID | Classification | Finding / risk | Preserving resolution or recommendation |
+|---|---|---|---|
+| RC-067 | Fact | `MASTER_PROMPT.md` does not contain a feature catalogue explicitly labelled “premium addons,” a catalogue explicitly labelled “free addons,” or a catalogue of “BedWars1058 core features.” It mentions dozens of external addons, future premium modules, free/premium battle-pass tracks, and BedWars1058 only in setup/migration/statistics compatibility contexts. Treating those as named addon catalogues would invent source scope. | The coverage report declares zero explicitly listed premium-addon and free-addon features, preserves the battle-pass tracks under progression, maps every BedWars1058 reference individually, and catalogs all ZartraBedWars core features without falsely attributing them to BedWars1058. If a separate addon catalogue was intended, add it to the authoritative source through change control; do not guess. |
+| RC-068 | Fact | The original source-to-PRD table mapped broad line ranges to parent IDs, so a detailed child could be lost while its parent still appeared covered. | ZBW-GOV-011 makes every non-empty source assertion a normative `MP-L####` child row; ZBW-QA-007 rejects missing, partial, unmapped, unknown-ID or less-than-100% coverage before Java work. This remediation preserves every child rather than splitting or merging features for convenience. |
+| RC-069 | Fact | Line-derived `MP-L####` IDs remain stable only for the content-addressed source baseline; inserting or deleting source lines can shift later IDs. | Record SHA-256 and total line count, block on drift, regenerate a reviewed old-to-new coverage diff, and keep stable `ZBW-*` implementation requirements as the long-lived semantic IDs. Never silently reuse an old atomic ID for changed text. |
+| RC-070 | Recommendation | A 6,000-plus-row verbatim matrix is complete but difficult to review manually and can conceal classification mistakes despite perfect mechanical coverage. | Keep the concise category summary and exception notes at the top, validate category tags deterministically, require owner review of ambiguities/conflicts, and use the atomic rows as lossless evidence rather than as the only product-design view. |
+
 ## Required pre-code decision gate
 
 No Java implementation should begin until at least RC-003/004, RC-017/018, RC-021/022/024/027, RC-029, RC-040/041/043, RC-046, RC-050, RC-059/061/062/065/066 have an owner-approved ADR or policy. Other items may be resolved immediately before their dependent milestone but remain visible in traceability.

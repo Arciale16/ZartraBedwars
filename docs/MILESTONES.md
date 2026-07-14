@@ -10,17 +10,17 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M00 — Requirements and architecture baseline
 
-- **Requirements:** ZBW-GOV-001..010, architecture/plan portions of all IDs.
+- **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, architecture/plan portions of all IDs.
 - **Entry:** `MASTER_PROMPT.md` available and read completely.
-- **Deliver:** PRD, architecture, milestones, traceability, risks/conflicts, ADR templates and repository instructions.
-- **Exit:** 142 unique requirement IDs; traceability has one row per ID; all master sections are mapped; unresolved decisions are explicit; no Java source/build scaffold created.
+- **Deliver:** PRD, architecture, milestones, requirement-level traceability, a deterministic verbatim atomic coverage report, risks/conflicts, ADR templates and repository instructions.
+- **Exit:** 144 unique requirement IDs; Part I has one row per ID; Part II has one row per non-empty source assertion; the recorded source hash and line count validate; every requested audit category is declared; all atomic rows are `COVERED` and overall functional coverage is 100%; unresolved decisions are explicit; no Java source/build scaffold created.
 
 ### M01 — Resolve blocking ADRs and establish build governance
 
-- **Requirements:** GOV-003..009, ARC-001/002/008, OPS-008, QA-001/005.
+- **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007.
 - **Entry:** M00 approved; owners available for blocking decisions.
-- **Deliver:** accepted ADRs for runtime/toolchains, module graph, dependency versions/licenses, benchmark baseline, namespace and privacy; Maven parent/BOM/toolchains; CI skeleton and static architecture rules.
-- **Exit:** clean empty multi-module build on primary JDK; CI quality gates pass; supported-version/provider matrix is pinned; no functional production path claimed.
+- **Deliver:** accepted ADRs for runtime/toolchains, module graph, dependency versions/licenses, benchmark baseline, namespace and privacy; Maven parent/BOM/toolchains; pinned Python 3.11+ documentation-verifier runtime; CI skeleton and static architecture rules.
+- **Exit:** clean empty multi-module build on primary JDK; CI quality gates, including deterministic atomic coverage drift detection, pass; supported-version/provider matrix is pinned; no functional production path claimed.
 
 ### M02 — Public API, domain primitives and extension metadata
 
@@ -178,10 +178,10 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M24 — Security, performance and release qualification
 
-- **Requirements:** QA-001..006, GOV-007, OPS-008 and final acceptance of all IDs.
+- **Requirements:** QA-001..007, GOV-007/011, OPS-008 and final acceptance of all IDs and atomic children.
 - **Entry:** M01–M23 complete with no mandatory open implementation work.
 - **Deliver:** threat/privacy/license review, compatibility report, full benchmark/security report, recovery exercise, reproducible artifacts, final compliance report and release notes.
-- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 142 IDs has an allowed final status and evidence; no unresolved mandatory requirement.
+- **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 144 IDs and every `MP-L####` child has an allowed final status and evidence; atomic functional coverage remains 100%; no unresolved mandatory requirement.
 
 ## Critical dependency chain
 

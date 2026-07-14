@@ -1,10 +1,10 @@
 # ZartraBedWars Product Requirements Document
 
-**Document status:** Baseline v1.0
+**Document status:** Baseline v1.1 (atomic coverage audit)
 
 **Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md`. If this document and implementation differ, implementation changes unless the owner approves a requirement change.
 
-**Requirement count:** 142
+**Requirement count:** 144
 
 **Implementation status:** all requirements are `NOT STARTED` at this baseline.
 
@@ -25,6 +25,8 @@ The product includes game lifecycle, arenas and worlds, setup, shops and items, 
 
 Every enumerated capability in a requirement is normative and must receive an individual acceptance check. “Where applicable” means applicability is decided in the traceability matrix or an approved ADR, never silently by an implementer.
 
+Every non-empty normative source assertion in `MASTER_PROMPT.md` is also an explicit child scope item. The stable `MP-L####` catalog in `docs/MASTER_PROMPT_COVERAGE.md` is incorporated into this PRD and into Part II of the requirements traceability matrix. A broad parent requirement is not sufficient unless the child assertion appears in that catalog with its original text, mapped requirement ID(s), PRD section, traceability entry and final coverage status.
+
 ## 3. Requirement record impact profiles
 
 Every catalog row is a complete requirement record. Its profile supplies the listed impacts unless the row overrides it.
@@ -44,9 +46,11 @@ For every profile, completion requires implementation, clean compilation, applic
 
 Provisional measurable budgets, to be fixed in an ADR with reference hardware before implementation, are: no synchronous database/Redis/filesystem/network access on the Paper tick thread; no unbounded queue/cache/poll loop; cached placeholder p95 ≤ 1 ms and zero database calls during evaluation; steady shared-server benchmark at 40 managed worlds/10 active arenas maintains ≥19.5 TPS with platform p95 tick contribution ≤2 ms and p99 ≤5 ms; every external operation has a timeout; replay enqueue p99 ≤200 μs on the tick thread; operator/player list GUIs page results and never materialize an unbounded dataset. Failing a budget blocks `VERIFIED` or requires owner-approved revised evidence, never a silent waiver.
 
+Java implementation is additionally gated on 100% `COVERED` atomic source coverage and a successful source-hash/ID/inventory validation under ZBW-GOV-011 and ZBW-QA-007.
+
 ## 4. Requirement catalog
 
-### 4.1 Governance and product contract (10)
+### 4.1 Governance and product contract (11)
 
 | ID | Priority | Requirement and objectively verifiable acceptance | Dependencies | Verify | Profile / impact override |
 |---|---|---|---|---|---|
@@ -60,6 +64,7 @@ Provisional measurable budgets, to be fixed in an ADR with reference hardware be
 | ZBW-GOV-008 | MUST | Use small, buildable, testable, reviewable, documented and mergeable milestones; perform self-review and correct discovered errors with tests, migration and docs. | QA-001 | CI/DR | GOV |
 | ZBW-GOV-009 | MUST | Use original source and assets and retain third-party licenses/notices; migration may read legally accessible formats but shall not copy proprietary code/assets/branding. | OPS-008, INT-001..010 | legal/license review | GOV |
 | ZBW-GOV-010 | SHOULD | Discover and add missing enterprise requirements (validation, recovery, logging, APIs, configuration, tests, GUI, commands, permissions, placeholders, diagnostics) before implementing them, without weakening existing IDs. | GOV-001 | DR | GOV |
+| ZBW-GOV-011 | CRITICAL MUST | Maintain `docs/MASTER_PROMPT_COVERAGE.md` as the normative atomic child-scope catalog and Part II of traceability. Assign every non-empty source assertion a stable `MP-L####` ID and preserve its original text, category or categories, mapped PRD ID(s), PRD section, traceability entry, coverage status and ambiguity/conflict notes. Any source change invalidates the recorded SHA-256 and blocks Java work until the catalog is regenerated and every item is `COVERED`; zero functional children may be merged away under a broad parent. | GOV-001..003, QA-007 | generated inventory, DR | GOV |
 
 ### 4.2 Architecture and platform foundations (10)
 
@@ -244,10 +249,10 @@ Provisional measurable budgets, to be fixed in an ADR with reference hardware be
 | ZBW-OPS-005 | CRITICAL MUST | Every world/DB/Redis/proxy/NPC/filesystem/config/replay/provider failure is structured, logged without secrets, recoverable where possible, administrator-visible and corruption/crash/silent-failure safe. | ARC-006, OPS-002 | fault injection | OPS |
 | ZBW-OPS-006 | CRITICAL MUST | Native observability includes Plugin Doctor, health/performance/memory/thread/replay/Redis/DB/proxy/CloudNet/arena/world dashboards, validators, metrics/benchmarks/slow-operation detection and sanitized exportable debug reports. | OPS-002/005 | E2E/PT/ST | OPS |
 | ZBW-OPS-007 | MUST | Optional external statistics/Discord adapters use versioned provider APIs, authentication/scopes/rate limits/pagination/cache/audit/privacy/disable control and never expose staff/report/anticheat/Atlas identity without authorization. | STATS-007, OPS-002 | API ST/PT | INTEGRATION |
-| ZBW-OPS-008 | MUST | Repository delivers Maven multi-module build, README, license/third-party notices, changelog, GitHub Actions build/unit/integration/static analysis/Checkstyle/SpotBugs/vulnerability scan/package/docs/release, checksums/tags/snapshot/release artifacts for Paper/Velocity/Bungee/CloudNet/API/docs/example extension. | QA-001..006, GOV-009 | clean CI build | OPS |
+| ZBW-OPS-008 | MUST | Repository delivers Maven multi-module build, README, license/third-party notices, changelog, GitHub Actions build/unit/integration/static analysis/Checkstyle/SpotBugs/vulnerability scan/package/docs/release, checksums/tags/snapshot/release artifacts for Paper/Velocity/Bungee/CloudNet/API/docs/example extension. | QA-001..007, GOV-009 | clean CI build | OPS |
 | ZBW-OPS-009 | MUST | Produce every document and example in §8.7; no public surface is undocumented. | GOV-001, ARC-003, UX-003, UX-004, PAPI-001, OPS-001, QA-001 | doc inventory/link check | GOV |
 
-### 4.15 Quality, testing and performance evidence (6)
+### 4.15 Quality, testing and performance evidence (7)
 
 | ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
 |---|---|---|---|---|---|
@@ -257,6 +262,7 @@ Provisional measurable budgets, to be fixed in an ADR with reference hardware be
 | ZBW-QA-004 | CRITICAL MUST | Benchmark one/ten active arenas, 40 worlds, concurrent resets, high shop/placeholder/cosmetic/quest load, replay/Atlas, large stats DB, Redis, proxy, NPC/holograms and report startup/arena/reset/clone/duplicate/queues/throughput/memory/CPU/TPS/MSPT/chunks/entities/threads against §3 budgets. | Implemented systems | reproducible PT | GOV |
 | ZBW-QA-005 | MUST | Release gates reject TODO/FIXME/temp/debug leftovers, unused assets, duplicate logic, major warnings, missing docs/config/permission/command/placeholder/migration/version/changelog and dependency vulnerabilities above approved policy. | OPS-008 | CI | GOV |
 | ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row per ID with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
+| ZBW-QA-007 | CRITICAL MUST | Run the atomic coverage verifier before Java work and on every source/PRD/traceability change. It shall fail unless the `MASTER_PROMPT.md` SHA-256 and line count match the report, every non-empty source assertion has exactly one stable `MP-L####` row, every mapped `ZBW-*` ID exists, all requested audit categories are declared, no item is `PARTIALLY COVERED` or `MISSING`, and overall functional coverage is exactly 100%. | GOV-011, QA-005/006 | deterministic generator self-check, CI | GOV |
 
 ### 4.16 Ecosystem, migration and evolution (5)
 
@@ -270,7 +276,7 @@ Provisional measurable budgets, to be fixed in an ADR with reference hardware be
 
 ## 5. Commands, permissions, GUI, API, placeholder and configuration acceptance
 
-The exact feature inventories are consolidated in §8; none is optional because it appears in a grouped requirement. Before implementation of each milestone, `docs/REQUIREMENTS_TRACEABILITY.md` must be expanded from planned surface families to exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
+The exact feature inventories are consolidated in §8 and the verbatim atomic children are cataloged in `docs/MASTER_PROMPT_COVERAGE.md`; neither is optional because an item appears in a grouped requirement. That report is Part II of `docs/REQUIREMENTS_TRACEABILITY.md`, so its `MP-L####` entries are traceability-matrix entries rather than an informative appendix. Before implementation of each milestone, the matrix must be expanded from planned surface families to exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
 
 Configuration files planned by contract are: `config.yml`, `deployment.yml`, `database.yml`, `redis.yml`, `proxy.yml`, `cloudnet.yml`, `arenas.yml`, `maps.yml`, `modes.yml`, `shops.yml`, `upgrades.yml`, `generators.yml`, `items.yml`, `quests.yml`, `achievements.yml`, `challenges.yml`, `battlepass.yml`, `cosmetics.yml`, `rewards.yml`, `statistics.yml`, `placeholders.yml`, `replay.yml`, `atlas.yml`, `anticheat.yml`, `parties.yml`, `npcs.yml`, `holograms.yml`, `gui.yml`, `messages.yml`, `permissions.yml`, `performance.yml`, `security.yml`, and `integrations.yml`. Physical splitting may change via ADR, but all logical sections and metadata remain.
 
@@ -292,7 +298,7 @@ Propose a PRD edit with stable-ID impact, create/update an ADR for architectural
 
 ## 8. Normative inventories
 
-These inventories are part of the referenced requirements. They make grouped requirements self-contained; every entry requires configuration, commands, permissions, GUI, API/events, placeholders, tests, migration, performance/security controls and documentation whenever its impact profile says applicable.
+These inventories are part of the referenced requirements. They make grouped requirements self-contained; every entry requires configuration, commands, permissions, GUI, API/events, placeholders, tests, migration, performance/security controls and documentation whenever its impact profile says applicable. The atomic catalog in `docs/MASTER_PROMPT_COVERAGE.md` preserves every source-level child beneath these summaries and is normative if a summary omits the child's wording.
 
 ### 8.1 Progression inventory (ZBW-PROG-001..014)
 
@@ -361,7 +367,7 @@ These inventories are part of the referenced requirements. They make grouped req
 - **Placeholder:** `/zbw placeholder list`, `search <query>`, `test <player> <placeholder>`, `debug <placeholder>`, `performance`.
 - **Permission actions:** view, use, create, edit, delete, duplicate, import, export, enable, disable, start, stop, force, reload, reset, backup, restore, migrate, inspect, debug, bypass, manage, grant, revoke, set, add, remove, approve, reject, override and view identities/hidden/private data. Player/VIP/helper/staff/moderator/admin/owner/console/developer are recommended roles, not hardcoded grants.
 
-### 8.7 Documentation, testing and release inventory (ZBW-OPS-008/009, ZBW-QA-001..006)
+### 8.7 Documentation, testing and release inventory (ZBW-OPS-008/009, ZBW-QA-001..007)
 
 - **Guides:** installation, quick start, shared server, proxy network, Velocity, BungeeCord, CloudNet, Redis, DB, arena setup, map/duplicate/world provider, shop/upgrades/generators, quest/achievement/pass/cosmetics/stats/PlaceholderAPI/replay/Atlas, Grim/Vulcan/party/NPC, API developer, migration, backup/restore, performance, security, troubleshooting, FAQ, administrator, private games, testing and CI/CD.
 - **References/artifacts:** README, LICENSE, CHANGELOG, third-party notices, architecture, full config/command/permission/placeholder/API/JavaDoc, compatibility matrix, known limitations, upgrade notes, release notes, example configs/extensions, test evidence, performance/security/final compliance reports.

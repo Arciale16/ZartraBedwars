@@ -2,7 +2,7 @@
 
 ## 1. Architectural drivers
 
-This architecture implements the 142 requirements in the PRD. Its primary runtime is Paper 1.21.1/Java 21; its compatibility design keeps all Bukkit, packet, material and provider details outside the domain so separately built adapters can cover server versions 1.8–1.21.x. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
+This architecture implements the 144 requirements in the PRD plus every normative `MP-L####` child in the atomic coverage matrix. Its primary runtime is Paper 1.21.1/Java 21; its compatibility design keeps all Bukkit, packet, material and provider details outside the domain so separately built adapters can cover server versions 1.8–1.21.x. It supports both `SHARED_SERVER` and `SCALABLE_PROXY`, high event volume, structured replay/evidence, multi-store persistence and an addon ecosystem.
 
 Non-negotiable qualities are deterministic game behavior, no blocking I/O on a server tick thread, idempotent distributed mutations, bounded resource use, least privilege, secret redaction, schema/version compatibility and observable recovery.
 
@@ -209,10 +209,11 @@ Performance gates use the PRD budgets and a reproducible workload/hardware manif
 - Atlas anonymization/conflict/abuse/reward/staff-safety tests.
 - JMH microbenchmarks and scenario load harness for the PRD matrix.
 - Architecture/static tests for forbidden dependencies, API compatibility, docs/config/command/permission/placeholder inventories and no production TODO/stub markers.
+- A deterministic documentation gate hashes `MASTER_PROMPT.md`, assigns one stable `MP-L####` entry to every non-empty source assertion, validates every mapped `ZBW-*` ID against the PRD and requires all requested audit categories plus exactly 100% `COVERED` status before any Java module may be introduced. The generated Markdown is Part II of traceability, not a best-effort report.
 
 ## 17. Build, packaging and compatibility artifacts
 
-Maven toolchains compile each runtime line with its required JDK. The BOM pins dependencies; reproducible builds create checksummed Paper, Velocity, BungeeCord, CloudNet, API, docs and example artifacts. Optional integrations are `provided`/isolated and detected through bootstrap adapters. CI tests primary target on every change and the broader compatibility matrix on scheduled/release workflows. Dependency/license/vulnerability reports are release inputs.
+Maven toolchains compile each runtime line with its required JDK. The BOM pins dependencies; reproducible builds create checksummed Paper, Velocity, BungeeCord, CloudNet, API, docs and example artifacts. Optional integrations are `provided`/isolated and detected through bootstrap adapters. The documentation-only atomic coverage verifier requires Python 3.11+ and the standard library; M01 pins its CI patch version, and it is not shipped in runtime plugin artifacts. CI tests primary target on every change and the broader compatibility matrix on scheduled/release workflows. Dependency/license/vulnerability reports and the atomic-coverage verification result are release inputs.
 
 ## 18. Decisions required before implementation
 

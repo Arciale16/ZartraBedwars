@@ -2,15 +2,17 @@
 
 ## Rules and legend
 
-This baseline contains exactly one row for each of the 142 PRD IDs. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior, not that documentation or verification may be omitted.
+Part I of this baseline contains exactly one row for each of the 144 PRD IDs. Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior, not that documentation or verification may be omitted.
 
 - **Cmd/Perm:** command family and canonical permission family; exact subcommands/nodes are frozen before the implementation milestone.
 - **API/Evt:** public API service/provider and event family.
 - **PH:** PlaceholderAPI family; `health` means sanitized public/operator status only.
 - **Tests:** required suites in addition to the PRD impact profile.
-- All rows inherit the global config/documentation/quality rules in ZBW-OPS-001/009 and ZBW-QA-001/006.
+- All rows inherit the global config/documentation/quality rules in ZBW-OPS-001/009 and ZBW-QA-001/006/007.
 
-## Governance (10)
+## Part I — Requirement-level matrix
+
+## Governance (11)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
 |---|---|---|---|---|---|---|---|---|
@@ -24,6 +26,7 @@ This baseline contains exactly one row for each of the 142 PRD IDs. Locations ar
 | ZBW-GOV-008 | milestone review workflow | CI policy | — | — | — | — | clean-build gate | milestones/contribution; all |
 | ZBW-GOV-009 | license/assets scan and notices | license allowlist | licenses / maintainer | license report | — | — | license/original-asset scan | notices/legal guide; M01/M24 |
 | ZBW-GOV-010 | requirement discovery workflow | — | — | — | — | — | review checklist | governance guide; all |
+| ZBW-GOV-011 | atomic source catalog, source hash and Java-work gate | coverage-report metadata; Python 3.11+ stdlib tool | coverage verify / maintainer | coverage summary | coverage schema/read API later | coverage percentage/counts | source/hash/ID/category/status self-check | `docs/MASTER_PROMPT_COVERAGE.md`; M00/M01/M24 |
 
 ## Architecture foundations (10)
 
@@ -211,7 +214,7 @@ This baseline contains exactly one row for each of the 142 PRD IDs. Locations ar
 | ZBW-OPS-008 | Maven/CI/package/release artifacts | build/workflows | — | — | published API artifact | build/version | clean/repro/security CI | CI/release guide; M01/M24 |
 | ZBW-OPS-009 | documentation inventory/generators | docs config | docs generate / maintainer | doc links | generated API docs | generated PH docs | link/inventory lint | all guides; continuous |
 
-## Quality (6)
+## Quality (7)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
 |---|---|---|---|---|---|---|---|---|
@@ -220,7 +223,8 @@ This baseline contains exactly one row for each of the 142 PRD IDs. Locations ar
 | ZBW-QA-003 | replay/Atlas/stat/rank/PH suites | test fixtures | — | tested surfaces | tested APIs | full PH test | mandated cases | test report; M16–M18 |
 | ZBW-QA-004 | benchmark/load harness + result store | benchmark manifest | benchmark run / developer | performance dashboard | benchmark API | performance metrics | all workload PT | benchmark report; M24 |
 | ZBW-QA-005 | release static/inventory/vulnerability gates | CI policy | — | — | API compatibility gate | PH inventory gate | release gates | release checklist; M24 |
-| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 142-row audit | final compliance; M24 |
+| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 144-row audit | final compliance; M24 |
+| ZBW-QA-007 | deterministic atomic coverage verifier | coverage manifest rules | coverage verify / maintainer | coverage report | coverage report schema | coverage percentage/counts | 6,438-row/hash/mapping/status gate at this baseline | coverage audit; M00/M01/M24 |
 
 ## Ecosystem and migration (5)
 
@@ -240,10 +244,16 @@ The following checks are required from M01 onward:
 2. Fail when an implementation milestone closes while its rows still contain only generic planned locations.
 3. Generate command, permission, GUI, config, API/event and placeholder inventories and compare them with the exact references derived from this matrix.
 4. Require test and documentation links for every final compliance row.
+5. Regenerate Part II with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, an unknown requirement ID, an absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
+6. Treat zero-count source taxonomies as explicit findings, not inferred features: `MASTER_PROMPT.md` contains no catalogue labelled “premium addon features” and no catalogue labelled “free addon features”; free/premium battle-pass tracks remain progression features.
+
+## Part II — Atomic source-to-PRD coverage matrix
+
+`docs/MASTER_PROMPT_COVERAGE.md` is incorporated here by reference as Part II. Each row retains the original source assertion and maps it to one or more Part I IDs and PRD sections. The generated report is the authoritative detailed-child check required by ZBW-GOV-011 and ZBW-QA-007.
 
 ## Source-to-PRD coverage audit
 
-This table records the full beginning-to-end review of `MASTER_PROMPT.md`. Line ranges use the baseline file read for M00; if the source changes, regenerate this audit before implementation.
+This table is the human-readable range summary of the full beginning-to-end review of `MASTER_PROMPT.md`; it does not replace Part II's atomic rows. Line ranges use the baseline file read for M00; if the source changes, regenerate both audits before implementation.
 
 | Master lines | Source themes | Consolidated requirement IDs |
 |---|---|---|
