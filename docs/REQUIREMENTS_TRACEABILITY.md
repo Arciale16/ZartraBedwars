@@ -2,7 +2,7 @@
 
 ## Rules and legend
 
-Part I of this baseline contains exactly one row for each of the 144 PRD IDs. Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior, not that documentation or verification may be omitted.
+This baseline contains 607 stable semantic requirement IDs. Part I contains exactly one row for each of the 144 core PRD IDs. Part II is the normative atomic matrix in `docs/MASTER_PROMPT_COVERAGE.md`, containing one `MP-L####` row for every non-empty source assertion in `MASTER_PROMPT.md`. Part III is `docs/ADDON_FEATURE_CATALOG.md`, containing one complete mapping row for each of the 463 owner-supplied native-addon requirements. Locations are planned until implementation; replace plans with exact package/class/table/key/file/test links as each milestone starts. A dash means the surface has no direct user-facing behavior and must include a reason; it never omits documentation or verification.
 
 - **Cmd/Perm:** command family and canonical permission family; exact subcommands/nodes are frozen before the implementation milestone.
 - **API/Evt:** public API service/provider and event family.
@@ -223,8 +223,8 @@ Part I of this baseline contains exactly one row for each of the 144 PRD IDs. Pa
 | ZBW-QA-003 | replay/Atlas/stat/rank/PH suites | test fixtures | — | tested surfaces | tested APIs | full PH test | mandated cases | test report; M16–M18 |
 | ZBW-QA-004 | benchmark/load harness + result store | benchmark manifest | benchmark run / developer | performance dashboard | benchmark API | performance metrics | all workload PT | benchmark report; M24 |
 | ZBW-QA-005 | release static/inventory/vulnerability gates | CI policy | — | — | API compatibility gate | PH inventory gate | release gates | release checklist; M24 |
-| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 144-row audit | final compliance; M24 |
-| ZBW-QA-007 | deterministic atomic coverage verifier | coverage manifest rules | coverage verify / maintainer | coverage report | coverage report schema | coverage percentage/counts | 6,438-row/hash/mapping/status gate at this baseline | coverage audit; M00/M01/M24 |
+| ZBW-QA-006 | compliance report generator | release metadata | compliance / maintainer | compliance dashboard | compliance schema | status counts | 607-semantic-ID audit plus atomic annex evidence | final compliance; M24 |
+| ZBW-QA-007 | deterministic atomic coverage verifiers | Master/addon manifest rules | coverage verify / maintainer | combined coverage reports | coverage report schema | coverage percentage/counts | 6,438 Master rows + 463 addon rows/hash/tier/mapping/status gate | coverage audits; M00/M01/M24 |
 
 ## Ecosystem and migration (5)
 
@@ -240,16 +240,21 @@ Part I of this baseline contains exactly one row for each of the 144 PRD IDs. Pa
 
 The following checks are required from M01 onward:
 
-1. Extract `^| ZBW-... |` from this file and the PRD; fail on a missing, duplicate or extra ID.
+1. Extract the 144 core Part I IDs from this file/PRD and the append-only `ZBW-ADDON-001..463` Part III IDs from the addon catalogue; fail on a missing, duplicate, reordered or extra semantic ID.
 2. Fail when an implementation milestone closes while its rows still contain only generic planned locations.
 3. Generate command, permission, GUI, config, API/event and placeholder inventories and compare them with the exact references derived from this matrix.
 4. Require test and documentation links for every final compliance row.
-5. Regenerate Part II with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, an unknown requirement ID, an absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
-6. Treat zero-count source taxonomies as explicit findings, not inferred features: `MASTER_PROMPT.md` contains no catalogue labelled “premium addon features” and no catalogue labelled “free addon features”; free/premium battle-pass tracks remain progression features.
+5. Regenerate Part III with `tools/coverage/generate_addon_feature_catalog.py`; fail unless all 49 references, 8/41 tier split, 463 atomic IDs, required mapping surfaces and `COVERED` statuses match.
+6. Regenerate Part II and the combined report with `tools/coverage/generate_master_prompt_coverage.py`; fail on a source SHA-256 or line-count mismatch, an unmapped source assertion, unknown semantic ID, absent requested category, any `PARTIALLY COVERED`/`MISSING` row, or total coverage below 100%.
+7. Treat the owner-supplied addon inventory as a normative supplement, while preserving the factual distinction that it was not present in the original Master Prompt baseline.
 
 ## Part II — Atomic source-to-PRD coverage matrix
 
 `docs/MASTER_PROMPT_COVERAGE.md` is incorporated here by reference as Part II. Each row retains the original source assertion and maps it to one or more Part I IDs and PRD sections. The generated report is the authoritative detailed-child check required by ZBW-GOV-011 and ZBW-QA-007.
+
+## Part III — Native addon atomic feature matrix
+
+`docs/ADDON_FEATURE_CATALOG.md` is incorporated here by reference as Part III. Its 463 `ZBW-ADDON-*` rows are semantic requirements, not informative examples. Every row maps its atomic capability to PRD §4.17/§8.9, the retained Part I overlap, milestone, module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI, performance, security, tests and documentation. The catalogue's `Trace entry` cell is the canonical matrix location for that ID. All 49 addon references remain explicit even where their behavior overlaps a core requirement.
 
 ## Source-to-PRD coverage audit
 

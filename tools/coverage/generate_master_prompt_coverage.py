@@ -15,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "MASTER_PROMPT.md"
 PRD = ROOT / "docs" / "PRD" / "PRD.md"
+ADDON_CATALOG = ROOT / "docs" / "ADDON_FEATURE_CATALOG.md"
 REPORT = ROOT / "docs" / "MASTER_PROMPT_COVERAGE.md"
 ANNEX_DIR = ROOT / "docs" / "coverage"
 PART_SIZE = 750
@@ -304,9 +305,35 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
     prd_text = PRD.read_text(encoding="utf-8-sig")
     known_ids_ordered = re.findall(r"^\| (ZBW-[A-Z]+-\d{3}) \|", prd_text, re.MULTILINE)
     if len(known_ids_ordered) != 144 or len(set(known_ids_ordered)) != 144:
-        raise ValueError(f"expected 144 unique PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
+        raise ValueError(f"expected 144 unique core PRD IDs, found {len(known_ids_ordered)} rows/{len(set(known_ids_ordered))} unique")
     known_ids = set(known_ids_ordered)
     id_order = {requirement_id: index for index, requirement_id in enumerate(known_ids_ordered)}
+
+    addon_text = ADDON_CATALOG.read_text(encoding="utf-8-sig")
+    addon_ids = re.findall(r"^\| (ZBW-ADDON-\d{3}) \|", addon_text, re.MULTILINE)
+    expected_addon_ids = [f"ZBW-ADDON-{index:03d}" for index in range(1, 464)]
+    if addon_ids != expected_addon_ids:
+        raise ValueError(f"expected append-only ZBW-ADDON-001..463 rows, found {len(addon_ids)} or non-canonical ordering")
+    addon_statuses = re.findall(
+        r"^\| ZBW-ADDON-\d{3} \|.*\| (COVERED|PARTIALLY COVERED|MISSING) \|$",
+        addon_text,
+        re.MULTILINE,
+    )
+    if len(addon_statuses) != len(addon_ids) or set(addon_statuses) != {"COVERED"}:
+        raise ValueError("addon catalogue must contain exactly one COVERED status for every atomic addon ID")
+    addon_tier_counts = Counter()
+    addon_inventory_counts = Counter()
+    for line in addon_text.splitlines():
+        if not re.match(r"^\| \d+ \| (Premium|Free) \|", line):
+            continue
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        addon_inventory_counts[cells[1]] += 1
+        addon_tier_counts[cells[1]] += int(cells[5])
+    if addon_inventory_counts != Counter({"Free": 41, "Premium": 8}):
+        raise ValueError(f"expected 8 premium and 41 free addon references, found {dict(addon_inventory_counts)}")
+    if sum(addon_tier_counts.values()) != len(addon_ids):
+        raise ValueError("addon summary counts do not match atomic addon rows")
+    all_requirement_count = len(known_ids_ordered) + len(addon_ids)
 
     atomic_lines: list[tuple[int, str]] = []
     duplicate_index: dict[str, list[str]] = defaultdict(list)
@@ -392,9 +419,11 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "",
         f"**Authoritative source:** `MASTER_PROMPT.md` ({len(raw_lines):,} physical lines; SHA-256 `{source_hash}`).",
         "",
+        f"**Authoritative supplement:** `docs/ADDON_FEATURE_CATALOG.md` ({addon_inventory_counts['Premium']} premium and {addon_inventory_counts['Free']} free addon references; {len(addon_ids)} atomic addon requirements).",
+        "",
         f"**Atomic inventory:** {len(rows):,} non-empty source assertions. This is a lossless upper-bound catalogue: it intentionally includes headings and governance statements as well as every functional child, so a parsing heuristic cannot discard a requested feature.",
         "",
-        f"**Requirement baseline:** {len(known_ids_ordered)} stable `ZBW-*` IDs. Every atomic assertion maps to at least one of them and to its own stable baseline ID `MP-L####`.",
+        f"**Requirement baseline:** {all_requirement_count} stable semantic IDs: {len(known_ids_ordered)} core `ZBW-*` IDs plus {len(addon_ids)} atomic `ZBW-ADDON-*` IDs. Every Master Prompt assertion maps to at least one core ID and to its own stable baseline ID `MP-L####`; every owner-supplied addon feature maps independently in Part III.",
         "",
         "**Verifier runtime:** Python 3.11 or newer, standard library only. M01 shall pin the exact CI patch version alongside the build dependency matrix.",
         "",
@@ -403,25 +432,29 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
         "| Measure | Result |",
         "|---|---|",
         f"| Source assertions catalogued | {len(rows):,} / {len(rows):,} |",
-        f"| COVERED | {len(rows):,} |",
+        f"| Owner-supplied addon features catalogued | {len(addon_ids):,} / {len(addon_ids):,} |",
+        f"| Combined atomic items | {len(rows) + len(addon_ids):,} / {len(rows) + len(addon_ids):,} |",
+        f"| COVERED | {len(rows) + len(addon_ids):,} |",
         "| PARTIALLY COVERED | 0 |",
         "| MISSING | 0 |",
         "| Overall functional coverage | **100.00%** |",
         "| Java precondition | **PASS for coverage only**; the independent ADR decision gate in `docs/RISKS_AND_CONFLICTS.md` remains in force |",
         "",
-        "The initial requirement-level matrix was only partially sufficient because its source audit used broad line ranges. ZBW-GOV-011 and ZBW-QA-007, the Part II atomic rows below, architecture/milestone/risk updates and the deterministic verifier remediate that structural gap. The final report therefore contains no partial or missing item.",
+        "The initial requirement-level matrix was only partially sufficient because its source audit used broad line ranges and the original source did not contain the later owner-supplied addon inventory. ZBW-GOV-011 and ZBW-QA-007, the Part II source rows, the Part III addon catalogue and deterministic verifiers now cover both authoritative inputs without partial or missing items.",
         "",
         "## Requested-category summary",
         "",
-        "| Requested category | Explicit source assertions | Status | Notes |",
+        "| Requested category | Atomic items | Status | Notes |",
         "|---|---:|---|---|",
     ]
     for category in REQUESTED_CATEGORIES:
         count = category_counts[category]
         if category == "Premium addon features":
-            note = "No feature catalogue is explicitly labelled premium addons. Premium battle-pass tracks and future premium-module licensing are preserved in their actual categories; see RC-067."
+            count = addon_tier_counts["Premium"]
+            note = "All eight owner-supplied premium addon references are decomposed into independent Part III rows; see the native addon catalogue and resolved RC-067."
         elif category == "Free addon features":
-            note = "No feature catalogue is explicitly labelled free addons. No features were invented or reclassified; see RC-067."
+            count = addon_tier_counts["Free"]
+            note = "All forty-one owner-supplied free addon references are decomposed into independent Part III rows; see the native addon catalogue and resolved RC-067."
         elif category == "BedWars1058 core-feature references":
             note = "Three direct references exist (setup usability, migration layouts/data, statistics compatibility); no BedWars1058 core-feature catalogue appears in the source."
         else:
@@ -436,9 +469,10 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
             "1. `MP-L####` uses the physical source line number in this content-addressed baseline; blank and divider-only lines receive no row.",
             "2. Each row carries the original source text (only separator dashes are omitted), category tags, stable PRD ID mappings, PRD sections, its Part I/Part II trace entry, status and notes.",
             "3. Duplicate text remains in separate rows and is cross-noted. Broad requirement parents are acceptable only because the exact child text is preserved normatively in its Part II row.",
-            "4. `COVERED` means the source child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.",
-            "5. Any source, PRD or matrix edit must regenerate the report and pass `python tools/coverage/generate_master_prompt_coverage.py --check` before Java work.",
-            "6. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.",
+            "4. `ZBW-ADDON-001..463` are independent Part III requirements generated from the owner-supplied 8-premium/41-free inventory; addon headings never substitute for their atomic rows.",
+            "5. `COVERED` means the source/addon child is explicitly preserved by this PRD/traceability baseline. It does not claim runtime implementation; all implementation requirements remain `NOT STARTED`.",
+            "6. Any source, PRD or matrix edit must regenerate the reports and pass both coverage generators with `--check` before Java work.",
+            "7. Facts, assumptions and recommendations for unresolved ambiguity/conflict remain distinguished in `docs/RISKS_AND_CONFLICTS.md`; mapping a conflict does not silently resolve it.",
             "",
             "## Normative atomic annexes",
             "",
@@ -454,7 +488,7 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
             "",
             "## Remaining decisions",
             "",
-            "Coverage is complete, but coverage is not the same as product-decision closure. The blocking pre-code ADR/policy decisions listed in `docs/RISKS_AND_CONFLICTS.md` remain unresolved. RC-067 additionally records that the source provides no premium/free addon catalogues and no BedWars1058 core-feature catalogue; a future owner-supplied catalogue would be a source change requiring regeneration.",
+            "Coverage is complete, but coverage is not the same as product-decision closure. RC-067 is resolved by the owner-supplied native addon catalogue. The remaining blocking pre-code ADR/policy decisions, including original content design/provenance, licensing, legacy visual fallbacks and Discord topology, remain listed in `docs/RISKS_AND_CONFLICTS.md`.",
             "",
             "No Java implementation was created or started by this audit.",
             "",
@@ -463,7 +497,7 @@ def build() -> tuple[str, dict[Path, str], dict[str, int]]:
     stats = {
         "physical_lines": len(raw_lines),
         "atomic_rows": len(rows),
-        "requirements": len(known_ids_ordered),
+        "requirements": all_requirement_count,
         "parts": len(annexes),
     }
     return "\n".join(report_lines), annexes, stats

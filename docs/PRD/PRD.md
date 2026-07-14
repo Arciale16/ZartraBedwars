@@ -1,10 +1,10 @@
 # ZartraBedWars Product Requirements Document
 
-**Document status:** Baseline v1.1 (atomic coverage audit)
+**Document status:** Baseline v1.2 (native addon scope supplement)
 
-**Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md`. If this document and implementation differ, implementation changes unless the owner approves a requirement change.
+**Authority:** This PRD is the implementation contract derived from `MASTER_PROMPT.md` and the owner's 2026-07-14 native-addon scope supplement preserved in `docs/ADDON_FEATURE_CATALOG.md`. If this document and implementation differ, implementation changes unless the owner approves a requirement change.
 
-**Requirement count:** 144
+**Requirement count:** 607 (144 core IDs plus 463 atomic addon IDs)
 
 **Implementation status:** all requirements are `NOT STARTED` at this baseline.
 
@@ -27,6 +27,8 @@ Every enumerated capability in a requirement is normative and must receive an in
 
 Every non-empty normative source assertion in `MASTER_PROMPT.md` is also an explicit child scope item. The stable `MP-L####` catalog in `docs/MASTER_PROMPT_COVERAGE.md` is incorporated into this PRD and into Part II of the requirements traceability matrix. A broad parent requirement is not sufficient unless the child assertion appears in that catalog with its original text, mapped requirement ID(s), PRD section, traceability entry and final coverage status.
 
+Every atomic capability in the owner's native-addon supplement is independently normative. `docs/ADDON_FEATURE_CATALOG.md` and its stable `ZBW-ADDON-001` through `ZBW-ADDON-463` records are incorporated into this PRD and Part III of the requirements traceability matrix. Addon names are organisational/source-reference labels only and never replace their atomic child requirements. Overlap with a core ID preserves both records.
+
 ## 3. Requirement record impact profiles
 
 Every catalog row is a complete requirement record. Its profile supplies the listed impacts unless the row overrides it.
@@ -46,7 +48,7 @@ For every profile, completion requires implementation, clean compilation, applic
 
 Provisional measurable budgets, to be fixed in an ADR with reference hardware before implementation, are: no synchronous database/Redis/filesystem/network access on the Paper tick thread; no unbounded queue/cache/poll loop; cached placeholder p95 ≤ 1 ms and zero database calls during evaluation; steady shared-server benchmark at 40 managed worlds/10 active arenas maintains ≥19.5 TPS with platform p95 tick contribution ≤2 ms and p99 ≤5 ms; every external operation has a timeout; replay enqueue p99 ≤200 μs on the tick thread; operator/player list GUIs page results and never materialize an unbounded dataset. Failing a budget blocks `VERIFIED` or requires owner-approved revised evidence, never a silent waiver.
 
-Java implementation is additionally gated on 100% `COVERED` atomic source coverage and a successful source-hash/ID/inventory validation under ZBW-GOV-011 and ZBW-QA-007.
+Java implementation is additionally gated on 100% `COVERED` atomic coverage across both authoritative inputs and successful Master-source hash plus addon ID/tier/inventory/mapping validation under ZBW-GOV-011 and ZBW-QA-007.
 
 ## 4. Requirement catalog
 
@@ -261,8 +263,8 @@ Java implementation is additionally gated on 100% `COVERED` atomic source covera
 | ZBW-QA-003 | CRITICAL MUST | Replay/Atlas/stat/leaderboard/placeholder tests cover every specific verification case in §8.7. | REPLAY-001..010, ATLAS-001..013, STATS-001..008, PAPI-001..006 | CI matrix | GOV |
 | ZBW-QA-004 | CRITICAL MUST | Benchmark one/ten active arenas, 40 worlds, concurrent resets, high shop/placeholder/cosmetic/quest load, replay/Atlas, large stats DB, Redis, proxy, NPC/holograms and report startup/arena/reset/clone/duplicate/queues/throughput/memory/CPU/TPS/MSPT/chunks/entities/threads against §3 budgets. | Implemented systems | reproducible PT | GOV |
 | ZBW-QA-005 | MUST | Release gates reject TODO/FIXME/temp/debug leftovers, unused assets, duplicate logic, major warnings, missing docs/config/permission/command/placeholder/migration/version/changelog and dependency vulnerabilities above approved policy. | OPS-008 | CI | GOV |
-| ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row per ID with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
-| ZBW-QA-007 | CRITICAL MUST | Run the atomic coverage verifier before Java work and on every source/PRD/traceability change. It shall fail unless the `MASTER_PROMPT.md` SHA-256 and line count match the report, every non-empty source assertion has exactly one stable `MP-L####` row, every mapped `ZBW-*` ID exists, all requested audit categories are declared, no item is `PARTIALLY COVERED` or `MISSING`, and overall functional coverage is exactly 100%. | GOV-011, QA-005/006 | deterministic generator self-check, CI | GOV |
+| ZBW-QA-006 | CRITICAL MUST | Final compliance report has one row for each of all 607 semantic requirement IDs with status, implementation/config/command/permission/GUI/API/placeholder/test/doc locations, performance/security/compatibility evidence and limitations; no unresolved mandatory ID may ship. | All | automated traceability audit | GOV |
+| ZBW-QA-007 | CRITICAL MUST | Run both deterministic atomic coverage verifiers before Java work and on every source/PRD/traceability/addon-catalog change. They shall fail unless the `MASTER_PROMPT.md` SHA-256 and line count match; every non-empty source assertion has one stable `MP-L####` row; all 49 addon references, the 8/41 tier split and `ZBW-ADDON-001..463` rows match; every mapping surface is present; every referenced ID exists; all requested categories are declared; no item is `PARTIALLY COVERED` or `MISSING`; and combined functional coverage is exactly 100%. | GOV-011, QA-005/006 | both generator self-checks, CI | GOV |
 
 ### 4.16 Ecosystem, migration and evolution (5)
 
@@ -274,9 +276,15 @@ Java implementation is additionally gated on 100% `COVERED` atomic source covera
 | ZBW-ECO-004 | SHOULD | Extensible migration assistants and Plugin Doctor/provider checks cover config, DB, replay, stats, placeholders, permissions, worlds and arenas; future schedulers/compression/cache/Redis/distributed stores can be added through SPIs. | ECO-001, OPS-006, ARC-007 | provider CT | OPS |
 | ZBW-ECO-005 | MAY | AI-ready internal APIs may later provide configuration/diagnostic/optimization/balancing/replay/suspicion/documentation/migration suggestions; no AI action is trusted or enforcement-capable without validation, authorization, privacy review and human-controlled policy. | ARC-003, OPS-002/007 | threat/design review | CORE |
 
+### 4.17 Native addon-equivalent atomic requirements (463)
+
+`docs/ADDON_FEATURE_CATALOG.md` is incorporated here verbatim as the requirement table for `ZBW-ADDON-001` through `ZBW-ADDON-463`. Every row is priority `MUST`, implementation status `NOT STARTED`, independently accepted and independently traced. Each row defines its atomic behavior, retained core overlap, PRD/trace entry, milestone, native module, configuration, GUI, commands, permissions, API/events, PlaceholderAPI applicability, performance, security, tests, documentation and `COVERED` specification status. `COVERED` does not claim implementation.
+
+The catalogue covers all 49 owner-supplied references (8 premium and 41 free) and deliberately keeps explicit requirements for overlapping behavior. Implementations shall be original clean-room equivalents: reference names do not authorize copying source, bytecode, messages, configuration text, assets, GUI layouts, balance tables, brands or other proprietary content.
+
 ## 5. Commands, permissions, GUI, API, placeholder and configuration acceptance
 
-The exact feature inventories are consolidated in §8 and the verbatim atomic children are cataloged in `docs/MASTER_PROMPT_COVERAGE.md`; neither is optional because an item appears in a grouped requirement. That report is Part II of `docs/REQUIREMENTS_TRACEABILITY.md`, so its `MP-L####` entries are traceability-matrix entries rather than an informative appendix. Before implementation of each milestone, the matrix must be expanded from planned surface families to exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
+The exact feature inventories are consolidated in §8, the verbatim Master children are cataloged in `docs/MASTER_PROMPT_COVERAGE.md`, and the owner-supplied addon children are cataloged in `docs/ADDON_FEATURE_CATALOG.md`; none is optional because an item appears in a grouped requirement. The reports are Parts II and III of `docs/REQUIREMENTS_TRACEABILITY.md`, so their `MP-L####` and `ZBW-ADDON-*` entries are traceability rows rather than informative appendices. Before implementation of each milestone, planned surface families must be replaced with exact canonical nodes, command syntaxes, GUI IDs, API types, placeholder identifiers, table/key names and file paths. Canonicalization may merge duplicate spellings, but migration aliases must preserve compatibility and the underlying action may not be removed.
 
 Configuration files planned by contract are: `config.yml`, `deployment.yml`, `database.yml`, `redis.yml`, `proxy.yml`, `cloudnet.yml`, `arenas.yml`, `maps.yml`, `modes.yml`, `shops.yml`, `upgrades.yml`, `generators.yml`, `items.yml`, `quests.yml`, `achievements.yml`, `challenges.yml`, `battlepass.yml`, `cosmetics.yml`, `rewards.yml`, `statistics.yml`, `placeholders.yml`, `replay.yml`, `atlas.yml`, `anticheat.yml`, `parties.yml`, `npcs.yml`, `holograms.yml`, `gui.yml`, `messages.yml`, `permissions.yml`, `performance.yml`, `security.yml`, and `integrations.yml`. Physical splitting may change via ADR, but all logical sections and metadata remain.
 
@@ -298,7 +306,7 @@ Propose a PRD edit with stable-ID impact, create/update an ADR for architectural
 
 ## 8. Normative inventories
 
-These inventories are part of the referenced requirements. They make grouped requirements self-contained; every entry requires configuration, commands, permissions, GUI, API/events, placeholders, tests, migration, performance/security controls and documentation whenever its impact profile says applicable. The atomic catalog in `docs/MASTER_PROMPT_COVERAGE.md` preserves every source-level child beneath these summaries and is normative if a summary omits the child's wording.
+These inventories are part of the referenced requirements. They make grouped requirements self-contained; every entry requires configuration, commands, permissions, GUI, API/events, placeholders, tests, migration, performance/security controls and documentation whenever its impact profile says applicable. The atomic catalogues in `docs/MASTER_PROMPT_COVERAGE.md` and `docs/ADDON_FEATURE_CATALOG.md` preserve every source-level and owner-supplied child beneath these summaries and are normative if a summary omits a child's wording.
 
 ### 8.1 Progression inventory (ZBW-PROG-001..014)
 
@@ -381,3 +389,10 @@ These inventories are part of the referenced requirements. They make grouped req
 - **APIs:** arena, map, world, game, player, team, party, shop, upgrade, generator, quest, achievement, challenge, battle pass, cosmetic, currency, reward, statistics, leaderboard, replay, Atlas, anticheat integration, proxy, database/storage, configuration, GUI, command, permission, NPC, hologram, placeholder, integration, health and performance.
 - **Events:** arena/game lifecycle, player join/leave/rejoin, team assignment, bed destruction, kill/final kill, respawn/elimination/victory/draw, shop/upgrade purchase, generator spawn, quest progress/completion, achievement completion, pass progress, cosmetic equip, reward grant, currency transaction, statistic update, replay start/save, Atlas case/verdict, anticheat alert, proxy transfer, DB migration, config reload and integration-state change.
 - **SDK extensions:** game modes, shops, upgrades, generators, quest/achievement types, pass rewards, cosmetics, replay events, Atlas integrations, statistics, placeholders, GUI pages, commands, NPC/world providers and matchmaking algorithms. Marketplace metadata declares compatibility/version/dependencies/APIs/permissions/config and Minecraft/ZartraBedWars version ranges.
+
+### 8.9 Native addon-equivalent inventory (ZBW-ADDON-001..463)
+
+- **Normative catalogue:** `docs/ADDON_FEATURE_CATALOG.md` contains the complete 49-addon inventory and 463 independently verifiable atomic requirements.
+- **Coverage rule:** all 463 rows must remain `COVERED`; a parent addon name or a broad core overlap is never sufficient. New detail appends a new stable ID and updates PRD, Part III traceability, milestones, risks, tests and documentation.
+- **Required surfaces:** every row explicitly maps configuration, GUI, commands, permissions, API/events, PlaceholderAPI or a reasoned non-applicability, performance, security, tests and documentation.
+- **Originality:** only original native equivalents may ship. Third-party pages are functional references, not dependencies or permission to copy proprietary code/assets/content/branding.
