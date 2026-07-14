@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "source": "docs/QUALITY_GATES.md",
+  "coverage": {
+    "domain_application": {"line_percent": 90, "branch_percent": 85},
+    "adapter_ui_integration": {"line_percent": 80, "branch_percent": 70},
+    "critical_invariants": {"line_percent": 100, "branch_percent": 100}
+  },
+  "mutation_score_critical_percent": 80,
+  "checkstyle_errors": 0,
+  "new_high_confidence_spotbugs": 0,
+  "deterministic_test_failures": 0,
+  "unapproved_critical_high_vulnerabilities": 0,
+  "production_markers_forbidden": ["TODO", "FIXME", "stub", "fake provider", "mock-only"],
+  "dynamic_dependency_versions_forbidden": true,
+  "snapshot_release_coordinates_forbidden": true
+}

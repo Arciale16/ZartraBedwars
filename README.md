@@ -1,6 +1,6 @@
 # ZartraBedWars
 
-ZartraBedWars is currently a documentation-only, **PRE-CODE READY** project baseline. No Java implementation has started.
+ZartraBedWars retains its approved **PRE-CODE READY** baseline and has completed **Milestone 1 — Project Foundation**. The checksum-locked Maven/CI/governance foundation is verified; no Java feature implementation has started.
 
 ## Documentation
 
@@ -12,5 +12,6 @@ ZartraBedWars is currently a documentation-only, **PRE-CODE READY** project base
 - [Requirements traceability](docs/REQUIREMENTS_TRACEABILITY.md)
 - [Master Prompt coverage](docs/MASTER_PROMPT_COVERAGE.md)
 - [Documentation index](docs/README.md)
+- [Milestone 1 implementation evidence](docs/IMPLEMENTATION_M01.md)
 
 Before any implementation task, read `AGENTS.md`, the PRD and the traceability matrix, then run all three deterministic documentation validators.

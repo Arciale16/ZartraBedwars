@@ -3,7 +3,7 @@
 **Status:** accepted mandatory compatibility policy<br>
 **Decision:** RC-075<br>
 **Requirements:** `ZBW-COMPAT-001..009`<br>
-**Implementation status:** NOT STARTED
+**Implementation status:** M01 governance/fixture manifest VERIFIED; compatibility adapters NOT STARTED
 
 The exact server distributions, build hashes, JDKs, artifact families and client-protocol certification dimensions are normative in `RUNTIME_COMPATIBILITY_MATRIX.md`. This file owns semantic fallbacks; the runtime matrix owns which exact environments must prove them.
 

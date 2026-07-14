@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "maven": {
+    "version": "3.9.11",
+    "distribution_url": "https://archive.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.zip",
+    "sha256": "0d7125e8c91097b36edb990ea5934e6c68b4440eef4ea96510a0f6815e7eeadb",
+    "sha512": "03e2d65d4483a3396980629f260e25cac0d8b6f7f2791e4dc20bc83f9514db8d0f05b0479e699a5f34679250c49c8e52e961262ded468a20de0be254d8207076"
+  },
+  "python": {
+    "version": "3.12.13",
+    "implementation": "CPython",
+    "purpose": "deterministic build and documentation validators only"
+  },
+  "jdks": [
+    {
+      "id": "8",
+      "vendor": "Eclipse Temurin",
+      "release": "8u442-b06",
+      "java_version": "1.8.0_442",
+      "class_major": 52,
+      "java_home_env": "JAVA8_HOME",
+      "linux_sha256": "5b0a0145e7790552a9c8767b4680074c4628ec276e5bb278b61d85cf90facafa",
+      "windows_sha256": "ffe22d16a1ea6fe709a089f3472fedb783470b879634b26b32424e40bbd00b09"
+    },
+    {
+      "id": "11",
+      "vendor": "Eclipse Temurin",
+      "release": "11.0.26+4",
+      "java_version": "11.0.26",
+      "class_major": 55,
+      "java_home_env": "JAVA11_HOME",
+      "linux_sha256": "7def4c5807b38ef1a7bb30a86572a795ca604127cc8d1f5b370abf23618104e6",
+      "windows_sha256": "a221ae370f609f00e5869c385f4853fecb622a99f8637b95c22ec66c04e15051"
+    },
+    {
+      "id": "16",
+      "vendor": "Eclipse Temurin",
+      "release": "16.0.2+7",
+      "java_version": "16.0.2",
+      "class_major": 60,
+      "java_home_env": "JAVA16_HOME",
+      "linux_sha256": "323d6d7474a359a28eff7ddd0df8e65bd61554a8ed12ef42fd9365349e573c2c",
+      "windows_sha256": "40191ffbafd8a6f9559352d8de31e8d22a56822fb41bbcf45f34e3fd3afa5f9e"
+    },
+    {
+      "id": "17",
+      "vendor": "Eclipse Temurin",
+      "release": "17.0.14+7",
+      "java_version": "17.0.14",
+      "class_major": 61,
+      "java_home_env": "JAVA17_HOME",
+      "linux_sha256": "a3af83983fb94dd7d11b13ba2dba0fb6819dc2caaf87e6937afd22ad4680ae9a",
+      "windows_sha256": "dddb108e0bf8c3e3a9c5c782fee5874a6a86d5323189969f17094260cf3a1125"
+    },
+    {
+      "id": "21",
+      "vendor": "Eclipse Temurin",
+      "release": "21.0.6+7",
+      "java_version": "21.0.6",
+      "class_major": 65,
+      "java_home_env": "JAVA21_HOME",
+      "linux_sha256": "a2650fba422283fbed20d936ce5d2a52906a5414ec17b2f7676dddb87201dbae",
+      "windows_sha256": "897c8eebb0f85a99ccecbd482ebae9a45d88c19d6077054f6529ebab49b6d259"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "default_deny": true,
+    "dynamic_versions_allowed": false,
+    "product_bundling_without_explicit_permission_allowed": false,
+    "proprietary_binaries_allowed": false,
+    "unknown_transitives_allowed": false
+  },
+  "artifacts": [
+    {
+      "id": "tool:maven:3.9.11:windows-zip",
+      "name": "Apache Maven Distribution",
+      "version": "3.9.11",
+      "kind": "BUILD_TOOL_ARCHIVE",
+      "source": "https://archive.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.zip",
+      "cache_filename": "apache-maven-3.9.11-bin.zip",
+      "sha256": "0d7125e8c91097b36edb990ea5934e6c68b4440eef4ea96510a0f6815e7eeadb",
+      "sha512": "03e2d65d4483a3396980629f260e25cac0d8b6f7f2791e4dc20bc83f9514db8d0f05b0479e699a5f34679250c49c8e52e961262ded468a20de0be254d8207076",
+      "license": {"spdx": "Apache-2.0", "path_in_archive": "apache-maven-3.9.11/LICENSE", "sha256": "34ad6c700586294f56b50a7cf7120d5f031a6f68099d86c7de6e860dbe8523ad"},
+      "notice": {"path_in_archive": "apache-maven-3.9.11/NOTICE", "sha256": "9739dd84556b9458e60c049a24f4c78f3146b0d57cddaf5b4fbfb2f71da259eb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:8u442-b06:linux-x64",
+      "name": "Eclipse Temurin JDK 8 Linux x64",
+      "version": "8u442-b06",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u442-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u442b06.tar.gz",
+      "cache_filename": "temurin-8-linux.tar.gz",
+      "sha256": "5b0a0145e7790552a9c8767b4680074c4628ec276e5bb278b61d85cf90facafa",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk8u442-b06/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:11.0.26+4:linux-x64",
+      "name": "Eclipse Temurin JDK 11 Linux x64",
+      "version": "11.0.26+4",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.26%2B4/OpenJDK11U-jdk_x64_linux_hotspot_11.0.26_4.tar.gz",
+      "cache_filename": "temurin-11-linux.tar.gz",
+      "sha256": "7def4c5807b38ef1a7bb30a86572a795ca604127cc8d1f5b370abf23618104e6",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-11.0.26+4/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:16.0.2+7:linux-x64",
+      "name": "Eclipse Temurin JDK 16 Linux x64",
+      "version": "16.0.2+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin16-binaries/releases/download/jdk-16.0.2%2B7/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz",
+      "cache_filename": "temurin-16-linux.tar.gz",
+      "sha256": "323d6d7474a359a28eff7ddd0df8e65bd61554a8ed12ef42fd9365349e573c2c",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-16.0.2+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:17.0.14+7:linux-x64",
+      "name": "Eclipse Temurin JDK 17 Linux x64",
+      "version": "17.0.14+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.14_7.tar.gz",
+      "cache_filename": "temurin-17-linux.tar.gz",
+      "sha256": "a3af83983fb94dd7d11b13ba2dba0fb6819dc2caaf87e6937afd22ad4680ae9a",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-17.0.14+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:21.0.6+7:linux-x64",
+      "name": "Eclipse Temurin JDK 21 Linux x64",
+      "version": "21.0.6+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_linux_hotspot_21.0.6_7.tar.gz",
+      "cache_filename": "temurin-21-linux.tar.gz",
+      "sha256": "a2650fba422283fbed20d936ce5d2a52906a5414ec17b2f7676dddb87201dbae",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-21.0.6+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:8u442-b06:windows-x64",
+      "name": "Eclipse Temurin JDK 8 Windows x64",
+      "version": "8u442-b06",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u442-b06/OpenJDK8U-jdk_x64_windows_hotspot_8u442b06.zip",
+      "cache_filename": "temurin-8-windows.zip",
+      "sha256": "ffe22d16a1ea6fe709a089f3472fedb783470b879634b26b32424e40bbd00b09",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk8u442-b06/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:11.0.26+4:windows-x64",
+      "name": "Eclipse Temurin JDK 11 Windows x64",
+      "version": "11.0.26+4",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.26%2B4/OpenJDK11U-jdk_x64_windows_hotspot_11.0.26_4.zip",
+      "cache_filename": "temurin-11-windows.zip",
+      "sha256": "a221ae370f609f00e5869c385f4853fecb622a99f8637b95c22ec66c04e15051",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-11.0.26+4/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:16.0.2+7:windows-x64",
+      "name": "Eclipse Temurin JDK 16 Windows x64",
+      "version": "16.0.2+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin16-binaries/releases/download/jdk-16.0.2%2B7/OpenJDK16U-jdk_x64_windows_hotspot_16.0.2_7.zip",
+      "cache_filename": "temurin-16-windows.zip",
+      "sha256": "40191ffbafd8a6f9559352d8de31e8d22a56822fb41bbcf45f34e3fd3afa5f9e",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-16.0.2+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:17.0.14+7:windows-x64",
+      "name": "Eclipse Temurin JDK 17 Windows x64",
+      "version": "17.0.14+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.14_7.zip",
+      "cache_filename": "temurin-17-windows.zip",
+      "sha256": "dddb108e0bf8c3e3a9c5c782fee5874a6a86d5323189969f17094260cf3a1125",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-17.0.14+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "a44eb7b5caf5534c6ef536b21edb40b4d6babf91bf97d9d45596868618b2c6fb"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:temurin:21.0.6+7:windows-x64",
+      "name": "Eclipse Temurin JDK 21 Windows x64",
+      "version": "21.0.6+7",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.6%2B7/OpenJDK21U-jdk_x64_windows_hotspot_21.0.6_7.zip",
+      "cache_filename": "temurin-21-windows.zip",
+      "sha256": "897c8eebb0f85a99ccecbd482ebae9a45d88c19d6077054f6529ebab49b6d259",
+      "license": {"spdx": "GPL-2.0-with-classpath-exception", "path_in_archive": "jdk-21.0.6+7/legal/java.base/LICENSE", "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726", "assembly_exception_sha256": "75292f03bf23d3db7c985aecc191029b93883200721ed23ed34a2e601463df33"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "tool:cpython:3.12.13:linux-22.04-x64",
+      "name": "CPython 3.12.13 GitHub Actions toolcache build",
+      "version": "3.12.13",
+      "kind": "BUILD_TOOLCHAIN_ARCHIVE",
+      "source": "https://github.com/actions/python-versions/releases/download/3.12.13-27650778726/python-3.12.13-linux-22.04-x64.tar.gz",
+      "sha256": "667e85db08508400b68a7a268fd56f3b9bea38bd42bc2d7c0699a998db82025e",
+      "license": {"spdx": "Python-2.0", "source": "https://raw.githubusercontent.com/python/cpython/v3.12.13/LICENSE", "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"},
+      "rights": {"scope": "BUILD-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "github-action:actions/checkout:34e114876b0b11c390a56381ad16ebd13914f8d5",
+      "name": "actions/checkout",
+      "version": "34e114876b0b11c390a56381ad16ebd13914f8d5",
+      "kind": "CI_ACTION_GIT_COMMIT",
+      "source": "https://github.com/actions/checkout/tree/34e114876b0b11c390a56381ad16ebd13914f8d5",
+      "git_commit": "34e114876b0b11c390a56381ad16ebd13914f8d5",
+      "license": {"spdx": "MIT", "source": "https://raw.githubusercontent.com/actions/checkout/34e114876b0b11c390a56381ad16ebd13914f8d5/LICENSE", "sha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5"},
+      "rights": {"scope": "CI-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    },
+    {
+      "id": "github-action:actions/setup-python:a26af69be951a213d495a4c3e4e4022e16d87065",
+      "name": "actions/setup-python",
+      "version": "a26af69be951a213d495a4c3e4e4022e16d87065",
+      "kind": "CI_ACTION_GIT_COMMIT",
+      "source": "https://github.com/actions/setup-python/tree/a26af69be951a213d495a4c3e4e4022e16d87065",
+      "git_commit": "a26af69be951a213d495a4c3e4e4022e16d87065",
+      "license": {"spdx": "MIT", "source": "https://raw.githubusercontent.com/actions/setup-python/a26af69be951a213d495a4c3e4e4022e16d87065/LICENSE", "sha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32"},
+      "rights": {"scope": "CI-ONLY", "redistribute_product": false, "shade_product": false, "modify": false, "commercial_use": true, "attribution": "build SBOM and tooling notices"}
+    }
+  ]
+}

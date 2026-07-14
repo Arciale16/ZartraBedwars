@@ -1,6 +1,6 @@
 # ZartraBedWars Asset Provenance Manifest
 
-**Status:** normative empty PRE-CODE READY manifest<br>
+**Status:** normative empty manifest with M01 deterministic scanner<br>
 **Decision:** RC-073<br>
 **Requirement:** `ZBW-CONTENT-011`<br>
 **Last reviewed:** 2026-07-14
@@ -32,7 +32,7 @@ The repository also requires source URL/contract reference, source hash, reposit
 | Asset ID | Origin | Author | Licence | Permitted use | Redistribution status | Modification status | Source/contract and hash | Repository path | Approval/status |
 |---|---|---|---|---|---|---|---|---|---|
 
-There are **0 approved distributable asset rows** and **0 packaged asset files** at this baseline.
+There are **0 approved distributable asset rows** and **0 packaged asset files**. M01 materializes the machine-readable mirror at `build/asset-provenance.json`; `tools/validation/foundation.py` rejects any production creative asset whose path, hash and `APPROVED` status are absent.
 
 ## 4. Lifecycle and controls
 
