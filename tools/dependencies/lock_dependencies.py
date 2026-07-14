@@ -24,6 +24,7 @@ ACQUISITION = ROOT / "build" / "dependency-acquisition.json"
 LOCK = ROOT / "build" / "dependency-lock.json"
 SBOM = ROOT / "build" / "sbom.cdx.json"
 BUILD_NOTICES = ROOT / "build" / "THIRD_PARTY_BUILD_NOTICES.md"
+MAVEN_LOCK = ROOT / "build" / "maven-dependency-lock.json"
 EXCLUDED_PARTS = {".git", ".tools", ".m2", "target"}
 MAVEN_NAMESPACE = "http://maven.apache.org/POM/4.0.0"
 
@@ -234,8 +235,36 @@ def validate_schema(acquisition: dict[str, object], lock: dict[str, object]) -> 
 
 def validate_poms(lock: dict[str, object]) -> list[str]:
     errors: list[str] = []
-    locked_maven = {artifact["id"] for artifact in lock["artifacts"] if str(artifact["id"]).startswith("maven:")}
+    maven_lock = json.loads(MAVEN_LOCK.read_text(encoding="utf-8"))
+    locked_maven = {component["id"] for component in maven_lock["components"]}
     namespace = {"m": MAVEN_NAMESPACE}
+    root_tree = ET.parse(ROOT / "pom.xml")
+    properties_node = root_tree.getroot().find("m:properties", namespace)
+    properties = ({child.tag.rsplit("}", 1)[-1]: child.text or "" for child in properties_node}
+                  if properties_node is not None else {})
+    managed_plugins: dict[tuple[str, str], str] = {}
+    for plugin in root_tree.getroot().findall(
+            "m:build/m:pluginManagement/m:plugins/m:plugin", namespace):
+        group = plugin.findtext(
+            "m:groupId", default="org.apache.maven.plugins", namespaces=namespace)
+        artifact = plugin.findtext("m:artifactId", default="", namespaces=namespace)
+        managed_plugins[(group, artifact)] = plugin.findtext(
+            "m:version", default="", namespaces=namespace)
+
+    def resolve(value: str) -> str:
+        match = re.fullmatch(r"\$\{([^}]+)\}", value)
+        return properties.get(match.group(1), value) if match else value
+
+    def check_coordinate(pom: Path, group: str, artifact: str, version: str, kind: str) -> None:
+        if group == "io.zartra.bedwars":
+            return
+        if not version and kind == "build plugin":
+            version = managed_plugins.get((group, artifact), "")
+        identifier = f"maven:{group}:{artifact}:{resolve(version)}"
+        if identifier not in locked_maven:
+            errors.append(
+                f"{pom.relative_to(ROOT)}: direct {kind} lacks verified M02 lock row: {identifier}")
+
     for pom in ROOT.rglob("pom.xml"):
         if any(part in EXCLUDED_PARTS for part in pom.parts):
             continue
@@ -249,14 +278,25 @@ def validate_poms(lock: dict[str, object]) -> list[str]:
             group = dependency.findtext("m:groupId", default="", namespaces=namespace)
             artifact = dependency.findtext("m:artifactId", default="", namespaces=namespace)
             version = dependency.findtext("m:version", default="", namespaces=namespace)
-            identifier = f"maven:{group}:{artifact}:{version}"
-            if identifier not in locked_maven:
-                errors.append(f"{pom.relative_to(ROOT)}: direct dependency lacks verified lock row: {identifier}")
-        build = root.find("m:build", namespace)
-        if build is not None:
+            check_coordinate(pom, group, artifact, version, "dependency")
+        for build in root.findall(".//m:build", namespace):
             direct_plugins = build.find("m:plugins", namespace)
-            if direct_plugins is not None and direct_plugins.findall("m:plugin", namespace):
-                errors.append(f"{pom.relative_to(ROOT)}: executable Maven plugins are prohibited in the empty M1 reactor")
+            if direct_plugins is None:
+                continue
+            for plugin in direct_plugins.findall("m:plugin", namespace):
+                group = plugin.findtext(
+                    "m:groupId", default="org.apache.maven.plugins", namespaces=namespace)
+                artifact = plugin.findtext("m:artifactId", default="", namespaces=namespace)
+                version = plugin.findtext("m:version", default="", namespaces=namespace)
+                check_coordinate(pom, group, artifact, version, "build plugin")
+                for dependency in plugin.findall("m:dependencies/m:dependency", namespace):
+                    check_coordinate(
+                        pom,
+                        dependency.findtext("m:groupId", default="", namespaces=namespace),
+                        dependency.findtext("m:artifactId", default="", namespaces=namespace),
+                        dependency.findtext("m:version", default="", namespaces=namespace),
+                        "plugin dependency",
+                    )
     return errors
 
 
@@ -301,7 +341,9 @@ def command_validate() -> int:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print(f"Dependency/licence gate PASS: {len(lock['artifacts'])} locked build/CI artifacts; no product binaries.")
+    maven_lock = json.loads(MAVEN_LOCK.read_text(encoding="utf-8"))
+    print(f"Dependency/licence gate PASS: {len(lock['artifacts'])} build/CI artifacts and "
+          f"{len(maven_lock['components'])} Maven components locked; no product binaries.")
     return 0
 
 

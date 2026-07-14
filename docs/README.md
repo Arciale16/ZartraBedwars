@@ -14,6 +14,8 @@
 - [Architecture](ARCHITECTURE.md)
 - [Milestones](MILESTONES.md)
 - [Milestone 1 implementation evidence](IMPLEMENTATION_M01.md)
+- [Milestone 2 implementation evidence](IMPLEMENTATION_M02.md)
+- [Milestone 2 public API guide](API_M02.md)
 - [Risks and conflicts](RISKS_AND_CONFLICTS.md)
 - [Architecture decisions](DECISIONS/README.md)
 

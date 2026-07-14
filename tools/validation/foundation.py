@@ -74,8 +74,13 @@ def validate_module_graph() -> list[str]:
                 errors.append(f"{row['id']}: packaging differs from module graph")
     root_pom = ET.parse(ROOT / "pom.xml").getroot()
     reactor_modules = [value.text for value in root_pom.findall("m:modules/m:module", MAVEN_NAMESPACE)]
-    if reactor_modules != ["build/zbw-bom", "build/zbw-build-tools"]:
-        errors.append("M1 reactor must contain only the BOM and build-governance descriptor")
+    expected_reactor = [
+        str(row["path"]).removesuffix("/pom.xml")
+        for row in materialized
+        if row["id"] != "zartrabedwars-parent"
+    ]
+    if reactor_modules != expected_reactor:
+        errors.append("reactor module order differs from the materialized module graph")
     planned_lookup = {str(row["id"]): row for row in planned}
     dependencies: dict[str, list[str]] = {}
     for identifier, row in planned_lookup.items():

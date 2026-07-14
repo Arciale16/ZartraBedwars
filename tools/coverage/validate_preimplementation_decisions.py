@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -144,7 +145,8 @@ def validate() -> None:
         for path in ROOT.rglob("*.java")
         if not any(part in excluded_build_paths for part in path.parts)
     ]
-    if java_files:
+    state = json.loads(read("build/milestone-state.json"))
+    if state["active_milestone"] == "M00" and java_files:
         raise ValueError("pre-code baseline contains Java files: " + ", ".join(str(path.relative_to(ROOT)) for path in java_files[:5]))
 
 
@@ -157,7 +159,7 @@ def main() -> int:
     except ValueError as error:
         print(f"pre-code decision validation failed: {error}", file=sys.stderr)
         return 1
-    print("PRE-CODE READY verified: 25 resolved decisions, 55 decision IDs, 199 Part I IDs, 473 addon IDs, 672 total requirements")
+    print("Pre-code decision baseline verified: 25 resolved decisions, 55 decision IDs, 199 Part I IDs, 473 addon IDs, 672 total requirements")
     return 0
 
 

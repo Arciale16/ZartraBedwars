@@ -1,0 +1,4450 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "maven:com.github.cliftonlabs:json-simple:3.0.2",
+      "group": "com.github.cliftonlabs",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "json-simple",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0.2"
+    },
+    {
+      "bom-ref": "maven:com.github.javaparser:javaparser-core:3.26.3",
+      "group": "com.github.javaparser",
+      "licenses": [
+        {
+          "expression": "LGPL-3.0-only"
+        },
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "javaparser-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.26.3"
+    },
+    {
+      "bom-ref": "maven:com.github.luben:zstd-jni:1.5.5-11",
+      "group": "com.github.luben",
+      "licenses": [
+        {
+          "expression": "BSD-2-Clause"
+        }
+      ],
+      "name": "zstd-jni",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.5.5-11"
+    },
+    {
+      "bom-ref": "maven:com.github.spotbugs:spotbugs-annotations:4.9.2",
+      "group": "com.github.spotbugs",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        }
+      ],
+      "name": "spotbugs-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.9.2"
+    },
+    {
+      "bom-ref": "maven:com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0",
+      "group": "com.github.spotbugs",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "spotbugs-maven-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.9.2.0"
+    },
+    {
+      "bom-ref": "maven:com.github.spotbugs:spotbugs:4.9.2",
+      "group": "com.github.spotbugs",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        }
+      ],
+      "name": "spotbugs",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.9.2"
+    },
+    {
+      "bom-ref": "maven:com.github.stephenc.jcip:jcip-annotations:1.0-1",
+      "group": "com.github.stephenc.jcip",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jcip-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0-1"
+    },
+    {
+      "bom-ref": "maven:com.google.code.findbugs:jsr305:3.0.2",
+      "group": "com.google.code.findbugs",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jsr305",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0.2"
+    },
+    {
+      "bom-ref": "maven:com.google.code.gson:gson:2.12.1",
+      "group": "com.google.code.gson",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "gson",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.12.1"
+    },
+    {
+      "bom-ref": "maven:com.google.errorprone:error_prone_annotations:2.36.0",
+      "group": "com.google.errorprone",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "error_prone_annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.36.0"
+    },
+    {
+      "bom-ref": "maven:com.google.errorprone:error_prone_annotations:2.7.1",
+      "group": "com.google.errorprone",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "error_prone_annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.7.1"
+    },
+    {
+      "bom-ref": "maven:com.google.guava:failureaccess:1.0.1",
+      "group": "com.google.guava",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "failureaccess",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.1"
+    },
+    {
+      "bom-ref": "maven:com.google.guava:failureaccess:1.0.2",
+      "group": "com.google.guava",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "failureaccess",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.2"
+    },
+    {
+      "bom-ref": "maven:com.google.guava:guava:31.0.1-jre",
+      "group": "com.google.guava",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "guava",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "31.0.1-jre"
+    },
+    {
+      "bom-ref": "maven:com.google.guava:guava:33.4.0-jre",
+      "group": "com.google.guava",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "guava",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "33.4.0-jre"
+    },
+    {
+      "bom-ref": "maven:com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava",
+      "group": "com.google.guava",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "listenablefuture",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9999.0-empty-to-avoid-conflict-with-guava"
+    },
+    {
+      "bom-ref": "maven:com.google.j2objc:j2objc-annotations:1.3",
+      "group": "com.google.j2objc",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "j2objc-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.3"
+    },
+    {
+      "bom-ref": "maven:com.google.j2objc:j2objc-annotations:3.0.0",
+      "group": "com.google.j2objc",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "j2objc-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0.0"
+    },
+    {
+      "bom-ref": "maven:com.puppycrawl.tools:checkstyle:10.21.2",
+      "group": "com.puppycrawl.tools",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        }
+      ],
+      "name": "checkstyle",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "10.21.2"
+    },
+    {
+      "bom-ref": "maven:com.puppycrawl.tools:checkstyle:9.3",
+      "group": "com.puppycrawl.tools",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        }
+      ],
+      "name": "checkstyle",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.3"
+    },
+    {
+      "bom-ref": "maven:com.thoughtworks.qdox:qdox:1.12.1",
+      "group": "com.thoughtworks.qdox",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "qdox",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
+      "bom-ref": "maven:com.thoughtworks.qdox:qdox:2.2.0",
+      "group": "com.thoughtworks.qdox",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "qdox",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.2.0"
+    },
+    {
+      "bom-ref": "maven:commons-beanutils:commons-beanutils:1.10.0",
+      "group": "commons-beanutils",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-beanutils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.10.0"
+    },
+    {
+      "bom-ref": "maven:commons-beanutils:commons-beanutils:1.10.1",
+      "group": "commons-beanutils",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-beanutils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.10.1"
+    },
+    {
+      "bom-ref": "maven:commons-beanutils:commons-beanutils:1.9.4",
+      "group": "commons-beanutils",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-beanutils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.9.4"
+    },
+    {
+      "bom-ref": "maven:commons-codec:commons-codec:1.16.1",
+      "group": "commons-codec",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-codec",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.16.1"
+    },
+    {
+      "bom-ref": "maven:commons-codec:commons-codec:1.18.0",
+      "group": "commons-codec",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-codec",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.18.0"
+    },
+    {
+      "bom-ref": "maven:commons-collections:commons-collections:3.2.2",
+      "group": "commons-collections",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-collections",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.2.2"
+    },
+    {
+      "bom-ref": "maven:commons-io:commons-io:2.11.0",
+      "group": "commons-io",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.11.0"
+    },
+    {
+      "bom-ref": "maven:commons-io:commons-io:2.16.1",
+      "group": "commons-io",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.16.1"
+    },
+    {
+      "bom-ref": "maven:commons-io:commons-io:2.17.0",
+      "group": "commons-io",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.17.0"
+    },
+    {
+      "bom-ref": "maven:commons-io:commons-io:2.18.0",
+      "group": "commons-io",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.18.0"
+    },
+    {
+      "bom-ref": "maven:commons-io:commons-io:2.19.0",
+      "group": "commons-io",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.19.0"
+    },
+    {
+      "bom-ref": "maven:commons-logging:commons-logging:1.1.1",
+      "group": "commons-logging",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-logging",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.1.1"
+    },
+    {
+      "bom-ref": "maven:commons-logging:commons-logging:1.2",
+      "group": "commons-logging",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-logging",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.2"
+    },
+    {
+      "bom-ref": "maven:commons-logging:commons-logging:1.3.5",
+      "group": "commons-logging",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-logging",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.3.5"
+    },
+    {
+      "bom-ref": "maven:info.picocli:picocli:4.6.2",
+      "group": "info.picocli",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "picocli",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.6.2"
+    },
+    {
+      "bom-ref": "maven:info.picocli:picocli:4.7.6",
+      "group": "info.picocli",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "picocli",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.7.6"
+    },
+    {
+      "bom-ref": "maven:javax.activation:javax.activation-api:1.2.0",
+      "group": "javax.activation",
+      "licenses": [
+        {
+          "expression": "CDDL-1.1 OR GPL-2.0-only WITH Classpath-exception-2.0"
+        }
+      ],
+      "name": "javax.activation-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "bom-ref": "maven:javax.inject:javax.inject:1",
+      "group": "javax.inject",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "javax.inject",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1"
+    },
+    {
+      "bom-ref": "maven:javax.xml.bind:jaxb-api:2.3.1",
+      "group": "javax.xml.bind",
+      "licenses": [
+        {
+          "expression": "CDDL-1.1"
+        },
+        {
+          "expression": "GPL-2.0-only WITH Classpath-exception-2.0"
+        }
+      ],
+      "name": "jaxb-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.3.1"
+    },
+    {
+      "bom-ref": "maven:jaxen:jaxen:2.0.0",
+      "group": "jaxen",
+      "licenses": [
+        {
+          "expression": "BSD-2-Clause"
+        }
+      ],
+      "name": "jaxen",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:net.sf.saxon:Saxon-HE:10.6",
+      "group": "net.sf.saxon",
+      "licenses": [
+        {
+          "expression": "MPL-2.0"
+        }
+      ],
+      "name": "Saxon-HE",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "10.6"
+    },
+    {
+      "bom-ref": "maven:net.sf.saxon:Saxon-HE:12.5",
+      "group": "net.sf.saxon",
+      "licenses": [
+        {
+          "expression": "MPL-2.0"
+        }
+      ],
+      "name": "Saxon-HE",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "12.5"
+    },
+    {
+      "bom-ref": "maven:org.antlr:antlr4-runtime:4.13.2",
+      "group": "org.antlr",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "antlr4-runtime",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.13.2"
+    },
+    {
+      "bom-ref": "maven:org.antlr:antlr4-runtime:4.9.3",
+      "group": "org.antlr",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "antlr4-runtime",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.9.3"
+    },
+    {
+      "bom-ref": "maven:org.apache-extras.beanshell:bsh:2.0b6",
+      "group": "org.apache-extras.beanshell",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "bsh",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0b6"
+    },
+    {
+      "bom-ref": "maven:org.apache.ant:ant-launcher:1.10.15",
+      "group": "org.apache.ant",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "ant-launcher",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.10.15"
+    },
+    {
+      "bom-ref": "maven:org.apache.ant:ant:1.10.15",
+      "group": "org.apache.ant",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "ant",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.10.15"
+    },
+    {
+      "bom-ref": "maven:org.apache.bcel:bcel:6.10.0",
+      "group": "org.apache.bcel",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "bcel",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "6.10.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-compress:1.26.1",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-compress",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.26.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-digester3:3.2",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-digester3",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.2"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-lang3:3.12.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-lang3",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.12.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-lang3:3.14.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-lang3",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.14.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-lang3:3.17.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-lang3",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.17.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-lang3:3.18.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-lang3",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.18.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-text:1.12.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-text",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.commons:commons-text:1.13.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-text",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.13.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-ant:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-ant",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-docgenerator:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-docgenerator",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-groovydoc:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-groovydoc",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-json:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-json",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-templates:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-templates",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy-xml:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy-xml",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.groovy:groovy:4.0.26",
+      "group": "org.apache.groovy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "groovy",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.26"
+    },
+    {
+      "bom-ref": "maven:org.apache.httpcomponents.client5:httpclient5:5.1.3",
+      "group": "org.apache.httpcomponents.client5",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "httpclient5",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.1.3"
+    },
+    {
+      "bom-ref": "maven:org.apache.httpcomponents.core5:httpcore5-h2:5.1.3",
+      "group": "org.apache.httpcomponents.core5",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "httpcore5-h2",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.1.3"
+    },
+    {
+      "bom-ref": "maven:org.apache.httpcomponents.core5:httpcore5:5.1.3",
+      "group": "org.apache.httpcomponents.core5",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "httpcore5",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.1.3"
+    },
+    {
+      "bom-ref": "maven:org.apache.logging.log4j:log4j-api:2.24.3",
+      "group": "org.apache.logging.log4j",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "log4j-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.24.3"
+    },
+    {
+      "bom-ref": "maven:org.apache.logging.log4j:log4j-to-slf4j:2.24.3",
+      "group": "org.apache.logging.log4j",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "log4j-to-slf4j",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.24.3"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-core:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-integration-tools:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-integration-tools",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-module-apt:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-module-apt",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-module-xdoc:1.12.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-module-xdoc",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-module-xdoc:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-module-xdoc",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-module-xhtml5:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-module-xhtml5",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-sink-api:1.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-sink-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-sink-api:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-sink-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-site-model:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-site-model",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-site-renderer:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-site-renderer",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.doxia:doxia-skin-model:2.0.0",
+      "group": "org.apache.maven.doxia",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "doxia-skin-model",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.enforcer:enforcer-api:3.6.1",
+      "group": "org.apache.maven.enforcer",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "enforcer-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.6.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.enforcer:enforcer-rules:3.6.1",
+      "group": "org.apache.maven.enforcer",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "enforcer-rules",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.6.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-checkstyle-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.6.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-compiler-plugin:3.14.1",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-compiler-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.14.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-enforcer-plugin:3.6.1",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-enforcer-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.6.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-jar-plugin:3.4.1",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-jar-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-resources-plugin:3.3.1",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-resources-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.3.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.plugins:maven-surefire-plugin:3.5.4",
+      "group": "org.apache.maven.plugins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-surefire-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.reporting:maven-reporting-api:3.0",
+      "group": "org.apache.maven.reporting",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-reporting-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.reporting:maven-reporting-api:4.0.0",
+      "group": "org.apache.maven.reporting",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-reporting-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.reporting:maven-reporting-impl:4.0.0",
+      "group": "org.apache.maven.reporting",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-reporting-impl",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.resolver:maven-resolver-api:1.4.1",
+      "group": "org.apache.maven.resolver",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-resolver-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.4.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.resolver:maven-resolver-util:1.4.1",
+      "group": "org.apache.maven.resolver",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-resolver-util",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.4.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.resolver:maven-resolver-util:1.9.23",
+      "group": "org.apache.maven.resolver",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-resolver-util",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.9.23"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.shared:file-management:3.1.0",
+      "group": "org.apache.maven.shared",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "file-management",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.1.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.shared:maven-common-artifact-filters:3.4.0",
+      "group": "org.apache.maven.shared",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-common-artifact-filters",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.0"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.shared:maven-filtering:3.3.1",
+      "group": "org.apache.maven.shared",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-filtering",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.3.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.shared:maven-shared-incremental:1.1",
+      "group": "org.apache.maven.shared",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-shared-incremental",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.shared:maven-shared-utils:3.4.2",
+      "group": "org.apache.maven.shared",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-shared-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.2"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.skins:maven-fluido-skin:2.0.0-M9",
+      "group": "org.apache.maven.skins",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-fluido-skin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0-M9"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:common-java5:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "common-java5",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:maven-surefire-common:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-surefire-common",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-api:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-booter:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-booter",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-extensions-api:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-extensions-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-extensions-spi:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-extensions-spi",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-junit-platform:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-junit-platform",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-logger-api:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-logger-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven.surefire:surefire-shared-utils:3.5.4",
+      "group": "org.apache.maven.surefire",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "surefire-shared-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.4"
+    },
+    {
+      "bom-ref": "maven:org.apache.maven:maven-archiver:3.6.2",
+      "group": "org.apache.maven",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "maven-archiver",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.6.2"
+    },
+    {
+      "bom-ref": "maven:org.apache.velocity.tools:velocity-tools-generic:3.1",
+      "group": "org.apache.velocity.tools",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "velocity-tools-generic",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.1"
+    },
+    {
+      "bom-ref": "maven:org.apache.velocity:velocity-engine-core:2.4",
+      "group": "org.apache.velocity",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "velocity-engine-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.4"
+    },
+    {
+      "bom-ref": "maven:org.apiguardian:apiguardian-api:1.1.2",
+      "group": "org.apiguardian",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "apiguardian-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.1.2"
+    },
+    {
+      "bom-ref": "maven:org.checkerframework:checker-qual:3.12.0",
+      "group": "org.checkerframework",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "checker-qual",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.12.0"
+    },
+    {
+      "bom-ref": "maven:org.checkerframework:checker-qual:3.48.4",
+      "group": "org.checkerframework",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "checker-qual",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.48.4"
+    },
+    {
+      "bom-ref": "maven:org.checkerframework:checker-qual:3.49.0",
+      "group": "org.checkerframework",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "checker-qual",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.49.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-archiver:4.9.2",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-archiver",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.9.2"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-classworlds:2.6.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-classworlds",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.6.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-compiler-api:2.15.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-compiler-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-compiler-javac:2.15.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-compiler-javac",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-compiler-manager:2.15.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-compiler-manager",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-component-annotations:2.2.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-component-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.2.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-i18n:1.0-beta-10",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-i18n",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0-beta-10"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-interpolation:1.26",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-interpolation",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.26"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-interpolation:1.27",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-interpolation",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.27"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-io:3.4.2",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-io",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.2"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-java:1.5.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-java",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.5.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-resources:1.3.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-resources",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-utils:3.0.24",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0.24"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-utils:3.5.1",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.5.1"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-utils:4.0.1",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.1"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-utils:4.0.2",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-utils",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.2"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-velocity:2.2.0",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-velocity",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.2.0"
+    },
+    {
+      "bom-ref": "maven:org.codehaus.plexus:plexus-xml:3.0.1",
+      "group": "org.codehaus.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-xml",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.0.1"
+    },
+    {
+      "bom-ref": "maven:org.dom4j:dom4j:2.1.4",
+      "group": "org.dom4j",
+      "licenses": [
+        {
+          "expression": "LicenseRef-Plexus"
+        }
+      ],
+      "name": "dom4j",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.1.4"
+    },
+    {
+      "bom-ref": "maven:org.eclipse.sisu:org.eclipse.sisu.inject:0.9.0.M3",
+      "group": "org.eclipse.sisu",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "org.eclipse.sisu.inject",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.9.0.M3"
+    },
+    {
+      "bom-ref": "maven:org.eclipse.sisu:org.eclipse.sisu.plexus:0.9.0.M3",
+      "group": "org.eclipse.sisu",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "org.eclipse.sisu.plexus",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.9.0.M3"
+    },
+    {
+      "bom-ref": "maven:org.iq80.snappy:snappy:0.4",
+      "group": "org.iq80.snappy",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "snappy",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.4"
+    },
+    {
+      "bom-ref": "maven:org.jacoco:jacoco-maven-plugin:0.8.13",
+      "group": "org.jacoco",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "jacoco-maven-plugin",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.8.13"
+    },
+    {
+      "bom-ref": "maven:org.jacoco:org.jacoco.agent:0.8.13",
+      "group": "org.jacoco",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "org.jacoco.agent",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.8.13"
+    },
+    {
+      "bom-ref": "maven:org.jacoco:org.jacoco.core:0.8.13",
+      "group": "org.jacoco",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "org.jacoco.core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.8.13"
+    },
+    {
+      "bom-ref": "maven:org.jacoco:org.jacoco.report:0.8.13",
+      "group": "org.jacoco",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "org.jacoco.report",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.8.13"
+    },
+    {
+      "bom-ref": "maven:org.javassist:javassist:3.28.0-GA",
+      "group": "org.javassist",
+      "licenses": [
+        {
+          "expression": "MPL-1.1"
+        },
+        {
+          "expression": "LGPL-2.1-or-later"
+        },
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "javassist",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.28.0-GA"
+    },
+    {
+      "bom-ref": "maven:org.junit.jupiter:junit-jupiter-api:5.11.4",
+      "group": "org.junit.jupiter",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-jupiter-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.jupiter:junit-jupiter-engine:5.11.4",
+      "group": "org.junit.jupiter",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-jupiter-engine",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.jupiter:junit-jupiter-params:5.11.4",
+      "group": "org.junit.jupiter",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-jupiter-params",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.jupiter:junit-jupiter:5.11.4",
+      "group": "org.junit.jupiter",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-jupiter",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-commons:1.11.4",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-commons:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-engine:1.11.4",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-engine",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-engine:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-engine",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-launcher:1.11.4",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-launcher",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-launcher:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-launcher",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
+      "bom-ref": "maven:org.opentest4j:opentest4j:1.3.0",
+      "group": "org.opentest4j",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "opentest4j",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.3.0"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-analysis:9.7.1",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-analysis",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.7.1"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-commons:9.7.1",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.7.1"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-commons:9.8",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.8"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-tree:9.7.1",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-tree",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.7.1"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-tree:9.8",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-tree",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.8"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm-util:9.7.1",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm-util",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.7.1"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm:9.7.1",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.7.1"
+    },
+    {
+      "bom-ref": "maven:org.ow2.asm:asm:9.8",
+      "group": "org.ow2.asm",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "asm",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "9.8"
+    },
+    {
+      "bom-ref": "maven:org.reflections:reflections:0.10.2",
+      "group": "org.reflections",
+      "licenses": [
+        {
+          "expression": "WTFPL"
+        },
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "reflections",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.10.2"
+    },
+    {
+      "bom-ref": "maven:org.slf4j:slf4j-api:1.7.36",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "slf4j-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.7.36"
+    },
+    {
+      "bom-ref": "maven:org.slf4j:slf4j-api:2.0.17",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "slf4j-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.17"
+    },
+    {
+      "bom-ref": "maven:org.slf4j:slf4j-simple:2.0.17",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "slf4j-simple",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.17"
+    },
+    {
+      "bom-ref": "maven:org.sonatype.plexus:plexus-build-api:0.0.7",
+      "group": "org.sonatype.plexus",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "plexus-build-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "0.0.7"
+    },
+    {
+      "bom-ref": "maven:org.tukaani:xz:1.9",
+      "group": "org.tukaani",
+      "licenses": [
+        {
+          "expression": "LicenseRef-Public-Domain"
+        }
+      ],
+      "name": "xz",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.9"
+    },
+    {
+      "bom-ref": "maven:org.xmlresolver:xmlresolver:5.2.2",
+      "group": "org.xmlresolver",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "xmlresolver",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "BUILD_OR_TEST_ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.2.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "name": "ZartraBedWars M02 build/test graph",
+      "type": "application",
+      "version": "0.2.0-SNAPSHOT"
+    }
+  },
+  "serialNumber": "urn:uuid:cf6d375d-3232-b880-fef1-b3a908a1f283",
+  "specVersion": "1.6",
+  "version": 1
+}

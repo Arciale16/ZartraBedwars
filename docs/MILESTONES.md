@@ -26,10 +26,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M02 — Public API, domain primitives and extension metadata
 
+- **Implementation status:** VERIFIED on 2026-07-14; evidence in `docs/IMPLEMENTATION_M02.md`. This status covers only M02 allocations of requirements that continue into later milestones.
 - **Requirements:** ARC-003/004/009/010, ECO-002/003, CONTENT-010, DISCORD-001/002/005.
 - **Entry:** M01 module/API ADR accepted.
 - **Deliver:** typed IDs, clocks/results/events, public API versioning, provider/extension contracts and metadata validator.
 - **Exit:** binary/API contract tests and example metadata pass; no Bukkit/store dependency in domain/API; JavaDoc documents thread/error/version rules.
+- **Exit evidence:** five Java-8-bytecode modules; 24 unit/contract tests; six metadata fixtures; 107-public-class binary baseline; exact Java 8/11/16/17/21 compile matrix; strict JavaDoc; architecture, Checkstyle, SpotBugs, dependency/licence/SBOM and deterministic documentation gates pass. No runtime/gameplay behavior or M03 module exists.
 
 ### M03 — Configuration, localization, permissions and validation foundations
 

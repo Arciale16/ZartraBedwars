@@ -3,7 +3,7 @@
 **Status:** accepted pre-implementation decision<br>
 **Decision:** RC-074<br>
 **Requirements:** `ZBW-DISCORD-001..008`<br>
-**Implementation status:** NOT STARTED
+**Implementation status:** M02 API/SPI CONTRACTS VERIFIED; provider/runtime behavior remains M03/M05/M16
 
 ## 1. Decision
 
@@ -139,4 +139,6 @@ Resolution order is an approved secrets provider, protected environment variable
 - Thread guard showing zero HTTP/IPC wait on the Minecraft owner thread.
 - External protocol version compatibility and rolling-upgrade tests.
 
-RC-074 is resolved at design/specification level by this document. Implementation remains gated on M02/M03/M05 foundations and the exact external transport credential ADR before M16.
+RC-074 is resolved at design/specification level by this document. Provider runtime implementation remains gated on M03/M05 foundations and the exact external transport credential ADR before M16.
+
+M02 now supplies `DiscordIntegrationApi`, immutable `DiscordEventEnvelope`, `DiscordProvider` and `DiscordCapabilities` in `zbw-integration-discord-api`. These contracts cover typed identity, idempotency, sensitivity, read-only query scope/deadline, provider capabilities, asynchronous lifecycle and typed delivery classification. No webhook, bot transport, no-op runtime, secret resolver, outbox/retry engine or Discord SDK has been implemented; those remain assigned to M03/M05/M16.

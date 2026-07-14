@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Checksum-locked Maven launcher for the Milestone 1 empty reactor."""
+"""Checksum-locked Maven launcher for verified offline builds and controlled acquisition."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ TOOLCHAINS = ROOT / "build" / "toolchains.json"
 
 
 def fail(message: str) -> "NoReturn":
-    print(f"M1 wrapper error: {message}", file=sys.stderr)
+    print(f"Build wrapper error: {message}", file=sys.stderr)
     raise SystemExit(2)
 
 
@@ -102,10 +102,10 @@ def java_executable() -> Path:
     fail("JAVA_HOME does not identify a JDK and java is not on PATH")
 
 
-def verify_python(toolchains: dict[str, object]) -> None:
+def verify_python(toolchains: dict[str, object], acquiring: bool) -> None:
     expected = str(toolchains["python"]["version"])
     actual = platform.python_version()
-    if actual != expected:
+    if actual != expected and not acquiring:
         fail(f"Python {expected} is required; current interpreter is {actual}")
 
 
@@ -150,13 +150,16 @@ def validate_arguments(arguments: list[str]) -> None:
 def main(arguments: list[str]) -> int:
     properties = read_properties(PROPERTIES)
     toolchains = json.loads(TOOLCHAINS.read_text(encoding="utf-8"))
-    verify_python(toolchains)
+    acquiring = os.environ.get("ZBW_DEPENDENCY_ACQUISITION") == "1"
+    verify_python(toolchains, acquiring)
     verified_jdk = verify_java(toolchains)
     validate_arguments(arguments)
 
     version = properties["mavenVersion"]
     archive = ROOT / ".tools" / "downloads" / f"apache-maven-{version}-bin.zip"
-    distribution = ROOT / ".tools" / "maven" / f"apache-maven-{version}"
+    distribution = (ROOT / "target" /
+                    ("acquisition-maven" if acquiring else "build-maven") /
+                    f"apache-maven-{version}")
     if not archive.is_file():
         download(properties["distributionUrl"], archive)
     validate_archive(archive, properties)
@@ -171,9 +174,10 @@ def main(arguments: list[str]) -> int:
 
     environment = os.environ.copy()
     environment["ZBW_VERIFIED_COMPILE_JDK"] = verified_jdk
-    repository = ROOT / ".m2" / "repository"
+    repository = ROOT / ("target/m02-staging" if acquiring else ".m2/repository")
     repository.mkdir(parents=True, exist_ok=True)
-    command = [str(launcher), f"-Dmaven.repo.local={repository}", "--offline", *arguments]
+    mode = [] if acquiring else ["--offline"]
+    command = [str(launcher), f"-Dmaven.repo.local={repository}", *mode, *arguments]
     return subprocess.run(command, cwd=ROOT, env=environment, check=False).returncode
 
 
