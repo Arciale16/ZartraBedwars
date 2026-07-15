@@ -41,11 +41,12 @@ def dependencies(module: str) -> dict[str, str]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] not in {"M04", "M05"}:
+    if state["active_milestone"] not in {"M04", "M05", None}:
         errors.append("active milestone must preserve the M04 baseline")
     if state["completed_milestones"] not in (
             ["M00", "M01", "M02", "M03"],
-            ["M00", "M01", "M02", "M03", "M04"]):
+            ["M00", "M01", "M02", "M03", "M04"],
+            ["M00", "M01", "M02", "M03", "M04", "M05"]):
         errors.append("completed milestones must be the ordered M04 implementation or closure set")
 
     for module in (API_MODULE, SQL_MODULE):

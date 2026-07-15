@@ -16,7 +16,7 @@ class MilestoneFourValidationTests(unittest.TestCase):
     def test_architecture_boundaries_are_exact(self) -> None:
         self.assertEqual([], m04_architecture.validate())
 
-    def test_storage_modules_remain_materialized_through_m05(self) -> None:
+    def test_storage_modules_remain_materialized_through_m05_closure(self) -> None:
         graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
         materialized = {row["id"] for row in graph["materialized_build_modules"]}
         self.assertIn("zbw-storage-api", materialized)
@@ -25,7 +25,7 @@ class MilestoneFourValidationTests(unittest.TestCase):
         if state["active_milestone"] == "M04":
             self.assertNotIn("zbw-observability", materialized)
         else:
-            self.assertEqual("M05", state["active_milestone"])
+            self.assertIn(state["active_milestone"], {"M05", None})
             self.assertIn("zbw-observability", materialized)
 
     def test_m04_dependencies_are_locked_and_never_bundled(self) -> None:

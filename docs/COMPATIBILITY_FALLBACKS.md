@@ -3,7 +3,7 @@
 **Status:** accepted mandatory compatibility policy<br>
 **Decision:** RC-075<br>
 **Requirements:** `ZBW-COMPAT-001..009`<br>
-**Implementation status:** M01 governance/fixture manifest VERIFIED; compatibility adapters NOT STARTED
+**Implementation status:** M01 governance/fixture manifest VERIFIED; M06/M22 allocation reconciled; compatibility adapters NOT STARTED
 
 The exact server distributions, build hashes, JDKs, artifact families and client-protocol certification dimensions are normative in `RUNTIME_COMPATIBILITY_MATRIX.md`. This file owns semantic fallbacks; the runtime matrix owns which exact environments must prove them.
 
@@ -17,7 +17,9 @@ For an unavailable 1.8 capability, ZartraBedWars must provide a safe visual and 
 
 Core, domain, application and feature modules never import versioned Bukkit/NMS classes. They use `zbw-compat-api` representations for materials, item metadata, sounds, particles, text, inventory/UI capabilities, entities, packets, scheduler context and client capability.
 
-`zbw-compat-v1_8` owns all 1.8 mappings and packet/platform calls. Startup selects one tested adapter and rejects an incompatible server before feature activation. Missing mappings return typed unsupported/fallback results; they never leak a modern enum/class name to legacy runtime code.
+M06 defines `zbw-compat-api`, typed fallback/degradation contracts and primary Paper 1.21.1 mappings in the Java-21 `zbw-compat-v1_20-v1_21` adapter. It does not create or certify a legacy adapter.
+
+`zbw-compat-v1_8` is implemented only in M22 and owns all 1.8 mappings and packet/platform calls. Startup selects one tested adapter and rejects an incompatible server before feature activation. Missing mappings return typed unsupported/fallback results; they never leak a modern enum/class name to legacy runtime code.
 
 ## 3. Mandatory fallback matrix
 
@@ -70,6 +72,6 @@ The generated compatibility report records exact server artifact/build/SHA-256/J
 
 ## 6. Acceptance
 
-RC-075 is resolved at policy/design level when this matrix is normative and traceable. M06 establishes the adapter contract and primary mappings; M22 may exit only after every claimed 1.8 row passes startup, gameplay, GUI, item, packet, cleanup and migration tests. A crash, unsupported enum/class exposure or loss of gameplay behavior is never an accepted fallback.
+RC-075 is resolved at policy/design level when this matrix is normative and traceable. M06 establishes only the Java-8-neutral fallback contracts and Paper 1.21.1 primary mappings and may certify only that foundation scope. M22 implements `zbw-compat-v1_8` and every other deferred legacy/intermediate fallback, then runs the complete startup, gameplay, GUI, item, packet, cleanup and migration matrix. A crash, unsupported enum/class exposure or loss of gameplay behavior is never an accepted fallback.
 
-M03 contributes only the strict `compatibility.yml` schema declaration and per-option compatibility metadata used by the generated reference. No Minecraft material, particle, sound, text, entity, packet or GUI adapter is present, and M03 therefore makes no new runtime-support claim. M06/M22 must consume these version-neutral declarations behind their adapters and preserve every fallback rule above.
+M03 contributes only the strict `compatibility.yml` schema declaration and per-option compatibility metadata used by the generated reference. No Minecraft material, particle, sound, text, entity, packet or GUI adapter is present, and M03 therefore makes no new runtime-support claim. M06/M22 must consume these version-neutral declarations behind their adapters and preserve every fallback rule above. Full 1.8–1.21.x certification remains an M22 release gate; an M06 primary-row result is never evidence of 1.8 or complete 1.20–1.21 support.

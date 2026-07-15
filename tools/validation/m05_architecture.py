@@ -53,10 +53,12 @@ def validate() -> list[str]:
     """Return all M05 architecture violations."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] != "M05":
-        errors.append("active milestone must be M05")
-    if state["completed_milestones"] != ["M00", "M01", "M02", "M03", "M04"]:
-        errors.append("M05 must start from exactly the completed M00-M04 baseline")
+    valid_states = (
+        ("M05", ["M00", "M01", "M02", "M03", "M04"]),
+        (None, ["M00", "M01", "M02", "M03", "M04", "M05"]),
+    )
+    if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
+        errors.append("milestone state must represent M05 implementation or completed closure")
 
     for module in MODULES:
         root = ROOT / module / "src/main/java"
