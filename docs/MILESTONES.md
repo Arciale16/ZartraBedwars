@@ -44,12 +44,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M04 — Storage, migrations, outbox and cache foundations
 
-- **Implementation status:** IMPLEMENTED LOCALLY on 2026-07-15; external exit evidence pending. Evidence is in `docs/IMPLEMENTATION_M04.md`. M05 remains prohibited until digest-pinned MySQL and MariaDB Testcontainers/query-plan runs pass on an approved Docker-compatible runner.
+- **Implementation status:** VERIFIED on 2026-07-15. Local and certified external evidence is in `docs/IMPLEMENTATION_M04.md`; RC-077 is resolved by PR #5 workflow run `29406777872`. This status covers only M04 allocations and does not start M05.
 - **Requirements:** DEPLOY-007/008, ARC-008, data portions of PROG/STATS/REPLAY/ATLAS.
 - **Entry:** M01 DB ADR and M02 IDs/events accepted; M03 secret/config services usable.
 - **Deliver:** repository/unit-of-work APIs; SQLite/MySQL/MariaDB adapters; Hikari; migrations; backup/restore; inbox/outbox; bounded local cache.
 - **Exit:** container/SQLite contract suites, crash/retry/idempotency/concurrency/migration tests pass; query plans and pool metrics documented; zero SQL in feature/platform classes.
-- **Local evidence:** eleven-project reactor produces Java 8 bytecode; 81 tests are discovered, with 79 passing and two external-container contracts skipped for absent Docker/audited image references. SQLite, Flyway, crash/retry/idempotency/threading/migration/cache/privacy suites pass. `zbw-storage-api` reaches 90.23% line/87.50% branch and `zbw-storage-sql` 91.34% line/72.19% branch; Checkstyle and SpotBugs report zero findings. Exact cross-JDK lock: 186 non-bundled components/591 files. Final VERIFIED status requires the two external database tests and server query plans.
+- **Exit evidence:** eleven-project reactor produces Java 8 bytecode and passes on checksum-locked Temurin 8/11/16/17/21. The local suite passes 79/79 with zero skips. Independent digest-pinned MySQL 8.4.0 and MariaDB 11.4.2 jobs each pass 91/91 reactor tests, including 12/12 mandatory external contracts with zero failures/errors/skips, seven certified JSON query plans and sanitized Hikari evidence. SQLite, Flyway, crash/retry/idempotency/threading/migration/cache/privacy/backup suites pass. `zbw-storage-api` reaches 90.23% line/87.50% branch and `zbw-storage-sql` 91.34% line/72.19% branch; Checkstyle and SpotBugs report zero findings. The exact lock contains 192 non-bundled Maven components/604 files and 15 build/CI artifacts. Dependency/licence/provenance, binary/API, JavaDoc, governance and 100%-coverage documentation gates pass.
 
 ### M05 — Scheduler, lifecycle, observability and failure substrate
 

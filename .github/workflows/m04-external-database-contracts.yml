@@ -2,8 +2,14 @@ name: M04 External Database Contracts
 
 on:
   pull_request:
+    paths-ignore:
+      - "docs/**"
+      - "THIRD_PARTY_NOTICES.md"
   push:
     branches: [main, agent/milestone-04-storage-foundations]
+    paths-ignore:
+      - "docs/**"
+      - "THIRD_PARTY_NOTICES.md"
   workflow_dispatch:
 
 permissions:

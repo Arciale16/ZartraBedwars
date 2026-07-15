@@ -35,10 +35,15 @@ The contract accepts only a plan that uses the outbox claim index for filtering;
 
 The workflow captures `EXPLAIN FORMAT=JSON` for seven representative paths on each engine: record lookup, outbox claim, inbox dedupe lookup, retention lookup, legal-hold lookup, tombstone lookup and migration-history lookup. The fixture contains 2,064 outbox rows plus representative records, inbox operations, retention rows, holds, tombstones and migration history. Certification rejects full-table access, a missing expected primary/unique/claim index or an absent plan.
 
-Raw server JSON and a sanitized manifest are written below `target/m04-external/<database>/` and uploaded by the workflow. The first certified PR #5 run remains pending; RC-077 cannot close until both database artifacts pass review.
+Raw server JSON and a sanitized manifest are written below `target/m04-external/<database>/` and uploaded by the workflow. PR #5 run [29406777872](https://github.com/Arciale16/ZartraBedwars/actions/runs/29406777872) certified all seven plans on both engines:
+
+| Engine / server | Fixture rows | Primary-key plans | Claim-index plan | Full-table access | Artifact |
+|---|---:|---:|---:|---:|---|
+| MySQL `8.4.0` | 2,064 | 6/6 `PRIMARY` | 1/1 `idx_zbw_outbox_claim` | 0 | `m04-mysql-contract-evidence` |
+| MariaDB `11.4.2-MariaDB-ubu2404` | 2,064 | 6/6 `PRIMARY` | 1/1 `idx_zbw_outbox_claim` | 0 | `m04-mariadb-contract-evidence` |
 
 ## Review thresholds
 
 Regression review is required when examined rows exceed the requested batch by more than 10×, a primary-key query scans more than one row, an outbox plan drops `idx_zbw_outbox_claim`, or p95 query/pool wait exceeds the operational budget. Plans are re-captured after schema, server-version or cardinality changes. Raw player/case IDs and SQL parameters are never attached to plan telemetry.
 
-Local SQLite plan and functional suites pass. MySQL/MariaDB plan evidence remains tied to the digest-gated workflow run because no Docker-compatible runtime exists on the current workstation.
+Local SQLite plan and functional suites pass. The immutable MySQL/MariaDB evidence is retained by the digest-gated workflow for 30 days; schema, server-version or cardinality changes must regenerate it.
