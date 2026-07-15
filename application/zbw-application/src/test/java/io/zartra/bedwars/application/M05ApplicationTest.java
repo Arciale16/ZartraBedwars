@@ -60,6 +60,7 @@ final class M05ApplicationTest {
         assertEquals(FailureKind.INTERNAL, failed.failure().get().kind());
         assertFalse(failed.failure().get().messageKey().contains("seed-secret"));
         assertEquals(1, failures.size());
+        assertEquals(1L, scheduler.snapshot().failed());
 
         final SchedulerPort.Outcome<String> nullResult = scheduler.<String>submit(descriptor(false),
                 context -> null).completion().toCompletableFuture().get(2, TimeUnit.SECONDS);

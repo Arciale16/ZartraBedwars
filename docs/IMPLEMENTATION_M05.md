@@ -14,6 +14,9 @@ M06 compatibility adapter is present.
   owner-dispatch contracts and fail-fast thread guards.
 - Fixed workers, bounded queues, explicit saturation rejection, cooperative deadlines,
   cancellation, failure isolation, graceful drain and force-stop accounting.
+- Terminal outcomes are published only after accepted/completed/failed/rejected/cancelled
+  accounting and structured failure delivery are coherent; the Linux CI race has regression
+  coverage in `M05ApplicationTest`.
 - Ordered startup/rollback/drain/shutdown lifecycle and bounded retry/circuit-breaker policies.
 - Compare-and-set recovery markers, ordered recovery steps, duplicate-completion fencing,
   MANUAL_REQUIRED degradation and a recovery event contract.
@@ -35,8 +38,8 @@ check failure and evidence bounds.
 
 | Module | Line coverage | Branch coverage | Required | Checkstyle | SpotBugs |
 |---|---:|---:|---|---|---|
-| `zbw-application` | 96.63% | 89.60% | 90% / 85% | 0 violations | 0 findings |
-| `zbw-observability` | 98.30% | 85.58% | 80% / 70% | 0 violations | 0 findings |
+| `zbw-application` | 96.69% | 90.40% | 90% / 85% | 0 violations | 0 findings |
+| `zbw-observability` | 98.31% | 85.58% | 80% / 70% | 0 violations | 0 findings |
 
 The clean checksum-locked build and quality profile pass. The API baseline contains 270 public JVM
 classes at class-major 52 and preserves every M02/M03/M04 signature. Dependency/licence/SBOM and

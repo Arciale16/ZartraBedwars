@@ -68,10 +68,11 @@ public final class BoundedTaskScheduler implements SchedulerPort {
             runner.reject();
             return runner;
         }
+        accepted.incrementAndGet();
         try {
             executor.execute(runner);
-            accepted.incrementAndGet();
         } catch (RejectedExecutionException exception) {
+            accepted.decrementAndGet();
             runner.reject();
         }
         return runner;
@@ -163,6 +164,7 @@ public final class BoundedTaskScheduler implements SchedulerPort {
         private final long deadlineNanos;
         private final CompletableFuture<Outcome<T>> completion = new CompletableFuture<Outcome<T>>();
         private final AtomicBoolean cancellation = new AtomicBoolean();
+        private final AtomicBoolean terminal = new AtomicBoolean();
         private volatile Thread runningThread;
         private Runner(final TaskDescriptor descriptor, final TaskOperation<T> operation,
                        final long deadlineNanos) {
@@ -176,17 +178,19 @@ public final class BoundedTaskScheduler implements SchedulerPort {
             return cancellation.get() || monotonic.readNanos() >= deadlineNanos;
         }
         @Override public boolean cancel() {
-            if (completion.isDone() || !cancellation.compareAndSet(false, true)) { return false; }
+            if (!terminal.compareAndSet(false, true)) { return false; }
+            cancellation.set(true);
             executor.remove(this);
             final Thread thread = runningThread;
             if (thread != null) { thread.interrupt(); }
-            completeFailure(failure(descriptor, CANCELLED, FailureKind.REJECTED,
+            finishFailure(failure(descriptor, CANCELLED, FailureKind.REJECTED,
                     "scheduler.task.cancelled", false), true);
             return true;
         }
         private boolean cancelFromShutdown() {
-            if (completion.isDone() || !cancellation.compareAndSet(false, true)) { return false; }
-            completeFailure(failure(descriptor, CANCELLED, FailureKind.REJECTED,
+            if (!terminal.compareAndSet(false, true)) { return false; }
+            cancellation.set(true);
+            finishFailure(failure(descriptor, CANCELLED, FailureKind.REJECTED,
                     "scheduler.task.shutdown", false), true);
             return true;
         }
@@ -209,8 +213,9 @@ public final class BoundedTaskScheduler implements SchedulerPort {
                 if (isCancellationRequested()) {
                     completeFailure(failure(descriptor, TIMEOUT, FailureKind.TIMEOUT,
                             "scheduler.task.timeout", true), false);
-                } else if (completion.complete(Outcome.success(value))) {
+                } else if (terminal.compareAndSet(false, true)) {
                     completed.incrementAndGet();
+                    completion.complete(Outcome.success(value));
                 }
             } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
@@ -227,11 +232,13 @@ public final class BoundedTaskScheduler implements SchedulerPort {
             }
         }
         private void completeFailure(final FailureReport report, final boolean cancellationOutcome) {
-            if (completion.complete(Outcome.<T>failure(report))) {
-                if (cancellationOutcome) { cancelled.incrementAndGet(); }
-                else if (report.kind() != FailureKind.REJECTED) { failed.incrementAndGet(); }
-                publish(report);
-            }
+            if (terminal.compareAndSet(false, true)) { finishFailure(report, cancellationOutcome); }
+        }
+        private void finishFailure(final FailureReport report, final boolean cancellationOutcome) {
+            if (cancellationOutcome) { cancelled.incrementAndGet(); }
+            else if (report.kind() != FailureKind.REJECTED) { failed.incrementAndGet(); }
+            publish(report);
+            completion.complete(Outcome.<T>failure(report));
         }
     }
 
