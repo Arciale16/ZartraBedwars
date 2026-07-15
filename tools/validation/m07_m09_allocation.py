@@ -101,17 +101,22 @@ def validate() -> list[str]:
         errors.append(f"M09 presentation module allocation drift: {sorted(m09_modules)}")
 
     for identifier, row in modules.items():
-        module_milestone = milestone_number(row["first_milestone"])
         for dependency in row["depends_on"]:
             dependency_row = modules.get(dependency)
             if dependency_row is None:
                 errors.append(f"{identifier}: unknown dependency {dependency}")
                 continue
+            activation_milestone = milestone_number(
+                row.get("dependency_since", {}).get(
+                    dependency, row["first_milestone"]
+                )
+            )
             dependency_milestone = milestone_number(dependency_row["first_milestone"])
-            if dependency_milestone > module_milestone:
+            if dependency_milestone > activation_milestone:
                 errors.append(
-                    f"{identifier}: {row['first_milestone']} depends on later "
-                    f"{dependency} ({dependency_row['first_milestone']})"
+                    f"{identifier}: dependency on {dependency} activates in "
+                    f"M{activation_milestone:02d} before "
+                    f"{dependency_row['first_milestone']}"
                 )
         if row["first_milestone"] == "M07" and PRESENTATION_MODULES.intersection(
             row["depends_on"]

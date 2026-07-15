@@ -86,10 +86,80 @@ def addon(
     )
 
 
+def m08_addon(
+    key: str,
+    tier: str,
+    name: str,
+    purpose: str,
+    overlaps: str,
+    modules: str,
+    features: Iterable[str],
+    *,
+    later_owners: str = "",
+    config: str | None = None,
+    commands: str | None = None,
+    permissions: str | None = None,
+    api: str | None = None,
+    papi: str | None = None,
+    source: str = WIKI,
+) -> Addon:
+    """Create one M08 capability with explicit continuing presentation ownership."""
+    label = key.replace("_", "-")
+    token = label.replace("-", "_")
+    permission_path = label.replace("-", ".")
+    command_surface = commands or (
+        f"/zbw {label} …; /zbw admin {label} reload|validate|inspect"
+    )
+    permission_surface = permissions or (
+        f"zartrabedwars.{permission_path}.use; "
+        f"zartrabedwars.admin.{permission_path}.*"
+    )
+    api_surface = api or (
+        f"{name} service/query API; cancellable pre-event and immutable post-event"
+    )
+    papi_surface = papi or (
+        f"zartra_{token}_* player/state placeholders with documented null/offline fallbacks"
+    )
+    later = f"; {later_owners}" if later_owners else ""
+    return addon(
+        key,
+        tier,
+        name,
+        purpose,
+        overlaps,
+        "M08 core/primary Paper; M09 final command/GUI/editor presentation; "
+        f"M16 placeholders{later}; M22 full compatibility",
+        f"{modules}, zbw-command-api, zbw-command-paper, zbw-ui-api, zbw-ui-paper",
+        features,
+        config=f"M08 core: {config or f'addons/{label}.yml with validated defaults and per-mode/arena/group overrides'}",
+        gui=(
+            f"M08 primary Paper: closed feature-specific {name} player feedback/projection only; "
+            "M09 final: unified admin editor, preview and confirmation presentation"
+        ),
+        commands=f"M09 final presentation: {command_surface}",
+        permissions=(
+            f"M08 use cases enforce {permission_surface}; "
+            "M09 command/GUI adapters revalidate the same nodes"
+        ),
+        api=f"M08 core/application: {api_surface}",
+        papi=f"M16: {papi_surface}",
+        tests=(
+            "M08 unit/application and closed Paper 1.21.1 projection tests; "
+            "M09 command/GUI/editor/confirmation tests; M16 placeholder tests; "
+            "M22 full cross-version tests"
+        ),
+        docs=(
+            f"M08 {name} application/primary-Paper reference; M09 command/permission/GUI reference; "
+            "M16 placeholder and M22 compatibility reference"
+        ),
+        source=source,
+    )
+
+
 ADDONS: tuple[Addon, ...] = (
-    addon(
+    m08_addon(
         "hotbar-manager", "Premium", "HotbarManager", "Native, state-aware and fully configurable player hotbars.",
-        "ZBW-GAME-006, ZBW-GAME-008, ZBW-UX-001, ZBW-UX-006", "M08", "zbw-ui-paper, zbw-game",
+        "ZBW-GAME-006, ZBW-GAME-008, ZBW-UX-001, ZBW-UX-006", "zbw-game, zbw-paper-modern, zbw-compat-api",
         (
             "Define independent hotbar loadouts for lobby, waiting, countdown, playing, spectator and post-game states",
             "Configure each hotbar slot with material, amount, name, lore, enchant glint and version-safe item metadata",
@@ -271,9 +341,9 @@ ADDONS: tuple[Addon, ...] = (
         commands="/spectate <player>; /spectate leave; /zbw admin spectate inspect|toggle",
         permissions="zartrabedwars.command.spectate; zartrabedwars.spectate.bypass; zartrabedwars.admin.spectate.*",
     ),
-    addon(
+    m08_addon(
         "deposit", "Free", "Deposit Addon", "Deposit eligible held items and resources into a player's Ender Chest.",
-        "ZBW-GAME-008, ZBW-SHOP-006, ZBW-UX-006", "M08", "zbw-game, zbw-paper",
+        "ZBW-GAME-008, ZBW-SHOP-006, ZBW-UX-006", "zbw-game, zbw-paper-modern",
         (
             "Trigger a deposit through a configured item action or command during eligible game states",
             "Deposit the held eligible stack into the invoking player's Ender Chest",
@@ -302,9 +372,9 @@ ADDONS: tuple[Addon, ...] = (
             "Expose menu state and selections through permission-aware admin configuration, API/events and placeholders",
         ),
     ),
-    addon(
+    m08_addon(
         "arena-start-message", "Free", "Arena Start Message", "Localized join announcements for arenas approaching a start.",
-        "ZBW-GAME-006, ZBW-UX-005, ZBW-DEPLOY-002", "M08", "zbw-game, zbw-ui-paper, zbw-proxy-api",
+        "ZBW-GAME-006, ZBW-UX-005, ZBW-DEPLOY-002", "zbw-game, zbw-paper-modern, zbw-proxy-api",
         (
             "Emit one arena-start announcement when configured waiting/countdown thresholds are crossed",
             "Render arena, mode, group, player count, capacity and countdown in localized message templates",
@@ -314,6 +384,7 @@ ADDONS: tuple[Addon, ...] = (
             "Support configurable sound/title/action-bar companions with a text-only fallback",
             "Provide admin preview/reload/diagnostics plus cancellable publish and join-click events",
         ),
+        later_owners="M20 proxy delivery",
     ),
     addon(
         "compass", "Free", "Compass", "Team tracking and localized quick team communication.",
@@ -344,9 +415,9 @@ ADDONS: tuple[Addon, ...] = (
             "Provide admin preview/configuration plus cancellable placement/effect API events",
         ),
     ),
-    addon(
+    m08_addon(
         "anti-drop", "Free", "AntiDrop", "Recover eligible drops/resources that would otherwise be lost to the void.",
-        "ZBW-GAME-002, ZBW-GAME-003, ZBW-SHOP-006", "M08", "zbw-game, zbw-paper",
+        "ZBW-GAME-002, ZBW-GAME-003, ZBW-SHOP-006", "zbw-game, zbw-paper-modern",
         (
             "Detect eligible owned item entities crossing an arena's configured void/loss boundary",
             "Capture an eligible stack exactly once before world removal",
@@ -681,9 +752,9 @@ ADDONS: tuple[Addon, ...] = (
         papi="zartra_staff_session_* and arena diagnostics only; no private audit payload placeholders",
         security="Deny-by-default granular RBAC; target immunity; reasons/confirmations; tamper-evident audit; safe rollback",
     ),
-    addon(
+    m08_addon(
         "leave-delay", "Free", "LeaveDelay Addon", "Cancelable countdown before a player leaves an active arena.",
-        "ZBW-GAME-003, ZBW-GAME-008, ZBW-UX-005", "M08", "zbw-game, zbw-ui-paper",
+        "ZBW-GAME-003, ZBW-GAME-008, ZBW-UX-005", "zbw-game, zbw-paper-modern",
         (
             "Start a configurable leave countdown instead of immediately leaving an eligible arena",
             "Show remaining delay through localized chat/title/action-bar/bossbar feedback",
@@ -800,9 +871,9 @@ ADDONS: tuple[Addon, ...] = (
         ),
         source="https://www.spigotmc.org/resources/bedwars1058-color-changer-addon.104501/",
     ),
-    addon(
+    m08_addon(
         "tab-sorter", "Free", "TabSorter", "Arena-aware tab ordering, grouping and templated header/footer.",
-        "ZBW-GAME-002, ZBW-UX-005, ZBW-PAPI-001", "M08", "zbw-ui-paper, zbw-compat-api",
+        "ZBW-GAME-002, ZBW-UX-005, ZBW-PAPI-001", "zbw-game, zbw-paper-modern, zbw-compat-api, zbw-integration-placeholderapi",
         (
             "Sort playing players by configurable team order",
             "Sort players deterministically within a team by configured rank/name policy",
@@ -850,9 +921,9 @@ ADDONS: tuple[Addon, ...] = (
         tests="M07 unit, typed-harness lifecycle, validation, persistence, rollback and permission tests; M09 command/GUI/editor/confirmation tests; M22 cross-version tests",
         docs="M07 application/configuration/API documentation; M09 command/permission/GUI reference; M16 placeholder and M22 compatibility reference",
     ),
-    addon(
+    m08_addon(
         "bossbar", "Free", "BossBar", "State-aware, localized BedWars boss bars with version fallbacks.",
-        "ZBW-GAME-006, ZBW-UX-005, ZBW-ARC-004", "M08", "zbw-ui-paper, zbw-compat-api, zbw-game",
+        "ZBW-GAME-006, ZBW-UX-005, ZBW-ARC-004", "zbw-game, zbw-paper-modern, zbw-compat-api",
         (
             "Display a waiting/countdown boss bar with state and player/capacity progress",
             "Display a playing boss bar with next event, bed/team or mode-specific progress",
@@ -864,9 +935,9 @@ ADDONS: tuple[Addon, ...] = (
             "Provide admin reload/preview/diagnostics plus bossbar render API/events/placeholders",
         ),
     ),
-    addon(
+    m08_addon(
         "adventure-mode", "Free", "AdventureMode", "Correct player game-mode transitions around waiting and active matches.",
-        "ZBW-GAME-003, ZBW-GAME-006, ZBW-GAME-009", "M08", "zbw-game, zbw-paper",
+        "ZBW-GAME-003, ZBW-GAME-006, ZBW-GAME-009", "zbw-game, zbw-paper-modern",
         (
             "Place players in adventure mode when joining an eligible waiting arena",
             "Place active team players in survival mode when gameplay starts",
@@ -993,7 +1064,7 @@ def validate() -> None:
         "zbw-application", "zbw-arena", "zbw-bungeecord", "zbw-cloudnet",
         "zbw-command-api", "zbw-command-paper", "zbw-compat-api", "zbw-config",
         "zbw-game", "zbw-integration-discord", "zbw-integration-placeholderapi",
-        "zbw-paper", "zbw-progression", "zbw-proxy-api", "zbw-redis", "zbw-shop",
+        "zbw-paper-modern", "zbw-progression", "zbw-proxy-api", "zbw-redis", "zbw-shop",
         "zbw-statistics", "zbw-ui-api", "zbw-ui-paper", "zbw-velocity",
     }
     for entry in ADDONS:
