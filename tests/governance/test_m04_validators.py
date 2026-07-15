@@ -41,6 +41,14 @@ class MilestoneFourValidationTests(unittest.TestCase):
         self.assertIn("ZBW_TEST_DATABASE_IMAGE", source)
         self.assertIn("ZBW_REQUIRE_EXTERNAL_DATABASES", source)
 
+    def test_m04_binary_api_baseline_is_cross_platform_canonical(self) -> None:
+        baseline = (ROOT / "build/api-signature-baseline-m04.txt").read_text(
+            encoding="utf-8").splitlines()
+        self.assertEqual([
+            "# ZartraBedWars M04 JVM binary API baseline", "# class-major=52"],
+            baseline[:2])
+        self.assertEqual(baseline[2:], sorted(baseline[2:]))
+
 
 if __name__ == "__main__":
     unittest.main()

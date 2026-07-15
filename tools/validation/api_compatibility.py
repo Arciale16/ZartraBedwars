@@ -124,7 +124,8 @@ def signature(path: Path) -> list[str]:
 
 
 def observed() -> str:
-    lines = ["# ZartraBedWars M04 JVM binary API baseline", "# class-major=52"]
+    header = ["# ZartraBedWars M04 JVM binary API baseline", "# class-major=52"]
+    signatures: list[str] = []
     count = 0
     for module in MODULES:
         classes = ROOT / module / "target" / "classes"
@@ -134,10 +135,10 @@ def observed() -> str:
             class_lines = signature(path)
             if class_lines:
                 count += 1
-                lines.extend(class_lines)
+                signatures.extend(class_lines)
     if not count:
         raise ValueError("No public classes found")
-    return "\n".join(lines) + "\n"
+    return "\n".join(header + sorted(signatures)) + "\n"
 
 
 def main() -> int:
