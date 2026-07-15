@@ -97,21 +97,36 @@ def validate_module_graph() -> list[str]:
     dependencies: dict[str, list[str]] = {}
     for identifier, row in planned_lookup.items():
         dependencies[identifier] = [str(value) for value in row["depends_on"]]
+        dependency_since = {
+            str(dependency): str(milestone)
+            for dependency, milestone in row.get("dependency_since", {}).items()
+        }
+        unknown_activations = set(dependency_since) - set(dependencies[identifier])
+        if unknown_activations:
+            errors.append(
+                f"{identifier}: dependency_since contains non-dependencies "
+                f"{sorted(unknown_activations)}")
         for dependency in dependencies[identifier]:
             if dependency not in planned_lookup:
                 errors.append(f"{identifier}: unknown planned dependency {dependency}")
                 continue
             try:
                 module_milestone = milestone_number(row["first_milestone"])
+                activation_milestone = milestone_number(
+                    dependency_since.get(dependency, row["first_milestone"]))
                 dependency_milestone = milestone_number(
                     planned_lookup[dependency]["first_milestone"])
             except ValueError as error:
                 errors.append(str(error))
                 continue
-            if dependency_milestone > module_milestone:
+            if activation_milestone < module_milestone:
                 errors.append(
-                    f"{identifier}: {row['first_milestone']} depends on later "
-                    f"{dependency} ({planned_lookup[dependency]['first_milestone']})")
+                    f"{identifier}: {dependency} activates before the module exists")
+            if dependency_milestone > activation_milestone:
+                errors.append(
+                    f"{identifier}: dependency on {dependency} activates in "
+                    f"M{activation_milestone:02d} before {dependency} exists "
+                    f"({planned_lookup[dependency]['first_milestone']})")
         if row["layer"] in {"api", "domain", "application"} and "platform" in identifier:
             errors.append(f"{identifier}: platform naming leaked into a core layer")
     for cycle in graph_cycles(dependencies):

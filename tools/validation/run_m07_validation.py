@@ -17,6 +17,7 @@ from m06_architecture import validate as validate_m06_architecture
 from m06_m22_allocation import validate as validate_m06_m22_allocation
 from m07_architecture import validate as validate_m07_architecture
 from m07_m09_allocation import validate as validate_m07_m09_allocation
+from m08_m09_allocation import validate as validate_m08_m09_allocation
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -42,6 +43,7 @@ def main() -> int:
     failures.extend(validate_m06_architecture())
     failures.extend(validate_m07_m09_allocation())
     failures.extend(validate_m07_architecture())
+    failures.extend(validate_m08_m09_allocation())
     commands = [
         ("governance tests", [
             sys.executable, "-m", "unittest", "discover", "-s", "tests/governance", "-v",

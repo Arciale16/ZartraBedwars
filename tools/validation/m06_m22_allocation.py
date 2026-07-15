@@ -47,7 +47,7 @@ def validate() -> list[str]:
         "zbw-paper-modern": (
             21,
             "M06",
-            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21"],
+            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -58,6 +58,9 @@ def validate() -> list[str]:
         actual = (row["bytecode"], row["first_milestone"], row["depends_on"])
         if actual != (bytecode, milestone, dependencies):
             errors.append(f"{identifier}: incorrect M06 allocation {actual}")
+    paper = modules.get("zbw-paper-modern", {})
+    if paper.get("dependency_since") != {"zbw-game": "M08"}:
+        errors.append("zbw-paper-modern: game dependency must activate only in M08")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)
@@ -69,6 +72,10 @@ def validate() -> list[str]:
         if row["first_milestone"] != "M06":
             continue
         for dependency in row["depends_on"]:
+            activation = row.get("dependency_since", {}).get(
+                dependency, row["first_milestone"])
+            if milestone(activation) > 6:
+                continue
             dependency_row = modules.get(dependency)
             if dependency_row is None:
                 continue
