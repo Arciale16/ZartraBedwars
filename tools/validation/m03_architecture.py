@@ -51,7 +51,7 @@ def sources(module: str) -> list[Path]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build" / "milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] not in {"M03", "M04"}:
+    if state["active_milestone"] not in {"M03", "M04", "M05"}:
         errors.append("active milestone must preserve the M03 baseline")
     completed = state["completed_milestones"]
     if completed not in (["M00", "M01", "M02"], ["M00", "M01", "M02", "M03"],

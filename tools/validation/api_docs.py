@@ -12,11 +12,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "target" / "apidocs"
-ARCHIVE = ROOT / "target" / "zartrabedwars-m04-javadoc.zip"
+ARCHIVE = ROOT / "target" / "zartrabedwars-m05-javadoc.zip"
 MODULES = (
     "api/zbw-api", "domain/zbw-domain", "application/zbw-application", "sdk/zbw-sdk",
     "integrations/discord/zbw-integration-discord-api", "configuration/zbw-config",
     "storage/zbw-storage-api", "storage/zbw-storage-sql",
+    "observability/zbw-observability",
 )
 
 

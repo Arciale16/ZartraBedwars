@@ -53,10 +53,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M05 — Scheduler, lifecycle, observability and failure substrate
 
+- **Implementation status:** VERIFIED locally on 2026-07-15. Evidence is in `docs/IMPLEMENTATION_M05.md`; CI matrix evidence is required on the draft PR before approval. This status covers only M05 and does not start M06.
 - **Requirements:** ARC-005/006, OPS-005/006, GAME-010.
 - **Entry:** M02 application ports and M03 config exist.
 - **Deliver:** owner-thread dispatch, bounded executors/queues, lifecycle drain, health/metrics, sanitized diagnostics, Plugin Doctor extension SPI.
 - **Exit:** thread guards catch illegal calls; saturation/cancellation/shutdown/fault tests pass; exported diagnostics contain no test secrets.
+- **Exit evidence:** twelve-project Java-8-bytecode reactor; 101/101 deterministic tests with zero skips; application coverage 96.69% line/90.40% branch; observability coverage 98.31% line/85.58% branch; Checkstyle and SpotBugs zero findings; additive 270-class M05 binary baseline; strict JavaDoc; dependency/licence/SBOM/notices and deterministic M00-M05 governance pass. The exact Temurin 8/11/16/17/21 build matrix is enforced by `.github/workflows/m05-toolchain-matrix.yml`.
 
 ### M06 — Compatibility and world-provider foundation
 

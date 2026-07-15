@@ -16,12 +16,17 @@ class MilestoneFourValidationTests(unittest.TestCase):
     def test_architecture_boundaries_are_exact(self) -> None:
         self.assertEqual([], m04_architecture.validate())
 
-    def test_storage_modules_are_materialized_without_m05(self) -> None:
+    def test_storage_modules_remain_materialized_through_m05(self) -> None:
         graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
         materialized = {row["id"] for row in graph["materialized_build_modules"]}
         self.assertIn("zbw-storage-api", materialized)
         self.assertIn("zbw-storage-sql", materialized)
-        self.assertNotIn("zbw-observability", materialized)
+        state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
+        if state["active_milestone"] == "M04":
+            self.assertNotIn("zbw-observability", materialized)
+        else:
+            self.assertEqual("M05", state["active_milestone"])
+            self.assertIn("zbw-observability", materialized)
 
     def test_m04_dependencies_are_locked_and_never_bundled(self) -> None:
         lock = json.loads((ROOT / "build/maven-dependency-lock.json").read_text(encoding="utf-8"))
