@@ -51,10 +51,11 @@ def sources(module: str) -> list[Path]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build" / "milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] != "M03":
-        errors.append("active milestone must be M03 during implementation")
+    if state["active_milestone"] not in {"M03", "M04"}:
+        errors.append("active milestone must preserve the M03 baseline")
     completed = state["completed_milestones"]
-    if completed not in (["M00", "M01", "M02"], ["M00", "M01", "M02", "M03"]):
+    if completed not in (["M00", "M01", "M02"], ["M00", "M01", "M02", "M03"],
+                         ["M00", "M01", "M02", "M03", "M04"]):
         errors.append("completed milestones must be the ordered M03 implementation or closure set")
 
     marker = re.compile(
@@ -126,7 +127,10 @@ def validate() -> list[str]:
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
     if "zbw-config" not in materialized:
         errors.append("zbw-config is absent from materialized module graph")
-    for later_path in ("storage", "platform", "proxy", "gameplay", "replay", "atlas"):
+    later_paths = ["platform", "proxy", "gameplay", "replay", "atlas"]
+    if state["active_milestone"] == "M03":
+        later_paths.append("storage")
+    for later_path in later_paths:
         if (ROOT / later_path).exists():
             errors.append(f"post-M03 production path materialized: {later_path}")
     if list(ROOT.rglob("plugin.yml")) or list(ROOT.rglob("paper-plugin.yml")):

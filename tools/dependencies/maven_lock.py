@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Capture, seed, restore and validate the exact M02 Maven repository."""
+"""Capture, seed, restore and validate the exact current Maven repository."""
 
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ import uuid
 ROOT = Path(__file__).resolve().parents[2]
 LOCK = ROOT / "build" / "maven-dependency-lock.json"
 SBOM = ROOT / "build" / "maven-build-sbom.cdx.json"
-NOTICES = ROOT / "build" / "M02_MAVEN_BUILD_NOTICES.md"
-DEFAULT_STAGING = ROOT / "target" / "m02-staging"
+NOTICES = ROOT / "build" / "M04_MAVEN_BUILD_NOTICES.md"
+DEFAULT_STAGING = ROOT / "target" / "m04-staging"
 DEFAULT_REPOSITORY = ROOT / ".m2" / "repository"
 CENTRAL = "https://repo.maven.apache.org/maven2/"
 SPDX_COMMIT = "c4a7237ec8f4654e867546f9f409749300f1bf4c"
@@ -67,7 +67,7 @@ def normalize_license(name: str, url: str = "") -> tuple[str, list[str]]:
         if "3.0" in evidence_text:
             return "LGPL-3.0-only", ["LGPL-3.0-only"]
         return "LGPL-2.1-or-later", ["LGPL-2.1-or-later"]
-    if lowered in {"bsd-3-clause", "the bsd license"}:
+    if lowered in {"bsd-3-clause", "the bsd license", "new bsd license"}:
         return "BSD-3-Clause", ["BSD-3-Clause"]
     if "bsd" in lowered and ("2-clause" in lowered or "2.0" in lowered):
         return "BSD-2-Clause", ["BSD-2-Clause"]
@@ -85,11 +85,14 @@ def normalize_license(name: str, url: str = "") -> tuple[str, list[str]]:
     if "gpl2 w/ cpe" in lowered or "general public license, version 2 with" in lowered:
         return "GPL-2.0-only WITH Classpath-exception-2.0", [
             "GPL-2.0-only", "Classpath-exception-2.0"]
+    if "universal foss exception" in lowered:
+        return "GPL-2.0-only WITH LicenseRef-Universal-FOSS-exception-1.0", [
+            "GPL-2.0-only"]
     raise ValueError(f"Unrecognized Maven licence declaration: {name!r}")
 
 
 def fetch_bytes(url: str) -> bytes:
-    request = urllib.request.Request(url, headers={"User-Agent": "ZartraBedWars-M02/1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "ZartraBedWars-M04/1"})
     with urllib.request.urlopen(request, timeout=90) as response:
         return response.read()
 
@@ -201,17 +204,17 @@ def make_sbom(lock: dict[str, object]) -> dict[str, object]:
         "serialNumber": f"urn:uuid:{uuid.UUID(lock_digest[:32])}",
         "version": 1,
         "metadata": {"component": {
-            "type": "application", "name": "ZartraBedWars M02 build/test graph",
-            "version": "0.2.0-SNAPSHOT"}},
+            "type": "application", "name": "ZartraBedWars M04 build/runtime/test graph",
+            "version": "0.4.0-SNAPSHOT"}},
         "components": components,
     }
 
 
 def make_notices(lock: dict[str, object]) -> str:
     lines = [
-        "# Milestone 2 Maven Build and Test Notices",
+        "# Milestone 4 Maven Dependency Notices",
         "",
-        "These components execute only while building or testing M02. They are not bundled in a ZartraBedWars product artifact.",
+        "These components are resolved for the M04 thin-artifact build, runtime adapters or tests. No dependency is bundled in a ZartraBedWars product artifact.",
         "",
         "| Coordinates | Licence declaration | Scope | Product bundled |",
         "|---|---|---|---|",
@@ -220,7 +223,7 @@ def make_notices(lock: dict[str, object]) -> str:
         licenses = "; ".join(record["spdx_expression"] for record in component["licenses"])
         lines.append(
             f"| `{component['group']}:{component['artifact']}:{component['version']}` | "
-            f"{licenses} | BUILD_OR_TEST_ONLY | NO |")
+            f"{licenses} | {component['scope']} | NO |")
     lines.extend([
         "",
         "Generated deterministically from `build/maven-dependency-lock.json`. Product redistribution, shading and modification: none.",
@@ -264,7 +267,7 @@ def capture(repository: Path) -> int:
                     (str(declaration["declared_name"]) + "\n" + str(declaration["declared_url"])).encode("utf-8")).hexdigest()
         component = components.setdefault(identifier, {
             "id": identifier, "group": group, "artifact": artifact, "version": version,
-            "scope": "BUILD_OR_TEST_ONLY", "product_bundled": False,
+            "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED", "product_bundled": False,
             "redistribution": False, "shading": False, "modification": False,
             "commercial_use": True, "licenses": declarations, "files": []})
         component["files"].append(relative.as_posix())
@@ -301,7 +304,7 @@ def validate_lock() -> list[str]:
         if not component["licenses"]:
             errors.append(f"missing Maven licence: {component['id']}")
         if any(component[field] for field in ("product_bundled", "redistribution", "shading", "modification")):
-            errors.append(f"Maven build/test component has product rights enabled: {component['id']}")
+            errors.append(f"Maven thin-artifact component has product rights enabled: {component['id']}")
         for license_record in component["licenses"]:
             if not license_record["spdx_expression"]:
                 errors.append(f"empty SPDX expression: {component['id']}")
@@ -310,7 +313,7 @@ def validate_lock() -> list[str]:
     if not SBOM.is_file() or SBOM.read_text(encoding="utf-8") != canonical_json(make_sbom(lock)):
         errors.append("build/maven-build-sbom.cdx.json is stale")
     if not NOTICES.is_file() or NOTICES.read_text(encoding="utf-8") != make_notices(lock):
-        errors.append("build/M02_MAVEN_BUILD_NOTICES.md is stale")
+        errors.append("build/M04_MAVEN_BUILD_NOTICES.md is stale")
     return errors
 
 

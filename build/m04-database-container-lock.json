@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "baseline_date": "2026-07-15",
+  "policy": {
+    "allowed_platform": "linux/amd64",
+    "ci_pull_only": true,
+    "digest_required": true,
+    "dynamic_tags_allowed": false,
+    "product_bundling_allowed": false,
+    "redistribution_allowed": false
+  },
+  "images": [
+    {
+      "engine": "mysql",
+      "name": "MySQL Community Server Docker Official Image",
+      "version": "8.4.0",
+      "reference": "docker.io/library/mysql:8.4.0@sha256:dab7049abafe3a0e12cbe5e49050cf149881c0cd9665c289e5808b9dad39c9e0",
+      "index_digest": "sha256:dab7049abafe3a0e12cbe5e49050cf149881c0cd9665c289e5808b9dad39c9e0",
+      "linux_amd64_manifest_digest": "sha256:3e5649c69e6d75cf88fc6f8f39f877453faa4e5167b5e648007e45f54bb17f6b",
+      "config_digest": "sha256:05247af918647d8d063d2e880cc65c1546a7d616cde1e6c6f5dab1ca091f6cf8",
+      "created": "2024-06-18T16:01:15Z",
+      "registry": "https://registry-1.docker.io/v2/library/mysql",
+      "official_image_page": "https://hub.docker.com/_/mysql",
+      "source_repository": "https://github.com/docker-library/mysql",
+      "source_commit": "c857c9c091e6194c9fb9c91e83d343b186e103cd",
+      "source_manifest": {
+        "url": "https://raw.githubusercontent.com/docker-library/mysql/c857c9c091e6194c9fb9c91e83d343b186e103cd/versions.json",
+        "sha256": "b2326212b7ad61fee5ad8b3596bfe61e74bb4d5bfd7916642234048fd41d60eb"
+      },
+      "license": {
+        "spdx": "GPL-2.0-only",
+        "url": "https://raw.githubusercontent.com/docker-library/mysql/c857c9c091e6194c9fb9c91e83d343b186e103cd/LICENSE",
+        "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+      },
+      "rights": {
+        "scope": "CI-ONLY",
+        "commercial_use": true,
+        "modification": false,
+        "redistribution": false,
+        "product_bundled": false,
+        "attribution": "M04 CI evidence and dependency audit"
+      }
+    },
+    {
+      "engine": "mariadb",
+      "name": "MariaDB Server Docker Official Image",
+      "version": "11.4.2",
+      "reference": "docker.io/library/mariadb:11.4.2@sha256:e59ba8783bf7bc02a4779f103bb0d8751ac0e10f9471089709608377eded7aa8",
+      "index_digest": "sha256:e59ba8783bf7bc02a4779f103bb0d8751ac0e10f9471089709608377eded7aa8",
+      "linux_amd64_manifest_digest": "sha256:fdc72e8f2960d758aa77ebac9ea65028ca195d4cba854a14e4afae703f5f6a22",
+      "config_digest": "sha256:4486d64c9c3b538b6dee6bcd5ea0ac5f74ea5e3cafc71181a54ec678ae0370aa",
+      "created": "2024-06-11T02:37:24Z",
+      "registry": "https://registry-1.docker.io/v2/library/mariadb",
+      "official_image_page": "https://hub.docker.com/_/mariadb",
+      "source_repository": "https://github.com/MariaDB/mariadb-docker",
+      "source_commit": "43ea329ad4639e43c6b8662cbaa460d4fb22d9fc",
+      "source_manifest": {
+        "url": "https://raw.githubusercontent.com/MariaDB/mariadb-docker/43ea329ad4639e43c6b8662cbaa460d4fb22d9fc/versions.json",
+        "sha256": "978606c8d7be06725aa92a9326ae37405702399b07e1460f0fe27292fc61031d"
+      },
+      "license": {
+        "spdx": "GPL-2.0-only",
+        "url": "https://raw.githubusercontent.com/MariaDB/mariadb-docker/43ea329ad4639e43c6b8662cbaa460d4fb22d9fc/LICENSE",
+        "sha256": "ab15fd526bd8dd18a9e77ebc139656bf4d33e97fc7238cd11bf60e2b9b8666c6"
+      },
+      "rights": {
+        "scope": "CI-ONLY",
+        "commercial_use": true,
+        "modification": false,
+        "redistribution": false,
+        "product_bundled": false,
+        "attribution": "M04 CI evidence and dependency audit"
+      }
+    }
+  ]
+}

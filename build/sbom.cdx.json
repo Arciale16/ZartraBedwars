@@ -68,6 +68,39 @@
       "version": "a26af69be951a213d495a4c3e4e4022e16d87065"
     },
     {
+      "bom-ref": "github-action:actions/upload-artifact:ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://github.com/actions/upload-artifact/tree/ea165f8d65b6e75b540449e92b4886f43607fa02"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "actions/upload-artifact",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "CI-ONLY"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "application",
+      "version": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+    },
+    {
       "bom-ref": "tool:cpython:3.12.13:linux-22.04-x64",
       "externalReferences": [
         {
@@ -543,7 +576,7 @@
       "version": "0.1.0-SNAPSHOT"
     }
   },
-  "serialNumber": "urn:uuid:f85b8cc2-2778-3fec-8719-12fddae07013",
+  "serialNumber": "urn:uuid:9048ef67-305a-13b5-6a9e-54c530f06543",
   "specVersion": "1.6",
   "version": 1
 }

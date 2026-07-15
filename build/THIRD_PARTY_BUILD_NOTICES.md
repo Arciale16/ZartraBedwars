@@ -6,6 +6,7 @@ These tools are used only to build or validate the project. They are not bundled
 |---|---|---|---|---|
 | actions/checkout | `34e114876b0b11c390a56381ad16ebd13914f8d5` | MIT | CI-ONLY | https://github.com/actions/checkout/tree/34e114876b0b11c390a56381ad16ebd13914f8d5 |
 | actions/setup-python | `a26af69be951a213d495a4c3e4e4022e16d87065` | MIT | CI-ONLY | https://github.com/actions/setup-python/tree/a26af69be951a213d495a4c3e4e4022e16d87065 |
+| actions/upload-artifact | `ea165f8d65b6e75b540449e92b4886f43607fa02` | MIT | CI-ONLY | https://github.com/actions/upload-artifact/tree/ea165f8d65b6e75b540449e92b4886f43607fa02 |
 | CPython 3.12.13 GitHub Actions toolcache build | `3.12.13` | Python-2.0 | BUILD-ONLY | https://github.com/actions/python-versions/releases/download/3.12.13-27650778726/python-3.12.13-linux-22.04-x64.tar.gz |
 | Apache Maven Distribution | `3.9.11` | Apache-2.0 | BUILD-ONLY | https://archive.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.zip |
 | Eclipse Temurin JDK 11 Linux x64 | `11.0.26+4` | GPL-2.0-with-classpath-exception | BUILD-ONLY | https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.26%2B4/OpenJDK11U-jdk_x64_linux_hotspot_11.0.26_4.tar.gz |

@@ -19,6 +19,8 @@
     <module>domain/zbw-domain</module>
     <module>application/zbw-application</module>
     <module>configuration/zbw-config</module>
+    <module>storage/zbw-storage-api</module>
+    <module>storage/zbw-storage-sql</module>
     <module>sdk/zbw-sdk</module>
     <module>integrations/discord/zbw-integration-discord-api</module>
   </modules>
@@ -43,6 +45,13 @@
     <spotbugs.plugin.version>4.9.2.0</spotbugs.plugin.version>
     <spotbugs.version>4.9.2</spotbugs.version>
     <owasp.dependency-check.version>12.1.0</owasp.dependency-check.version>
+    <flyway.version>10.20.1</flyway.version>
+    <hikaricp.version>4.0.3</hikaricp.version>
+    <caffeine.version>2.9.3</caffeine.version>
+    <sqlite-jdbc.version>3.46.0.0</sqlite-jdbc.version>
+    <mariadb-driver.version>3.4.1</mariadb-driver.version>
+    <mysql-driver.version>8.4.0</mysql-driver.version>
+    <testcontainers.version>1.20.4</testcontainers.version>
   </properties>
 
   <build>

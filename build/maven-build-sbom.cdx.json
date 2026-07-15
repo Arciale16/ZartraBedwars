@@ -2,6 +2,162 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
+      "bom-ref": "maven:com.fasterxml.jackson.core:jackson-annotations:2.15.2",
+      "group": "com.fasterxml.jackson.core",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jackson-annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.2"
+    },
+    {
+      "bom-ref": "maven:com.fasterxml.jackson.core:jackson-core:2.15.2",
+      "group": "com.fasterxml.jackson.core",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jackson-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.2"
+    },
+    {
+      "bom-ref": "maven:com.fasterxml.jackson.core:jackson-databind:2.15.2",
+      "group": "com.fasterxml.jackson.core",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jackson-databind",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.2"
+    },
+    {
+      "bom-ref": "maven:com.fasterxml.jackson.dataformat:jackson-dataformat-toml:2.15.2",
+      "group": "com.fasterxml.jackson.dataformat",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jackson-dataformat-toml",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.2"
+    },
+    {
+      "bom-ref": "maven:com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2",
+      "group": "com.fasterxml.jackson.datatype",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jackson-datatype-jsr310",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.15.2"
+    },
+    {
+      "bom-ref": "maven:com.github.ben-manes.caffeine:caffeine:2.9.3",
+      "group": "com.github.ben-manes.caffeine",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "caffeine",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.9.3"
+    },
+    {
       "bom-ref": "maven:com.github.cliftonlabs:json-simple:3.0.2",
       "group": "com.github.cliftonlabs",
       "licenses": [
@@ -13,7 +169,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -26,6 +182,84 @@
       ],
       "type": "library",
       "version": "3.0.2"
+    },
+    {
+      "bom-ref": "maven:com.github.docker-java:docker-java-api:3.4.0",
+      "group": "com.github.docker-java",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "docker-java-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.0"
+    },
+    {
+      "bom-ref": "maven:com.github.docker-java:docker-java-transport-zerodep:3.4.0",
+      "group": "com.github.docker-java",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "docker-java-transport-zerodep",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.0"
+    },
+    {
+      "bom-ref": "maven:com.github.docker-java:docker-java-transport:3.4.0",
+      "group": "com.github.docker-java",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "docker-java-transport",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.0"
     },
     {
       "bom-ref": "maven:com.github.javaparser:javaparser-core:3.26.3",
@@ -42,7 +276,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -68,7 +302,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -94,7 +328,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -120,7 +354,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -146,7 +380,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -172,7 +406,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -187,6 +421,32 @@
       "version": "1.0-1"
     },
     {
+      "bom-ref": "maven:com.github.waffle:waffle-jna:3.3.0",
+      "group": "com.github.waffle",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "waffle-jna",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.3.0"
+    },
+    {
       "bom-ref": "maven:com.google.code.findbugs:jsr305:3.0.2",
       "group": "com.google.code.findbugs",
       "licenses": [
@@ -198,7 +458,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -224,7 +484,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -239,6 +499,32 @@
       "version": "2.12.1"
     },
     {
+      "bom-ref": "maven:com.google.errorprone:error_prone_annotations:2.10.0",
+      "group": "com.google.errorprone",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "error_prone_annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.10.0"
+    },
+    {
       "bom-ref": "maven:com.google.errorprone:error_prone_annotations:2.36.0",
       "group": "com.google.errorprone",
       "licenses": [
@@ -250,7 +536,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -265,58 +551,6 @@
       "version": "2.36.0"
     },
     {
-      "bom-ref": "maven:com.google.errorprone:error_prone_annotations:2.7.1",
-      "group": "com.google.errorprone",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "error_prone_annotations",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "2.7.1"
-    },
-    {
-      "bom-ref": "maven:com.google.guava:failureaccess:1.0.1",
-      "group": "com.google.guava",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "failureaccess",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "1.0.1"
-    },
-    {
       "bom-ref": "maven:com.google.guava:failureaccess:1.0.2",
       "group": "com.google.guava",
       "licenses": [
@@ -328,7 +562,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -343,32 +577,6 @@
       "version": "1.0.2"
     },
     {
-      "bom-ref": "maven:com.google.guava:guava:31.0.1-jre",
-      "group": "com.google.guava",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "guava",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "31.0.1-jre"
-    },
-    {
       "bom-ref": "maven:com.google.guava:guava:33.4.0-jre",
       "group": "com.google.guava",
       "licenses": [
@@ -380,7 +588,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -406,7 +614,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -421,32 +629,6 @@
       "version": "9999.0-empty-to-avoid-conflict-with-guava"
     },
     {
-      "bom-ref": "maven:com.google.j2objc:j2objc-annotations:1.3",
-      "group": "com.google.j2objc",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "j2objc-annotations",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "1.3"
-    },
-    {
       "bom-ref": "maven:com.google.j2objc:j2objc-annotations:3.0.0",
       "group": "com.google.j2objc",
       "licenses": [
@@ -458,7 +640,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -473,6 +655,58 @@
       "version": "3.0.0"
     },
     {
+      "bom-ref": "maven:com.google.protobuf:protobuf-java:3.25.1",
+      "group": "com.google.protobuf",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "protobuf-java",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.25.1"
+    },
+    {
+      "bom-ref": "maven:com.mysql:mysql-connector-j:8.4.0",
+      "group": "com.mysql",
+      "licenses": [
+        {
+          "expression": "GPL-2.0-only WITH LicenseRef-Universal-FOSS-exception-1.0"
+        }
+      ],
+      "name": "mysql-connector-j",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "8.4.0"
+    },
+    {
       "bom-ref": "maven:com.puppycrawl.tools:checkstyle:10.21.2",
       "group": "com.puppycrawl.tools",
       "licenses": [
@@ -484,7 +718,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -499,32 +733,6 @@
       "version": "10.21.2"
     },
     {
-      "bom-ref": "maven:com.puppycrawl.tools:checkstyle:9.3",
-      "group": "com.puppycrawl.tools",
-      "licenses": [
-        {
-          "expression": "LGPL-2.1-or-later"
-        }
-      ],
-      "name": "checkstyle",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "9.3"
-    },
-    {
       "bom-ref": "maven:com.thoughtworks.qdox:qdox:1.12.1",
       "group": "com.thoughtworks.qdox",
       "licenses": [
@@ -536,7 +744,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -562,7 +770,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -577,6 +785,32 @@
       "version": "2.2.0"
     },
     {
+      "bom-ref": "maven:com.zaxxer:HikariCP:4.0.3",
+      "group": "com.zaxxer",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "HikariCP",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "4.0.3"
+    },
+    {
       "bom-ref": "maven:commons-beanutils:commons-beanutils:1.10.0",
       "group": "commons-beanutils",
       "licenses": [
@@ -588,7 +822,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -614,7 +848,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -629,32 +863,6 @@
       "version": "1.10.1"
     },
     {
-      "bom-ref": "maven:commons-beanutils:commons-beanutils:1.9.4",
-      "group": "commons-beanutils",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "commons-beanutils",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "1.9.4"
-    },
-    {
       "bom-ref": "maven:commons-codec:commons-codec:1.16.1",
       "group": "commons-codec",
       "licenses": [
@@ -666,7 +874,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -692,7 +900,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -718,7 +926,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -744,7 +952,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -770,7 +978,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -796,7 +1004,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -822,7 +1030,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -848,7 +1056,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -874,7 +1082,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -889,32 +1097,6 @@
       "version": "1.1.1"
     },
     {
-      "bom-ref": "maven:commons-logging:commons-logging:1.2",
-      "group": "commons-logging",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "commons-logging",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "1.2"
-    },
-    {
       "bom-ref": "maven:commons-logging:commons-logging:1.3.5",
       "group": "commons-logging",
       "licenses": [
@@ -926,7 +1108,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -941,32 +1123,6 @@
       "version": "1.3.5"
     },
     {
-      "bom-ref": "maven:info.picocli:picocli:4.6.2",
-      "group": "info.picocli",
-      "licenses": [
-        {
-          "expression": "Apache-2.0"
-        }
-      ],
-      "name": "picocli",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "4.6.2"
-    },
-    {
       "bom-ref": "maven:info.picocli:picocli:4.7.6",
       "group": "info.picocli",
       "licenses": [
@@ -978,7 +1134,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1004,7 +1160,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1030,7 +1186,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1059,7 +1215,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1085,7 +1241,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1100,18 +1256,18 @@
       "version": "2.0.0"
     },
     {
-      "bom-ref": "maven:net.sf.saxon:Saxon-HE:10.6",
-      "group": "net.sf.saxon",
+      "bom-ref": "maven:junit:junit:4.13.2",
+      "group": "junit",
       "licenses": [
         {
-          "expression": "MPL-2.0"
+          "expression": "EPL-2.0"
         }
       ],
-      "name": "Saxon-HE",
+      "name": "junit",
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1123,7 +1279,65 @@
         }
       ],
       "type": "library",
-      "version": "10.6"
+      "version": "4.13.2"
+    },
+    {
+      "bom-ref": "maven:net.java.dev.jna:jna-platform:5.13.0",
+      "group": "net.java.dev.jna",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        },
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jna-platform",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.13.0"
+    },
+    {
+      "bom-ref": "maven:net.java.dev.jna:jna:5.13.0",
+      "group": "net.java.dev.jna",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        },
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jna",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "5.13.0"
     },
     {
       "bom-ref": "maven:net.sf.saxon:Saxon-HE:12.5",
@@ -1137,7 +1351,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1163,7 +1377,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1178,32 +1392,6 @@
       "version": "4.13.2"
     },
     {
-      "bom-ref": "maven:org.antlr:antlr4-runtime:4.9.3",
-      "group": "org.antlr",
-      "licenses": [
-        {
-          "expression": "BSD-3-Clause"
-        }
-      ],
-      "name": "antlr4-runtime",
-      "properties": [
-        {
-          "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
-        },
-        {
-          "name": "zartra.productBundled",
-          "value": "false"
-        },
-        {
-          "name": "zartra.commercialUse",
-          "value": "true"
-        }
-      ],
-      "type": "library",
-      "version": "4.9.3"
-    },
-    {
       "bom-ref": "maven:org.apache-extras.beanshell:bsh:2.0b6",
       "group": "org.apache-extras.beanshell",
       "licenses": [
@@ -1215,7 +1403,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1241,7 +1429,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1267,7 +1455,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1293,7 +1481,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1308,6 +1496,32 @@
       "version": "6.10.0"
     },
     {
+      "bom-ref": "maven:org.apache.commons:commons-compress:1.24.0",
+      "group": "org.apache.commons",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "commons-compress",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.24.0"
+    },
+    {
       "bom-ref": "maven:org.apache.commons:commons-compress:1.26.1",
       "group": "org.apache.commons",
       "licenses": [
@@ -1319,7 +1533,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1345,7 +1559,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1371,7 +1585,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1397,7 +1611,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1423,7 +1637,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1449,7 +1663,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1475,7 +1689,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1501,7 +1715,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1527,7 +1741,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1553,7 +1767,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1579,7 +1793,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1605,7 +1819,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1631,7 +1845,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1657,7 +1871,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1683,7 +1897,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1709,7 +1923,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1735,7 +1949,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1761,7 +1975,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1787,7 +2001,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1813,7 +2027,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1839,7 +2053,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1865,7 +2079,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1891,7 +2105,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1917,7 +2131,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1943,7 +2157,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1969,7 +2183,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -1995,7 +2209,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2021,7 +2235,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2047,7 +2261,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2073,7 +2287,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2099,7 +2313,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2125,7 +2339,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2151,7 +2365,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2177,7 +2391,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2203,7 +2417,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2229,7 +2443,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2255,7 +2469,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2281,7 +2495,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2307,7 +2521,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2333,7 +2547,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2359,7 +2573,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2385,7 +2599,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2411,7 +2625,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2437,7 +2651,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2463,7 +2677,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2489,7 +2703,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2515,7 +2729,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2541,7 +2755,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2567,7 +2781,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2593,7 +2807,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2619,7 +2833,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2645,7 +2859,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2671,7 +2885,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2697,7 +2911,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2723,7 +2937,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2749,7 +2963,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2775,7 +2989,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2801,7 +3015,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2827,7 +3041,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2853,7 +3067,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2879,7 +3093,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2905,7 +3119,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2931,7 +3145,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2957,7 +3171,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2972,7 +3186,7 @@
       "version": "1.1.2"
     },
     {
-      "bom-ref": "maven:org.checkerframework:checker-qual:3.12.0",
+      "bom-ref": "maven:org.checkerframework:checker-qual:3.19.0",
       "group": "org.checkerframework",
       "licenses": [
         {
@@ -2983,7 +3197,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -2995,7 +3209,7 @@
         }
       ],
       "type": "library",
-      "version": "3.12.0"
+      "version": "3.19.0"
     },
     {
       "bom-ref": "maven:org.checkerframework:checker-qual:3.48.4",
@@ -3009,7 +3223,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3035,7 +3249,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3061,7 +3275,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3087,7 +3301,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3113,7 +3327,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3139,7 +3353,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3165,7 +3379,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3191,7 +3405,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3217,7 +3431,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3243,7 +3457,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3269,7 +3483,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3295,7 +3509,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3321,7 +3535,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3347,7 +3561,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3373,7 +3587,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3399,7 +3613,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3425,7 +3639,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3451,7 +3665,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3477,7 +3691,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3503,7 +3717,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3529,7 +3743,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3555,7 +3769,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3581,7 +3795,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3596,6 +3810,58 @@
       "version": "0.9.0.M3"
     },
     {
+      "bom-ref": "maven:org.flywaydb:flyway-core:10.20.1",
+      "group": "org.flywaydb",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "flyway-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "10.20.1"
+    },
+    {
+      "bom-ref": "maven:org.hamcrest:hamcrest-core:1.3",
+      "group": "org.hamcrest",
+      "licenses": [
+        {
+          "expression": "BSD-3-Clause"
+        }
+      ],
+      "name": "hamcrest-core",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.3"
+    },
+    {
       "bom-ref": "maven:org.iq80.snappy:snappy:0.4",
       "group": "org.iq80.snappy",
       "licenses": [
@@ -3607,7 +3873,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3633,7 +3899,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3659,7 +3925,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3685,7 +3951,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3711,7 +3977,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3743,7 +4009,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3758,6 +4024,32 @@
       "version": "3.28.0-GA"
     },
     {
+      "bom-ref": "maven:org.jetbrains:annotations:17.0.0",
+      "group": "org.jetbrains",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "annotations",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "17.0.0"
+    },
+    {
       "bom-ref": "maven:org.junit.jupiter:junit-jupiter-api:5.11.4",
       "group": "org.junit.jupiter",
       "licenses": [
@@ -3769,7 +4061,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3795,7 +4087,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3821,7 +4113,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3847,7 +4139,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3873,7 +4165,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3899,7 +4191,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3925,7 +4217,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3951,7 +4243,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -3977,7 +4269,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4003,7 +4295,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4018,6 +4310,32 @@
       "version": "1.12.1"
     },
     {
+      "bom-ref": "maven:org.mariadb.jdbc:mariadb-java-client:3.4.1",
+      "group": "org.mariadb.jdbc",
+      "licenses": [
+        {
+          "expression": "LGPL-2.1-or-later"
+        }
+      ],
+      "name": "mariadb-java-client",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.4.1"
+    },
+    {
       "bom-ref": "maven:org.opentest4j:opentest4j:1.3.0",
       "group": "org.opentest4j",
       "licenses": [
@@ -4029,7 +4347,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4055,7 +4373,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4081,7 +4399,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4107,7 +4425,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4133,7 +4451,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4159,7 +4477,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4185,7 +4503,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4211,7 +4529,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4237,7 +4555,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4266,7 +4584,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4281,6 +4599,84 @@
       "version": "0.10.2"
     },
     {
+      "bom-ref": "maven:org.rnorth.duct-tape:duct-tape:1.0.8",
+      "group": "org.rnorth.duct-tape",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "duct-tape",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.0.8"
+    },
+    {
+      "bom-ref": "maven:org.slf4j:jcl-over-slf4j:2.0.7",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "jcl-over-slf4j",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.7"
+    },
+    {
+      "bom-ref": "maven:org.slf4j:slf4j-api:1.7.30",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "slf4j-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.7.30"
+    },
+    {
       "bom-ref": "maven:org.slf4j:slf4j-api:1.7.36",
       "group": "org.slf4j",
       "licenses": [
@@ -4292,7 +4688,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4307,6 +4703,32 @@
       "version": "1.7.36"
     },
     {
+      "bom-ref": "maven:org.slf4j:slf4j-api:2.0.0-alpha1",
+      "group": "org.slf4j",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "slf4j-api",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.0.0-alpha1"
+    },
+    {
       "bom-ref": "maven:org.slf4j:slf4j-api:2.0.17",
       "group": "org.slf4j",
       "licenses": [
@@ -4318,7 +4740,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4344,7 +4766,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4370,7 +4792,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4385,6 +4807,136 @@
       "version": "0.0.7"
     },
     {
+      "bom-ref": "maven:org.testcontainers:database-commons:1.20.4",
+      "group": "org.testcontainers",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "database-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.20.4"
+    },
+    {
+      "bom-ref": "maven:org.testcontainers:jdbc:1.20.4",
+      "group": "org.testcontainers",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "jdbc",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.20.4"
+    },
+    {
+      "bom-ref": "maven:org.testcontainers:mariadb:1.20.4",
+      "group": "org.testcontainers",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "mariadb",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.20.4"
+    },
+    {
+      "bom-ref": "maven:org.testcontainers:mysql:1.20.4",
+      "group": "org.testcontainers",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "mysql",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.20.4"
+    },
+    {
+      "bom-ref": "maven:org.testcontainers:testcontainers:1.20.4",
+      "group": "org.testcontainers",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "name": "testcontainers",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.20.4"
+    },
+    {
       "bom-ref": "maven:org.tukaani:xz:1.9",
       "group": "org.tukaani",
       "licenses": [
@@ -4396,7 +4948,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4411,6 +4963,32 @@
       "version": "1.9"
     },
     {
+      "bom-ref": "maven:org.xerial:sqlite-jdbc:3.46.0.0",
+      "group": "org.xerial",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "sqlite-jdbc",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "3.46.0.0"
+    },
+    {
       "bom-ref": "maven:org.xmlresolver:xmlresolver:5.2.2",
       "group": "org.xmlresolver",
       "licenses": [
@@ -4422,7 +5000,7 @@
       "properties": [
         {
           "name": "zartra.scope",
-          "value": "BUILD_OR_TEST_ONLY"
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
         },
         {
           "name": "zartra.productBundled",
@@ -4439,12 +5017,12 @@
   ],
   "metadata": {
     "component": {
-      "name": "ZartraBedWars M02 build/test graph",
+      "name": "ZartraBedWars M04 build/runtime/test graph",
       "type": "application",
-      "version": "0.2.0-SNAPSHOT"
+      "version": "0.4.0-SNAPSHOT"
     }
   },
-  "serialNumber": "urn:uuid:cf6d375d-3232-b880-fef1-b3a908a1f283",
+  "serialNumber": "urn:uuid:ce9ea714-eb50-13b9-3849-bd471cc912a3",
   "specVersion": "1.6",
   "version": 1
 }

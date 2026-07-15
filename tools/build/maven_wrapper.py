@@ -174,7 +174,7 @@ def main(arguments: list[str]) -> int:
 
     environment = os.environ.copy()
     environment["ZBW_VERIFIED_COMPILE_JDK"] = verified_jdk
-    repository = ROOT / ("target/m02-staging" if acquiring else ".m2/repository")
+    repository = ROOT / ("target/m04-staging" if acquiring else ".m2/repository")
     repository.mkdir(parents=True, exist_ok=True)
     mode = [] if acquiring else ["--offline"]
     command = [str(launcher), f"-Dmaven.repo.local={repository}", *mode, *arguments]

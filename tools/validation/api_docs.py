@@ -12,10 +12,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "target" / "apidocs"
-ARCHIVE = ROOT / "target" / "zartrabedwars-m03-javadoc.zip"
+ARCHIVE = ROOT / "target" / "zartrabedwars-m04-javadoc.zip"
 MODULES = (
     "api/zbw-api", "domain/zbw-domain", "application/zbw-application", "sdk/zbw-sdk",
     "integrations/discord/zbw-integration-discord-api", "configuration/zbw-config",
+    "storage/zbw-storage-api", "storage/zbw-storage-sql",
 )
 
 
@@ -47,9 +48,14 @@ def main() -> int:
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
     OUTPUT.mkdir(parents=True)
+    external_classpath = os.pathsep.join(str(path) for path in (
+        ROOT / ".m2/repository/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar",
+        ROOT / ".m2/repository/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar",
+    ))
     command = [
         str(executable()), "-quiet", "-Xdoclint:all,-missing", "-notimestamp", "-encoding", "UTF-8",
-        "-source", "8", "-d", str(OUTPUT), *[str(path) for path in sources],
+        "-source", "8", "-classpath", external_classpath, "-d", str(OUTPUT),
+        *[str(path) for path in sources],
     ]
     result = subprocess.run(command, cwd=ROOT, check=False)
     if result.returncode:

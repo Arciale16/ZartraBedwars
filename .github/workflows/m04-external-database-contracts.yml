@@ -1,0 +1,97 @@
+name: M04 External Database Contracts
+
+on:
+  pull_request:
+    paths-ignore:
+      - "docs/**"
+      - "THIRD_PARTY_NOTICES.md"
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "THIRD_PARTY_NOTICES.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m04-external-databases-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  database-contracts:
+    name: ${{ matrix.display }} external contracts
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - engine: mysql
+            display: MySQL 8.4.0
+          - engine: mariadb
+            display: MariaDB 11.4.2
+    env:
+      ZBW_REQUIRE_EXTERNAL_DATABASES: "1"
+      ZBW_TEST_DATABASE_ENGINE: ${{ matrix.engine }}
+      ZBW_M04_EVIDENCE_DIR: ${{ github.workspace }}/target/m04-external/${{ matrix.engine }}
+      TESTCONTAINERS_RYUK_DISABLED: "true"
+      TESTCONTAINERS_CHECKS_DISABLE: "true"
+    steps:
+      - name: Check out immutable source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Install pinned validator runtime
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.12.13
+      - name: Verify dependency, licence and container provenance locks
+        run: |
+          python tools/dependencies/lock_dependencies.py validate
+          python tools/ci/m04_database_images.py validate
+          python tools/ci/m04_database_images.py verify-provenance --engine "${{ matrix.engine }}"
+      - name: Pull and verify the exact database image
+        run: |
+          image="$(python tools/ci/m04_database_images.py reference --engine "${{ matrix.engine }}")"
+          version="$(python tools/ci/m04_database_images.py version --engine "${{ matrix.engine }}")"
+          docker pull "$image"
+          python tools/ci/m04_database_images.py verify-local --engine "${{ matrix.engine }}"
+          echo "ZBW_TEST_DATABASE_IMAGE=$image" >> "$GITHUB_ENV"
+          echo "ZBW_TEST_DATABASE_VERSION=$version" >> "$GITHUB_ENV"
+      - name: Create temporary masked database credentials
+        run: |
+          password="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')"
+          echo "::add-mask::$password"
+          echo "ZBW_TEST_DATABASE_USERNAME=zbw_ci" >> "$GITHUB_ENV"
+          echo "ZBW_TEST_DATABASE_PASSWORD=$password" >> "$GITHUB_ENV"
+          echo "ZBW_TEST_DATABASE_NAME=zbw_ci" >> "$GITHUB_ENV"
+      - name: Install exact JavaDoc and compile toolchains
+        run: |
+          python tools/build/install_jdk.py --id "8"
+          python tools/build/install_jdk.py --id "21" --github-env "$GITHUB_ENV" --github-path "$GITHUB_PATH"
+      - name: Restore and verify the checksum-locked Maven repository
+        run: |
+          python tools/dependencies/maven_lock.py restore
+          python tools/dependencies/maven_lock.py validate --require-files
+      - name: Run the clean M04 reactor and mandatory external contracts
+        run: python tools/build/clean_build.py --jdk "21"
+      - name: Run Checkstyle, SpotBugs, JaCoCo and the external contracts
+        run: python tools/build/maven_wrapper.py -Pquality verify
+      - name: Certify zero-skip contracts and sanitized evidence
+        run: >-
+          python tools/ci/certify_m04_external.py
+          --engine "${{ matrix.engine }}"
+          --evidence "$ZBW_M04_EVIDENCE_DIR"
+      - name: Run deterministic M04 governance
+        run: python tools/validation/run_m04_validation.py
+      - name: Upload certified reports and evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: m04-${{ matrix.engine }}-contract-evidence
+          path: |
+            **/target/surefire-reports/*.xml
+            **/target/site/jacoco/**
+            target/m04-external/${{ matrix.engine }}/*.json
+          if-no-files-found: error
+          retention-days: 30

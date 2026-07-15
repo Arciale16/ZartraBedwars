@@ -1,10 +1,106 @@
 {
   "artifacts": [
     {
+      "relative_path": "com/fasterxml/jackson/core/jackson-annotations/2.10.3/jackson-annotations-2.10.3.pom",
+      "sha256": "dc79d96c02f96fac7eded0ab2f711efc2ab71d7ae1076d5cf799ab93a9b9a22b",
+      "size": 3437,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.10.3/jackson-annotations-2.10.3.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar",
+      "sha256": "04e21f94dcfee4b078fa5a5f53047b785aaba69d19de392f616e7a7fe5d3882f",
+      "size": 75567,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.pom",
+      "sha256": "cdf7c1ba78cd216256d49c8ffd3ffdb42479fc71f882c2dd5858b09ea331db64",
+      "size": 7058,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar",
+      "sha256": "303c99e82b1faa91a0bae5d8fbeb56f7e2adf9b526a900dd723bf140d62bd4b4",
+      "size": 549207,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.pom",
+      "sha256": "91e3cad53c6d79e581ccd8d980ba5f99ce7a215f47ce3c856997a251e193ec61",
+      "size": 9771,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.jar",
+      "sha256": "0eb2fdad6e40ab8832a78c9b22f58196dd970594e8d3d5a26ead87847c4f3a96",
+      "size": 1620088,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.jar"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.pom",
+      "sha256": "9863596d8c05d5e29de83ac84586b24c896f9ba06544b8f23c6dde64e7ed6e9c",
+      "size": 19311,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/dataformat/jackson-dataformat-toml/2.15.2/jackson-dataformat-toml-2.15.2.jar",
+      "sha256": "5d242fb0a42d3e4082441306a427d22b8d54d97c1e5590aeb5fb0990b419077d",
+      "size": 55748,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-toml/2.15.2/jackson-dataformat-toml-2.15.2.jar"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/dataformat/jackson-dataformat-toml/2.15.2/jackson-dataformat-toml-2.15.2.pom",
+      "sha256": "4b7dc95a54ce6999448a5c5a32a94270044cfaadf161789bf7b0a9f08e31ee1b",
+      "size": 3483,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformat-toml/2.15.2/jackson-dataformat-toml-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/dataformat/jackson-dataformats-text/2.15.2/jackson-dataformats-text-2.15.2.pom",
+      "sha256": "00f8f4fb8442bd850ca1ea51dd761cf74bf2c7579be98ca7b48518b956e49a36",
+      "size": 3477,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/dataformat/jackson-dataformats-text/2.15.2/jackson-dataformats-text-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.2/jackson-datatype-jsr310-2.15.2.jar",
+      "sha256": "7574c81ad570476ef6aad26f419288fd466733f3315bee3012f2f29c9dc008c8",
+      "size": 122937,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.2/jackson-datatype-jsr310-2.15.2.jar"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.2/jackson-datatype-jsr310-2.15.2.pom",
+      "sha256": "db0c96956ae70669ffd984b4adc05c927bb8664bf732b8602e0d66cc4b6dff57",
+      "size": 4906,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.2/jackson-datatype-jsr310-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/jackson-base/2.15.2/jackson-base-2.15.2.pom",
+      "sha256": "811ffa1b239956fd512537eebd8810d55ca8948115eaeb6bed1374395b161182",
+      "size": 11277,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-base/2.15.2/jackson-base-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/jackson-bom/2.15.2/jackson-bom-2.15.2.pom",
+      "sha256": "1ead630255c488c51b5e0ab560c76c2371ad26ae36dadf0929c526572ea5b38b",
+      "size": 17995,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.15.2/jackson-bom-2.15.2.pom"
+    },
+    {
       "relative_path": "com/fasterxml/jackson/jackson-bom/2.17.2/jackson-bom-2.17.2.pom",
       "sha256": "1f472b0bc2004d5cf421ac48871417f84189e78f35c049718387fd8b44fb9f32",
       "size": 18694,
       "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.17.2/jackson-bom-2.17.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/jackson-parent/2.10/jackson-parent-2.10.pom",
+      "sha256": "a50db80829c4f897c6d0e7e95472cbb43b0ebece135a68e39c27b8a6fe33e481",
+      "size": 8253,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.10/jackson-parent-2.10.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/jackson/jackson-parent/2.15/jackson-parent-2.15.pom",
+      "sha256": "6cdf97bc66f389f63e36850d2f552d1216688f8e5a58727d3f6a98edf8675cde",
+      "size": 6522,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.15/jackson-parent-2.15.pom"
     },
     {
       "relative_path": "com/fasterxml/jackson/jackson-parent/2.17/jackson-parent-2.17.pom",
@@ -13,10 +109,40 @@
       "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.17/jackson-parent-2.17.pom"
     },
     {
+      "relative_path": "com/fasterxml/jackson/module/jackson-modules-java8/2.15.2/jackson-modules-java8-2.15.2.pom",
+      "sha256": "c9299cf2d56051f0b67fe3cfb25f79185e71713c8090e37fe318c0dd3a53808f",
+      "size": 3099,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/module/jackson-modules-java8/2.15.2/jackson-modules-java8-2.15.2.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/oss-parent/38/oss-parent-38.pom",
+      "sha256": "c83f8f45dfdca8d0b6b3661c60b3f84780f671b12e06f91ad5d1c1a1d1f966e8",
+      "size": 23048,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/38/oss-parent-38.pom"
+    },
+    {
+      "relative_path": "com/fasterxml/oss-parent/50/oss-parent-50.pom",
+      "sha256": "f5da55dd7b88fb170c46801d17774a652fb2f4581fb5b1d0a5fc86aa182b8577",
+      "size": 23614,
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/50/oss-parent-50.pom"
+    },
+    {
       "relative_path": "com/fasterxml/oss-parent/58/oss-parent-58.pom",
       "sha256": "5670e6ac1c4ddcc9d413cf87997a5da2efaa4d2abe439363af9ef102a0a09e40",
       "size": 23661,
       "source": "https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/58/oss-parent-58.pom"
+    },
+    {
+      "relative_path": "com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar",
+      "sha256": "1e0a7bbef1dd791653143f3f05d0e489934bf5481e58a87c9e619cd46b68729b",
+      "size": 912143,
+      "source": "https://repo.maven.apache.org/maven2/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar"
+    },
+    {
+      "relative_path": "com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.pom",
+      "sha256": "6fa4f1c10192806f8ef05b5d4be7bd9f5ce58b876f64364d4e90c3fc092323dc",
+      "size": 2071,
+      "source": "https://repo.maven.apache.org/maven2/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.pom"
     },
     {
       "relative_path": "com/github/cliftonlabs/json-simple/3.0.2/json-simple-3.0.2.jar",
@@ -29,6 +155,48 @@
       "sha256": "b0dacb1479cd4dbe0810d1aa335bf0fb9bc3c4ff55369c87597ba68f5879fe4f",
       "size": 7473,
       "source": "https://repo.maven.apache.org/maven2/com/github/cliftonlabs/json-simple/3.0.2/json-simple-3.0.2.pom"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-api/3.4.0/docker-java-api-3.4.0.jar",
+      "sha256": "ad8e9f748380985e0b702bfb2356749a0966afa28a7d637aa3211217ae6a6f2e",
+      "size": 485276,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-api/3.4.0/docker-java-api-3.4.0.jar"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-api/3.4.0/docker-java-api-3.4.0.pom",
+      "sha256": "241a015f07a6044f3e23dd33ad9a9c19a32acaa84a36cbda872d9fb19e4d1f6a",
+      "size": 2406,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-api/3.4.0/docker-java-api-3.4.0.pom"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-parent/3.4.0/docker-java-parent-3.4.0.pom",
+      "sha256": "80fd330ede28e225aa43dee9de1f06bb2100f4c438de7af2f2c8f706412abbb0",
+      "size": 11759,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-parent/3.4.0/docker-java-parent-3.4.0.pom"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.jar",
+      "sha256": "a1a8ce872dbf92423a948443b88b9417283ead5d56cb5ed77803353658b97b34",
+      "size": 38547,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.jar"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.pom",
+      "sha256": "56953cb59d2b5f3288d9ba2dbc6545fecb6f4012cc2216f1e4140cf6bd8137d4",
+      "size": 1642,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.pom"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar",
+      "sha256": "aac3ba9ed78c73961d13d7b7dac51ba51fe9089629efd4f77ffa4e6e8c6e4048",
+      "size": 2278842,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom",
+      "sha256": "63a381030f3d7c7b236ebdb2c49be1c9ed377cb0e4ef1a945f21565abc7c4823",
+      "size": 4085,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom"
     },
     {
       "relative_path": "com/github/hazendaz/base-parent/51/base-parent-51.pom",
@@ -115,6 +283,24 @@
       "source": "https://repo.maven.apache.org/maven2/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.pom"
     },
     {
+      "relative_path": "com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.jar",
+      "sha256": "301cb389402618a0a8e7fb56c4b47e20f1f9c774f99a3d7272435bae2d323580",
+      "size": 71735,
+      "source": "https://repo.maven.apache.org/maven2/com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.jar"
+    },
+    {
+      "relative_path": "com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.pom",
+      "sha256": "f251bc32cb5eef8fa551ad4bb005d296a06f24a32989773e64efe1dccfc6ac24",
+      "size": 5643,
+      "source": "https://repo.maven.apache.org/maven2/com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.pom"
+    },
+    {
+      "relative_path": "com/github/waffle/waffle-parent/3.3.0/waffle-parent-3.3.0.pom",
+      "sha256": "83ccd2700e9060a4de0c021b0891614f94874d2d13e31dbec1294b28f718fe64",
+      "size": 72576,
+      "source": "https://repo.maven.apache.org/maven2/com/github/waffle/waffle-parent/3.3.0/waffle-parent-3.3.0.pom"
+    },
+    {
       "relative_path": "com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
       "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7",
       "size": 19936,
@@ -145,6 +331,18 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.12.1/gson-parent-2.12.1.pom"
     },
     {
+      "relative_path": "com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.jar",
+      "sha256": "a249d4d25dfb86d41e6c82fc335df580189f0c9feeabdc53233fc1e5060724a1",
+      "size": 15992,
+      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.jar"
+    },
+    {
+      "relative_path": "com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.pom",
+      "sha256": "d680dc9f578a77a6dcd992b2c3250eb168a7214cf27f8f0cac1f06526710c0cc",
+      "size": 2112,
+      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.pom"
+    },
+    {
       "relative_path": "com/google/errorprone/error_prone_annotations/2.36.0/error_prone_annotations-2.36.0.jar",
       "sha256": "77440e270b0bc9a249903c5a076c36a722c4886ca4f42675f2903a1c53ed61a5",
       "size": 19401,
@@ -157,40 +355,16 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.36.0/error_prone_annotations-2.36.0.pom"
     },
     {
-      "relative_path": "com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.jar",
-      "sha256": "cd5257c08a246cf8628817ae71cb822be192ef91f6881ca4a3fcff4f1de1cff3",
-      "size": 14835,
-      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.jar"
-    },
-    {
-      "relative_path": "com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.pom",
-      "sha256": "31a872e1149c5f3a8bc05fb4de455e5ea608ecfad1af222cb7637ca6c762ee25",
-      "size": 2111,
-      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.pom"
+      "relative_path": "com/google/errorprone/error_prone_parent/2.10.0/error_prone_parent-2.10.0.pom",
+      "sha256": "07891a87c490f900c12097bee95ec1cb6e071c8a7df810666387e0c772f089fa",
+      "size": 10477,
+      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.10.0/error_prone_parent-2.10.0.pom"
     },
     {
       "relative_path": "com/google/errorprone/error_prone_parent/2.36.0/error_prone_parent-2.36.0.pom",
       "sha256": "3a4cfc8a6bed61eb48e969796fc31ea0d270b63e670599946a61883adb7094dc",
       "size": 15958,
       "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.36.0/error_prone_parent-2.36.0.pom"
-    },
-    {
-      "relative_path": "com/google/errorprone/error_prone_parent/2.7.1/error_prone_parent-2.7.1.pom",
-      "sha256": "0a6e242e28104e8093405ae37969660a438b71c4c1b73fc4ff716db89da88de6",
-      "size": 6977,
-      "source": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.7.1/error_prone_parent-2.7.1.pom"
-    },
-    {
-      "relative_path": "com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar",
-      "sha256": "a171ee4c734dd2da837e4b16be9df4661afab72a41adaf31eb84dfdaf936ca26",
-      "size": 4617,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"
-    },
-    {
-      "relative_path": "com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.pom",
-      "sha256": "e96042ce78fecba0da2be964522947c87b40a291b5fd3cd672a434924103c4b9",
-      "size": 2413,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.pom"
     },
     {
       "relative_path": "com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar",
@@ -203,18 +377,6 @@
       "sha256": "19ebc6f4bdb4edbb3d07b6ee994f846b54ef295582a9b5634719ffa9f31d03b2",
       "size": 3339,
       "source": "https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.pom"
-    },
-    {
-      "relative_path": "com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar",
-      "sha256": "d5be94d65e87bd219fb3193ad1517baa55a3b88fc91d21cf735826ab5af087b9",
-      "size": 2974216,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar"
-    },
-    {
-      "relative_path": "com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.pom",
-      "sha256": "2be566920c21c60c5ccaf2827867caff766646e2113b7fcc3ee9c24a40b2f396",
-      "size": 10963,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.pom"
     },
     {
       "relative_path": "com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.jar",
@@ -235,12 +397,6 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom"
     },
     {
-      "relative_path": "com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom",
-      "sha256": "b3b6b6aa7099c11817acee85b322fd91f7ee32aea69fe083ee36c8735ec06788",
-      "size": 13829,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom"
-    },
-    {
       "relative_path": "com/google/guava/guava-parent/33.4.0-jre/guava-parent-33.4.0-jre.pom",
       "sha256": "3a499ed34a0d9ee0f1bcc39230021a1cd4e2f7dd0426ab6844f585465d41dcd7",
       "size": 21100,
@@ -259,18 +415,6 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.pom"
     },
     {
-      "relative_path": "com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar",
-      "sha256": "21af30c92267bd6122c0e0b4d20cccb6641a37eaf956c6540ec471d584e64a7b",
-      "size": 8781,
-      "source": "https://repo.maven.apache.org/maven2/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar"
-    },
-    {
-      "relative_path": "com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.pom",
-      "sha256": "5faca824ba115bee458730337dfdb2fcea46ba2fd774d4304edbf30fa6a3f055",
-      "size": 2762,
-      "source": "https://repo.maven.apache.org/maven2/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.pom"
-    },
-    {
       "relative_path": "com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.jar",
       "sha256": "88241573467ddca44ffd4d74aa04c2bbfd11bf7c17e0c342c94c9de7a70a7c64",
       "size": 12467,
@@ -283,6 +427,42 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/j2objc/j2objc-annotations/3.0.0/j2objc-annotations-3.0.0.pom"
     },
     {
+      "relative_path": "com/google/protobuf/protobuf-bom/3.25.1/protobuf-bom-3.25.1.pom",
+      "sha256": "43786970c1acb7c119c961f53ea856a4bc0bf6bf0ceffab0ad2a84f262cf1654",
+      "size": 3728,
+      "source": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-bom/3.25.1/protobuf-bom-3.25.1.pom"
+    },
+    {
+      "relative_path": "com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.jar",
+      "sha256": "48a8e58a1a8f82eff141a7a388d38dfe77d7a48d5e57c9066ee37f19147e20df",
+      "size": 1875070,
+      "source": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.jar"
+    },
+    {
+      "relative_path": "com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.pom",
+      "sha256": "3ff4a78d605e1d6991e515c5503726cb48042b874ea554a4bc8a87ae9f91bf95",
+      "size": 1554,
+      "source": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.pom"
+    },
+    {
+      "relative_path": "com/google/protobuf/protobuf-parent/3.25.1/protobuf-parent-3.25.1.pom",
+      "sha256": "cd1be83739f036462b129b653759fa868bfad43fb9539c5e7d1de2ac3d85dcea",
+      "size": 9028,
+      "source": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-parent/3.25.1/protobuf-parent-3.25.1.pom"
+    },
+    {
+      "relative_path": "com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar",
+      "sha256": "d77962877d010777cff997015da90ee689f0f4bb76848340e1488f2b83332af5",
+      "size": 2533399,
+      "source": "https://repo.maven.apache.org/maven2/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar"
+    },
+    {
+      "relative_path": "com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.pom",
+      "sha256": "475ad7c1afb134e005d726887d02a118edc910adb3585f75bd0ecdc01e033959",
+      "size": 3169,
+      "source": "https://repo.maven.apache.org/maven2/com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.pom"
+    },
+    {
       "relative_path": "com/puppycrawl/tools/checkstyle/10.21.2/checkstyle-10.21.2.jar",
       "sha256": "4e83c0e76c4cf9dcceaa7e777ada8673344dea64156c28eb5e54e95977c23fa7",
       "size": 2170307,
@@ -293,18 +473,6 @@
       "sha256": "0450fd8a0b52f51152329cf74281385b9dbabd5d21089f0c95ea1f918f074918",
       "size": 237284,
       "source": "https://repo.maven.apache.org/maven2/com/puppycrawl/tools/checkstyle/10.21.2/checkstyle-10.21.2.pom"
-    },
-    {
-      "relative_path": "com/puppycrawl/tools/checkstyle/9.3/checkstyle-9.3.jar",
-      "sha256": "0463e304980f5460b964f481ccc25a10fb253b60100c19e50fc992892895977f",
-      "size": 2002009,
-      "source": "https://repo.maven.apache.org/maven2/com/puppycrawl/tools/checkstyle/9.3/checkstyle-9.3.jar"
-    },
-    {
-      "relative_path": "com/puppycrawl/tools/checkstyle/9.3/checkstyle-9.3.pom",
-      "sha256": "a7dcb466656d67fa0a50d904fddf14fc6b539846b814edff7635c745d5bd3034",
-      "size": 141522,
-      "source": "https://repo.maven.apache.org/maven2/com/puppycrawl/tools/checkstyle/9.3/checkstyle-9.3.pom"
     },
     {
       "relative_path": "com/sun/activation/all/1.2.0/all-1.2.0.pom",
@@ -337,6 +505,18 @@
       "source": "https://repo.maven.apache.org/maven2/com/thoughtworks/qdox/qdox/2.2.0/qdox-2.2.0.pom"
     },
     {
+      "relative_path": "com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar",
+      "sha256": "7c024aeff1c1063576d74453513f9de6447d8e624d17f8e27f30a2e97688c6c9",
+      "size": 159222,
+      "source": "https://repo.maven.apache.org/maven2/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar"
+    },
+    {
+      "relative_path": "com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.pom",
+      "sha256": "5ba94dbdc3741931323daff9440af3e48390a2b53b07251b32832cf834272036",
+      "size": 25960,
+      "source": "https://repo.maven.apache.org/maven2/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.pom"
+    },
+    {
       "relative_path": "commons-beanutils/commons-beanutils/1.10.0/commons-beanutils-1.10.0.jar",
       "sha256": "b6e8dbf5d4a7fd66edbc7106886909c097dc7e0768ca78cc1055955d6ff877a1",
       "size": 246155,
@@ -365,12 +545,6 @@
       "sha256": "552ad56800bc6010f1e6ea8c7638f24c74230e9991a52568df20d5b5aa5c4b20",
       "size": 11198,
       "source": "https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.pom"
-    },
-    {
-      "relative_path": "commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar",
-      "sha256": "7d938c81789028045c08c065e94be75fc280527620d5bd62b519d5838532368a",
-      "size": 246918,
-      "source": "https://repo.maven.apache.org/maven2/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar"
     },
     {
       "relative_path": "commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.pom",
@@ -505,12 +679,6 @@
       "source": "https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.pom"
     },
     {
-      "relative_path": "commons-logging/commons-logging/1.2/commons-logging-1.2.jar",
-      "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636",
-      "size": 61829,
-      "source": "https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"
-    },
-    {
       "relative_path": "commons-logging/commons-logging/1.2/commons-logging-1.2.pom",
       "sha256": "c91ab5aa570d86f6fd07cc158ec6bc2c50080402972ee9179fe24100739fbb20",
       "size": 19206,
@@ -527,18 +695,6 @@
       "sha256": "ccf4a30346f5027b9496abd56290ac26d159abf2be64df1265611dc9400b9d68",
       "size": 32210,
       "source": "https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.3.5/commons-logging-1.3.5.pom"
-    },
-    {
-      "relative_path": "info/picocli/picocli/4.6.2/picocli-4.6.2.jar",
-      "sha256": "4754d96eaf5314f35a287da5c67848b285067868fca6d1f5121a74f67f065b61",
-      "size": 402907,
-      "source": "https://repo.maven.apache.org/maven2/info/picocli/picocli/4.6.2/picocli-4.6.2.jar"
-    },
-    {
-      "relative_path": "info/picocli/picocli/4.6.2/picocli-4.6.2.pom",
-      "sha256": "deae29da5c51e3fe9d95af6e8f39156c2bc1b749e242d0136e9e232083481799",
-      "size": 1375,
-      "source": "https://repo.maven.apache.org/maven2/info/picocli/picocli/4.6.2/picocli-4.6.2.pom"
     },
     {
       "relative_path": "info/picocli/picocli/4.7.6/picocli-4.7.6.jar",
@@ -625,6 +781,42 @@
       "source": "https://repo.maven.apache.org/maven2/jaxen/jaxen-parent/2.0.0/jaxen-parent-2.0.0.pom"
     },
     {
+      "relative_path": "junit/junit/4.13.2/junit-4.13.2.jar",
+      "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3",
+      "size": 384581,
+      "source": "https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar"
+    },
+    {
+      "relative_path": "junit/junit/4.13.2/junit-4.13.2.pom",
+      "sha256": "569b6977ee4603c965c1c46c3058fa6e969291b0160eb6964dd092cd89eadd94",
+      "size": 27018,
+      "source": "https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.pom"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar",
+      "sha256": "66d4f819a062a51a1d5627bffc23fac55d1677f0e0a1feba144aabdd670a64bb",
+      "size": 1879325,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna/5.13.0/jna-5.13.0.pom",
+      "sha256": "f515c2578178f45247ecca7a9e1db109531b1c42f2424e253ceeb0f6b8d42374",
+      "size": 2030,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.pom"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar",
+      "sha256": "474d7b88f6e97009b6ec1d98c3024dd95c23187c65dabfbc35331bcac3d173dd",
+      "size": 1363209,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom",
+      "sha256": "63b20c8af057c98196f8789e1a21a6dddf02aa8f385e6b04b4b4f9f0df257066",
+      "size": 2251,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom"
+    },
+    {
       "relative_path": "net/java/jvnet-parent/1/jvnet-parent-1.pom",
       "sha256": "281440811268e65d9e266b3cc898297e214e04f09740d0386ceeb4a8923d63bf",
       "size": 4711,
@@ -635,18 +827,6 @@
       "sha256": "1af699f8d9ddab67f9a0d202fbd7915eb0362a5a6dfd5ffc54cafa3465c9cb0a",
       "size": 8863,
       "source": "https://repo.maven.apache.org/maven2/net/java/jvnet-parent/5/jvnet-parent-5.pom"
-    },
-    {
-      "relative_path": "net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.jar",
-      "sha256": "6d08df82e4ed86b6abb1a02c7b74a268fcfc5e004e83bb4ff006ec3a509bd356",
-      "size": 5751964,
-      "source": "https://repo.maven.apache.org/maven2/net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.jar"
-    },
-    {
-      "relative_path": "net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.pom",
-      "sha256": "a2d6dda438e864ab935f31b43b53052c4e8711a9505642719190513e76f41248",
-      "size": 2611,
-      "source": "https://repo.maven.apache.org/maven2/net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.pom"
     },
     {
       "relative_path": "net/sf/saxon/Saxon-HE/12.5/Saxon-HE-12.5.jar",
@@ -667,12 +847,6 @@
       "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-master/4.13.2/antlr4-master-4.13.2.pom"
     },
     {
-      "relative_path": "org/antlr/antlr4-master/4.9.3/antlr4-master-4.9.3.pom",
-      "sha256": "565cc054d3badf50ca0a0717dae311268a2d6709fdddc90ac4a43c62d01935b9",
-      "size": 4410,
-      "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-master/4.9.3/antlr4-master-4.9.3.pom"
-    },
-    {
       "relative_path": "org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar",
       "sha256": "dd3e8a13a2d669bf84fb8d834de35ce4875f27157698d206241ec8488aadcaf7",
       "size": 326307,
@@ -683,18 +857,6 @@
       "sha256": "03ce07a2796c511b0c94dc14fd86ccdd6e3828c57967ad2383de304e0d11ba79",
       "size": 3552,
       "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.pom"
-    },
-    {
-      "relative_path": "org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar",
-      "sha256": "131a6594969bc4f321d652ea2a33bc0e378ca312685ef87791b2c60b29d01ea5",
-      "size": 336742,
-      "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar"
-    },
-    {
-      "relative_path": "org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.pom",
-      "sha256": "4f7e44e4ea0629fa3a759b1116feb9fb28814e95f791e1eeedd20c12889d7aa4",
-      "size": 3617,
-      "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.pom"
     },
     {
       "relative_path": "org/apache/ant/ant/1.10.15/ant-1.10.15.jar",
@@ -845,6 +1007,18 @@
       "sha256": "88e6f1dbf75f6f551be1fb8633d916b49cd3126fd078338db482dd7519c530d8",
       "size": 22169,
       "source": "https://repo.maven.apache.org/maven2/org/apache/bcel/bcel/6.10.0/bcel-6.10.0.pom"
+    },
+    {
+      "relative_path": "org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.jar",
+      "sha256": "fbf2c5d275e513c08f4e4fb539726dbf3ac2142af956ba93efb983244f0c36bd",
+      "size": 1076223,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.jar"
+    },
+    {
+      "relative_path": "org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.pom",
+      "sha256": "835aa66532c7aa5ec6e85f85289d8d3faada0c698b98b9b1a410b8a5499c30c5",
+      "size": 21798,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.pom"
     },
     {
       "relative_path": "org/apache/commons/commons-compress/1.26.1/commons-compress-1.26.1.jar",
@@ -1007,6 +1181,12 @@
       "sha256": "75dbe8f34e98e4c3ff42daae4a2f9eb4cbcd3b5f1047d54460ace906dbb4502e",
       "size": 79273,
       "source": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/52/commons-parent-52.pom"
+    },
+    {
+      "relative_path": "org/apache/commons/commons-parent/61/commons-parent-61.pom",
+      "sha256": "d3ec2d358481fe51260c135bb60fa5211c2f5e185a14ea7f78d03a16bd9098d7",
+      "size": 80545,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/61/commons-parent-61.pom"
     },
     {
       "relative_path": "org/apache/commons/commons-parent/64/commons-parent-64.pom",
@@ -2179,16 +2359,22 @@
       "source": "https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.pom"
     },
     {
-      "relative_path": "org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar",
-      "sha256": "ff10785ac2a357ec5de9c293cb982a2cbb605c0309ea4cc1cb9b9bc6dbe7f3cb",
-      "size": 208835,
-      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar"
+      "relative_path": "org/checkerframework/checker-qual/3.19.0/checker-qual-3.19.0.jar",
+      "sha256": "a827c49183f3a632277d27a0a4673686cb341507447b9d570261094bd748aa68",
+      "size": 222143,
+      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.19.0/checker-qual-3.19.0.jar"
     },
     {
-      "relative_path": "org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.pom",
-      "sha256": "775b7ae36e62820b3b86dc1aa39af37c0ac4b85ff48f7fe485a922a2790f46b9",
-      "size": 2092,
-      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.pom"
+      "relative_path": "org/checkerframework/checker-qual/3.19.0/checker-qual-3.19.0.pom",
+      "sha256": "29ba9c5ce1a94b700bd823c4ed612f5827b590f19a49775fd7eb8f997f8aa371",
+      "size": 2093,
+      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.19.0/checker-qual-3.19.0.pom"
+    },
+    {
+      "relative_path": "org/checkerframework/checker-qual/3.32.0/checker-qual-3.32.0.pom",
+      "sha256": "795a88652a6edefa1c30fdbab280129e4183b1acf994ac74be43f3eb8aa77dcf",
+      "size": 2096,
+      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.32.0/checker-qual-3.32.0.pom"
     },
     {
       "relative_path": "org/checkerframework/checker-qual/3.48.4/checker-qual-3.48.4.jar",
@@ -2629,6 +2815,42 @@
       "source": "https://repo.maven.apache.org/maven2/org/eclipse/sisu/sisu-inject/0.9.0.M3/sisu-inject-0.9.0.M3.pom"
     },
     {
+      "relative_path": "org/flywaydb/flyway-core/10.20.1/flyway-core-10.20.1.jar",
+      "sha256": "47a4d564ded6c79835e3be1c493091109eeac3fef1094504e076ac072c8d1391",
+      "size": 664238,
+      "source": "https://repo.maven.apache.org/maven2/org/flywaydb/flyway-core/10.20.1/flyway-core-10.20.1.jar"
+    },
+    {
+      "relative_path": "org/flywaydb/flyway-core/10.20.1/flyway-core-10.20.1.pom",
+      "sha256": "80d95f7611a5e94b4dea91234f6afa17523995e903a3a0f2846803263aed1c80",
+      "size": 5637,
+      "source": "https://repo.maven.apache.org/maven2/org/flywaydb/flyway-core/10.20.1/flyway-core-10.20.1.pom"
+    },
+    {
+      "relative_path": "org/flywaydb/flyway-parent/10.20.1/flyway-parent-10.20.1.pom",
+      "sha256": "7b69c133ecb0b9837fb47c32057b11d1a814b445537e13715c6ba29e2986586c",
+      "size": 35556,
+      "source": "https://repo.maven.apache.org/maven2/org/flywaydb/flyway-parent/10.20.1/flyway-parent-10.20.1.pom"
+    },
+    {
+      "relative_path": "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar",
+      "sha256": "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9",
+      "size": 45024,
+      "source": "https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+    },
+    {
+      "relative_path": "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom",
+      "sha256": "fde386a7905173a1b103de6ab820727584b50d0e32282e2797787c20a64ffa93",
+      "size": 766,
+      "source": "https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom"
+    },
+    {
+      "relative_path": "org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom",
+      "sha256": "6d535f94efb663bdb682c9f27a50335394688009642ba7a9677504bc1be4129b",
+      "size": 1972,
+      "source": "https://repo.maven.apache.org/maven2/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom"
+    },
+    {
       "relative_path": "org/iq80/snappy/snappy/0.4/snappy-0.4.jar",
       "sha256": "46a0c87d504ce9d6063e1ff6e4d20738feb49d8abf85b5071a7d18df4f11bac9",
       "size": 57954,
@@ -2707,6 +2929,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/javassist/javassist/3.28.0-GA/javassist-3.28.0-GA.pom"
     },
     {
+      "relative_path": "org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar",
+      "sha256": "195fb0da046d55bb042e91543484cf1da68b02bb7afbfe031f229e45ac84b3f2",
+      "size": 19014,
+      "source": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar"
+    },
+    {
+      "relative_path": "org/jetbrains/annotations/17.0.0/annotations-17.0.0.pom",
+      "sha256": "8390ee0b4dff7f568b1336e061f694e77d761a505169aed8964e75482c990eed",
+      "size": 1354,
+      "source": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/17.0.0/annotations-17.0.0.pom"
+    },
+    {
       "relative_path": "org/junit/junit-bom/5.10.0/junit-bom-5.10.0.pom",
       "sha256": "e006dd8894f9fc7b75fc32bb12fe5ed8be65667d5b454f99e2e0b8c5bb8d30b3",
       "size": 5649,
@@ -2773,6 +3007,12 @@
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.13.1/junit-bom-5.13.1.pom"
     },
     {
+      "relative_path": "org/junit/junit-bom/5.7.0/junit-bom-5.7.0.pom",
+      "sha256": "35fb15f8d0bee2b5900a22832762366552f9a349c56ced60ba123ce47738ff00",
+      "size": 5098,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.7.0/junit-bom-5.7.0.pom"
+    },
+    {
       "relative_path": "org/junit/junit-bom/5.7.1/junit-bom-5.7.1.pom",
       "sha256": "0b9b14a3d62106fafe8c68a717b87b87ad18685899451b753c04fa41b6857784",
       "size": 5098,
@@ -2783,6 +3023,12 @@
       "sha256": "cd14aaa869991f82021c585d570d31ff342bcba58bb44233b70193771b96487b",
       "size": 5098,
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.7.2/junit-bom-5.7.2.pom"
+    },
+    {
+      "relative_path": "org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom",
+      "sha256": "2ed07d65845131f5336a86476c9a4056b59d0b58b9815ab3679bb0f36f35f705",
+      "size": 5630,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom"
     },
     {
       "relative_path": "org/junit/junit-bom/5.9.3/junit-bom-5.9.3.pom",
@@ -2909,6 +3155,18 @@
       "sha256": "9ddf43357576db72e94ef33c8a9634f603ab4046fe0ae6e5e1924cab66888ed9",
       "size": 3029,
       "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.pom"
+    },
+    {
+      "relative_path": "org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.jar",
+      "sha256": "f60e4b282f1f4bdb74f0a26436ba7078a5e480b6f6702f6a7b45d9ba5e604a24",
+      "size": 698716,
+      "source": "https://repo.maven.apache.org/maven2/org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.jar"
+    },
+    {
+      "relative_path": "org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.pom",
+      "sha256": "d369fac699fc02999460ccb0a144c2d699e238dc52bf9c1cd6ecae124cfd5efc",
+      "size": 27139,
+      "source": "https://repo.maven.apache.org/maven2/org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.pom"
     },
     {
       "relative_path": "org/mockito/mockito-bom/4.11.0/mockito-bom-4.11.0.pom",
@@ -3055,6 +3313,42 @@
       "source": "https://repo.maven.apache.org/maven2/org/reflections/reflections/0.10.2/reflections-0.10.2.pom"
     },
     {
+      "relative_path": "org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.jar",
+      "sha256": "31cef12ddec979d1f86d7cf708c41a17da523d05c685fd6642e9d0b2addb7240",
+      "size": 25402,
+      "source": "https://repo.maven.apache.org/maven2/org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.jar"
+    },
+    {
+      "relative_path": "org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.pom",
+      "sha256": "2636f66debe6e12437632f23a67b9bc961b03633009e52527a3bbc871f4069b4",
+      "size": 6218,
+      "source": "https://repo.maven.apache.org/maven2/org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.pom"
+    },
+    {
+      "relative_path": "org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.jar",
+      "sha256": "41806757e1d26dae5d6db2ca7d4a5176eed2d6e709cd86564d4a11dab0601742",
+      "size": 21143,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.jar"
+    },
+    {
+      "relative_path": "org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.pom",
+      "sha256": "4334ffadbb8e860b5d8e39bb1c70c31cef01106435106664410b0af7ebe2f2e7",
+      "size": 1230,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.pom"
+    },
+    {
+      "relative_path": "org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.pom",
+      "sha256": "7cd9d7a0b5d93dfd461a148891b43509cf403a9c7f9fb49060d3554df1c81e1e",
+      "size": 3833,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.pom"
+    },
+    {
+      "relative_path": "org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar",
+      "sha256": "cdba07964d1bb40a0761485c6b1e8c2f8fd9eb1d19c53928ac0d7f9510105c57",
+      "size": 41472,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar"
+    },
+    {
       "relative_path": "org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.pom",
       "sha256": "7e0747751e9b67e19dcb5206f04ea22cc03d250c422426402eadd03513f2c314",
       "size": 3835,
@@ -3079,6 +3373,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.pom"
     },
     {
+      "relative_path": "org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar",
+      "sha256": "8df06cc146b8638a24cefb669d20f4bdb2c4497d5047c548a0a190df6f97c3a5",
+      "size": 56383,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar"
+    },
+    {
+      "relative_path": "org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.pom",
+      "sha256": "a775e6bbf89895978ea3b702aa759fd42c0f128e63d0a589fd5cf5d8afbf5451",
+      "size": 1655,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.pom"
+    },
+    {
       "relative_path": "org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar",
       "sha256": "7b751d952061954d5abfed7181c1f645d336091b679891591d63329c622eb832",
       "size": 69908,
@@ -3091,10 +3397,22 @@
       "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.pom"
     },
     {
+      "relative_path": "org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.pom",
+      "sha256": "2d403ccf0e0a02d5c1a8667b0e2a33c8dfc6038ab287b9671dd681c205267981",
+      "size": 2698,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.pom"
+    },
+    {
       "relative_path": "org/slf4j/slf4j-bom/2.0.17/slf4j-bom-2.0.17.pom",
       "sha256": "f78d27b642b4b886eb839fc102b5cd9fe7f30f37599ffe68185be4e1609031e9",
       "size": 7308,
       "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-bom/2.0.17/slf4j-bom-2.0.17.pom"
+    },
+    {
+      "relative_path": "org/slf4j/slf4j-parent/1.7.25/slf4j-parent-1.7.25.pom",
+      "sha256": "18f5c52120db036e88d6136f8839c832d074bdda95c756c6f429249d2db54ac6",
+      "size": 13509,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.25/slf4j-parent-1.7.25.pom"
     },
     {
       "relative_path": "org/slf4j/slf4j-parent/1.7.30/slf4j-parent-1.7.30.pom",
@@ -3115,10 +3433,22 @@
       "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/1.7.36/slf4j-parent-1.7.36.pom"
     },
     {
+      "relative_path": "org/slf4j/slf4j-parent/2.0.0-alpha1/slf4j-parent-2.0.0-alpha1.pom",
+      "sha256": "fd3edb9fd9b7cabd67a0c29c0c9c0a6d1ae7a40053956aec281f42ccad1bdcf1",
+      "size": 16087,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/2.0.0-alpha1/slf4j-parent-2.0.0-alpha1.pom"
+    },
+    {
       "relative_path": "org/slf4j/slf4j-parent/2.0.17/slf4j-parent-2.0.17.pom",
       "sha256": "95cd71e852dfdb29126e58b7b939d57ec2b2e6024391852e0b545dee082bbf3b",
       "size": 13366,
       "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/2.0.17/slf4j-parent-2.0.17.pom"
+    },
+    {
+      "relative_path": "org/slf4j/slf4j-parent/2.0.7/slf4j-parent-2.0.7.pom",
+      "sha256": "c182bb36cd3af1c93c1603cdfefe7889157db30ba8b584f4a44535fcd22e45e7",
+      "size": 17081,
+      "source": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-parent/2.0.7/slf4j-parent-2.0.7.pom"
     },
     {
       "relative_path": "org/slf4j/slf4j-simple/2.0.17/slf4j-simple-2.0.17.jar",
@@ -3181,6 +3511,66 @@
       "source": "https://repo.maven.apache.org/maven2/org/springframework/spring-framework-bom/5.3.39/spring-framework-bom-5.3.39.pom"
     },
     {
+      "relative_path": "org/testcontainers/database-commons/1.20.4/database-commons-1.20.4.jar",
+      "sha256": "e6be29a38d86a7afa4b77d8726e1a32250e8746fe810f8c26b354cc265b8202f",
+      "size": 14760,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/database-commons/1.20.4/database-commons-1.20.4.jar"
+    },
+    {
+      "relative_path": "org/testcontainers/database-commons/1.20.4/database-commons-1.20.4.pom",
+      "sha256": "bd84db20996697692593f5e886ca8303dcb055fe95d63d23b2988a329d73764d",
+      "size": 1534,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/database-commons/1.20.4/database-commons-1.20.4.pom"
+    },
+    {
+      "relative_path": "org/testcontainers/jdbc/1.20.4/jdbc-1.20.4.jar",
+      "sha256": "e22fddee3f7e9b402276052935fa2884350e96038b19ccd5cb808b3945719671",
+      "size": 29812,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/jdbc/1.20.4/jdbc-1.20.4.jar"
+    },
+    {
+      "relative_path": "org/testcontainers/jdbc/1.20.4/jdbc-1.20.4.pom",
+      "sha256": "34222c2d9c4dbe85ea40dbe1523e66dde78fe812f0cac7bd64a9cdadeca3cb8b",
+      "size": 1512,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/jdbc/1.20.4/jdbc-1.20.4.pom"
+    },
+    {
+      "relative_path": "org/testcontainers/mariadb/1.20.4/mariadb-1.20.4.jar",
+      "sha256": "32fd47446913e523cb2ae1cc84ed1a560cbc758b4ee2a294c317ad8387e582a9",
+      "size": 8684,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/mariadb/1.20.4/mariadb-1.20.4.jar"
+    },
+    {
+      "relative_path": "org/testcontainers/mariadb/1.20.4/mariadb-1.20.4.pom",
+      "sha256": "4afb531ef80f6f6e71b10809d6db63ad1274420bbc0ad23667a7a996fc9c7928",
+      "size": 1514,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/mariadb/1.20.4/mariadb-1.20.4.pom"
+    },
+    {
+      "relative_path": "org/testcontainers/mysql/1.20.4/mysql-1.20.4.jar",
+      "sha256": "9e444acbedc42604ae0e73cd5e4e5137c313bb77a3d7d070b8a06a13d5e1688e",
+      "size": 9046,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/mysql/1.20.4/mysql-1.20.4.jar"
+    },
+    {
+      "relative_path": "org/testcontainers/mysql/1.20.4/mysql-1.20.4.pom",
+      "sha256": "b44afa87e8f44ccb5db66bec983f5aee8e3bf5427704af51db65316e5cb1f4b8",
+      "size": 1510,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/mysql/1.20.4/mysql-1.20.4.pom"
+    },
+    {
+      "relative_path": "org/testcontainers/testcontainers/1.20.4/testcontainers-1.20.4.jar",
+      "sha256": "bb5701004c1c867350f56297b0b34343e3be31fdc7e86fd4683b7d8e3e1f8178",
+      "size": 17785487,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers/1.20.4/testcontainers-1.20.4.jar"
+    },
+    {
+      "relative_path": "org/testcontainers/testcontainers/1.20.4/testcontainers-1.20.4.pom",
+      "sha256": "65d2c37ad9f83ff7f4c40a7c28b34b3bb687be70d500efbd52c3ecd96cf68212",
+      "size": 2616,
+      "source": "https://repo.maven.apache.org/maven2/org/testcontainers/testcontainers/1.20.4/testcontainers-1.20.4.pom"
+    },
+    {
       "relative_path": "org/tukaani/xz/1.9/xz-1.9.jar",
       "sha256": "211b306cfc44f8f96df3a0a3ddaf75ba8c5289eed77d60d72f889bb855f535e5",
       "size": 116013,
@@ -3191,6 +3581,18 @@
       "sha256": "093be1b03331bce2932d6825c37e98272d7621e6a9e9fb93289a002518b8dd5a",
       "size": 2047,
       "source": "https://repo.maven.apache.org/maven2/org/tukaani/xz/1.9/xz-1.9.pom"
+    },
+    {
+      "relative_path": "org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.jar",
+      "sha256": "e697df15be3f95219d80773c5f1002030e33e932adda186c1c86fd51df6691a9",
+      "size": 13615436,
+      "source": "https://repo.maven.apache.org/maven2/org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.jar"
+    },
+    {
+      "relative_path": "org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.pom",
+      "sha256": "3c16325e9917957ada3cda84fb50296145aa4f3aa73e7a5d63af9719cee2a7ac",
+      "size": 18575,
+      "source": "https://repo.maven.apache.org/maven2/org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.pom"
     },
     {
       "relative_path": "org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2-data.jar",
@@ -3209,22 +3611,34 @@
       "sha256": "e15a2922543b3a55c31774f10e83db74e93b2fa90b3d6315dd3a1c42a91f0074",
       "size": 2578,
       "source": "https://repo.maven.apache.org/maven2/org/xmlresolver/xmlresolver/5.2.2/xmlresolver-5.2.2.pom"
+    },
+    {
+      "relative_path": "software/amazon/awssdk/aws-sdk-java-pom/2.21.1/aws-sdk-java-pom-2.21.1.pom",
+      "sha256": "0ad690c9e1e8582f35fb2f203e3fb63ce4e8c46b0b44dc558dad54f5689affbd",
+      "size": 77697,
+      "source": "https://repo.maven.apache.org/maven2/software/amazon/awssdk/aws-sdk-java-pom/2.21.1/aws-sdk-java-pom-2.21.1.pom"
+    },
+    {
+      "relative_path": "software/amazon/awssdk/bom/2.21.1/bom-2.21.1.pom",
+      "sha256": "35e38aadf6b60a337c98fc55d91a577c2b547ef15934a17c2c7fa4e4b9d1231e",
+      "size": 88486,
+      "source": "https://repo.maven.apache.org/maven2/software/amazon/awssdk/bom/2.21.1/bom-2.21.1.pom"
     }
   ],
   "baseline_date": "2026-07-14",
   "components": [
     {
-      "artifact": "json-simple",
+      "artifact": "jackson-annotations",
       "commercial_use": true,
       "files": [
-        "com/github/cliftonlabs/json-simple/3.0.2/json-simple-3.0.2.jar"
+        "com/fasterxml/jackson/core/jackson-annotations/2.15.2/jackson-annotations-2.15.2.jar"
       ],
-      "group": "com.github.cliftonlabs",
-      "id": "maven:com.github.cliftonlabs:json-simple:3.0.2",
+      "group": "com.fasterxml.jackson.core",
+      "id": "maven:com.fasterxml.jackson.core:jackson-annotations:2.15.2",
       "licenses": [
         {
           "declared_name": "The Apache Software License, Version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
           "spdx_expression": "Apache-2.0",
           "text_evidence": [
             {
@@ -3238,9 +3652,297 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.15.2"
+    },
+    {
+      "artifact": "jackson-core",
+      "commercial_use": true,
+      "files": [
+        "com/fasterxml/jackson/core/jackson-core/2.15.2/jackson-core-2.15.2.jar"
+      ],
+      "group": "com.fasterxml.jackson.core",
+      "id": "maven:com.fasterxml.jackson.core:jackson-core:2.15.2",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.15.2"
+    },
+    {
+      "artifact": "jackson-databind",
+      "commercial_use": true,
+      "files": [
+        "com/fasterxml/jackson/core/jackson-databind/2.15.2/jackson-databind-2.15.2.jar"
+      ],
+      "group": "com.fasterxml.jackson.core",
+      "id": "maven:com.fasterxml.jackson.core:jackson-databind:2.15.2",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.15.2"
+    },
+    {
+      "artifact": "jackson-dataformat-toml",
+      "commercial_use": true,
+      "files": [
+        "com/fasterxml/jackson/dataformat/jackson-dataformat-toml/2.15.2/jackson-dataformat-toml-2.15.2.jar"
+      ],
+      "group": "com.fasterxml.jackson.dataformat",
+      "id": "maven:com.fasterxml.jackson.dataformat:jackson-dataformat-toml:2.15.2",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.15.2"
+    },
+    {
+      "artifact": "jackson-datatype-jsr310",
+      "commercial_use": true,
+      "files": [
+        "com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.15.2/jackson-datatype-jsr310-2.15.2.jar"
+      ],
+      "group": "com.fasterxml.jackson.datatype",
+      "id": "maven:com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.15.2"
+    },
+    {
+      "artifact": "caffeine",
+      "commercial_use": true,
+      "files": [
+        "com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar"
+      ],
+      "group": "com.github.ben-manes.caffeine",
+      "id": "maven:com.github.ben-manes.caffeine:caffeine:2.9.3",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.9.3"
+    },
+    {
+      "artifact": "json-simple",
+      "commercial_use": true,
+      "files": [
+        "com/github/cliftonlabs/json-simple/3.0.2/json-simple-3.0.2.jar"
+      ],
+      "group": "com.github.cliftonlabs",
+      "id": "maven:com.github.cliftonlabs:json-simple:3.0.2",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0.2"
+    },
+    {
+      "artifact": "docker-java-api",
+      "commercial_use": true,
+      "files": [
+        "com/github/docker-java/docker-java-api/3.4.0/docker-java-api-3.4.0.jar"
+      ],
+      "group": "com.github.docker-java",
+      "id": "maven:com.github.docker-java:docker-java-api:3.4.0",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.4.0"
+    },
+    {
+      "artifact": "docker-java-transport-zerodep",
+      "commercial_use": true,
+      "files": [
+        "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar"
+      ],
+      "group": "com.github.docker-java",
+      "id": "maven:com.github.docker-java:docker-java-transport-zerodep:3.4.0",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.4.0"
+    },
+    {
+      "artifact": "docker-java-transport",
+      "commercial_use": true,
+      "files": [
+        "com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.jar"
+      ],
+      "group": "com.github.docker-java",
+      "id": "maven:com.github.docker-java:docker-java-transport:3.4.0",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.4.0"
     },
     {
       "artifact": "javaparser-core",
@@ -3282,7 +3984,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.26.3"
     },
@@ -3311,7 +4013,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.5.5-11"
     },
@@ -3343,7 +4045,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.9.2"
     },
@@ -3375,7 +4077,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.9.2.0"
     },
@@ -3404,7 +4106,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.9.2"
     },
@@ -3436,9 +4138,38 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.0-1"
+    },
+    {
+      "artifact": "waffle-jna",
+      "commercial_use": true,
+      "files": [
+        "com/github/waffle/waffle-jna/3.3.0/waffle-jna-3.3.0.jar"
+      ],
+      "group": "com.github.waffle",
+      "id": "maven:com.github.waffle:waffle-jna:3.3.0",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "https://raw.github.com/Waffle/waffle/master/LICENSE",
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.3.0"
     },
     {
       "artifact": "jsr305",
@@ -3468,7 +4199,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0.2"
     },
@@ -3500,9 +4231,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.12.1"
+    },
+    {
+      "artifact": "error_prone_annotations",
+      "commercial_use": true,
+      "files": [
+        "com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.jar"
+      ],
+      "group": "com.google.errorprone",
+      "id": "maven:com.google.errorprone:error_prone_annotations:2.10.0",
+      "licenses": [
+        {
+          "declared_name": "Apache 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.10.0"
     },
     {
       "artifact": "error_prone_annotations",
@@ -3532,73 +4295,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.36.0"
-    },
-    {
-      "artifact": "error_prone_annotations",
-      "commercial_use": true,
-      "files": [
-        "com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.jar"
-      ],
-      "group": "com.google.errorprone",
-      "id": "maven:com.google.errorprone:error_prone_annotations:2.7.1",
-      "licenses": [
-        {
-          "declared_name": "Apache 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "2.7.1"
-    },
-    {
-      "artifact": "failureaccess",
-      "commercial_use": true,
-      "files": [
-        "com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar"
-      ],
-      "group": "com.google.guava",
-      "id": "maven:com.google.guava:failureaccess:1.0.1",
-      "licenses": [
-        {
-          "declared_name": "The Apache Software License, Version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "1.0.1"
     },
     {
       "artifact": "failureaccess",
@@ -3628,41 +4327,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.0.2"
-    },
-    {
-      "artifact": "guava",
-      "commercial_use": true,
-      "files": [
-        "com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar"
-      ],
-      "group": "com.google.guava",
-      "id": "maven:com.google.guava:guava:31.0.1-jre",
-      "licenses": [
-        {
-          "declared_name": "Apache License, Version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "31.0.1-jre"
     },
     {
       "artifact": "guava",
@@ -3692,7 +4359,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "33.4.0-jre"
     },
@@ -3724,41 +4391,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9999.0-empty-to-avoid-conflict-with-guava"
-    },
-    {
-      "artifact": "j2objc-annotations",
-      "commercial_use": true,
-      "files": [
-        "com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar"
-      ],
-      "group": "com.google.j2objc",
-      "id": "maven:com.google.j2objc:j2objc-annotations:1.3",
-      "licenses": [
-        {
-          "declared_name": "The Apache Software License, Version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "1.3"
     },
     {
       "artifact": "j2objc-annotations",
@@ -3788,9 +4423,67 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0.0"
+    },
+    {
+      "artifact": "protobuf-java",
+      "commercial_use": true,
+      "files": [
+        "com/google/protobuf/protobuf-java/3.25.1/protobuf-java-3.25.1.jar"
+      ],
+      "group": "com.google.protobuf",
+      "id": "maven:com.google.protobuf:protobuf-java:3.25.1",
+      "licenses": [
+        {
+          "declared_name": "BSD-3-Clause",
+          "declared_url": "https://opensource.org/licenses/BSD-3-Clause",
+          "spdx_expression": "BSD-3-Clause",
+          "text_evidence": [
+            {
+              "sha256": "5a93d5831e1297ab10fe643e1a631e83be392896da14ee2951285a79012df69d",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/BSD-3-Clause.txt",
+              "spdx": "BSD-3-Clause"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.25.1"
+    },
+    {
+      "artifact": "mysql-connector-j",
+      "commercial_use": true,
+      "files": [
+        "com/mysql/mysql-connector-j/8.4.0/mysql-connector-j-8.4.0.jar"
+      ],
+      "group": "com.mysql",
+      "id": "maven:com.mysql:mysql-connector-j:8.4.0",
+      "licenses": [
+        {
+          "declared_name": "The GNU General Public License, v2 with Universal FOSS Exception, v1.0",
+          "declared_url": "",
+          "spdx_expression": "GPL-2.0-only WITH LicenseRef-Universal-FOSS-exception-1.0",
+          "text_evidence": [
+            {
+              "sha256": "aaf135472f81c5b4a0dca9367e5bb5e9750032b5bebe5442b36e4c0a47430df3",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/GPL-2.0-only.txt",
+              "spdx": "GPL-2.0-only"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "8.4.0"
     },
     {
       "artifact": "checkstyle",
@@ -3820,41 +4513,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "10.21.2"
-    },
-    {
-      "artifact": "checkstyle",
-      "commercial_use": true,
-      "files": [
-        "com/puppycrawl/tools/checkstyle/9.3/checkstyle-9.3.jar"
-      ],
-      "group": "com.puppycrawl.tools",
-      "id": "maven:com.puppycrawl.tools:checkstyle:9.3",
-      "licenses": [
-        {
-          "declared_name": "LGPL-2.1+",
-          "declared_url": "http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt",
-          "evidence_ids": [
-            "LGPL-2.1-or-later"
-          ],
-          "spdx_expression": "LGPL-2.1-or-later",
-          "text_evidence": [
-            {
-              "sha256": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/LGPL-2.1-or-later.txt",
-              "spdx": "LGPL-2.1-or-later"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "9.3"
     },
     {
       "artifact": "qdox",
@@ -3884,7 +4545,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.1"
     },
@@ -3916,9 +4577,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.2.0"
+    },
+    {
+      "artifact": "HikariCP",
+      "commercial_use": true,
+      "files": [
+        "com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar"
+      ],
+      "group": "com.zaxxer",
+      "id": "maven:com.zaxxer:HikariCP:4.0.3",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.0.3"
     },
     {
       "artifact": "commons-beanutils",
@@ -3948,7 +4641,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.10.0"
     },
@@ -3980,41 +4673,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.10.1"
-    },
-    {
-      "artifact": "commons-beanutils",
-      "commercial_use": true,
-      "files": [
-        "commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar"
-      ],
-      "group": "commons-beanutils",
-      "id": "maven:commons-beanutils:commons-beanutils:1.9.4",
-      "licenses": [
-        {
-          "declared_name": "Apache License, Version 2.0",
-          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "1.9.4"
     },
     {
       "artifact": "commons-codec",
@@ -4044,7 +4705,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.16.1"
     },
@@ -4076,7 +4737,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.18.0"
     },
@@ -4108,7 +4769,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.2.2"
     },
@@ -4140,7 +4801,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.11.0"
     },
@@ -4172,7 +4833,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.16.1"
     },
@@ -4204,7 +4865,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.17.0"
     },
@@ -4236,7 +4897,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.18.0"
     },
@@ -4268,7 +4929,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.19.0"
     },
@@ -4300,41 +4961,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.1.1"
-    },
-    {
-      "artifact": "commons-logging",
-      "commercial_use": true,
-      "files": [
-        "commons-logging/commons-logging/1.2/commons-logging-1.2.jar"
-      ],
-      "group": "commons-logging",
-      "id": "maven:commons-logging:commons-logging:1.2",
-      "licenses": [
-        {
-          "declared_name": "The Apache Software License, Version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "1.2"
     },
     {
       "artifact": "commons-logging",
@@ -4364,41 +4993,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.3.5"
-    },
-    {
-      "artifact": "picocli",
-      "commercial_use": true,
-      "files": [
-        "info/picocli/picocli/4.6.2/picocli-4.6.2.jar"
-      ],
-      "group": "info.picocli",
-      "id": "maven:info.picocli:picocli:4.6.2",
-      "licenses": [
-        {
-          "declared_name": "The Apache Software License, version 2.0",
-          "declared_url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
-          "evidence_ids": [
-            "Apache-2.0"
-          ],
-          "spdx_expression": "Apache-2.0",
-          "text_evidence": [
-            {
-              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
-              "spdx": "Apache-2.0"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "4.6.2"
     },
     {
       "artifact": "picocli",
@@ -4428,7 +5025,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.7.6"
     },
@@ -4467,7 +5064,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.2.0"
     },
@@ -4499,7 +5096,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1"
     },
@@ -4545,7 +5142,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.3.1"
     },
@@ -4577,28 +5174,28 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
     {
-      "artifact": "Saxon-HE",
+      "artifact": "junit",
       "commercial_use": true,
       "files": [
-        "net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.jar"
+        "junit/junit/4.13.2/junit-4.13.2.jar"
       ],
-      "group": "net.sf.saxon",
-      "id": "maven:net.sf.saxon:Saxon-HE:10.6",
+      "group": "junit",
+      "id": "maven:junit:junit:4.13.2",
       "licenses": [
         {
-          "declared_name": "Mozilla Public License Version 2.0",
-          "declared_url": "http://www.mozilla.org/MPL/2.0/",
-          "spdx_expression": "MPL-2.0",
+          "declared_name": "Eclipse Public License 1.0",
+          "declared_url": "http://www.eclipse.org/legal/epl-v10.html",
+          "spdx_expression": "EPL-2.0",
           "text_evidence": [
             {
-              "sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MPL-2.0.txt",
-              "spdx": "MPL-2.0"
+              "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/EPL-2.0.txt",
+              "spdx": "EPL-2.0"
             }
           ]
         }
@@ -4606,9 +5203,103 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
-      "version": "10.6"
+      "version": "4.13.2"
+    },
+    {
+      "artifact": "jna-platform",
+      "commercial_use": true,
+      "files": [
+        "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar"
+      ],
+      "group": "net.java.dev.jna",
+      "id": "maven:net.java.dev.jna:jna-platform:5.13.0",
+      "licenses": [
+        {
+          "declared_name": "LGPL-2.1-or-later",
+          "declared_url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1",
+          "evidence_ids": [
+            "LGPL-2.1-or-later"
+          ],
+          "spdx_expression": "LGPL-2.1-or-later",
+          "text_evidence": [
+            {
+              "sha256": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/LGPL-2.1-or-later.txt",
+              "spdx": "LGPL-2.1-or-later"
+            }
+          ]
+        },
+        {
+          "declared_name": "Apache-2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "5.13.0"
+    },
+    {
+      "artifact": "jna",
+      "commercial_use": true,
+      "files": [
+        "net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar"
+      ],
+      "group": "net.java.dev.jna",
+      "id": "maven:net.java.dev.jna:jna:5.13.0",
+      "licenses": [
+        {
+          "declared_name": "LGPL-2.1-or-later",
+          "declared_url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1",
+          "evidence_ids": [
+            "LGPL-2.1-or-later"
+          ],
+          "spdx_expression": "LGPL-2.1-or-later",
+          "text_evidence": [
+            {
+              "sha256": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/LGPL-2.1-or-later.txt",
+              "spdx": "LGPL-2.1-or-later"
+            }
+          ]
+        },
+        {
+          "declared_name": "Apache-2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "5.13.0"
     },
     {
       "artifact": "Saxon-HE",
@@ -4622,9 +5313,6 @@
         {
           "declared_name": "Mozilla Public License Version 2.0",
           "declared_url": "http://www.mozilla.org/MPL/2.0/",
-          "evidence_ids": [
-            "MPL-2.0"
-          ],
           "spdx_expression": "MPL-2.0",
           "text_evidence": [
             {
@@ -4638,7 +5326,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "12.5"
     },
@@ -4654,35 +5342,6 @@
         {
           "declared_name": "BSD-3-Clause",
           "declared_url": "https://www.antlr.org/license.html",
-          "spdx_expression": "BSD-3-Clause",
-          "text_evidence": [
-            {
-              "sha256": "5a93d5831e1297ab10fe643e1a631e83be392896da14ee2951285a79012df69d",
-              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/BSD-3-Clause.txt",
-              "spdx": "BSD-3-Clause"
-            }
-          ]
-        }
-      ],
-      "modification": false,
-      "product_bundled": false,
-      "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
-      "shading": false,
-      "version": "4.13.2"
-    },
-    {
-      "artifact": "antlr4-runtime",
-      "commercial_use": true,
-      "files": [
-        "org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.jar"
-      ],
-      "group": "org.antlr",
-      "id": "maven:org.antlr:antlr4-runtime:4.9.3",
-      "licenses": [
-        {
-          "declared_name": "The BSD License",
-          "declared_url": "http://www.antlr.org/license.html",
           "evidence_ids": [
             "BSD-3-Clause"
           ],
@@ -4699,9 +5358,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
-      "version": "4.9.3"
+      "version": "4.13.2"
     },
     {
       "artifact": "bsh",
@@ -4731,7 +5390,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0b6"
     },
@@ -4763,7 +5422,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.10.15"
     },
@@ -4795,7 +5454,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.10.15"
     },
@@ -4827,9 +5486,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "6.10.0"
+    },
+    {
+      "artifact": "commons-compress",
+      "commercial_use": true,
+      "files": [
+        "org/apache/commons/commons-compress/1.24.0/commons-compress-1.24.0.jar"
+      ],
+      "group": "org.apache.commons",
+      "id": "maven:org.apache.commons:commons-compress:1.24.0",
+      "licenses": [
+        {
+          "declared_name": "Apache-2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.24.0"
     },
     {
       "artifact": "commons-compress",
@@ -4859,7 +5550,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.26.1"
     },
@@ -4891,7 +5582,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.2"
     },
@@ -4923,7 +5614,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.12.0"
     },
@@ -4955,7 +5646,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.14.0"
     },
@@ -4987,7 +5678,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.17.0"
     },
@@ -5019,7 +5710,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.18.0"
     },
@@ -5051,7 +5742,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.0"
     },
@@ -5083,7 +5774,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.13.0"
     },
@@ -5115,7 +5806,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5147,7 +5838,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5179,7 +5870,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5211,7 +5902,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5243,7 +5934,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5275,7 +5966,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5307,7 +5998,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.26"
     },
@@ -5339,7 +6030,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.1.3"
     },
@@ -5371,7 +6062,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.1.3"
     },
@@ -5403,7 +6094,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.1.3"
     },
@@ -5435,7 +6126,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.24.3"
     },
@@ -5467,7 +6158,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.24.3"
     },
@@ -5499,7 +6190,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5531,7 +6222,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5563,7 +6254,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5595,7 +6286,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.0"
     },
@@ -5627,7 +6318,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5659,7 +6350,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5691,7 +6382,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.0"
     },
@@ -5723,7 +6414,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5755,7 +6446,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5787,7 +6478,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5819,7 +6510,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0"
     },
@@ -5851,7 +6542,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.6.1"
     },
@@ -5883,7 +6574,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.6.1"
     },
@@ -5915,7 +6606,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.6.0"
     },
@@ -5947,7 +6638,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.14.1"
     },
@@ -5979,7 +6670,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.6.1"
     },
@@ -6011,7 +6702,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.4.1"
     },
@@ -6043,7 +6734,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.3.1"
     },
@@ -6075,7 +6766,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6107,7 +6798,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0"
     },
@@ -6139,7 +6830,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.0"
     },
@@ -6171,7 +6862,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.0"
     },
@@ -6203,7 +6894,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.4.1"
     },
@@ -6235,7 +6926,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.4.1"
     },
@@ -6267,7 +6958,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.9.23"
     },
@@ -6299,7 +6990,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.1.0"
     },
@@ -6331,7 +7022,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.4.0"
     },
@@ -6363,7 +7054,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.3.1"
     },
@@ -6395,7 +7086,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.1"
     },
@@ -6427,7 +7118,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.4.2"
     },
@@ -6459,7 +7150,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.0-M9"
     },
@@ -6491,7 +7182,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6523,7 +7214,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6555,7 +7246,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6587,7 +7278,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6619,7 +7310,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6651,7 +7342,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6683,7 +7374,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6715,7 +7406,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6747,7 +7438,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.4"
     },
@@ -6779,7 +7470,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.6.2"
     },
@@ -6811,7 +7502,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.1"
     },
@@ -6843,7 +7534,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.4"
     },
@@ -6875,7 +7566,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.1.2"
     },
@@ -6883,14 +7574,17 @@
       "artifact": "checker-qual",
       "commercial_use": true,
       "files": [
-        "org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar"
+        "org/checkerframework/checker-qual/3.19.0/checker-qual-3.19.0.jar"
       ],
       "group": "org.checkerframework",
-      "id": "maven:org.checkerframework:checker-qual:3.12.0",
+      "id": "maven:org.checkerframework:checker-qual:3.19.0",
       "licenses": [
         {
           "declared_name": "The MIT License",
           "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
           "spdx_expression": "MIT",
           "text_evidence": [
             {
@@ -6904,9 +7598,9 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
-      "version": "3.12.0"
+      "version": "3.19.0"
     },
     {
       "artifact": "checker-qual",
@@ -6936,7 +7630,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.48.4"
     },
@@ -6968,7 +7662,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.49.0"
     },
@@ -7000,7 +7694,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.9.2"
     },
@@ -7032,7 +7726,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.6.0"
     },
@@ -7064,7 +7758,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.15.0"
     },
@@ -7096,7 +7790,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.15.0"
     },
@@ -7128,7 +7822,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.15.0"
     },
@@ -7160,7 +7854,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.2.0"
     },
@@ -7193,7 +7887,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.0-beta-10"
     },
@@ -7225,7 +7919,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.26"
     },
@@ -7257,7 +7951,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.27"
     },
@@ -7289,7 +7983,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.4.2"
     },
@@ -7321,7 +8015,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.5.0"
     },
@@ -7353,7 +8047,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.3.0"
     },
@@ -7385,7 +8079,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0.24"
     },
@@ -7417,7 +8111,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.5.1"
     },
@@ -7449,7 +8143,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.1"
     },
@@ -7481,7 +8175,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.0.2"
     },
@@ -7513,7 +8207,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.2.0"
     },
@@ -7545,7 +8239,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.0.1"
     },
@@ -7569,7 +8263,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.1.4"
     },
@@ -7585,6 +8279,9 @@
         {
           "declared_name": "Eclipse Public License, Version 2.0",
           "declared_url": "https://www.eclipse.org/legal/epl-v20.html",
+          "evidence_ids": [
+            "EPL-2.0"
+          ],
           "spdx_expression": "EPL-2.0",
           "text_evidence": [
             {
@@ -7598,7 +8295,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.9.0.M3"
     },
@@ -7630,9 +8327,73 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.9.0.M3"
+    },
+    {
+      "artifact": "flyway-core",
+      "commercial_use": true,
+      "files": [
+        "org/flywaydb/flyway-core/10.20.1/flyway-core-10.20.1.jar"
+      ],
+      "group": "org.flywaydb",
+      "id": "maven:org.flywaydb:flyway-core:10.20.1",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://flywaydb.org/licenses/flyway-oss",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "10.20.1"
+    },
+    {
+      "artifact": "hamcrest-core",
+      "commercial_use": true,
+      "files": [
+        "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+      ],
+      "group": "org.hamcrest",
+      "id": "maven:org.hamcrest:hamcrest-core:1.3",
+      "licenses": [
+        {
+          "declared_name": "New BSD License",
+          "declared_url": "http://www.opensource.org/licenses/bsd-license.php",
+          "evidence_ids": [
+            "BSD-3-Clause"
+          ],
+          "spdx_expression": "BSD-3-Clause",
+          "text_evidence": [
+            {
+              "sha256": "5a93d5831e1297ab10fe643e1a631e83be392896da14ee2951285a79012df69d",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/BSD-3-Clause.txt",
+              "spdx": "BSD-3-Clause"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.3"
     },
     {
       "artifact": "snappy",
@@ -7662,7 +8423,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.4"
     },
@@ -7694,7 +8455,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.8.13"
     },
@@ -7726,7 +8487,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.8.13"
     },
@@ -7758,7 +8519,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.8.13"
     },
@@ -7790,7 +8551,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.8.13"
     },
@@ -7849,9 +8610,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "3.28.0-GA"
+    },
+    {
+      "artifact": "annotations",
+      "commercial_use": true,
+      "files": [
+        "org/jetbrains/annotations/17.0.0/annotations-17.0.0.jar"
+      ],
+      "group": "org.jetbrains",
+      "id": "maven:org.jetbrains:annotations:17.0.0",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "17.0.0"
     },
     {
       "artifact": "junit-jupiter-api",
@@ -7881,7 +8674,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.11.4"
     },
@@ -7913,7 +8706,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.11.4"
     },
@@ -7945,7 +8738,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.11.4"
     },
@@ -7977,7 +8770,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.11.4"
     },
@@ -8009,7 +8802,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.11.4"
     },
@@ -8041,7 +8834,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.1"
     },
@@ -8073,7 +8866,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.11.4"
     },
@@ -8105,7 +8898,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.1"
     },
@@ -8137,7 +8930,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.11.4"
     },
@@ -8169,9 +8962,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.12.1"
+    },
+    {
+      "artifact": "mariadb-java-client",
+      "commercial_use": true,
+      "files": [
+        "org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.jar"
+      ],
+      "group": "org.mariadb.jdbc",
+      "id": "maven:org.mariadb.jdbc:mariadb-java-client:3.4.1",
+      "licenses": [
+        {
+          "declared_name": "LGPL-2.1",
+          "declared_url": "",
+          "evidence_ids": [
+            "LGPL-2.1-or-later"
+          ],
+          "spdx_expression": "LGPL-2.1-or-later",
+          "text_evidence": [
+            {
+              "sha256": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/LGPL-2.1-or-later.txt",
+              "spdx": "LGPL-2.1-or-later"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.4.1"
     },
     {
       "artifact": "opentest4j",
@@ -8201,7 +9026,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.3.0"
     },
@@ -8233,7 +9058,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.7.1"
     },
@@ -8265,7 +9090,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.7.1"
     },
@@ -8297,7 +9122,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.8"
     },
@@ -8329,7 +9154,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.7.1"
     },
@@ -8361,7 +9186,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.8"
     },
@@ -8393,7 +9218,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.7.1"
     },
@@ -8425,7 +9250,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.7.1"
     },
@@ -8457,7 +9282,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.8"
     },
@@ -8501,9 +9326,105 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.10.2"
+    },
+    {
+      "artifact": "duct-tape",
+      "commercial_use": true,
+      "files": [
+        "org/rnorth/duct-tape/duct-tape/1.0.8/duct-tape-1.0.8.jar"
+      ],
+      "group": "org.rnorth.duct-tape",
+      "id": "maven:org.rnorth.duct-tape:duct-tape:1.0.8",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.0.8"
+    },
+    {
+      "artifact": "jcl-over-slf4j",
+      "commercial_use": true,
+      "files": [
+        "org/slf4j/jcl-over-slf4j/2.0.7/jcl-over-slf4j-2.0.7.jar"
+      ],
+      "group": "org.slf4j",
+      "id": "maven:org.slf4j:jcl-over-slf4j:2.0.7",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.0.7"
+    },
+    {
+      "artifact": "slf4j-api",
+      "commercial_use": true,
+      "files": [
+        "org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar"
+      ],
+      "group": "org.slf4j",
+      "id": "maven:org.slf4j:slf4j-api:1.7.30",
+      "licenses": [
+        {
+          "declared_name": "MIT License",
+          "declared_url": "http://www.opensource.org/licenses/mit-license.php",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.7.30"
     },
     {
       "artifact": "slf4j-api",
@@ -8533,9 +9454,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.7.36"
+    },
+    {
+      "artifact": "slf4j-api",
+      "commercial_use": true,
+      "files": [
+        "org/slf4j/slf4j-api/2.0.0-alpha1/slf4j-api-2.0.0-alpha1.jar"
+      ],
+      "group": "org.slf4j",
+      "id": "maven:org.slf4j:slf4j-api:2.0.0-alpha1",
+      "licenses": [
+        {
+          "declared_name": "MIT License",
+          "declared_url": "http://www.opensource.org/licenses/mit-license.php",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.0.0-alpha1"
     },
     {
       "artifact": "slf4j-api",
@@ -8565,7 +9518,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.17"
     },
@@ -8597,7 +9550,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "2.0.17"
     },
@@ -8629,9 +9582,169 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "0.0.7"
+    },
+    {
+      "artifact": "database-commons",
+      "commercial_use": true,
+      "files": [
+        "org/testcontainers/database-commons/1.20.4/database-commons-1.20.4.jar"
+      ],
+      "group": "org.testcontainers",
+      "id": "maven:org.testcontainers:database-commons:1.20.4",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.20.4"
+    },
+    {
+      "artifact": "jdbc",
+      "commercial_use": true,
+      "files": [
+        "org/testcontainers/jdbc/1.20.4/jdbc-1.20.4.jar"
+      ],
+      "group": "org.testcontainers",
+      "id": "maven:org.testcontainers:jdbc:1.20.4",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.20.4"
+    },
+    {
+      "artifact": "mariadb",
+      "commercial_use": true,
+      "files": [
+        "org/testcontainers/mariadb/1.20.4/mariadb-1.20.4.jar"
+      ],
+      "group": "org.testcontainers",
+      "id": "maven:org.testcontainers:mariadb:1.20.4",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.20.4"
+    },
+    {
+      "artifact": "mysql",
+      "commercial_use": true,
+      "files": [
+        "org/testcontainers/mysql/1.20.4/mysql-1.20.4.jar"
+      ],
+      "group": "org.testcontainers",
+      "id": "maven:org.testcontainers:mysql:1.20.4",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.20.4"
+    },
+    {
+      "artifact": "testcontainers",
+      "commercial_use": true,
+      "files": [
+        "org/testcontainers/testcontainers/1.20.4/testcontainers-1.20.4.jar"
+      ],
+      "group": "org.testcontainers",
+      "id": "maven:org.testcontainers:testcontainers:1.20.4",
+      "licenses": [
+        {
+          "declared_name": "MIT",
+          "declared_url": "http://opensource.org/licenses/MIT",
+          "evidence_ids": [
+            "MIT"
+          ],
+          "spdx_expression": "MIT",
+          "text_evidence": [
+            {
+              "sha256": "b05785f9f18e6716bab63424b11454513b9943a222595b70411009202fc592b5",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT.txt",
+              "spdx": "MIT"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.20.4"
     },
     {
       "artifact": "xz",
@@ -8653,9 +9766,41 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.9"
+    },
+    {
+      "artifact": "sqlite-jdbc",
+      "commercial_use": true,
+      "files": [
+        "org/xerial/sqlite-jdbc/3.46.0.0/sqlite-jdbc-3.46.0.0.jar"
+      ],
+      "group": "org.xerial",
+      "id": "maven:org.xerial:sqlite-jdbc:3.46.0.0",
+      "licenses": [
+        {
+          "declared_name": "The Apache Software License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.46.0.0"
     },
     {
       "artifact": "xmlresolver",
@@ -8686,7 +9831,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "BUILD_OR_TEST_ONLY",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "5.2.2"
     }
