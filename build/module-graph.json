@@ -4,7 +4,8 @@
     "functional_modules_materialized_in_m01": 0,
     "platform_imports_forbidden_in": ["api", "domain", "application", "config"],
     "cycles_allowed": false,
-    "unlisted_module_dependencies_allowed": false
+    "unlisted_module_dependencies_allowed": false,
+    "later_milestone_dependencies_allowed": false
   },
   "materialized_build_modules": [
     {"id": "zartrabedwars-parent", "path": "pom.xml", "packaging": "pom", "responsibility": "reactor and approved plugin version governance"},
@@ -36,6 +37,12 @@
     {"id": "zbw-observability", "layer": "adapter", "bytecode": 8, "first_milestone": "M05", "depends_on": ["zbw-api", "zbw-application"]},
     {"id": "zbw-compat-api", "layer": "api", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api"]},
     {"id": "zbw-world", "layer": "application", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api", "zbw-application"]},
+    {"id": "zbw-arena", "layer": "application", "bytecode": 8, "first_milestone": "M07", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-world"]},
+    {"id": "zbw-game", "layer": "application", "bytecode": 8, "first_milestone": "M08", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-arena"]},
+    {"id": "zbw-command-api", "layer": "api", "bytecode": 8, "first_milestone": "M09", "depends_on": ["zbw-api", "zbw-application"]},
+    {"id": "zbw-command-paper", "layer": "adapter", "bytecode": 21, "first_milestone": "M09", "depends_on": ["zbw-command-api", "zbw-arena", "zbw-game"]},
+    {"id": "zbw-ui-api", "layer": "api", "bytecode": 8, "first_milestone": "M09", "depends_on": ["zbw-api", "zbw-application"]},
+    {"id": "zbw-ui-paper", "layer": "adapter", "bytecode": 21, "first_milestone": "M09", "depends_on": ["zbw-ui-api", "zbw-arena", "zbw-game", "zbw-compat-api"]},
     {"id": "zbw-compat-v1_8", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
     {"id": "zbw-compat-v1_9", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
     {"id": "zbw-compat-v1_10", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},

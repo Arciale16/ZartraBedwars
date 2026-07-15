@@ -70,12 +70,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit evidence:** sixteen-module JDK-21 reactor passes 138 tests with zero skips; Java 8/11/16/17 neutral builds pass 121 tests each and Java 21 builds the neutral plus modern artifacts. Exact class-major 52/65 and append-only M02-M05 API checks pass. Contract suites cover typed capability outcomes/LKG mappings and bounded world load/clone/reset/unload, cancellation, timeout, drain, rollback and leak accounting. The isolated Paper 1.21.1 build 133 run passes all five certification operations, owner/worker affinity, leak-free unload and non-blocking worker shutdown. Quality, dependency/licence/SBOM/notices, JavaDoc, governance and all three 100%-coverage documentation validators pass.
 - **Deferred to M22:** `zbw-compat-v1_8` and every legacy/intermediate adapter and bootstrap, legacy material/NBT/particle/sound/text/entity/packet/GUI/input/scheduler implementations, Via/Geyser/Floodgate paths and full feature certification of every runtime row. M06 primary certification never closes the M22 release gate.
 
-### M07 — Arena, map and setup lifecycle
+### M07 — Arena, map and setup application lifecycle
 
-- **Requirements:** ARENA-001..009; ZBW-ADDON-408..423.
-- **Entry:** M03–M06 complete.
-- **Deliver:** arena/map definitions, ID registry, CRUD/import/export/backup/duplicate, setup wizard/validator, health and admin surfaces.
-- **Exit:** duplicate creates new mapped ID and independent state; rename preserves references; invalid arenas cannot enable; concurrent reset and recovery tests pass.
+- **Requirements:** core/application portions of ARENA-001..009 and ZBW-ADDON-408..423. Their final command and GUI presentation portions remain M09; PlaceholderAPI remains M16, optional world providers remain M21 and full legacy/runtime compatibility remains M22.
+- **Entry:** M03–M06 complete; the M07/M09 allocation validator passes; `zbw-arena` has no dependency on an M09 module; M03 authorization/configuration, M04 storage, M05 scheduler/failure and M06 world/primary Paper foundations remain stable.
+- **Deliver:** presentation-neutral arena/map definitions, ID registry, repositories and use cases for CRUD/import/export/backup/restore/duplicate, setup sessions and every setup step, validation, two-phase preview/apply, undo/redo, atomic save/rollback, enable gating, lifecycle health/diagnostic views, authorization/audit intents and typed test-harness entry points. No production command or GUI is delivered.
+- **Exit:** duplicate creates a new mapped ID and independent state; rename preserves references; invalid arenas cannot enable; setup and administration use cases are completely exercisable through typed APIs and deterministic harnesses; concurrent reset/recovery, stale-revision, authorization, rollback and primary Paper 1.21.1 lifecycle tests pass; no M08 gameplay or M09 command/UI module is materialized. M07 verification covers only these core/application allocations and does not claim final presentation acceptance.
 
 ### M08 — Game engine, sessions, teams and lobby
 
@@ -86,10 +86,10 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M09 — Unified command and GUI frameworks
 
-- **Requirements:** UX-001..003/006.
-- **Entry:** M03 authorization/localization and M05 async loading are ready; M08 supplies first real use cases.
-- **Deliver:** command tree/help/audit, page renderer/state/confirm tokens/editor accessibility patterns.
-- **Exit:** command/permission inventories and GUI interaction tests pass; command and GUI call identical use cases; async data never blocks tick thread.
+- **Requirements:** UX-001..003/006 plus final command and GUI presentation portions of ARENA-001..009 and ZBW-ADDON-408..423.
+- **Entry:** M03 authorization/localization and M05 async loading are ready; M07 supplies real arena/map/setup use cases and M08 supplies gameplay/lobby use cases. Both use-case layers are stable and independently tested before presentation adapters are added.
+- **Deliver:** unified command tree/help/audit, page renderer/state, common actor/action/target/expiry confirmation tokens, editor and accessibility patterns; Paper command/GUI adapters invoke the M07 and M08 use cases and contain no arena or gameplay rules.
+- **Exit:** command/permission inventories and GUI interaction tests pass, including every arena/map/setup/editor/confirmation mapping; command and GUI paths call identical application use cases; async data never blocks the tick thread; no feature policy is implemented in an adapter.
 
 ### M10 — Modes, matchmaking and selectors
 
@@ -202,7 +202,7 @@ The authoritative row-level allocation is the `Milestone` column of `docs/ADDON_
 
 | Milestone | Addon references and stable requirement ranges |
 |---|---|
-| M07 | ArenaSetup (`ZBW-ADDON-408..423`) |
+| M07 core / M09 presentation | ArenaSetup (`ZBW-ADDON-408..423`): atomic policies/use cases/lifecycle in M07; all mapped command and GUI adapters in M09 |
 | M08 | HotbarManager (`001..009`); Deposit (`108..114`); Arena Start Message (`124..130`); AntiDrop (`148..154`); LeaveDelay (`334..340`); TabSorter (`398..407`); BossBar (`424..431`); AdventureMode (`432..437`) |
 | M10 | Spectator Options (`092..101`); Spectator/Play-Again Menu (`115..123`); Compass (`131..140`); Team Selector (`155..163`); Swappage (`236..244`) |
 | M11 | Armed (`010..025`); LuckyBlock (`061..070`); Sponge (`141..147`); Pop-up Towers (`184..193`); Generator Split (`194..201`); Ultimate (`300..314`); Voidless (`315..322`); Rush (`341..349`); PerArenaGen (`363..368`); Item Rotation (`379..388`); Color Changer (`389..397`); BedSteal (`438..452`) |

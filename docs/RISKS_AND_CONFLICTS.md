@@ -141,3 +141,9 @@ RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/0
 | ID | Classification | Finding / risk | Preserving resolution |
 |---|---|---|---|
 | RC-080 | Verified runtime defect — **RESOLVED 2026-07-15** | The first exact Paper certification exposed an admission race: `WorldOrchestrator` completed a successful operation before removing its target lease, so a completion-chain unload of the same world was typed `REJECTED`. The initial run stopped after 2/5 operations. | Release the operation and target admission leases before completing the public future, add a same-world completion-chain regression test, and rerun the exact fixture. The corrected run passes 5/5 load/unload/clone/reset/unload operations, leak cleanup and worker shutdown. Evidence is `build/evidence/m06-paper-primary.json`; failure of this regression reopens RC-080. |
+
+## K. M07/M09 allocation reconciliation
+
+| ID | Classification | Finding / risk | Preserving resolution |
+|---|---|---|---|
+| RC-081 | Fact — **RESOLVED 2026-07-15** | M07 assigned `ZBW-ARENA-001..009` and all sixteen `ZBW-ADDON-408..423` ArenaSetup rows while their dependencies and catalogue mappings required the unified M09 command, GUI, editor and confirmation modules. The old graph did not allocate `zbw-arena`, `zbw-game` or the four presentation modules, so it could not reject an M07 dependency on later M09 work. | M07 owns presentation-neutral arena/map/setup policies, persistence ports, lifecycle and typed use cases in `zbw-arena`; M09 owns every final command/GUI/editor/confirmation adapter and calls those use cases without feature rules. `zbw-game` remains M08. The PRD behavior and all 16 catalogue rows remain intact; traceability records split completion, and deterministic graph/allocation validation prohibits reverse dependencies or temporary M07 production presentation. All governance, catalogue and coverage validators passed before this conflict was marked resolved. |
