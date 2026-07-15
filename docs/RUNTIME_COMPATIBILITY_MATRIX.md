@@ -1,6 +1,6 @@
 # Runtime and Compatibility Matrix
 
-**Status:** Accepted pre-code baseline
+**Status:** M06 primary foundation certified; complete release matrix pending M22
 **Decisions:** RC-003, RC-004, RC-022
 **Requirements:** `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-READY-006`, `ZBW-COMPAT-001..009`
 
@@ -23,11 +23,11 @@ Maven Wrapper is fixed to Maven `3.9.11`; compiler uses `--release`, Enforcer re
 
 ## Milestone certification allocation
 
-This is milestone ownership, not current certification evidence. M06 has not started, so every fixture remains `NOT_STARTED` in `build/private-runtime-fixtures.json` until its assigned suite actually passes.
+This table separates the narrow completed M06 foundation from M22 release-level certification. Only the exact primary row has M06 evidence; every other fixture remains `NOT_STARTED`.
 
 | Runtime row | M06 certification ownership | M22 certification ownership | Current status |
 |---|---|---|---|
-| Paper 1.21.1 build 133, SHA-256 `39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9` | **Only M06 row:** primary bootstrap, owner-thread dispatch, native world provider and M06 semantic mappings | Full release-level lifecycle/gameplay/GUI/item/packet/replay/provider revalidation | `NOT_STARTED` |
+| Paper 1.21.1 build 133, SHA-256 `39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9` | **Only M06 row:** primary bootstrap, owner-thread dispatch, native world provider and M06 semantic mappings | Full release-level lifecycle/gameplay/GUI/item/packet/replay/provider revalidation | `M06_FOUNDATION_CERTIFIED`; 5/5 operations, exact evidence in `build/evidence/m06-paper-primary.json` |
 | Every other declared row from 1.8.8 through 1.21.11 | None; M06 must not claim it | Complete row certification, including legacy fallbacks and translated-client/Bedrock dimensions where applicable | `NOT_STARTED` pending M22 |
 
 The shared `zbw-compat-v1_20-v1_21` artifact name does not certify the complete 1.20/1.21 family. Full 1.8–1.21.x support remains an M22 release gate, and M22 revalidates the M06 primary row after all feature semantics exist.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate or verify additive prior compatibility and the exact M05 JVM API baseline."""
+"""Generate or verify additive prior compatibility and exact M06 JVM API baselines."""
 
 from __future__ import annotations
 
@@ -12,8 +12,10 @@ ROOT = Path(__file__).resolve().parents[2]
 M02_BASELINE = ROOT / "build" / "api-signature-baseline.txt"
 M03_BASELINE = ROOT / "build" / "api-signature-baseline-m03.txt"
 M04_BASELINE = ROOT / "build" / "api-signature-baseline-m04.txt"
-BASELINE = ROOT / "build" / "api-signature-baseline-m05.txt"
-MODULES = (
+M05_BASELINE = ROOT / "build" / "api-signature-baseline-m05.txt"
+BASELINE = ROOT / "build" / "api-signature-baseline-m06.txt"
+MODERN_BASELINE = ROOT / "build" / "api-signature-baseline-m06-modern.txt"
+NEUTRAL_MODULES = (
     "api/zbw-api",
     "domain/zbw-domain",
     "application/zbw-application",
@@ -23,6 +25,12 @@ MODULES = (
     "storage/zbw-storage-api",
     "storage/zbw-storage-sql",
     "observability/zbw-observability",
+    "compatibility/zbw-compat-api",
+    "world/zbw-world",
+)
+MODERN_MODULES = (
+    "compatibility/zbw-compat-v1_20-v1_21",
+    "platform/paper/zbw-paper-modern",
 )
 VISIBLE = 0x0001 | 0x0004
 
@@ -59,14 +67,15 @@ def skip_attributes(reader: ClassReader) -> None:
         reader.skip(reader.u4())
 
 
-def signature(path: Path) -> list[str]:
+def signature(path: Path, expected_major: int) -> list[str]:
     reader = ClassReader(path.read_bytes())
     if reader.u4() != 0xCAFEBABE:
         raise ValueError(f"Not a JVM class file: {path}")
     reader.u2()
     major = reader.u2()
-    if major != 52:
-        raise ValueError(f"Shared class must be Java 8 bytecode (52), found {major}: {path}")
+    if major != expected_major:
+        raise ValueError(
+            f"Class must use bytecode {expected_major}, found {major}: {path}")
     pool: list[object | None] = [None] * reader.u2()
     index = 1
     while index < len(pool):
@@ -125,16 +134,16 @@ def signature(path: Path) -> list[str]:
     return lines
 
 
-def observed() -> str:
-    header = ["# ZartraBedWars M05 JVM binary API baseline", "# class-major=52"]
+def observed(modules: tuple[str, ...], major: int, title: str) -> str:
+    header = [f"# ZartraBedWars {title} JVM binary API baseline", f"# class-major={major}"]
     signatures: list[str] = []
     count = 0
-    for module in MODULES:
+    for module in modules:
         classes = ROOT / module / "target" / "classes"
         if not classes.is_dir():
             raise ValueError(f"Missing compiled classes for {module}; run the current build first")
         for path in sorted(classes.rglob("*.class")):
-            class_lines = signature(path)
+            class_lines = signature(path, major)
             if class_lines:
                 count += 1
                 signatures.extend(class_lines)
@@ -147,27 +156,37 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=("generate", "check"))
     arguments = parser.parse_args()
-    current = observed()
+    current = observed(NEUTRAL_MODULES, 52, "M06 neutral")
+    modern = observed(MODERN_MODULES, 65, "M06 modern")
     if arguments.command == "generate":
         BASELINE.write_text(current, encoding="utf-8")
-        print(f"Generated binary API baseline with {current.count('CLASS ')} public classes.")
+        MODERN_BASELINE.write_text(modern, encoding="utf-8")
+        print(
+            "Generated M06 binary API baselines with "
+            f"{current.count('CLASS ')} neutral and {modern.count('CLASS ')} modern public classes.")
         return 0
     if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M05 binary API differs from build/api-signature-baseline-m05.txt")
+        print("ERROR: M06 neutral binary API differs from its exact baseline")
         return 1
-    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE):
+    if not MODERN_BASELINE.is_file() or MODERN_BASELINE.read_text(encoding="utf-8") != modern:
+        print("ERROR: M06 modern binary API differs from its exact baseline")
+        return 1
+    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE, M05_BASELINE):
         if not previous.is_file():
             print(f"ERROR: immutable prior binary API baseline is missing: {previous.name}")
             return 1
     current_lines = set(current.splitlines())
     missing = []
-    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE):
+    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE, M05_BASELINE):
         missing.extend(line for line in previous.read_text(encoding="utf-8").splitlines()
                        if line and not line.startswith("#") and line not in current_lines)
     if missing:
         print(f"ERROR: {len(missing)} prior binary signatures were removed or changed")
         return 1
-    print(f"Binary/API compatibility PASS: {current.count('CLASS ')} public classes, Java 8 bytecode; M02/M03/M04 baselines preserved.")
+    print(
+        "Binary/API compatibility PASS: "
+        f"{current.count('CLASS ')} Java 8 neutral and {modern.count('CLASS ')} Java 21 modern "
+        "public classes; M02-M05 baselines preserved.")
     return 0
 
 

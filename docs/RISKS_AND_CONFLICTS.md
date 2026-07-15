@@ -135,3 +135,9 @@ RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/0
 | ID | Classification | Finding / risk | Preserving resolution |
 |---|---|---|---|
 | RC-079 | Fact — **RESOLVED 2026-07-15** | `zbw-paper-modern` was first allocated to M06 while its direct dependency `zbw-compat-v1_20-v1_21` was first allocated to M22. Traceability also described `ZBW-COMPAT-002` as a `zbw-compat-v1_8` adapter delivered in M06 even though the graph and accepted compatibility policy reserve legacy adapters and complete certification for M22. | Move the modern adapter to M06, add Java-8-neutral `zbw-world` to M06 and make `zbw-paper-modern` depend on both. M06 owns only neutral contracts, primary mappings and pending Paper 1.21.1 foundation certification; `zbw-compat-v1_8`, all other deferred adapters and complete 1.8–1.21.x release certification remain M22. Deterministic graph-order, traceability, architecture, compatibility-matrix and 100%-coverage validators pass; any future failure reopens this conflict. No requirement or compatibility guarantee is reduced. |
+
+## J. M06 implementation findings
+
+| ID | Classification | Finding / risk | Preserving resolution |
+|---|---|---|---|
+| RC-080 | Verified runtime defect — **RESOLVED 2026-07-15** | The first exact Paper certification exposed an admission race: `WorldOrchestrator` completed a successful operation before removing its target lease, so a completion-chain unload of the same world was typed `REJECTED`. The initial run stopped after 2/5 operations. | Release the operation and target admission leases before completing the public future, add a same-world completion-chain regression test, and rerun the exact fixture. The corrected run passes 5/5 load/unload/clone/reset/unload operations, leak cleanup and worker shutdown. Evidence is `build/evidence/m06-paper-primary.json`; failure of this regression reopens RC-080. |

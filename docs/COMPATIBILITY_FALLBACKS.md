@@ -3,7 +3,7 @@
 **Status:** accepted mandatory compatibility policy<br>
 **Decision:** RC-075<br>
 **Requirements:** `ZBW-COMPAT-001..009`<br>
-**Implementation status:** M01 governance/fixture manifest VERIFIED; M06/M22 allocation reconciled; compatibility adapters NOT STARTED
+**Implementation status:** M06 neutral contracts and Paper 1.21.1 primary mappings VERIFIED; legacy/intermediate fallbacks pending M22
 
 The exact server distributions, build hashes, JDKs, artifact families and client-protocol certification dimensions are normative in `RUNTIME_COMPATIBILITY_MATRIX.md`. This file owns semantic fallbacks; the runtime matrix owns which exact environments must prove them.
 
@@ -17,7 +17,7 @@ For an unavailable 1.8 capability, ZartraBedWars must provide a safe visual and 
 
 Core, domain, application and feature modules never import versioned Bukkit/NMS classes. They use `zbw-compat-api` representations for materials, item metadata, sounds, particles, text, inventory/UI capabilities, entities, packets, scheduler context and client capability.
 
-M06 defines `zbw-compat-api`, typed fallback/degradation contracts and primary Paper 1.21.1 mappings in the Java-21 `zbw-compat-v1_20-v1_21` adapter. It does not create or certify a legacy adapter.
+M06 implements `zbw-compat-api`, typed supported/unsupported/fallback/degraded outcomes, validation and last-known-good mapping selection, plus primary Paper 1.21.1 mappings in the Java-21 `zbw-compat-v1_20-v1_21` adapter. It does not create or certify a legacy adapter.
 
 `zbw-compat-v1_8` is implemented only in M22 and owns all 1.8 mappings and packet/platform calls. Startup selects one tested adapter and rejects an incompatible server before feature activation. Missing mappings return typed unsupported/fallback results; they never leak a modern enum/class name to legacy runtime code.
 

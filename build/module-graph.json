@@ -18,7 +18,11 @@
     {"id": "zbw-storage-api", "path": "storage/zbw-storage-api/pom.xml", "packaging": "jar", "responsibility": "JDBC-free repository, unit-of-work, migration, mutation, cache, retention and recovery contracts"},
     {"id": "zbw-storage-sql", "path": "storage/zbw-storage-sql/pom.xml", "packaging": "jar", "responsibility": "SQLite, MySQL and MariaDB storage adapters, migrations, outbox/inbox, cache and recovery foundations"},
     {"id": "zbw-sdk", "path": "sdk/zbw-sdk/pom.xml", "packaging": "jar", "responsibility": "extension metadata reader and deterministic validator"},
-    {"id": "zbw-integration-discord-api", "path": "integrations/discord/zbw-integration-discord-api/pom.xml", "packaging": "jar", "responsibility": "optional Discord provider and integration contracts"}
+    {"id": "zbw-integration-discord-api", "path": "integrations/discord/zbw-integration-discord-api/pom.xml", "packaging": "jar", "responsibility": "optional Discord provider and integration contracts"},
+    {"id": "zbw-compat-api", "path": "compatibility/zbw-compat-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral semantic capability and fallback contracts"},
+    {"id": "zbw-world", "path": "world/zbw-world/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral bounded world lifecycle orchestration"},
+    {"id": "zbw-compat-v1_20-v1_21", "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"},
+    {"id": "zbw-paper-modern", "path": "platform/paper/zbw-paper-modern/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper bootstrap and native world provider"}
   ],
   "planned_production_modules": [
     {"id": "zbw-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": []},

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "minecraft_version": "1.21.1",
+    "build": 133,
+    "commit": "3cb8529bdbeeec9ff51df2c94e93dbe7e41bb811",
+    "server": {
+      "url": "https://fill-data.papermc.io/v1/objects/39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9/paper-1.21.1-133.jar",
+      "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+      "redistribution": false
+    },
+    "api": {
+      "upstream_version": "1.21.1-R0.1-20250328.161643-128",
+      "url": "https://repo.papermc.io/repository/maven-public/io/papermc/paper/paper-api/1.21.1-R0.1-SNAPSHOT/paper-api-1.21.1-R0.1-20250328.161643-128.jar",
+      "sha512": "0474a57eade57b959e84e2c1b7955f7c995893de70f73558061c4d10e33a29c10a3e4a2aae328b48ed4f5483a6a51d0ef079f5dfeff6a64d32cb879b53f0899e",
+      "mirror_coordinate": "io.zartra.mirror.paper:paper-api:1.21.1-build133",
+      "scope": "provided",
+      "redistribution": false,
+      "licence": "GPL-3.0-only"
+    }
+  }
+}

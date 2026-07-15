@@ -24,6 +24,8 @@
     <module>storage/zbw-storage-sql</module>
     <module>sdk/zbw-sdk</module>
     <module>integrations/discord/zbw-integration-discord-api</module>
+    <module>compatibility/zbw-compat-api</module>
+    <module>world/zbw-world</module>
   </modules>
 
   <properties>
@@ -53,6 +55,7 @@
     <mariadb-driver.version>3.4.1</mariadb-driver.version>
     <mysql-driver.version>8.4.0</mysql-driver.version>
     <testcontainers.version>1.20.4</testcontainers.version>
+    <paper-api-mirror.version>1.21.1-build133</paper-api-mirror.version>
   </properties>
 
   <build>
@@ -184,6 +187,14 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>modern-paper-platform</id>
+      <activation><jdk>[21,22)</jdk></activation>
+      <modules>
+        <module>compatibility/zbw-compat-v1_20-v1_21</module>
+        <module>platform/paper/zbw-paper-modern</module>
+      </modules>
+    </profile>
     <profile>
       <id>quality</id>
       <build>

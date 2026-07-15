@@ -82,6 +82,10 @@ def validate_module_graph() -> list[str]:
                 errors.append(f"{row['id']}: packaging differs from module graph")
     root_pom = ET.parse(ROOT / "pom.xml").getroot()
     reactor_modules = [value.text for value in root_pom.findall("m:modules/m:module", MAVEN_NAMESPACE)]
+    for profile in root_pom.findall("m:profiles/m:profile", MAVEN_NAMESPACE):
+        if profile.findtext("m:id", default="", namespaces=MAVEN_NAMESPACE) == "modern-paper-platform":
+            reactor_modules.extend(
+                value.text for value in profile.findall("m:modules/m:module", MAVEN_NAMESPACE))
     expected_reactor = [
         str(row["path"]).removesuffix("/pom.xml")
         for row in materialized
@@ -152,8 +156,12 @@ def validate_fixtures() -> list[str]:
     if versions != expected_versions:
         errors.append("private runtime fixture version inventory drift")
     for row in fixtures:
-        if row["certification"] != "NOT_STARTED":
-            errors.append(f"{row['minecraft']}: M1 cannot claim runtime certification")
+        allowed_certification = (
+            row["minecraft"] == "1.21.1"
+            and row["certification"] == "M06_FOUNDATION_CERTIFIED"
+        )
+        if row["certification"] != "NOT_STARTED" and not allowed_certification:
+            errors.append(f"{row['minecraft']}: unsupported runtime certification claim")
         if row["distribution"] == "PAPER" and not re.fullmatch(r"[0-9a-f]{64}", str(row.get("sha256", ""))):
             errors.append(f"{row['minecraft']}: Paper fixture lacks exact SHA-256")
         if row["distribution"] == "PRIVATE_BUILDTOOLS" and row.get("sha256_state") != "PRIVATE_LOCK_REQUIRED":

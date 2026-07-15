@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the approved M06/M22 compatibility allocation without starting M06."""
+"""Validate the approved M06/M22 compatibility allocation through M06 closure."""
 
 from __future__ import annotations
 
@@ -78,13 +78,15 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    if state["active_milestone"] is not None:
-        errors.append("M06 must remain inactive during allocation reconciliation")
-    if state["completed_milestones"] != ["M00", "M01", "M02", "M03", "M04", "M05"]:
-        errors.append("milestone state must record exactly M00-M05 completed")
+    valid_states = (
+        ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
+        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
+    )
+    if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
+        errors.append("milestone state must represent active M06 or completed M06 closure")
 
     milestones = read("docs/MILESTONES.md")
-    require(milestones, "M06/M22 allocation is reconciled at planning level only", "milestones", errors)
+    require(milestones, "M06 primary certification never closes the M22 release gate", "milestones", errors)
     require(milestones, "The M06 certification target is only Paper 1.21.1 build 133", "milestones", errors)
     require(milestones, "`zbw-compat-v1_8` and every legacy/intermediate adapter", "milestones", errors)
     require(milestones, "Full 1.8–1.21.x certification remains a release gate", "milestones", errors)
