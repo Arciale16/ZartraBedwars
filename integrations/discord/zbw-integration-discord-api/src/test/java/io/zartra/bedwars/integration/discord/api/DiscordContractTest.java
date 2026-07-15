@@ -13,7 +13,9 @@ import io.zartra.bedwars.api.identity.EventTypeId;
 import io.zartra.bedwars.api.identity.IdempotencyKey;
 import io.zartra.bedwars.api.identity.ProviderId;
 import io.zartra.bedwars.api.provider.Provider;
+import io.zartra.bedwars.api.time.TimeSource;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.EnumSet;
 import java.util.UUID;
@@ -67,6 +69,41 @@ class DiscordContractTest {
         assertThrows(IllegalArgumentException.class, () -> DiscordProvider.DeliveryResult.of(
                 DiscordProvider.Classification.PERMANENT_FAILURE, "token=secret"));
         assertEquals("zartra:discord/account_linking", DiscordCapabilities.ACCOUNT_LINKING.toString());
+    }
+
+    @Test
+    void disabledProviderIsDeterministicCapabilityFreeAndPerformsNoDelivery() throws Exception {
+        final Instant now = Instant.parse("2026-07-14T12:00:00Z");
+        final DisabledDiscordProvider provider = new DisabledDiscordProvider(
+                TimeSource.FixedTimeSource.at(now));
+        assertEquals("zartra:discord/disabled", provider.descriptor().id().toString());
+        assertEquals(0, provider.descriptor().capabilities().size());
+        assertEquals(Provider.HealthStatus.DISABLED, provider.health().status());
+        assertEquals(now, provider.health().observedAt());
+        assertEquals(Provider.LifecycleState.STOPPED, provider.start().toCompletableFuture().get().requireValue());
+        assertEquals(Provider.LifecycleState.STOPPED,
+                provider.drain(Duration.ZERO).toCompletableFuture().get().requireValue());
+        assertEquals(Provider.LifecycleState.STOPPED, provider.stop().toCompletableFuture().get().requireValue());
+        final DiscordProvider.DeliveryResult delivery = provider.deliver(envelope())
+                .toCompletableFuture().get().requireValue();
+        assertEquals(DiscordProvider.Classification.REJECTED_BY_POLICY, delivery.classification());
+        assertEquals("discord.disabled", delivery.diagnosticCode());
+        assertEquals("zartra:discord-disabled-provider", provider.extensionMetadata().id().toString());
+        assertFalse(provider.extensionMetadata().providedCapabilities().contains(
+                DiscordCapabilities.NOTIFICATIONS));
+        assertThrows(IllegalArgumentException.class, () -> provider.drain(Duration.ofSeconds(-1)));
+        assertThrows(NullPointerException.class, () -> provider.deliver(null));
+    }
+
+    private static DiscordEventEnvelope<TestPayload> envelope() {
+        final Instant occurred = Instant.parse("2026-07-14T12:00:00Z");
+        final EventMetadata metadata = EventMetadata.of(EventId.of(new UUID(4L, 4L)),
+                EventTypeId.of("zartra", "match/end"), CorrelationId.of(new UUID(5L, 5L)),
+                occurred, 1L, 1, EventMetadata.ThreadContext.PROVIDER_WORKER);
+        return DiscordEventEnvelope.of(metadata,
+                IdempotencyKey.of("match", "123e4567-e89b-12d3-a456-426614174001"),
+                DiscordEventEnvelope.Sensitivity.PUBLIC, DiscordCapabilities.NOTIFICATIONS,
+                occurred.plusSeconds(60), new TestPayload());
     }
 
     private static final class TestPayload implements DiscordEventEnvelope.Payload {

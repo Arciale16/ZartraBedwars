@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate or verify the deterministic M02 JVM binary API baseline."""
+"""Generate or verify additive M02 compatibility and the exact M03 JVM API baseline."""
 
 from __future__ import annotations
 
@@ -9,13 +9,15 @@ import struct
 
 
 ROOT = Path(__file__).resolve().parents[2]
-BASELINE = ROOT / "build" / "api-signature-baseline.txt"
+M02_BASELINE = ROOT / "build" / "api-signature-baseline.txt"
+BASELINE = ROOT / "build" / "api-signature-baseline-m03.txt"
 MODULES = (
     "api/zbw-api",
     "domain/zbw-domain",
     "application/zbw-application",
     "sdk/zbw-sdk",
     "integrations/discord/zbw-integration-discord-api",
+    "configuration/zbw-config",
 )
 VISIBLE = 0x0001 | 0x0004
 
@@ -59,7 +61,7 @@ def signature(path: Path) -> list[str]:
     reader.u2()
     major = reader.u2()
     if major != 52:
-        raise ValueError(f"M02 shared class must be Java 8 bytecode (52), found {major}: {path}")
+        raise ValueError(f"Shared class must be Java 8 bytecode (52), found {major}: {path}")
     pool: list[object | None] = [None] * reader.u2()
     index = 1
     while index < len(pool):
@@ -119,19 +121,19 @@ def signature(path: Path) -> list[str]:
 
 
 def observed() -> str:
-    lines = ["# ZartraBedWars M02 JVM binary API baseline", "# class-major=52"]
+    lines = ["# ZartraBedWars M03 JVM binary API baseline", "# class-major=52"]
     count = 0
     for module in MODULES:
         classes = ROOT / module / "target" / "classes"
         if not classes.is_dir():
-            raise ValueError(f"Missing compiled classes for {module}; run the M02 build first")
+            raise ValueError(f"Missing compiled classes for {module}; run the current build first")
         for path in sorted(classes.rglob("*.class")):
             class_lines = signature(path)
             if class_lines:
                 count += 1
                 lines.extend(class_lines)
     if not count:
-        raise ValueError("No public M02 classes found")
+        raise ValueError("No public classes found")
     return "\n".join(lines) + "\n"
 
 
@@ -145,9 +147,18 @@ def main() -> int:
         print(f"Generated binary API baseline with {current.count('CLASS ')} public classes.")
         return 0
     if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M02 binary API differs from build/api-signature-baseline.txt")
+        print("ERROR: M03 binary API differs from build/api-signature-baseline-m03.txt")
         return 1
-    print(f"Binary/API compatibility PASS: {current.count('CLASS ')} public classes, Java 8 bytecode.")
+    if not M02_BASELINE.is_file():
+        print("ERROR: immutable M02 binary API baseline is missing")
+        return 1
+    current_lines = set(current.splitlines())
+    missing = [line for line in M02_BASELINE.read_text(encoding="utf-8").splitlines()
+               if line and not line.startswith("#") and line not in current_lines]
+    if missing:
+        print(f"ERROR: {len(missing)} M02 binary signatures were removed or changed")
+        return 1
+    print(f"Binary/API compatibility PASS: {current.count('CLASS ')} public classes, Java 8 bytecode; M02 baseline preserved.")
     return 0
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate strict Java 8 JavaDoc and a deterministic M02 documentation archive."""
+"""Generate strict Java 8 JavaDoc and a deterministic current documentation archive."""
 
 from __future__ import annotations
 
@@ -12,10 +12,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "target" / "apidocs"
-ARCHIVE = ROOT / "target" / "zartrabedwars-m02-javadoc.zip"
+ARCHIVE = ROOT / "target" / "zartrabedwars-m03-javadoc.zip"
 MODULES = (
     "api/zbw-api", "domain/zbw-domain", "application/zbw-application", "sdk/zbw-sdk",
-    "integrations/discord/zbw-integration-discord-api",
+    "integrations/discord/zbw-integration-discord-api", "configuration/zbw-config",
 )
 
 

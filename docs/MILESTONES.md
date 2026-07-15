@@ -35,10 +35,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M03 — Configuration, localization, permissions and validation foundations
 
-- **Requirements:** OPS-001..004, UX-004/005, OPS-002/003, DISCORD-006/008, content/compatibility schema foundations.
+- **Implementation status:** VERIFIED on 2026-07-15; evidence in `docs/IMPLEMENTATION_M03.md`. This status covers only the M03 allocations of requirements that continue into later milestones.
+- **Requirements:** OPS-001..004, UX-004/005, DISCORD-006/008; M03 schema/configuration portions of ZBW-ADDON-464..473, CONTENT-001..011, COMPAT-001..009 and READY-003/004/010/011/013/014/015/018.
 - **Entry:** M02 types/events stable enough for schemas.
 - **Deliver:** typed versioned configuration, comments/docs generator, transactional targeted reload, localization and authorization ports, startup/manual validator.
 - **Exit:** malformed/unknown/dependency/secret cases tested; every initial option has metadata; reload never partially applies; permission checks are centralized.
+- **Exit evidence:** nine-project reactor and 54 tests pass on checksum-locked Temurin 8/11/16/17/21 while producing Java 8 bytecode; exact 36-file schemas, five configuration fixtures, 33 centralized actions and 183-public-class append-only API baseline validate. Checkstyle and SpotBugs report zero findings; `zbw-config` JaCoCo reaches 95.87% line and 84.43% branch coverage. Dependency/licence/SBOM, JavaDoc, architecture, governance and all three 100%-coverage documentation gates pass. No M04 module or behavior exists.
 
 ### M04 — Storage, migrations, outbox and cache foundations
 

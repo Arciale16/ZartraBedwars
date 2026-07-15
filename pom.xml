@@ -18,6 +18,7 @@
     <module>api/zbw-api</module>
     <module>domain/zbw-domain</module>
     <module>application/zbw-application</module>
+    <module>configuration/zbw-config</module>
     <module>sdk/zbw-sdk</module>
     <module>integrations/discord/zbw-integration-discord-api</module>
   </modules>
