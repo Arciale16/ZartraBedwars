@@ -819,7 +819,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "arena-setup-addon", "Free", "ArenaSetup", "Guided, validated in-game arena construction and map-management tools.",
-        "ZBW-ARENA-002, ZBW-ARENA-004, ZBW-ARENA-007, ZBW-UX-002", "M07", "zbw-arena, zbw-ui-paper, zbw-command-api, zbw-command-paper",
+        "ZBW-ARENA-002, ZBW-ARENA-004, ZBW-ARENA-007, ZBW-UX-002",
+        "M07 core; M09 command/GUI presentation",
+        "zbw-arena, zbw-ui-api, zbw-ui-paper, zbw-command-api, zbw-command-paper",
         (
             "Enter and exit an isolated arena setup session through an admin command",
             "Provide configurable setup hotbar items with action, slot and localized metadata",
@@ -839,9 +841,14 @@ ADDONS: tuple[Addon, ...] = (
             "Expose setup sessions/validation through granular commands, permissions and API events",
         ),
         source="https://www.spigotmc.org/resources/addon-bedwars1058-arenasetup-1-8-1-21.97709/",
-        commands="/zbw setup <arena>; /zbw setup waiting|team|spawn|bed|generator|shop|upgrade|validate|save|undo|exit",
-        permissions="zartrabedwars.admin.setup.<operation>; world/arena scope restrictions",
-        papi="zartra_setup_arena, zartra_setup_step, zartra_setup_errors for authorized staff only",
+        config="M07 core: addons/arena-setup-addon.yml with validated defaults and per-mode/arena/group overrides",
+        gui="M09 presentation: unified setup wizard/editor/preview/validation/confirmation pages invoking M07 use cases",
+        commands="M09 presentation: /zbw setup <arena>; /zbw setup waiting|team|spawn|bed|generator|shop|upgrade|validate|save|undo|exit",
+        permissions="M07 enforces zartrabedwars.admin.setup.<operation> with world/arena scope; M09 revalidates the same nodes at adapters",
+        api="M07 core: ArenaSetup service/query API with cancellable pre-events and immutable post-events",
+        papi="M16: zartra_setup_arena, zartra_setup_step, zartra_setup_errors for authorized staff only",
+        tests="M07 unit, typed-harness lifecycle, validation, persistence, rollback and permission tests; M09 command/GUI/editor/confirmation tests; M22 cross-version tests",
+        docs="M07 application/configuration/API documentation; M09 command/permission/GUI reference; M16 placeholder and M22 compatibility reference",
     ),
     addon(
         "bossbar", "Free", "BossBar", "State-aware, localized BedWars boss bars with version fallbacks.",
@@ -987,7 +994,7 @@ def validate() -> None:
         "zbw-command-api", "zbw-command-paper", "zbw-compat-api", "zbw-config",
         "zbw-game", "zbw-integration-discord", "zbw-integration-placeholderapi",
         "zbw-paper", "zbw-progression", "zbw-proxy-api", "zbw-redis", "zbw-shop",
-        "zbw-statistics", "zbw-ui-paper", "zbw-velocity",
+        "zbw-statistics", "zbw-ui-api", "zbw-ui-paper", "zbw-velocity",
     }
     for entry in ADDONS:
         tiers[entry.tier] += 1
