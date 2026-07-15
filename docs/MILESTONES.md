@@ -53,7 +53,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M05 — Scheduler, lifecycle, observability and failure substrate
 
-- **Implementation status:** VERIFIED locally on 2026-07-15. Evidence is in `docs/IMPLEMENTATION_M05.md`; CI matrix evidence is required on the draft PR before approval. This status covers only M05 and does not start M06.
+- **Implementation status:** VERIFIED and merged on 2026-07-15. Evidence is in `docs/IMPLEMENTATION_M05.md`. This status covers only M05 and does not start M06.
 - **Requirements:** ARC-005/006, OPS-005/006, GAME-010.
 - **Entry:** M02 application ports and M03 config exist.
 - **Deliver:** owner-thread dispatch, bounded executors/queues, lifecycle drain, health/metrics, sanitized diagnostics, Plugin Doctor extension SPI.
@@ -62,10 +62,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M06 — Compatibility and world-provider foundation
 
-- **Requirements:** ARC-002/007, ARENA-005/006, INT-004/005, INT-010 architecture subset, COMPAT-002..009, CONTENT-009.
-- **Entry:** M01 compatibility ADR and M05 scheduler ready.
-- **Deliver:** compatibility capability API, primary 1.21.1 adapter, world provider contracts and at least native primary adapter; version-neutral material/effect/item representations.
-- **Exit:** primary Paper world load/clone/reset/unload E2E passes; file work vs owner-thread calls proven; provider contract suite reusable for later adapters.
+- **Implementation status:** NOT STARTED. The M06/M22 allocation is reconciled at planning level only; no M06 module is materialized by that reconciliation.
+- **Requirements:** ARC-002/007; M06 foundations of ARENA-005/006, INT-004/005, INT-010, COMPAT-001..009, CONTENT-009 and READY-001/002/003/006. M06 does not complete the full acceptance of INT-010, COMPAT-001..009 or READY-001/002/006.
+- **Entry:** M01 runtime/toolchain ADRs and immutable dependency policy remain accepted; M02 API/provider contracts, M03 compatibility configuration/validation and M05 scheduler/thread/lifecycle/failure substrate are merged and stable; the exact Paper 1.21.1 build 133 fixture remains checksum/licence approved; the module graph contains no dependency on a later-milestone module; deterministic governance passes. M04 storage is not an M06 runtime dependency.
+- **Deliver:** materialize `zbw-compat-api` and `zbw-world` as Java-8 neutral contracts/orchestration, plus `zbw-compat-v1_20-v1_21` and `zbw-paper-modern` as Java-21 primary-platform artifacts; implement semantic material/item/metadata/sound/particle/text/entity/packet/UI/scheduler capabilities, typed supported/unsupported/fallback/degraded results, primary 1.21.1 mappings, Paper owner-thread dispatch/bootstrap and the native primary world provider. The M06 certification target is only Paper 1.21.1 build 133 and only for the M06 foundation scope.
+- **Exit:** the two neutral modules compile to Java 8 and contain no Bukkit/Paper/NMS/storage/Redis/proxy imports; the two modern modules compile to Java 21; graph/order/cycle checks pass; Paper 1.21.1 bootstrap start/stop and native world load/clone/reset/unload E2E pass; filesystem work is proven off the owner thread and world/entity mutation on it; bounded cancellation/drain uses M05; reusable compatibility/world-provider suites pass for primary, unsupported and fallback paths; binary/API, static, coverage, dependency/licence, documentation and governance gates pass. No 1.8 adapter, translated-client/Bedrock provider, complete 1.20–1.21 family claim, arena CRUD/gameplay or M07+ behavior exists.
+- **Deferred to M22:** `zbw-compat-v1_8` and every legacy/intermediate adapter and bootstrap, legacy material/NBT/particle/sound/text/entity/packet/GUI/input/scheduler implementations, Via/Geyser/Floodgate paths and full feature certification of every runtime row. M06 primary certification never closes the M22 release gate.
 
 ### M07 — Arena, map and setup lifecycle
 
@@ -174,10 +176,10 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M22 — Full 1.8–1.21.x and Bedrock compatibility matrix
 
-- **Requirements:** INT-010, COMPAT-001..009, remaining ARENA/SHOP/REPLAY/UX compatibility acceptance.
-- **Entry:** M06 adapter contract proven and all feature semantics stable.
-- **Deliver:** separate version-family bootstraps/adapters/toolchains, mappings, Via integrations and Geyser/Floodgate alternatives.
-- **Exit:** every claimed matrix row passes build/startup/gameplay/GUI/item/packet/replay tests on its required JDK; unsupported limitations are explicit and owner-approved alternatives exist where necessary.
+- **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance. M06 foundations remain explicit and are not reclassified as full completion.
+- **Entry:** M06 compatibility/world-provider contracts and primary 1.21.1 foundation certification pass; all feature semantics and their required fallback rows/fixtures are stable; exact legacy/private and maintained runtime fixtures are lawfully acquired and hash-locked.
+- **Deliver:** `zbw-compat-v1_8`, all other legacy/intermediate compatibility modules, matching Java 8/11/16/17 Paper bootstraps, complete legacy mappings/fallbacks, extensions to the modern adapter for every declared modern row, ViaVersion/ViaBackwards/ViaRewind integration and Geyser/Floodgate alternatives.
+- **Exit:** every declared 1.8.8–1.21.11 server row, including release-level revalidation of the M06 primary row, passes its required build/startup/lifecycle/gameplay/GUI/item/packet/replay/provider/fallback suite on the exact JDK/fixture; translated Java and Bedrock matrices pass independently; no unsupported platform type is exposed; limitations are explicit and only owner-approved alternatives are accepted. Full 1.8–1.21.x certification remains a release gate.
 
 ### M23 — Migration, ecosystem and operational completion
 
@@ -221,7 +223,7 @@ The authoritative row-level allocation is the `Milestone` column of `docs/ADDON_
 | RC-072 RESOURCE SCARCITY | `ZBW-ADDON-464..473`, CONTENT-008 | M02/M03 generator/modifier/config contracts | M20 Private Games | Host GUI/permission/API/custom-generator E2E |
 | RC-073 original content/provenance | CONTENT-001..011 | M01 provenance gate; M02/M03 content registry | M10–M14 and M20 by catalogue family | M24 asset/content/SBOM scan |
 | RC-074 Discord providers | DISCORD-001..008 | M02 API/SPI, M03 secrets/default, M05 failure substrate | M16 | No-provider/outage/security/protocol tests |
-| RC-075 1.8 fallbacks | COMPAT-001..009 | M01 toolchain matrix, M06 adapter/fallback foundation | M22 full matrix | Every fallback row/fixture passes |
+| RC-075 1.8 fallbacks | COMPAT-001..009 | M01 toolchain matrix; M06 neutral contract, primary mappings and Paper 1.21.1 foundation only | M22 legacy adapters, complete fallbacks and full matrix | Every fallback row/fixture passes; M06 makes no 1.8 claim |
 | RC-076 dependency licensing | LICENSE-001..007 | M01 exact artifact approvals before Java | Continuous dependency changes | M24 reproducible notices/SBOM/artifact audit |
 
 ## Consolidated readiness decision allocation
@@ -230,7 +232,7 @@ Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-R
 
 | Decisions | Stable IDs | Foundation milestone | Dependent feature milestones | Final evidence |
 |---|---|---|---|---|
-| RC-003/004/022 runtime matrix | READY-001/002/006 | M01 artifacts/toolchains/fixtures | M06 compatibility; M22 all runtime/client rows | Per-row boot/game/fallback evidence |
+| RC-003/004/022 runtime matrix | READY-001/002/006 | M01 artifacts/toolchains/fixtures | M06 Paper 1.21.1 foundation only; M22 all full runtime/client rows | Per-row boot/game/fallback evidence; full 1.8–1.21.x release gate remains M22 |
 | RC-021/024/027 dependencies/providers | READY-005/007/008 | M01 immutable lock and module stack | M02 provider SPIs; M21 integrations | Reproducible SBOM/licence/provider CT |
 | RC-018 scripting | READY-004 | M02 capability API; M03 schema/auth; M05 bounded workers | M11 items/shop custom logic; M23 SDK | Escape/fuzz/budget/no-main-thread ST |
 | RC-029/062 performance/quality | READY-009/017 | M01 harness/gates | Every milestone supplies evidence | M24 three-profile benchmark and all quality gates |

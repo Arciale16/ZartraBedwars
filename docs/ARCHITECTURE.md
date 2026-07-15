@@ -64,7 +64,7 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-storage-api` | Repository/unit-of-work/migration/outbox ports | API/domain | JDBC driver specifics |
 | `zbw-storage-sql` | SQLite/MySQL/MariaDB repositories, Hikari, migrations | storage API | Gameplay listeners |
 | `zbw-redis-api`, `zbw-redis` | Versioned coordination contracts and Redis adapter | application ports | Durable source-of-truth decisions |
-| `zbw-game`, `zbw-arena`, `zbw-world` | Game state machine and arena/world use cases | application/domain | Concrete world providers |
+| `zbw-game`, `zbw-arena`, `zbw-world` | Game state machine and arena/world use cases; `zbw-world` is the Java-8 neutral world-provider/reset orchestration boundary first allocated to M06 | application/domain | Concrete world providers or platform types |
 | `zbw-shop`, `zbw-progression`, `zbw-statistics` | Their domain policies, projections and use cases | application/domain | GUI/provider implementations |
 | `zbw-content` | Versioned starter catalogues, configurable content packs, semantic effect IDs and provenance references | application/domain/config | Platform rendering or unlicensed asset files |
 | `zbw-scripting-api`, `zbw-scripting-engine` | Declarative action graph, capability/scopes, compiler/interpreter, quotas and audit | API/application immutable snapshots | General JVM code, host/file/process/network access or main-thread evaluation |
@@ -76,8 +76,8 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-security-network` | Canonical authenticated envelopes, peer/key registry, replay/dedupe/rate controls and epoch leases | application/redis/proxy ports | Business rules or direct provider credentials |
 | `zbw-privacy` | Purpose/visibility/retention/hold/export/delete policies and identity separation | application/storage/replay ports | Payload codecs, platform UI or secret material |
 | `zbw-compat-api` | Materials/sounds/particles/items/scheduler/packets/capabilities | API | Version implementation |
-| `zbw-compat-v1_8` … `zbw-compat-v1_21` | Narrow version-family implementations | compat API, matching compile API | Core business logic |
-| `zbw-paper` | Paper bootstrap and standard assembly | application plus selected adapters | Domain duplication |
+| `zbw-compat-v1_8` … `zbw-compat-v1_21` | Narrow version-family implementations; only the Java-21 `zbw-compat-v1_20-v1_21` primary adapter is allocated to M06, while legacy/intermediate families remain M22 | compat API, matching compile API | Core business logic |
+| `zbw-paper-*` | Version-family Paper bootstraps and standard assembly; only `zbw-paper-modern` is allocated to M06 | application, neutral world orchestration and the selected adapter | Domain duplication or cross-family platform imports |
 | `zbw-proxy-api`, `zbw-velocity`, `zbw-bungeecord` | Routing contracts and proxy bootstraps | API/message contracts | Game rules |
 | `zbw-cloudnet` | Service discovery/scaling adapter | provider SPI | Queue/game policy |
 | `zbw-integration-*` | PlaceholderAPI, Vault, LuckPerms, ProtocolLib, world, NPC, hologram, party, Grim, Vulcan, Via, Geyser/Floodgate adapters | Provider SPIs | Cross-provider business logic |
@@ -113,6 +113,26 @@ SQLite uses exactly one pooled connection and is rejected for scalable-proxy top
 Schema version 1 is ordered and SHA-256 history-checked. `SchemaMigrator` supplies automatic migrations on every supported JVM/engine. Under ADR-0019, the exact Flyway 10 runtime is invoked through a Java-8-linkable reflective bridge on compatible JVMs; direct Flyway linkage and unapproved vendor modules are forbidden. Unsafe external-engine DDL requires validated encrypted backup and restore-based rollback.
 
 M04 creates no executor. Storage calls are explicitly blocking and may run only on bounded M05 storage workers; until M05, no Minecraft runtime consumes them. `build/api-signature-baseline-m04.txt` is append-only over M02/M03. `tools/validation/m04_architecture.py` proves JDBC-free API, SQL confinement, exact dependency locks, no platform/Redis imports and no M05 path.
+
+### M06 allocation boundary
+
+The M06/M22 reconciliation changes planning metadata only; none of these modules is materialized until M06 implementation begins. The machine-enforced M06 graph is:
+
+```mermaid
+flowchart TD
+  API8["zbw-api (Java 8)"] --> COMPAT8["zbw-compat-api (Java 8)"]
+  API8 --> APP8["zbw-application (Java 8)"]
+  API8 --> WORLD8["zbw-world (Java 8)"]
+  APP8 --> WORLD8
+  COMPAT8 --> MODERN21["zbw-compat-v1_20-v1_21 (Java 21)"]
+  APP8 --> PAPER21["zbw-paper-modern (Java 21)"]
+  WORLD8 --> PAPER21
+  MODERN21 --> PAPER21
+```
+
+`zbw-compat-api` owns platform-neutral semantic capabilities and typed native/fallback/unsupported/degraded outcomes. `zbw-world` owns platform-neutral `WorldProvider` contracts and bounded load/clone/reset/unload orchestration; it may not import Bukkit, Paper, NMS, storage, Redis or proxy types. `zbw-compat-v1_20-v1_21` and `zbw-paper-modern` are Java-21 platform artifacts and may depend only in the directions shown above. No M06 module may depend on an artifact whose first milestone is M22.
+
+M06 may certify only the Paper 1.21.1 build 133 primary foundation: bootstrap lifecycle, owner-thread dispatch, the native world provider and primary semantic mappings required by M06. The family name `zbw-compat-v1_20-v1_21` does not advertise or certify every 1.20/1.21 runtime row. `zbw-compat-v1_8`, every other legacy/intermediate adapter and bootstrap, Via/Geyser/Floodgate paths and full feature-level certification remain M22. M22 revalidates the primary row as part of the complete release matrix.
 
 ## 5. Core domain model
 
@@ -210,6 +230,8 @@ The exact distribution family is mandatory in `RUNTIME_COMPATIBILITY_MATRIX.md`.
 No version adapter changes game rules. Contract suites run against every supported server/provider matrix; a version is declared supported only after the matrix passes. “Latest stable” is a moving target added through a new adapter/matrix row, not a claim of untested automatic compatibility.
 
 Minecraft 1.8 is a mandatory server-runtime target, not merely a client-protocol target. Every visual or platform capability resolves through `zbw-compat-api` to a tested native, emulated or legacy-equivalent implementation documented in [COMPATIBILITY_FALLBACKS.md](COMPATIBILITY_FALLBACKS.md). An adapter must reject or replace unsupported materials, particles, sounds, entities, packets, text and inventory components before they reach the platform. Gameplay remains intact; only a purely decorative effect with no safe equivalent may be suppressed, with an explicit matrix row and diagnostic.
+
+Milestone ownership is intentionally split: M06 defines the neutral contracts and primary modern mappings and certifies only its Paper 1.21.1 foundation scope. M22 implements the 1.8 and other deferred adapters/fallbacks and is the release gate for the complete 1.8–1.21.x server, translated-client and Bedrock matrices. Primary M06 evidence cannot be used as a full-family or 1.8 support claim.
 
 ## 13. GUI, commands, authorization and localization
 

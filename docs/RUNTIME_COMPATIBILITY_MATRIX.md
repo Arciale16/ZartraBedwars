@@ -21,6 +21,17 @@ The distribution spans **Java 8**, Java 11, Java 16, Java 17 and **Java 21** too
 
 Maven Wrapper is fixed to Maven `3.9.11`; compiler uses `--release`, Enforcer rejects the wrong JDK, and CI inspects every class-file major version. JDK patch changes require a dependency/toolchain audit but do not change supported Minecraft rows.
 
+## Milestone certification allocation
+
+This is milestone ownership, not current certification evidence. M06 has not started, so every fixture remains `NOT_STARTED` in `build/private-runtime-fixtures.json` until its assigned suite actually passes.
+
+| Runtime row | M06 certification ownership | M22 certification ownership | Current status |
+|---|---|---|---|
+| Paper 1.21.1 build 133, SHA-256 `39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9` | **Only M06 row:** primary bootstrap, owner-thread dispatch, native world provider and M06 semantic mappings | Full release-level lifecycle/gameplay/GUI/item/packet/replay/provider revalidation | `NOT_STARTED` |
+| Every other declared row from 1.8.8 through 1.21.11 | None; M06 must not claim it | Complete row certification, including legacy fallbacks and translated-client/Bedrock dimensions where applicable | `NOT_STARTED` pending M22 |
+
+The shared `zbw-compat-v1_20-v1_21` artifact name does not certify the complete 1.20/1.21 family. Full 1.8–1.21.x support remains an M22 release gate, and M22 revalidates the M06 primary row after all feature semantics exist.
+
 ## Mandatory server-runtime fixtures
 
 The “fixture” is the exact certified server used for compatibility. Paper build IDs and SHA-256 values below were verified against the official PaperMC Fill API on 2026-07-14. The legacy Spigot-compatible rows are produced privately with the official BuildTools workflow for the exact `--rev`; their generated SHA-256 is added to the private CI fixture lock before execution and the binary is never committed or redistributed.
@@ -43,7 +54,7 @@ The “fixture” is the exact certified server used for compatibility. Paper bu
 | 1.20.2 | Paper `318`, `ba340a835ac40b8563aa7eda1cd6479a11a7623409c89a2c35cd9d7490ed17a7` | 21 | `compat-v1_20` | Data-component boundary regression |
 | 1.20.4 | Paper `499`, `cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b` | 21 | `compat-v1_20` | Protocol regression |
 | 1.20.6 | Paper `151`, `4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640` | 21 | `compat-v1_20` | Terminal 1.20 row |
-| 1.21.1 | Paper `133`, `39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9` | 21 | `compat-v1_21` | Product primary behavior baseline |
+| 1.21.1 | Paper `133`, `39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9` | 21 | `compat-v1_21` | Product primary baseline; sole M06 foundation-certification row, then M22 full revalidation |
 | 1.21.3 | Paper `83`, `87e973e1d338e869e7fdbc4b8fadc1579d7bb0246a0e0cf6e5700ace6c8bc17e` | 21 | `compat-v1_21` | Protocol regression |
 | 1.21.4 | Paper `232`, `5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc` | 21 | `compat-v1_21` | Protocol regression |
 | 1.21.8 | Paper `60`, `8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e` | 21 | `compat-v1_21` | Terminal Summer Drop row |
