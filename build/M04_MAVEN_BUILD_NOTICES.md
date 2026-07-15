@@ -113,11 +113,13 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.apache.maven.shared:maven-shared-incremental:1.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.shared:maven-shared-utils:3.4.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.skins:maven-fluido-skin:2.0.0-M9` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.maven.surefire:common-java5:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:maven-surefire-common:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-api:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-booter:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-extensions-api:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-extensions-spi:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.maven.surefire:surefire-junit-platform:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-logger-api:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:surefire-shared-utils:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven:maven-archiver:3.6.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -163,6 +165,7 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.junit.jupiter:junit-jupiter:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.platform:junit-platform-commons:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.platform:junit-platform-engine:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.junit.platform:junit-platform-launcher:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.mariadb.jdbc:mariadb-java-client:3.4.1` | LGPL-2.1-or-later | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.opentest4j:opentest4j:1.3.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.ow2.asm:asm-analysis:9.7.1` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |

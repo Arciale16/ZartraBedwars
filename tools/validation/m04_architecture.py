@@ -130,9 +130,34 @@ def validate() -> list[str]:
     if external_test.is_file():
         text = external_test.read_text(encoding="utf-8")
         for token in ("MySQLContainer", "MariaDBContainer", "@sha256:",
-                      "ZBW_TEST_MYSQL_IMAGE", "ZBW_TEST_MARIADB_IMAGE"):
+                      "ZBW_REQUIRE_EXTERNAL_DATABASES", "ZBW_TEST_DATABASE_IMAGE",
+                      "query-plans.json", "pool-health.json", "backup-restore.json"):
             if token not in text:
                 errors.append(f"external SQL contract lacks {token}")
+
+    image_lock = ROOT / "build/m04-database-container-lock.json"
+    workflow = ROOT / ".github/workflows/m04-external-database-contracts.yml"
+    certifier = ROOT / "tools/ci/certify_m04_external.py"
+    for required in (image_lock, workflow, certifier):
+        if not required.is_file():
+            errors.append(f"missing RC-077 verification asset: {required.relative_to(ROOT)}")
+    if image_lock.is_file():
+        locked_images = json.loads(image_lock.read_text(encoding="utf-8"))
+        references = {row["engine"]: row["reference"] for row in locked_images["images"]}
+        if set(references) != {"mysql", "mariadb"}:
+            errors.append("RC-077 image lock must contain MySQL and MariaDB")
+        for engine, reference in references.items():
+            if not re.fullmatch(
+                    rf"docker\.io/library/{engine}:[0-9]+(?:\.[0-9]+)+@sha256:[0-9a-f]{{64}}",
+                    reference):
+                errors.append(f"RC-077 {engine} image is not exact tag@digest")
+    if workflow.is_file():
+        workflow_text = workflow.read_text(encoding="utf-8")
+        for token in ("mysql", "mariadb", "ZBW_REQUIRE_EXTERNAL_DATABASES: \"1\"",
+                      "certify_m04_external.py", "if-no-files-found: error",
+                      "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02"):
+            if token not in workflow_text:
+                errors.append(f"RC-077 workflow lacks {token}")
 
     lock = json.loads((ROOT / "build/maven-dependency-lock.json").read_text(encoding="utf-8"))
     locked = {row["id"] for row in lock["components"]}

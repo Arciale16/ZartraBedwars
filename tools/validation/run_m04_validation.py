@@ -34,6 +34,7 @@ def main() -> int:
         ("governance tests", [sys.executable, "-m", "unittest", "discover", "-s", "tests/governance", "-v"]),
         ("dependency/licence/SBOM", [sys.executable, "tools/dependencies/lock_dependencies.py", "validate"]),
         ("exact Maven repository", [sys.executable, "tools/dependencies/maven_lock.py", "validate", "--require-files"]),
+        ("database image lock", [sys.executable, "tools/ci/m04_database_images.py", "validate"]),
         ("binary/API compatibility", [sys.executable, "tools/validation/api_compatibility.py", "check"]),
         ("strict JavaDoc", [sys.executable, "tools/validation/api_docs.py"]),
         ("addon catalogue", [sys.executable, "tools/coverage/generate_addon_feature_catalog.py", "--check"]),

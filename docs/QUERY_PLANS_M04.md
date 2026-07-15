@@ -31,8 +31,14 @@ ORDER BY sequence_no, available_at, operation_id;
 
 The contract accepts only a plan that uses the outbox claim index for filtering; a bounded temporary sort may remain because final ordering includes operation ID. MySQL/MariaDB CI must capture `EXPLAIN FORMAT=JSON` for the same query and reject a full-table access at the certified non-trivial fixture size. It must also prove primary-key access for record and idempotency paths.
 
+## RC-077 evidence set
+
+The workflow captures `EXPLAIN FORMAT=JSON` for seven representative paths on each engine: record lookup, outbox claim, inbox dedupe lookup, retention lookup, legal-hold lookup, tombstone lookup and migration-history lookup. The fixture contains 2,064 outbox rows plus representative records, inbox operations, retention rows, holds, tombstones and migration history. Certification rejects full-table access, a missing expected primary/unique/claim index or an absent plan.
+
+Raw server JSON and a sanitized manifest are written below `target/m04-external/<database>/` and uploaded by the workflow. The first certified PR #5 run remains pending; RC-077 cannot close until both database artifacts pass review.
+
 ## Review thresholds
 
 Regression review is required when examined rows exceed the requested batch by more than 10×, a primary-key query scans more than one row, an outbox plan drops `idx_zbw_outbox_claim`, or p95 query/pool wait exceeds the operational budget. Plans are re-captured after schema, server-version or cardinality changes. Raw player/case IDs and SQL parameters are never attached to plan telemetry.
 
-Local SQLite plan and functional suites pass. MySQL/MariaDB plan evidence remains tied to the digest-gated Testcontainers run because no Docker-compatible runtime exists on the current workstation.
+Local SQLite plan and functional suites pass. MySQL/MariaDB plan evidence remains tied to the digest-gated workflow run because no Docker-compatible runtime exists on the current workstation.

@@ -27,4 +27,4 @@ It never exports JDBC URLs, hosts, schemas, usernames, passwords, SQL/vendor mes
 
 ## Verification
 
-Unit tests cover valid/impossible pool counter combinations, saturation, SQLite pool size, close behavior, cache bound, expiry, stale revision rejection and invalidation. MySQL/MariaDB Testcontainers assert configured total connections never exceed four in their contract fixture; production thresholds are verified under M23/M24 load and operational drills.
+Unit tests cover valid/impossible pool counter combinations, saturation, SQLite pool size, close behavior, cache bound, expiry, stale revision rejection and invalidation. Each RC-077 database job records HikariCP `active`, `idle`, `total`, `waiting` and `saturated` values after real repository activity and asserts a maximum of four connections. The certifier rejects missing/extra fields, impossible values, a total above four or any URL, host, schema, username, password, secret, token or JDBC text. Only this sanitized JSON is uploaded with the contract evidence. The first certified PR #5 evidence remains pending; production thresholds are verified under M23/M24 load and operational drills.

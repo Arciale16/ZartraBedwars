@@ -2143,6 +2143,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/skins/maven-skins/42/maven-skins-42.pom"
     },
     {
+      "relative_path": "org/apache/maven/surefire/common-java5/3.5.4/common-java5-3.5.4.jar",
+      "sha256": "1e2285c65cf579059bec9f0c3d31ad60ea50598c8b8ff17c940aac94562e6e90",
+      "size": 17616,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.5.4/common-java5-3.5.4.jar"
+    },
+    {
+      "relative_path": "org/apache/maven/surefire/common-java5/3.5.4/common-java5-3.5.4.pom",
+      "sha256": "85f14bb2e53a7dbc800a9bebb1389805a7b9b8bc3934db9ad1cbe87df2330908",
+      "size": 3057,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.5.4/common-java5-3.5.4.pom"
+    },
+    {
       "relative_path": "org/apache/maven/surefire/maven-surefire-common/3.5.4/maven-surefire-common-3.5.4.jar",
       "sha256": "902e637f8936c1a11d9046e6d7cc9bcb6945f30cc1f7cf646077aa26816a7a44",
       "size": 314450,
@@ -2209,6 +2221,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-extensions-spi/3.5.4/surefire-extensions-spi-3.5.4.pom"
     },
     {
+      "relative_path": "org/apache/maven/surefire/surefire-junit-platform/3.5.4/surefire-junit-platform-3.5.4.jar",
+      "sha256": "c3138b39df0109d262b706e9de551d4375061841c5de4d8dca98a71581509534",
+      "size": 35461,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.5.4/surefire-junit-platform-3.5.4.jar"
+    },
+    {
+      "relative_path": "org/apache/maven/surefire/surefire-junit-platform/3.5.4/surefire-junit-platform-3.5.4.pom",
+      "sha256": "6a78944fbb1b3e0a752ff4654591b10c64711dfdb157c1668a599bdd78db4ea5",
+      "size": 5168,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.5.4/surefire-junit-platform-3.5.4.pom"
+    },
+    {
       "relative_path": "org/apache/maven/surefire/surefire-logger-api/3.5.4/surefire-logger-api-3.5.4.jar",
       "sha256": "e8ec1e4d85dc2a71819dfb4a27507258175569941aa4a27ee08ec899319dbd24",
       "size": 13597,
@@ -2219,6 +2243,12 @@
       "sha256": "c1233d2f02f7d9bd9a4df7d3ee6315c29f0c46d271e484e70c168df0e2fb1eba",
       "size": 3493,
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-logger-api/3.5.4/surefire-logger-api-3.5.4.pom"
+    },
+    {
+      "relative_path": "org/apache/maven/surefire/surefire-providers/3.5.4/surefire-providers-3.5.4.pom",
+      "sha256": "666dd35ef7cd842c4bb9c86e63531877a5c96f29f07814ad51bc05319fd587ff",
+      "size": 2540,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.5.4/surefire-providers-3.5.4.pom"
     },
     {
       "relative_path": "org/apache/maven/surefire/surefire-shared-utils/3.5.4/surefire-shared-utils-3.5.4.jar",
@@ -3077,6 +3107,18 @@
       "sha256": "943471579984212fbe69d03edec7c2ff4fbab1888be0b80c265ea70869fd8abd",
       "size": 3205,
       "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.pom"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar",
+      "sha256": "d7430bd029e7fcced53ee445e4d2d1a8a1e043ea4c4df43b6335a857f79761ae",
+      "size": 189006,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.pom",
+      "sha256": "b67cd53802e06aa82aa5966e99fb42917d220457849e5c080c8360753ed67c31",
+      "size": 3029,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.pom"
     },
     {
       "relative_path": "org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.jar",
@@ -7077,6 +7119,38 @@
       "version": "2.0.0-M9"
     },
     {
+      "artifact": "common-java5",
+      "commercial_use": true,
+      "files": [
+        "org/apache/maven/surefire/common-java5/3.5.4/common-java5-3.5.4.jar"
+      ],
+      "group": "org.apache.maven.surefire",
+      "id": "maven:org.apache.maven.surefire:common-java5:3.5.4",
+      "licenses": [
+        {
+          "declared_name": "Apache-2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.5.4"
+    },
+    {
       "artifact": "maven-surefire-common",
       "commercial_use": true,
       "files": [
@@ -7212,6 +7286,38 @@
       ],
       "group": "org.apache.maven.surefire",
       "id": "maven:org.apache.maven.surefire:surefire-extensions-spi:3.5.4",
+      "licenses": [
+        {
+          "declared_name": "Apache-2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.5.4"
+    },
+    {
+      "artifact": "surefire-junit-platform",
+      "commercial_use": true,
+      "files": [
+        "org/apache/maven/surefire/surefire-junit-platform/3.5.4/surefire-junit-platform-3.5.4.jar"
+      ],
+      "group": "org.apache.maven.surefire",
+      "id": "maven:org.apache.maven.surefire:surefire-junit-platform:3.5.4",
       "licenses": [
         {
           "declared_name": "Apache-2.0",
@@ -8672,6 +8778,38 @@
       ],
       "group": "org.junit.platform",
       "id": "maven:org.junit.platform:junit-platform-engine:1.11.4",
+      "licenses": [
+        {
+          "declared_name": "Eclipse Public License v2.0",
+          "declared_url": "https://www.eclipse.org/legal/epl-v20.html",
+          "evidence_ids": [
+            "EPL-2.0"
+          ],
+          "spdx_expression": "EPL-2.0",
+          "text_evidence": [
+            {
+              "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/EPL-2.0.txt",
+              "spdx": "EPL-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.11.4"
+    },
+    {
+      "artifact": "junit-platform-launcher",
+      "commercial_use": true,
+      "files": [
+        "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar"
+      ],
+      "group": "org.junit.platform",
+      "id": "maven:org.junit.platform:junit-platform-launcher:1.11.4",
       "licenses": [
         {
           "declared_name": "Eclipse Public License v2.0",

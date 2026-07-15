@@ -1,13 +1,13 @@
 # Dependency and Licence Audit
 
-**Status:** exact selection baseline accepted; M01 build/CI acquisition lock verified; Java libraries and plug-ins remain unresolved
+**Status:** exact M04 build/test dependency, CI action and external database image selections are checksum/licence/provenance locked; product bundling remains disabled
 **Decisions:** RC-021, RC-024, RC-027, RC-076
 **Requirements:** `ZBW-READY-005..008`, `ZBW-LICENSE-001..007`
 **Audit date:** 2026-07-14
 
 ## Binding acquisition rule
 
-No Java library, Maven plug-in or platform/provider API is resolved because M01 contains no Java or functional module. The exact versions below remain the only approved selections. M01 did acquire the build toolchains required to verify the empty reactor: 14 Maven, Temurin, Python and SHA-pinned GitHub Actions artifacts are recorded in `build/dependency-lock.json`. Before an artifact enters a local/CI dependency cache, the acquisition gate downloads it from the authoritative repository, records SHA-256 or immutable Git commit plus exact licence-text hash in the generated lock/SBOM, and compares both. A missing/mismatched artifact is rejected rather than substituted.
+The exact versions below are the only approved selections. M01 acquired 14 Maven, Temurin, Python and SHA-pinned GitHub Actions artifacts. M04 adds the immutable `actions/upload-artifact` action used solely to retain certified external-database evidence, bringing the current build/CI lock to 15 entries in `build/dependency-lock.json`. Before an artifact enters a local/CI dependency cache, the acquisition gate downloads it from the authoritative repository, records SHA-256 or immutable Git commit plus exact licence-text hash in the generated lock/SBOM, and compares both. A missing/mismatched artifact is rejected rather than substituted.
 
 Dynamic versions, version ranges, `LATEST`, `RELEASE` and mutable `SNAPSHOT` release coordinates are prohibited. When an official API is only published as a snapshot, the gate resolves one unique timestamped artifact tied to the recorded upstream tag/commit, verifies its checksum, mirrors it privately under `io.zartra.thirdparty-lock:<name>:<upstream-version>-<short-commit>`, and never redistributes the upstream binary. This is an immutable coordinate, not a floating snapshot.
 
@@ -32,6 +32,7 @@ The generated immutable lock expands these fields into separate machine-readable
 | Apache Maven distribution + original Zartra launcher | `3.9.11` | Apache Maven distribution | Apache-2.0 | Archive SHA-256/SHA-512 and embedded LICENSE/NOTICE hashes locked; not product-distributed | BUILD-ONLY, acquired and verified in M01 |
 | Eclipse Temurin compile JDKs | `8u442-b06`, `11.0.26+4`, `16.0.2+7`, `17.0.14+7`, `21.0.6+7` | Adoptium release API/GitHub binaries | GPL-2.0 with Classpath Exception | Linux and Windows x64 archive and licence/assembly-exception hashes locked; never product-bundled | BUILD-ONLY, acquired and verified in M01 |
 | CPython validator runtime | `3.12.13` | CPython/actions python-versions release | Python-2.0 | Ubuntu 22.04 x64 asset digest and CPython licence hash locked | BUILD-ONLY, acquired and verified in M01 |
+| `actions/upload-artifact` | immutable commit `ea165f8d65b6e75b540449e92b4886f43607fa02` | Official GitHub Actions repository | MIT | Commit identity and exact licence hash locked; least-privilege evidence upload only | CI-ONLY, acquired and verified in M04 |
 | `actions/checkout`, `actions/setup-python` | immutable commits `34e1148…`, `a26af69…` | Official GitHub Actions repositories | MIT | Commit identity and exact licence hash locked; least-privilege CI only | CI-ONLY, acquired and verified in M01 |
 | Maven Compiler Plugin | `3.14.1` | Apache Maven Central/source | Apache-2.0 | Notice in build SBOM | BUILD-ONLY |
 | Maven Resources Plugin | `3.3.1` | Apache Maven Central/source | Apache-2.0 | Notice in build SBOM | BUILD-ONLY |
@@ -56,11 +57,16 @@ Manual constructor injection and project-owned command/GUI DSLs are selected; no
 
 ### M04 acquired SQL graph
 
-M04 resolved the approved coordinates and the union of their JDK-specific transitive graphs into an isolated acquisition repository, inherited every transitive POM licence, normalized the MySQL Universal FOSS Exception declaration, hashed every JAR/POM and generated `build/maven-dependency-lock.json`, `build/maven-build-sbom.cdx.json` and `build/M04_MAVEN_BUILD_NOTICES.md`. The exact graph is 186 binary components and 591 files. Every component is `RUNTIME_OR_BUILD_NOT_BUNDLED`; redistribution, shading and modification rights are disabled in this milestone's thin artifacts. The union includes HikariCP's pinned Java 8 `slf4j-api:1.7.30` branch so every approved JDK can build offline from the same lock.
+M04 resolved the approved coordinates and the union of their JDK-specific transitive graphs into an isolated acquisition repository, inherited every transitive POM licence, normalized the MySQL Universal FOSS Exception declaration, hashed every JAR/POM and generated `build/maven-dependency-lock.json`, `build/maven-build-sbom.cdx.json` and `build/M04_MAVEN_BUILD_NOTICES.md`. The exact graph is 189 binary components and 598 files. The increase of three components/seven files records the Surefire JUnit Platform provider and launcher required to execute the external contract class; it is not production scope. Every component is `RUNTIME_OR_BUILD_NOT_BUNDLED`; redistribution, shading and modification rights are disabled in this milestone's thin artifacts. The union includes HikariCP's pinned Java 8 `slf4j-api:1.7.30` branch so every approved JDK can build offline from the same lock.
 
 HikariCP/Caffeine are compile dependencies; Flyway and the three JDBC drivers are runtime dependencies; JUnit/Testcontainers are test dependencies. Runtime scope does not authorize release bundling. SQLite may be packaged only by a later approved shared-server distribution gate; MariaDB remains a separate runtime library after its LGPL obligations gate; MySQL remains operator-provided/separate-runtime unless legal approval is recorded. No database driver is shaded.
 
-Testcontainers image acquisition is separately default-denied. `ZBW_TEST_MYSQL_IMAGE` and `ZBW_TEST_MARIADB_IMAGE` must be full audited `name@sha256:digest` references with a licence/provenance row before a container starts. Tags are rejected. No image is stored or redistributed by this repository.
+Testcontainers image acquisition is separately default-denied. `build/m04-database-container-lock.json` is the machine-readable authority and `tools/ci/m04_database_images.py` verifies its schema, exact version, OCI index and Linux/amd64 manifest digests, configuration digest, immutable packaging-source commit, source-manifest hash and exact GPL-2.0-only licence-text hash before either image is pulled. CI then pulls only the approved `tag@sha256:index-digest` reference and verifies the resolved local platform digest. No image is stored, bundled or redistributed by this repository.
+
+| CI-only database image | Exact reference | Linux/amd64 manifest | Immutable packaging source | Licence / rights |
+|---|---|---|---|---|
+| MySQL Community Server `8.4.0` | `mysql:8.4.0@sha256:dab7049abafe3a0e12cbe5e49050cf149881c0cd9665c289e5808b9dad39c9e0` | `sha256:3e5649c69e6d75cf88fc6f8f39f877453faa4e5167b5e648007e45f54bb17f6b` | `docker-library/mysql@c857c9c091e6194c9fb9c91e83d343b186e103cd` | GPL-2.0-only packaging; CI test runtime only; no redistribution, shading or modification |
+| MariaDB Server `11.4.2` | `mariadb:11.4.2@sha256:e59ba8783bf7bc02a4779f103bb0d8751ac0e10f9471089709608377eded7aa8` | `sha256:fdc72e8f2960d758aa77ebac9ea65028ca195d4cba854a14e4afae703f5f6a22` | `MariaDB/mariadb-docker@43ea329ad4639e43c6b8662cbaa460d4fb22d9fc` | GPL-2.0-only packaging; CI test runtime only; no redistribution, shading or modification |
 
 ## Platform and integration selections
 

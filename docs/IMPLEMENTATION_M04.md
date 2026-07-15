@@ -12,7 +12,7 @@ No scheduler, Minecraft adapter, proxy/Redis transport, feature repository, game
 - `zbw-storage-sql` is Java-8 bytecode and is the only production module permitted to import JDBC or contain SQL. It provides Hikari-backed SQLite, MySQL and MariaDB adapters, the deterministic migration runner, a Java-8-linkable Flyway provider, Caffeine cache and recovery coordination.
 - Both modules are synchronous/blocking by contract. Every call belongs on a bounded storage worker supplied by M05; owner/tick-thread use is forbidden. M04 does not create threads or executors.
 
-The thin module JARs do not contain HikariCP, Caffeine, Flyway, database drivers or test libraries. The exact union of the JDK-specific Maven graphs contains 186 binary components and 591 JAR/POM files, each checksum/licence locked; product bundling is disabled for every row.
+The thin module JARs do not contain HikariCP, Caffeine, Flyway, database drivers or test libraries. The exact union of the JDK-specific Maven graphs contains 189 binary components and 598 JAR/POM files, each checksum/licence locked; product bundling is disabled for every row.
 
 ## Delivered behavior
 
@@ -30,7 +30,9 @@ The thin module JARs do not contain HikariCP, Caffeine, Flyway, database drivers
 
 ## Test and validation evidence
 
-The M04 suite has 81 tests in the complete reactor: 79 execute locally with zero failures/errors and two digest-gated Testcontainers tests are skipped because this workstation has no Docker-compatible runtime or audited image environment variables. The executed SQLite tests cover migration/restart, crash rollback, CRUD, optimistic conflicts, transactions, outbox/inbox idempotency and ordering, retention/hold/tombstone semantics, cache expiry/versioning, recovery evidence, retry bounds and thread confinement. The MySQL and MariaDB contract suites are compiled and use only `@sha256` image references supplied through `ZBW_TEST_MYSQL_IMAGE` and `ZBW_TEST_MARIADB_IMAGE`.
+The local reactor executes 79 deterministic tests with zero failures, errors or skips. The external contract class is deliberately not selected outside required external mode, so absence of Docker is never reported as a successful skipped test. In the RC-077 workflow each database job selects exactly one approved image and must execute all 12 mandatory external contracts with zero failures, errors or skips. The local SQLite tests cover migration/restart, crash rollback, CRUD, optimistic conflicts, transactions, outbox/inbox idempotency and ordering, retention/hold/tombstone semantics, cache expiry/versioning, recovery evidence, retry bounds and thread confinement.
+
+The 12 external contracts cover: exact server/image identity; repository prepared statements and unique constraints; migrations/checksum tamper rejection and repair; transaction rollback; concurrent writers; bounded deadlock retry; query timeout; outbox/inbox crash, reclaim and duplicate recovery; encrypted backup and validated restore; retention/legal-hold/tombstone persistence across engine restart; seven certified JSON query plans at non-trivial cardinality; and sanitized HikariCP pool-health evidence. Required mode fails immediately if the chosen suite, Docker runtime, provenance verification or evidence set is absent.
 
 Local quality evidence:
 
@@ -39,15 +41,15 @@ Local quality evidence:
 | `zbw-storage-api` | 90.23% | 87.50% | 90% / 85% | 0 violations | 0 findings |
 | `zbw-storage-sql` | 91.34% | 72.19% | 80% / 70% | 0 violations | 0 findings |
 
-The clean offline reactor passed on every approved compile JDK. Each row compiled all production classes to Java 8 bytecode and discovered the same 81 tests:
+The clean offline reactor passed on every approved compile JDK. Each row compiled all production classes to Java 8 bytecode and executed the same local 79-test suite:
 
-| Compile JDK | Reactor | Tests | External skips |
+| Compile JDK | Reactor | Local tests | Skipped tests |
 |---:|---|---:|---:|
-| 8 | PASS | 79 passed | 2 |
-| 11 | PASS | 79 passed | 2 |
-| 16 | PASS | 79 passed | 2 |
-| 17 | PASS | 79 passed | 2 |
-| 21 | PASS | 79 passed | 2 |
+| 8 | PASS | 79 passed | 0 |
+| 11 | PASS | 79 passed | 0 |
+| 16 | PASS | 79 passed | 0 |
+| 17 | PASS | 79 passed | 0 |
+| 21 | PASS | 79 passed | 0 |
 
 The first JDK 8 run exposed HikariCP's JDK-activated `slf4j-api:1.7.30` branch. The controlled acquisition process added its exact JAR, checksum and MIT licence evidence to the cross-JDK lock before the successful offline matrix was rerun.
 
@@ -55,4 +57,6 @@ The M04 deterministic entry point is `tools/validation/run_m04_validation.py`. I
 
 ## External exit gate
 
-The SQLite and deterministic gates are verified locally. Full M04 exit remains externally pending until CI or an approved workstation runs both digest-pinned MySQL and MariaDB Testcontainers suites and records query plans under the certified server versions. This environmental gate does not authorize M05.
+`.github/workflows/m04-external-database-contracts.yml` defines independent required MySQL `8.4.0` and MariaDB `11.4.2` jobs. Before pulling a container it validates the dependency/licence locks and immutable image provenance; after execution `tools/ci/certify_m04_external.py` rejects a missing suite, any skipped/failed/error test, an incomplete contract list, unsafe query plan, incomplete pool/backup evidence or possible credential exposure. Test reports and certified JSON evidence are uploaded under database-specific artifact names.
+
+The implementation of this gate is complete, but RC-077 and full M04 verification remain pending until both jobs pass on PR #5 and their uploaded evidence is reviewed. This gate does not authorize M05.

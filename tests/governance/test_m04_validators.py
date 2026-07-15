@@ -32,9 +32,14 @@ class MilestoneFourValidationTests(unittest.TestCase):
 
     def test_external_database_images_are_digest_gated(self) -> None:
         source = (ROOT / "storage/zbw-storage-sql/src/test/java/io/zartra/bedwars/storage/sql/ExternalSqlStorageContractTest.java").read_text(encoding="utf-8")
-        self.assertIn("@sha256:", source)
-        self.assertIn("ZBW_TEST_MYSQL_IMAGE", source)
-        self.assertIn("ZBW_TEST_MARIADB_IMAGE", source)
+        image_lock = json.loads(
+            (ROOT / "build/m04-database-container-lock.json").read_text(encoding="utf-8"))
+        references = {row["engine"]: row["reference"] for row in image_lock["images"]}
+        self.assertEqual({"mysql", "mariadb"}, set(references))
+        self.assertTrue(all("://" not in reference and "@sha256:" in reference
+                            for reference in references.values()))
+        self.assertIn("ZBW_TEST_DATABASE_IMAGE", source)
+        self.assertIn("ZBW_REQUIRE_EXTERNAL_DATABASES", source)
 
 
 if __name__ == "__main__":
