@@ -65,7 +65,9 @@ def validate() -> list[str]:
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
     valid_states = (
         ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
+        ("M07", ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
         (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
+        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
     )
     if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
         errors.append("milestone state must represent active or completed M06")

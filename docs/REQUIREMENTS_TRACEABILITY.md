@@ -454,3 +454,24 @@ These rows preserve every ArenaSetup capability while separating presentation-ne
 | M07/M09 / ZBW-ADDON-421 | Completeness/collision/spawn/region/prerequisite rule registry, report and block-enable policy | Validate command, validator GUI and actionable localized rendering | M16 placeholders; M22 compatibility |
 | M07/M09 / ZBW-ADDON-422 | Draft preview, history, undo/redo, revision-fenced apply, atomic save and last-known-good rollback | Editor interactions and common confirmation-token flow | M16 placeholders; M22 compatibility |
 | M07/M09 / ZBW-ADDON-423 | Typed setup/query APIs, permission enforcement and cancellable/immutable events | Granular setup commands, GUI action bindings and presentation audit context | M16 authorized-staff placeholders; M22 compatibility |
+
+## M07 verified arena, map and setup application allocation
+
+The following rows close only the presentation-neutral M07 allocation. They do
+not mark the M09 command/GUI cells above, M16 placeholders, M21 optional world
+providers or M22 compatibility work complete. Evidence is
+`docs/IMPLEMENTATION_M07.md`, the M07 API/lifecycle/validation/archive
+references, Maven reports and `build/evidence/m07-paper-primary.json`.
+
+| Requirement | Verified M07 implementation | Verification | Remaining owner |
+|---|---|---|---|
+| M07 / ZBW-ARENA-001 | VERIFIED authorized arena CRUD/list/lifecycle, immutable repositories, typed failures/events and audit | lifecycle, authorization, revision, cancellation and SQLite transaction tests | M09 presentation; M16 fields; M22 compatibility |
+| M07 / ZBW-ARENA-002 | VERIFIED immutable map aggregate and rename/reference preservation | equality, rename and reference regression tests | M09 map surfaces; M16 fields |
+| M07 / ZBW-ARENA-003 | VERIFIED typed ID allocation, collision rejection and import identity policy | duplicate-ID, malformed archive and import collision tests | M09 import/duplicate surfaces; migration completion where later assigned |
+| M07 / ZBW-ARENA-004 | VERIFIED deep arena/map duplication with new IDs and independently owned values | deep-copy, mapping, rollback and exact Paper tests | M09 duplicate flow |
+| M07 / ZBW-ARENA-005 | VERIFIED M07 consumption of M06 async world contracts for arena lifecycle | five-operation exact Paper E2E and worker/owner affinity evidence | M09 surfaces; M21 optional providers |
+| M07 / ZBW-ARENA-006 | VERIFIED bounded arena reset/recovery admission, typed failure and diagnostics | concurrency, cancellation, failure and leak-free Paper tests | M09 progress surface; M21/M22 completion |
+| M07 / ZBW-ARENA-007 | VERIFIED setup sessions, all typed steps, history, preview/apply, undo/redo and atomic commit | deterministic full workflow, stale preview, rollback, SQLite and Paper tests | M09 wizard/editor; M16 fields; M22 compatibility |
+| M07 / ZBW-ARENA-008 | VERIFIED complete validation report and block-enable policy | valid/invalid category, collision, reference, import/restore and enable-gate tests | M09 validator rendering; M16 fields |
+| M07 / ZBW-ARENA-009 | VERIFIED presentation-neutral administration authorization, two-phase mutations and audit facts | authorization, cancellation, stale revision and audit tests | M09 commands/GUI/common confirmation |
+| ZBW-ADDON-408..423 | VERIFIED all sixteen atomic ArenaSetup core/application rows without merging or weakening any catalogue row | 37 M07 tests, exact Paper E2E, catalogue/allocation validators and API signature baseline | Every command/GUI/editor cell remains M09; later owners remain as listed above |

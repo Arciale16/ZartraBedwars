@@ -72,10 +72,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M07 — Arena, map and setup application lifecycle
 
+- **Implementation status:** VERIFIED on 2026-07-15; evidence in `docs/IMPLEMENTATION_M07.md` and `build/evidence/m07-paper-primary.json`. This closes only M07 core/application allocations; M09 presentation, M16 placeholders, M21 optional providers and M22 compatibility completion remain open.
 - **Requirements:** core/application portions of ARENA-001..009 and ZBW-ADDON-408..423. Their final command and GUI presentation portions remain M09; PlaceholderAPI remains M16, optional world providers remain M21 and full legacy/runtime compatibility remains M22.
 - **Entry:** M03–M06 complete; the M07/M09 allocation validator passes; `zbw-arena` has no dependency on an M09 module; M03 authorization/configuration, M04 storage, M05 scheduler/failure and M06 world/primary Paper foundations remain stable.
 - **Deliver:** presentation-neutral arena/map definitions, ID registry, repositories and use cases for CRUD/import/export/backup/restore/duplicate, setup sessions and every setup step, validation, two-phase preview/apply, undo/redo, atomic save/rollback, enable gating, lifecycle health/diagnostic views, authorization/audit intents and typed test-harness entry points. No production command or GUI is delivered.
 - **Exit:** duplicate creates a new mapped ID and independent state; rename preserves references; invalid arenas cannot enable; setup and administration use cases are completely exercisable through typed APIs and deterministic harnesses; concurrent reset/recovery, stale-revision, authorization, rollback and primary Paper 1.21.1 lifecycle tests pass; no M08 gameplay or M09 command/UI module is materialized. M07 verification covers only these core/application allocations and does not claim final presentation acceptance.
+- **Exit evidence:** the 15-module neutral reactor passes 158 tests on each of JDK 8/11/16/17; the 17-module JDK-21 reactor passes 175 tests. M07 contributes 37 tests with zero skips, including three real SQLite transactional contracts. Exact Paper 1.21.1 build 133 passes validation, setup undo/redo, archive round trip, all five world operations and leak-free unload. M07 coverage is 95.78% line and 85.09% branch; Checkstyle, SpotBugs, binary/API, dependency/licence/provenance, JavaDoc and deterministic governance gates pass. No M08 or M09 module exists.
 
 ### M08 — Game engine, sessions, teams and lobby
 

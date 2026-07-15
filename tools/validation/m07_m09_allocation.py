@@ -119,11 +119,12 @@ def validate() -> list[str]:
             errors.append(f"{identifier}: M07 must not depend on M09 presentation modules")
 
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
-    premature = materialized.intersection({"zbw-arena", "zbw-game"} | PRESENTATION_MODULES)
+    if "zbw-arena" not in materialized:
+        errors.append("M07 implementation must materialize zbw-arena")
+    premature = materialized.intersection({"zbw-game"} | PRESENTATION_MODULES)
     if premature:
-        errors.append(f"reconciliation must not materialize planned modules: {sorted(premature)}")
+        errors.append(f"M07 must not materialize later modules: {sorted(premature)}")
     for relative in (
-        "arena/zbw-arena",
         "game/zbw-game",
         "command/zbw-command-api",
         "command/zbw-command-paper",
@@ -131,7 +132,9 @@ def validate() -> list[str]:
         "ui/zbw-ui-paper",
     ):
         if (ROOT / relative).exists():
-            errors.append(f"reconciliation created implementation path: {relative}")
+            errors.append(f"M07 created later implementation path: {relative}")
+    if not (ROOT / "arena/zbw-arena/pom.xml").is_file():
+        errors.append("M07 arena module descriptor is missing")
 
     milestones = read("docs/MILESTONES.md")
     require(milestones, "### M07 — Arena, map and setup application lifecycle", "milestones", errors)
@@ -205,7 +208,7 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
     print(
-        "M07/M09 allocation PASS: arena application use cases isolated; "
+        "M07/M09 allocation PASS: arena application module isolated; "
         "command/UI presentation remains M09."
     )
     return 0
