@@ -1,0 +1,16 @@
+{
+  "archive_round_trip": true,
+  "arena_validation": true,
+  "certification_runner": "tools/validation/m07_paper_e2e.py",
+  "filesystem_evidence_off_owner": true,
+  "leak_free_after_unload": true,
+  "operations": 5,
+  "primary_plugin_sha256": "373a3bb01f42d996639b0040a5ef3a6dfaa5f25e46b95fff77b5c95a1ad44591",
+  "runtime": "Paper 1.21.1 build 133",
+  "schema_version": 1,
+  "server_exit_code": 0,
+  "server_sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+  "setup_undo_redo": true,
+  "success": true,
+  "test_harness_sha256": "08494ca8b5085f1300bfccedc980979a6378fdb52ad780b78ff47ffceec815c3"
+}

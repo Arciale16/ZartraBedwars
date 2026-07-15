@@ -81,6 +81,8 @@ def validate() -> list[str]:
     valid_states = (
         ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
         (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
+        ("M07", ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
+        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
     )
     if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
         errors.append("milestone state must represent active M06 or completed M06 closure")

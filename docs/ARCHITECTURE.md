@@ -146,6 +146,18 @@ M09 materializes the four presentation modules. `zbw-command-api` and `zbw-ui-ap
 
 The dependency direction is strictly presentation adapter → application use case → domain/ports. `zbw-arena` never depends on `zbw-command-api`, `zbw-command-paper`, `zbw-ui-api` or `zbw-ui-paper`; no M07 module may depend on a module first allocated to M09. `zbw-game` remains first allocated to M08. `build/module-graph.json` and `tools/validation/m07_m09_allocation.py` enforce these rules.
 
+The implemented M07 composition keeps durable repositories, atomic setup
+commit, archives, marker discovery, identity allocation, authorization, event
+publication and audit behind typed ports. Production `zbw-arena` has no M04
+implementation dependency; the real SQLite record store is bound only in its
+contract tests. The exact Paper fixture similarly consumes `zbw-arena` only
+from test scope, so neither the arena module nor its certification harness is
+packaged in the M06 bootstrap artifact. Setup preview integrity binds the base
+draft fingerprint separately from the candidate fingerprint, preventing a
+preview from being replayed after any intervening draft mutation. Codec,
+repository and marker work is assigned to M05 bounded workers; M06 world
+handles preserve owner-thread mutation and off-owner filesystem execution.
+
 ## 5. Core domain model
 
 - `ArenaDefinition` is configuration; `ArenaInstance` is a runtime allocation; `Match` is an immutable-identity state machine. A world is a leased resource, not arena identity.

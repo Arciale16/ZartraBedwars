@@ -51,13 +51,14 @@ def sources(module: str) -> list[Path]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build" / "milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] not in {"M03", "M04", "M05", "M06", None}:
+    if state["active_milestone"] not in {"M03", "M04", "M05", "M06", "M07", None}:
         errors.append("active milestone must preserve the M03 baseline")
     completed = state["completed_milestones"]
     if completed not in (["M00", "M01", "M02"], ["M00", "M01", "M02", "M03"],
                          ["M00", "M01", "M02", "M03", "M04"],
                          ["M00", "M01", "M02", "M03", "M04", "M05"],
-                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]):
+                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06"],
+                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]):
         errors.append("completed milestones must be the ordered M03 implementation or closure set")
 
     marker = re.compile(
