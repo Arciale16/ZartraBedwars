@@ -144,7 +144,8 @@ final class WorldFoundationTest {
 
     @Test void workerAndOwnerStepsRunOnSeparatedThreads() throws Exception {
         final RecordingProvider provider = new RecordingProvider(false, false, false);
-        final WorldOperationResult result = started(provider).submit(operation(
+        final WorldOperationResult result = started(
+                provider, new ThreadedOwnerDispatcher()).submit(operation(
                 WorldOperation.Type.LOAD, WorldKey.of("target"), null,
                 Duration.ofSeconds(2))).completion().toCompletableFuture().get(2, TimeUnit.SECONDS);
         assertEquals(WorldOperationResult.Status.SUCCEEDED, result.status());
@@ -156,7 +157,7 @@ final class WorldFoundationTest {
         assertThrows(UnsupportedOperationException.class,
                 () -> result.completedSteps().add(DefinitionId.of("zartra", "world/extra")));
         assertTrue(provider.workerThread.startsWith("world-test-"));
-        assertEquals(Thread.currentThread().getName(), provider.ownerThread);
+        assertEquals("world-owner-test", provider.ownerThread);
         assertNotEquals(provider.ownerThread, provider.workerThread);
     }
 
@@ -357,11 +358,17 @@ final class WorldFoundationTest {
     }
 
     private WorldOrchestrator started(final RecordingProvider provider) {
+        return started(provider, new ImmediateOwnerDispatcher());
+    }
+
+    private WorldOrchestrator started(
+            final RecordingProvider provider,
+            final SchedulerPort.OwnerThreadDispatcher ownerDispatcher) {
         scheduler = new BoundedTaskScheduler(1, 4, "world-test",
                 MonotonicTimeSource.SystemMonotonicTimeSource.INSTANCE,
                 TimeSource.FixedTimeSource.at(Instant.EPOCH), ignored -> { });
         final WorldOrchestrator orchestrator = new WorldOrchestrator(scheduler,
-                new ImmediateOwnerDispatcher(), provider,
+                ownerDispatcher, provider,
                 TimeSource.FixedTimeSource.at(Instant.EPOCH), 1);
         assertTrue(orchestrator.start(Duration.ofSeconds(1)).isSuccess());
         return orchestrator;
@@ -389,6 +396,37 @@ final class WorldFoundationTest {
         @Override public TaskId taskId() { return taskId; }
         @Override public CompletionStage<SchedulerPort.Outcome<Void>> completion() { return completion; }
         @Override public boolean cancel() { return false; }
+    }
+
+    private static final class ThreadedOwnerDispatcher implements SchedulerPort.OwnerThreadDispatcher {
+        @Override public boolean isOwnerThread(final DefinitionId ownerId) {
+            return "world-owner-test".equals(Thread.currentThread().getName());
+        }
+        @Override public SchedulerPort.TaskHandle<Void> dispatch(
+                final TaskDescriptor descriptor, final Runnable mutation) {
+            final CompletableFuture<SchedulerPort.Outcome<Void>> completion =
+                    new CompletableFuture<SchedulerPort.Outcome<Void>>();
+            final Thread thread = new Thread(() -> {
+                try {
+                    mutation.run();
+                    completion.complete(SchedulerPort.Outcome.successVoid());
+                } catch (RuntimeException failure) {
+                    completion.complete(SchedulerPort.Outcome.failure(FailureReport.of(
+                            DefinitionId.of("zartra", "world/test_owner_failure"),
+                            FailureKind.INTERNAL, descriptor.correlationId(),
+                            "world.test.owner.failure", false, Instant.EPOCH)));
+                }
+            }, "world-owner-test");
+            thread.setDaemon(true);
+            thread.start();
+            return new SchedulerPort.TaskHandle<Void>() {
+                @Override public TaskId taskId() { return descriptor.taskId(); }
+                @Override public CompletionStage<SchedulerPort.Outcome<Void>> completion() {
+                    return completion;
+                }
+                @Override public boolean cancel() { return false; }
+            };
+        }
     }
 
     private static final class FailingOwnerDispatcher implements SchedulerPort.OwnerThreadDispatcher {
