@@ -12,7 +12,7 @@ No scheduler, Minecraft adapter, proxy/Redis transport, feature repository, game
 - `zbw-storage-sql` is Java-8 bytecode and is the only production module permitted to import JDBC or contain SQL. It provides Hikari-backed SQLite, MySQL and MariaDB adapters, the deterministic migration runner, a Java-8-linkable Flyway provider, Caffeine cache and recovery coordination.
 - Both modules are synchronous/blocking by contract. Every call belongs on a bounded storage worker supplied by M05; owner/tick-thread use is forbidden. M04 does not create threads or executors.
 
-The thin module JARs do not contain HikariCP, Caffeine, Flyway, database drivers or test libraries. The exact union of the JDK-specific Maven graphs contains 189 binary components and 598 JAR/POM files, each checksum/licence locked; product bundling is disabled for every row.
+The thin module JARs do not contain HikariCP, Caffeine, Flyway, database drivers or test libraries. The exact union of the JDK-specific Maven graphs contains 192 binary components and 604 JAR/POM files, each checksum/licence locked; product bundling is disabled for every row. The lock includes both the project JUnit Platform 1.11.4 graph and Surefire 3.5.4's isolated 1.12.1 provider graph so a clean CI cache cannot select an unrecorded artifact.
 
 ## Delivered behavior
 

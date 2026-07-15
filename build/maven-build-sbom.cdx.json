@@ -4180,6 +4180,32 @@
       "version": "1.11.4"
     },
     {
+      "bom-ref": "maven:org.junit.platform:junit-platform-commons:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-commons",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
       "bom-ref": "maven:org.junit.platform:junit-platform-engine:1.11.4",
       "group": "org.junit.platform",
       "licenses": [
@@ -4206,6 +4232,32 @@
       "version": "1.11.4"
     },
     {
+      "bom-ref": "maven:org.junit.platform:junit-platform-engine:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-engine",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
+    },
+    {
       "bom-ref": "maven:org.junit.platform:junit-platform-launcher:1.11.4",
       "group": "org.junit.platform",
       "licenses": [
@@ -4230,6 +4282,32 @@
       ],
       "type": "library",
       "version": "1.11.4"
+    },
+    {
+      "bom-ref": "maven:org.junit.platform:junit-platform-launcher:1.12.1",
+      "group": "org.junit.platform",
+      "licenses": [
+        {
+          "expression": "EPL-2.0"
+        }
+      ],
+      "name": "junit-platform-launcher",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "1.12.1"
     },
     {
       "bom-ref": "maven:org.mariadb.jdbc:mariadb-java-client:3.4.1",
@@ -4944,7 +5022,7 @@
       "version": "0.4.0-SNAPSHOT"
     }
   },
-  "serialNumber": "urn:uuid:ff4ceeb9-d02a-704c-da52-99924d0f0fc8",
+  "serialNumber": "urn:uuid:ce9ea714-eb50-13b9-3849-bd471cc912a3",
   "specVersion": "1.6",
   "version": 1
 }

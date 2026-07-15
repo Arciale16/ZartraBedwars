@@ -164,8 +164,11 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.junit.jupiter:junit-jupiter-params:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.platform:junit-platform-commons:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.junit.platform:junit-platform-commons:1.12.1` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.platform:junit-platform-engine:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.junit.platform:junit-platform-engine:1.12.1` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.platform:junit-platform-launcher:1.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.junit.platform:junit-platform-launcher:1.12.1` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.mariadb.jdbc:mariadb-java-client:3.4.1` | LGPL-2.1-or-later | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.opentest4j:opentest4j:1.3.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.ow2.asm:asm-analysis:9.7.1` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |

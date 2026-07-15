@@ -3097,6 +3097,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.pom"
     },
     {
+      "relative_path": "org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar",
+      "sha256": "c316163581aaa5649280122b12ea36fe4e9c202a1a2267753fea7c9e1df055eb",
+      "size": 151858,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.pom",
+      "sha256": "b7328111e92d478ed0956c630a0c24666e7681b5138168fa15c85b50946a7003",
+      "size": 2833,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.pom"
+    },
+    {
       "relative_path": "org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.jar",
       "sha256": "b1dd998f64f9acadc15966d9cd3d08074662677b3e390f0a38fcbf0bb4c72330",
       "size": 246800,
@@ -3109,6 +3121,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.11.4/junit-platform-engine-1.11.4.pom"
     },
     {
+      "relative_path": "org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar",
+      "sha256": "7fedff93fd92aec7d29fc60dc01fa027246b36b8088423a5efc4949e5f6affa4",
+      "size": 255799,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.pom",
+      "sha256": "4c03688537a087f77d34b34d8dccd93b9361716bb9bbf4b4b9c6d83179014b9c",
+      "size": 3205,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.pom"
+    },
+    {
       "relative_path": "org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.jar",
       "sha256": "d7430bd029e7fcced53ee445e4d2d1a8a1e043ea4c4df43b6335a857f79761ae",
       "size": 189006,
@@ -3119,6 +3143,18 @@
       "sha256": "b67cd53802e06aa82aa5966e99fb42917d220457849e5c080c8360753ed67c31",
       "size": 3029,
       "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.11.4/junit-platform-launcher-1.11.4.pom"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.jar",
+      "sha256": "ebbb14e7b29f60730eaede862ed69d7de0d581ea0c038fa6a202955c7541f525",
+      "size": 207611,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.jar"
+    },
+    {
+      "relative_path": "org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.pom",
+      "sha256": "9ddf43357576db72e94ef33c8a9634f603ab4046fe0ae6e5e1924cab66888ed9",
+      "size": 3029,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.pom"
     },
     {
       "relative_path": "org/mariadb/jdbc/mariadb-java-client/3.4.1/mariadb-java-client-3.4.1.jar",
@@ -8771,6 +8807,38 @@
       "version": "1.11.4"
     },
     {
+      "artifact": "junit-platform-commons",
+      "commercial_use": true,
+      "files": [
+        "org/junit/platform/junit-platform-commons/1.12.1/junit-platform-commons-1.12.1.jar"
+      ],
+      "group": "org.junit.platform",
+      "id": "maven:org.junit.platform:junit-platform-commons:1.12.1",
+      "licenses": [
+        {
+          "declared_name": "Eclipse Public License v2.0",
+          "declared_url": "https://www.eclipse.org/legal/epl-v20.html",
+          "evidence_ids": [
+            "EPL-2.0"
+          ],
+          "spdx_expression": "EPL-2.0",
+          "text_evidence": [
+            {
+              "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/EPL-2.0.txt",
+              "spdx": "EPL-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.12.1"
+    },
+    {
       "artifact": "junit-platform-engine",
       "commercial_use": true,
       "files": [
@@ -8803,6 +8871,38 @@
       "version": "1.11.4"
     },
     {
+      "artifact": "junit-platform-engine",
+      "commercial_use": true,
+      "files": [
+        "org/junit/platform/junit-platform-engine/1.12.1/junit-platform-engine-1.12.1.jar"
+      ],
+      "group": "org.junit.platform",
+      "id": "maven:org.junit.platform:junit-platform-engine:1.12.1",
+      "licenses": [
+        {
+          "declared_name": "Eclipse Public License v2.0",
+          "declared_url": "https://www.eclipse.org/legal/epl-v20.html",
+          "evidence_ids": [
+            "EPL-2.0"
+          ],
+          "spdx_expression": "EPL-2.0",
+          "text_evidence": [
+            {
+              "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/EPL-2.0.txt",
+              "spdx": "EPL-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.12.1"
+    },
+    {
       "artifact": "junit-platform-launcher",
       "commercial_use": true,
       "files": [
@@ -8833,6 +8933,38 @@
       "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.11.4"
+    },
+    {
+      "artifact": "junit-platform-launcher",
+      "commercial_use": true,
+      "files": [
+        "org/junit/platform/junit-platform-launcher/1.12.1/junit-platform-launcher-1.12.1.jar"
+      ],
+      "group": "org.junit.platform",
+      "id": "maven:org.junit.platform:junit-platform-launcher:1.12.1",
+      "licenses": [
+        {
+          "declared_name": "Eclipse Public License v2.0",
+          "declared_url": "https://www.eclipse.org/legal/epl-v20.html",
+          "evidence_ids": [
+            "EPL-2.0"
+          ],
+          "spdx_expression": "EPL-2.0",
+          "text_evidence": [
+            {
+              "sha256": "61616a4066701bc7888ad910de1633dbc55eb4d4d30d930feef55afb9492e33c",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/EPL-2.0.txt",
+              "spdx": "EPL-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.12.1"
     },
     {
       "artifact": "mariadb-java-client",
