@@ -14,6 +14,8 @@
     {"id": "zbw-domain", "path": "domain/zbw-domain/pom.xml", "packaging": "jar", "responsibility": "platform-neutral generator and private-game domain contracts"},
     {"id": "zbw-application", "path": "application/zbw-application/pom.xml", "packaging": "jar", "responsibility": "immutable content and provider capability policies"},
     {"id": "zbw-config", "path": "configuration/zbw-config/pom.xml", "packaging": "jar", "responsibility": "typed configuration, migration, reload, localization, authorization, secret and validation foundations"},
+    {"id": "zbw-storage-api", "path": "storage/zbw-storage-api/pom.xml", "packaging": "jar", "responsibility": "JDBC-free repository, unit-of-work, migration, mutation, cache, retention and recovery contracts"},
+    {"id": "zbw-storage-sql", "path": "storage/zbw-storage-sql/pom.xml", "packaging": "jar", "responsibility": "SQLite, MySQL and MariaDB storage adapters, migrations, outbox/inbox, cache and recovery foundations"},
     {"id": "zbw-sdk", "path": "sdk/zbw-sdk/pom.xml", "packaging": "jar", "responsibility": "extension metadata reader and deterministic validator"},
     {"id": "zbw-integration-discord-api", "path": "integrations/discord/zbw-integration-discord-api/pom.xml", "packaging": "jar", "responsibility": "optional Discord provider and integration contracts"}
   ],

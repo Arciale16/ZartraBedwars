@@ -16,12 +16,12 @@ class MilestoneThreeValidationTests(unittest.TestCase):
     def test_architecture_boundaries_are_exact(self) -> None:
         self.assertEqual([], m03_architecture.validate())
 
-    def test_config_module_is_materialized_without_m04_modules(self) -> None:
+    def test_config_module_remains_materialized_at_m04(self) -> None:
         graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
         materialized = {row["id"] for row in graph["materialized_build_modules"]}
         self.assertIn("zbw-config", materialized)
-        self.assertNotIn("zbw-storage-api", materialized)
-        self.assertNotIn("zbw-storage-sql", materialized)
+        self.assertIn("zbw-storage-api", materialized)
+        self.assertIn("zbw-storage-sql", materialized)
 
     def test_m03_has_no_runtime_dependency_additions(self) -> None:
         pom = (ROOT / "configuration/zbw-config/pom.xml").read_text(encoding="utf-8")

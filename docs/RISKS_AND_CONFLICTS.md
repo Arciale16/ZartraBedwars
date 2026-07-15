@@ -122,3 +122,10 @@ No item below removes a requested capability.
 ## Pre-code decision gate result
 
 RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/071 and RC-072 through RC-076 are resolved by concrete owner/technical decisions, stable requirements, accepted ADRs and normative specifications. External artifact hash/licence acquisition and jurisdiction-specific public-release legal execution remain deterministic build/release evidence, not unresolved architecture. Other non-pre-code risks remain scheduled at their dependency milestones and do not authorize scope reduction. See `PRE_CODE_READINESS_REPORT.md`.
+
+## H. M04 implementation risks and external gates
+
+| ID | Classification | Finding / risk | Preserving resolution or recommendation |
+|---|---|---|---|
+| RC-077 | Fact — OPEN EXTERNAL EVIDENCE | The current workstation has no Docker/Podman service, and no audited MySQL/MariaDB image digest was supplied. The two Testcontainers contracts compile but are skipped, so the container/query-plan M04 exit criterion cannot be marked VERIFIED locally. | Keep the draft PR and M05 gate closed. Run both suites in CI/an approved Docker-compatible environment using separately audited `name@sha256:digest` variables; attach test and `EXPLAIN FORMAT=JSON` evidence before approval. |
+| RC-078 | Verified technical constraint — RESOLVED BY ADR-0019 | Flyway Core 10.20.1 is not link-safe on the mandatory Java 8 runtime, while replacing the approved version or dropping Flyway would violate READY-008. MySQL/MariaDB Flyway vendor modules are not yet approved dependencies. | Keep Java-8-linkable storage artifacts, execute Flyway reflectively on compatible runtimes, and retain the checksum-equivalent built-in migration runner on Java 8/all SQL engines. Add vendor modules only after exact audit; no migration functionality is removed. |

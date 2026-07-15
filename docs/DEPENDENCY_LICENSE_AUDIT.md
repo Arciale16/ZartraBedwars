@@ -54,6 +54,14 @@ The generated immutable lock expands these fields into separate machine-readable
 
 Manual constructor injection and project-owned command/GUI DSLs are selected; no DI, command or GUI framework dependency is permitted without a new ADR.
 
+### M04 acquired SQL graph
+
+M04 resolved the approved coordinates and the union of their JDK-specific transitive graphs into an isolated acquisition repository, inherited every transitive POM licence, normalized the MySQL Universal FOSS Exception declaration, hashed every JAR/POM and generated `build/maven-dependency-lock.json`, `build/maven-build-sbom.cdx.json` and `build/M04_MAVEN_BUILD_NOTICES.md`. The exact graph is 186 binary components and 591 files. Every component is `RUNTIME_OR_BUILD_NOT_BUNDLED`; redistribution, shading and modification rights are disabled in this milestone's thin artifacts. The union includes HikariCP's pinned Java 8 `slf4j-api:1.7.30` branch so every approved JDK can build offline from the same lock.
+
+HikariCP/Caffeine are compile dependencies; Flyway and the three JDBC drivers are runtime dependencies; JUnit/Testcontainers are test dependencies. Runtime scope does not authorize release bundling. SQLite may be packaged only by a later approved shared-server distribution gate; MariaDB remains a separate runtime library after its LGPL obligations gate; MySQL remains operator-provided/separate-runtime unless legal approval is recorded. No database driver is shaded.
+
+Testcontainers image acquisition is separately default-denied. `ZBW_TEST_MYSQL_IMAGE` and `ZBW_TEST_MARIADB_IMAGE` must be full audited `name@sha256:digest` references with a licence/provenance row before a container starts. Tags are rejected. No image is stored or redistributed by this repository.
+
 ## Platform and integration selections
 
 | Provider/API | Exact certified baseline | Source/licence fact | Scope and redistribution decision | Absence/incompatibility behavior |

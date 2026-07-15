@@ -26,5 +26,6 @@ The initial pre-code decision queue is resolved. Future major decisions use the 
 | [ADR-0016](ADR-0016-project-licensing-model.md) | Proprietary product and separately licensed public SDK model | RC-066 |
 | [ADR-0017](ADR-0017-extension-metadata-format.md) | Restricted schema-versioned extension metadata and deterministic compatibility validation | M02 implementation decision |
 | [ADR-0018](ADR-0018-typed-configuration-documents.md) | Immutable typed configuration documents with parser/filesystem adapters outside M03 | M03 implementation decision |
+| [ADR-0019](ADR-0019-java8-flyway-runtime-boundary.md) | Java-8-linkable deterministic migrations plus compatible-runtime Flyway bridge | M04 verified technical constraint RC-078 |
 
 Accepted ADRs settle policy and architecture; they do not claim implementation. Their execution gates remain in the PRD, traceability matrix and milestone exit criteria.

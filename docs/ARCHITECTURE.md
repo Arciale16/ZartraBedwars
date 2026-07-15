@@ -104,6 +104,16 @@ Localization catalogs and permission grants are immutable snapshots. Authorizati
 
 M03 public compatibility is append-only against both `build/api-signature-baseline.txt` and `build/api-signature-baseline-m03.txt`. `build/module-graph.json` and `tools/validation/m03_architecture.py` enforce the dependency boundary, exact 36-file/action inventories and absence of any M04 path.
 
+### M04 materialization
+
+M04 adds `zbw-storage-api` and `zbw-storage-sql`, both Java-8 bytecode. The API module depends only on public API/domain types and owns immutable keys, revisions, records, UoW/repository, migration, outbox/inbox, cache, retention and recovery contracts. It imports no JDBC, filesystem, runtime configuration or adapter library. The SQL module is the sole JDBC/SQL owner and uses manual construction with HikariCP, prepared statements, timeouts, bounded deadlock retries and Caffeine.
+
+SQLite uses exactly one pooled connection and is rejected for scalable-proxy topology. MySQL/MariaDB pools are bounded; SQL remains authoritative. Atomic outbox/inbox uniqueness gives exactly-once business outcomes over later at-least-once transports. The cache is bounded, expiring and revision-fenced; it cannot become authority. Retention, hold/release and tombstone rows are generic foundations, while feature encryption/scheduling remains M17/M18.
+
+Schema version 1 is ordered and SHA-256 history-checked. `SchemaMigrator` supplies automatic migrations on every supported JVM/engine. Under ADR-0019, the exact Flyway 10 runtime is invoked through a Java-8-linkable reflective bridge on compatible JVMs; direct Flyway linkage and unapproved vendor modules are forbidden. Unsafe external-engine DDL requires validated encrypted backup and restore-based rollback.
+
+M04 creates no executor. Storage calls are explicitly blocking and may run only on bounded M05 storage workers; until M05, no Minecraft runtime consumes them. `build/api-signature-baseline-m04.txt` is append-only over M02/M03. `tools/validation/m04_architecture.py` proves JDBC-free API, SQL confinement, exact dependency locks, no platform/Redis imports and no M05 path.
+
 ## 5. Core domain model
 
 - `ArenaDefinition` is configuration; `ArenaInstance` is a runtime allocation; `Match` is an immutable-identity state machine. A world is a leased resource, not arena identity.
