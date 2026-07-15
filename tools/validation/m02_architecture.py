@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 import re
 import xml.etree.ElementTree as ET
 
@@ -90,12 +91,14 @@ def validate() -> list[str]:
     if fixtures != expected_fixtures:
         errors.append("extension metadata fixture inventory drift")
 
-    prohibited_m03_paths = (
-        ROOT / "configuration", ROOT / "localization", ROOT / "permissions",
-    )
-    for path in prohibited_m03_paths:
-        if path.exists():
-            errors.append(f"M03 path materialized during M02: {path.relative_to(ROOT)}")
+    state = json.loads((ROOT / "build" / "milestone-state.json").read_text(encoding="utf-8"))
+    if state["active_milestone"] == "M02":
+        prohibited_m03_paths = (
+            ROOT / "configuration", ROOT / "localization", ROOT / "permissions",
+        )
+        for path in prohibited_m03_paths:
+            if path.exists():
+                errors.append(f"M03 path materialized during M02: {path.relative_to(ROOT)}")
     return errors
 
 

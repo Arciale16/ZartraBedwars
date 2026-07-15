@@ -71,3 +71,5 @@ The generated compatibility report records exact server artifact/build/SHA-256/J
 ## 6. Acceptance
 
 RC-075 is resolved at policy/design level when this matrix is normative and traceable. M06 establishes the adapter contract and primary mappings; M22 may exit only after every claimed 1.8 row passes startup, gameplay, GUI, item, packet, cleanup and migration tests. A crash, unsupported enum/class exposure or loss of gameplay behavior is never an accepted fallback.
+
+M03 contributes only the strict `compatibility.yml` schema declaration and per-option compatibility metadata used by the generated reference. No Minecraft material, particle, sound, text, entity, packet or GUI adapter is present, and M03 therefore makes no new runtime-support claim. M06/M22 must consume these version-neutral declarations behind their adapters and preserve every fallback rule above.

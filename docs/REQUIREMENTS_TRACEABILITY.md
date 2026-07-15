@@ -196,18 +196,18 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | ZBW-UX-001 | UI page model/Paper renderer/state | gui/messages/performance | gui reload / use,manage | all required GUIs | GUI API/events | rendered safe values | inventory/accessibility PT | GUI guide; M09 |
 | ZBW-UX-002 | GUI definition editor/schema migration | gui | gui edit/import/export / gui.* | GUI editor | GUI registry API/events | preview values | undo/validation/MT/ST | GUI editor guide; M09 |
 | ZBW-UX-003 | command tree/adapters/help/audit | commands/messages | all required commands / per action | command inspector/help | Command API/events | — | command inventory/contexts | command reference; M09+ |
-| ZBW-UX-004 | authorization policy/node registry/aliases | permissions/security | permission inspect / permission.* | permission inspector | Permission API/events | — | full matrix/escalation ST | permission reference; M03/M09 |
-| ZBW-UX-005 | message catalogs/renderers/import/export | messages | language/reload / language.* | language/editor/report | Localization API/events | locale-aware | fallback/completeness/CT | localization guide; M03/M22 |
+| ZBW-UX-004 | M03 `PermissionNode`/request/decision/service plus sole exact-grant implementation, target scoping, 33 actions, one-hop aliases and audit port | `permissions.yml`, security metadata | command inventory remains M09 | inspector remains M09 | authorization API; decision audit port | — | exact/target/alias/deny/null/centralization tests VERIFIED | `PERMISSIONS_M03.md`; M03 VERIFIED / M09 surfaces |
+| ZBW-UX-005 | M03 locale/message/typed-parameter API plus immutable catalogs, fallback, completeness and deterministic import/export; component renderers remain M22 | `config.yml`, `messages.yml` | language/reload remain M09/M22 | language/editor/report remain M09/M22 | localization API | locale-aware contract; PAPI remains M16 | fallback/completeness/switch/escape/malformed tests VERIFIED | `LOCALIZATION_M03.md`; M03 VERIFIED / M22 rendering |
 | ZBW-UX-006 | accessibility/capability patterns | gui/messages | settings / player | accessible alternatives | capability API | settings | task usability/Bedrock E2E | accessibility matrix; M09/M22 |
 
 ## Operations, security and delivery (9)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
 |---|---|---|---|---|---|---|---|---|
-| ZBW-OPS-001 | typed config schemas/docs/version migration | all listed files | config validate/reload / config.* | config editor | Configuration API/events | config version/health | schema/doc/MT | configuration guide; M03 |
-| ZBW-OPS-002 | secret references/redaction/export allowlist | security + secret refs | security diagnose / admin | security status | SecretRef/redaction API | none | seeded-secret ST | security guide; M03/M24 |
-| ZBW-OPS-003 | startup/install/config validators | all configs | validate/doctor / validate | validator/dashboard | Validation API/events | validation status | mutation/version tests | install guide; M03 |
-| ZBW-OPS-004 | transactional targeted reload plans | relevant files | targeted reload / reload.* | reload controls | Reload API/events | reload state | partial-failure E2E | reload guide; M03 |
+| ZBW-OPS-001 | M03 immutable versioned `ConfigurationModel`, exact 36 schemas, full option metadata, reference generator and backup-first pure migration service | all 36 listed logical files | config command remains M09 | editor remains M09 | typed configuration API/model | config version remains later surface | schema/default/range/unknown/dependency/reference/migration/fixture tests VERIFIED | `CONFIGURATION_REFERENCE_M03.md`; M03 VERIFIED |
+| ZBW-OPS-002 | M03 `SecretRef`, injected provider/environment/protected-file sources, zeroizable lease, exact redactor and export allowlist | `security.yml` plus provider credential refs | security diagnose remains M09/M24 | security status remains later | secret API/services | none | priority/missing/zeroize/redaction/allowlist tests VERIFIED | `API_M03.md`; M03 VERIFIED / M24 operations |
+| ZBW-OPS-003 | M03 validates all 36 documents, external-check ports, cross-document dependencies, duplicate/missing files and bounded option counts | all 36 schemas | validate/doctor remains M09/M23 | dashboard remains later | typed validation reports | validation status remains later | malformed/unknown/dependency/secret/cross-document/fixture tests VERIFIED | `CONFIGURATION_REFERENCE_M03.md`; M03 VERIFIED / platform checks later |
+| ZBW-OPS-004 | M03 prepare/apply/reverse-rollback plans, restart reporting, targets and last-known-good publication | every option declares target/restart metadata | reload command remains M09 | reload controls remain M09 | transactional reload service | reload state remains later | success/prepare/apply/rollback/restart tests VERIFIED | `CONFIGURATION_REFERENCE_M03.md`; M03 VERIFIED |
 | ZBW-OPS-005 | error taxonomy/retry/circuit/alerts | performance/security/messages | diagnostics/recover / admin | health/error panels | Failure API/events | sanitized health | fault injection | recovery guide; M05 |
 | ZBW-OPS-006 | metrics/health/Doctor/debug exports | performance/security | health,performance,doctor / admin.* | all health dashboards | Health/Performance APIs | safe health families | cardinality/redaction/PT | operations/tuning; M05/M24 |
 | ZBW-OPS-007 | external stats/Discord providers | integrations/security | external-api manage / api.* | integration manager | ExternalStats SPI/API | only scoped public | auth/rate/privacy ST/PT | external API guide; M16/M21 |
@@ -261,9 +261,9 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | ZBW-DISCORD-003 | embedded webhook adapter | destination/event/rate + SecretRef | webhook validate/test / admin.discord.webhook | webhook settings/status | webhook delivery events | webhook health only | timeout/rate/allowlist ST | webhook guide; M16 |
 | ZBW-DISCORD-004 | external bot transport + link records | transport/scopes/link policy + secrets | link/unlink + bot diagnose / discord.* | link/privacy/bot health | external protocol/link events | consented link state | auth/replay/link CT/ST | external bot protocol; M16 |
 | ZBW-DISCORD-005 | M02 custom provider SPI integrated with extension metadata/API ranges; sample/runtime later | extension metadata schema | validator contract; commands later | extension manager later | custom `DiscordProvider` SPI | provider health contract | metadata/capability/provider contract tests | `API_M02.md`; M02 contracts VERIFIED / M16/M23 sample |
-| ZBW-DISCORD-006 | disabled/no-op provider | `enabled: false` default | discord status / use | disabled state | no-op provider | disabled | no-provider full E2E | install/default guide; M03/M16 |
+| ZBW-DISCORD-006 | M03 `DisabledDiscordProvider`: no I/O/thread/capability, stopped lifecycle, disabled health and typed rejection | `integrations/discord.yml` enabled false | discord status remains M16 | disabled state remains M16 | provider-neutral no-op provider | disabled | provider lifecycle/capability/delivery contract tests VERIFIED; gameplay E2E M16 | `API_M03.md`; M03 VERIFIED / M16 E2E |
 | ZBW-DISCORD-007 | bounded outbox/retry/circuit/dead letter | queue/deadline/backoff/rate budgets | discord retry/drain / admin.discord | queue/circuit dashboard | delivery/failure events | queue/circuit health | outage/saturation/PT | failure runbook; M05/M16 |
-| ZBW-DISCORD-008 | secret resolution/redaction/rotation | secret references/env names only | secret diagnose/rotate / admin.security | redacted status only | SecretRef integration | — (secrets prohibited) | seeded-secret/export ST | security/Discord guides; M03/M16 |
+| ZBW-DISCORD-008 | M03 provider-neutral `SecretRef`, injected resolution/zeroization/redaction foundation; provider rotation remains M16 | credential references only; no token values | diagnose/rotate remain M16/M24 | redacted status remains later | secret API integrated with config foundation | — (secrets prohibited) | seeded priority/missing/zeroize/redaction/export tests VERIFIED | `API_M03.md`; M03 VERIFIED / M16 rotation |
 
 ## Mandatory Minecraft 1.8 fallbacks (9)
 
@@ -335,6 +335,30 @@ These rows record only the contracts delivered by M02. They do not mark later co
 | M02 / ZBW-ADDON-471 | Immutable preset/custom `ResourceScarcity.Settings` contract is ready for the host editor | GUI, authorization, preview/reset/lock feedback remain M20 | Preset/custom settings tests | M20 |
 | M02 / ZBW-ADDON-472 | Modifier/resource IDs and public extension/event primitives provide the API type foundation only | Config, commands, granular permission, applied events and PlaceholderAPI remain M20 | Binary/API and identity tests | M20 |
 | M02 / ZBW-ADDON-473 | Generator definition, typed multiplier and native/custom profile contracts define deterministic input | Scheduler, mutation policy, item-loss and E2E runtime remain M20 | Generator/profile invariant tests | M20 |
+
+## M03 foundational allocation for continuing requirements
+
+These rows close only the M03 schema/configuration allocation. They preserve all later runtime, content, command, GUI, permission-integration, PlaceholderAPI and compatibility owners.
+
+| Requirement | M03 implementation | Tests and evidence | Remaining owner |
+|---|---|---|---|
+| M03 / ZBW-CONTENT-001/011 | Approved-provenance and proprietary-copy gates are typed options; no asset or content pack is bundled | schema/default/security/reference and provenance validators | M14/M24 product catalogue and release evidence |
+| M03 / ZBW-CONTENT-002..009 | Stable configurable starter profile IDs for shop, modes, quests, achievements, battle pass and cosmetics; 300-cosmetic gate; private/effect compatibility metadata | identifier/type/default/range/reference tests | M06/M10–M14/M20 definitions and runtime |
+| M03 / ZBW-CONTENT-010 | Versioned `content.yml` schema, strict validation and migration/reload foundations complement the M02 registry contracts | schema/migration/reload/API compatibility tests | family loaders and content runtime in owning milestones |
+| M03 / ZBW-COMPAT-001..009 | `compatibility.yml` declares safe fallback policy and no-unsupported-exposure posture without claiming an adapter | exact schema/metadata/architecture tests; five-JDK build matrix | M06/M22 adapters and runtime certification |
+| M03 / ZBW-READY-003 | `cosmetics.yml` requires at least 300 original/licensed production definitions and supports custom definitions/rarities | 300 lower-bound, provenance and schema tests | M14 catalogue/content/effects |
+| M03 / ZBW-READY-004 | scripting remains disabled by default and requires explicit capability authorization in security metadata | default/security/dependency tests | M05/M11 sandbox workers, review and runtime |
+| M03 / ZBW-READY-010/011 | replay/Atlas privacy and retention defaults are typed declarations with strict duration validation | privacy/retention/default/reference tests | M04/M17/M18 persistence, holds, scheduler and encryption |
+| M03 / ZBW-READY-013/014 | authenticated-network/authority modes and secret references are schema-validated; no network/storage implementation exists | cross-document secret/topology/config tests | M04/M19/M20 durable authority and messaging |
+| M03 / ZBW-READY-015 | immutable starter balance profile IDs are selected through typed schemas | profile-ID and malformed-input tests | M10/M11 registry, activation and simulations |
+| M03 / ZBW-READY-018 | private visibility and explicit-consent defaults are typed in statistics/privacy configuration | enum/default/schema tests | M15/M17/M18 runtime policy and migration |
+| M03 / ZBW-ADDON-464 | M03 `modes.yml` declares the original RESOURCE SCARCITY modifier configuration family | exact schema/reference tests | M20 host/runtime surface |
+| M03 / ZBW-ADDON-465..468 | Scarce/Reduced/Normal/Abundant/Extreme independently configure iron, gold, diamond and emerald | exact preset-value and independent-key tests | M20 generator application |
+| M03 / ZBW-ADDON-469 | Every preset has custom-default plus namespaced per-resource overrides; `generators.yml` enables custom resources | parser/duplicate/bounds/custom-resource tests | M20 custom-generator application |
+| M03 / ZBW-ADDON-470 | Preset values are versioned config: 0.50, 0.75, 1.00, 1.50 and 2.50 with global 0.10..5.00 bounds | exact five-preset/default/range tests | M20 preview/selection/runtime |
+| M03 / ZBW-ADDON-471 | Change policy supports `countdown-locked` and capability-gated `dynamic-rate-safe`; management node is canonical | enum/permission identity/reference tests | M20 GUI lock/reset/preview/feedback |
+| M03 / ZBW-ADDON-472 | `zartrabedwars.private.resource-scarcity.manage` and public config/auth types provide the M03 surface foundation | authorization, binary/API and metadata tests | M20 commands/GUI/events/PlaceholderAPI |
+| M03 / ZBW-ADDON-473 | Generator multiplier bounds and all native/custom resource inputs are strictly validated before later application | malformed/bounds/dependency/rollback tests | M20 scheduler, item-loss and gameplay E2E |
 
 ## Coverage controls
 

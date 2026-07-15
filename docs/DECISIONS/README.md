@@ -25,5 +25,6 @@ The initial pre-code decision queue is resolved. Future major decisions use the 
 | [ADR-0015](ADR-0015-operational-recovery-defaults.md) | RPO/RTO, quotas, degradation and recovery drills | RC-061 |
 | [ADR-0016](ADR-0016-project-licensing-model.md) | Proprietary product and separately licensed public SDK model | RC-066 |
 | [ADR-0017](ADR-0017-extension-metadata-format.md) | Restricted schema-versioned extension metadata and deterministic compatibility validation | M02 implementation decision |
+| [ADR-0018](ADR-0018-typed-configuration-documents.md) | Immutable typed configuration documents with parser/filesystem adapters outside M03 | M03 implementation decision |
 
 Accepted ADRs settle policy and architecture; they do not claim implementation. Their execution gates remain in the PRD, traceability matrix and milestone exit criteria.

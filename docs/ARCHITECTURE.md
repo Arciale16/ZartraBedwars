@@ -94,6 +94,16 @@ M02 materializes only `zbw-api`, `zbw-domain`, `zbw-application`, `zbw-sdk` and 
 
 Extension metadata schema 1 is the restricted `Reader`-based UTF-8 format selected by ADR-0017. It performs no filesystem access or class loading and reports sorted typed validation issues. The binary surface is locked in `build/api-signature-baseline.txt`. M02 architecture tests reject platform, storage and filesystem imports in API/domain/application and reject any M03 path.
 
+### M03 materialization
+
+M03 adds `zbw-config`, a Java-8 platform-neutral module whose only production dependencies are `zbw-api` and `zbw-application`. It owns immutable schemas for the 36 logical configuration files, strict validation, pure migrations, transactional targeted reload, centralized authorization, neutral localization catalogs and injected secret-resolution/redaction services. Public identities and ports remain in `zbw-api`; the existing Discord API artifact owns a zero-I/O disabled provider. The module has no filesystem, database, Redis, proxy, Minecraft or scheduler dependency.
+
+Configuration data flows from a later source adapter into an immutable `Document`, through the matching typed `Schema` and cross-document validator, and only then into migration or reload planning. Reload participants prepare before any application, roll back in reverse order on failure and update the last-known-good snapshot only after full success. Secret material never enters a `Document`: configuration stores `SecretRef` identities and resolution is delegated to injected provider/environment/protected-file ports whose leases are zeroized after use.
+
+Localization catalogs and permission grants are immutable snapshots. Authorization is a single exact-grant service with optional target scoping and one-hop aliases; role labels, parents and wildcards provide no authority. Catalog lookup resolves player, server and fallback locales with typed escaped parameters. Minecraft component rendering is outside this module and remains behind M22 compatibility adapters.
+
+M03 public compatibility is append-only against both `build/api-signature-baseline.txt` and `build/api-signature-baseline-m03.txt`. `build/module-graph.json` and `tools/validation/m03_architecture.py` enforce the dependency boundary, exact 36-file/action inventories and absence of any M04 path.
+
 ## 5. Core domain model
 
 - `ArenaDefinition` is configuration; `ArenaInstance` is a runtime allocation; `Match` is an immutable-identity state machine. A world is a leased resource, not arena identity.
