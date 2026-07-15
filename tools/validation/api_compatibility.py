@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate or verify additive prior compatibility and the exact M04 JVM API baseline."""
+"""Generate or verify additive prior compatibility and the exact M05 JVM API baseline."""
 
 from __future__ import annotations
 
@@ -11,7 +11,8 @@ import struct
 ROOT = Path(__file__).resolve().parents[2]
 M02_BASELINE = ROOT / "build" / "api-signature-baseline.txt"
 M03_BASELINE = ROOT / "build" / "api-signature-baseline-m03.txt"
-BASELINE = ROOT / "build" / "api-signature-baseline-m04.txt"
+M04_BASELINE = ROOT / "build" / "api-signature-baseline-m04.txt"
+BASELINE = ROOT / "build" / "api-signature-baseline-m05.txt"
 MODULES = (
     "api/zbw-api",
     "domain/zbw-domain",
@@ -21,6 +22,7 @@ MODULES = (
     "configuration/zbw-config",
     "storage/zbw-storage-api",
     "storage/zbw-storage-sql",
+    "observability/zbw-observability",
 )
 VISIBLE = 0x0001 | 0x0004
 
@@ -124,7 +126,7 @@ def signature(path: Path) -> list[str]:
 
 
 def observed() -> str:
-    header = ["# ZartraBedWars M04 JVM binary API baseline", "# class-major=52"]
+    header = ["# ZartraBedWars M05 JVM binary API baseline", "# class-major=52"]
     signatures: list[str] = []
     count = 0
     for module in MODULES:
@@ -151,21 +153,21 @@ def main() -> int:
         print(f"Generated binary API baseline with {current.count('CLASS ')} public classes.")
         return 0
     if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M04 binary API differs from build/api-signature-baseline-m04.txt")
+        print("ERROR: M05 binary API differs from build/api-signature-baseline-m05.txt")
         return 1
-    for previous in (M02_BASELINE, M03_BASELINE):
+    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE):
         if not previous.is_file():
             print(f"ERROR: immutable prior binary API baseline is missing: {previous.name}")
             return 1
     current_lines = set(current.splitlines())
     missing = []
-    for previous in (M02_BASELINE, M03_BASELINE):
+    for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE):
         missing.extend(line for line in previous.read_text(encoding="utf-8").splitlines()
                        if line and not line.startswith("#") and line not in current_lines)
     if missing:
         print(f"ERROR: {len(missing)} prior binary signatures were removed or changed")
         return 1
-    print(f"Binary/API compatibility PASS: {current.count('CLASS ')} public classes, Java 8 bytecode; M02/M03 baselines preserved.")
+    print(f"Binary/API compatibility PASS: {current.count('CLASS ')} public classes, Java 8 bytecode; M02/M03/M04 baselines preserved.")
     return 0
 
 

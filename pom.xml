@@ -19,6 +19,7 @@
     <module>domain/zbw-domain</module>
     <module>application/zbw-application</module>
     <module>configuration/zbw-config</module>
+    <module>observability/zbw-observability</module>
     <module>storage/zbw-storage-api</module>
     <module>storage/zbw-storage-sql</module>
     <module>sdk/zbw-sdk</module>

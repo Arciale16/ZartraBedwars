@@ -1,0 +1,48 @@
+name: M05 Governance and Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main, agent/milestone-05-scheduler-lifecycle-observability]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m05-governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deterministic-governance:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out immutable source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Install pinned validator runtime
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.12.13
+      - name: Install exact JavaDoc and compile toolchains
+        run: |
+          python tools/build/install_jdk.py --id "8"
+          python tools/build/install_jdk.py --id "21" --github-env "$GITHUB_ENV" --github-path "$GITHUB_PATH"
+      - name: Restore checksum-locked Maven repository
+        run: python tools/dependencies/maven_lock.py restore
+      - name: Build and test from a clean workspace
+        run: python tools/build/clean_build.py --jdk "21"
+      - name: Run static analysis and coverage thresholds
+        run: python tools/build/maven_wrapper.py -Pquality verify
+      - name: Run deterministic M05 validation
+        run: python tools/validation/run_m05_validation.py
+      - name: Upload reports and generated API documentation
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: m05-quality-evidence
+          if-no-files-found: error
+          path: |
+            **/target/surefire-reports/**
+            **/target/site/jacoco/**
+            target/zartrabedwars-m05-javadoc.zip

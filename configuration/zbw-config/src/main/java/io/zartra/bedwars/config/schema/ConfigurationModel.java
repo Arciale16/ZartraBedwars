@@ -964,6 +964,28 @@ public final class ConfigurationModel {
                     "Bound validation and generated-reference work per logical file.", 1, 100000, true));
             options.add(duration(file, "configuration.manual-validation-budget", "PT5S",
                     "Operator-visible synchronous M03 validation budget."));
+            options.add(integer(file, "scheduler.worker-count", 4,
+                    "Fixed platform-neutral worker count for bounded asynchronous work.", 1, 64, true));
+            options.add(integer(file, "scheduler.queue-capacity", 1024,
+                    "Hard admission capacity before structured task rejection.", 1, 100000, true));
+            options.add(duration(file, "scheduler.default-task-timeout", "PT5S",
+                    "Default queue-plus-execution deadline for bounded work."));
+            options.add(duration(file, "lifecycle.graceful-drain-budget", "PT30S",
+                    "Maximum graceful drain interval before force-stop escalation."));
+            options.add(duration(file, "lifecycle.force-stop-budget", "PT10S",
+                    "Maximum post-interrupt wait for bounded workers."));
+            options.add(integer(file, "observability.maximum-metric-series", 2048,
+                    "Hard global metric-cardinality limit.", 1, 100000, true));
+            options.add(integer(file, "observability.maximum-health-sources", 128,
+                    "Hard health-source registration limit.", 1, 10000, true));
+            options.add(integer(file, "diagnostics.maximum-contributors", 128,
+                    "Hard diagnostic-contributor registration limit.", 1, 10000, true));
+            options.add(integer(file, "diagnostics.maximum-export-fields", 512,
+                    "Hard sanitized debug-export field limit.", 1, 10000, true));
+            options.add(integer(file, "doctor.maximum-checks", 128,
+                    "Hard Plugin Doctor check-registration limit.", 1, 10000, true));
+            options.add(duration(file, "doctor.per-check-timeout", "PT5S",
+                    "Queue-plus-execution deadline for each Plugin Doctor check."));
         }
         private static void security(final List<OptionDefinition<?>> options, final LogicalFile file) {
             options.add(bool(file, "scripts.enabled", false,

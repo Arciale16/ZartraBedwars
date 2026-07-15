@@ -41,8 +41,8 @@ def dependencies(module: str) -> dict[str, str]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] != "M04":
-        errors.append("active milestone must be M04")
+    if state["active_milestone"] not in {"M04", "M05"}:
+        errors.append("active milestone must preserve the M04 baseline")
     if state["completed_milestones"] not in (
             ["M00", "M01", "M02", "M03"],
             ["M00", "M01", "M02", "M03", "M04"]):
@@ -113,7 +113,10 @@ def validate() -> list[str]:
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
     if not {"zbw-storage-api", "zbw-storage-sql"}.issubset(materialized):
         errors.append("storage modules are absent from the materialized graph")
-    for later in ("observability", "platform", "proxy", "gameplay", "replay", "atlas"):
+    later_paths = ["platform", "proxy", "gameplay", "replay", "atlas"]
+    if state["active_milestone"] == "M04":
+        later_paths.append("observability")
+    for later in later_paths:
         if (ROOT / later).exists():
             errors.append(f"post-M04 production path materialized: {later}")
 
