@@ -24,7 +24,7 @@
     {"minecraft": "1.20.2", "distribution": "PAPER", "build": "318", "jdk": "21", "adapter": "compat-v1_20", "sha256": "ba340a835ac40b8563aa7eda1cd6479a11a7623409c89a2c35cd9d7490ed17a7", "certification": "NOT_STARTED"},
     {"minecraft": "1.20.4", "distribution": "PAPER", "build": "499", "jdk": "21", "adapter": "compat-v1_20", "sha256": "cabed3ae77cf55deba7c7d8722bc9cfd5e991201c211665f9265616d9fe5c77b", "certification": "NOT_STARTED"},
     {"minecraft": "1.20.6", "distribution": "PAPER", "build": "151", "jdk": "21", "adapter": "compat-v1_20", "sha256": "4b011f5adb5f6c72007686a223174fce82f31aeb4b34faf4652abc840b47e640", "certification": "NOT_STARTED"},
-    {"minecraft": "1.21.1", "distribution": "PAPER", "build": "133", "jdk": "21", "adapter": "compat-v1_21", "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9", "certification": "NOT_STARTED"},
+    {"minecraft": "1.21.1", "distribution": "PAPER", "build": "133", "jdk": "21", "adapter": "compat-v1_21", "sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9", "certification": "M06_FOUNDATION_CERTIFIED"},
     {"minecraft": "1.21.3", "distribution": "PAPER", "build": "83", "jdk": "21", "adapter": "compat-v1_21", "sha256": "87e973e1d338e869e7fdbc4b8fadc1579d7bb0246a0e0cf6e5700ace6c8bc17e", "certification": "NOT_STARTED"},
     {"minecraft": "1.21.4", "distribution": "PAPER", "build": "232", "jdk": "21", "adapter": "compat-v1_21", "sha256": "5ee4f542f628a14c644410b08c94ea42e772ef4d29fe92973636b6813d4eaffc", "certification": "NOT_STARTED"},
     {"minecraft": "1.21.8", "distribution": "PAPER", "build": "60", "jdk": "21", "adapter": "compat-v1_21", "sha256": "8de7c52c3b02403503d16fac58003f1efef7dd7a0256786843927fa92ee57f1e", "certification": "NOT_STARTED"},

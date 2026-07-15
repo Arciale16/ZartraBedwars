@@ -1,0 +1,7 @@
+name: ZartraBedWars
+version: '${project.version}'
+main: io.zartra.bedwars.paper.bootstrap.ZartraBedWarsPlugin
+api-version: '1.21'
+load: STARTUP
+authors: [Zartra]
+description: ZartraBedWars M06 compatibility and world-provider foundation

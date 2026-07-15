@@ -30,6 +30,7 @@
     <testcontainers.version>1.20.4</testcontainers.version>
     <archunit.version>1.3.0</archunit.version>
     <jmh.version>1.37</jmh.version>
+    <paper-api-mirror.version>1.21.1-build133</paper-api-mirror.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -55,6 +56,7 @@
       <dependency><groupId>org.testcontainers</groupId><artifactId>mariadb</artifactId><version>${testcontainers.version}</version></dependency>
       <dependency><groupId>com.tngtech.archunit</groupId><artifactId>archunit-junit5</artifactId><version>${archunit.version}</version></dependency>
       <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-core</artifactId><version>${jmh.version}</version></dependency>
+      <dependency><groupId>io.zartra.mirror.paper</groupId><artifactId>paper-api</artifactId><version>${paper-api-mirror.version}</version></dependency>
     </dependencies>
   </dependencyManagement>
 </project>

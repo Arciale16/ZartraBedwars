@@ -55,7 +55,9 @@ def validate() -> list[str]:
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
     valid_states = (
         ("M05", ["M00", "M01", "M02", "M03", "M04"]),
+        ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
         (None, ["M00", "M01", "M02", "M03", "M04", "M05"]),
+        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
     )
     if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
         errors.append("milestone state must represent M05 implementation or completed closure")
@@ -169,11 +171,12 @@ def validate() -> list[str]:
         if not (ROOT / relative).is_file():
             errors.append(f"missing M05 documentation: {relative}")
 
-    for later in ("platform", "proxy", "gameplay", "replay", "atlas"):
-        if (ROOT / later).exists():
-            errors.append(f"post-M05 production path materialized: {later}")
-    if list(ROOT.rglob("plugin.yml")) or list(ROOT.rglob("paper-plugin.yml")):
-        errors.append("Minecraft runtime descriptor is forbidden in M05")
+    if state["active_milestone"] == "M05":
+        for later in ("platform", "proxy", "gameplay", "replay", "atlas"):
+            if (ROOT / later).exists():
+                errors.append(f"post-M05 production path materialized: {later}")
+        if list(ROOT.rglob("plugin.yml")) or list(ROOT.rglob("paper-plugin.yml")):
+            errors.append("Minecraft runtime descriptor is forbidden in M05")
     return errors
 
 

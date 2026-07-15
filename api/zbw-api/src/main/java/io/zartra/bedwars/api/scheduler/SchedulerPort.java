@@ -39,6 +39,10 @@ public interface SchedulerPort {
         public static <T> Outcome<T> success(final T value) {
             return new Outcome<T>(Objects.requireNonNull(value, "value"), null);
         }
+        /** @return successful completion for a mutation that has no value */
+        public static Outcome<Void> successVoid() {
+            return new Outcome<Void>(null, null);
+        }
         /** @return failed outcome */
         public static <T> Outcome<T> failure(final FailureReport failure) {
             return new Outcome<T>(null, Objects.requireNonNull(failure, "failure"));

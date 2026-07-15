@@ -1,0 +1,6 @@
+world:
+  worker-count: 2
+  queue-capacity: 32
+  maximum-in-flight: 8
+  maximum-tracked: 64
+  operation-timeout-seconds: 120

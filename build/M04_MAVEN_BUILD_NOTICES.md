@@ -1,6 +1,6 @@
-# Milestone 4 Maven Dependency Notices
+# Milestone 6 Maven Dependency Notices
 
-These components are resolved for the M04 thin-artifact build, runtime adapters or tests. No dependency is bundled in a ZartraBedWars product artifact.
+These components are resolved for the M06 thin-artifact build, runtime adapters or tests. No dependency is bundled in a ZartraBedWars product artifact.
 
 | Coordinates | Licence declaration | Scope | Product bundled |
 |---|---|---|---|
@@ -25,29 +25,40 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `com.google.code.gson:gson:2.12.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.errorprone:error_prone_annotations:2.10.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.errorprone:error_prone_annotations:2.36.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `com.google.errorprone:error_prone_annotations:2.7.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `com.google.guava:failureaccess:1.0.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.guava:failureaccess:1.0.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `com.google.guava:guava:31.0.1-jre` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.guava:guava:33.4.0-jre` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `com.google.j2objc:j2objc-annotations:1.3` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.j2objc:j2objc-annotations:3.0.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.google.protobuf:protobuf-java:3.25.1` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.mysql:mysql-connector-j:8.4.0` | GPL-2.0-only WITH LicenseRef-Universal-FOSS-exception-1.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.puppycrawl.tools:checkstyle:10.21.2` | LGPL-2.1-or-later | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `com.puppycrawl.tools:checkstyle:9.3` | LGPL-2.1-or-later | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.thoughtworks.qdox:qdox:1.12.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.thoughtworks.qdox:qdox:2.2.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `com.zaxxer:HikariCP:4.0.3` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-beanutils:commons-beanutils:1.10.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-beanutils:commons-beanutils:1.10.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `commons-beanutils:commons-beanutils:1.9.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-codec:commons-codec:1.16.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-codec:commons-codec:1.18.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `commons-codec:commons-codec:1.19.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-collections:commons-collections:3.2.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-io:commons-io:2.11.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-io:commons-io:2.16.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-io:commons-io:2.17.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-io:commons-io:2.18.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-io:commons-io:2.19.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `commons-io:commons-io:2.6` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-logging:commons-logging:1.1.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `commons-logging:commons-logging:1.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `commons-logging:commons-logging:1.3.5` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `info.picocli:picocli:4.6.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `info.picocli:picocli:4.7.6` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.zartra.mirror.paper:paper-api:1.21.1-build133` | GPL-3.0-only | COMPILE_ONLY_PLATFORM_PROVIDED_NOT_BUNDLED | NO |
 | `javax.activation:javax.activation-api:1.2.0` | CDDL-1.1 OR GPL-2.0-only WITH Classpath-exception-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `javax.inject:javax.inject:1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `javax.xml.bind:jaxb-api:2.3.1` | CDDL-1.1; GPL-2.0-only WITH Classpath-exception-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -55,14 +66,17 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `junit:junit:4.13.2` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna-platform:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.sf.saxon:Saxon-HE:10.6` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.sf.saxon:Saxon-HE:12.5` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.antlr:antlr4-runtime:4.13.2` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.antlr:antlr4-runtime:4.9.3` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache-extras.beanshell:bsh:2.0b6` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.ant:ant-launcher:1.10.15` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.ant:ant:1.10.15` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.bcel:bcel:6.10.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.commons:commons-compress:1.24.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.commons:commons-compress:1.26.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.commons:commons-compress:1.28.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.commons:commons-digester3:3.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.commons:commons-lang3:3.12.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.commons:commons-lang3:3.14.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -96,10 +110,12 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.apache.maven.enforcer:enforcer-api:3.6.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.enforcer:enforcer-rules:3.6.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.maven.plugins:maven-clean-plugin:3.2.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-compiler-plugin:3.14.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-enforcer-plugin:3.6.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-jar-plugin:3.4.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-resources-plugin:3.3.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.maven.plugins:maven-shade-plugin:3.6.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.plugins:maven-surefire-plugin:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.reporting:maven-reporting-api:3.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.reporting:maven-reporting-api:4.0.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -111,6 +127,7 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.apache.maven.shared:maven-common-artifact-filters:3.4.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.shared:maven-filtering:3.3.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.shared:maven-shared-incremental:1.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.apache.maven.shared:maven-shared-utils:3.3.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.shared:maven-shared-utils:3.4.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.skins:maven-fluido-skin:2.0.0-M9` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.maven.surefire:common-java5:3.5.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -126,6 +143,7 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.apache.velocity.tools:velocity-tools-generic:3.1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apache.velocity:velocity-engine-core:2.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.apiguardian:apiguardian-api:1.1.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.checkerframework:checker-qual:3.12.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.checkerframework:checker-qual:3.19.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.checkerframework:checker-qual:3.48.4` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.checkerframework:checker-qual:3.49.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -158,6 +176,7 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.jacoco:org.jacoco.core:0.8.13` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.jacoco:org.jacoco.report:0.8.13` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.javassist:javassist:3.28.0-GA` | MPL-1.1; LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.jdom:jdom2:2.0.6.1` | LicenseRef-JDOM | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.jetbrains:annotations:17.0.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter-api:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter-engine:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -194,6 +213,7 @@ These components are resolved for the M04 thin-artifact build, runtime adapters 
 | `org.testcontainers:mysql:1.20.4` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.testcontainers:testcontainers:1.20.4` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.tukaani:xz:1.9` | LicenseRef-Public-Domain | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.vafer:jdependency:2.10` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.xerial:sqlite-jdbc:3.46.0.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.xmlresolver:xmlresolver:5.2.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 
