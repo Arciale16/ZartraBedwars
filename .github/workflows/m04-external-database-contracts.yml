@@ -6,7 +6,7 @@ on:
       - "docs/**"
       - "THIRD_PARTY_NOTICES.md"
   push:
-    branches: [main, agent/milestone-04-storage-foundations]
+    branches: [main]
     paths-ignore:
       - "docs/**"
       - "THIRD_PARTY_NOTICES.md"
