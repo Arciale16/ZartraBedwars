@@ -2,6 +2,7 @@ package io.zartra.bedwars.arena.model;
 
 import io.zartra.bedwars.api.identity.DefinitionId;
 import io.zartra.bedwars.api.identity.MapId;
+import io.zartra.bedwars.domain.team.TeamLayoutLimits;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Map;
@@ -48,7 +49,9 @@ public final class MapDefinition {
         this.author = Objects.requireNonNull(author, "author");
         this.description = text(description, "description", 1024, true);
         this.supportedModes = immutableSet(supportedModes, "supportedModes", 64, false);
-        if (minimumTeamSize < 1 || maximumTeamSize < minimumTeamSize || maximumTeamSize > 64) {
+        TeamLayoutLimits.requireTeamCapacity(minimumTeamSize);
+        TeamLayoutLimits.requireTeamCapacity(maximumTeamSize);
+        if (maximumTeamSize < minimumTeamSize) {
             throw new IllegalArgumentException("team-size range must be between 1 and 64");
         }
         this.minimumTeamSize = minimumTeamSize;

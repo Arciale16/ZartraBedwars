@@ -80,13 +80,23 @@ def generate(javadoc: Path, source: str, source_paths: list[Path], output: Path,
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)
-    command = [
-        str(javadoc), "-quiet", "-Xdoclint:all,-missing", "-notimestamp",
+    arguments = [
+        "-quiet", "-Xdoclint:all,-missing", "-notimestamp",
         "-encoding", "UTF-8", "-source", source,
         "-classpath", os.pathsep.join(str(path) for path in classpath),
         "-d", str(output), *[str(path) for path in source_paths],
     ]
-    return subprocess.run(command, cwd=ROOT, check=False).returncode
+    argument_file = output.parent / f".{output.name}-javadoc.args"
+    serialized = []
+    for argument in arguments:
+        normalized = argument.replace("\\", "/")
+        serialized.append('"' + normalized.replace('"', '\\"') + '"')
+    argument_file.write_text("\n".join(serialized) + "\n", encoding="utf-8")
+    try:
+        return subprocess.run(
+            [str(javadoc), f"@{argument_file}"], cwd=ROOT, check=False).returncode
+    finally:
+        argument_file.unlink(missing_ok=True)
 
 
 def main() -> int:

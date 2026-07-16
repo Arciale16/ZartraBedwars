@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import io.zartra.bedwars.domain.team.TeamLayoutLimits;
 
 /** Immutable complete state of one reusable match allocation. */
 public final class MatchSnapshot {
@@ -42,7 +43,9 @@ public final class MatchSnapshot {
                 Objects.requireNonNull(teams, "teams"));
         final List<PlayerSession> sessionCopy = new ArrayList<PlayerSession>(
                 Objects.requireNonNull(sessions, "sessions"));
-        if (teamCopy.size() < 2 || teamCopy.contains(null) || sessionCopy.contains(null)) {
+        if (teamCopy.size() < TeamLayoutLimits.MINIMUM_TEAM_COUNT
+                || teamCopy.size() > TeamLayoutLimits.MAXIMUM_TEAM_COUNT
+                || teamCopy.contains(null) || sessionCopy.contains(null)) {
             throw new IllegalArgumentException("match requires teams and non-null sessions");
         }
         final Set<DefinitionId> teamIds = new HashSet<DefinitionId>();

@@ -39,10 +39,14 @@ class MatchStateMachineTest {
         success(machine.apply(MatchCommand.reconnect(one), GameFixtures.NOW.plusSeconds(20)));
         success(machine.apply(MatchCommand.destroyBed(GameFixtures.RED), GameFixtures.NOW.plusSeconds(21)));
         assertTrue(success(machine.apply(MatchCommand.destroyBed(GameFixtures.RED), GameFixtures.NOW.plusSeconds(21))).duplicate());
-        success(machine.apply(MatchCommand.eliminate(two), GameFixtures.NOW.plusSeconds(22)));
+        final MatchTransition elimination = success(machine.apply(
+                MatchCommand.eliminate(two), GameFixtures.NOW.plusSeconds(22)));
         assertTrue(machine.snapshot().team(GameFixtures.RED).get().eliminated());
         final IdempotencyKey key = IdempotencyKey.of("zartra", "match/1");
-        final DefinitionId victory = DefinitionId.of("zartra", "outcome/blue");
+        assertTrue(elimination.completionIntent().isPresent());
+        assertEquals(GameFixtures.BLUE,
+                elimination.completionIntent().get().winningTeamId());
+        final DefinitionId victory = elimination.completionIntent().get().outcome();
         success(machine.apply(MatchCommand.complete(victory, key), GameFixtures.NOW.plusSeconds(23)));
         assertTrue(success(machine.apply(MatchCommand.complete(victory, key), GameFixtures.NOW.plusSeconds(23))).duplicate());
         success(machine.apply(MatchCommand.commitCompletion(key), GameFixtures.NOW.plusSeconds(24)));

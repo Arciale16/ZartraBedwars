@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import io.zartra.bedwars.domain.team.TeamLayoutLimits;
 
 /**
  * Serialized deterministic match aggregate.
@@ -42,19 +43,29 @@ public final class MatchStateMachine {
     private static final DefinitionId BED_DESTROYED = fact("bed_destroyed");
     private static final DefinitionId PLAYER_ELIMINATED = fact("player_eliminated");
     private static final DefinitionId TEAM_ELIMINATED = fact("team_eliminated");
+    private static final DefinitionId VICTORY_DETECTED = fact("victory_detected");
     private static final DefinitionId COMPLETION_FENCED = fact("completion_fenced");
     private static final DefinitionId COMPLETION_COMMITTED = fact("completion_committed");
     private static final DefinitionId PLAYER_RESTORED = fact("player_restored");
     private static final DefinitionId MATCH_RESET = fact("match_reset");
 
     private final GameRules rules;
+    private final VictoryEvaluator victoryEvaluator;
     private MatchSnapshot current;
 
     /** Creates an empty reusable match with at least two uniquely identified teams. */
     public MatchStateMachine(final MatchId matchId, final ArenaId arenaId,
                              final GameRules rules, final List<TeamSnapshot> teams,
                              final Instant createdAt) {
+        this(matchId, arenaId, rules, teams, createdAt, new StandardVictoryEvaluator());
+    }
+
+    /** Creates a reusable match with an explicit M10-overridable victory evaluator. */
+    public MatchStateMachine(final MatchId matchId, final ArenaId arenaId,
+                             final GameRules rules, final List<TeamSnapshot> teams,
+                             final Instant createdAt, final VictoryEvaluator victoryEvaluator) {
         this.rules = Objects.requireNonNull(rules, "rules");
+        this.victoryEvaluator = Objects.requireNonNull(victoryEvaluator, "victoryEvaluator");
         validateInitialTeams(teams, rules.maximumPlayers());
         final List<TeamSnapshot> empty = new ArrayList<TeamSnapshot>();
         for (TeamSnapshot team : teams) { empty.add(team.reset()); }
@@ -63,8 +74,10 @@ public final class MatchStateMachine {
                 Objects.requireNonNull(createdAt, "createdAt"));
     }
 
-    private MatchStateMachine(final MatchSnapshot snapshot, final GameRules rules) {
+    private MatchStateMachine(final MatchSnapshot snapshot, final GameRules rules,
+                              final VictoryEvaluator victoryEvaluator) {
         this.rules = Objects.requireNonNull(rules, "rules");
+        this.victoryEvaluator = Objects.requireNonNull(victoryEvaluator, "victoryEvaluator");
         validateInitialTeams(snapshot.teams(), rules.maximumPlayers());
         if (snapshot.sessions().size() > rules.maximumPlayers()) {
             throw new IllegalArgumentException("snapshot exceeds configured player capacity");
@@ -74,7 +87,13 @@ public final class MatchStateMachine {
 
     /** Rehydrates an exact persisted snapshot without producing a transition. */
     public static MatchStateMachine recover(final MatchSnapshot snapshot, final GameRules rules) {
-        return new MatchStateMachine(snapshot, rules);
+        return new MatchStateMachine(snapshot, rules, new StandardVictoryEvaluator());
+    }
+
+    /** Rehydrates a persisted snapshot with an explicit mode-provided victory evaluator. */
+    public static MatchStateMachine recover(final MatchSnapshot snapshot, final GameRules rules,
+                                            final VictoryEvaluator victoryEvaluator) {
+        return new MatchStateMachine(snapshot, rules, victoryEvaluator);
     }
 
     /** @return current immutable aggregate state */
@@ -82,6 +101,8 @@ public final class MatchStateMachine {
 
     /** @return immutable rules used to validate this aggregate */
     public GameRules rules() { return rules; }
+    /** @return deterministic victory evaluator retained across persistence rollback */
+    public VictoryEvaluator victoryEvaluator() { return victoryEvaluator; }
 
     /** Applies against the current revision. Serialized callers should prefer this overload. */
     public synchronized Result<MatchTransition> apply(final MatchCommand command,
@@ -256,7 +277,9 @@ public final class MatchStateMachine {
         final PlayerId playerId = command.playerId().get();
         final Optional<PlayerSession> found = current.session(playerId);
         if (!found.isPresent()) { return Result.failure(PLAYER_NOT_FOUND); }
-        if (found.get().status() == PlayerSession.Status.ELIMINATED) { return duplicate(); }
+        if (found.get().status() == PlayerSession.Status.ELIMINATED) {
+            return withVictory(duplicate());
+        }
         final PlayerSession changed;
         try { changed = found.get().eliminate(); }
         catch (IllegalStateException failure) { return Result.failure(INVALID_TRANSITION); }
@@ -268,8 +291,8 @@ public final class MatchStateMachine {
             team = team.eliminate();
             facts.add(new MatchTransition.Fact(TEAM_ELIMINATED, null, team.teamId()));
         }
-        return change(current.state(), 0, replaceTeam(team), sessions,
-                null, null, false, now, facts);
+        return withVictory(change(current.state(), 0, replaceTeam(team), sessions,
+                null, null, false, now, facts));
     }
 
     private Result<MatchTransition> complete(final MatchCommand command, final Instant now) {
@@ -349,6 +372,22 @@ public final class MatchStateMachine {
                 Collections.<MatchTransition.Fact>emptyList(), true));
     }
 
+    private Result<MatchTransition> withVictory(final Result<MatchTransition> transition) {
+        if (transition.isFailure()) { return transition; }
+        final MatchTransition value = transition.requireValue();
+        final VictoryEvaluation evaluation = victoryEvaluator.evaluate(value.after());
+        if (!evaluation.completionRequired()) { return transition; }
+        final VictoryEvaluation.CompletionIntent intent =
+                evaluation.completionIntent().get();
+        final List<MatchTransition.Fact> facts = new ArrayList<MatchTransition.Fact>(value.facts());
+        if (!value.duplicate()) {
+            facts.add(new MatchTransition.Fact(VICTORY_DETECTED, null,
+                    intent.winningTeamId()));
+        }
+        return Result.success(new MatchTransition(value.before(), value.after(), facts,
+                value.duplicate(), intent));
+    }
+
     private List<TeamSnapshot> replaceTeam(final TeamSnapshot replacement) {
         final List<TeamSnapshot> teams = new ArrayList<TeamSnapshot>();
         for (TeamSnapshot team : current.teams()) {
@@ -400,8 +439,10 @@ public final class MatchStateMachine {
     private static void validateInitialTeams(final List<TeamSnapshot> teams,
                                              final int maximumPlayers) {
         Objects.requireNonNull(teams, "teams");
-        if (teams.size() < 2 || teams.size() > 32 || teams.contains(null)) {
-            throw new IllegalArgumentException("match requires between 2 and 32 teams");
+        if (teams.size() < TeamLayoutLimits.MINIMUM_TEAM_COUNT
+                || teams.size() > TeamLayoutLimits.MAXIMUM_TEAM_COUNT
+                || teams.contains(null)) {
+            throw new IllegalArgumentException("match requires between 2 and 64 teams");
         }
         final Set<DefinitionId> ids = new HashSet<DefinitionId>();
         int capacity = 0;

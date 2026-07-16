@@ -16,8 +16,7 @@ public final class TeamSnapshot {
             return left.toString().compareTo(right.toString());
         }
     };
-    private final DefinitionId teamId;
-    private final int capacity;
+    private final TeamDefinition definition;
     private final List<PlayerId> members;
     private final boolean bedPresent;
     private final boolean eliminated;
@@ -26,18 +25,20 @@ public final class TeamSnapshot {
     public TeamSnapshot(final DefinitionId teamId, final int capacity,
                         final List<PlayerId> members, final boolean bedPresent,
                         final boolean eliminated) {
-        if (capacity < 1 || capacity > 64) {
-            throw new IllegalArgumentException("team capacity must be between 1 and 64");
-        }
+        this(TeamDefinition.compatibility(teamId, capacity), members, bedPresent, eliminated);
+    }
+
+    /** Creates a validated immutable team snapshot retaining arena-derived metadata. */
+    public TeamSnapshot(final TeamDefinition definition, final List<PlayerId> members,
+                        final boolean bedPresent, final boolean eliminated) {
+        this.definition = Objects.requireNonNull(definition, "definition");
         final List<PlayerId> copy = new ArrayList<PlayerId>(
                 Objects.requireNonNull(members, "members"));
         if (copy.contains(null) || new LinkedHashSet<PlayerId>(copy).size() != copy.size()
-                || copy.size() > capacity) {
+                || copy.size() > definition.capacity()) {
             throw new IllegalArgumentException("team membership must be unique and within capacity");
         }
         Collections.sort(copy, PLAYER_ORDER);
-        this.teamId = Objects.requireNonNull(teamId, "teamId");
-        this.capacity = capacity;
         this.members = Collections.unmodifiableList(copy);
         this.bedPresent = bedPresent;
         this.eliminated = eliminated;
@@ -47,13 +48,20 @@ public final class TeamSnapshot {
     public static TeamSnapshot empty(final DefinitionId id, final int capacity) {
         return new TeamSnapshot(id, capacity, Collections.<PlayerId>emptyList(), true, false);
     }
-    /** @return stable team identity */ public DefinitionId teamId() { return teamId; }
-    /** @return member capacity */ public int capacity() { return capacity; }
+    /** @return empty team retaining complete arena-derived metadata */
+    public static TeamSnapshot empty(final TeamDefinition definition) {
+        return new TeamSnapshot(definition, Collections.<PlayerId>emptyList(), true, false);
+    }
+    /** @return complete immutable team definition */ public TeamDefinition definition() { return definition; }
+    /** @return stable team identity */ public DefinitionId teamId() { return definition.id(); }
+    /** @return configured display label */ public String displayName() { return definition.displayName(); }
+    /** @return configured semantic color */ public DefinitionId color() { return definition.color(); }
+    /** @return member capacity */ public int capacity() { return definition.capacity(); }
     /** @return deterministically ordered immutable members */ public List<PlayerId> members() { return members; }
     /** @return whether respawn bed remains */ public boolean bedPresent() { return bedPresent; }
     /** @return whether the team has no remaining active players */ public boolean eliminated() { return eliminated; }
     /** @return whether this player belongs to the team */ public boolean contains(final PlayerId player) { return members.contains(player); }
-    /** @return whether another player may be admitted */ public boolean hasCapacity() { return members.size() < capacity; }
+    /** @return whether another player may be admitted */ public boolean hasCapacity() { return members.size() < capacity(); }
 
     /** @return copy containing one additional player */
     public TeamSnapshot add(final PlayerId player) {
@@ -62,38 +70,38 @@ public final class TeamSnapshot {
         if (!hasCapacity() || eliminated) { throw new IllegalStateException("team cannot admit player"); }
         final List<PlayerId> copy = new ArrayList<PlayerId>(members);
         copy.add(player);
-        return new TeamSnapshot(teamId, capacity, copy, bedPresent, eliminated);
+        return new TeamSnapshot(definition, copy, bedPresent, eliminated);
     }
 
     /** @return copy without the player */
     public TeamSnapshot remove(final PlayerId player) {
         final List<PlayerId> copy = new ArrayList<PlayerId>(members);
         if (!copy.remove(Objects.requireNonNull(player, "player"))) { return this; }
-        return new TeamSnapshot(teamId, capacity, copy, bedPresent, eliminated);
+        return new TeamSnapshot(definition, copy, bedPresent, eliminated);
     }
 
     /** @return copy with the bed destroyed */
     public TeamSnapshot destroyBed() {
-        return bedPresent ? new TeamSnapshot(teamId, capacity, members, false, eliminated) : this;
+        return bedPresent ? new TeamSnapshot(definition, members, false, eliminated) : this;
     }
 
     /** @return copy marked eliminated */
     public TeamSnapshot eliminate() {
-        return eliminated ? this : new TeamSnapshot(teamId, capacity, members, bedPresent, true);
+        return eliminated ? this : new TeamSnapshot(definition, members, bedPresent, true);
     }
 
     /** @return reusable empty state for a reset match */
-    public TeamSnapshot reset() { return empty(teamId, capacity); }
+    public TeamSnapshot reset() { return empty(definition); }
 
     @Override public int hashCode() {
-        return Objects.hash(teamId, capacity, members, bedPresent, eliminated);
+        return Objects.hash(definition, members, bedPresent, eliminated);
     }
     @Override public boolean equals(final Object other) {
         if (this == other) { return true; }
         if (!(other instanceof TeamSnapshot)) { return false; }
         final TeamSnapshot that = (TeamSnapshot) other;
-        return capacity == that.capacity && bedPresent == that.bedPresent
-                && eliminated == that.eliminated && teamId.equals(that.teamId)
+        return bedPresent == that.bedPresent && eliminated == that.eliminated
+                && definition.equals(that.definition)
                 && members.equals(that.members);
     }
 }
