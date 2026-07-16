@@ -26,6 +26,10 @@ MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",
     "platform/paper/zbw-paper-modern",
 )
+MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
+    "arena/zbw-arena",
+    "game/zbw-game",
+)
 
 
 def executable(jdk: str, expected: str) -> Path:
@@ -102,7 +106,7 @@ def main() -> int:
     modern_classpath = [
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
-        *[ROOT / module / "target" / "classes" for module in NEUTRAL_MODULES],
+        *[ROOT / module / "target" / "classes" for module in MODERN_CLASSPATH_MODULES],
     ]
     result = generate(executable("21", "21.0.6"), "21", modern_sources,
                       MODERN_OUTPUT, modern_classpath)

@@ -32,8 +32,8 @@ def main() -> int:
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
         *[
-            ROOT / module / "target" / f"{Path(module).name}-0.1.0-SNAPSHOT.jar"
-            for module in NEUTRAL_MODULES
+            ROOT / module / "target" / "classes"
+            for module in api_docs.MODERN_CLASSPATH_MODULES
         ],
     ]
     result = api_docs.generate(api_docs.executable("21", "21.0.6"), "21",
