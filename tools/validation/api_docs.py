@@ -61,6 +61,18 @@ def sources(modules: tuple[str, ...]) -> list[Path]:
     return result
 
 
+def artifacts(modules: tuple[str, ...]) -> list[Path]:
+    """Return exact reactor artifacts used as the documentation class path."""
+    result: list[Path] = []
+    for module in modules:
+        artifact_id = Path(module).name
+        artifact = ROOT / module / "target" / f"{artifact_id}-0.1.0-SNAPSHOT.jar"
+        if not artifact.is_file():
+            raise SystemExit(f"Missing reactor artifact for strict JavaDoc: {artifact}")
+        result.append(artifact)
+    return result
+
+
 def archive(output: Path, destination: Path) -> None:
     """Create a timestamp-stable JavaDoc ZIP."""
     with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED,
@@ -116,7 +128,7 @@ def main() -> int:
     modern_classpath = [
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
-        *[ROOT / module / "target" / "classes" for module in MODERN_CLASSPATH_MODULES],
+        *artifacts(MODERN_CLASSPATH_MODULES),
     ]
     result = generate(executable("21", "21.0.6"), "21", modern_sources,
                       MODERN_OUTPUT, modern_classpath)

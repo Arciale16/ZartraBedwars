@@ -59,6 +59,12 @@ existing module graph is unchanged and no dependency was added.
   while proving every M08 signature remains present. Strict JavaDoc covers 264 neutral
   and 19 modern source files. Dependency, licence, provenance, SBOM and deterministic
   governance gates pass without a mandatory skip.
+- Historical M02-M06 compatibility gates retain their committed baselines as immutable
+  subsets of the current API: additions are permitted, while any removed or changed
+  descriptor still fails. The exact current surface remains locked by the M08.1
+  baselines. This prevents later additive APIs from invalidating historical CI gates.
+- Strict modern JavaDoc resolves the exact reactor JARs rather than platform-sensitive
+  class-directory lists, keeping the same locked inputs on Windows and Linux.
 
 ## Artifacts
 

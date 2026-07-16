@@ -152,6 +152,15 @@ def observed(modules: tuple[str, ...], major: int, title: str) -> str:
     return "\n".join(header + sorted(signatures)) + "\n"
 
 
+def missing_signatures(baseline: str, current: str) -> list[str]:
+    """Return immutable baseline signatures absent from the current API."""
+    current_lines = set(current.splitlines())
+    return [
+        line for line in baseline.splitlines()
+        if line and not line.startswith("#") and line not in current_lines
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=("generate", "check"))
@@ -165,17 +174,18 @@ def main() -> int:
             "Generated M06 binary API baselines with "
             f"{current.count('CLASS ')} neutral and {modern.count('CLASS ')} modern public classes.")
         return 0
-    if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M06 neutral binary API differs from its exact baseline")
+    if not BASELINE.is_file():
+        print("ERROR: immutable M06 neutral binary API baseline is missing")
         return 1
     if not MODERN_BASELINE.is_file():
         print("ERROR: immutable M06 modern binary API baseline is missing")
         return 1
-    modern_lines = set(modern.splitlines())
-    missing_modern = [
-        line for line in MODERN_BASELINE.read_text(encoding="utf-8").splitlines()
-        if line and not line.startswith("#") and line not in modern_lines
-    ]
+    missing_neutral = missing_signatures(BASELINE.read_text(encoding="utf-8"), current)
+    if missing_neutral:
+        print(f"ERROR: {len(missing_neutral)} M06 neutral binary signatures were removed or changed")
+        return 1
+    missing_modern = missing_signatures(
+        MODERN_BASELINE.read_text(encoding="utf-8"), modern)
     if missing_modern:
         print(f"ERROR: {len(missing_modern)} M06 modern binary signatures were removed or changed")
         return 1
@@ -183,18 +193,16 @@ def main() -> int:
         if not previous.is_file():
             print(f"ERROR: immutable prior binary API baseline is missing: {previous.name}")
             return 1
-    current_lines = set(current.splitlines())
     missing = []
     for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE, M05_BASELINE):
-        missing.extend(line for line in previous.read_text(encoding="utf-8").splitlines()
-                       if line and not line.startswith("#") and line not in current_lines)
+        missing.extend(missing_signatures(previous.read_text(encoding="utf-8"), current))
     if missing:
         print(f"ERROR: {len(missing)} prior binary signatures were removed or changed")
         return 1
     print(
         "Binary/API compatibility PASS: "
         f"{current.count('CLASS ')} Java 8 neutral and {modern.count('CLASS ')} Java 21 modern "
-        "public classes; M02-M05 baselines preserved.")
+        "public classes; immutable M02-M06 baselines preserved.")
     return 0
 
 
