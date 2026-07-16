@@ -27,6 +27,7 @@
     <module>compatibility/zbw-compat-api</module>
     <module>world/zbw-world</module>
     <module>arena/zbw-arena</module>
+    <module>game/zbw-game</module>
   </modules>
 
   <properties>

@@ -40,10 +40,10 @@ def validate() -> list[str]:
     """Return every M07 architecture, scope, and evidence violation."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    valid_states = (
-        ("M07", ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
-    )
+    through_m06 = [f"M{value:02d}" for value in range(0, 7)]
+    through_m07 = through_m06 + ["M07"]
+    valid_states = (("M07", through_m06), (None, through_m07),
+                    ("M08", through_m07), (None, through_m07 + ["M08"]))
     if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
         errors.append("milestone state must represent active or completed M07")
 
@@ -52,10 +52,13 @@ def validate() -> list[str]:
     arena = materialized.get("zbw-arena")
     if arena is None or arena["path"] != "arena/zbw-arena/pom.xml":
         errors.append("zbw-arena must be the sole materialized M07 module")
-    for identifier in ("zbw-game", "zbw-command-api", "zbw-command-paper",
+    m08_started = state["active_milestone"] == "M08" or "M08" in state["completed_milestones"]
+    for identifier in ("zbw-command-api", "zbw-command-paper",
                        "zbw-ui-api", "zbw-ui-paper"):
         if identifier in materialized:
             errors.append(f"later milestone module was materialized: {identifier}")
+    if not m08_started and "zbw-game" in materialized:
+        errors.append("zbw-game was materialized before M08")
     planned = next(
         (row for row in graph["planned_production_modules"] if row["id"] == "zbw-arena"),
         None,
@@ -70,8 +73,11 @@ def validate() -> list[str]:
     if production != set(expected):
         errors.append(f"zbw-arena production dependencies are not exact: {sorted(production)}")
     paper_scopes = dependencies("platform/paper/zbw-paper-modern/pom.xml")
-    if paper_scopes.get("zbw-arena") != "test":
-        errors.append("Paper M07 certification dependency must remain test-only")
+    if m08_started:
+        if paper_scopes.get("zbw-game") != "compile":
+            errors.append("Paper M08 composition must depend on zbw-game at compile scope")
+    elif paper_scopes.get("zbw-arena") != "test":
+        errors.append("Paper M07 certification dependency must remain test-only before M08")
 
     source_root = ROOT / MODULE / "src/main/java"
     sources = sorted(source_root.rglob("*.java"))
@@ -154,7 +160,7 @@ def validate() -> list[str]:
             entries = set(bundle.namelist())
         if any("M07PaperCertificationPlugin" in entry for entry in entries):
             errors.append("test-only M07 Paper harness leaked into the release artifact")
-        if any(entry.startswith("io/zartra/bedwars/arena/") for entry in entries):
+        if not m08_started and any(entry.startswith("io/zartra/bedwars/arena/") for entry in entries):
             errors.append("test-only arena dependency leaked into the Paper release artifact")
 
     for relative in (
@@ -175,8 +181,8 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
     print(
-        "M07 architecture PASS: Java 8 presentation-neutral arena lifecycle; test-only exact "
-        "Paper integration; no M08 gameplay or M09 presentation modules."
+        "M07 architecture PASS: Java 8 presentation-neutral arena lifecycle preserved; "
+        "no M09 presentation module."
     )
     return 0
 

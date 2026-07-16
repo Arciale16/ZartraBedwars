@@ -10,8 +10,8 @@
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-application</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-world</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-compat-v1_20-v1_21</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-game</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.mirror.paper</groupId><artifactId>paper-api</artifactId><version>${paper-api-mirror.version}</version><scope>provided</scope></dependency>
-    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-arena</artifactId><version>${project.version}</version><scope>test</scope></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
   </dependencies>
   <build><resources><resource><directory>src/main/resources</directory><filtering>true</filtering></resource></resources><plugins><plugin>
@@ -32,6 +32,11 @@
       <exclude>io/zartra/bedwars/paper/bootstrap/PrimaryRuntimeCertification*</exclude>
       <exclude>io/zartra/bedwars/paper/bootstrap/ZartraBedWarsPlugin*</exclude>
       <exclude>io/zartra/bedwars/paper/world/BukkitPaperPlatform*</exclude>
+      <exclude>io/zartra/bedwars/paper/game/PaperReflection*</exclude>
+      <exclude>io/zartra/bedwars/paper/game/PaperPlayerProjection*</exclude>
+      <exclude>io/zartra/bedwars/paper/game/PaperLobbyProjection*</exclude>
+      <exclude>io/zartra/bedwars/paper/game/PaperGameEventTranslator*</exclude>
+      <exclude>io/zartra/bedwars/paper/game/PaperGameProjectionRuntime*</exclude>
     </excludes></configuration>
     <executions><execution><id>paper-modern-coverage-check</id><phase>verify</phase><goals><goal>check</goal></goals><configuration><rules><rule><element>BUNDLE</element><limits>
       <limit><counter>LINE</counter><value>COVEREDRATIO</value><minimum>0.80</minimum></limit>

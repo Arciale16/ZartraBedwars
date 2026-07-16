@@ -23,8 +23,9 @@
     {"id": "zbw-compat-api", "path": "compatibility/zbw-compat-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral semantic capability and fallback contracts"},
     {"id": "zbw-world", "path": "world/zbw-world/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral bounded world lifecycle orchestration"},
     {"id": "zbw-arena", "path": "arena/zbw-arena/pom.xml", "packaging": "jar", "responsibility": "Java 8 presentation-neutral arena, map and setup application lifecycle"},
+    {"id": "zbw-game", "path": "game/zbw-game/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral match, session, team, lobby and allocated addon application behavior"},
     {"id": "zbw-compat-v1_20-v1_21", "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"},
-    {"id": "zbw-paper-modern", "path": "platform/paper/zbw-paper-modern/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper bootstrap and native world provider"}
+    {"id": "zbw-paper-modern", "path": "platform/paper/zbw-paper-modern/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper bootstrap, native world provider and closed M08 game projections"}
   ],
   "planned_production_modules": [
     {"id": "zbw-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": []},
