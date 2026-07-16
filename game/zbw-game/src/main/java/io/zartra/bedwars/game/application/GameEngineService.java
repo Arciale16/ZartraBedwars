@@ -161,7 +161,8 @@ public final class GameEngineService {
     private synchronized void finishFailure(
             final RuntimeEntry entry, final MatchSnapshot before,
             final CompletableFuture<Result<MatchTransition>> outcome, final ApiError error) {
-        entry.machine = MatchStateMachine.recover(before, entry.machine.rules());
+        entry.machine = MatchStateMachine.recover(before, entry.machine.rules(),
+                entry.machine.victoryEvaluator());
         entry.busy = false;
         outcome.complete(Result.<MatchTransition>failure(error));
     }

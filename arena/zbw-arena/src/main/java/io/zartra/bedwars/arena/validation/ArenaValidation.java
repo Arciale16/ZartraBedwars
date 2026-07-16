@@ -1,12 +1,14 @@
 package io.zartra.bedwars.arena.validation;
 
 import io.zartra.bedwars.api.identity.DefinitionId;
+import io.zartra.bedwars.api.identity.GeneratorTypeId;
 import io.zartra.bedwars.arena.model.ArenaBundle;
 import io.zartra.bedwars.arena.model.ArenaGenerator;
 import io.zartra.bedwars.arena.model.ArenaLocation;
 import io.zartra.bedwars.arena.model.ArenaNpc;
 import io.zartra.bedwars.arena.model.ArenaRegion;
 import io.zartra.bedwars.arena.model.ArenaTeam;
+import io.zartra.bedwars.domain.team.TeamLayoutLimits;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +28,8 @@ public final class ArenaValidation {
     private static final DefinitionId BROKEN_REFERENCE = code("broken_reference");
     private static final DefinitionId COLLISION = code("location_collision");
     private static final DefinitionId INVALID_CAPACITY = code("invalid_capacity");
+    private static final DefinitionId UNSUPPORTED_MODE = code("unsupported_mode");
+    private static final DefinitionId INCONSISTENT_GROUP = code("inconsistent_group");
 
     private ArenaValidation() { throw new AssertionError("No instances"); }
 
@@ -41,6 +45,23 @@ public final class ArenaValidation {
 
     /** Complete built-in M07 validator for setup completeness, safety and references. */
     public static final class DefaultValidator implements Validator {
+        private final ArenaValidationProfile profile;
+
+        /** Creates the validator with the original starter prerequisites. */
+        public DefaultValidator() {
+            this(ArenaValidationProfile.standard());
+        }
+
+        /** Creates the validator with explicit typed prerequisites. */
+        public DefaultValidator(final ArenaValidationProfile profile) {
+            this.profile = Objects.requireNonNull(profile, "profile");
+        }
+
+        /** @return immutable prerequisite profile used by this validator */
+        public ArenaValidationProfile profile() {
+            return profile;
+        }
+
         @Override public Report validate(final ArenaBundle bundle) {
             final ArenaBundle value = Objects.requireNonNull(bundle, "bundle");
             final List<Issue> issues = new ArrayList<Issue>();
@@ -75,12 +96,29 @@ public final class ArenaValidation {
         }
 
         private static void teams(final ArenaBundle bundle, final List<Issue> issues) {
-            if (bundle.arena().teams().size() < 2) {
+            if (!bundle.arena().group().equals(bundle.map().group())) {
+                issues.add(error(INCONSISTENT_GROUP, "group",
+                        "arena.validation.inconsistent_group"));
+            }
+            if (bundle.arena().teams().size() < TeamLayoutLimits.MINIMUM_TEAM_COUNT
+                    || bundle.arena().teams().size() > TeamLayoutLimits.MAXIMUM_TEAM_COUNT) {
                 issues.add(error(INVALID_CAPACITY, "teams", "arena.validation.minimum_teams"));
             }
-            final int capacity = bundle.arena().teams().size() * bundle.arena().teamSize();
+            final long capacity = (long) bundle.arena().teams().size()
+                    * (long) bundle.arena().teamSize();
             if (capacity < bundle.arena().maximumPlayers()) {
                 issues.add(error(INVALID_CAPACITY, "maximumPlayers", "arena.validation.team_capacity"));
+            }
+            if (bundle.arena().teamSize() < bundle.map().minimumTeamSize()
+                    || bundle.arena().teamSize() > bundle.map().maximumTeamSize()) {
+                issues.add(error(INVALID_CAPACITY, "teamSize",
+                        "arena.validation.unsupported_team_size"));
+            }
+            for (DefinitionId mode : bundle.arena().modes()) {
+                if (!bundle.map().supportedModes().contains(mode)) {
+                    issues.add(error(UNSUPPORTED_MODE, "modes." + mode.path(),
+                            "arena.validation.unsupported_mode"));
+                }
             }
             for (ArenaTeam team : bundle.arena().teams()) {
                 final String prefix = "teams." + team.id().path();
@@ -97,15 +135,11 @@ public final class ArenaValidation {
             }
         }
 
-        private static void generators(final ArenaBundle bundle, final List<Issue> issues) {
-            boolean diamond = false;
-            boolean emerald = false;
+        private void generators(final ArenaBundle bundle, final List<Issue> issues) {
+            final Set<GeneratorTypeId> sharedTypes = new HashSet<GeneratorTypeId>();
             final Set<DefinitionId> teamGenerators = new HashSet<DefinitionId>();
             final Set<DefinitionId> teams = teamIds(bundle);
             for (ArenaGenerator generator : bundle.arena().generators()) {
-                final String type = generator.type().path();
-                diamond |= type.contains("diamond");
-                emerald |= type.contains("emerald");
                 if (generator.teamId().isPresent()) {
                     if (!teams.contains(generator.teamId().get())) {
                         issues.add(error(BROKEN_REFERENCE, "generators." + generator.id().path(),
@@ -113,26 +147,28 @@ public final class ArenaValidation {
                     } else {
                         teamGenerators.add(generator.teamId().get());
                     }
+                } else {
+                    sharedTypes.add(generator.type());
                 }
                 safe(bundle, generator.location(), "generators." + generator.id().path(), issues);
             }
-            if (!diamond) {
-                issues.add(error(MISSING_GENERATOR, "generators.diamond",
-                        "arena.validation.missing_diamond_generator"));
+            for (GeneratorTypeId type : profile.requiredSharedGeneratorTypes()) {
+                if (!sharedTypes.contains(type)) {
+                    issues.add(error(MISSING_GENERATOR,
+                            "generators.required." + type.namespace() + "/" + type.path(),
+                            "arena.validation.missing_required_generator"));
+                }
             }
-            if (!emerald) {
-                issues.add(error(MISSING_GENERATOR, "generators.emerald",
-                        "arena.validation.missing_emerald_generator"));
-            }
-            for (DefinitionId team : teams) {
-                if (!teamGenerators.contains(team)) {
+            if (profile.teamGeneratorRequired()) {
+                for (DefinitionId team : teams) {
+                    if (teamGenerators.contains(team)) { continue; }
                     issues.add(error(MISSING_GENERATOR, "teams." + team.path() + ".generator",
                             "arena.validation.missing_team_generator"));
                 }
             }
         }
 
-        private static void npcs(final ArenaBundle bundle, final List<Issue> issues) {
+        private void npcs(final ArenaBundle bundle, final List<Issue> issues) {
             final Set<DefinitionId> teams = teamIds(bundle);
             final Set<DefinitionId> shops = new HashSet<DefinitionId>();
             final Set<DefinitionId> upgrades = new HashSet<DefinitionId>();
@@ -150,11 +186,11 @@ public final class ArenaValidation {
                 safe(bundle, npc.location(), "npcs." + npc.id().path(), issues);
             }
             for (DefinitionId team : teams) {
-                if (!shops.contains(team)) {
+                if (profile.shopNpcRequired() && !shops.contains(team)) {
                     issues.add(error(MISSING_NPC, "teams." + team.path() + ".shop",
                             "arena.validation.missing_shop_npc"));
                 }
-                if (!upgrades.contains(team)) {
+                if (profile.upgradeNpcRequired() && !upgrades.contains(team)) {
                     issues.add(error(MISSING_NPC, "teams." + team.path() + ".upgrade",
                             "arena.validation.missing_upgrade_npc"));
                 }

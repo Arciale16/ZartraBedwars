@@ -61,6 +61,18 @@ def sources(modules: tuple[str, ...]) -> list[Path]:
     return result
 
 
+def artifacts(modules: tuple[str, ...]) -> list[Path]:
+    """Return exact reactor artifacts used as the documentation class path."""
+    result: list[Path] = []
+    for module in modules:
+        artifact_id = Path(module).name
+        artifact = ROOT / module / "target" / f"{artifact_id}-0.1.0-SNAPSHOT.jar"
+        if not artifact.is_file():
+            raise SystemExit(f"Missing reactor artifact for strict JavaDoc: {artifact}")
+        result.append(artifact)
+    return result
+
+
 def archive(output: Path, destination: Path) -> None:
     """Create a timestamp-stable JavaDoc ZIP."""
     with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED,
@@ -80,13 +92,23 @@ def generate(javadoc: Path, source: str, source_paths: list[Path], output: Path,
     if output.exists():
         shutil.rmtree(output)
     output.mkdir(parents=True)
-    command = [
-        str(javadoc), "-quiet", "-Xdoclint:all,-missing", "-notimestamp",
+    arguments = [
+        "-quiet", "-Xdoclint:all,-missing", "-notimestamp",
         "-encoding", "UTF-8", "-source", source,
         "-classpath", os.pathsep.join(str(path) for path in classpath),
         "-d", str(output), *[str(path) for path in source_paths],
     ]
-    return subprocess.run(command, cwd=ROOT, check=False).returncode
+    argument_file = output.parent / f".{output.name}-javadoc.args"
+    serialized = []
+    for argument in arguments:
+        normalized = argument.replace("\\", "/")
+        serialized.append('"' + normalized.replace('"', '\\"') + '"')
+    argument_file.write_text("\n".join(serialized) + "\n", encoding="utf-8")
+    try:
+        return subprocess.run(
+            [str(javadoc), f"@{argument_file}"], cwd=ROOT, check=False).returncode
+    finally:
+        argument_file.unlink(missing_ok=True)
 
 
 def main() -> int:
@@ -106,7 +128,7 @@ def main() -> int:
     modern_classpath = [
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
-        *[ROOT / module / "target" / "classes" for module in MODERN_CLASSPATH_MODULES],
+        *artifacts(MODERN_CLASSPATH_MODULES),
     ]
     result = generate(executable("21", "21.0.6"), "21", modern_sources,
                       MODERN_OUTPUT, modern_classpath)

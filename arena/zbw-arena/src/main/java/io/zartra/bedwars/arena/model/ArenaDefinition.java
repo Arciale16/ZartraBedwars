@@ -3,6 +3,7 @@ package io.zartra.bedwars.arena.model;
 import io.zartra.bedwars.api.identity.ArenaId;
 import io.zartra.bedwars.api.identity.DefinitionId;
 import io.zartra.bedwars.api.identity.MapId;
+import io.zartra.bedwars.domain.team.TeamLayoutLimits;
 import io.zartra.bedwars.world.api.WorldKey;
 import java.time.Duration;
 import java.time.Instant;
@@ -59,8 +60,9 @@ public final class ArenaDefinition {
         worldAdapter = Objects.requireNonNull(builder.worldAdapter, "worldAdapter");
         group = Objects.requireNonNull(builder.group, "group");
         modes = immutableSet(builder.modes, "modes", 64, false);
+        TeamLayoutLimits.requireMaximumPlayers(builder.maximumPlayers);
+        TeamLayoutLimits.requireTeamCapacity(builder.teamSize);
         if (builder.minimumPlayers < 1 || builder.maximumPlayers < builder.minimumPlayers
-                || builder.maximumPlayers > 256 || builder.teamSize < 1
                 || builder.teamSize > builder.maximumPlayers) {
             throw new IllegalArgumentException("invalid player or team-size limits");
         }
@@ -85,7 +87,7 @@ public final class ArenaDefinition {
         voidY = builder.voidY;
         buildMinimumY = builder.buildMinimumY;
         buildMaximumY = builder.buildMaximumY;
-        teams = immutableSorted(builder.teams, "teams", 64);
+        teams = immutableSorted(builder.teams, "teams", TeamLayoutLimits.MAXIMUM_TEAM_COUNT);
         generators = immutableSorted(builder.generators, "generators", 256);
         npcs = immutableSorted(builder.npcs, "npcs", 256);
         protectedRegions = immutableRegions(builder.protectedRegions);
@@ -105,7 +107,13 @@ public final class ArenaDefinition {
     /** @return a builder containing required identity and safe defaults */
     public static Builder builder(final ArenaId id, final MapId mapId, final String displayName,
                                   final Instant createdAt) {
-        return new Builder(id, mapId, displayName, createdAt);
+        return new Builder(id, mapId, displayName, createdAt, ArenaDefaultProfile.standard());
+    }
+
+    /** @return a builder initialized from an explicit, replaceable default profile */
+    public static Builder builder(final ArenaId id, final MapId mapId, final String displayName,
+                                  final Instant createdAt, final ArenaDefaultProfile profile) {
+        return new Builder(id, mapId, displayName, createdAt, profile);
     }
 
     /** @return a mutable construction helper initialized from this immutable definition */
@@ -256,21 +264,20 @@ public final class ArenaDefinition {
         private String displayName;
         private WorldKey world;
         private WorldKey templateWorld;
-        private DefinitionId worldAdapter = DefinitionId.of("zartra", "world/native");
-        private DefinitionId group = DefinitionId.of("zartra", "group/default");
-        private Set<DefinitionId> modes = new TreeSet<DefinitionId>(Collections.singleton(
-                DefinitionId.of("zartra", "mode/standard")));
-        private int minimumPlayers = 2;
-        private int maximumPlayers = 16;
-        private int teamSize = 4;
+        private DefinitionId worldAdapter;
+        private DefinitionId group;
+        private Set<DefinitionId> modes;
+        private int minimumPlayers;
+        private int maximumPlayers;
+        private int teamSize;
         private int priority;
-        private int rotationWeight = 100;
+        private int rotationWeight;
         private ArenaLocation waitingSpawn;
         private ArenaLocation spectatorSpawn;
         private ArenaRegion bounds;
-        private double voidY = -16.0D;
-        private double buildMinimumY = 0.0D;
-        private double buildMaximumY = 256.0D;
+        private double voidY;
+        private double buildMinimumY;
+        private double buildMaximumY;
         private List<ArenaTeam> teams = new ArrayList<ArenaTeam>();
         private List<ArenaGenerator> generators = new ArrayList<ArenaGenerator>();
         private List<ArenaNpc> npcs = new ArrayList<ArenaNpc>();
@@ -285,12 +292,24 @@ public final class ArenaDefinition {
         private long version;
 
         private Builder(final ArenaId id, final MapId mapId, final String displayName,
-                        final Instant createdAt) {
+                        final Instant createdAt, final ArenaDefaultProfile profile) {
             this.id = Objects.requireNonNull(id, "id");
             this.mapId = Objects.requireNonNull(mapId, "mapId");
             this.displayName = displayName;
             this.createdAt = Objects.requireNonNull(createdAt, "createdAt");
             this.updatedAt = createdAt;
+            final ArenaDefaultProfile defaults = Objects.requireNonNull(profile, "profile");
+            worldAdapter = defaults.worldAdapter();
+            group = defaults.group();
+            modes = new TreeSet<DefinitionId>(defaults.modes());
+            minimumPlayers = defaults.minimumPlayers();
+            maximumPlayers = defaults.maximumPlayers();
+            teamSize = defaults.teamSize();
+            priority = defaults.priority();
+            rotationWeight = defaults.rotationWeight();
+            voidY = defaults.voidY();
+            buildMinimumY = defaults.buildMinimumY();
+            buildMaximumY = defaults.buildMaximumY();
         }
         private Builder(final ArenaDefinition source) {
             id = source.id;

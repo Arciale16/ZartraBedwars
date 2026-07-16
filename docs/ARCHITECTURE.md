@@ -165,6 +165,39 @@ It is not an extension API and is certified on checksum-locked Paper 1.21.1 buil
 Direct server-bound classes are excluded from test-JVM coverage and must pass the exact
 runtime E2E; all test-JVM-safe Paper classes retain the 80% line/70% branch gate.
 
+### M08.1 configurable-layout hardening
+
+M08.1 changes no module edge. `zbw-domain` owns the single Java-8
+`TeamLayoutLimits` authority used by `zbw-arena` and `zbw-game`: 2–64 configured
+teams, 1–64 players per team and at most 256 admitted players per match. These are
+safety bounds, not a fixed layout catalogue. Arena data may represent the standard
+2-, 4- and 8-team layouts or any validated custom count without engine branches or
+fixed team indexes.
+
+`zbw-arena` retains configuration authority. `ArenaDefaultProfile` supplies typed,
+replaceable draft defaults; every created arena copies the values. `ArenaValidationProfile`
+uses exact `GeneratorTypeId` sets and explicit team-generator/NPC prerequisites. The
+starter profile requires exact `zartra:diamond` and `zartra:emerald` shared types;
+custom profiles may require arbitrary registered types. Validation also proves map and
+arena group, mode, team-size and aggregate capacity consistency.
+
+`zbw-game` application composition uses `ArenaMatchAssembler`. It accepts an atomic
+`ArenaBundle`, exact arena/map versions and an independent timing policy, rejects
+stale, disabled or invalid definitions, and derives match/arena identity, limits and
+every immutable `TeamDefinition` from arena data. Normal runtime composition therefore
+does not manually recreate `TeamSnapshot` metadata. The assembler and all resulting
+model types remain Java 8 and contain no filesystem, storage, runtime-configuration or
+platform dependency.
+
+`VictoryEvaluator` is the neutral future override boundary. The starter evaluator
+requires at least two participating teams and returns a typed completion intent only
+when exactly one eligible team survives. The caller must still supply an
+`IdempotencyKey` to the existing completion command, so persistence fencing,
+outbox publication, restoration and reset stay unchanged. M10 may provide another
+evaluator but M08.1 provides no game-mode SPI, selector or matchmaking behavior.
+Paper continues to translate/project only and contains no team-count, team-color,
+capacity or winner policy.
+
 The implemented M07 composition keeps durable repositories, atomic setup
 commit, archives, marker discovery, identity allocation, authorization, event
 publication and audit behind typed ports. Production `zbw-arena` has no M04
