@@ -54,6 +54,8 @@ def validate() -> list[str]:
     errors: list[str] = []
     graph = json.loads(read("build/module-graph.json"))
     modules = {row["id"]: row for row in graph["planned_production_modules"]}
+    state = json.loads(read("build/milestone-state.json"))
+    m08_started = state["active_milestone"] == "M08" or "M08" in state["completed_milestones"]
 
     game = modules.get("zbw-game")
     expected_game = {
@@ -130,18 +132,25 @@ def validate() -> list[str]:
             errors.append(f"{identifier}: M08 must not depend on M09 presentation modules")
 
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
-    premature = materialized.intersection({"zbw-game"} | PRESENTATION_MODULES)
+    premature = materialized.intersection(PRESENTATION_MODULES)
     if premature:
-        errors.append(f"reconciliation must not materialize M08/M09 modules: {sorted(premature)}")
+        errors.append(f"M08 must not materialize M09 modules: {sorted(premature)}")
+    if m08_started and "zbw-game" not in materialized:
+        errors.append("active/completed M08 must materialize zbw-game")
+    if not m08_started and "zbw-game" in materialized:
+        errors.append("pre-M08 reconciliation must not materialize zbw-game")
     for relative in (
-        "game/zbw-game",
         "command/zbw-command-api",
         "command/zbw-command-paper",
         "ui/zbw-ui-api",
         "ui/zbw-ui-paper",
     ):
         if (ROOT / relative).exists():
-            errors.append(f"reconciliation created implementation path: {relative}")
+            errors.append(f"M08 created M09 implementation path: {relative}")
+    if m08_started and not (ROOT / "game/zbw-game/pom.xml").is_file():
+        errors.append("active/completed M08 game module descriptor is missing")
+    if not m08_started and (ROOT / "game/zbw-game").exists():
+        errors.append("pre-M08 reconciliation created game implementation path")
 
     milestones = read("docs/MILESTONES.md")
     require(

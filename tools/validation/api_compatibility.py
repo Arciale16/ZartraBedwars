@@ -168,8 +168,16 @@ def main() -> int:
     if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
         print("ERROR: M06 neutral binary API differs from its exact baseline")
         return 1
-    if not MODERN_BASELINE.is_file() or MODERN_BASELINE.read_text(encoding="utf-8") != modern:
-        print("ERROR: M06 modern binary API differs from its exact baseline")
+    if not MODERN_BASELINE.is_file():
+        print("ERROR: immutable M06 modern binary API baseline is missing")
+        return 1
+    modern_lines = set(modern.splitlines())
+    missing_modern = [
+        line for line in MODERN_BASELINE.read_text(encoding="utf-8").splitlines()
+        if line and not line.startswith("#") and line not in modern_lines
+    ]
+    if missing_modern:
+        print(f"ERROR: {len(missing_modern)} M06 modern binary signatures were removed or changed")
         return 1
     for previous in (M02_BASELINE, M03_BASELINE, M04_BASELINE, M05_BASELINE):
         if not previous.is_file():

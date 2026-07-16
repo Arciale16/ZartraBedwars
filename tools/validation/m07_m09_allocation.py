@@ -41,6 +41,8 @@ def validate() -> list[str]:
     errors: list[str] = []
     graph = json.loads(read("build/module-graph.json"))
     modules = {row["id"]: row for row in graph["planned_production_modules"]}
+    state = json.loads(read("build/milestone-state.json"))
+    m08_started = state["active_milestone"] == "M08" or "M08" in state["completed_milestones"]
 
     if graph["policy"].get("later_milestone_dependencies_allowed") is not False:
         errors.append("module graph must explicitly prohibit later-milestone dependencies")
@@ -126,18 +128,21 @@ def validate() -> list[str]:
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
     if "zbw-arena" not in materialized:
         errors.append("M07 implementation must materialize zbw-arena")
-    premature = materialized.intersection({"zbw-game"} | PRESENTATION_MODULES)
+    premature = materialized.intersection(PRESENTATION_MODULES)
     if premature:
-        errors.append(f"M07 must not materialize later modules: {sorted(premature)}")
+        errors.append(f"M07/M08 must not materialize M09 modules: {sorted(premature)}")
+    if not m08_started and "zbw-game" in materialized:
+        errors.append("pre-M08 state must not materialize zbw-game")
+    if m08_started and "zbw-game" not in materialized:
+        errors.append("active/completed M08 must materialize zbw-game")
     for relative in (
-        "game/zbw-game",
         "command/zbw-command-api",
         "command/zbw-command-paper",
         "ui/zbw-ui-api",
         "ui/zbw-ui-paper",
     ):
         if (ROOT / relative).exists():
-            errors.append(f"M07 created later implementation path: {relative}")
+            errors.append(f"M07/M08 created M09 implementation path: {relative}")
     if not (ROOT / "arena/zbw-arena/pom.xml").is_file():
         errors.append("M07 arena module descriptor is missing")
 

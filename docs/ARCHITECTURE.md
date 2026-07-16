@@ -156,6 +156,15 @@ M08 creates no temporary production command, inventory GUI, reusable page/editor
 
 Continuing feature ownership remains explicit: M10 supplies modes/selectors/spectator behavior, M16 supplies PlaceholderAPI, M20 supplies proxy delivery, M21 supplies NPC/hologram providers and M22 supplies legacy adapters and full compatibility certification. M08 may define neutral intents or snapshots consumed by those later systems but may neither depend on their modules nor claim their acceptance. `tools/validation/m08_m09_allocation.py` enforces all module, document, catalogue and continuing-owner invariants.
 
+The implemented M08 composition keeps `zbw-game` at Java 8 and places only closed,
+server-bound effects in Java-21 `zbw-paper-modern`. Persistence, event and projection
+ports are asynchronous or owner-thread-explicit; the game aggregate never retains a
+Bukkit object. Because the approved Paper API mirror is intentionally non-transitive,
+ADR-0020 permits a private allow-listed reflection bridge for server-owned value calls.
+It is not an extension API and is certified on checksum-locked Paper 1.21.1 build 133.
+Direct server-bound classes are excluded from test-JVM coverage and must pass the exact
+runtime E2E; all test-JVM-safe Paper classes retain the 80% line/70% branch gate.
+
 The implemented M07 composition keeps durable repositories, atomic setup
 commit, archives, marker discovery, identity allocation, authorization, event
 publication and audit behind typed ports. Production `zbw-arena` has no M04

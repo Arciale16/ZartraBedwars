@@ -1,0 +1,18 @@
+{
+  "bossbar_create_update_remove": true,
+  "certification_runner": "tools/validation/m08_paper_e2e.py",
+  "event_runtime_register_unregister": true,
+  "evidence_written_off_owner": true,
+  "exactly_once_completion": true,
+  "off_owner_mutation_rejected": true,
+  "player_state_restoration": true,
+  "primary_plugin_sha256": "1147f8addb5f412c20e5e2b4e4b40bd1c01f68bedc46e047d423d280849bf945",
+  "reconnect_recovery": true,
+  "runtime": "Paper 1.21.1 build 133",
+  "schema_version": 1,
+  "server_exit_code": 0,
+  "server_sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+  "success": true,
+  "test_harness_sha256": "8b24fa2c25d522e7914a6275212a83f54034f36b27769bb7fce69b91108b3750",
+  "waiting_through_reset": true
+}

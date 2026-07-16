@@ -63,12 +63,12 @@ def validate() -> list[str]:
     """Return all M06 architecture, boundary, and certification inconsistencies."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    valid_states = (
-        ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
-        ("M07", ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
-    )
+    through_m05 = [f"M{value:02d}" for value in range(0, 6)]
+    through_m06 = through_m05 + ["M06"]
+    through_m07 = through_m06 + ["M07"]
+    valid_states = (("M06", through_m05), (None, through_m06),
+                    ("M07", through_m06), (None, through_m07),
+                    ("M08", through_m07), (None, through_m07 + ["M08"]))
     if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
         errors.append("milestone state must represent active or completed M06")
 
