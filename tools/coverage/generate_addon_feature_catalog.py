@@ -13,6 +13,23 @@ ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "docs" / "ADDON_FEATURE_CATALOG.md"
 PRD = ROOT / "docs" / "PRD" / "PRD.md"
 WIKI = "https://wiki.andrei1058.com/docs/BedWars1058/addons/"
+M11_STANDARD_MILESTONE = (
+    "M11 mechanics/config/API/feature presentation/primary Paper; "
+    "M16 placeholders; M22 full compatibility"
+)
+M11_STATISTICS_MILESTONE = (
+    "M11 mechanics/config/API/feature presentation/primary Paper; "
+    "M15 statistics; M16 placeholders; M22 full compatibility"
+)
+M11_ROTATION_MILESTONE = (
+    "M11 local rotation mechanics/persistence/API/feature presentation/primary Paper; "
+    "M16 placeholders; M19 Redis coordination; M20 proxy/server synchronization; "
+    "M22 full compatibility"
+)
+M11_STATISTICS_IDS = {
+    "ZBW-ADDON-010", "ZBW-ADDON-061", "ZBW-ADDON-300",
+    "ZBW-ADDON-315", "ZBW-ADDON-341", "ZBW-ADDON-438",
+}
 
 
 @dataclass(frozen=True)
@@ -1059,6 +1076,29 @@ def compact_id_spans(rows: list[tuple[str, Addon, str]]) -> str:
     )
 
 
+def atomic_milestone(requirement_id: str, entry: Addon) -> str:
+    """Return the reconciled ownership cell without changing a stable addon requirement."""
+    if entry.milestone != "M11":
+        return entry.milestone
+    if requirement_id in M11_STATISTICS_IDS:
+        return M11_STATISTICS_MILESTONE
+    if requirement_id == "ZBW-ADDON-387":
+        return M11_ROTATION_MILESTONE
+    return M11_STANDARD_MILESTONE
+
+
+def inventory_milestone(rows: list[tuple[str, Addon, str]], entry: Addon) -> str:
+    """Summarize all explicit owners represented by an addon's atomic rows."""
+    if entry.milestone != "M11":
+        return entry.milestone
+    identifiers_for_addon = {requirement_id for requirement_id, _, _ in rows}
+    if "ZBW-ADDON-387" in identifiers_for_addon:
+        return M11_ROTATION_MILESTONE
+    if identifiers_for_addon.intersection(M11_STATISTICS_IDS):
+        return M11_STATISTICS_MILESTONE
+    return M11_STANDARD_MILESTONE
+
+
 def validate() -> None:
     if len(ADDONS) != 49:
         raise ValueError(f"Expected 49 addons, found {len(ADDONS)}")
@@ -1140,6 +1180,8 @@ def render() -> str:
         "",
         "All configuration mutations require schema validation, last-known-good rollback and documented precedence. All GUI actions must revalidate on click. All commands require localized feedback and permission-aware help/completion. All privileged operations require granular permissions and audit. Placeholder reads must be side-effect free, null-safe and non-blocking. No network, database, Redis, Discord or filesystem wait may block the Minecraft main thread.",
         "",
+        "For the M11 ranges, the milestone cell is an explicit ownership split rather than a claim that M11 implements every surface in the row. M11 owns atomic mechanics, configuration, feature-specific reuse of M09 command/GUI infrastructure, API/events and primary Paper 1.21.1 behavior. M15 owns every explicitly named statistics projection, M16 owns every PlaceholderAPI cell, M19/M20 own the Redis/proxy synchronization portion of ZBW-ADDON-387, M21 owns concrete Vault/NPC/hologram providers where a row consumes them, and M22 owns legacy fallbacks and full compatibility. The Swappage rows preserve M10 registration/selection, M11 mechanics, M15 statistics, M16 placeholders and M22 compatibility. A row remains one stable atomic requirement and reaches final completion only after all listed milestone portions pass.",
+        "",
         "## 3. Inventory summary",
         "",
         "| # | Tier | Addon reference | Functional purpose | Atomic IDs | Count | Existing overlap | Milestone | Native module(s) | Coverage |",
@@ -1149,7 +1191,7 @@ def render() -> str:
         addon_rows = by_key[entry.key]
         span = compact_id_spans(addon_rows)
         lines.append(
-            f"| {index} | {entry.tier} | {esc(entry.name)} | {esc(entry.purpose)} | {span} | {len(addon_rows)} | {esc(entry.overlaps)} | {entry.milestone} | {esc(entry.module)} | COVERED |"
+            f"| {index} | {entry.tier} | {esc(entry.name)} | {esc(entry.purpose)} | {span} | {len(addon_rows)} | {esc(entry.overlaps)} | {inventory_milestone(addon_rows, entry)} | {esc(entry.module)} | COVERED |"
         )
 
     lines += [
@@ -1179,7 +1221,7 @@ def render() -> str:
                 feature,
                 f"§4.17, §8.9; overlaps {entry.overlaps}",
                 f"Part III / {req_id}; Part I / {entry.overlaps}",
-                entry.milestone,
+                atomic_milestone(req_id, entry),
                 entry.module,
                 entry.config,
                 entry.gui,

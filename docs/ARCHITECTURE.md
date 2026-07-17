@@ -412,3 +412,49 @@ translates platform state behind owner-thread guards. Dependency direction remai
 adapters to `zbw-game` to existing M08/M07 contracts, never the reverse. Local queues and
 reservations are bounded and fail closed on restart; M20 retains durable/distributed orchestration.
 Mode metadata and deferred bindings are M10, while every named-mode mechanic remains M11.
+
+## M11 planned shop, content and action-platform boundary
+
+The M11 governance checkpoint allocates four Java-8-neutral production modules without
+materializing them: `zbw-shop`, `zbw-content`, `zbw-scripting-api` and
+`zbw-scripting-engine`. They remain only in the planned graph until M11 implementation is
+explicitly started. `zbw-shop` owns catalog, quote, match-tender, purchase, generator,
+upgrade/trap and utility-item use cases; `zbw-content` owns versioned original shop/mode packs
+and their deterministic validation; `zbw-scripting-api` owns the declarative capability/action
+contracts; `zbw-scripting-engine` owns the bounded disabled-by-default interpreter and audit
+behavior selected by ADR-0008.
+
+The dependency direction is fixed before implementation:
+
+- `zbw-shop` depends inward on public/domain/application, arena/game snapshots, compatibility
+  semantics and scripting contracts. `zbw-game` never depends on the concrete shop module; it
+  consumes only neutral ports and retains all M08 state-machine authority.
+- `zbw-content` may depend on neutral content/shop contracts but is not a filesystem or platform
+  renderer. `zbw-config` adapts validated documents to M11 contracts at M11 activation.
+- `zbw-scripting-engine` depends on `zbw-scripting-api` and injected application scheduler/audit
+  ports. It has no Bukkit, filesystem, process, network, reflection, classloader, native or
+  thread-creation capability.
+- `zbw-storage-sql` may implement M11 repository ports only through an M11-qualified dependency;
+  no shop/application module imports JDBC or a concrete repository.
+- `zbw-paper-modern` is the composition root and may gain M11-qualified dependencies on the four
+  M11 modules. Existing M09 command/UI modules remain generic adapters; feature actions/pages
+  invoke the same typed M11 use cases and contain no shop, generator, upgrade or mode policy.
+
+M11 owns match-local iron/gold/diamond/emerald/custom/multiple tenders and atomic quoted purchase
+semantics. M12 supplies persistent progression/virtual-currency ledgers, and M21 supplies the
+Vault provider; neither dependency blocks construction or verification of M11 match-resource
+transactions. M21 likewise retains concrete NPC/shopkeeper and hologram providers. M11 publishes
+their state/intent ports but cannot report those provider implementations complete.
+
+Mode registration and selection remain M10. M11 installs named-mode mechanics and component/
+balance providers through those deferred bindings without copying M08 lifecycle rules. Swappage
+therefore remains split into M10 registration/selection, M11 gameplay and owned-state transfer,
+M15 statistics, M16 PlaceholderAPI and M22 full compatibility. The `Adventure` mode identity in
+`ZBW-GAME-004` is not the `AdventureMode` player-state-transition addon in
+`ZBW-ADDON-432..437`; the latter keeps its M08/M09 allocation.
+
+M11 emits immutable typed state/events for later consumers but does not implement them: M15 owns
+statistics, M16 PlaceholderAPI, M19 Redis coordination, M20 proxy/server distribution (including
+the distributed half of item rotation), and M22 legacy adapters/fallback certification. Only
+semantic compatibility contracts and primary Paper 1.21.1 translations may be added during M11;
+full 1.8–1.21.x support remains the M22 release gate.

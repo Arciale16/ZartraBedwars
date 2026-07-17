@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the approved M06/M22 compatibility allocation through M06 closure."""
+"""Validate M06/M22 boundaries while allowing milestone-qualified later composition."""
 
 from __future__ import annotations
 
@@ -48,7 +48,8 @@ def validate() -> list[str]:
             21,
             "M06",
             ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
-             "zbw-command-paper", "zbw-ui-paper"],
+             "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content",
+             "zbw-scripting-api", "zbw-scripting-engine"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -61,8 +62,17 @@ def validate() -> list[str]:
             errors.append(f"{identifier}: incorrect M06 allocation {actual}")
     paper = modules.get("zbw-paper-modern", {})
     if paper.get("dependency_since") != {
-            "zbw-game": "M08", "zbw-command-paper": "M09", "zbw-ui-paper": "M09"}:
-        errors.append("zbw-paper-modern: later dependencies must activate only in M08/M09")
+            "zbw-game": "M08",
+            "zbw-command-paper": "M09",
+            "zbw-ui-paper": "M09",
+            "zbw-shop": "M11",
+            "zbw-content": "M11",
+            "zbw-scripting-api": "M11",
+            "zbw-scripting-engine": "M11",
+    }:
+        errors.append(
+            "zbw-paper-modern: later dependencies must activate only in their "
+            "declared M08/M09/M11 milestones")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)
