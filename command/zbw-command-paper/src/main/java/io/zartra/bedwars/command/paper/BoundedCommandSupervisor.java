@@ -49,9 +49,9 @@ public final class BoundedCommandSupervisor implements CommandFramework.Executio
         final long delay = Math.max(0L, Duration.between(java.time.Instant.now(), context.deadline()).toMillis());
         final java.util.concurrent.ScheduledFuture<?> timeout = deadlines.schedule(() -> {
             if (terminal.compareAndSet(false, true)) {
+                inFlight.decrementAndGet();
                 result.complete(CommandModel.Result.simple(CommandModel.Result.Status.TIMEOUT,
                         "command.execution.timeout"));
-                inFlight.decrementAndGet();
             }
         }, delay, TimeUnit.MILLISECONDS);
         try {
@@ -78,10 +78,10 @@ public final class BoundedCommandSupervisor implements CommandFramework.Executio
                           final CommandModel.Result value, final Throwable failure) {
         if (!terminal.compareAndSet(false, true)) { return; }
         timeout.cancel(false);
+        inFlight.decrementAndGet();
         result.complete(failure == null && value != null ? value
                 : CommandModel.Result.simple(CommandModel.Result.Status.ERROR,
                 "command.execution.failed"));
-        inFlight.decrementAndGet();
     }
 
     /** @return current submitted but incomplete operation count */ public int inFlight() { return inFlight.get(); }

@@ -62,6 +62,10 @@ The isolated Paper runner sets `max-tick-time=-1` so slow first-world generation
 cannot trigger Paper's watchdog before certification completes. This setting exists only in the
 temporary test server; production runtime defaults are not changed.
 
+Linux CI additionally verified that supervisor terminal accounting is published before the result
+future completes. The existing health/drain regression now deterministically observes zero
+in-flight work immediately after completion on both Windows and Linux.
+
 ## Exit decision
 
 M09 is verified only after the clean Java matrix, Checkstyle, SpotBugs, JaCoCo, strict JavaDoc,
