@@ -193,7 +193,9 @@ public final class MatchmakingFramework {
     public static final class EnqueueResult {
         private final EnqueueVerdict verdict;
         private final int position;
-        private EnqueueResult(final EnqueueVerdict verdict, final int position) { this.verdict = verdict; this.position = position; }
+        private EnqueueResult(final EnqueueVerdict verdict, final int position) { this.verdict = verdict;
+        this.position = position;
+        }
         /** @return verdict */ public EnqueueVerdict verdict() { return verdict; }
         /** @return one-based position, or zero when rejected */ public int position() { return position; }
     }
@@ -207,8 +209,11 @@ public final class MatchmakingFramework {
         private final Duration age;
         private QueueStatus(final QueueId queueId, final int position, final int queuedRequests,
                             final int queuedActors, final Duration age) {
-            this.queueId = queueId; this.position = position; this.queuedRequests = queuedRequests;
-            this.queuedActors = queuedActors; this.age = age;
+            this.queueId = queueId;
+            this.position = position;
+            this.queuedRequests = queuedRequests;
+            this.queuedActors = queuedActors;
+            this.age = age;
         }
         /** @return queue */ public QueueId queueId() { return queueId; }
         /** @return one-based deterministic position */ public int position() { return position; }
@@ -227,8 +232,12 @@ public final class MatchmakingFramework {
         private final long cleanupCount;
         private Diagnostics(final int queues, final int queuedActors, final long expired,
                             final long cancelled, final long staleRejected, final long cleanupCount) {
-            this.queues = queues; this.queuedActors = queuedActors; this.expired = expired;
-            this.cancelled = cancelled; this.staleRejected = staleRejected; this.cleanupCount = cleanupCount;
+            this.queues = queues;
+            this.queuedActors = queuedActors;
+            this.expired = expired;
+            this.cancelled = cancelled;
+            this.staleRejected = staleRejected;
+            this.cleanupCount = cleanupCount;
         }
         /** @return nonempty queue count */ public int queues() { return queues; }
         /** @return indexed actors */ public int queuedActors() { return queuedActors; }
@@ -293,7 +302,9 @@ public final class MatchmakingFramework {
             final Request request = key == null ? null : requests.get(key);
             if (request == null || !request.actor().equals(actor)
                     || !request.cancellationToken().equals(Objects.requireNonNull(token, "token"))
-                    || request.revision() != revision) { staleRejected++; return false; }
+                    || request.revision() != revision) { staleRejected++;
+                    return false;
+                    }
             remove(request);
             cancelled++;
             return true;
@@ -322,7 +333,9 @@ public final class MatchmakingFramework {
             final List<Request> resolved = new ArrayList<Request>();
             for (IdempotencyKey key : Objects.requireNonNull(keys, "keys")) {
                 final Request request = requests.get(Objects.requireNonNull(key, "key"));
-                if (request == null) { staleRejected++; return false; }
+                if (request == null) { staleRejected++;
+                return false;
+                }
                 resolved.add(request);
             }
             for (Request request : resolved) { remove(request); }
@@ -337,7 +350,9 @@ public final class MatchmakingFramework {
         private int cleanupInternal(final Instant now) {
             final List<Request> removals = new ArrayList<Request>();
             for (Request request : requests.values()) { if (!request.deadline().isAfter(now)) { removals.add(request); } }
-            for (Request request : removals) { remove(request); expired++; }
+            for (Request request : removals) { remove(request);
+            expired++;
+            }
             cleanupCount += removals.size();
             return removals.size();
         }
@@ -386,10 +401,16 @@ public final class MatchmakingFramework {
                     || totalCapacity > 256 || occupied < 0 || occupied > totalCapacity) {
                 throw new IllegalArgumentException("invalid arena availability");
             }
-            this.revision = revision; this.mode = Objects.requireNonNull(mode, "mode");
-            this.layout = Objects.requireNonNull(layout, "layout"); this.teamCapacity = teamCapacity;
-            this.totalCapacity = totalCapacity; this.occupied = occupied; this.enabled = enabled;
-            this.healthy = healthy; this.worldReady = worldReady; this.joinable = joinable;
+            this.revision = revision;
+            this.mode = Objects.requireNonNull(mode, "mode");
+            this.layout = Objects.requireNonNull(layout, "layout");
+            this.teamCapacity = teamCapacity;
+            this.totalCapacity = totalCapacity;
+            this.occupied = occupied;
+            this.enabled = enabled;
+            this.healthy = healthy;
+            this.worldReady = worldReady;
+            this.joinable = joinable;
             this.recovering = recovering;
         }
         /** @return arena */ public ArenaId arenaId() { return arenaId; }
@@ -417,7 +438,10 @@ public final class MatchmakingFramework {
         private final String reason;
         private Decision(final Request request, final ArenaId arenaId, final int effectivePriority,
                          final String reason) {
-            this.request = request; this.arenaId = arenaId; this.effectivePriority = effectivePriority; this.reason = reason;
+            this.request = request;
+            this.arenaId = arenaId;
+            this.effectivePriority = effectivePriority;
+            this.reason = reason;
         }
         /** @return request */ public Request request() { return request; }
         /** @return selected arena */ public ArenaId arenaId() { return arenaId; }
@@ -437,7 +461,8 @@ public final class MatchmakingFramework {
         @Override public List<Decision> match(final Collection<Request> requests,
                                               final Collection<ArenaAvailability> arenas,
                                               final Instant now, final Duration agingInterval) {
-            Objects.requireNonNull(now, "now"); positive(agingInterval, "agingInterval");
+            Objects.requireNonNull(now, "now");
+            positive(agingInterval, "agingInterval");
             final List<Request> ordered = new ArrayList<Request>(Objects.requireNonNull(requests, "requests"));
             ordered.sort(requestComparator(now, agingInterval));
             final List<ArenaAvailability> candidates = new ArrayList<ArenaAvailability>(Objects.requireNonNull(arenas, "arenas"));
@@ -485,9 +510,13 @@ public final class MatchmakingFramework {
         private Reservation(final ReservationId id, final ArenaId arenaId, final long arenaRevision,
                             final IdempotencyKey owner, final Collection<PlayerId> actors,
                             final Instant expiresAt, final ReservationState state) {
-            this.id = id; this.arenaId = arenaId; this.arenaRevision = arenaRevision; this.owner = owner;
+            this.id = id;
+            this.arenaId = arenaId;
+            this.arenaRevision = arenaRevision;
+            this.owner = owner;
             this.actors = Collections.unmodifiableList(new ArrayList<PlayerId>(actors));
-            this.expiresAt = expiresAt; this.state = state;
+            this.expiresAt = expiresAt;
+            this.state = state;
         }
         /** @return reservation */ public ReservationId id() { return id; }
         /** @return arena */ public ArenaId arenaId() { return arenaId; }
@@ -511,7 +540,8 @@ public final class MatchmakingFramework {
         /** Creates a bounded coordinator. */
         public ReservationService(final int maximumReservations, final Duration ttl, final TimeSource time) {
             if (maximumReservations < 1 || maximumReservations > 100000) { throw new IllegalArgumentException("invalid reservation capacity"); }
-            this.maximumReservations = maximumReservations; this.ttl = positive(ttl, "ttl");
+            this.maximumReservations = maximumReservations;
+            this.ttl = positive(ttl, "ttl");
             this.time = Objects.requireNonNull(time, "time");
         }
         /** Atomically acquires capacity for the complete request. */
@@ -533,7 +563,8 @@ public final class MatchmakingFramework {
             final Reservation value = new Reservation(ReservationId.random(), arena.arenaId(),
                     arena.revision(), request.idempotencyKey(), request.actors(), time.now().plus(ttl),
                     ReservationState.ACQUIRED);
-            reservations.put(value.id(), value); owners.put(value.owner(), value.id());
+            reservations.put(value.id(), value);
+            owners.put(value.owner(), value.id());
             return Optional.of(value);
         }
         /** Confirms once and rejects stale arena revisions or duplicate confirmation. */
@@ -551,7 +582,9 @@ public final class MatchmakingFramework {
         /** Releases an acquired/confirmed reservation exactly once. */
         public synchronized boolean release(final ReservationId id) {
             final Reservation current = reservations.get(Objects.requireNonNull(id, "id"));
-            if (current == null || current.state() == ReservationState.RELEASED) { rejected++; return false; }
+            if (current == null || current.state() == ReservationState.RELEASED) { rejected++;
+            return false;
+            }
             reservations.put(id, current.withState(ReservationState.RELEASED));
             owners.remove(current.owner());
             return true;

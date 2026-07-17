@@ -37,7 +37,9 @@ public final class M10AddonSelection {
                           final boolean permitted) {
             this.team = Objects.requireNonNull(team, "team");
             if (occupied < 0 || occupied > team.capacity()) { throw new IllegalArgumentException("invalid occupancy"); }
-            this.occupied = occupied; this.enabled = enabled; this.permitted = permitted;
+            this.occupied = occupied;
+            this.enabled = enabled;
+            this.permitted = permitted;
         }
         /** @return team */ public TeamDefinition team() { return team; }
         /** @return occupied places */ public int occupied() { return occupied; }
@@ -56,8 +58,11 @@ public final class M10AddonSelection {
         private TeamSelection(final ArenaId arenaId, final long arenaRevision,
                               final long partyRevision, final Collection<PlayerId> actors,
                               final DefinitionId teamId) {
-            this.arenaId = arenaId; this.arenaRevision = arenaRevision; this.partyRevision = partyRevision;
-            this.actors = Collections.unmodifiableList(new ArrayList<PlayerId>(actors)); this.teamId = teamId;
+            this.arenaId = arenaId;
+            this.arenaRevision = arenaRevision;
+            this.partyRevision = partyRevision;
+            this.actors = Collections.unmodifiableList(new ArrayList<PlayerId>(actors));
+            this.teamId = teamId;
         }
         /** @return arena */ public ArenaId arenaId() { return arenaId; }
         /** @return arena revision */ public long arenaRevision() { return arenaRevision; }
@@ -79,7 +84,8 @@ public final class M10AddonSelection {
         public synchronized TeamVerdict select(final ArenaId arenaId, final long arenaRevision,
                                                final PlayerId actor, final Party party,
                                                final TeamOption option, final boolean locked) {
-            Objects.requireNonNull(arenaId, "arenaId"); Objects.requireNonNull(actor, "actor");
+            Objects.requireNonNull(arenaId, "arenaId");
+            Objects.requireNonNull(actor, "actor");
             final TeamOption checked = Objects.requireNonNull(option, "option");
             if (locked) { return TeamVerdict.LOCKED; }
             if (!checked.enabled() || !checked.permitted()) { return TeamVerdict.FORBIDDEN; }
@@ -109,7 +115,8 @@ public final class M10AddonSelection {
             final TeamSelection selection = selections.get(Objects.requireNonNull(actor, "actor"));
             if (selection == null) { return Optional.empty(); }
             if (selection.arenaRevision() != arenaRevision || selection.partyRevision() != partyRevision) {
-                clear(actor); return Optional.empty();
+                clear(actor);
+                return Optional.empty();
             }
             return Optional.of(selection);
         }
@@ -152,8 +159,12 @@ public final class M10AddonSelection {
                              final boolean vanished, final boolean spectator) {
             if (!Double.isFinite(distance) || distance < 0D) { throw new IllegalArgumentException("invalid distance"); }
             this.playerId = Objects.requireNonNull(playerId, "playerId");
-            this.teamId = Objects.requireNonNull(teamId, "teamId"); this.distance = distance;
-            this.living = living; this.visible = visible; this.vanished = vanished; this.spectator = spectator;
+            this.teamId = Objects.requireNonNull(teamId, "teamId");
+            this.distance = distance;
+            this.living = living;
+            this.visible = visible;
+            this.vanished = vanished;
+            this.spectator = spectator;
         }
         /** @return player */ public PlayerId playerId() { return playerId; }
         /** @return team */ public DefinitionId teamId() { return teamId; }
@@ -173,8 +184,11 @@ public final class M10AddonSelection {
         private final Instant createdAt;
         private Message(final PlayerId sender, final DefinitionId teamId, final Callout callout,
                         final PlayerId safeTarget, final Instant createdAt) {
-            this.sender = sender; this.teamId = teamId; this.callout = callout;
-            this.safeTarget = safeTarget; this.createdAt = createdAt;
+            this.sender = sender;
+            this.teamId = teamId;
+            this.callout = callout;
+            this.safeTarget = safeTarget;
+            this.createdAt = createdAt;
         }
         /** @return sender */ public PlayerId sender() { return sender; }
         /** @return audience team */ public DefinitionId teamId() { return teamId; }
@@ -199,7 +213,9 @@ public final class M10AddonSelection {
                     || maximumSenders < 1 || maximumSenders > 100000) {
                 throw new IllegalArgumentException("invalid Compass policy");
             }
-            this.cooldown = cooldown; this.maximumRange = maximumRange; this.maximumSenders = maximumSenders;
+            this.cooldown = cooldown;
+            this.maximumRange = maximumRange;
+            this.maximumSenders = maximumSenders;
         }
         /** @return nearest eligible enemy using distance then stable identity */
         public Optional<TrackerTarget> nearest(final DefinitionId ownTeam,
@@ -217,7 +233,8 @@ public final class M10AddonSelection {
         /** Creates one rate-limited team-only callout and strips an ineligible target. */
         public synchronized Message callout(final PlayerId sender, final DefinitionId team,
                                             final Callout callout, final TrackerTarget target) {
-            Objects.requireNonNull(sender, "sender"); Objects.requireNonNull(team, "team");
+            Objects.requireNonNull(sender, "sender");
+            Objects.requireNonNull(team, "team");
             final Instant previous = lastMessages.get(sender);
             if (previous != null && previous.plus(cooldown).isAfter(time.now())) {
                 throw new IllegalStateException("Compass callout cooldown active");

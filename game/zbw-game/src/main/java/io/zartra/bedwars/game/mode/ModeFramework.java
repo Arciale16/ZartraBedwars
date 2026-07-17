@@ -210,7 +210,9 @@ public final class ModeFramework {
         private final ModeId modeId;
         private final Version version;
         private Event(final Type type, final ModeId modeId, final Version version) {
-            this.type = type; this.modeId = modeId; this.version = version;
+            this.type = type;
+            this.modeId = modeId;
+            this.version = version;
         }
         /** @return event type */ public Type type() { return type; }
         /** @return affected mode */ public ModeId modeId() { return modeId; }

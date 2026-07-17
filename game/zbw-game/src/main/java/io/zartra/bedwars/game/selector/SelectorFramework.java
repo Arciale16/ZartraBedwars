@@ -111,7 +111,10 @@ public final class SelectorFramework {
                      final DefinitionId tag, final String search, final int requiredCapacity,
                      final long minimumRevision, final int page, final int pageSize,
                      final Order order) {
-            this.mode = mode; this.layout = layout; this.map = map; this.tag = tag;
+            this.mode = mode;
+            this.layout = layout;
+            this.map = map;
+            this.tag = tag;
             if (search == null || search.length() > 128 || search.indexOf('\r') >= 0 || search.indexOf('\n') >= 0) {
                 throw new IllegalArgumentException("invalid search");
             }
@@ -156,7 +159,10 @@ public final class SelectorFramework {
         private Page(final long viewRevision, final Status status, final int page, final int pageCount,
                      final Collection<Candidate> candidates, final Collection<Excluded> exclusions,
                      final MessageKey message) {
-            this.viewRevision = viewRevision; this.status = status; this.page = page; this.pageCount = pageCount;
+            this.viewRevision = viewRevision;
+            this.status = status;
+            this.page = page;
+            this.pageCount = pageCount;
             this.candidates = Collections.unmodifiableList(new ArrayList<Candidate>(candidates));
             this.exclusions = Collections.unmodifiableList(new ArrayList<Excluded>(exclusions));
             this.message = message;
@@ -174,7 +180,9 @@ public final class SelectorFramework {
     public static final class Excluded {
         private final ArenaId arenaId;
         private final Exclusion reason;
-        private Excluded(final ArenaId arenaId, final Exclusion reason) { this.arenaId = arenaId; this.reason = reason; }
+        private Excluded(final ArenaId arenaId, final Exclusion reason) { this.arenaId = arenaId;
+        this.reason = reason;
+        }
         /** @return arena identity */ public ArenaId arenaId() { return arenaId; }
         /** @return exclusion reason */ public Exclusion reason() { return reason; }
     }
@@ -188,7 +196,8 @@ public final class SelectorFramework {
         public Selection(final ArenaId arenaId, final long definitionRevision, final long viewRevision) {
             this.arenaId = Objects.requireNonNull(arenaId, "arenaId");
             if (definitionRevision < 0L || viewRevision < 0L) { throw new IllegalArgumentException("revision must not be negative"); }
-            this.definitionRevision = definitionRevision; this.viewRevision = viewRevision;
+            this.definitionRevision = definitionRevision;
+            this.viewRevision = viewRevision;
         }
         /** @return arena */ public ArenaId arenaId() { return arenaId; }
         /** @return definition revision */ public long definitionRevision() { return definitionRevision; }
@@ -199,7 +208,8 @@ public final class SelectorFramework {
     public static final class Service {
         /** @return filtered page with complete exclusion evidence */
         public Page page(final Collection<Candidate> source, final Query query, final long viewRevision) {
-            Objects.requireNonNull(source, "source"); Objects.requireNonNull(query, "query");
+            Objects.requireNonNull(source, "source");
+            Objects.requireNonNull(query, "query");
             if (viewRevision < 0L) { throw new IllegalArgumentException("viewRevision must not be negative"); }
             final List<Candidate> accepted = new ArrayList<Candidate>();
             final List<Excluded> excluded = new ArrayList<Excluded>();
@@ -243,7 +253,8 @@ public final class SelectorFramework {
 
         /** Validates an arena click against the exact rendered page. */
         public Selection select(final Page page, final ArenaId arenaId) {
-            Objects.requireNonNull(page, "page"); Objects.requireNonNull(arenaId, "arenaId");
+            Objects.requireNonNull(page, "page");
+            Objects.requireNonNull(arenaId, "arenaId");
             for (Candidate candidate : page.candidates()) {
                 if (candidate.arenaId().equals(arenaId)) {
                     return new Selection(arenaId, candidate.definitionRevision(), page.viewRevision());

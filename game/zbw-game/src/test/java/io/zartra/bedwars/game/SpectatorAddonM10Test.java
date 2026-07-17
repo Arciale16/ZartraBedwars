@@ -14,7 +14,6 @@ import io.zartra.bedwars.game.matchmaking.MatchmakingFramework.Party;
 import io.zartra.bedwars.game.matchmaking.MatchmakingFramework.PartyId;
 import io.zartra.bedwars.game.model.PlayerStateSnapshot;
 import io.zartra.bedwars.game.model.TeamDefinition;
-import io.zartra.bedwars.game.selector.M10AddonSelection;
 import io.zartra.bedwars.game.selector.M10AddonSelection.Callout;
 import io.zartra.bedwars.game.selector.M10AddonSelection.Compass;
 import io.zartra.bedwars.game.selector.M10AddonSelection.TeamOption;

@@ -55,8 +55,10 @@ public final class SpectatorFramework {
             if (flightSpeedLevel < 0 || flightSpeedLevel > 10) {
                 throw new IllegalArgumentException("flight speed level must be between 0 and 10");
             }
-            this.flightSpeedLevel = flightSpeedLevel; this.nightVision = nightVision;
-            this.showSpectators = showSpectators; this.firstPerson = firstPerson;
+            this.flightSpeedLevel = flightSpeedLevel;
+            this.nightVision = nightVision;
+            this.showSpectators = showSpectators;
+            this.firstPerson = firstPerson;
         }
         /** @return configured level */ public int flightSpeedLevel() { return flightSpeedLevel; }
         /** @return night-vision preference */ public boolean nightVision() { return nightVision; }
@@ -73,7 +75,9 @@ public final class SpectatorFramework {
         /** Creates immutable policy; drop, pickup, damage and world escape are always denied. */
         public Restrictions(final boolean flight, final boolean teleport, final boolean chat,
                             final Collection<DefinitionId> commands) {
-            this.flight = flight; this.teleport = teleport; this.chat = chat;
+            this.flight = flight;
+            this.teleport = teleport;
+            this.chat = chat;
             final Set<DefinitionId> copy = new LinkedHashSet<DefinitionId>();
             for (DefinitionId command : Objects.requireNonNull(commands, "commands")) {
                 copy.add(Objects.requireNonNull(command, "command"));
@@ -104,7 +108,8 @@ public final class SpectatorFramework {
             if (reconnectGrace == null || reconnectGrace.isNegative() || reconnectGrace.isZero()) {
                 throw new IllegalArgumentException("reconnectGrace must be positive");
             }
-            this.maximumSessions = maximumSessions; this.reconnectGrace = reconnectGrace;
+            this.maximumSessions = maximumSessions;
+            this.reconnectGrace = reconnectGrace;
             this.externalAdmission = externalAdmission;
             this.restrictions = Objects.requireNonNull(restrictions, "restrictions");
         }
@@ -131,8 +136,11 @@ public final class SpectatorFramework {
             this.playerId = Objects.requireNonNull(playerId, "playerId");
             this.matchId = Objects.requireNonNull(matchId, "matchId");
             this.teamId = Objects.requireNonNull(teamId, "teamId");
-            this.living = living; this.visible = visible; this.vanished = vanished;
-            this.consent = consent; this.order = order;
+            this.living = living;
+            this.visible = visible;
+            this.vanished = vanished;
+            this.consent = consent;
+            this.order = order;
         }
         /** @return player */ public PlayerId playerId() { return playerId; }
         /** @return match */ public MatchId matchId() { return matchId; }
@@ -157,9 +165,16 @@ public final class SpectatorFramework {
                         final EntryReason reason, final PlayerStateSnapshot capturedState,
                         final Preferences preferences, final State state, final PlayerId target,
                         final long revision, final Instant disconnectedAt) {
-            this.id = id; this.playerId = playerId; this.matchId = matchId; this.reason = reason;
-            this.capturedState = capturedState; this.preferences = preferences; this.state = state;
-            this.target = target; this.revision = revision; this.disconnectedAt = disconnectedAt;
+            this.id = id;
+            this.playerId = playerId;
+            this.matchId = matchId;
+            this.reason = reason;
+            this.capturedState = capturedState;
+            this.preferences = preferences;
+            this.state = state;
+            this.target = target;
+            this.revision = revision;
+            this.disconnectedAt = disconnectedAt;
         }
         /** @return session */ public SessionId id() { return id; }
         /** @return spectator */ public PlayerId playerId() { return playerId; }
@@ -185,7 +200,9 @@ public final class SpectatorFramework {
         private final long sessionRevision;
         private Restoration(final SessionId sessionId, final PlayerStateSnapshot capturedState,
                             final long sessionRevision) {
-            this.sessionId = sessionId; this.capturedState = capturedState; this.sessionRevision = sessionRevision;
+            this.sessionId = sessionId;
+            this.capturedState = capturedState;
+            this.sessionRevision = sessionRevision;
         }
         /** @return session */ public SessionId sessionId() { return sessionId; }
         /** @return state to restore */ public PlayerStateSnapshot capturedState() { return capturedState; }
@@ -199,7 +216,10 @@ public final class SpectatorFramework {
         private final PlayerId playerId;
         private final long revision;
         private Event(final Type type, final Session session) {
-            this.type = type; this.sessionId = session.id(); this.playerId = session.playerId(); this.revision = session.revision();
+            this.type = type;
+            this.sessionId = session.id();
+            this.playerId = session.playerId();
+            this.revision = session.revision();
         }
         /** @return lifecycle type */ public Type type() { return type; }
         /** @return session */ public SessionId sessionId() { return sessionId; }
@@ -221,13 +241,15 @@ public final class SpectatorFramework {
         private long cleanupCount;
         /** Creates a spectator service. */
         public Service(final Policy policy, final TimeSource time, final EventSink events) {
-            this.policy = Objects.requireNonNull(policy, "policy"); this.time = Objects.requireNonNull(time, "time");
+            this.policy = Objects.requireNonNull(policy, "policy");
+            this.time = Objects.requireNonNull(time, "time");
             this.events = Objects.requireNonNull(events, "events");
         }
         /** Admits an eliminated, external or staff spectator. Repeated admission is idempotent. */
         public synchronized Session enter(final MatchId matchId, final EntryReason reason,
                                           final PlayerStateSnapshot capturedState) {
-            Objects.requireNonNull(matchId, "matchId"); Objects.requireNonNull(reason, "reason");
+            Objects.requireNonNull(matchId, "matchId");
+            Objects.requireNonNull(reason, "reason");
             final PlayerStateSnapshot captured = Objects.requireNonNull(capturedState, "capturedState");
             final Session existing = sessions.get(captured.playerId());
             if (existing != null) {
@@ -242,7 +264,8 @@ public final class SpectatorFramework {
                     ? preferences.get(captured.playerId()) : new Preferences(5, false, true, false);
             final Session created = new Session(SessionId.random(), captured.playerId(), matchId,
                     reason, captured, selected, State.ACTIVE, null, 0L, null);
-            sessions.put(created.playerId(), created); events.publish(new Event(Event.Type.ENTERED, created));
+            sessions.put(created.playerId(), created);
+            events.publish(new Event(Event.Type.ENTERED, created));
             return created;
         }
         /** Updates allowed persistent preferences using a revision fence. */
@@ -251,8 +274,10 @@ public final class SpectatorFramework {
             final Session current = requireActive(playerId, revision);
             final Session changed = current.change(Objects.requireNonNull(updated, "updated"),
                     current.state(), current.target().orElse(null), current.disconnectedAt().orElse(null));
-            sessions.put(playerId, changed); preferences.put(playerId, updated);
-            events.publish(new Event(Event.Type.PREFERENCE_CHANGED, changed)); return changed;
+            sessions.put(playerId, changed);
+            preferences.put(playerId, updated);
+            events.publish(new Event(Event.Type.PREFERENCE_CHANGED, changed));
+            return changed;
         }
         /** Selects a valid living, visible and consented target in the same match. */
         public synchronized Session target(final PlayerId spectator, final long revision,
@@ -265,7 +290,8 @@ public final class SpectatorFramework {
             }
             final Session changed = current.change(current.preferences(), current.state(),
                     checked.playerId(), null);
-            sessions.put(spectator, changed); events.publish(new Event(Event.Type.TARGET_CHANGED, changed));
+            sessions.put(spectator, changed);
+            events.publish(new Event(Event.Type.TARGET_CHANGED, changed));
             return changed;
         }
         /** Navigates deterministically to the next or previous eligible target. */
@@ -277,7 +303,9 @@ public final class SpectatorFramework {
             int index = -1;
             if (current.target().isPresent()) {
                 for (int value = 0; value < eligible.size(); value++) {
-                    if (eligible.get(value).playerId().equals(current.target().get())) { index = value; break; }
+                    if (eligible.get(value).playerId().equals(current.target().get())) { index = value;
+                    break;
+                    }
                 }
             }
             final int selected = next ? (index + 1) % eligible.size()
@@ -290,7 +318,8 @@ public final class SpectatorFramework {
             final Session current = requireActive(spectator, revision);
             if (!current.target().isPresent() || !current.target().get().equals(unavailable)) { return current; }
             final Session changed = current.change(current.preferences(), current.state(), null, null);
-            sessions.put(spectator, changed); events.publish(new Event(Event.Type.TARGET_CHANGED, changed));
+            sessions.put(spectator, changed);
+            events.publish(new Event(Event.Type.TARGET_CHANGED, changed));
             return changed;
         }
         /** Records disconnect while retaining recoverable state. */
@@ -298,7 +327,8 @@ public final class SpectatorFramework {
             final Session current = requireActive(playerId, revision);
             final Session changed = current.change(current.preferences(), State.DISCONNECTED,
                     current.target().orElse(null), time.now());
-            sessions.put(playerId, changed); events.publish(new Event(Event.Type.DISCONNECTED, changed));
+            sessions.put(playerId, changed);
+            events.publish(new Event(Event.Type.DISCONNECTED, changed));
             return changed;
         }
         /** Reconnects within grace and clears an invalid target supplied by current target facts. */
@@ -307,26 +337,32 @@ public final class SpectatorFramework {
             final Session current = require(playerId);
             if (current.revision() != revision || current.state() != State.DISCONNECTED
                     || time.now().isAfter(current.disconnectedAt().get().plus(policy.reconnectGrace()))) {
-                staleRejected++; throw new IllegalStateException("spectator reconnect is stale or expired");
+                staleRejected++;
+                throw new IllegalStateException("spectator reconnect is stale or expired");
             }
             PlayerId target = null;
             if (current.target().isPresent()) {
                 for (Target candidate : eligible(current, currentTargets)) {
-                    if (candidate.playerId().equals(current.target().get())) { target = candidate.playerId(); break; }
+                    if (candidate.playerId().equals(current.target().get())) { target = candidate.playerId();
+                    break;
+                    }
                 }
             }
             final Session changed = current.change(current.preferences(), State.ACTIVE, target, null);
-            sessions.put(playerId, changed); events.publish(new Event(Event.Type.RECONNECTED, changed));
+            sessions.put(playerId, changed);
+            events.publish(new Event(Event.Type.RECONNECTED, changed));
             return changed;
         }
         /** Begins exact state restoration once. */
         public synchronized Restoration leave(final PlayerId playerId, final long revision) {
             final Session current = require(playerId);
             if (current.revision() != revision || current.state() == State.RESTORING || current.state() == State.CLOSED) {
-                staleRejected++; throw new IllegalStateException("spectator leave is stale or duplicate");
+                staleRejected++;
+                throw new IllegalStateException("spectator leave is stale or duplicate");
             }
             final Session changed = current.change(current.preferences(), State.RESTORING, null, null);
-            sessions.put(playerId, changed); events.publish(new Event(Event.Type.RESTORING, changed));
+            sessions.put(playerId, changed);
+            events.publish(new Event(Event.Type.RESTORING, changed));
             return new Restoration(changed.id(), changed.capturedState(), changed.revision());
         }
         /** Confirms owner-thread restoration and removes all target-bound state. */
@@ -334,9 +370,13 @@ public final class SpectatorFramework {
                                              final long revision) {
             final Session current = sessions.get(Objects.requireNonNull(playerId, "playerId"));
             if (current == null || !current.id().equals(id) || current.revision() != revision
-                    || current.state() != State.RESTORING) { staleRejected++; return false; }
+                    || current.state() != State.RESTORING) { staleRejected++;
+                    return false;
+                    }
             final Session closed = current.change(current.preferences(), State.CLOSED, null, null);
-            sessions.remove(playerId); events.publish(new Event(Event.Type.CLOSED, closed)); cleanupCount++;
+            sessions.remove(playerId);
+            events.publish(new Event(Event.Type.CLOSED, closed));
+            cleanupCount++;
             return true;
         }
         /** Begins restoration for every session bound to a completed match. */
@@ -375,7 +415,8 @@ public final class SpectatorFramework {
         private Session requireActive(final PlayerId playerId, final long revision) {
             final Session current = require(playerId);
             if (current.revision() != revision || current.state() != State.ACTIVE) {
-                staleRejected++; throw new IllegalStateException("spectator action is stale or inactive");
+                staleRejected++;
+                throw new IllegalStateException("spectator action is stale or inactive");
             }
             return current;
         }
