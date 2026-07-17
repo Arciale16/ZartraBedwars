@@ -25,7 +25,10 @@ class MilestoneFourValidationTests(unittest.TestCase):
         if state["active_milestone"] == "M04":
             self.assertNotIn("zbw-observability", materialized)
         else:
-            self.assertIn(state["active_milestone"], {"M05", "M06", "M07", "M08", None})
+            self.assertIn(
+                state["active_milestone"],
+                {f"M{value:02d}" for value in range(5, 25)} | {None},
+            )
             self.assertIn("zbw-observability", materialized)
 
     def test_m04_dependencies_are_locked_and_never_bundled(self) -> None:

@@ -41,7 +41,8 @@ def dependencies(module: str) -> dict[str, str]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    if state["active_milestone"] not in {"M04", "M05", "M06", "M07", "M08", None}:
+    valid_active = {f"M{value:02d}" for value in range(4, 25)} | {None}
+    if state["active_milestone"] not in valid_active:
         errors.append("active milestone must preserve the M04 baseline")
     completed = state["completed_milestones"]
     expected = [f"M{value:02d}" for value in range(len(completed))]

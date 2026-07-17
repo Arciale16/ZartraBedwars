@@ -380,3 +380,27 @@ GUI sessions and confirmation intents have fixed capacities and deterministic ex
 translate input and schedule only output/inventory mutations on the owner thread. M09's runtime claim
 is limited to checksum-locked Paper 1.21.1 build 133; M22 retains legacy presentation rendering and
 fallback certification.
+
+## 20. M10 selection, matchmaking and spectator boundary
+
+M10 adds no new Maven module. Java-8-neutral policies and use cases remain in `zbw-game`, with
+arena revision/readiness and reservation coordination expressed through forward dependencies on the
+existing `zbw-arena` contracts. Additive command and page definitions use `zbw-command-api` and
+`zbw-ui-api`; Java-21 translation remains in `zbw-command-paper`, `zbw-ui-paper` and
+`zbw-paper-modern`. Neutral modules never import Paper, storage, proxy or provider classes, and no
+presentation module is a dependency of `zbw-game` or `zbw-arena`.
+
+The M10 mode boundary is registration, validation, compatibility, selection and extension metadata.
+Registration of a deferred mode is not its gameplay implementation. M11 retains mode-specific shop,
+generator, upgrade, item and balance mechanics; M15 retains statistics; M16 retains PlaceholderAPI;
+M20 retains proxy-wide routing and remote play-again delivery; M22 retains legacy adapters and full
+compatibility certification. M10 registers typed deferred bindings for named modes, including
+Swappage, but M11 implements their gameplay mechanics. This prevents mode identity and selection
+metadata from becoming a false implementation claim.
+
+Matchmaking owns bounded local queues, deterministic policy evidence and revision-bound arena
+reservations. It delegates accepted assignment to existing M08 use cases and cannot recreate match
+lifecycle, admission, team-capacity or victory rules. Selectors and spectator interactions call the
+same typed handlers from command and GUI adapters. Paper listeners render or mutate platform state
+only on the owner thread; bounded off-owner supervisors may compute matches but must reject stale or
+duplicate completion before owner-thread application.

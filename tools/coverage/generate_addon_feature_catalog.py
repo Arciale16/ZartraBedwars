@@ -312,7 +312,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "spectator-options", "Premium", "Spectator Options", "Per-session spectator viewing, movement and visibility controls.",
-        "ZBW-GAME-009, ZBW-GAME-010, ZBW-UX-003", "M10", "zbw-game, zbw-ui-paper, zbw-compat-api",
+        "ZBW-GAME-009, ZBW-GAME-010, ZBW-UX-003",
+        "M10 core/primary Paper/command/GUI; M16 placeholders; M22 full compatibility",
+        "zbw-game, zbw-command-api, zbw-command-paper, zbw-ui-api, zbw-ui-paper, zbw-compat-api",
         (
             "Open a spectator-options menu from the spectator hotbar",
             "Select a configurable spectator flight-speed level",
@@ -359,7 +361,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "spectator-playagain-menu", "Free", "Spectator & Play-Again Addon Menu", "A spectator navigation and replay-routing menu after elimination or match end.",
-        "ZBW-GAME-003, ZBW-GAME-009, ZBW-UX-003", "M10", "zbw-ui-paper, zbw-game, zbw-proxy-api",
+        "ZBW-GAME-003, ZBW-GAME-009, ZBW-UX-003",
+        "M10 local shared-server behavior/command/GUI; M16 placeholders; M20 proxy routing; M22 full compatibility",
+        "zbw-game, zbw-command-api, zbw-command-paper, zbw-ui-api, zbw-ui-paper, zbw-proxy-api",
         (
             "Open the combined spectator/play-again menu from a hotbar item and command",
             "List valid living players with team, health, distance and privacy-safe status",
@@ -388,7 +392,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "compass", "Free", "Compass", "Team tracking and localized quick team communication.",
-        "ZBW-GAME-002, ZBW-GAME-008, ZBW-PAPI-001", "M10", "zbw-game, zbw-ui-paper, zbw-compat-api",
+        "ZBW-GAME-002, ZBW-GAME-008, ZBW-PAPI-001",
+        "M10 core/primary Paper/command/GUI; M16 placeholders; M22 full compatibility",
+        "zbw-game, zbw-command-api, zbw-command-paper, zbw-ui-api, zbw-ui-paper, zbw-compat-api",
         (
             "Provide a state-safe tracker/communications compass hotbar item",
             "Select a living enemy target manually from a permission-safe GUI",
@@ -430,7 +436,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "team-selector", "Free", "Team Selector", "Pre-game team selection with capacity, party and balance enforcement.",
-        "ZBW-GAME-002, ZBW-GAME-007, ZBW-UX-003", "M10", "zbw-game, zbw-ui-paper",
+        "ZBW-GAME-002, ZBW-GAME-007, ZBW-UX-003",
+        "M10 core/primary Paper/command/GUI; M16 placeholders; M22 full compatibility",
+        "zbw-game, zbw-command-api, zbw-command-paper, zbw-ui-api, zbw-ui-paper, zbw-compat-api",
         (
             "Open a team-selector GUI from a waiting-state hotbar item and command",
             "Display every configured team, supporting at least twelve teams without a hard-coded ceiling",
@@ -575,7 +583,9 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "swappage", "Free", "Swappage", "A mode that atomically swaps teams and their owned match state.",
-        "ZBW-GAME-002, ZBW-GAME-003, ZBW-GAME-004", "M10", "zbw-game, zbw-arena",
+        "ZBW-GAME-002, ZBW-GAME-003, ZBW-GAME-004",
+        "M10 mode registration/selection; M11 gameplay mechanics; M15 statistics; M16 placeholders; M22 full compatibility",
+        "zbw-game, zbw-arena, zbw-shop, zbw-statistics, zbw-compat-api",
         (
             "Enable Swappage per mode/arena with isolated statistics and explicit activation rules",
             "Select valid swap pairs or rotations deterministically for any supported team count",
