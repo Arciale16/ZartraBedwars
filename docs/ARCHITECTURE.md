@@ -359,3 +359,24 @@ The dependency gate in [DEPENDENCY_LICENSE_AUDIT.md](DEPENDENCY_LICENSE_AUDIT.md
 ADR-0001 through ADR-0016 accept Resource Scarcity, original content/provenance, Discord topology, 1.8 fallbacks, dependency redistribution, multi-artifact runtime/toolchains, exact dependency/provider/framework selection, declarative scripting, benchmark/quality gates, privacy/retention/visibility, network authority/security, 300-cosmetic production, clean-room addon provenance, original balancing, operational recovery and project licensing.
 
 `PRE_CODE_DECISIONS.md` maps each resolved risk to affected IDs and measurable evidence. `PRE_CODE_READINESS_REPORT.md` is the final gate. External artifact checksum/licence acquisition and executed public-release legal text remain deterministic acquisition/release evidence, not unresolved architecture or permission to reduce scope. No Java implementation existed when this baseline was accepted.
+
+## 19. M09 presentation architecture
+
+M09 materializes four acyclic modules. `zbw-command-api` depends only on `zbw-api` and
+`zbw-application`; `zbw-ui-api` depends on those modules plus the neutral command action vocabulary.
+Both compile to Java 8 and reject platform, persistence and runtime-configuration imports.
+`zbw-command-paper` and `zbw-ui-paper` compile to Java 21 and depend forward on the M07/M08 typed
+application modules; neither application module depends back on presentation. `zbw-paper-modern`
+composes and shades the two Paper adapters from M09 onward.
+
+`PresentationActions.Catalog` is the single immutable action vocabulary for command paths, GUI
+pages, permissions and Requirement IDs. A complete registry binds each action to one M07/M08 use
+case; missing, duplicate and unknown bindings fail closed. Commands and GUIs therefore share
+authorization, validation result, confirmation and audit semantics without placing arena/game rules
+in executors, renderers or listeners.
+
+External loading runs through bounded, cancellable, observable and drainable supervisors. Neutral
+GUI sessions and confirmation intents have fixed capacities and deterministic expiry. Paper adapters
+translate input and schedule only output/inventory mutations on the owner thread. M09's runtime claim
+is limited to checksum-locked Paper 1.21.1 build 133; M22 retains legacy presentation rendering and
+fallback certification.

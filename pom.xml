@@ -28,6 +28,8 @@
     <module>world/zbw-world</module>
     <module>arena/zbw-arena</module>
     <module>game/zbw-game</module>
+    <module>command/zbw-command-api</module>
+    <module>ui/zbw-ui-api</module>
   </modules>
 
   <properties>
@@ -194,6 +196,8 @@
       <activation><jdk>[21,22)</jdk></activation>
       <modules>
         <module>compatibility/zbw-compat-v1_20-v1_21</module>
+        <module>command/zbw-command-paper</module>
+        <module>ui/zbw-ui-paper</module>
         <module>platform/paper/zbw-paper-modern</module>
       </modules>
     </profile>

@@ -1,0 +1,17 @@
+{
+  "async_off_owner": true,
+  "catalog_actions": 87,
+  "certification_runner": "tools/validation/m09_paper_e2e.py",
+  "command_dispatch": true,
+  "command_gui_parity": true,
+  "duplicate_action_prevented": true,
+  "evidence_written_off_owner": true,
+  "inventory_rendering": true,
+  "primary_plugin_sha256": "5ec5a5af0c92e76d6616565a7bae1b1812b8b7bad3306eb10743f2dbbf5d90c5",
+  "runtime": "Paper 1.21.1 build 133",
+  "schema_version": 1,
+  "server_exit_code": 0,
+  "server_sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+  "success": true,
+  "test_harness_sha256": "dc397eb1449a6f03181917a4412b28f88ca8bf0047a73f9f51ce5d1dcb4fa587"
+}

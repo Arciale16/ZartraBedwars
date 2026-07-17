@@ -43,6 +43,7 @@ def validate() -> list[str]:
     modules = {row["id"]: row for row in graph["planned_production_modules"]}
     state = json.loads(read("build/milestone-state.json"))
     m08_started = state["active_milestone"] == "M08" or "M08" in state["completed_milestones"]
+    m09_started = state["active_milestone"] == "M09" or "M09" in state["completed_milestones"]
 
     if graph["policy"].get("later_milestone_dependencies_allowed") is not False:
         errors.append("module graph must explicitly prohibit later-milestone dependencies")
@@ -62,13 +63,13 @@ def validate() -> list[str]:
         "zbw-command-paper": (
             21,
             "M09",
-            ["zbw-command-api", "zbw-arena", "zbw-game"],
+            ["zbw-command-api", "zbw-ui-api", "zbw-arena", "zbw-game"],
         ),
-        "zbw-ui-api": (8, "M09", ["zbw-api", "zbw-application"]),
+        "zbw-ui-api": (8, "M09", ["zbw-api", "zbw-application", "zbw-command-api"]),
         "zbw-ui-paper": (
             21,
             "M09",
-            ["zbw-ui-api", "zbw-arena", "zbw-game", "zbw-compat-api"],
+            ["zbw-ui-api", "zbw-command-api", "zbw-arena", "zbw-game", "zbw-compat-api"],
         ),
     }
     for identifier, expected_values in expected.items():
@@ -129,8 +130,10 @@ def validate() -> list[str]:
     if "zbw-arena" not in materialized:
         errors.append("M07 implementation must materialize zbw-arena")
     premature = materialized.intersection(PRESENTATION_MODULES)
-    if premature:
+    if premature and not m09_started:
         errors.append(f"M07/M08 must not materialize M09 modules: {sorted(premature)}")
+    if m09_started and premature != PRESENTATION_MODULES:
+        errors.append("active/completed M09 must materialize all presentation modules")
     if not m08_started and "zbw-game" in materialized:
         errors.append("pre-M08 state must not materialize zbw-game")
     if m08_started and "zbw-game" not in materialized:
@@ -141,7 +144,7 @@ def validate() -> list[str]:
         "ui/zbw-ui-api",
         "ui/zbw-ui-paper",
     ):
-        if (ROOT / relative).exists():
+        if (ROOT / relative).exists() and not m09_started:
             errors.append(f"M07/M08 created M09 implementation path: {relative}")
     if not (ROOT / "arena/zbw-arena/pom.xml").is_file():
         errors.append("M07 arena module descriptor is missing")

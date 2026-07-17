@@ -43,13 +43,9 @@ def validate() -> list[str]:
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
     if state["active_milestone"] not in {"M04", "M05", "M06", "M07", "M08", None}:
         errors.append("active milestone must preserve the M04 baseline")
-    if state["completed_milestones"] not in (
-            ["M00", "M01", "M02", "M03"],
-            ["M00", "M01", "M02", "M03", "M04"],
-            ["M00", "M01", "M02", "M03", "M04", "M05"],
-            ["M00", "M01", "M02", "M03", "M04", "M05", "M06"],
-            ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"],
-            ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08"]):
+    completed = state["completed_milestones"]
+    expected = [f"M{value:02d}" for value in range(len(completed))]
+    if completed != expected or len(completed) < 4:
         errors.append("completed milestones must be the ordered M04 implementation or closure set")
 
     for module in (API_MODULE, SQL_MODULE):

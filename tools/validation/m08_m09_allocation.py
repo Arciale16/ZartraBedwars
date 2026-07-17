@@ -56,6 +56,7 @@ def validate() -> list[str]:
     modules = {row["id"]: row for row in graph["planned_production_modules"]}
     state = json.loads(read("build/milestone-state.json"))
     m08_started = state["active_milestone"] == "M08" or "M08" in state["completed_milestones"]
+    m09_started = state["active_milestone"] == "M09" or "M09" in state["completed_milestones"]
 
     game = modules.get("zbw-game")
     expected_game = {
@@ -73,9 +74,9 @@ def validate() -> list[str]:
 
     expected_presentation = {
         "zbw-command-api": (8, ["zbw-api", "zbw-application"]),
-        "zbw-command-paper": (21, ["zbw-command-api", "zbw-arena", "zbw-game"]),
-        "zbw-ui-api": (8, ["zbw-api", "zbw-application"]),
-        "zbw-ui-paper": (21, ["zbw-ui-api", "zbw-arena", "zbw-game", "zbw-compat-api"]),
+        "zbw-command-paper": (21, ["zbw-command-api", "zbw-ui-api", "zbw-arena", "zbw-game"]),
+        "zbw-ui-api": (8, ["zbw-api", "zbw-application", "zbw-command-api"]),
+        "zbw-ui-paper": (21, ["zbw-ui-api", "zbw-command-api", "zbw-arena", "zbw-game", "zbw-compat-api"]),
     }
     for identifier, (bytecode, dependencies) in expected_presentation.items():
         row = modules.get(identifier)
@@ -133,8 +134,10 @@ def validate() -> list[str]:
 
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
     premature = materialized.intersection(PRESENTATION_MODULES)
-    if premature:
+    if premature and not m09_started:
         errors.append(f"M08 must not materialize M09 modules: {sorted(premature)}")
+    if m09_started and premature != PRESENTATION_MODULES:
+        errors.append("active/completed M09 must materialize all presentation modules")
     if m08_started and "zbw-game" not in materialized:
         errors.append("active/completed M08 must materialize zbw-game")
     if not m08_started and "zbw-game" in materialized:
@@ -145,7 +148,7 @@ def validate() -> list[str]:
         "ui/zbw-ui-api",
         "ui/zbw-ui-paper",
     ):
-        if (ROOT / relative).exists():
+        if (ROOT / relative).exists() and not m09_started:
             errors.append(f"M08 created M09 implementation path: {relative}")
     if m08_started and not (ROOT / "game/zbw-game/pom.xml").is_file():
         errors.append("active/completed M08 game module descriptor is missing")

@@ -99,10 +99,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M09 — Unified command and GUI frameworks
 
+- **Implementation status:** VERIFIED on 2026-07-16; evidence in `docs/IMPLEMENTATION_M09.md`, the generated command/permission inventories and `build/evidence/m09-paper-primary.json`. This closes only M09 presentation allocations; M10 and later milestone behavior remains open.
 - **Requirements:** UX-001..003/006 plus final command, GUI, editor and confirmation presentation portions of ARENA-001..009, GAME-001..003/006/008/010, ZBW-ADDON-001..009/108..114/124..130/148..154/334..340/398..407/424..437 and ZBW-ADDON-408..423.
 - **Entry:** M03 authorization/localization and M05 async loading are ready; M07 supplies real arena/map/setup use cases with a stable typed boundary, and M08 is the first stable provider of real gameplay/lobby use cases plus closed primary Paper projections. Both use-case layers are independently tested before reusable presentation adapters are added.
 - **Deliver:** unified command tree/help/audit, page renderer/state, common actor/action/target/expiry confirmation tokens, editor and accessibility patterns; Paper command/GUI adapters invoke the M07/M08 use cases and contain no arena or gameplay rules. M09 replaces no temporary M08 surface because M08 ships no production command or GUI framework.
 - **Exit:** command/permission inventories and GUI interaction tests pass, including every arena/map/setup/game/lobby/addon/editor/confirmation mapping; command and GUI paths call identical application use cases; async data never blocks the tick thread; no feature policy is implemented in an adapter.
+- **Exit evidence:** four M09 modules preserve Java 8 neutral and Java 21 Paper boundaries; 24 M09 tests pass with zero skips; 87 command actions, 87 granular permissions and 88 parity GUI pages are complete; exact Paper 1.21.1 build 133 certifies command dispatch, inventory rendering, parity, off-owner bounded work and duplicate prevention. Clean matrix, quality, strict JavaDoc, binary/API, dependency/licence/provenance/SBOM, governance, traceability, addon catalogue, documentation and dashboard gates pass.
 
 ### M10 — Modes, matchmaking and selectors
 
