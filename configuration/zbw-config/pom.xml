@@ -8,6 +8,9 @@
   <dependencies>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-api</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-application</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-shop</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-content</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-scripting-api</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
   </dependencies>
   <profiles>

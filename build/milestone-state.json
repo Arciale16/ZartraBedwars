@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_milestone": null,
+  "active_milestone": "M11",
   "next_milestone": "M11",
   "completed_milestones": ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10"],
   "completed_hardening_milestones": ["M08.1"],

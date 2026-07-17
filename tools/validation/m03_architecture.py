@@ -51,6 +51,8 @@ def sources(module: str) -> list[Path]:
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build" / "milestone-state.json").read_text(encoding="utf-8"))
+    graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
+    materialized = {row["id"] for row in graph["materialized_build_modules"]}
     valid_active = {f"M{value:02d}" for value in range(3, 25)} | {None}
     if state["active_milestone"] not in valid_active:
         errors.append("active milestone must preserve the M03 baseline")
@@ -104,8 +106,17 @@ def validate() -> list[str]:
             internal.add(artifact)
         elif scope != "test":
             external_compile.add(f"{group}:{artifact}")
-    if internal != {"zbw-api", "zbw-application"}:
+    planned_config = next(
+        row for row in graph["planned_production_modules"] if row["id"] == "zbw-config")
+    expected_internal = {
+        dependency for dependency in planned_config["depends_on"] if dependency in materialized
+    }
+    if internal != expected_internal:
         errors.append(f"zbw-config internal dependencies drifted: {sorted(internal)}")
+    later_dependencies = expected_internal - {"zbw-api", "zbw-application"}
+    dependency_since = planned_config.get("dependency_since", {})
+    if any(dependency_since.get(dependency) != "M11" for dependency in later_dependencies):
+        errors.append("zbw-config post-M03 dependencies require an explicit M11 allocation")
     if external_compile:
         errors.append(f"zbw-config has unapproved implementation dependencies: {sorted(external_compile)}")
 
@@ -124,8 +135,6 @@ def validate() -> list[str]:
     if authorization_implementations != 1:
         errors.append("authorization checks must have one centralized M03 implementation")
 
-    graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
-    materialized = {row["id"] for row in graph["materialized_build_modules"]}
     if "zbw-config" not in materialized:
         errors.append("zbw-config is absent from materialized module graph")
     if state["active_milestone"] == "M03":

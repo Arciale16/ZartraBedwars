@@ -60,6 +60,14 @@ def m10_requirement(identifier: str) -> bool:
     return bool(match and int(match.group(1)) in M10_ADDONS)
 
 
+def m11_phase1_requirement(identifier: str) -> bool:
+    """Return whether the current M11 checkpoint supplies an implemented portion."""
+    return identifier in {
+        "ZBW-SHOP-001", "ZBW-SHOP-002", "ZBW-SHOP-003", "ZBW-SHOP-004",
+        "ZBW-CONTENT-002", "ZBW-READY-004",
+    }
+
+
 def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in {"ZBW-UX-001", "ZBW-UX-002", "ZBW-UX-003", "ZBW-UX-006"}:
         return "VERIFIED", "M09 implementation, tests, documentation and Paper evidence complete"
@@ -67,6 +75,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M09 presentation portion verified; later requirement allocations remain visible"
     if m10_requirement(identifier):
         return "PARTIAL", "M10 shared-server framework verified; M11/M15/M16/M17/M20/M22 allocations remain"
+    if m11_phase1_requirement(identifier):
+        return "PARTIAL", "M11 Phase 1 foundation implemented; later M11 and retained milestone allocations remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -121,19 +131,20 @@ def row(feature: str, identifier: str, category: str, planned: str,
         status: str, blocker: str) -> dict[str, str]:
     m09 = presentation_requirement(identifier)
     m10 = m10_requirement(identifier)
+    m11 = m11_phase1_requirement(identifier)
     return {
         "Feature": feature.replace("|", "\\|"), "Requirement ID": identifier,
         "Category": category, "Planned milestone": planned, "Current status": status,
-        "Core implementation": "M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability"),
-        "Paper implementation": "M10 primary projection" if m10 else ("M09 primary adapter verified" if m09 else "See traceability"),
-        "Command": "Generated M10 action path" if m10 else ("Generated action path" if m09 else "See traceability"),
-        "GUI": "Generated M10 parity page" if m10 else ("Generated parity page" if m09 else "See traceability"),
-        "Permission": "M03 execution revalidation + M10 node" if m10 else ("M03 revalidation + granular node" if m09 else "See traceability"),
-        "Tests": "M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence"),
-        "Documentation": "M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability"),
-        "Configurable or hardcoded": "Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement"),
+        "Core implementation": "M11 Phase 1 typed foundation" if m11 else ("M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability")),
+        "Paper implementation": "Deferred within M11" if m11 else ("M10 primary projection" if m10 else ("M09 primary adapter verified" if m09 else "See traceability")),
+        "Command": "M09 framework; feature actions later M11" if m11 else ("Generated M10 action path" if m10 else ("Generated action path" if m09 else "See traceability")),
+        "GUI": "M09 framework; feature pages later M11" if m11 else ("Generated M10 parity page" if m10 else ("Generated parity page" if m09 else "See traceability")),
+        "Permission": "Central authorization contract" if m11 else ("M03 execution revalidation + M10 node" if m10 else ("M03 revalidation + granular node" if m09 else "See traceability")),
+        "Tests": "M11 Phase 1 contract/unit evidence" if m11 else ("M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence")),
+        "Documentation": "M11 Phase 1 implementation/API guides" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")),
+        "Configurable or hardcoded": "Typed replaceable catalog/policy" if m11 else ("Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement")),
         "Blocker or deferred dependency": blocker,
-        "Notes": "Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones"),
+        "Notes": "Phase 1 only; later M11 behavior is not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
     }
 
 
@@ -152,7 +163,7 @@ def render() -> str:
         "This generated file is the authoritative human-readable project dashboard. Run",
         "`python tools/validation/feature_dashboard.py` to reject stale or contradictory rows.",
         "A requirement can remain `PARTIAL` after one allocated portion is verified; its blocker column",
-        "identifies remaining ownership. M10 framework verification never implies later mechanics.",
+        "identifies remaining ownership. M10 framework and M11 Phase 1 verification never imply later mechanics.",
         "",
         "## Project totals",
         "",
@@ -176,7 +187,8 @@ def render() -> str:
         "M00–M10 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
-        "M11 and later ownership remains deferred and visible below.",
+        "M11 is active at its Phase 1 checkpoint: three neutral foundation modules are materialized,",
+        "while the scripting engine, runtime mechanics, presentation and later ownership remain deferred.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])
