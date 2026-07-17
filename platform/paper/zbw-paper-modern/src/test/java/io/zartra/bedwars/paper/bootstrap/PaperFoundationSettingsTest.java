@@ -32,13 +32,16 @@ final class PaperFoundationSettingsTest {
                 2, 32, 8, 64, Duration.ofMillis(1500)));
     }
 
-    @Test void primaryBootstrapDescriptorIsExactAndGameplayFree() throws Exception {
+    @Test void primaryBootstrapDescriptorDeclaresOnlyM09PresentationEntrypoints() throws Exception {
         try (InputStream stream = getClass().getClassLoader().getResourceAsStream("plugin.yml")) {
             final String descriptor = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
             assertTrue(descriptor.contains("ZartraBedWarsPlugin"));
             assertTrue(descriptor.contains("api-version: '1.21'"));
             assertTrue(descriptor.contains("load: STARTUP"));
-            assertTrue(!descriptor.contains("commands:"));
+            assertTrue(descriptor.contains("commands:"));
+            assertTrue(descriptor.contains("  zbw:"));
+            assertTrue(descriptor.contains("  deposit:"));
+            assertTrue(!descriptor.contains("permissions:"));
         }
     }
 }

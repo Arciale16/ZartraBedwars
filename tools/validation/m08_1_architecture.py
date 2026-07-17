@@ -44,17 +44,21 @@ def validate() -> list[str]:
     """Return every M08.1 architecture, scope and evidence violation."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    expected = [f"M{value:02d}" for value in range(0, 9)]
-    if state.get("active_milestone") is not None or state.get("completed_milestones") != expected:
-        errors.append("sequential milestone state must remain completed through M08 only")
+    completed = state.get("completed_milestones", [])
+    expected = [f"M{value:02d}" for value in range(len(completed))]
+    if (state.get("active_milestone") not in (None, f"M{len(completed):02d}")
+            or completed != expected or len(completed) < 9):
+        errors.append("sequential milestone state must include the completed M08 baseline")
     if state.get("completed_hardening_milestones") != ["M08.1"]:
         errors.append("milestone state must record completed M08.1 hardening")
 
     graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
     materialized = {row["id"] for row in graph["materialized_build_modules"]}
     later = {"zbw-command-api", "zbw-command-paper", "zbw-ui-api", "zbw-ui-paper"}
-    if materialized.intersection(later):
+    if materialized.intersection(later) and "M09" not in completed:
         errors.append("M08.1 must not materialize M09 presentation modules")
+    if "M09" in completed and materialized.intersection(later) != later:
+        errors.append("completed M09 must materialize all presentation modules")
     if "zbw-game" not in materialized or "zbw-arena" not in materialized:
         errors.append("M08.1 requires the existing arena and game modules")
 

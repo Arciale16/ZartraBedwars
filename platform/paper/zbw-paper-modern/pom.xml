@@ -11,6 +11,8 @@
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-world</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-compat-v1_20-v1_21</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-game</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-command-paper</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-ui-paper</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.mirror.paper</groupId><artifactId>paper-api</artifactId><version>${paper-api-mirror.version}</version><scope>provided</scope></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
   </dependencies>

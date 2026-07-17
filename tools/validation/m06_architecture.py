@@ -63,13 +63,11 @@ def validate() -> list[str]:
     """Return all M06 architecture, boundary, and certification inconsistencies."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    through_m05 = [f"M{value:02d}" for value in range(0, 6)]
-    through_m06 = through_m05 + ["M06"]
-    through_m07 = through_m06 + ["M07"]
-    valid_states = (("M06", through_m05), (None, through_m06),
-                    ("M07", through_m06), (None, through_m07),
-                    ("M08", through_m07), (None, through_m07 + ["M08"]))
-    if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
+    completed = state["completed_milestones"]
+    expected = [f"M{value:02d}" for value in range(len(completed))]
+    active = state["active_milestone"]
+    if (completed != expected or len(completed) < 6
+            or active not in (None, f"M{len(completed):02d}")):
         errors.append("milestone state must represent active or completed M06")
 
     graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))
@@ -158,7 +156,7 @@ def validate() -> list[str]:
         for token in ("ZartraBedWarsPlugin", "api-version: '1.21'", "load: STARTUP"):
             if token not in content:
                 errors.append(f"Paper descriptor lacks exact token: {token}")
-        if "commands:" in content:
+        if "commands:" in content and "M09" not in completed:
             errors.append("M06 bootstrap must not expose later-milestone commands")
 
     evidence_path = ROOT / "build/evidence/m06-paper-primary.json"

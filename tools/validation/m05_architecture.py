@@ -53,17 +53,11 @@ def validate() -> list[str]:
     """Return all M05 architecture violations."""
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    valid_states = (
-        ("M05", ["M00", "M01", "M02", "M03", "M04"]),
-        ("M06", ["M00", "M01", "M02", "M03", "M04", "M05"]),
-        ("M07", ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
-        ("M08", ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"]),
-        (None, ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08"]),
-    )
-    if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
+    completed = state["completed_milestones"]
+    expected = [f"M{value:02d}" for value in range(len(completed))]
+    active = state["active_milestone"]
+    if (completed != expected or len(completed) < 5
+            or active not in (None, f"M{len(completed):02d}")):
         errors.append("milestone state must represent M05 implementation or completed closure")
 
     for module in MODULES:

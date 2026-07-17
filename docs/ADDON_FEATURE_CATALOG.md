@@ -1055,6 +1055,10 @@ The `Trace entry` column is the canonical Part III traceability-matrix row. `PRD
 
 `python tools/coverage/generate_addon_feature_catalog.py --check` is the required drift check. It validates inventory cardinality, tier split, unique append-only ID allocation, nonempty atomic feature lists, complete mapping surfaces and byte-for-byte generated output. `python tools/coverage/generate_master_prompt_coverage.py --check` validates the combined Master Prompt plus owner-supplied-addon baseline. `python tools/coverage/validate_preimplementation_decisions.py --check` validates the RC-072..076 IDs, ADRs, required catalogues, published totals and no-Java gate.
 
+### M09 verified presentation overlay
+
+The 77 catalogue rows in `ZBW-ADDON-001..009`, `108..114`, `124..130`, `148..154`, `334..340`, `398..407` and `408..437` retain every atomic behavior and mapping above. Their M09 command, GUI, editor and confirmation cells are implemented by the 87-action shared catalogue, machine-readable inventories and exact Paper evidence in `build/evidence/m09-paper-primary.json`. M07/M08 remain the only owners of feature rules. PlaceholderAPI, distributed, provider, legacy compatibility and other explicitly later cells remain open in their assigned milestones; this overlay does not merge or weaken a catalogue row.
+
 ## 6. Resolved policy decisions and remaining execution gates
 
 1. **Private Games modifier:** RC-072 is resolved by the original RESOURCE SCARCITY requirements `ZBW-ADDON-464..473`, including independent native/custom resource multipliers and five presets.

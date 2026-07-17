@@ -4,4 +4,12 @@ main: io.zartra.bedwars.paper.bootstrap.ZartraBedWarsPlugin
 api-version: '1.21'
 load: STARTUP
 authors: [Zartra]
-description: ZartraBedWars M08 game engine and primary Paper projection foundation
+description: ZartraBedWars M09 unified command and GUI framework foundation
+commands:
+  zbw:
+    description: ZartraBedWars unified command tree
+    usage: /zbw help
+    aliases: [bedwars, bw]
+  deposit:
+    description: Deposit eligible BedWars resources
+    usage: /deposit [hand|resources|all]

@@ -54,12 +54,8 @@ def validate() -> list[str]:
     if state["active_milestone"] not in {"M03", "M04", "M05", "M06", "M07", "M08", None}:
         errors.append("active milestone must preserve the M03 baseline")
     completed = state["completed_milestones"]
-    if completed not in (["M00", "M01", "M02"], ["M00", "M01", "M02", "M03"],
-                         ["M00", "M01", "M02", "M03", "M04"],
-                         ["M00", "M01", "M02", "M03", "M04", "M05"],
-                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06"],
-                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07"],
-                         ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08"]):
+    expected = [f"M{value:02d}" for value in range(len(completed))]
+    if completed != expected or len(completed) < 3:
         errors.append("completed milestones must be the ordered M03 implementation or closure set")
 
     marker = re.compile(

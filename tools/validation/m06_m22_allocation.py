@@ -47,7 +47,8 @@ def validate() -> list[str]:
         "zbw-paper-modern": (
             21,
             "M06",
-            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game"],
+            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
+             "zbw-command-paper", "zbw-ui-paper"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -59,8 +60,9 @@ def validate() -> list[str]:
         if actual != (bytecode, milestone, dependencies):
             errors.append(f"{identifier}: incorrect M06 allocation {actual}")
     paper = modules.get("zbw-paper-modern", {})
-    if paper.get("dependency_since") != {"zbw-game": "M08"}:
-        errors.append("zbw-paper-modern: game dependency must activate only in M08")
+    if paper.get("dependency_since") != {
+            "zbw-game": "M08", "zbw-command-paper": "M09", "zbw-ui-paper": "M09"}:
+        errors.append("zbw-paper-modern: later dependencies must activate only in M08/M09")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)
@@ -85,13 +87,11 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    through_m05 = [f"M{value:02d}" for value in range(0, 6)]
-    through_m06 = through_m05 + ["M06"]
-    through_m07 = through_m06 + ["M07"]
-    valid_states = (("M06", through_m05), (None, through_m06),
-                    ("M07", through_m06), (None, through_m07),
-                    ("M08", through_m07), (None, through_m07 + ["M08"]))
-    if (state["active_milestone"], state["completed_milestones"]) not in valid_states:
+    completed = state["completed_milestones"]
+    expected_completed = [f"M{value:02d}" for value in range(len(completed))]
+    active = state["active_milestone"]
+    if (completed != expected_completed or len(completed) < 6
+            or active not in (None, f"M{len(completed):02d}")):
         errors.append("milestone state must represent active M06 or completed M06 closure")
 
     milestones = read("docs/MILESTONES.md")
