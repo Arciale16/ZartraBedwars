@@ -233,6 +233,43 @@ public final class PresentationActions {
             return Collections.unmodifiableList(new ArrayList<Definition>(unique.values()));
         }
 
+        /** @return additive immutable M10 selector, queue, mode and spectator actions */
+        public static List<Definition> m10() {
+            final List<Definition> definitions = new ArrayList<Definition>();
+            addM10(definitions, "selector", new String[] {"quick-join", "arena", "mode", "map",
+                    "layout", "team-size"}, "selector", false,
+                    "ZBW-GAME-007", "ZBW-CONTENT-003");
+            addM10(definitions, "queue", new String[] {"join", "leave", "status"},
+                    "matchmaking.queue", false, "ZBW-GAME-007");
+            addM10(definitions, "spectator", new String[] {"enter", "leave", "target", "next",
+                    "previous", "status", "options"}, "spectator", false,
+                    merge(new String[] {"ZBW-GAME-009"}, range("ZBW-ADDON-", 92, 101),
+                            range("ZBW-ADDON-", 115, 123)));
+            addM10(definitions, "compass", new String[] {"track", "communications"},
+                    "compass", false, range("ZBW-ADDON-", 131, 140));
+            addM10(definitions, "team-selector", new String[] {"open", "select", "clear", "status"},
+                    "team.selector", false, range("ZBW-ADDON-", 155, 163));
+            addM10(definitions, "admin-matchmaking", new String[] {"diagnostics", "reservations"},
+                    "admin.matchmaking", false, "ZBW-GAME-007");
+            addM10(definitions, "admin-mode", new String[] {"list", "validate", "enable", "disable"},
+                    "admin.mode", true, merge(new String[] {"ZBW-GAME-004", "ZBW-GAME-005",
+                            "ZBW-CONTENT-003"}, range("ZBW-ADDON-", 236, 244)));
+            final Map<ActionId, Definition> unique = new LinkedHashMap<ActionId, Definition>();
+            for (Definition definition : definitions) {
+                if (unique.put(definition.id(), definition) != null) {
+                    throw new IllegalStateException("duplicate M10 action " + definition.id());
+                }
+            }
+            return Collections.unmodifiableList(new ArrayList<Definition>(unique.values()));
+        }
+
+        /** @return immutable M09 baseline followed by additive M10 actions */
+        public static List<Definition> throughM10() {
+            final List<Definition> result = new ArrayList<Definition>(standard());
+            result.addAll(m10());
+            return Collections.unmodifiableList(result);
+        }
+
         private static void add(final List<Definition> result, final String family,
                                 final String[] operations, final String permissionFamily,
                                 final String... requirementIds) {
@@ -249,12 +286,40 @@ public final class PresentationActions {
             }
         }
 
+        private static void addM10(final List<Definition> result, final String family,
+                                   final String[] operations, final String permissionFamily,
+                                   final boolean administrative, final String... requirementIds) {
+            for (String operation : operations) {
+                final boolean destructive = administrative && operation.matches("enable|disable");
+                final String commandFamily = family.startsWith("admin-")
+                        ? "admin " + family.substring("admin-".length()) : family;
+                result.add(new Definition(ActionId.of("m10/" + family + "/" + operation),
+                        "/zbw " + commandFamily + " " + operation,
+                        GuiPageId.of("zartra", "m10/" + family + "/" + operation),
+                        PermissionNode.of("zartrabedwars." + permissionFamily + "."
+                                + operation.replace('-', '.')),
+                        destructive, java.util.Arrays.asList(requirementIds)));
+            }
+        }
+
         private static String[] range(final String prefix, final int first, final int last) {
             final String[] values = new String[last - first + 1];
             for (int value = first; value <= last; value++) {
                 values[value - first] = String.format(java.util.Locale.ROOT, "%s%03d", prefix, value);
             }
             return values;
+        }
+
+        private static String[] merge(final String[]... groups) {
+            int size = 0;
+            for (String[] group : groups) { size += group.length; }
+            final String[] result = new String[size];
+            int index = 0;
+            for (String[] group : groups) {
+                System.arraycopy(group, 0, result, index, group.length);
+                index += group.length;
+            }
+            return result;
         }
     }
 }

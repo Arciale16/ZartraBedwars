@@ -48,6 +48,21 @@ class PresentationActionsTest {
         assertThrows(IllegalArgumentException.class, () -> PresentationActions.Response.simple(PresentationActions.Response.Status.SUCCESS, "presentation.success", -1));
     }
 
+    @Test void m10CatalogIsAdditiveGranularAndKeepsM09BaselineStable() {
+        List<PresentationActions.Definition> m10 = PresentationActions.Catalog.m10();
+        assertEquals(28, m10.size());
+        assertEquals(87, PresentationActions.Catalog.standard().size());
+        assertEquals(115, PresentationActions.Catalog.throughM10().size());
+        assertEquals(m10.size(), m10.stream().map(PresentationActions.Definition::id).distinct().count());
+        assertTrue(m10.stream().anyMatch(value -> value.commandPath().equals("/zbw selector quick-join")));
+        assertTrue(m10.stream().anyMatch(value -> value.commandPath().equals("/zbw queue leave")));
+        assertTrue(m10.stream().anyMatch(value -> value.commandPath().equals("/zbw spectator target")));
+        assertTrue(m10.stream().anyMatch(value -> value.permission().toString()
+                .equals("zartrabedwars.admin.matchmaking.reservations")));
+        assertTrue(m10.stream().filter(PresentationActions.Definition::destructive)
+                .allMatch(value -> value.commandPath().startsWith("/zbw admin mode")));
+    }
+
     private static PresentationActions.Request request(PresentationActions.ActionId id) { return new PresentationActions.Request(subject(), id, DefinitionId.of("zartra", "target"), 0, CorrelationId.random(), CommandModel.Arguments.empty(), PresentationActions.Surface.COMMAND); }
     private static AuthorizationSubject subject() { return AuthorizationSubject.of(AuthorizationSubject.Kind.PLAYER, DefinitionId.of("zartra", "player/test")); }
 }

@@ -77,6 +77,30 @@ class UnifiedCommandTreeFactoryTest {
         assertEquals(CommandModel.Result.Status.INVALID, malformed.status());
     }
 
+    @Test void m10CommandsAndGeneratedGuiPagesHaveExactParity() {
+        List<PresentationActions.Definition> catalog = PresentationActions.Catalog.m10();
+        PresentationActions.Registry registry = new PresentationActions.Registry(catalog,
+                bindings(catalog, request -> CompletableFuture.completedFuture(
+                        PresentationActions.Response.simple(PresentationActions.Response.Status.SUCCESS,
+                                "m10.action.success", request.revision() + 1))));
+        Map<String, CommandModel.Node> roots = new UnifiedCommandTreeFactory(registry,
+                confirmations(catalog)).create(catalog);
+        List<CommandFramework.InventoryEntry> inventory = new ArrayList<CommandFramework.InventoryEntry>();
+        for (CommandModel.Node root : roots.values()) { inventory.addAll(framework(root).inventory()); }
+        List<UiModel.PageDefinition> pages = AdminDashboard.pages(catalog,
+                definition -> new UiModel.PageDefinition(definition.pageId(),
+                        MessageKey.of("ui.m10.title"), (viewer, query) ->
+                        CompletableFuture.completedFuture(new UiModel.PageState(1,
+                                UiModel.PageState.Status.EMPTY, 0, 1,
+                                Collections.<UiModel.Component>emptyList(),
+                                MessageKey.of("ui.m10.empty"))),
+                        Collections.singletonList(UiModel.Interaction.PRIMARY)));
+        assertTrue(PresentationParity.validate(catalog, inventory, pages).valid());
+        assertEquals(CommandModel.Result.Status.SUCCESS, framework(roots.get("zbw"))
+                .execute(player(), java.util.Arrays.asList("queue", "status"))
+                .result().toCompletableFuture().join().status());
+    }
+
     private static Map<PresentationActions.ActionId, PresentationActions.UseCase> bindings(List<PresentationActions.Definition> definitions, PresentationActions.UseCase useCase) { Map<PresentationActions.ActionId, PresentationActions.UseCase> result = new LinkedHashMap<>();
      for (PresentationActions.Definition definition : definitions) { result.put(definition.id(), useCase);
      } return result;
