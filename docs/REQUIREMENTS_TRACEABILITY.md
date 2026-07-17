@@ -596,3 +596,11 @@ authoritative ownership split and prevents a framework registration from closing
 | M10 / ZBW-ADDON-131..140 | Compass tracking and quick-communication core, command/GUI and primary Paper behavior | M16 placeholders; M22 full compatibility |
 | M10 / ZBW-ADDON-155..163 | Party-aware Team Selector core, command/GUI and primary Paper behavior | M16 placeholders; M22 full compatibility |
 | M10 / ZBW-ADDON-236..244 | Swappage registration, selection metadata and explicit deferred binding only | M11 complete swap gameplay and owned-component transfer; M15 isolated statistics; M16 placeholders; M22 full compatibility |
+## M10 implementation evidence overlay
+
+| Allocation | Implementation | Tests and documentation | Deferred completion |
+|---|---|---|---|
+| `ZBW-GAME-004/005`, `ZBW-CONTENT-003`, `ZBW-ADDON-236..244` registration/selection | `zbw-game` mode/selector packages; additive M09 actions | `ModeSelectorM10Test`, `M10BranchCoverageTest`; `API_M10.md`, `MODE_FRAMEWORK_M10.md`, `SELECTORS_M10.md` | M11 mechanics, M15 statistics, M16 placeholders, M22 compatibility |
+| `ZBW-GAME-007` shared server | bounded queues, fair policy, arena availability/reservations and M08 assignment port | `MatchmakingM10Test`, `M10BranchCoverageTest`; matching framework/admin/extension guides | M20 proxy-wide routing and durable distributed recovery |
+| `ZBW-GAME-009`, `ZBW-ADDON-092..101/115..123` | spectator lifecycle, restrictions, restoration and owner-thread projection | `SpectatorAddonM10Test`, `M10PaperProjectionTest`; `SPECTATOR_FRAMEWORK_M10.md` | M16 placeholders, M17 evidence tools, M22 compatibility |
+| `ZBW-ADDON-131..140/155..163` | Compass communication/tracking and party-safe Team Selector | `SpectatorAddonM10Test`, `M10BranchCoverageTest`; generated inventories | M16 placeholders and M22 compatibility |

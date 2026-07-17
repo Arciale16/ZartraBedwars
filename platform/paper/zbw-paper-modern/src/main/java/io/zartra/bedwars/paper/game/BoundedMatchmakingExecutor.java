@@ -42,13 +42,16 @@ public final class BoundedMatchmakingExecutor implements AutoCloseable {
         if (timeout == null || timeout.isNegative() || timeout.isZero()) {
             throw new IllegalArgumentException("timeout must be positive");
         }
-        if (closed.get()) { rejected.incrementAndGet(); throw new RejectedExecutionException("matchmaking executor closed"); }
+        if (closed.get()) { rejected.incrementAndGet();
+        throw new RejectedExecutionException("matchmaking executor closed");
+        }
         final CompletableFuture<T> result = new CompletableFuture<>();
         final AtomicBoolean terminal = new AtomicBoolean();
         inFlight.incrementAndGet();
         final var deadline = deadlines.schedule(() -> {
             if (terminal.compareAndSet(false, true)) {
-                timedOut.incrementAndGet(); inFlight.decrementAndGet();
+                timedOut.incrementAndGet();
+                inFlight.decrementAndGet();
                 result.completeExceptionally(new java.util.concurrent.TimeoutException("matchmaking calculation timed out"));
             }
         }, timeout.toMillis(), TimeUnit.MILLISECONDS);
@@ -57,16 +60,23 @@ public final class BoundedMatchmakingExecutor implements AutoCloseable {
                 try {
                     final T value = work.get();
                     if (terminal.compareAndSet(false, true)) {
-                        deadline.cancel(false); inFlight.decrementAndGet(); result.complete(value);
+                        deadline.cancel(false);
+                        inFlight.decrementAndGet();
+                        result.complete(value);
                     }
                 } catch (RuntimeException failure) {
                     if (terminal.compareAndSet(false, true)) {
-                        deadline.cancel(false); inFlight.decrementAndGet(); result.completeExceptionally(failure);
+                        deadline.cancel(false);
+                        inFlight.decrementAndGet();
+                        result.completeExceptionally(failure);
                     }
                 }
             });
         } catch (RejectedExecutionException failure) {
-            deadline.cancel(false); inFlight.decrementAndGet(); rejected.incrementAndGet(); throw failure;
+            deadline.cancel(false);
+            inFlight.decrementAndGet();
+            rejected.incrementAndGet();
+            throw failure;
         }
         return result;
     }
@@ -80,14 +90,19 @@ public final class BoundedMatchmakingExecutor implements AutoCloseable {
     /** Stops admission and attempts a bounded drain. */
     public boolean close(final Duration timeout) {
         if (timeout == null || timeout.isNegative()) { throw new IllegalArgumentException("timeout must not be negative"); }
-        closed.set(true); workers.shutdown(); deadlines.shutdown();
+        closed.set(true);
+        workers.shutdown();
+        deadlines.shutdown();
         try {
             final boolean drained = workers.awaitTermination(timeout.toMillis(), TimeUnit.MILLISECONDS);
             if (!drained) { workers.shutdownNow(); }
             deadlines.shutdownNow();
             return drained && inFlight.get() == 0;
         } catch (InterruptedException interruption) {
-            Thread.currentThread().interrupt(); workers.shutdownNow(); deadlines.shutdownNow(); return false;
+            Thread.currentThread().interrupt();
+            workers.shutdownNow();
+            deadlines.shutdownNow();
+            return false;
         }
     }
     @Override public void close() { close(Duration.ofSeconds(5)); }
@@ -96,7 +111,8 @@ public final class BoundedMatchmakingExecutor implements AutoCloseable {
         final AtomicInteger sequence = new AtomicInteger();
         return runnable -> {
             final Thread thread = new Thread(runnable, prefix + '-' + sequence.incrementAndGet());
-            thread.setDaemon(true); return thread;
+            thread.setDaemon(true);
+            return thread;
         };
     }
 }

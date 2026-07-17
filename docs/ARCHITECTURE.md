@@ -404,3 +404,11 @@ lifecycle, admission, team-capacity or victory rules. Selectors and spectator in
 same typed handlers from command and GUI adapters. Paper listeners render or mutate platform state
 only on the owner thread; bounded off-owner supervisors may compute matches but must reject stale or
 duplicate completion before owner-thread application.
+## M10 selector, matchmaking, mode and spectator boundary
+
+M10 materializes no new module. Java-8-neutral policy and use cases reside in `zbw-game`; the
+existing M09 command/UI modules adapt the same typed handlers, and Java-21 `zbw-paper-modern`
+translates platform state behind owner-thread guards. Dependency direction remains Paper/M09
+adapters to `zbw-game` to existing M08/M07 contracts, never the reverse. Local queues and
+reservations are bounded and fail closed on restart; M20 retains durable/distributed orchestration.
+Mode metadata and deferred bindings are M10, while every named-mode mechanic remains M11.
