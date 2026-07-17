@@ -1,0 +1,21 @@
+{
+  "bounded_off_owner_matching": true,
+  "catalog_actions": 115,
+  "certification_runner": "tools/validation/m10_paper_e2e.py",
+  "command_gui_parity": true,
+  "deterministic_cleanup": true,
+  "duplicate_action_prevented": true,
+  "gui_queue_action": true,
+  "owner_thread_projection": true,
+  "primary_plugin_sha256": "28dafbef792377e4090f2ca5398110744e2a494e6868dda67f04ab6b8b600f51",
+  "queue_command_dispatch": true,
+  "runtime": "Paper 1.21.1 build 133",
+  "schema_version": 1,
+  "selector_click": true,
+  "selector_rendering": true,
+  "server_exit_code": 0,
+  "server_sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
+  "stale_view_rejected": true,
+  "success": true,
+  "test_harness_sha256": "02ea8db095f021115a285570089b267dda0a7f36b9638a14a0ae000c2aaf91b2"
+}

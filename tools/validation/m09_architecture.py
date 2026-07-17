@@ -33,8 +33,9 @@ def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
     expected_completed = [f"M{value:02d}" for value in range(10)]
-    if state.get("active_milestone") is not None:
-        errors.append("M09 completion must leave no active milestone")
+    valid_active = {f"M{value:02d}" for value in range(10, 25)} | {None}
+    if state.get("active_milestone") not in valid_active:
+        errors.append("M09 completion may be followed only by an ordered later milestone")
     if state.get("completed_milestones") != expected_completed:
         errors.append("M09 completion must record the ordered M00..M09 closure")
     graph = json.loads((ROOT / "build/module-graph.json").read_text(encoding="utf-8"))

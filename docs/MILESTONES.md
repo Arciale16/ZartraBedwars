@@ -106,18 +106,19 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** command/permission inventories and GUI interaction tests pass, including every arena/map/setup/game/lobby/addon/editor/confirmation mapping; command and GUI paths call identical application use cases; async data never blocks the tick thread; no feature policy is implemented in an adapter.
 - **Exit evidence:** four M09 modules preserve Java 8 neutral and Java 21 Paper boundaries; 24 M09 tests pass with zero skips; 87 command actions, 87 granular permissions and 88 parity GUI pages are complete; exact Paper 1.21.1 build 133 certifies command dispatch, inventory rendering, parity, off-owner bounded work and duplicate prevention. Clean matrix, quality, strict JavaDoc, binary/API, dependency/licence/provenance/SBOM, governance, traceability, addon catalogue, documentation and dashboard gates pass.
 
-### M10 — Modes, matchmaking and selectors
+### M10 — Selectors, matchmaking, mode selection and spectator framework
 
-- **Requirements:** GAME-004/005/007/009; CONTENT-003; ZBW-ADDON-092..101, 115..123, 131..140, 155..163, 236..244.
-- **Entry:** M08/M09 complete.
-- **Deliver:** standard/custom mode SPI, all named modes, selectors/queues/spectator/staff controls on shared server.
-- **Exit:** gameplay matrix passes for every mode/team size and rejoin/disconnect; each mode has independent config/stats/shop/generator/upgrade/event/placeholder contracts.
+- **Requirements:** M10 completion portions of ZBW-GAME-004/005/007/009 and ZBW-CONTENT-003; ZBW-ADDON-092..101, 115..123, 131..140 and 155..163; registration/selection portions only of ZBW-ADDON-236..244. M10 implements the shared-server behavior of the non-mode addon rows except the explicitly split M16 PlaceholderAPI, M20 proxy-routing and M22 legacy-compatibility cells.
+- **Entry:** M08/M08.1 game and configurable-layout foundations and M09 unified command/GUI frameworks are complete; the deterministic pre-implementation governance, traceability, catalogue and dashboard gates pass.
+- **Deliver:** Java-8-neutral standard/custom mode registration and selection SPI with explicit deferred bindings for every later named mode, including Swappage; typed selectors; deterministic bounded shared-server queues, reservations and M08 assignment delegation; party-aware team selection; spectator lifecycle/options/menu; tracker and quick communications. M09 commands and GUIs remain adapters over the same typed use cases.
+- **Exit:** selector, queue, reservation, party, spectator, Compass and Team Selector matrices pass for standard and custom layouts, concurrency, rejoin/disconnect, cleanup and exact Paper 1.21.1 projection. Mode registration/configuration/event contracts and deferred bindings are independently validated. All named-mode gameplay mechanics, including Swappage, and mode-specific shop/generator/upgrade/balance behavior remain M11; statistics remain M15; PlaceholderAPI remains M16; proxy-wide routing remains M20; legacy compatibility remains M22. No later-milestone mechanic may be reported complete from framework registration alone.
+- **Evidence:** `docs/IMPLEMENTATION_M10.md`, M10 framework/API guides, generated 115-action command and permission inventories, API/JavaDoc baselines, quality reports and exact Paper primary-runtime evidence. M11 remains unstarted.
 
 ### M11 — Shop, item, generator and upgrade platform
 
-- **Requirements:** SHOP-001..007; CONTENT-002/003; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452.
+- **Requirements:** SHOP-001..007; CONTENT-002/003; completion portions of ZBW-ADDON-236..244; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452.
 - **Entry:** M08 event engine, M09 UI and M10 mode SPI complete.
-- **Deliver:** catalog/purchase/tender services, Quick Buy, generators, upgrades/traps and all original utility items/custom action SPI.
+- **Deliver:** catalog/purchase/tender services, Quick Buy, generators, upgrades/traps, all named-mode gameplay mechanics including Swappage, and all original utility items/custom action SPI.
 - **Exit:** item/purchase matrices, atomicity/exploit and high-GUI-load tests pass; scripts/actions meet sandbox policy; admin/API/config/docs surfaces complete.
 
 ### M12 — Progression transaction core
