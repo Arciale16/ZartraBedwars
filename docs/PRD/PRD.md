@@ -116,12 +116,21 @@ Java implementation is additionally gated on 100% `COVERED` atomic coverage acro
 
 ### 4.5 Shop, upgrades, generators and items (7)
 
+**Milestone ownership clarification:** M11 owns the platform-neutral shop, match-resource tender,
+purchase, generator, upgrade/trap, utility-item and declarative-action behavior; its feature-specific
+commands and GUIs reuse the already verified M09 frameworks, and its platform projection is limited
+to the primary Paper 1.21.1 runtime. M12 retains persistent progression/virtual-currency ledgers,
+M15 statistics, M16 PlaceholderAPI, M19/M20 distributed coordination and proxy delivery, M21
+Vault/NPC/hologram providers, and M22 legacy/full-matrix compatibility. A requirement in this
+section reaches final completion only after every allocated portion passes; this split does not
+remove or weaken any acceptance item.
+
 | ID | Priority | Requirement and acceptance scope | Dependencies | Verify | Profile |
 |---|---|---|---|---|---|
 | ZBW-SHOP-001 | MUST | Shop implements Quick Buy/favourites/editor; default and custom categories; blocks/melee/armor/tools/ranged/potions/utility; rotating/seasonal/custom/hidden/disabled/limited items; per-mode/arena/group/team catalogs. | GAME-005, UX-001 | E2E | FULL |
 | ZBW-SHOP-002 | MUST | Configure category/icon/slot/lore/name/order/visibility/permission/condition, currencies/discounts/rules/cooldowns and animations/sounds/particles/messages; GUI supplies search, paging, category/back/confirmation, purchase history, favourites, shift/number/hotkeys, drag-drop Quick Buy and previews. | SHOP-001 | GUI E2E | FULL |
-| ZBW-SHOP-003 | MUST | Purchase service supports normal/bulk/confirmed purchase, full inventory, atomic resource removal, insufficiency, player/team/arena limits, cooldowns and custom conditions; API registers categories/items/prices/validators/restrictions/events/GUI extensions. | SHOP-001, PROG-004 | concurrency/ST | FULL |
-| ZBW-SHOP-004 | MUST | Currency tender supports iron/gold/diamond/emerald, custom/multiple/virtual, Vault, command and permission sources through atomic quoted transactions. | SHOP-003, INT-002, PROG-004 | UT/IT/ST | FULL |
+| ZBW-SHOP-003 | MUST | Purchase service supports normal/bulk/confirmed purchase, full inventory, atomic resource removal, insufficiency, player/team/arena limits, cooldowns and custom conditions; API registers categories/items/prices/validators/restrictions/events/GUI extensions. | SHOP-001; M11 match-resource transactions do not depend on the M12 persistent currency implementation; PROG-004 is required when a persistent/virtual tender is selected | concurrency/ST | FULL |
+| ZBW-SHOP-004 | MUST | Currency tender supports iron/gold/diamond/emerald, custom/multiple/virtual, Vault, command and permission sources through atomic quoted transactions. M11 supplies the quote/tender SPI and match-resource providers; M12 supplies persistent/virtual currency ledger providers and M21 supplies Vault adapters. | SHOP-003; PROG-004 for persistent/virtual providers; INT-002 for Vault providers | UT/IT/ST | FULL |
 | ZBW-SHOP-005 | MUST | Upgrade shop implements sharpness, protection, haste, forge, heal pool, dragon buff, queued/multiple traps and custom command/potion/generator/permission/API upgrades; levels/prices/icons/lore/messages/requirements/restrictions/permissions/animations/layout are configurable with preview/progress/search. | GAME-005, SHOP-003 | E2E | FULL |
 | ZBW-SHOP-006 | MUST | Generators implement iron/gold/diamond/emerald/custom resources per team/arena/group/mode, upgrade/split, speed/drops/particles/sounds/models/events, hologram/countdown/progress, caps/merge/overflow, radius/multiple spawn points and custom types. | ARENA-001, GAME-005 | UT/E2E/PT | FULL |
 | ZBW-SHOP-007 | MUST | Item framework provides original fireball, TNT, bridge egg, defender, bed bug, magic milk/milk, sponge, pop-up tower, water, rescue platform, tracker, knockback stick, silverfish/golem, jump/speed/invisibility potions, golden apple and custom throwable/consumable/utility actions; every definition supports material/name/lore/price/currency/cooldown/effects/permission/condition/version-safe data/enchant/model/API plus command/effect/entity/firework/block/script hooks sandboxed by policy. | SHOP-003, ARC-002/010 | item matrix E2E/ST/CT | FULL |

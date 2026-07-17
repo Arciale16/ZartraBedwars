@@ -76,13 +76,13 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
 |---|---|---|---|---|---|---|---|---|
-| ZBW-SHOP-001 | shop catalogs/favourites; player quick-buy data | shops | shop,quickbuy / shop.use | shop/Quick Buy | Shop API/events | shop/category state | catalog/E2E | shop guide; M11 |
-| ZBW-SHOP-002 | declarative layout/rendering/purchase history | shops/gui | shop manage / shop.manage | full shop/editor | GUI extension API | visible price/state | GUI input E2E | shop GUI guide; M11 |
-| ZBW-SHOP-003 | purchase transaction/limits | shops/items | purchase admin / manage,bypass | confirmation/history | Purchase API/events | purchase limits | concurrency/exploit ST | purchase API guide; M11 |
-| ZBW-SHOP-004 | tender provider/value model | shops/integrations | currency inspect / manage | price/tender views | Tender API | tender values | provider/atomicity CT | currency integration guide; M11 |
-| ZBW-SHOP-005 | upgrade/trap definitions/team state | upgrades | upgrade manage / upgrade.* | upgrade shop/editor | Upgrade API/events | levels/traps | upgrade matrix | upgrades guide; M11 |
-| ZBW-SHOP-006 | generator definitions/runtime state | generators | generator manage / generator.* | generator editor | Generator API/events | state/countdown/level | load/cap/split PT | generator guide; M11 |
-| ZBW-SHOP-007 | item/action registries; definition migration | items/security | item manage / item.* | item editor/preview | Item/Action SPIs/events | item cooldown | item/version/sandbox CT/ST | item guide; M11 |
+| ZBW-SHOP-001 | M11 catalog/favourites/Quick Buy use cases and player data ports; storage adapter remains inward | shops | M11 feature actions on the verified unified command tree / shop.use | M11 pages on the verified Shop/Quick Buy framework | Shop API/events | M16 shop/category state | catalog/E2E M11; placeholder CT M16 | shop guide; M11 core/M16 PH/M22 compatibility |
+| ZBW-SHOP-002 | M11 declarative shop presentation model/purchase history; the verified common framework is reused | shops/gui | M11 manage actions on the verified unified command tree / shop.manage | M11 full shop/editor pages on the verified common framework | GUI extension API | M16 visible price/state | GUI input/load E2E M11; PH CT M16 | shop GUI guide; M11 presentation/M16 PH/M22 compatibility |
+| ZBW-SHOP-003 | M11 quoted match-resource purchase transaction/limits; M12 adds persistent/virtual ledger provider | shops/items | purchase admin / manage,bypass through the verified command framework | confirmation/history through the verified UI framework | Purchase/Tender-port API/events | M16 purchase limits | concurrency/exploit/atomicity ST M11; persistent-provider CT M12 | purchase API guide; M11 match transactions/M12 persistent currency |
+| ZBW-SHOP-004 | M11 tender SPI plus iron/gold/diamond/emerald/custom/multiple match providers; M12 persistent/virtual providers; M21 Vault provider | shops/integrations | currency inspect/manage through the verified command framework; provider diagnostics M12/M21 | price/tender views through the verified UI framework; currency audit M12 | Tender API M11; Currency provider M12; Vault adapter M21 | M16 tender values | match atomicity M11; ledger concurrency M12; Vault provider CT M21 | currency integration guide; M11/M12/M21, PH M16 |
+| ZBW-SHOP-005 | M11 upgrade/trap/forge definitions and team state | upgrades | upgrade manage / upgrade.* through the verified command framework | M11 upgrade shop/editor on the verified UI framework | Upgrade API/events | M16 levels/traps | upgrade/team/atomicity matrix M11 | upgrades guide; M11 core/M16 PH/M22 compatibility |
+| ZBW-SHOP-006 | M11 generator definitions/runtime state and display intent; M21 concrete hologram providers | generators | generator manage / generator.* through the verified command framework | M11 generator editor on the verified UI framework; provider manager M21 | Generator API/events; HologramProvider M21 | M16 state/countdown/level | load/cap/split PT M11; hologram provider CT/PT M21; legacy CT M22 | generator guide; M11 core/M16 PH/M21 providers/M22 compatibility |
+| ZBW-SHOP-007 | M11 item/action registries, sandbox and primary Paper mapping; M22 legacy mappings/fallbacks | items/security | item manage / item.* through the verified command framework | M11 item editor/preview on the verified UI framework | Item/Action SPIs/events | M16 item cooldown/state | item/primary-version/sandbox CT/ST M11; legacy matrix M22 | item guide; M11 core/M16 PH/M22 compatibility |
 
 ## Progression and rewards (14)
 
@@ -91,7 +91,7 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | ZBW-PROG-001 | projection coordinator + inbox | progression/rewards | progression debug / admin.debug | progression inspector | Progression events/API | projection health | duplicate/fanout IT | progression architecture; M12 |
 | ZBW-PROG-002 | XP ledger/rules | rewards/levels | experience add/set/remove / admin.* | XP summary/admin | Experience API/events | XP/progress | formula/farming ST | leveling guide; M12 |
 | ZBW-PROG-003 | level state/formulas/history migration | levels/rewards | level/experience admin / level.* | level-up/formula editor | Level API/events | level fields | formula/recalc MT | level guide; M12 |
-| ZBW-PROG-004 | currency ledger/transactions/migration | currencies/database | coins/currency admin / currency.* | currency/audit | Currency API/events | currency_<id> | atomic/race/MT/ST | currency guide; M12 |
+| ZBW-PROG-004 | M12 persistent/virtual currency ledger, providers, transactions and migration consuming the stable M11 tender SPI | currencies/database | coins/currency admin / currency.* | currency/audit | Currency API/events; M11 TenderProvider binding | M16 currency_<id> | atomic/race/MT/ST M12; M11 provider-contract CT | currency guide; M11 tender contract/M12 ledger/M16 PH/M21 Vault |
 | ZBW-PROG-005 | prestige definitions/history migration | prestiges/messages | prestige admin / prestige.* | editor/preview | Prestige API/events | prestige fields | render/version/MT | prestige guide; M12/M22 |
 | ZBW-PROG-006 | cosmetic catalog + licensed assets | cosmetics | cosmetics admin / cosmetics.manage | cosmetic/editor | Cosmetic registry/API | catalog/count | 300-count/license/PT | cosmetics guide; M14 |
 | ZBW-PROG-007 | ownership/equipment/preset repositories | cosmetics/database | grant/revoke/equip / cosmetics.* | ownership/preset/admin | Ownership API/events | owned/equipped | expiry/auth/MT | cosmetics admin guide; M14 |
@@ -604,3 +604,27 @@ authoritative ownership split and prevents a framework registration from closing
 | `ZBW-GAME-007` shared server | bounded queues, fair policy, arena availability/reservations and M08 assignment port | `MatchmakingM10Test`, `M10BranchCoverageTest`; matching framework/admin/extension guides | M20 proxy-wide routing and durable distributed recovery |
 | `ZBW-GAME-009`, `ZBW-ADDON-092..101/115..123` | spectator lifecycle, restrictions, restoration and owner-thread projection | `SpectatorAddonM10Test`, `M10PaperProjectionTest`; `SPECTATOR_FRAMEWORK_M10.md` | M16 placeholders, M17 evidence tools, M22 compatibility |
 | `ZBW-ADDON-131..140/155..163` | Compass communication/tracking and party-safe Team Selector | `SpectatorAddonM10Test`, `M10BranchCoverageTest`; generated inventories | M16 placeholders and M22 compatibility |
+
+## M11 reconciled allocation for continuing requirements
+
+This table is the authoritative ownership overlay for M11. It preserves every Part I and Part III
+row while preventing a platform or provider contract from being mistaken for its later concrete
+implementation. The M11 governance checkpoint allocates planned modules only; it does not
+materialize source modules or activate M11.
+
+| Requirement allocation | M11 ownership | Later ownership retained |
+|---|---|---|
+| M11 / ZBW-GAME-004/005 | Named-mode mechanics, component packs and match-local shop/generator/upgrade/item bindings installed through M10 deferred bindings; no M08 lifecycle duplication | M15 per-mode statistics; M16 placeholders; M22 full compatibility |
+| M11 / ZBW-SHOP-001/002 | Catalog, Quick Buy/favourites/history, feature actions/pages and primary Paper 1.21.1 projection using M09 frameworks | M16 placeholders; M21 NPC/shopkeeper providers; M22 legacy presentation |
+| M11 / ZBW-SHOP-003/004 | Atomic quoted purchases, tender SPI and iron/gold/diamond/emerald/custom/multiple match-resource providers | M12 persistent/virtual currency ledger/providers; M16 placeholders; M21 Vault provider; M22 legacy presentation |
+| M11 / ZBW-SHOP-005 | Team upgrades, forge, heal pool, dragon buff, queued/multiple traps and custom upgrade behavior | M16 placeholders; M22 legacy presentation |
+| M11 / ZBW-SHOP-006 | Generator definitions/runtime, upgrades/split/caps/overflow and display-state intent | M16 placeholders; M21 concrete hologram providers; M22 legacy mappings/fallbacks |
+| M11 / ZBW-SHOP-007 and ZBW-READY-004 | Original utility-item/action registry, disabled declarative sandbox and primary Paper mapping | M16 placeholders; M22 legacy item/effect mappings and full certification |
+| M11 / ZBW-CONTENT-002/003 and ZBW-READY-015 | Original versioned shop/mode balance packs, validation, preview and golden simulations | M16 active-profile placeholders; M22 compatibility validation |
+| M10/M11 / ZBW-ADDON-236..244 | Complete Swappage gameplay, atomic owned-match-state transfer, rejoin/reset behavior and local events; M10 registration/selection remains verified | M15 isolated statistics; M16 placeholders; M22 full compatibility |
+| M11 / ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452 | Every listed atomic mechanic, configuration, feature-specific M09 presentation, API/event, security/performance rule and primary Paper 1.21.1 behavior | M15 statistics where named; M16 every placeholder cell; M19 Redis coordination and M20 proxy/server synchronization for ZBW-ADDON-387; M21 external provider cells; M22 legacy/full-matrix compatibility |
+| M11 / ZBW-ADDON-387 | Local deterministic schedule, durable active-rotation state, transition event and recovery port | M19 cross-node coordination; M20 proxy/server distribution; M16 placeholders; M22 compatibility |
+
+M11 implementation may emit immutable events and cached state for later statistics, PlaceholderAPI,
+Redis, proxy, provider and compatibility consumers. Emitting those contracts is not evidence that a
+later consumer or adapter exists.

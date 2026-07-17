@@ -116,15 +116,17 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M11 — Shop, item, generator and upgrade platform
 
-- **Requirements:** SHOP-001..007; CONTENT-002/003; completion portions of ZBW-ADDON-236..244; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452.
-- **Entry:** M08 event engine, M09 UI and M10 mode SPI complete.
-- **Deliver:** catalog/purchase/tender services, Quick Buy, generators, upgrades/traps, all named-mode gameplay mechanics including Swappage, and all original utility items/custom action SPI.
-- **Exit:** item/purchase matrices, atomicity/exploit and high-GUI-load tests pass; scripts/actions meet sandbox policy; admin/API/config/docs surfaces complete.
+- **Requirements:** M11 mechanics/component portions of GAME-004/005 and READY-004/015; SHOP-001..007; CONTENT-002/003; completion portions of ZBW-ADDON-236..244; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452. M11 closes only the allocations stated below; final requirement completion waits for every retained later cell.
+- **Entry:** M08 event engine, M09 command/UI frameworks and M10 mode SPI are complete; RC-086 governance reconciliation passes the module-graph, traceability, catalogue, dashboard and coverage validators with M11 still not active.
+- **Deliver:** Java-8-neutral `zbw-shop`, `zbw-content`, `zbw-scripting-api` and `zbw-scripting-engine`; catalog/purchase/quoted-tender services; Quick Buy; match-local iron/gold/diamond/emerald/custom/multiple tenders; generators; team upgrades/forge/traps; all named-mode gameplay mechanics including Swappage; original shop/mode profiles; all original utility items; and the disabled-by-default declarative action sandbox. Feature commands, permissions and GUIs extend the existing M09 frameworks. Paper code performs primary-runtime translation only and contains no feature policy.
+- **Retained ownership:** M12 owns persistent progression/virtual-currency ledgers and providers; M15 owns all mode/addon statistics; M16 owns every PlaceholderAPI cell; M19 owns Redis coordination and M20 proxy/server distribution, including the distributed portion of ZBW-ADDON-387; M21 owns Vault plus concrete NPC/hologram/shopkeeper providers; M22 owns legacy adapters, fallbacks and full 1.8–1.21.x certification. M11 may publish typed ports/events/state for those consumers but may not implement them.
+- **Mode boundary:** M10 registration/selection and deferred bindings remain authoritative. M11 supplies named-mode mechanics and configured component/balance packs without recreating M08 lifecycle or M10 selection. The GAME-004 `Adventure` mode binding/profile is distinct from the M08/M09 `AdventureMode` player-state-transition addon ZBW-ADDON-432..437, whose allocation is unchanged.
+- **Exit:** item/purchase/generator/upgrade/mode matrices, atomicity/exploit, persistence/rejoin and high-GUI-load tests pass; scripts/actions meet the accepted sandbox policy; feature-specific admin/API/config/M09-presentation and primary Paper 1.21.1 surfaces are complete. M11 exit evidence explicitly leaves M12/M15/M16/M19/M20/M21/M22 cells open and cannot claim complete statistics, placeholders, distributed delivery, external providers or legacy compatibility.
 
 ### M12 — Progression transaction core
 
 - **Requirements:** PROG-001..005, PROG-011; ZBW-ADDON-174..183, 210..216, 245..251, 266..282.
-- **Entry:** M04 outbox, M08 events and M11 tender model stable.
+- **Entry:** M04 outbox, M08 events and the M11 quoted-tender/match-resource contracts are stable; M12 now supplies the persistent/virtual currency ledger providers required to complete the corresponding SHOP-003/004 portions.
 - **Deliver:** event projection, XP/level/prestige/currency and unified transactional reward engine with offline/cross-server-ready delivery contracts.
 - **Exit:** duplicate/retry/crash tests cannot double award; formula/migration/admin/audit tests pass; reward summary has all presentation adapters.
 
@@ -146,14 +148,14 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 - **Requirements:** STATS-001..008; ZBW-ADDON-217..225, 260..265, 350..356.
 - **Entry:** M08 event schema and M12 projection/idempotency patterns stable.
-- **Deliver:** authoritative projections, all dimensions/ratios/streaks, administration and cached ranking engine.
+- **Deliver:** authoritative projections, all dimensions/ratios/streaks, administration and cached ranking engine, including every isolated-statistics cell retained from M11 named modes and addon mappings.
 - **Exit:** duplicate/private/test separation, ratio/tie/reset/repair/migration and large-data ranking tests pass; no full-table query per request.
 
 ### M16 — PlaceholderAPI and external statistics surfaces
 
 - **Requirements:** PAPI-001..006, OPS-007, DISCORD-001..008; ZBW-ADDON-071..080, 202..209, 357..362, 453..463.
 - **Entry:** M12–M15 visible data contracts stable; M05 metrics ready.
-- **Deliver:** native expansion, dynamic contexts/families/formatters/admin tools/docs generator and secured external/Discord provider APIs.
+- **Deliver:** native expansion, dynamic contexts/families/formatters/admin tools/docs generator and secured external/Discord provider APIs, including all shop, generator, upgrade, item and named-mode placeholder cells exposed by M11 state contracts.
 - **Exit:** placeholder inventory/context/offline/fallback/cache/parser tests pass; zero sync I/O and p95 budget verified; privacy/scope/rate tests pass.
 
 ### M17 — Replay recording, storage and viewer
@@ -174,26 +176,26 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 - **Requirements:** DEPLOY-006/008/009.
 - **Entry:** M04 outbox, M12/15/17/18 durable semantics complete; Redis ADR accepted.
-- **Deliver:** versioned keys/messages, invalidation/streams/locks/fencing/leader election, health/circuit/degradation.
+- **Deliver:** versioned keys/messages, invalidation/streams/locks/fencing/leader election, health/circuit/degradation, including coordination for the active item-rotation state defined locally by M11 under ZBW-ADDON-387.
 - **Exit:** partition/reconnect/duplicate/order/rolling-schema/lock-expiry load tests pass; no split-brain finalization and no unbounded polling.
 
 ### M20 — Proxy networking and scalable deployment
 
 - **Requirements:** DEPLOY-002..004, distributed portions of GAME/PROG/STATS/REPLAY/ATLAS/INT-009; CONTENT-008; ZBW-ADDON-041..060, 102..107, 164..173, 252..259, 291..299, 464..473.
 - **Entry:** M19 complete and M10 routing contracts stable.
-- **Deliver:** Velocity and Bungee adapters, backend registry/reservations/transfers/failover/drain and cross-server user flows.
+- **Deliver:** Velocity and Bungee adapters, backend registry/reservations/transfers/failover/drain and cross-server user flows, including proxy/server distribution of the M11 item-rotation state after M19 coordination is available.
 - **Exit:** provider-equivalence and signed-message security tests pass; crash/retry/fallback/duplicate player and cross-server queue/party/rejoin/play-again E2E pass.
 
 ### M21 — CloudNet, parties and remaining providers
 
 - **Requirements:** DEPLOY-005, INT-001..003/006..009; ZBW-ADDON-226..235.
 - **Entry:** M20 scalable routing and relevant feature APIs stable.
-- **Deliver:** CloudNet scaling; native/external parties; Placeholder/Vault/LuckPerms/NPC/hologram/Grim/Vulcan adapters and dashboards.
+- **Deliver:** CloudNet scaling; native/external parties; Placeholder/Vault/LuckPerms/NPC/hologram/Grim/Vulcan adapters and dashboards. Vault tender, shopkeeper/NPC and generator-hologram providers consume M11 ports and remain M21 implementations.
 - **Exit:** every pinned supported provider passes shared contract/failure/version tests; both anticheats can run together without duplicate cases; scale/drain/crash replacement works.
 
 ### M22 — Full 1.8–1.21.x and Bedrock compatibility matrix
 
-- **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance. M06 foundations remain explicit and are not reclassified as full completion.
+- **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance, including every legacy/fallback cell retained from M11 shop, item, generator and named-mode mappings. M06 foundations remain explicit and are not reclassified as full completion.
 - **Entry:** M06 compatibility/world-provider contracts and primary 1.21.1 foundation certification pass; all feature semantics and their required fallback rows/fixtures are stable; exact legacy/private and maintained runtime fixtures are lawfully acquired and hash-locked.
 - **Deliver:** `zbw-compat-v1_8`, all other legacy/intermediate compatibility modules, matching Java 8/11/16/17 Paper bootstraps, complete legacy mappings/fallbacks, extensions to the modern adapter for every declared modern row, ViaVersion/ViaBackwards/ViaRewind integration and Geyser/Floodgate alternatives.
 - **Exit:** every declared 1.8.8–1.21.11 server row, including release-level revalidation of the M06 primary row, passes its required build/startup/lifecycle/gameplay/GUI/item/packet/replay/provider/fallback suite on the exact JDK/fixture; translated Java and Bedrock matrices pass independently; no unsupported platform type is exposed; limitations are explicit and only owner-approved alternatives are accepted. Full 1.8–1.21.x certification remains a release gate.
