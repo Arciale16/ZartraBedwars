@@ -1,6 +1,6 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — final-integration checkpoint complete; M11 exit criteria remain open
+**Milestone status:** ACTIVE — PR #17 merged at `355748d2386a7d0c554e346bd8911dd72799e395`; final-integration checkpoint complete; M11 exit criteria remain open
 **Checkpoint scope:** Phases 1–4 plus M08 lifecycle, M09 presentation and primary Paper projection integration
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
@@ -77,6 +77,14 @@ This checkpoint intentionally does not claim the M11 milestone exit. The planned
 `zbw-scripting-engine`, complete named-mode orchestration, concrete shop/inventory/configuration
 adapters and the full item/purchase/generator/upgrade/mode/Paper acceptance matrices remain required.
 M12 is not active.
+
+## Post-merge closure audit
+
+The governance-only audit of merged PR #17 confirmed that its published checks passed, but the
+merged evidence itself retains the missing `zbw-scripting-engine`, complete named-mode
+orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices.
+Consequently M11 cannot be moved to `completed_milestones`, and M12 cannot be activated, without
+new implementation and verification evidence. This is an evidence gate, not a scope reduction.
 
 ## Verification
 

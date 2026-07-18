@@ -20,3 +20,7 @@ subsets. Strict JavaDoc archives are generated as
 
 The declarative execution engine, complete named-mode orchestration and retained M12/M15/M16/
 M19/M20/M21/M22 provider surfaces are not part of this checkpoint and are not reported complete.
+
+Merged PR #17 preserves this checkpoint boundary. Its successful CI validates the delivered APIs
+but does not supply the explicitly missing M11 exit artifacts, so this API document does not claim
+M11 completion or M12 activation.

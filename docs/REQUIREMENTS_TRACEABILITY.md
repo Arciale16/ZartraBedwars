@@ -644,3 +644,19 @@ later consumer or adapter exists.
 
 The final-integration checkpoint is additive and preserves every M10 public signature. It does not
 satisfy the complete M11 exit criteria, activate M12 or reassign any retained later-milestone cell.
+
+## M12 planned ownership overlay
+
+This governance allocation is planning evidence only. `zbw-progression` is not materialized and
+M12 remains inactive until M11 satisfies its exit criteria.
+
+| Requirement allocation | Planned M12 ownership | Ownership explicitly retained |
+|---|---|---|
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` | exactly-once progression projection, XP, levels, prestige, internal persistent/virtual currencies, immutable transaction ledger and transactional rewards | M15 statistics; M16 placeholders; M17 replay; M18 Atlas; M19/M20 distributed/proxy transport; M21 Vault/NPC/hologram providers; M22 legacy compatibility |
+| `ZBW-SHOP-003/004` M12 portion | persistent/virtual tender provider and ledger settlement through the stable M11 quote/tender SPI | M11 catalog, quote, match resources and purchase policy; M21 Vault; M16 placeholders |
+| `ZBW-GAME-003` M12 portion | reward/progression consumer of the M08 completion event | M08 lifecycle/completion; M15 statistics; M17 replay |
+| `ZBW-ADDON-174..183` | Reward Commands policy, idempotent execution and primary M09 presentation | M16 placeholders; M19/M20 distributed transport; M22 compatibility |
+| `ZBW-ADDON-210..216` | Golden GG post-game policy and primary presentation | M16 visible-state placeholders where applicable; M22 legacy rendering |
+| `ZBW-ADDON-245..251` | XP Bar progression projection and primary display contract | M16 placeholders; M22 packet/API fallbacks and full compatibility |
+| `ZBW-ADDON-266..273` | reward aggregation, ledger/delivery state, history and primary summary presentation | M13 later reward-source integrations; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |
+| `ZBW-ADDON-274..282` | holiday campaign eligibility, claims, idempotent reward delivery and primary calendar/claim presentation | M14 general profile/calendar platform; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |

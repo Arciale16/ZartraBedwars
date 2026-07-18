@@ -1,5 +1,18 @@
 # ZartraBedWars Risks, Conflicts and Missing Decisions
 
+## RC-087 — M11 merge versus milestone completion state
+
+- **Fact:** PR #17 merged successfully and every published check concluded successfully.
+- **Fact:** its merged M11 implementation, API, milestone and traceability evidence explicitly leaves `zbw-scripting-engine`, complete named-mode orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices open.
+- **Decision:** merge status is not milestone-completion evidence. M11 remains active in machine state and M12 remains planned/inactive until the missing exit evidence exists.
+- **Status:** OPEN. This checkpoint records the gate without reducing or reallocating M11 scope.
+
+## RC-088 — Missing machine-readable M12 module allocation
+
+- **Fact:** architecture and addon mappings referenced `zbw-progression`, but the planned module was absent from `build/module-graph.json`.
+- **Decision:** allocate the Java-8-neutral `zbw-progression` application module to M12 without materializing it. Later ownership remains with M15/M16/M17/M18/M19/M20/M21/M22.
+- **Status:** RESOLVED when the deterministic module, traceability, catalogue, dashboard and governance validators pass.
+
 ## Reading guide
 
 - **Fact:** directly stated or logically forced by `MASTER_PROMPT.md`/platform semantics.

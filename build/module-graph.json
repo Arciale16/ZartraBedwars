@@ -56,6 +56,7 @@
     {"id": "zbw-scripting-engine", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-application", "zbw-scripting-api"]},
     {"id": "zbw-shop", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-storage-api", "zbw-compat-api", "zbw-arena", "zbw-game", "zbw-scripting-api"]},
     {"id": "zbw-content", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-shop"]},
+    {"id": "zbw-progression", "layer": "application", "bytecode": 8, "first_milestone": "M12", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-storage-api", "zbw-game", "zbw-shop"]},
     {"id": "zbw-compat-v1_8", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
     {"id": "zbw-compat-v1_9", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
     {"id": "zbw-compat-v1_10", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},

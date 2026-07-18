@@ -193,8 +193,9 @@ def render() -> str:
         "M00–M10 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
-        "M11 is active at its Phase 1 checkpoint: three neutral foundation modules are materialized,",
-        "while the scripting engine, runtime mechanics, presentation and later ownership remain deferred.",
+        "Merged PR #17 supplies M11 Phases 1-4 and final-integration checkpoint evidence, but its",
+        "own accepted evidence leaves the scripting engine, complete mode orchestration, concrete adapters",
+        "and complete acceptance matrices open. M11 remains active; M12 is planned and inactive.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

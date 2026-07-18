@@ -489,7 +489,7 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "reward-commands", "Free", "Reward Commands", "Validated, exactly-once command rewards bound to game outcomes.",
-        "ZBW-PROG-011, ZBW-OPS-004, ZBW-INT-005", "M12", "zbw-progression, zbw-command-api, zbw-command-paper",
+        "ZBW-PROG-011, ZBW-OPS-004, ZBW-INT-005", "M12 core/presentation; M16 placeholders; M19/M20 distributed delivery; M22 compatibility", "zbw-progression, zbw-command-api, zbw-command-paper",
         (
             "Execute configured rewards for a valid game win",
             "Execute configured rewards for the killer on a valid final kill",
@@ -555,7 +555,7 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "golden-gg", "Free", "Golden GG", "Permission-aware post-game GG formatting and optional auto-message.",
-        "ZBW-GAME-003, ZBW-UX-005", "M12", "zbw-game, zbw-ui-paper",
+        "ZBW-GAME-003, ZBW-UX-005", "M12 core/primary presentation; M16 placeholders where applicable; M22 legacy rendering", "zbw-game, zbw-ui-paper",
         (
             "Recognize an exact configurable GG phrase during the valid post-game window",
             "Render eligible GG text with configured gold styling and a plain fallback",
@@ -618,7 +618,7 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "xp-bar", "Free", "XP Bar Addon", "Use the client XP bar as a reversible BedWars level/progress display.",
-        "ZBW-PROG-002, ZBW-GAME-008, ZBW-PAPI-001", "M12", "zbw-progression, zbw-ui-paper, zbw-compat-api",
+        "ZBW-PROG-002, ZBW-GAME-008, ZBW-PAPI-001", "M12 progression/primary display; M16 placeholders; M22 compatibility", "zbw-progression, zbw-ui-paper, zbw-compat-api",
         (
             "Display the BedWars level as the client XP level in configured game/lobby states",
             "Display fractional progress toward the next BedWars level on the XP bar",
@@ -661,7 +661,7 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "reward-summary", "Free", "RewardSummary Addon", "End-of-match reward aggregation, delivery and explanation.",
-        "ZBW-GAME-003, ZBW-PROG-011, ZBW-PROG-012", "M12", "zbw-progression, zbw-ui-paper",
+        "ZBW-GAME-003, ZBW-PROG-011, ZBW-PROG-012", "M12 core/primary presentation; M13 later reward sources; M16 placeholders; M19/M20 distributed delivery; M22 compatibility", "zbw-progression, zbw-ui-paper",
         (
             "Aggregate every reward caused by one match under a stable reward-summary identifier",
             "Break down base, win, placement, kill, final-kill, bed, quest, challenge, pass and multiplier rewards",
@@ -675,7 +675,7 @@ ADDONS: tuple[Addon, ...] = (
     ),
     addon(
         "holiday-reward", "Free", "HolidayReward Addon", "Calendar-windowed, idempotent seasonal reward claims.",
-        "ZBW-PROG-011, ZBW-PROG-014, ZBW-ECO-001", "M12", "zbw-progression, zbw-ui-paper",
+        "ZBW-PROG-011, ZBW-PROG-014, ZBW-ECO-001", "M12 campaign/claim/reward core and primary presentation; M14 general profile/calendar; M16 placeholders; M19/M20 distributed delivery; M22 compatibility", "zbw-progression, zbw-ui-paper",
         (
             "Define holiday reward campaigns with stable IDs, timezone and start/end instants",
             "Define per-day, milestone and campaign-completion reward entries",
