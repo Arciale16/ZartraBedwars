@@ -3,7 +3,7 @@
 ## RC-087 — M11 merge versus milestone completion state
 
 - **Fact:** PR #17 merged successfully and every published check concluded successfully.
-- **Fact:** its merged M11 implementation, API, milestone and traceability evidence explicitly leaves `zbw-scripting-engine`, complete named-mode orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices open.
+- **Fact:** PR #17 left `zbw-scripting-engine`, complete named-mode orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices open. M11.1 Phase 1 now addresses the engine and neutral configuration/content foundations; the remaining mechanics/adapters/matrices still block closure.
 - **Decision:** merge status is not milestone-completion evidence. M11 remains active in machine state and M12 remains planned/inactive until the missing exit evidence exists.
 - **Status:** OPEN. This checkpoint records the gate without reducing or reallocating M11 scope.
 

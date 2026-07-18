@@ -645,6 +645,14 @@ later consumer or adapter exists.
 The final-integration checkpoint is additive and preserves every M10 public signature. It does not
 satisfy the complete M11 exit criteria, activate M12 or reassign any retained later-milestone cell.
 
+### M11.1 Phase 1 corrective evidence
+
+| Allocation | Implemented Phase 1 portion | Evidence / remaining M11 owner |
+|---|---|---|
+| `ZBW-READY-004` | materialized disabled-by-default bounded declarative interpreter; action/capability allowlists, scheduler deadlines, cancellation, depth/operation quotas, validation and secret-free audit | `DeclarativeScriptEngineTest`; Phase 2+ feature handler integration remains M11 |
+| `ZBW-READY-015`, `ZBW-CONTENT-002/003` | versioned eight-section M11 configuration snapshots, consecutive migration, deterministic validation/activation, rollback, last-known-good retention and golden mode-balance simulation | `M11RuntimeConfigurationTest`, `ModeBalanceCatalogTest`; concrete named-mode packs and Paper activation remain later M11.1 phases |
+| `ZBW-GAME-004/005`, `ZBW-SHOP-001..007`, M11 addon configuration portions | typed shops/generators/upgrades/traps/items/modes/rotations/scripts configuration families can activate atomically without platform dependencies | complete mechanics, inventory/Paper adapters and acceptance matrices remain M11.1 Phases 2–5 |
+
 ## M12 planned ownership overlay
 
 This governance allocation is planning evidence only. `zbw-progression` is not materialized and

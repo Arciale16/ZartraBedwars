@@ -27,6 +27,7 @@
     {"id": "zbw-command-api", "path": "command/zbw-command-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral typed command tree, dispatch and presentation-action contracts"},
     {"id": "zbw-ui-api", "path": "ui/zbw-ui-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral GUI, confirmation, editor, dashboard and parity contracts"},
     {"id": "zbw-scripting-api", "path": "scripting/zbw-scripting-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 typed references for versioned declarative action graphs"},
+    {"id": "zbw-scripting-engine", "path": "scripting/zbw-scripting-engine/pom.xml", "packaging": "jar", "responsibility": "Java 8 bounded disabled-by-default declarative action interpreter"},
     {"id": "zbw-shop", "path": "shop/zbw-shop/pom.xml", "packaging": "jar", "responsibility": "Java 8 typed shop catalog, tender, quote and atomic purchase application"},
     {"id": "zbw-content", "path": "content/zbw-content/pom.xml", "packaging": "jar", "responsibility": "Java 8 original versioned shop content and balance profiles"},
     {"id": "zbw-compat-v1_20-v1_21", "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"},

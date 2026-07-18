@@ -416,9 +416,9 @@ Mode metadata and deferred bindings are M10, while every named-mode mechanic rem
 ## M11 planned shop, content and action-platform boundary
 
 The M11 governance checkpoint allocates four Java-8-neutral production modules. Phases 1-4
-materializes `zbw-shop`, `zbw-content` and `zbw-scripting-api`; `zbw-scripting-engine` remains
-planned until a later M11 checkpoint has a real declarative execution use case. This prevents an empty
-or fake interpreter module while preserving its approved ownership. `zbw-shop` owns catalog,
+materialized `zbw-shop`, `zbw-content` and `zbw-scripting-api`. M11.1 Phase 1 materializes
+`zbw-scripting-engine` for the real disabled-by-default declarative execution, quota, cancellation,
+deadline, allowlist and audit use case required to close RC-087. `zbw-shop` owns catalog,
 quote, match-tender, purchase, generator,
 upgrade/trap and utility-item use cases; `zbw-content` owns versioned original shop/mode packs
 and their deterministic validation; `zbw-scripting-api` owns the declarative capability/action

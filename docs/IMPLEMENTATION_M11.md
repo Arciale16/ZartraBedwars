@@ -83,8 +83,9 @@ M12 is not active.
 The governance-only audit of merged PR #17 confirmed that its published checks passed, but the
 merged evidence itself retains the missing `zbw-scripting-engine`, complete named-mode
 orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices.
-Consequently M11 cannot be moved to `completed_milestones`, and M12 cannot be activated, without
-new implementation and verification evidence. This is an evidence gate, not a scope reduction.
+M11.1 Phase 1 supplies the previously missing scripting engine plus transactional M11 configuration
+and balance-loading foundations. Complete named-mode mechanics, concrete inventory/Paper adapters
+and full acceptance matrices still prevent movement to `completed_milestones`; M12 remains blocked.
 
 ## Verification
 
