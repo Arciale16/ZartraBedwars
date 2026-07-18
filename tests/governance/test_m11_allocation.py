@@ -1,4 +1,4 @@
-"""Regression tests for the governance-only M11 ownership reconciliation."""
+"""Regression tests for reconciled M11 ownership and Phase 1 materialization."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ def load_validator():
 
 
 class M11AllocationTest(unittest.TestCase):
-    """Prevent M11 from absorbing later providers or materializing during reconciliation."""
+    """Prevent M11 Phase 1 from absorbing later providers or execution scope."""
 
     def test_reconciled_allocation_is_consistent(self) -> None:
         self.assertEqual([], load_validator().validate())

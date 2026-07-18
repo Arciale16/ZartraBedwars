@@ -57,7 +57,7 @@ def inventory() -> list[dict[str, object]]:
     return rows
 
 
-def render() -> dict[Path, str]:
+def render(include_current_docs: bool = True) -> dict[Path, str]:
     rows = inventory()
     permissions = sorted({str(row["permission"]) for row in rows})
     command_payload = {"schema_version": 1, "milestone": "M10", "baseline": 87,
@@ -75,10 +75,12 @@ def render() -> dict[Path, str]:
                         "All nodes are additive, granular and revalidated at execution time; operator status is not policy.", "",
                         "| Permission | Surface | Enforcement |", "|---|---|---|"]
     permission_lines.extend(f"| `{permission}` | command and GUI | execution-time M03 authorization revalidation |" for permission in permissions)
-    return {COMMAND_JSON: json.dumps(command_payload, indent=2, sort_keys=True) + "\n",
-            PERMISSION_JSON: json.dumps(permission_payload, indent=2, sort_keys=True) + "\n",
-            COMMAND_DOC: "\n".join(command_lines) + "\n",
-            PERMISSION_DOC: "\n".join(permission_lines) + "\n"}
+    rendered = {COMMAND_JSON: json.dumps(command_payload, indent=2, sort_keys=True) + "\n",
+                PERMISSION_JSON: json.dumps(permission_payload, indent=2, sort_keys=True) + "\n"}
+    if include_current_docs:
+        rendered[COMMAND_DOC] = "\n".join(command_lines) + "\n"
+        rendered[PERMISSION_DOC] = "\n".join(permission_lines) + "\n"
+    return rendered
 
 
 def main() -> int:
@@ -86,7 +88,9 @@ def main() -> int:
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     stale = []
-    for path, expected in render().items():
+    # Historical M10 JSON snapshots stay immutable. Current command/permission documentation is
+    # owned by the latest milestone generator and must not be compared to an older renderer.
+    for path, expected in render(include_current_docs=args.write).items():
         if args.write:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(expected, encoding="utf-8", newline="\n")

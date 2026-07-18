@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the governance-only M11 ownership and planned-module reconciliation."""
+"""Validate reconciled M11 ownership and the Phase 1 materialization boundary."""
 
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ M11_MODULES = {
     "zbw-content": (
         8, "M11", ["zbw-api", "zbw-domain", "zbw-application", "zbw-shop"]),
 }
+PHASE_1_MODULES = {"zbw-scripting-api", "zbw-shop", "zbw-content"}
 STATISTICS_IDS = {
     "ZBW-ADDON-010", "ZBW-ADDON-061", "ZBW-ADDON-300",
     "ZBW-ADDON-315", "ZBW-ADDON-341", "ZBW-ADDON-438",
@@ -76,8 +77,27 @@ def validate() -> list[str]:
         actual = (row["bytecode"], row["first_milestone"], row["depends_on"])
         if actual != expected:
             errors.append(f"{identifier}: incorrect M11 allocation {actual}")
-        if identifier in materialized:
-            errors.append(f"{identifier}: governance checkpoint must not materialize production modules")
+        if identifier in PHASE_1_MODULES and identifier not in materialized:
+            errors.append(f"{identifier}: M11 Phase 1 module is not materialized")
+        if identifier == "zbw-scripting-engine" and identifier in materialized:
+            errors.append("zbw-scripting-engine must remain deferred until an M11 execution phase")
+
+    for identifier in sorted(PHASE_1_MODULES):
+        row = next((entry for entry in graph["materialized_build_modules"]
+                    if entry["id"] == identifier), None)
+        if row is None or not (ROOT / row["path"]).is_file():
+            errors.append(f"{identifier}: missing materialized Phase 1 Maven module")
+    if (ROOT / "scripting/zbw-scripting-engine/pom.xml").exists():
+        errors.append("M11 Phase 1 must not create zbw-scripting-engine")
+
+    forbidden = ("org.bukkit", "io.papermc", "net.minecraft", "java.sql", "java.nio.file")
+    for relative in ("scripting/zbw-scripting-api/src/main/java",
+                     "shop/zbw-shop/src/main/java", "content/zbw-content/src/main/java"):
+        source = ROOT / relative
+        for path in source.rglob("*.java"):
+            text = path.read_text(encoding="utf-8")
+            if any(token in text for token in forbidden):
+                errors.append(f"M11 Phase 1 platform/storage leak: {path.relative_to(ROOT)}")
 
     milestone_number = lambda value: int(value[1:])
     for identifier, row in planned.items():
@@ -93,8 +113,8 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    if state.get("active_milestone") is not None:
-        errors.append("M11 implementation must remain inactive during governance reconciliation")
+    if state.get("active_milestone") != "M11":
+        errors.append("milestone state must identify M11 as active during implementation")
     if state.get("next_milestone") != "M11":
         errors.append("milestone state must identify M11 as the next milestone")
     if state.get("completed_milestones") != [f"M{value:02d}" for value in range(11)]:
@@ -160,8 +180,8 @@ def main() -> int:
     if errors:
         return 1
     print(
-        "M11 allocation PASS: 4 planned Java-8 modules, 132 addon rows, "
-        "later ownership retained, no production module materialized")
+        "M11 allocation PASS: 4 planned Java-8 modules, 3 Phase 1 modules materialized, "
+        "scripting engine deferred, 132 addon rows and later ownership retained")
     return 0
 
 

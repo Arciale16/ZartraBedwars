@@ -415,10 +415,11 @@ Mode metadata and deferred bindings are M10, while every named-mode mechanic rem
 
 ## M11 planned shop, content and action-platform boundary
 
-The M11 governance checkpoint allocates four Java-8-neutral production modules without
-materializing them: `zbw-shop`, `zbw-content`, `zbw-scripting-api` and
-`zbw-scripting-engine`. They remain only in the planned graph until M11 implementation is
-explicitly started. `zbw-shop` owns catalog, quote, match-tender, purchase, generator,
+The M11 governance checkpoint allocates four Java-8-neutral production modules. Phases 1-4
+materializes `zbw-shop`, `zbw-content` and `zbw-scripting-api`; `zbw-scripting-engine` remains
+planned until a later M11 checkpoint has a real declarative execution use case. This prevents an empty
+or fake interpreter module while preserving its approved ownership. `zbw-shop` owns catalog,
+quote, match-tender, purchase, generator,
 upgrade/trap and utility-item use cases; `zbw-content` owns versioned original shop/mode packs
 and their deterministic validation; `zbw-scripting-api` owns the declarative capability/action
 contracts; `zbw-scripting-engine` owns the bounded disabled-by-default interpreter and audit
@@ -435,7 +436,9 @@ The dependency direction is fixed before implementation:
   ports. It has no Bukkit, filesystem, process, network, reflection, classloader, native or
   thread-creation capability.
 - `zbw-storage-sql` may implement M11 repository ports only through an M11-qualified dependency;
-  no shop/application module imports JDBC or a concrete repository.
+  no shop/application module imports JDBC or a concrete repository. That adapter dependency is
+  not activated in Phase 1 because the phase defines asynchronous preference/history/rotation
+  ports but no SQL adapter; activating it early would also close a reactor test-dependency cycle.
 - `zbw-paper-modern` is the composition root and may gain M11-qualified dependencies on the four
   M11 modules. Existing M09 command/UI modules remain generic adapters; feature actions/pages
   invoke the same typed M11 use cases and contain no shop, generator, upgrade or mode policy.

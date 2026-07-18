@@ -1,0 +1,2646 @@
+{
+  "additive": 25,
+  "baseline": 115,
+  "commands": [
+    {
+      "action_id": "zartra:action/arena/list",
+      "command": "/zbw arena list",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/list",
+      "permission": "zartrabedwars.arena.list",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/status",
+      "command": "/zbw arena status",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/status",
+      "permission": "zartrabedwars.arena.status",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/health",
+      "command": "/zbw arena health",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/health",
+      "permission": "zartrabedwars.arena.health",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/create",
+      "command": "/zbw arena create",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/create",
+      "permission": "zartrabedwars.arena.create",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/rename",
+      "command": "/zbw arena rename",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/rename",
+      "permission": "zartrabedwars.arena.rename",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/enable",
+      "command": "/zbw arena enable",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/enable",
+      "permission": "zartrabedwars.arena.enable",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/disable",
+      "command": "/zbw arena disable",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/disable",
+      "permission": "zartrabedwars.arena.disable",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/delete",
+      "command": "/zbw arena delete",
+      "destructive": true,
+      "gui_page": "zartra:m09/arena/delete",
+      "permission": "zartrabedwars.arena.delete",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/duplicate",
+      "command": "/zbw arena duplicate",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/duplicate",
+      "permission": "zartrabedwars.arena.duplicate",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/import",
+      "command": "/zbw arena import",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/import",
+      "permission": "zartrabedwars.arena.import",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/export",
+      "command": "/zbw arena export",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/export",
+      "permission": "zartrabedwars.arena.export",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/backup",
+      "command": "/zbw arena backup",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/backup",
+      "permission": "zartrabedwars.arena.backup",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/restore",
+      "command": "/zbw arena restore",
+      "destructive": true,
+      "gui_page": "zartra:m09/arena/restore",
+      "permission": "zartrabedwars.arena.restore",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/validate",
+      "command": "/zbw arena validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/validate",
+      "permission": "zartrabedwars.arena.validate",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena/diagnostics",
+      "command": "/zbw arena diagnostics",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena/diagnostics",
+      "permission": "zartrabedwars.arena.diagnostics",
+      "requirement_ids": [
+        "ZBW-ARENA-001",
+        "ZBW-ARENA-003",
+        "ZBW-ARENA-004",
+        "ZBW-ARENA-006",
+        "ZBW-ARENA-007",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/start",
+      "command": "/zbw setup start",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/start",
+      "permission": "zartrabedwars.setup.start",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/progress",
+      "command": "/zbw setup progress",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/progress",
+      "permission": "zartrabedwars.setup.progress",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/edit",
+      "command": "/zbw setup edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/edit",
+      "permission": "zartrabedwars.setup.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/team",
+      "command": "/zbw setup team",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/team",
+      "permission": "zartrabedwars.setup.team",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/spawn",
+      "command": "/zbw setup spawn",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/spawn",
+      "permission": "zartrabedwars.setup.spawn",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/bed",
+      "command": "/zbw setup bed",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/bed",
+      "permission": "zartrabedwars.setup.bed",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/generator",
+      "command": "/zbw setup generator",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/generator",
+      "permission": "zartrabedwars.setup.generator",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/shop-location",
+      "command": "/zbw setup shop-location",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/shop-location",
+      "permission": "zartrabedwars.setup.shop.location",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/upgrade-location",
+      "command": "/zbw setup upgrade-location",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/upgrade-location",
+      "permission": "zartrabedwars.setup.upgrade.location",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/region",
+      "command": "/zbw setup region",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/region",
+      "permission": "zartrabedwars.setup.region",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/property",
+      "command": "/zbw setup property",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/property",
+      "permission": "zartrabedwars.setup.property",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/markers",
+      "command": "/zbw setup markers",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/markers",
+      "permission": "zartrabedwars.setup.markers",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/preview",
+      "command": "/zbw setup preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/preview",
+      "permission": "zartrabedwars.setup.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/apply",
+      "command": "/zbw setup apply",
+      "destructive": true,
+      "gui_page": "zartra:m09/setup/apply",
+      "permission": "zartrabedwars.setup.apply",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/undo",
+      "command": "/zbw setup undo",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/undo",
+      "permission": "zartrabedwars.setup.undo",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/redo",
+      "command": "/zbw setup redo",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/redo",
+      "permission": "zartrabedwars.setup.redo",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/save",
+      "command": "/zbw setup save",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/save",
+      "permission": "zartrabedwars.setup.save",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/rollback",
+      "command": "/zbw setup rollback",
+      "destructive": true,
+      "gui_page": "zartra:m09/setup/rollback",
+      "permission": "zartrabedwars.setup.rollback",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/status",
+      "command": "/zbw setup status",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/status",
+      "permission": "zartrabedwars.setup.status",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/setup/exit",
+      "command": "/zbw setup exit",
+      "destructive": false,
+      "gui_page": "zartra:m09/setup/exit",
+      "permission": "zartrabedwars.setup.exit",
+      "requirement_ids": [
+        "ZBW-ADDON-408",
+        "ZBW-ADDON-409",
+        "ZBW-ADDON-410",
+        "ZBW-ADDON-411",
+        "ZBW-ADDON-412",
+        "ZBW-ADDON-413",
+        "ZBW-ADDON-414",
+        "ZBW-ADDON-415",
+        "ZBW-ADDON-416",
+        "ZBW-ADDON-417",
+        "ZBW-ADDON-418",
+        "ZBW-ADDON-419",
+        "ZBW-ADDON-420",
+        "ZBW-ADDON-421",
+        "ZBW-ADDON-422",
+        "ZBW-ADDON-423",
+        "ZBW-ARENA-002",
+        "ZBW-ARENA-005",
+        "ZBW-ARENA-008",
+        "ZBW-ARENA-009",
+        "ZBW-UX-001",
+        "ZBW-UX-002",
+        "ZBW-UX-003",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/join",
+      "command": "/zbw game join",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/join",
+      "permission": "zartrabedwars.game.join",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/leave",
+      "command": "/zbw game leave",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/leave",
+      "permission": "zartrabedwars.game.leave",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/lobby-status",
+      "command": "/zbw game lobby-status",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/lobby-status",
+      "permission": "zartrabedwars.game.lobby.status",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/match-status",
+      "command": "/zbw game match-status",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/match-status",
+      "permission": "zartrabedwars.game.match.status",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/start",
+      "command": "/zbw game start",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/start",
+      "permission": "zartrabedwars.game.start",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/force-start",
+      "command": "/zbw game force-start",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/force-start",
+      "permission": "zartrabedwars.game.force.start",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/stop",
+      "command": "/zbw game stop",
+      "destructive": true,
+      "gui_page": "zartra:m09/game/stop",
+      "permission": "zartrabedwars.game.stop",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/recover",
+      "command": "/zbw game recover",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/recover",
+      "permission": "zartrabedwars.game.recover",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/reconnect-diagnostics",
+      "command": "/zbw game reconnect-diagnostics",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/reconnect-diagnostics",
+      "permission": "zartrabedwars.game.reconnect.diagnostics",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/restoration-diagnostics",
+      "command": "/zbw game restoration-diagnostics",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/restoration-diagnostics",
+      "permission": "zartrabedwars.game.restoration.diagnostics",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/health",
+      "command": "/zbw game health",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/health",
+      "permission": "zartrabedwars.game.health",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/game/diagnostics",
+      "command": "/zbw game diagnostics",
+      "destructive": false,
+      "gui_page": "zartra:m09/game/diagnostics",
+      "permission": "zartrabedwars.game.diagnostics",
+      "requirement_ids": [
+        "ZBW-GAME-001",
+        "ZBW-GAME-002",
+        "ZBW-GAME-003",
+        "ZBW-GAME-006",
+        "ZBW-GAME-008",
+        "ZBW-GAME-010",
+        "ZBW-UX-001",
+        "ZBW-UX-006"
+      ]
+    },
+    {
+      "action_id": "zartra:action/hotbar-manager/edit",
+      "command": "/zbw hotbar-manager edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/hotbar-manager/edit",
+      "permission": "zartrabedwars.hotbar.manager.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-001",
+        "ZBW-ADDON-002",
+        "ZBW-ADDON-003",
+        "ZBW-ADDON-004",
+        "ZBW-ADDON-005",
+        "ZBW-ADDON-006",
+        "ZBW-ADDON-007",
+        "ZBW-ADDON-008",
+        "ZBW-ADDON-009"
+      ]
+    },
+    {
+      "action_id": "zartra:action/hotbar-manager/preview",
+      "command": "/zbw hotbar-manager preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/hotbar-manager/preview",
+      "permission": "zartrabedwars.hotbar.manager.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-001",
+        "ZBW-ADDON-002",
+        "ZBW-ADDON-003",
+        "ZBW-ADDON-004",
+        "ZBW-ADDON-005",
+        "ZBW-ADDON-006",
+        "ZBW-ADDON-007",
+        "ZBW-ADDON-008",
+        "ZBW-ADDON-009"
+      ]
+    },
+    {
+      "action_id": "zartra:action/hotbar-manager/reload",
+      "command": "/zbw hotbar-manager reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/hotbar-manager/reload",
+      "permission": "zartrabedwars.hotbar.manager.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-001",
+        "ZBW-ADDON-002",
+        "ZBW-ADDON-003",
+        "ZBW-ADDON-004",
+        "ZBW-ADDON-005",
+        "ZBW-ADDON-006",
+        "ZBW-ADDON-007",
+        "ZBW-ADDON-008",
+        "ZBW-ADDON-009"
+      ]
+    },
+    {
+      "action_id": "zartra:action/hotbar-manager/validate",
+      "command": "/zbw hotbar-manager validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/hotbar-manager/validate",
+      "permission": "zartrabedwars.hotbar.manager.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-001",
+        "ZBW-ADDON-002",
+        "ZBW-ADDON-003",
+        "ZBW-ADDON-004",
+        "ZBW-ADDON-005",
+        "ZBW-ADDON-006",
+        "ZBW-ADDON-007",
+        "ZBW-ADDON-008",
+        "ZBW-ADDON-009"
+      ]
+    },
+    {
+      "action_id": "zartra:action/hotbar-manager/inspect",
+      "command": "/zbw hotbar-manager inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/hotbar-manager/inspect",
+      "permission": "zartrabedwars.hotbar.manager.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-001",
+        "ZBW-ADDON-002",
+        "ZBW-ADDON-003",
+        "ZBW-ADDON-004",
+        "ZBW-ADDON-005",
+        "ZBW-ADDON-006",
+        "ZBW-ADDON-007",
+        "ZBW-ADDON-008",
+        "ZBW-ADDON-009"
+      ]
+    },
+    {
+      "action_id": "zartra:action/deposit/hand",
+      "command": "/deposit hand",
+      "destructive": false,
+      "gui_page": "zartra:m09/deposit/hand",
+      "permission": "zartrabedwars.deposit.hand",
+      "requirement_ids": [
+        "ZBW-ADDON-108",
+        "ZBW-ADDON-109",
+        "ZBW-ADDON-110",
+        "ZBW-ADDON-111",
+        "ZBW-ADDON-112",
+        "ZBW-ADDON-113",
+        "ZBW-ADDON-114"
+      ]
+    },
+    {
+      "action_id": "zartra:action/deposit/resources",
+      "command": "/deposit resources",
+      "destructive": false,
+      "gui_page": "zartra:m09/deposit/resources",
+      "permission": "zartrabedwars.deposit.resources",
+      "requirement_ids": [
+        "ZBW-ADDON-108",
+        "ZBW-ADDON-109",
+        "ZBW-ADDON-110",
+        "ZBW-ADDON-111",
+        "ZBW-ADDON-112",
+        "ZBW-ADDON-113",
+        "ZBW-ADDON-114"
+      ]
+    },
+    {
+      "action_id": "zartra:action/deposit/all",
+      "command": "/deposit all",
+      "destructive": false,
+      "gui_page": "zartra:m09/deposit/all",
+      "permission": "zartrabedwars.deposit.all",
+      "requirement_ids": [
+        "ZBW-ADDON-108",
+        "ZBW-ADDON-109",
+        "ZBW-ADDON-110",
+        "ZBW-ADDON-111",
+        "ZBW-ADDON-112",
+        "ZBW-ADDON-113",
+        "ZBW-ADDON-114"
+      ]
+    },
+    {
+      "action_id": "zartra:action/deposit/reload",
+      "command": "/zbw deposit reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/deposit/reload",
+      "permission": "zartrabedwars.deposit.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-108",
+        "ZBW-ADDON-109",
+        "ZBW-ADDON-110",
+        "ZBW-ADDON-111",
+        "ZBW-ADDON-112",
+        "ZBW-ADDON-113",
+        "ZBW-ADDON-114"
+      ]
+    },
+    {
+      "action_id": "zartra:action/deposit/inspect",
+      "command": "/zbw deposit inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/deposit/inspect",
+      "permission": "zartrabedwars.deposit.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-108",
+        "ZBW-ADDON-109",
+        "ZBW-ADDON-110",
+        "ZBW-ADDON-111",
+        "ZBW-ADDON-112",
+        "ZBW-ADDON-113",
+        "ZBW-ADDON-114"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena-start-message/edit",
+      "command": "/zbw arena-start-message edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena-start-message/edit",
+      "permission": "zartrabedwars.arena.start.message.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-124",
+        "ZBW-ADDON-125",
+        "ZBW-ADDON-126",
+        "ZBW-ADDON-127",
+        "ZBW-ADDON-128",
+        "ZBW-ADDON-129",
+        "ZBW-ADDON-130"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena-start-message/preview",
+      "command": "/zbw arena-start-message preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena-start-message/preview",
+      "permission": "zartrabedwars.arena.start.message.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-124",
+        "ZBW-ADDON-125",
+        "ZBW-ADDON-126",
+        "ZBW-ADDON-127",
+        "ZBW-ADDON-128",
+        "ZBW-ADDON-129",
+        "ZBW-ADDON-130"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena-start-message/reload",
+      "command": "/zbw arena-start-message reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena-start-message/reload",
+      "permission": "zartrabedwars.arena.start.message.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-124",
+        "ZBW-ADDON-125",
+        "ZBW-ADDON-126",
+        "ZBW-ADDON-127",
+        "ZBW-ADDON-128",
+        "ZBW-ADDON-129",
+        "ZBW-ADDON-130"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena-start-message/validate",
+      "command": "/zbw arena-start-message validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena-start-message/validate",
+      "permission": "zartrabedwars.arena.start.message.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-124",
+        "ZBW-ADDON-125",
+        "ZBW-ADDON-126",
+        "ZBW-ADDON-127",
+        "ZBW-ADDON-128",
+        "ZBW-ADDON-129",
+        "ZBW-ADDON-130"
+      ]
+    },
+    {
+      "action_id": "zartra:action/arena-start-message/inspect",
+      "command": "/zbw arena-start-message inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/arena-start-message/inspect",
+      "permission": "zartrabedwars.arena.start.message.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-124",
+        "ZBW-ADDON-125",
+        "ZBW-ADDON-126",
+        "ZBW-ADDON-127",
+        "ZBW-ADDON-128",
+        "ZBW-ADDON-129",
+        "ZBW-ADDON-130"
+      ]
+    },
+    {
+      "action_id": "zartra:action/anti-drop/edit",
+      "command": "/zbw anti-drop edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/anti-drop/edit",
+      "permission": "zartrabedwars.anti.drop.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-148",
+        "ZBW-ADDON-149",
+        "ZBW-ADDON-150",
+        "ZBW-ADDON-151",
+        "ZBW-ADDON-152",
+        "ZBW-ADDON-153",
+        "ZBW-ADDON-154"
+      ]
+    },
+    {
+      "action_id": "zartra:action/anti-drop/preview",
+      "command": "/zbw anti-drop preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/anti-drop/preview",
+      "permission": "zartrabedwars.anti.drop.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-148",
+        "ZBW-ADDON-149",
+        "ZBW-ADDON-150",
+        "ZBW-ADDON-151",
+        "ZBW-ADDON-152",
+        "ZBW-ADDON-153",
+        "ZBW-ADDON-154"
+      ]
+    },
+    {
+      "action_id": "zartra:action/anti-drop/reload",
+      "command": "/zbw anti-drop reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/anti-drop/reload",
+      "permission": "zartrabedwars.anti.drop.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-148",
+        "ZBW-ADDON-149",
+        "ZBW-ADDON-150",
+        "ZBW-ADDON-151",
+        "ZBW-ADDON-152",
+        "ZBW-ADDON-153",
+        "ZBW-ADDON-154"
+      ]
+    },
+    {
+      "action_id": "zartra:action/anti-drop/validate",
+      "command": "/zbw anti-drop validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/anti-drop/validate",
+      "permission": "zartrabedwars.anti.drop.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-148",
+        "ZBW-ADDON-149",
+        "ZBW-ADDON-150",
+        "ZBW-ADDON-151",
+        "ZBW-ADDON-152",
+        "ZBW-ADDON-153",
+        "ZBW-ADDON-154"
+      ]
+    },
+    {
+      "action_id": "zartra:action/anti-drop/inspect",
+      "command": "/zbw anti-drop inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/anti-drop/inspect",
+      "permission": "zartrabedwars.anti.drop.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-148",
+        "ZBW-ADDON-149",
+        "ZBW-ADDON-150",
+        "ZBW-ADDON-151",
+        "ZBW-ADDON-152",
+        "ZBW-ADDON-153",
+        "ZBW-ADDON-154"
+      ]
+    },
+    {
+      "action_id": "zartra:action/leave-delay/edit",
+      "command": "/zbw leave-delay edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/leave-delay/edit",
+      "permission": "zartrabedwars.leave.delay.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-334",
+        "ZBW-ADDON-335",
+        "ZBW-ADDON-336",
+        "ZBW-ADDON-337",
+        "ZBW-ADDON-338",
+        "ZBW-ADDON-339",
+        "ZBW-ADDON-340"
+      ]
+    },
+    {
+      "action_id": "zartra:action/leave-delay/preview",
+      "command": "/zbw leave-delay preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/leave-delay/preview",
+      "permission": "zartrabedwars.leave.delay.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-334",
+        "ZBW-ADDON-335",
+        "ZBW-ADDON-336",
+        "ZBW-ADDON-337",
+        "ZBW-ADDON-338",
+        "ZBW-ADDON-339",
+        "ZBW-ADDON-340"
+      ]
+    },
+    {
+      "action_id": "zartra:action/leave-delay/reload",
+      "command": "/zbw leave-delay reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/leave-delay/reload",
+      "permission": "zartrabedwars.leave.delay.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-334",
+        "ZBW-ADDON-335",
+        "ZBW-ADDON-336",
+        "ZBW-ADDON-337",
+        "ZBW-ADDON-338",
+        "ZBW-ADDON-339",
+        "ZBW-ADDON-340"
+      ]
+    },
+    {
+      "action_id": "zartra:action/leave-delay/validate",
+      "command": "/zbw leave-delay validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/leave-delay/validate",
+      "permission": "zartrabedwars.leave.delay.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-334",
+        "ZBW-ADDON-335",
+        "ZBW-ADDON-336",
+        "ZBW-ADDON-337",
+        "ZBW-ADDON-338",
+        "ZBW-ADDON-339",
+        "ZBW-ADDON-340"
+      ]
+    },
+    {
+      "action_id": "zartra:action/leave-delay/inspect",
+      "command": "/zbw leave-delay inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/leave-delay/inspect",
+      "permission": "zartrabedwars.leave.delay.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-334",
+        "ZBW-ADDON-335",
+        "ZBW-ADDON-336",
+        "ZBW-ADDON-337",
+        "ZBW-ADDON-338",
+        "ZBW-ADDON-339",
+        "ZBW-ADDON-340"
+      ]
+    },
+    {
+      "action_id": "zartra:action/tab-sorter/edit",
+      "command": "/zbw tab-sorter edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/tab-sorter/edit",
+      "permission": "zartrabedwars.tab.sorter.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-398",
+        "ZBW-ADDON-399",
+        "ZBW-ADDON-400",
+        "ZBW-ADDON-401",
+        "ZBW-ADDON-402",
+        "ZBW-ADDON-403",
+        "ZBW-ADDON-404",
+        "ZBW-ADDON-405",
+        "ZBW-ADDON-406",
+        "ZBW-ADDON-407"
+      ]
+    },
+    {
+      "action_id": "zartra:action/tab-sorter/preview",
+      "command": "/zbw tab-sorter preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/tab-sorter/preview",
+      "permission": "zartrabedwars.tab.sorter.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-398",
+        "ZBW-ADDON-399",
+        "ZBW-ADDON-400",
+        "ZBW-ADDON-401",
+        "ZBW-ADDON-402",
+        "ZBW-ADDON-403",
+        "ZBW-ADDON-404",
+        "ZBW-ADDON-405",
+        "ZBW-ADDON-406",
+        "ZBW-ADDON-407"
+      ]
+    },
+    {
+      "action_id": "zartra:action/tab-sorter/reload",
+      "command": "/zbw tab-sorter reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/tab-sorter/reload",
+      "permission": "zartrabedwars.tab.sorter.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-398",
+        "ZBW-ADDON-399",
+        "ZBW-ADDON-400",
+        "ZBW-ADDON-401",
+        "ZBW-ADDON-402",
+        "ZBW-ADDON-403",
+        "ZBW-ADDON-404",
+        "ZBW-ADDON-405",
+        "ZBW-ADDON-406",
+        "ZBW-ADDON-407"
+      ]
+    },
+    {
+      "action_id": "zartra:action/tab-sorter/validate",
+      "command": "/zbw tab-sorter validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/tab-sorter/validate",
+      "permission": "zartrabedwars.tab.sorter.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-398",
+        "ZBW-ADDON-399",
+        "ZBW-ADDON-400",
+        "ZBW-ADDON-401",
+        "ZBW-ADDON-402",
+        "ZBW-ADDON-403",
+        "ZBW-ADDON-404",
+        "ZBW-ADDON-405",
+        "ZBW-ADDON-406",
+        "ZBW-ADDON-407"
+      ]
+    },
+    {
+      "action_id": "zartra:action/tab-sorter/inspect",
+      "command": "/zbw tab-sorter inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/tab-sorter/inspect",
+      "permission": "zartrabedwars.tab.sorter.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-398",
+        "ZBW-ADDON-399",
+        "ZBW-ADDON-400",
+        "ZBW-ADDON-401",
+        "ZBW-ADDON-402",
+        "ZBW-ADDON-403",
+        "ZBW-ADDON-404",
+        "ZBW-ADDON-405",
+        "ZBW-ADDON-406",
+        "ZBW-ADDON-407"
+      ]
+    },
+    {
+      "action_id": "zartra:action/bossbar/edit",
+      "command": "/zbw bossbar edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/bossbar/edit",
+      "permission": "zartrabedwars.bossbar.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-424",
+        "ZBW-ADDON-425",
+        "ZBW-ADDON-426",
+        "ZBW-ADDON-427",
+        "ZBW-ADDON-428",
+        "ZBW-ADDON-429",
+        "ZBW-ADDON-430",
+        "ZBW-ADDON-431"
+      ]
+    },
+    {
+      "action_id": "zartra:action/bossbar/preview",
+      "command": "/zbw bossbar preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/bossbar/preview",
+      "permission": "zartrabedwars.bossbar.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-424",
+        "ZBW-ADDON-425",
+        "ZBW-ADDON-426",
+        "ZBW-ADDON-427",
+        "ZBW-ADDON-428",
+        "ZBW-ADDON-429",
+        "ZBW-ADDON-430",
+        "ZBW-ADDON-431"
+      ]
+    },
+    {
+      "action_id": "zartra:action/bossbar/reload",
+      "command": "/zbw bossbar reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/bossbar/reload",
+      "permission": "zartrabedwars.bossbar.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-424",
+        "ZBW-ADDON-425",
+        "ZBW-ADDON-426",
+        "ZBW-ADDON-427",
+        "ZBW-ADDON-428",
+        "ZBW-ADDON-429",
+        "ZBW-ADDON-430",
+        "ZBW-ADDON-431"
+      ]
+    },
+    {
+      "action_id": "zartra:action/bossbar/validate",
+      "command": "/zbw bossbar validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/bossbar/validate",
+      "permission": "zartrabedwars.bossbar.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-424",
+        "ZBW-ADDON-425",
+        "ZBW-ADDON-426",
+        "ZBW-ADDON-427",
+        "ZBW-ADDON-428",
+        "ZBW-ADDON-429",
+        "ZBW-ADDON-430",
+        "ZBW-ADDON-431"
+      ]
+    },
+    {
+      "action_id": "zartra:action/bossbar/inspect",
+      "command": "/zbw bossbar inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/bossbar/inspect",
+      "permission": "zartrabedwars.bossbar.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-424",
+        "ZBW-ADDON-425",
+        "ZBW-ADDON-426",
+        "ZBW-ADDON-427",
+        "ZBW-ADDON-428",
+        "ZBW-ADDON-429",
+        "ZBW-ADDON-430",
+        "ZBW-ADDON-431"
+      ]
+    },
+    {
+      "action_id": "zartra:action/adventure-mode/edit",
+      "command": "/zbw adventure-mode edit",
+      "destructive": false,
+      "gui_page": "zartra:m09/adventure-mode/edit",
+      "permission": "zartrabedwars.adventure.mode.edit",
+      "requirement_ids": [
+        "ZBW-ADDON-432",
+        "ZBW-ADDON-433",
+        "ZBW-ADDON-434",
+        "ZBW-ADDON-435",
+        "ZBW-ADDON-436",
+        "ZBW-ADDON-437"
+      ]
+    },
+    {
+      "action_id": "zartra:action/adventure-mode/preview",
+      "command": "/zbw adventure-mode preview",
+      "destructive": false,
+      "gui_page": "zartra:m09/adventure-mode/preview",
+      "permission": "zartrabedwars.adventure.mode.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-432",
+        "ZBW-ADDON-433",
+        "ZBW-ADDON-434",
+        "ZBW-ADDON-435",
+        "ZBW-ADDON-436",
+        "ZBW-ADDON-437"
+      ]
+    },
+    {
+      "action_id": "zartra:action/adventure-mode/reload",
+      "command": "/zbw adventure-mode reload",
+      "destructive": false,
+      "gui_page": "zartra:m09/adventure-mode/reload",
+      "permission": "zartrabedwars.adventure.mode.reload",
+      "requirement_ids": [
+        "ZBW-ADDON-432",
+        "ZBW-ADDON-433",
+        "ZBW-ADDON-434",
+        "ZBW-ADDON-435",
+        "ZBW-ADDON-436",
+        "ZBW-ADDON-437"
+      ]
+    },
+    {
+      "action_id": "zartra:action/adventure-mode/validate",
+      "command": "/zbw adventure-mode validate",
+      "destructive": false,
+      "gui_page": "zartra:m09/adventure-mode/validate",
+      "permission": "zartrabedwars.adventure.mode.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-432",
+        "ZBW-ADDON-433",
+        "ZBW-ADDON-434",
+        "ZBW-ADDON-435",
+        "ZBW-ADDON-436",
+        "ZBW-ADDON-437"
+      ]
+    },
+    {
+      "action_id": "zartra:action/adventure-mode/inspect",
+      "command": "/zbw adventure-mode inspect",
+      "destructive": false,
+      "gui_page": "zartra:m09/adventure-mode/inspect",
+      "permission": "zartrabedwars.adventure.mode.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-432",
+        "ZBW-ADDON-433",
+        "ZBW-ADDON-434",
+        "ZBW-ADDON-435",
+        "ZBW-ADDON-436",
+        "ZBW-ADDON-437"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/quick-join",
+      "command": "/zbw selector quick-join",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/quick-join",
+      "permission": "zartrabedwars.selector.quick.join",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/arena",
+      "command": "/zbw selector arena",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/arena",
+      "permission": "zartrabedwars.selector.arena",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/mode",
+      "command": "/zbw selector mode",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/mode",
+      "permission": "zartrabedwars.selector.mode",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/map",
+      "command": "/zbw selector map",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/map",
+      "permission": "zartrabedwars.selector.map",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/layout",
+      "command": "/zbw selector layout",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/layout",
+      "permission": "zartrabedwars.selector.layout",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/selector/team-size",
+      "command": "/zbw selector team-size",
+      "destructive": false,
+      "gui_page": "zartra:m10/selector/team-size",
+      "permission": "zartrabedwars.selector.team.size",
+      "requirement_ids": [
+        "ZBW-GAME-007",
+        "ZBW-CONTENT-003"
+      ]
+    },
+    {
+      "action_id": "zartra:action/queue/join",
+      "command": "/zbw queue join",
+      "destructive": false,
+      "gui_page": "zartra:m10/queue/join",
+      "permission": "zartrabedwars.matchmaking.queue.join",
+      "requirement_ids": [
+        "ZBW-GAME-007"
+      ]
+    },
+    {
+      "action_id": "zartra:action/queue/leave",
+      "command": "/zbw queue leave",
+      "destructive": false,
+      "gui_page": "zartra:m10/queue/leave",
+      "permission": "zartrabedwars.matchmaking.queue.leave",
+      "requirement_ids": [
+        "ZBW-GAME-007"
+      ]
+    },
+    {
+      "action_id": "zartra:action/queue/status",
+      "command": "/zbw queue status",
+      "destructive": false,
+      "gui_page": "zartra:m10/queue/status",
+      "permission": "zartrabedwars.matchmaking.queue.status",
+      "requirement_ids": [
+        "ZBW-GAME-007"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/enter",
+      "command": "/zbw spectator enter",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/enter",
+      "permission": "zartrabedwars.spectator.enter",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/leave",
+      "command": "/zbw spectator leave",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/leave",
+      "permission": "zartrabedwars.spectator.leave",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/target",
+      "command": "/zbw spectator target",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/target",
+      "permission": "zartrabedwars.spectator.target",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/next",
+      "command": "/zbw spectator next",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/next",
+      "permission": "zartrabedwars.spectator.next",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/previous",
+      "command": "/zbw spectator previous",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/previous",
+      "permission": "zartrabedwars.spectator.previous",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/status",
+      "command": "/zbw spectator status",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/status",
+      "permission": "zartrabedwars.spectator.status",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/spectator/options",
+      "command": "/zbw spectator options",
+      "destructive": false,
+      "gui_page": "zartra:m10/spectator/options",
+      "permission": "zartrabedwars.spectator.options",
+      "requirement_ids": [
+        "ZBW-GAME-009",
+        "ZBW-ADDON-092",
+        "ZBW-ADDON-093",
+        "ZBW-ADDON-094",
+        "ZBW-ADDON-095",
+        "ZBW-ADDON-096",
+        "ZBW-ADDON-097",
+        "ZBW-ADDON-098",
+        "ZBW-ADDON-099",
+        "ZBW-ADDON-100",
+        "ZBW-ADDON-101",
+        "ZBW-ADDON-115",
+        "ZBW-ADDON-116",
+        "ZBW-ADDON-117",
+        "ZBW-ADDON-118",
+        "ZBW-ADDON-119",
+        "ZBW-ADDON-120",
+        "ZBW-ADDON-121",
+        "ZBW-ADDON-122",
+        "ZBW-ADDON-123"
+      ]
+    },
+    {
+      "action_id": "zartra:action/compass/track",
+      "command": "/zbw compass track",
+      "destructive": false,
+      "gui_page": "zartra:m10/compass/track",
+      "permission": "zartrabedwars.compass.track",
+      "requirement_ids": [
+        "ZBW-ADDON-131",
+        "ZBW-ADDON-132",
+        "ZBW-ADDON-133",
+        "ZBW-ADDON-134",
+        "ZBW-ADDON-135",
+        "ZBW-ADDON-136",
+        "ZBW-ADDON-137",
+        "ZBW-ADDON-138",
+        "ZBW-ADDON-139",
+        "ZBW-ADDON-140"
+      ]
+    },
+    {
+      "action_id": "zartra:action/compass/communications",
+      "command": "/zbw compass communications",
+      "destructive": false,
+      "gui_page": "zartra:m10/compass/communications",
+      "permission": "zartrabedwars.compass.communications",
+      "requirement_ids": [
+        "ZBW-ADDON-131",
+        "ZBW-ADDON-132",
+        "ZBW-ADDON-133",
+        "ZBW-ADDON-134",
+        "ZBW-ADDON-135",
+        "ZBW-ADDON-136",
+        "ZBW-ADDON-137",
+        "ZBW-ADDON-138",
+        "ZBW-ADDON-139",
+        "ZBW-ADDON-140"
+      ]
+    },
+    {
+      "action_id": "zartra:action/team-selector/open",
+      "command": "/zbw team-selector open",
+      "destructive": false,
+      "gui_page": "zartra:m10/team-selector/open",
+      "permission": "zartrabedwars.team.selector.open",
+      "requirement_ids": [
+        "ZBW-ADDON-155",
+        "ZBW-ADDON-156",
+        "ZBW-ADDON-157",
+        "ZBW-ADDON-158",
+        "ZBW-ADDON-159",
+        "ZBW-ADDON-160",
+        "ZBW-ADDON-161",
+        "ZBW-ADDON-162",
+        "ZBW-ADDON-163"
+      ]
+    },
+    {
+      "action_id": "zartra:action/team-selector/select",
+      "command": "/zbw team-selector select",
+      "destructive": false,
+      "gui_page": "zartra:m10/team-selector/select",
+      "permission": "zartrabedwars.team.selector.select",
+      "requirement_ids": [
+        "ZBW-ADDON-155",
+        "ZBW-ADDON-156",
+        "ZBW-ADDON-157",
+        "ZBW-ADDON-158",
+        "ZBW-ADDON-159",
+        "ZBW-ADDON-160",
+        "ZBW-ADDON-161",
+        "ZBW-ADDON-162",
+        "ZBW-ADDON-163"
+      ]
+    },
+    {
+      "action_id": "zartra:action/team-selector/clear",
+      "command": "/zbw team-selector clear",
+      "destructive": false,
+      "gui_page": "zartra:m10/team-selector/clear",
+      "permission": "zartrabedwars.team.selector.clear",
+      "requirement_ids": [
+        "ZBW-ADDON-155",
+        "ZBW-ADDON-156",
+        "ZBW-ADDON-157",
+        "ZBW-ADDON-158",
+        "ZBW-ADDON-159",
+        "ZBW-ADDON-160",
+        "ZBW-ADDON-161",
+        "ZBW-ADDON-162",
+        "ZBW-ADDON-163"
+      ]
+    },
+    {
+      "action_id": "zartra:action/team-selector/status",
+      "command": "/zbw team-selector status",
+      "destructive": false,
+      "gui_page": "zartra:m10/team-selector/status",
+      "permission": "zartrabedwars.team.selector.status",
+      "requirement_ids": [
+        "ZBW-ADDON-155",
+        "ZBW-ADDON-156",
+        "ZBW-ADDON-157",
+        "ZBW-ADDON-158",
+        "ZBW-ADDON-159",
+        "ZBW-ADDON-160",
+        "ZBW-ADDON-161",
+        "ZBW-ADDON-162",
+        "ZBW-ADDON-163"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-matchmaking/diagnostics",
+      "command": "/zbw admin matchmaking diagnostics",
+      "destructive": false,
+      "gui_page": "zartra:m10/admin-matchmaking/diagnostics",
+      "permission": "zartrabedwars.admin.matchmaking.diagnostics",
+      "requirement_ids": [
+        "ZBW-GAME-007"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-matchmaking/reservations",
+      "command": "/zbw admin matchmaking reservations",
+      "destructive": false,
+      "gui_page": "zartra:m10/admin-matchmaking/reservations",
+      "permission": "zartrabedwars.admin.matchmaking.reservations",
+      "requirement_ids": [
+        "ZBW-GAME-007"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-mode/list",
+      "command": "/zbw admin mode list",
+      "destructive": false,
+      "gui_page": "zartra:m10/admin-mode/list",
+      "permission": "zartrabedwars.admin.mode.list",
+      "requirement_ids": [
+        "ZBW-GAME-004",
+        "ZBW-GAME-005",
+        "ZBW-CONTENT-003",
+        "ZBW-ADDON-236",
+        "ZBW-ADDON-237",
+        "ZBW-ADDON-238",
+        "ZBW-ADDON-239",
+        "ZBW-ADDON-240",
+        "ZBW-ADDON-241",
+        "ZBW-ADDON-242",
+        "ZBW-ADDON-243",
+        "ZBW-ADDON-244"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-mode/validate",
+      "command": "/zbw admin mode validate",
+      "destructive": false,
+      "gui_page": "zartra:m10/admin-mode/validate",
+      "permission": "zartrabedwars.admin.mode.validate",
+      "requirement_ids": [
+        "ZBW-GAME-004",
+        "ZBW-GAME-005",
+        "ZBW-CONTENT-003",
+        "ZBW-ADDON-236",
+        "ZBW-ADDON-237",
+        "ZBW-ADDON-238",
+        "ZBW-ADDON-239",
+        "ZBW-ADDON-240",
+        "ZBW-ADDON-241",
+        "ZBW-ADDON-242",
+        "ZBW-ADDON-243",
+        "ZBW-ADDON-244"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-mode/enable",
+      "command": "/zbw admin mode enable",
+      "destructive": true,
+      "gui_page": "zartra:m10/admin-mode/enable",
+      "permission": "zartrabedwars.admin.mode.enable",
+      "requirement_ids": [
+        "ZBW-GAME-004",
+        "ZBW-GAME-005",
+        "ZBW-CONTENT-003",
+        "ZBW-ADDON-236",
+        "ZBW-ADDON-237",
+        "ZBW-ADDON-238",
+        "ZBW-ADDON-239",
+        "ZBW-ADDON-240",
+        "ZBW-ADDON-241",
+        "ZBW-ADDON-242",
+        "ZBW-ADDON-243",
+        "ZBW-ADDON-244"
+      ]
+    },
+    {
+      "action_id": "zartra:action/admin-mode/disable",
+      "command": "/zbw admin mode disable",
+      "destructive": true,
+      "gui_page": "zartra:m10/admin-mode/disable",
+      "permission": "zartrabedwars.admin.mode.disable",
+      "requirement_ids": [
+        "ZBW-GAME-004",
+        "ZBW-GAME-005",
+        "ZBW-CONTENT-003",
+        "ZBW-ADDON-236",
+        "ZBW-ADDON-237",
+        "ZBW-ADDON-238",
+        "ZBW-ADDON-239",
+        "ZBW-ADDON-240",
+        "ZBW-ADDON-241",
+        "ZBW-ADDON-242",
+        "ZBW-ADDON-243",
+        "ZBW-ADDON-244"
+      ]
+    },
+    {
+      "action_id": "m11/shop/open",
+      "command": "/zbw shop open",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/open",
+      "permission": "zartrabedwars.shop.open",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/shop/quick-buy",
+      "command": "/zbw shop quick-buy",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/quick-buy",
+      "permission": "zartrabedwars.shop.quick.buy",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/shop/favourites",
+      "command": "/zbw shop favourites",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/favourites",
+      "permission": "zartrabedwars.shop.favourites",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/shop/history",
+      "command": "/zbw shop history",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/history",
+      "permission": "zartrabedwars.shop.history",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/shop/rotation",
+      "command": "/zbw shop rotation",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/rotation",
+      "permission": "zartrabedwars.shop.rotation",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/shop/inspect",
+      "command": "/zbw shop inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/shop/inspect",
+      "permission": "zartrabedwars.shop.inspect",
+      "requirement_ids": [
+        "ZBW-SHOP-001",
+        "ZBW-SHOP-002",
+        "ZBW-SHOP-003",
+        "ZBW-SHOP-004"
+      ]
+    },
+    {
+      "action_id": "m11/upgrade/open",
+      "command": "/zbw upgrade open",
+      "destructive": false,
+      "gui_page": "zartra:m11/upgrade/open",
+      "permission": "zartrabedwars.upgrade.open",
+      "requirement_ids": [
+        "ZBW-SHOP-005"
+      ]
+    },
+    {
+      "action_id": "m11/upgrade/purchase",
+      "command": "/zbw upgrade purchase",
+      "destructive": false,
+      "gui_page": "zartra:m11/upgrade/purchase",
+      "permission": "zartrabedwars.upgrade.purchase",
+      "requirement_ids": [
+        "ZBW-SHOP-005"
+      ]
+    },
+    {
+      "action_id": "m11/upgrade/status",
+      "command": "/zbw upgrade status",
+      "destructive": false,
+      "gui_page": "zartra:m11/upgrade/status",
+      "permission": "zartrabedwars.upgrade.status",
+      "requirement_ids": [
+        "ZBW-SHOP-005"
+      ]
+    },
+    {
+      "action_id": "m11/upgrade/inspect",
+      "command": "/zbw upgrade inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/upgrade/inspect",
+      "permission": "zartrabedwars.upgrade.inspect",
+      "requirement_ids": [
+        "ZBW-SHOP-005"
+      ]
+    },
+    {
+      "action_id": "m11/generator/status",
+      "command": "/zbw generator status",
+      "destructive": false,
+      "gui_page": "zartra:m11/generator/status",
+      "permission": "zartrabedwars.generator.status",
+      "requirement_ids": [
+        "ZBW-SHOP-006"
+      ]
+    },
+    {
+      "action_id": "m11/generator/validate",
+      "command": "/zbw generator validate",
+      "destructive": false,
+      "gui_page": "zartra:m11/generator/validate",
+      "permission": "zartrabedwars.generator.validate",
+      "requirement_ids": [
+        "ZBW-SHOP-006"
+      ]
+    },
+    {
+      "action_id": "m11/generator/inspect",
+      "command": "/zbw generator inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/generator/inspect",
+      "permission": "zartrabedwars.generator.inspect",
+      "requirement_ids": [
+        "ZBW-SHOP-006"
+      ]
+    },
+    {
+      "action_id": "m11/utility/use",
+      "command": "/zbw utility use",
+      "destructive": false,
+      "gui_page": "zartra:m11/utility/use",
+      "permission": "zartrabedwars.item.use",
+      "requirement_ids": [
+        "ZBW-SHOP-007"
+      ]
+    },
+    {
+      "action_id": "m11/utility/status",
+      "command": "/zbw utility status",
+      "destructive": false,
+      "gui_page": "zartra:m11/utility/status",
+      "permission": "zartrabedwars.item.status",
+      "requirement_ids": [
+        "ZBW-SHOP-007"
+      ]
+    },
+    {
+      "action_id": "m11/utility/inspect",
+      "command": "/zbw utility inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/utility/inspect",
+      "permission": "zartrabedwars.item.inspect",
+      "requirement_ids": [
+        "ZBW-SHOP-007"
+      ]
+    },
+    {
+      "action_id": "m11/popup-towers/preview",
+      "command": "/zbw popup-towers preview",
+      "destructive": false,
+      "gui_page": "zartra:m11/popup-towers/preview",
+      "permission": "zartrabedwars.popup.towers.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-184",
+        "ZBW-ADDON-185",
+        "ZBW-ADDON-186",
+        "ZBW-ADDON-187",
+        "ZBW-ADDON-188",
+        "ZBW-ADDON-189",
+        "ZBW-ADDON-190",
+        "ZBW-ADDON-191",
+        "ZBW-ADDON-192",
+        "ZBW-ADDON-193"
+      ]
+    },
+    {
+      "action_id": "m11/popup-towers/validate",
+      "command": "/zbw popup-towers validate",
+      "destructive": false,
+      "gui_page": "zartra:m11/popup-towers/validate",
+      "permission": "zartrabedwars.popup.towers.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-184",
+        "ZBW-ADDON-185",
+        "ZBW-ADDON-186",
+        "ZBW-ADDON-187",
+        "ZBW-ADDON-188",
+        "ZBW-ADDON-189",
+        "ZBW-ADDON-190",
+        "ZBW-ADDON-191",
+        "ZBW-ADDON-192",
+        "ZBW-ADDON-193"
+      ]
+    },
+    {
+      "action_id": "m11/popup-towers/inspect",
+      "command": "/zbw popup-towers inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/popup-towers/inspect",
+      "permission": "zartrabedwars.popup.towers.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-184",
+        "ZBW-ADDON-185",
+        "ZBW-ADDON-186",
+        "ZBW-ADDON-187",
+        "ZBW-ADDON-188",
+        "ZBW-ADDON-189",
+        "ZBW-ADDON-190",
+        "ZBW-ADDON-191",
+        "ZBW-ADDON-192",
+        "ZBW-ADDON-193"
+      ]
+    },
+    {
+      "action_id": "m11/sponge-effects/preview",
+      "command": "/zbw sponge-effects preview",
+      "destructive": false,
+      "gui_page": "zartra:m11/sponge-effects/preview",
+      "permission": "zartrabedwars.sponge.effects.preview",
+      "requirement_ids": [
+        "ZBW-ADDON-141",
+        "ZBW-ADDON-142",
+        "ZBW-ADDON-143",
+        "ZBW-ADDON-144",
+        "ZBW-ADDON-145",
+        "ZBW-ADDON-146",
+        "ZBW-ADDON-147"
+      ]
+    },
+    {
+      "action_id": "m11/sponge-effects/validate",
+      "command": "/zbw sponge-effects validate",
+      "destructive": false,
+      "gui_page": "zartra:m11/sponge-effects/validate",
+      "permission": "zartrabedwars.sponge.effects.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-141",
+        "ZBW-ADDON-142",
+        "ZBW-ADDON-143",
+        "ZBW-ADDON-144",
+        "ZBW-ADDON-145",
+        "ZBW-ADDON-146",
+        "ZBW-ADDON-147"
+      ]
+    },
+    {
+      "action_id": "m11/sponge-effects/inspect",
+      "command": "/zbw sponge-effects inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/sponge-effects/inspect",
+      "permission": "zartrabedwars.sponge.effects.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-141",
+        "ZBW-ADDON-142",
+        "ZBW-ADDON-143",
+        "ZBW-ADDON-144",
+        "ZBW-ADDON-145",
+        "ZBW-ADDON-146",
+        "ZBW-ADDON-147"
+      ]
+    },
+    {
+      "action_id": "m11/item-rotation/status",
+      "command": "/zbw item-rotation status",
+      "destructive": false,
+      "gui_page": "zartra:m11/item-rotation/status",
+      "permission": "zartrabedwars.item.rotation.status",
+      "requirement_ids": [
+        "ZBW-ADDON-379",
+        "ZBW-ADDON-380",
+        "ZBW-ADDON-381",
+        "ZBW-ADDON-382",
+        "ZBW-ADDON-383",
+        "ZBW-ADDON-384",
+        "ZBW-ADDON-385",
+        "ZBW-ADDON-386",
+        "ZBW-ADDON-387",
+        "ZBW-ADDON-388"
+      ]
+    },
+    {
+      "action_id": "m11/item-rotation/validate",
+      "command": "/zbw item-rotation validate",
+      "destructive": false,
+      "gui_page": "zartra:m11/item-rotation/validate",
+      "permission": "zartrabedwars.item.rotation.validate",
+      "requirement_ids": [
+        "ZBW-ADDON-379",
+        "ZBW-ADDON-380",
+        "ZBW-ADDON-381",
+        "ZBW-ADDON-382",
+        "ZBW-ADDON-383",
+        "ZBW-ADDON-384",
+        "ZBW-ADDON-385",
+        "ZBW-ADDON-386",
+        "ZBW-ADDON-387",
+        "ZBW-ADDON-388"
+      ]
+    },
+    {
+      "action_id": "m11/item-rotation/inspect",
+      "command": "/zbw item-rotation inspect",
+      "destructive": false,
+      "gui_page": "zartra:m11/item-rotation/inspect",
+      "permission": "zartrabedwars.item.rotation.inspect",
+      "requirement_ids": [
+        "ZBW-ADDON-379",
+        "ZBW-ADDON-380",
+        "ZBW-ADDON-381",
+        "ZBW-ADDON-382",
+        "ZBW-ADDON-383",
+        "ZBW-ADDON-384",
+        "ZBW-ADDON-385",
+        "ZBW-ADDON-386",
+        "ZBW-ADDON-387",
+        "ZBW-ADDON-388"
+      ]
+    }
+  ],
+  "count": 140,
+  "milestone": "M11",
+  "schema_version": 1
+}

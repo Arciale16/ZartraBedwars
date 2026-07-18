@@ -7,7 +7,7 @@
   "duplicate_action_prevented": true,
   "gui_queue_action": true,
   "owner_thread_projection": true,
-  "primary_plugin_sha256": "28dafbef792377e4090f2ca5398110744e2a494e6868dda67f04ab6b8b600f51",
+  "primary_plugin_sha256": "20ce302ce0566976c542be068cbe4fc35c1c685f9c531d8de608e697221ea9c9",
   "queue_command_dispatch": true,
   "runtime": "Paper 1.21.1 build 133",
   "schema_version": 1,
@@ -17,5 +17,5 @@
   "server_sha256": "39bd8c00b9e18de91dcabd3cc3dcfa5328685a53b7187a2f63280c22e2d287b9",
   "stale_view_rejected": true,
   "success": true,
-  "test_harness_sha256": "02ea8db095f021115a285570089b267dda0a7f36b9638a14a0ae000c2aaf91b2"
+  "test_harness_sha256": "c3958c94c7e6637e047db0dfb62d1de360add93a5b9e6bc7caa50abfd9d9ef42"
 }

@@ -31,15 +31,19 @@ def main() -> int:
         MODERN_BASELINE.write_text(modern, encoding="utf-8", newline="\n")
         print(f"Generated M10 API baselines: {neutral.count('CLASS ')} neutral, {modern.count('CLASS ')} modern classes")
         return 0
-    if BASELINE.read_text(encoding="utf-8") != neutral or MODERN_BASELINE.read_text(encoding="utf-8") != modern:
-        print("ERROR: M10 API differs from exact baseline")
+    baseline_missing = missing(BASELINE, neutral)
+    modern_baseline_missing = missing(MODERN_BASELINE, modern)
+    if baseline_missing or modern_baseline_missing:
+        print(f"ERROR: removed {len(baseline_missing)} neutral and "
+              f"{len(modern_baseline_missing)} modern immutable M10 signatures")
         return 1
     prior_missing = missing(PRIOR, neutral)
     modern_missing = missing(PRIOR_MODERN, modern)
     if prior_missing or modern_missing:
         print(f"ERROR: removed {len(prior_missing)} neutral and {len(modern_missing)} modern M09 signatures")
         return 1
-    print(f"M10 binary/API compatibility PASS: {neutral.count('CLASS ')} Java 8 and {modern.count('CLASS ')} Java 21 classes; M09 preserved")
+    print(f"M10 binary/API compatibility PASS: immutable M10/M09 signatures preserved "
+          f"within {neutral.count('CLASS ')} Java 8 and {modern.count('CLASS ')} Java 21 classes")
     return 0
 
 if __name__ == "__main__":

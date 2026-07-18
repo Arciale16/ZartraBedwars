@@ -15,6 +15,7 @@ OUTPUT = ROOT / "docs" / "FEATURE_IMPLEMENTATION_STATUS.md"
 VALID = {"NOT_STARTED", "IN_PROGRESS", "PARTIAL", "IMPLEMENTED", "VERIFIED", "BLOCKED", "DEFERRED"}
 M09_ADDONS = tuple(range(1, 10)) + tuple(range(108, 115)) + tuple(range(124, 131)) + tuple(range(148, 155)) + tuple(range(334, 341)) + tuple(range(398, 438))
 M10_ADDONS = tuple(range(92, 102)) + tuple(range(115, 124)) + tuple(range(131, 141)) + tuple(range(155, 164)) + tuple(range(236, 245))
+M11_ADDONS = tuple(range(10, 26)) + tuple(range(61, 71)) + tuple(range(141, 148)) + tuple(range(184, 202)) + tuple(range(236, 245)) + tuple(range(300, 323)) + tuple(range(341, 350)) + tuple(range(363, 369)) + tuple(range(379, 398)) + tuple(range(438, 453))
 
 
 def cells(line: str) -> list[str]:
@@ -60,6 +61,19 @@ def m10_requirement(identifier: str) -> bool:
     return bool(match and int(match.group(1)) in M10_ADDONS)
 
 
+def m11_requirement(identifier: str) -> bool:
+    """Return whether the current M11 checkpoints supply an implemented portion."""
+    if identifier in {
+        "ZBW-GAME-004", "ZBW-GAME-005", "ZBW-SHOP-001", "ZBW-SHOP-002",
+        "ZBW-SHOP-003", "ZBW-SHOP-004", "ZBW-SHOP-005", "ZBW-SHOP-006",
+        "ZBW-SHOP-007", "ZBW-CONTENT-002", "ZBW-CONTENT-003", "ZBW-READY-004",
+        "ZBW-READY-015",
+    }:
+        return True
+    match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
+    return bool(match and int(match.group(1)) in M11_ADDONS)
+
+
 def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in {"ZBW-UX-001", "ZBW-UX-002", "ZBW-UX-003", "ZBW-UX-006"}:
         return "VERIFIED", "M09 implementation, tests, documentation and Paper evidence complete"
@@ -67,6 +81,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M09 presentation portion verified; later requirement allocations remain visible"
     if m10_requirement(identifier):
         return "PARTIAL", "M10 shared-server framework verified; M11/M15/M16/M17/M20/M22 allocations remain"
+    if m11_requirement(identifier):
+        return "PARTIAL", "M11 checkpoints implemented; retained M11 exit work and later milestone allocations remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -121,19 +137,20 @@ def row(feature: str, identifier: str, category: str, planned: str,
         status: str, blocker: str) -> dict[str, str]:
     m09 = presentation_requirement(identifier)
     m10 = m10_requirement(identifier)
+    m11 = m11_requirement(identifier)
     return {
         "Feature": feature.replace("|", "\\|"), "Requirement ID": identifier,
         "Category": category, "Planned milestone": planned, "Current status": status,
-        "Core implementation": "M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability"),
-        "Paper implementation": "M10 primary projection" if m10 else ("M09 primary adapter verified" if m09 else "See traceability"),
-        "Command": "Generated M10 action path" if m10 else ("Generated action path" if m09 else "See traceability"),
-        "GUI": "Generated M10 parity page" if m10 else ("Generated parity page" if m09 else "See traceability"),
-        "Permission": "M03 execution revalidation + M10 node" if m10 else ("M03 revalidation + granular node" if m09 else "See traceability"),
-        "Tests": "M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence"),
-        "Documentation": "M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability"),
-        "Configurable or hardcoded": "Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement"),
+        "Core implementation": "M11 checkpoint implementation" if m11 else ("M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability")),
+        "Paper implementation": "M11 projection checkpoint; full E2E open" if m11 else ("M10 primary projection" if m10 else ("M09 primary adapter verified" if m09 else "See traceability")),
+        "Command": "Generated M11 action path where allocated" if m11 else ("Generated M10 action path" if m10 else ("Generated action path" if m09 else "See traceability")),
+        "GUI": "Generated M11 parity page where allocated" if m11 else ("Generated M10 parity page" if m10 else ("Generated parity page" if m09 else "See traceability")),
+        "Permission": "Central authorization contract" if m11 else ("M03 execution revalidation + M10 node" if m10 else ("M03 revalidation + granular node" if m09 else "See traceability")),
+        "Tests": "M11 checkpoint contract/unit/integration evidence" if m11 else ("M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence")),
+        "Documentation": "M11 implementation/API checkpoint guides" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")),
+        "Configurable or hardcoded": "Typed replaceable catalog/policy" if m11 else ("Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement")),
         "Blocker or deferred dependency": blocker,
-        "Notes": "Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones"),
+        "Notes": "Implemented checkpoint only; complete M11 exit is not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
     }
 
 
@@ -152,7 +169,7 @@ def render() -> str:
         "This generated file is the authoritative human-readable project dashboard. Run",
         "`python tools/validation/feature_dashboard.py` to reject stale or contradictory rows.",
         "A requirement can remain `PARTIAL` after one allocated portion is verified; its blocker column",
-        "identifies remaining ownership. M10 framework verification never implies later mechanics.",
+        "identifies remaining ownership. M10 framework and M11 Phase 1 verification never imply later mechanics.",
         "",
         "## Project totals",
         "",
@@ -176,7 +193,8 @@ def render() -> str:
         "M00–M10 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
-        "M11 and later ownership remains deferred and visible below.",
+        "M11 is active at its Phase 1 checkpoint: three neutral foundation modules are materialized,",
+        "while the scripting engine, runtime mechanics, presentation and later ownership remain deferred.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

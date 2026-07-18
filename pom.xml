@@ -30,6 +30,9 @@
     <module>game/zbw-game</module>
     <module>command/zbw-command-api</module>
     <module>ui/zbw-ui-api</module>
+    <module>scripting/zbw-scripting-api</module>
+    <module>shop/zbw-shop</module>
+    <module>content/zbw-content</module>
   </modules>
 
   <properties>
