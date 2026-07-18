@@ -632,3 +632,15 @@ remain later M11 work; M19/M20 retain all cross-node coordination and distributi
 M11 implementation may emit immutable events and cached state for later statistics, PlaceholderAPI,
 Redis, proxy, provider and compatibility consumers. Emitting those contracts is not evidence that a
 later consumer or adapter exists.
+
+### M11 final-integration checkpoint evidence
+
+| Allocation | Implemented integration | Verification | Remaining owner |
+|---|---|---|---|
+| `ZBW-SHOP-001..004` | 25 additive M09 command/GUI parity actions and generated 140-action command/permission inventories | `M11PresentationCatalogTest`; `m11_inventories.py` | concrete inventory/configuration adapters and full M11 E2E remain M11; persistent currency M12 |
+| `ZBW-SHOP-005..007` | `M11MatchRuntime` consumes M08 snapshots; Java 21 `M11PaperProjection` translates committed generator, upgrade and utility intents | lifecycle integration tests, owner-thread projection tests, exact M11 API/JavaDoc gates | full M11 acceptance matrices; placeholders M16; external providers M21; legacy M22 |
+| M11 addon allocations | Phase 4 bounded utility/addon mechanics remain explicitly mapped; no catalogue row is removed | 49 addon references/473 IDs and dashboard validation | complete named-mode orchestration and remaining addon cells remain M11; later cells retain M15/M16/M19/M20/M21/M22 |
+| `ZBW-READY-004` | typed scripting references remain Java 8 neutral | API baseline and strict JavaDoc | disabled declarative `zbw-scripting-engine` remains M11 and is not reported complete |
+
+The final-integration checkpoint is additive and preserves every M10 public signature. It does not
+satisfy the complete M11 exit criteria, activate M12 or reassign any retained later-milestone cell.

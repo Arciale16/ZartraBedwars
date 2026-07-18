@@ -1,7 +1,7 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — Phase 4 checkpoint complete; M11 exit criteria are not yet met
-**Checkpoint scope:** Phase 4 complete: shop/content, generators, upgrades and neutral utility-item/addon actions
+**Milestone status:** ACTIVE — final-integration checkpoint complete; M11 exit criteria remain open
+**Checkpoint scope:** Phases 1–4 plus M08 lifecycle, M09 presentation and primary Paper projection integration
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
 ## Implemented in Phase 1
@@ -61,6 +61,23 @@ Paper inventory/effect adapters, shop/generator/item GUIs or commands, runtime c
 declarative interpreter. It also does not implement any M12, M15, M16, M19, M20, M21 or M22
 ownership. `zbw-scripting-engine` remains planned until a real later-M11 execution phase.
 
+## Final integration checkpoint
+
+- `M11MatchRuntime` consumes immutable M08 match snapshots and coordinates generator ticks,
+  upgrade observation, utility-action synchronization and idempotent terminal cleanup without
+  owning any M08 state transition.
+- `PresentationActions.Catalog.m11()` adds 25 deterministic command/GUI parity actions to the M09
+  framework. Generated inventories now contain 140 actions and granular permissions.
+- `M11PaperProjection` provides an owner-thread guarded Java 21 translation boundary for generator
+  batches, team effects and utility effects; it contains no feature policy.
+- Exact M11 Java 8/21 API baselines and strict JavaDoc archives are generated independently while
+  proving every M10 public signature remains present.
+
+This checkpoint intentionally does not claim the M11 milestone exit. The planned
+`zbw-scripting-engine`, complete named-mode orchestration, concrete shop/inventory/configuration
+adapters and the full item/purchase/generator/upgrade/mode/Paper acceptance matrices remain required.
+M12 is not active.
+
 ## Verification
 
 The Phase 1 reactor compiles on the pinned Temurin 21.0.6 toolchain while emitting Java 8 bytecode.
@@ -87,21 +104,31 @@ Phase 4 adds seven focused tests covering definitions, all eight action families
 atomic costs/inventory consumption, targets, cooldowns, concurrent duplicates, transaction
 failures, team isolation, reconnect-safe ownership and cleanup.
 
-The full JDK 21 reactor passed 324 tests in 63 suites with zero failures, errors or skips. The
-neutral Phase 1 reactor also passed on the pinned Temurin 8u442 toolchain. Strict JavaDoc passed
-for all 23 new Java 8 production sources. Checkstyle and SpotBugs reported zero findings. JaCoCo
-met every configured threshold with the following Phase 1 results:
+The final reactor passed 349 tests in 69 suites with zero failures, errors or skips. The complete
+matrix passed on pinned Temurin 8u442, 11.0.26, 16.0.2, 17.0.14 and 21.0.6 toolchains; only the
+approved Java 21 profile materializes modern Paper artifacts. Strict JavaDoc passed for 336 Java 8
+and 49 Java 21 sources and generated deterministic M11 archives. Checkstyle and SpotBugs reported
+zero findings. JaCoCo met every configured module threshold; current M11 module evidence is:
 
 | Module | Line coverage | Branch coverage |
 |---|---:|---:|
 | `zbw-scripting-api` | 100.00% | 100.00% |
-| `zbw-shop` | 93.88% | 83.23% |
+| `zbw-shop` | 93.22% | 76.65% |
 | `zbw-content` | 96.63% | 85.71% |
+
+The M10 Paper 1.21.1 build 133 certification was rerun against the M11 plugin artifact and passed
+selector, queue command/GUI, parity, owner-thread, bounded-worker, stale/duplicate and cleanup
+assertions. M11-specific Paper projection tests pass, but a complete M11 gameplay certification
+harness remains part of the open M11 exit work described above.
 
 All 36 governance tests pass. The deterministic gates retain 672/672 requirement rows, 6,438
 Master Prompt assertions, 49 addon references/473 addon IDs, 55 decision IDs and 100% coverage.
 The dependency/licence lock remains unchanged and validates 212 Maven components/650 exact files
 with zero bundled product dependencies because Phase 1 introduces no external dependency.
+
+The generated M11 API baseline contains 677 Java 8 and 51 Java 21 public classes and proves the
+immutable M10 baselines remain additive. Inventories contain 140 command/GUI actions and 140
+granular permissions. The feature dashboard contains all 672 requirement rows deterministically.
 
 ## Reactor wiring note
 

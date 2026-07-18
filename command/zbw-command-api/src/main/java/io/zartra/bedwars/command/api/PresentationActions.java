@@ -270,6 +270,34 @@ public final class PresentationActions {
             return Collections.unmodifiableList(result);
         }
 
+        /** @return additive immutable M11 shop, generator, upgrade and utility actions */
+        public static List<Definition> m11() {
+            final List<Definition> definitions = new ArrayList<Definition>();
+            addM11(definitions, "shop", new String[] {"open", "quick-buy", "favourites", "history",
+                    "rotation", "inspect"}, "shop", false,
+                    "ZBW-SHOP-001", "ZBW-SHOP-002", "ZBW-SHOP-003", "ZBW-SHOP-004");
+            addM11(definitions, "upgrade", new String[] {"open", "purchase", "status", "inspect"},
+                    "upgrade", false, "ZBW-SHOP-005");
+            addM11(definitions, "generator", new String[] {"status", "validate", "inspect"},
+                    "generator", false, "ZBW-SHOP-006");
+            addM11(definitions, "utility", new String[] {"use", "status", "inspect"},
+                    "item", false, "ZBW-SHOP-007");
+            addM11(definitions, "popup-towers", new String[] {"preview", "validate", "inspect"},
+                    "popup.towers", false, range("ZBW-ADDON-", 184, 193));
+            addM11(definitions, "sponge-effects", new String[] {"preview", "validate", "inspect"},
+                    "sponge.effects", false, range("ZBW-ADDON-", 141, 147));
+            addM11(definitions, "item-rotation", new String[] {"status", "validate", "inspect"},
+                    "item.rotation", false, range("ZBW-ADDON-", 379, 388));
+            return Collections.unmodifiableList(definitions);
+        }
+
+        /** @return immutable presentation catalogue through M11 */
+        public static List<Definition> throughM11() {
+            final List<Definition> result = new ArrayList<Definition>(throughM10());
+            result.addAll(m11());
+            return Collections.unmodifiableList(result);
+        }
+
         private static void add(final List<Definition> result, final String family,
                                 final String[] operations, final String permissionFamily,
                                 final String... requirementIds) {
@@ -296,6 +324,20 @@ public final class PresentationActions {
                 result.add(new Definition(ActionId.of("m10/" + family + "/" + operation),
                         "/zbw " + commandFamily + " " + operation,
                         GuiPageId.of("zartra", "m10/" + family + "/" + operation),
+                        PermissionNode.of("zartrabedwars." + permissionFamily + "."
+                                + operation.replace('-', '.')),
+                        destructive, java.util.Arrays.asList(requirementIds)));
+            }
+        }
+
+        private static void addM11(final List<Definition> result, final String family,
+                                   final String[] operations, final String permissionFamily,
+                                   final boolean administrative, final String... requirementIds) {
+            for (String operation : operations) {
+                final boolean destructive = administrative && operation.matches("enable|disable|reset");
+                result.add(new Definition(ActionId.of("m11/" + family + "/" + operation),
+                        "/zbw " + family + " " + operation,
+                        GuiPageId.of("zartra", "m11/" + family + "/" + operation),
                         PermissionNode.of("zartrabedwars." + permissionFamily + "."
                                 + operation.replace('-', '.')),
                         destructive, java.util.Arrays.asList(requirementIds)));
