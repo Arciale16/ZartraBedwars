@@ -461,6 +461,7 @@ public final class ModeMechanics {
                 new HashMap<DefinitionId, BedState>();
         private MatchSnapshot snapshot;
         private int activeObjects;
+        private boolean active;
 
         /** Creates a runtime from complete M10 bindings and M11 configuration. */
         public Runtime(final MatchId matchId, final Collection<Binding> bindings,
@@ -474,14 +475,16 @@ public final class ModeMechanics {
             this.audit = Objects.requireNonNull(audit, "audit");
         }
 
-        /** Observes M08 lifecycle state without changing it. Non-playing state clears local data. */
+        /** Observes M08 lifecycle state without changing it. Terminal state clears local data. */
         public synchronized void observe(final MatchSnapshot value) {
             final MatchSnapshot checked = Objects.requireNonNull(value, "snapshot");
             if (!matchId.equals(checked.matchId())) {
                 throw new IllegalArgumentException("snapshot belongs to another match");
             }
             snapshot = checked;
-            if (checked.state() != MatchSnapshot.State.PLAYING) {
+            if (checked.state() == MatchSnapshot.State.PLAYING) {
+                active = true;
+            } else if (active) {
                 cleanup();
             }
         }
@@ -814,6 +817,7 @@ public final class ModeMechanics {
         public synchronized boolean invokeScript(final Feature feature, final ScriptId script,
                                                  final Map<String, String> input) {
             requireEnabled(feature);
+            active = true;
             return scripts.invoke(Objects.requireNonNull(script, "script"),
                     immutableAttributes(input));
         }

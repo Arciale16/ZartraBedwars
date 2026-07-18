@@ -2,6 +2,7 @@ package io.zartra.bedwars.paper.game;
 
 import io.zartra.bedwars.api.identity.DefinitionId;
 import io.zartra.bedwars.api.identity.PlayerId;
+import io.zartra.bedwars.api.identity.MatchId;
 import io.zartra.bedwars.shop.generator.GeneratorBatch;
 import io.zartra.bedwars.shop.item.ItemActionRequest;
 import io.zartra.bedwars.shop.item.UtilityItemDefinition;
@@ -40,6 +41,11 @@ public final class M11PaperProjection {
         requireOwner();
         platform.clear(Objects.requireNonNull(playerId, "playerId"));
     }
+    /** Clears every M11-owned block, entity, drop and effect for a completed match. */
+    public void clearMatch(final MatchId matchId) {
+        requireOwner();
+        platform.clearMatch(Objects.requireNonNull(matchId, "matchId"));
+    }
     private void requireOwner() {
         if (!ownerThread.isOwnerThread()) {
             throw new IllegalStateException("M11 Paper mutation attempted off owner thread");
@@ -55,5 +61,6 @@ public final class M11PaperProjection {
                                                          UtilityItemDefinition definition,
                                                          ItemActionRequest request);
         /** Clears player-owned M11 projections. */ void clear(PlayerId playerId);
+        /** Clears all projections owned by one completed match. */ void clearMatch(MatchId matchId);
     }
 }

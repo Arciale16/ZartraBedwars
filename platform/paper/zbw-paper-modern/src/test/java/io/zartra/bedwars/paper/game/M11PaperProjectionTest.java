@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.zartra.bedwars.api.identity.DefinitionId;
 import io.zartra.bedwars.api.identity.PlayerId;
+import io.zartra.bedwars.api.identity.MatchId;
 import io.zartra.bedwars.shop.generator.GeneratorBatch;
 import io.zartra.bedwars.shop.item.ItemActionRequest;
 import io.zartra.bedwars.shop.item.UtilityItemDefinition;
@@ -28,13 +29,15 @@ final class M11PaperProjectionTest {
                 return true;
             }
             @Override public void clear(final PlayerId playerId) { calls.incrementAndGet(); }
+            @Override public void clearMatch(final MatchId matchId) { calls.incrementAndGet(); }
         };
         final M11PaperProjection denied = new M11PaperProjection(() -> false, platform);
         assertThrows(IllegalStateException.class, () -> denied.clear(player()));
         assertEquals(0, calls.get());
         final M11PaperProjection allowed = new M11PaperProjection(() -> true, platform);
         allowed.clear(player());
-        assertEquals(1, calls.get());
+        allowed.clearMatch(MatchId.of(new UUID(0L, 12L)));
+        assertEquals(2, calls.get());
         assertTrue(allowed != denied);
     }
     private static PlayerId player() { return PlayerId.of(new UUID(0L, 11L)); }
