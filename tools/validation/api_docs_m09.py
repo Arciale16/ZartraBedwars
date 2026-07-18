@@ -15,6 +15,8 @@ NEUTRAL_MODULES = api_docs.NEUTRAL_MODULES + (
 MODERN_MODULES = api_docs.MODERN_MODULES + (
     "command/zbw-command-paper", "ui/zbw-ui-paper",
 )
+CURRENT_CLASSPATH_MODULES = NEUTRAL_MODULES + (
+    "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content")
 NEUTRAL_OUTPUT = ROOT / "target/apidocs-m09-neutral"
 MODERN_OUTPUT = ROOT / "target/apidocs-m09-modern"
 NEUTRAL_ARCHIVE = ROOT / "target/zartrabedwars-m09-neutral-javadoc.zip"
@@ -36,7 +38,7 @@ def main() -> int:
     modern_classpath = [
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
-        *api_docs.artifacts(NEUTRAL_MODULES),
+        *api_docs.artifacts(CURRENT_CLASSPATH_MODULES),
     ]
     result = api_docs.generate(api_docs.executable("21", "21.0.6"), "21",
                                modern_sources, MODERN_OUTPUT, modern_classpath)

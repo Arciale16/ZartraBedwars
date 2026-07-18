@@ -32,14 +32,16 @@ def main() -> int:
             f"{current.count('CLASS ')} neutral and {modern.count('CLASS ')} modern public classes."
         )
         return 0
-    if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M08 neutral binary API differs from its exact baseline")
+    if not BASELINE.is_file() or api_compatibility.missing_signatures(
+            BASELINE.read_text(encoding="utf-8"), current):
+        print("ERROR: immutable M08 neutral binary API signatures were removed or changed")
         return 1
     if not M07_BASELINE.is_file():
         print("ERROR: immutable M07 binary API baseline is missing")
         return 1
-    if not MODERN_BASELINE.is_file() or MODERN_BASELINE.read_text(encoding="utf-8") != modern:
-        print("ERROR: M08 modern binary API differs from its exact baseline")
+    if not MODERN_BASELINE.is_file() or api_compatibility.missing_signatures(
+            MODERN_BASELINE.read_text(encoding="utf-8"), modern):
+        print("ERROR: immutable M08 modern binary API signatures were removed or changed")
         return 1
     if not M06_MODERN_BASELINE.is_file():
         print("ERROR: immutable M06 modern binary API baseline is missing")

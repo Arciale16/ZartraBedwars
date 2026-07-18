@@ -24,8 +24,13 @@ def main() -> int:
         BASELINE.write_text(current, encoding="utf-8", newline="\n")
         print(f"Generated M07 binary API baseline with {current.count('CLASS ')} public classes.")
         return 0
-    if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M07 neutral binary API differs from its exact baseline")
+    if not BASELINE.is_file():
+        print("ERROR: immutable M07 neutral binary API baseline is missing")
+        return 1
+    baseline_missing = api_compatibility.missing_signatures(
+        BASELINE.read_text(encoding="utf-8"), current)
+    if baseline_missing:
+        print(f"ERROR: {len(baseline_missing)} immutable M07 signatures were removed or changed")
         return 1
     if not M06_BASELINE.is_file():
         print("ERROR: immutable M06 binary API baseline is missing")

@@ -31,10 +31,7 @@ def main() -> int:
     modern_classpath = [
         ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/"
         "paper-api-1.21.1-build133.jar",
-        *[
-            ROOT / module / "target" / "classes"
-            for module in api_docs.MODERN_CLASSPATH_MODULES
-        ],
+        *api_docs.artifacts(api_docs.MODERN_CLASSPATH_MODULES),
     ]
     result = api_docs.generate(api_docs.executable("21", "21.0.6"), "21",
                                modern_sources, MODERN_OUTPUT, modern_classpath)

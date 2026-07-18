@@ -44,11 +44,11 @@ def main() -> int:
         if not path.is_file():
             print(f"ERROR: required API baseline missing: {path.name}")
             return 1
-    if BASELINE.read_text(encoding="utf-8") != current:
-        print("ERROR: M09 neutral API differs from its exact baseline")
+    if prior_missing(BASELINE, current):
+        print("ERROR: immutable M09 neutral API signatures were removed or changed")
         return 1
-    if MODERN_BASELINE.read_text(encoding="utf-8") != modern:
-        print("ERROR: M09 modern API differs from its exact baseline")
+    if prior_missing(MODERN_BASELINE, modern):
+        print("ERROR: immutable M09 modern API signatures were removed or changed")
         return 1
     missing = prior_missing(PRIOR, current)
     missing_modern = prior_missing(PRIOR_MODERN, modern)

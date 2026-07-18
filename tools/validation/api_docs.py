@@ -29,6 +29,9 @@ MODERN_MODULES = (
 MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "arena/zbw-arena",
     "game/zbw-game",
+    "scripting/zbw-scripting-api",
+    "shop/zbw-shop",
+    "content/zbw-content",
 )
 
 
