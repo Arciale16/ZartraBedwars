@@ -1,0 +1,56 @@
+name: M11 Paper 1.21.1 Integration Certification
+
+on:
+  pull_request:
+  push:
+    branches: [main, codex/m11-1-phase-1-scripting-config-content]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m11-paper-primary-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  paper-1-21-1-build-133:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out immutable source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - name: Install pinned validator runtime
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: 3.12.13
+      - name: Install checksum-locked Temurin 21
+        run: python tools/build/install_jdk.py --id "21" --github-env "$GITHUB_ENV" --github-path "$GITHUB_PATH"
+      - name: Restore and validate approved dependency evidence
+        run: |
+          python tools/dependencies/maven_lock.py restore
+          python tools/dependencies/maven_lock.py validate --require-files
+          python tools/dependencies/lock_dependencies.py validate
+          python tools/dependencies/acquire_m06_paper.py verify
+      - name: Acquire exact non-redistributed Paper server fixture
+        run: python tools/dependencies/acquire_m06_paper.py server
+      - name: Build M11 primary Paper artifact from clean source
+        run: python tools/build/clean_build.py --jdk "21"
+      - name: Run mandatory M11 integration certification
+        run: >-
+          python tools/validation/m11_paper_e2e.py
+          --server .tools/paper/paper-1.21.1-133.jar
+          --plugin platform/paper/zbw-paper-modern/target/zbw-paper-modern-0.1.0-SNAPSHOT.jar
+          --java "$JAVA_HOME/bin/java"
+          --timeout 420
+      - name: Upload primary runtime evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: m11-paper-1.21.1-build-133-evidence
+          if-no-files-found: error
+          path: |
+            build/evidence/m11-paper-primary.json
+            target/m11-paper-e2e/m11-paper-console.log
+            target/m11-paper-e2e/logs/**
+            target/m11-paper-e2e/plugins/ZartraBedWarsM11Certification/m11-primary-certification.json
