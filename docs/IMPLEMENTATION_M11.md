@@ -1,7 +1,7 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — Phase 2 checkpoint complete; M11 exit criteria are not yet met
-**Checkpoint scope:** Shop/content foundations plus generator and resource system
+**Milestone status:** ACTIVE — Phase 3 checkpoint complete; M11 exit criteria are not yet met
+**Checkpoint scope:** Shop/content foundations, generators/resources, and team upgrades/traps/forge
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
 ## Implemented in Phase 1
@@ -32,9 +32,19 @@
 - Implemented Phase 2 portions of `ZBW-SHOP-006`, `ZBW-ADDON-194..201` and
   `ZBW-ADDON-363..368`; later-milestone cells remain deferred.
 
+## Implemented in Phase 3
+
+- Added an immutable upgrade catalogue with typed kinds, levels, costs, dependencies and runtime
+  effect identifiers for team upgrades, forge, heal pool, dragon buff, traps and custom upgrades.
+- Added recoverable match/team state, revision control, idempotent atomic purchases, bounded queued
+  traps, team isolation and terminal cleanup.
+- Added neutral effect intents and a deterministic bounded forge scheduler with recovery-safe keys.
+- Implemented the neutral M11 core portion of `ZBW-SHOP-005`; M09 presentation is consumed later in
+  M11, while M16 placeholders and M22 compatibility remain deferred.
+
 ## Deliberately not implemented
 
-This checkpoint does not implement upgrades, traps, utility-item mechanics, named-mode mechanics,
+This checkpoint does not implement utility-item mechanics, named-mode mechanics,
 Paper inventory adapters, shop/generator GUIs or commands, runtime configuration loaders or the
 declarative interpreter. It also does not implement any M12, M15, M16, M19, M20, M21 or M22
 ownership. `zbw-scripting-engine` remains planned until a real later-M11 execution phase.
@@ -56,6 +66,10 @@ custom resources, per-arena overrides, enable/disable, deterministic and duplica
 retry-safe delivery, concurrent ticks, split fairness, bounded catch-up and match-end cleanup. The
 affected reactor now runs 24 `zbw-shop` tests with zero failures/errors/skips. JDK 21
 `-Pquality verify` passes Checkstyle and SpotBugs with zero findings and every JaCoCo threshold.
+
+Phase 3 adds nine tests for purchases, resources, idempotency, levels, dependencies, forge timing and
+resources, traps, effects, isolation, reconnect recovery and cleanup. The affected reactor now runs
+33 `zbw-shop` tests with zero failures/errors/skips.
 
 The full JDK 21 reactor passed 324 tests in 63 suites with zero failures, errors or skips. The
 neutral Phase 1 reactor also passed on the pinned Temurin 8u442 toolchain. Strict JavaDoc passed
