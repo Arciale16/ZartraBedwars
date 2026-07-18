@@ -1,7 +1,7 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — Phase 3 checkpoint complete; M11 exit criteria are not yet met
-**Checkpoint scope:** Shop/content foundations, generators/resources, and team upgrades/traps/forge
+**Milestone status:** ACTIVE — Phase 4 checkpoint complete; M11 exit criteria are not yet met
+**Checkpoint scope:** Phase 4 complete: shop/content, generators, upgrades and neutral utility-item/addon actions
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
 ## Implemented in Phase 1
@@ -42,10 +42,22 @@
 - Implemented the neutral M11 core portion of `ZBW-SHOP-005`; M09 presentation is consumed later in
   M11, while M16 placeholders and M22 compatibility remain deferred.
 
+## Implemented in Phase 4
+
+- Added a Java 8-neutral utility-item catalogue, typed targets and deterministic action results.
+- Added exact authorization, atomic match-resource/inventory and owner-thread effect ports.
+- Added synchronized lifecycle validation, cooldowns, limits, target/team rules, idempotency,
+  conflict handling and M08-driven cleanup.
+- Added bounded original mechanics for Pop-up Tower, Rush, Ultimate, BedSteal, Voidless, Sponge,
+  remaining local generator actions and Item Rotation.
+- Implemented Phase 4 neutral portions of `ZBW-SHOP-007`, `ZBW-READY-004`,
+  `ZBW-ADDON-141..147`, `184..201`, `300..322`, `341..349`, `363..368`, `379..388` and
+  `438..452`; final presentation, Paper certification and later-owner cells remain open.
+
 ## Deliberately not implemented
 
-This checkpoint does not implement utility-item mechanics, named-mode mechanics,
-Paper inventory adapters, shop/generator GUIs or commands, runtime configuration loaders or the
+This checkpoint does not implement final named-mode orchestration,
+Paper inventory/effect adapters, shop/generator/item GUIs or commands, runtime configuration loaders or the
 declarative interpreter. It also does not implement any M12, M15, M16, M19, M20, M21 or M22
 ownership. `zbw-scripting-engine` remains planned until a real later-M11 execution phase.
 
@@ -70,6 +82,10 @@ affected reactor now runs 24 `zbw-shop` tests with zero failures/errors/skips. J
 Phase 3 adds nine tests for purchases, resources, idempotency, levels, dependencies, forge timing and
 resources, traps, effects, isolation, reconnect recovery and cleanup. The affected reactor now runs
 33 `zbw-shop` tests with zero failures/errors/skips.
+
+Phase 4 adds seven focused tests covering definitions, all eight action families, permission,
+atomic costs/inventory consumption, targets, cooldowns, concurrent duplicates, transaction
+failures, team isolation, reconnect-safe ownership and cleanup.
 
 The full JDK 21 reactor passed 324 tests in 63 suites with zero failures, errors or skips. The
 neutral Phase 1 reactor also passed on the pinned Temurin 8u442 toolchain. Strict JavaDoc passed
