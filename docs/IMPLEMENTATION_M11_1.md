@@ -57,3 +57,30 @@ sandbox because `javac` raises `AccessDeniedException` while closing verified JA
 sources and tests were compiled and executed directly with the locked Temurin toolchain and no test
 was skipped. M11.1 Phase 2 remains blocked until this checkpoint is accepted; M12 remains blocked
 until all M11.1 phases close RC-087.
+
+## Phase 2 — mode and addon mechanics completion
+
+**Status:** implemented checkpoint; Phase 3 has not started, M11 remains active and M12 remains
+blocked by RC-087.
+
+`zbw-shop` now contains the Java 8, platform-neutral `shop.mode` boundary for Armed Mode
+(`ZBW-ADDON-010..025`), LuckyBlock NTD (`061..070`), sponge effects (`141..147`), Pop-up Towers
+(`184..193`), Swappage (`236..244`), Ultimate (`300..314`), Voidless (`315..322`), Rush
+(`341..349`), PerArenaGen (`363..368`), Item Rotation (`379..388`), Color Changer (`389..397`)
+and BedSteal (`438..452`). Statistics, placeholders, distributed synchronization, providers and
+compatibility allocations remain deferred.
+
+Each family is proven against an immutable M10 definition carrying its exact M11 deferred IDs. The
+runtime consumes M08 snapshots and emits bounded immutable intents through one atomic adapter port;
+it never mutates the match state machine. Match-local ammo, cooldowns, idempotency, abilities,
+object caps and team state are cleaned when M08 leaves PLAYING. Phase 1 script hooks remain
+allowlisted and configuration-supplied. Existing generator plans provide PerArenaGen overrides,
+while item rotation remains local until M19/M20.
+
+Verification covers 2/4/8-team Swappage, Armed range/cadence/ammo/reload, deterministic bounded
+LuckyBlock outcomes, all seven Ultimate abilities, Voidless/Rush/sponge/tower limits, BedSteal
+isolation, colour metadata preservation, local rotations, lifecycle cleanup, malformed
+configuration, platform rejection and duplicate execution. The affected module reports 54 tests,
+zero failures/skips, the required 75% branch coverage, zero Checkstyle violations and zero SpotBugs
+findings. Java 8 compilation and Java 21 quality-tool execution pass. A separate additive Phase 2
+binary baseline preserves the immutable M11 and M11.1 Phase 1 baselines.

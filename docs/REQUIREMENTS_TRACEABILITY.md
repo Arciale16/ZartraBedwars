@@ -668,3 +668,11 @@ M12 remains inactive until M11 satisfies its exit criteria.
 | `ZBW-ADDON-245..251` | XP Bar progression projection and primary display contract | M16 placeholders; M22 packet/API fallbacks and full compatibility |
 | `ZBW-ADDON-266..273` | reward aggregation, ledger/delivery state, history and primary summary presentation | M13 later reward-source integrations; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |
 | `ZBW-ADDON-274..282` | holiday campaign eligibility, claims, idempotent reward delivery and primary calendar/claim presentation | M14 general profile/calendar platform; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |
+
+### M11.1 Phase 2 corrective evidence
+
+| Allocation | Implemented Phase 2 portion | Evidence / remaining owner |
+|---|---|---|
+| `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..193` | Armed, bounded LuckyBlock, sponge and Pop-up Tower neutral mechanics with typed M10 bindings and atomic effect intents | `ModeMechanicsTest`; concrete Paper effects remain M11.1 Phase 3, compatibility remains M22 |
+| `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
+| `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |
