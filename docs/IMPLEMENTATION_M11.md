@@ -1,6 +1,6 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** COMPLETE — PR #17 plus the M11.1 corrective implementation and certification
+**Milestone status:** ACTIVE — M11.1 implementation complete; mandatory CI certification blocked
 **Scope:** Phases 1–4, M11.1 scripting/configuration/mechanics, atomic inventory and SQL recovery,
 M08 lifecycle, M09 presentation and exact primary Paper integration
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
@@ -75,7 +75,7 @@ M12, M15, M16, M17, M18, M19, M20, M21 and M22 ownership remains deliberately un
 
 M11.1 supplies the scripting engine, complete named-mode orchestration, concrete
 shop/inventory/configuration/SQL/Paper adapters and the full acceptance matrices. See
-`docs/IMPLEMENTATION_M11_1.md`. M11 is complete and M12 is next but has not started.
+`docs/IMPLEMENTATION_M11_1.md`. M11 remains active and M12 has not started until certification passes.
 
 ## Post-merge closure audit
 
@@ -84,7 +84,8 @@ merged evidence itself retains the missing `zbw-scripting-engine`, complete name
 orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices.
 M11.1 Phase 1 supplied the scripting engine and transactional configuration, Phase 2 supplied the
 named-mode mechanics, and the final sprint supplied atomic inventory/SQL/Paper adapters and full
-acceptance matrices. This is the evidence that permits movement to `completed_milestones`.
+acceptance matrices. Movement to `completed_milestones` still requires the immutable CI and Paper
+jobs, which GitHub currently rejects before execution due to the account billing/spending limit.
 
 ## Verification
 

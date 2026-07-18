@@ -1,6 +1,6 @@
 # M11.1 corrective implementation and certification
 
-**Status:** COMPLETE pending immutable CI publication evidence
+**Status:** IMPLEMENTATION COMPLETE; CLOSURE BLOCKED by GitHub Actions billing
 **Requirements:** `ZBW-GAME-004`, `ZBW-GAME-005`, `ZBW-SHOP-001..007`,
 `ZBW-CONTENT-002..003`, `ZBW-READY-004`, `ZBW-READY-015`, and the M11-owned portions of
 `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..201`, `236..244`, `300..322`,
@@ -8,7 +8,7 @@
 
 ## Corrective result
 
-M11.1 closes RC-087 without entering M12. Phase 1 materialized the Java-8-neutral,
+M11.1 implements the RC-087 corrective scope without entering M12. Phase 1 materialized the Java-8-neutral,
 disabled-by-default declarative scripting engine and transactional versioned M11 configuration
 activation. Phase 2 completed the twelve named-mode/addon mechanics families through M08 lifecycle
 snapshots, M10 mode bindings and deterministic M11 configuration.
@@ -44,10 +44,12 @@ unless all mandatory Paper assertions are true: shop inventory, item delivery, g
 duplicate prevention, reversible blocks, particles, sounds, forge/team effects, owner-thread
 execution and cleanup.
 
-Final publication evidence consists of the complete Java 8/11/16/17/21 matrix, clean Java 21
+Final publication evidence must consist of the complete Java 8/11/16/17/21 matrix, clean Java 21
 reactor, Checkstyle, SpotBugs, JaCoCo, strict JavaDoc, binary compatibility, dependency/licence/SBOM,
 governance, traceability, addon catalogue, dashboard and Paper certification reports. No mandatory
-test is permitted to be skipped.
+test is permitted to be skipped. PR #18 currently cannot produce this evidence because GitHub rejects
+every job before its first step with an account billing/spending-limit annotation. Therefore RC-087
+and M11 remain open until the same immutable commit passes the mandatory workflows.
 
 ## Deferred ownership
 

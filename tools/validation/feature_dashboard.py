@@ -82,9 +82,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if m10_requirement(identifier):
         return "PARTIAL", "M10 shared-server framework verified; M11/M15/M16/M17/M20/M22 allocations remain"
     if m11_requirement(identifier):
-        if identifier in {"ZBW-CONTENT-002", "ZBW-READY-004", "ZBW-READY-015"}:
-            return "VERIFIED", "All allocated portions verified through M11.1 acceptance evidence"
-        return "PARTIAL", "M11 portion verified; later milestone allocations remain visible"
+        return "PARTIAL", "M11.1 implemented; mandatory CI/Paper certification blocked by GitHub billing"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -152,7 +150,7 @@ def row(feature: str, identifier: str, category: str, planned: str,
         "Documentation": "M11 and M11.1 implementation/API evidence" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")),
         "Configurable or hardcoded": "Typed replaceable catalog/policy" if m11 else ("Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement")),
         "Blocker or deferred dependency": blocker,
-        "Notes": "M11 allocation complete; later owners remain explicit" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
+        "Notes": "M11.1 implementation complete; milestone closure not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
     }
 
 

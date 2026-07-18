@@ -1,11 +1,13 @@
 # ZartraBedWars Risks, Conflicts and Missing Decisions
 
-## RC-087 — M11 merge versus milestone completion state — RESOLVED 2026-07-18
+## RC-087 — M11 merge versus milestone completion state — OPEN
 
 - **Fact:** PR #17 merged successfully and every published check concluded successfully.
 - **Fact:** PR #17 left `zbw-scripting-engine`, complete named-mode orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices open. M11.1 Phase 1 supplied the engine and transactional configuration, Phase 2 supplied the twelve mechanic families, and the final sprint supplied atomic inventory execution, the cycle-free SQL adapter, M09 bindings, exact Paper projections and mandatory acceptance evidence.
 - **Decision:** merge status alone remains insufficient; M11 closes only because each missing artifact now has implementation, tests, documentation and deterministic certification. Later M12/M15/M16/M17/M18/M19/M20/M21/M22 ownership remains open.
-- **Status:** RESOLVED. Resolution is conditional on the complete quality, governance and locked Paper 1.21.1 build 133 gates remaining green.
+- **Status:** OPEN. The implementation and cycle correction are complete, but GitHub rejects every
+  PR #18 job before its first step because of the account billing/spending limit. Resolution requires
+  the complete quality, governance and locked Paper 1.21.1 build 133 gates to execute and pass.
 
 ## RC-088 — Missing machine-readable M12 module allocation
 
@@ -192,4 +194,4 @@ RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/0
 
 | ID | Classification | Finding / risk | Preserving resolution |
 |---|---|---|---|
-| RC-087 | Verified reactor constraint — **RESOLVED 2026-07-18** | Activating `zbw-storage-sql -> zbw-shop` originally closed the test-only path `zbw-arena -> zbw-storage-sql -> zbw-shop -> zbw-arena`. | M11.1 removed concrete SQL test dependencies from arena/game, retained the generic M04 SQL contract suite in `zbw-storage-sql`, activated the production adapter edge, and contract-tested restart persistence, optimistic conflicts, duplicates and bounded history. The graph is now acyclic and no M12 ledger behavior moved into M11. |
+| RC-087 | Verified reactor constraint — **OPEN; implementation complete, certification blocked** | Activating `zbw-storage-sql -> zbw-shop` originally closed the test-only path `zbw-arena -> zbw-storage-sql -> zbw-shop -> zbw-arena`. | M11.1 removed concrete SQL test dependencies from arena/game, retained the generic M04 SQL contract suite in `zbw-storage-sql`, activated the production adapter edge, and added restart/conflict/duplicate/bounded-history tests. The graph is acyclic and no M12 ledger behavior moved into M11. Close only after PR #18 mandatory CI and Paper evidence executes successfully; GitHub billing currently prevents job startup. |

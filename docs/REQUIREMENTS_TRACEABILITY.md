@@ -685,8 +685,10 @@ M12 remains inactive until M11 satisfies its exit criteria.
 | M11 commands, GUIs and permissions | all 25 M11 actions bind to the M09 registry, unified command tree and generated parity pages through `M11PresentationBindings` | `M11BindingsTest`, M11 inventories, catalogue/dashboard validation; no replacement framework |
 | M11 primary platform surface | Java 21 `BukkitM11Platform` translates committed intents to inventory, drops, blocks, sounds, particles, effects and cleanup | mandatory `m11_paper_e2e.py` on Paper 1.21.1 build 133; M22 legacy certification remains deferred |
 
-RC-087 is resolved by the cycle-free production edge `zbw-storage-sql -> zbw-shop`; arena/game no
-longer depend on the concrete SQL implementation. M11 is complete only for its own cells. The
-matrix retains 672 requirements and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation.
+The RC-087 implementation uses the cycle-free production edge `zbw-storage-sql -> zbw-shop`;
+arena/game no longer depend on the concrete SQL implementation. Closure remains blocked until PR
+#18 mandatory CI and Paper jobs can execute; GitHub currently rejects them before step one because
+of account billing. The matrix retains 672 requirements and every later
+M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |

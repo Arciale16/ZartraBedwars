@@ -122,7 +122,7 @@ public final class M11PaperCertificationPlugin extends JavaPlugin {
         final boolean cleanup = block.getType() == original
                 && world.getEntitiesByClass(Item.class).stream().noneMatch(Item::isValid);
         final Map<String, Boolean> evidence = new LinkedHashMap<>();
-        evidence.put("shop_inventory", shopInventory.getItem(0) != null && actions == 25 && pages == 25);
+        evidence.put("shop_inventory", shopInventory.getItem(0) != null && actions == 25 && pages == 26);
         evidence.put("item_delivery", delivered == 3);
         evidence.put("generator_spawn", drops == 1);
         evidence.put("duplicate_prevention", drops == 1 && count(actor.inventory, Material.GOLD_INGOT) == 3);
