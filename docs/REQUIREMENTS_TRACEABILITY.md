@@ -674,5 +674,19 @@ M12 remains inactive until M11 satisfies its exit criteria.
 | Allocation | Implemented Phase 2 portion | Evidence / remaining owner |
 |---|---|---|
 | `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..193` | Armed, bounded LuckyBlock, sponge and Pop-up Tower neutral mechanics with typed M10 bindings and atomic effect intents | `ModeMechanicsTest`; concrete Paper effects remain M11.1 Phase 3, compatibility remains M22 |
+
+### M11.1 final integration and certification evidence
+
+| Requirement allocation | Final M11 implementation | Verification and retained ownership |
+|---|---|---|
+| `ZBW-SHOP-001..004` | owner-thread atomic inventory/tender purchase execution; `JdbcShopStateStore` Quick Buy, favourites, history and local rotation recovery | `AtomicInventoryPurchasePortTest`, `JdbcShopStateStoreTest`; M12 virtual-currency ledgers and M21 Vault remain deferred |
+| `ZBW-SHOP-005..007`, `ZBW-CONTENT-002/003` | lifecycle-integrated upgrades, forge, traps, generators, utility actions, original content and transactional configuration | shop/configuration/content suites plus exact Paper certification; M16 placeholders and M22 fallbacks remain deferred |
+| `ZBW-GAME-004/005` and all M11 addon ranges | M10-bound named mechanics run from M08 snapshots through one deterministic M11 coordinator | `ModeMechanicsTest`, `M11MatchRuntimeTest`, addon catalogue validator; M15 statistics and all listed later cells remain deferred |
+| M11 commands, GUIs and permissions | all 25 M11 actions bind to the M09 registry, unified command tree and generated parity pages through `M11PresentationBindings` | `M11BindingsTest`, M11 inventories, catalogue/dashboard validation; no replacement framework |
+| M11 primary platform surface | Java 21 `BukkitM11Platform` translates committed intents to inventory, drops, blocks, sounds, particles, effects and cleanup | mandatory `m11_paper_e2e.py` on Paper 1.21.1 build 133; M22 legacy certification remains deferred |
+
+RC-087 is resolved by the cycle-free production edge `zbw-storage-sql -> zbw-shop`; arena/game no
+longer depend on the concrete SQL implementation. M11 is complete only for its own cells. The
+matrix retains 672 requirements and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |

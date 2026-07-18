@@ -18,13 +18,14 @@ subsets. Strict JavaDoc archives are generated as
 `target/zartrabedwars-m11-neutral-javadoc.zip` and
 `target/zartrabedwars-m11-modern-javadoc.zip`.
 
-M11.1 Phase 1 adds the declarative execution engine, transactional M11 configuration activation and
-mode-balance simulation APIs. The engine consumes the M03 `AuthorizationService`, carries an
+M11.1 adds the declarative execution engine, transactional M11 configuration activation,
+mode-balance simulation APIs, atomic inventory integration, SQL user-state recovery, complete
+mechanics orchestration, M09 action bindings and exact Paper projections. The engine consumes the
+M03 `AuthorizationService`, carries an
 immutable `AuthorizationSubject` in each input and checks `zartrabedwars.script.execute` against
 the script ID. The exact additive Java 8 surface is locked by
-`build/api-signature-baseline-m11-1.txt`. Complete named-mode orchestration and retained M12/M15/M16/
-M19/M20/M21/M22 provider surfaces are not reported complete.
+`build/api-signature-baseline-m11-1.txt` and additive final compatibility evidence. Retained
+M12/M15/M16/M17/M18/M19/M20/M21/M22 provider surfaces are not reported complete.
 
-Merged PR #17 preserves this checkpoint boundary. Its successful CI validates the delivered APIs
-but does not supply the explicitly missing M11 exit artifacts, so this API document does not claim
-M11 completion or M12 activation.
+Historical M02–M11 baselines remain immutable and additive checks cover the M11.1 surface. M11 is
+complete; this document does not claim M12 implementation or activation.

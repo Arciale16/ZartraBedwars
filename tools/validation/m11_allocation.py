@@ -110,12 +110,14 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    if state.get("active_milestone") != "M11":
-        errors.append("milestone state must identify M11 as active during implementation")
-    if state.get("next_milestone") != "M11":
-        errors.append("milestone state must identify M11 as the next milestone")
-    if state.get("completed_milestones") != [f"M{value:02d}" for value in range(11)]:
-        errors.append("milestone state must retain exactly M00 through M10 as completed")
+    completed_m11 = state.get("completed_milestones") == [f"M{value:02d}" for value in range(12)]
+    active_m11 = (state.get("active_milestone") == "M11"
+                  and state.get("next_milestone") == "M11"
+                  and state.get("completed_milestones") == [f"M{value:02d}" for value in range(11)])
+    closed_m11 = (completed_m11 and state.get("active_milestone") is None
+                  and state.get("next_milestone") == "M12")
+    if not (active_m11 or closed_m11):
+        errors.append("milestone state must represent active M11 or completed M11 with M12 next")
     if "M11_SCOPE_RECONCILIATION" not in state.get("completed_governance_checkpoints", []):
         errors.append("milestone state must record the M11 governance checkpoint")
 

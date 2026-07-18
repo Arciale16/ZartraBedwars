@@ -12,7 +12,8 @@ PRIOR = ROOT / "build/api-signature-baseline-m10.txt"
 PRIOR_MODERN = ROOT / "build/api-signature-baseline-m10-modern.txt"
 MODULES = api_compatibility.NEUTRAL_MODULES + (
     "arena/zbw-arena", "game/zbw-game", "command/zbw-command-api", "ui/zbw-ui-api",
-    "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content")
+    "scripting/zbw-scripting-api", "scripting/zbw-scripting-engine", "shop/zbw-shop",
+    "content/zbw-content", "storage/zbw-storage-sql")
 MODERN_MODULES = api_compatibility.MODERN_MODULES + (
     "command/zbw-command-paper", "ui/zbw-ui-paper", "platform/paper/zbw-paper-modern")
 
@@ -32,15 +33,15 @@ def main() -> int:
         MODERN_BASELINE.write_text(modern, encoding="utf-8", newline="\n")
         print(f"Generated M11 API baselines: {neutral.count('CLASS ')} neutral, {modern.count('CLASS ')} modern classes")
         return 0
-    if BASELINE.read_text(encoding="utf-8") != neutral or MODERN_BASELINE.read_text(encoding="utf-8") != modern:
-        print("ERROR: M11 API differs from exact baseline")
-        return 1
+    m11_missing = missing(BASELINE, neutral)
+    m11_modern_missing = missing(MODERN_BASELINE, modern)
     prior_missing = missing(PRIOR, neutral)
-    modern_missing = missing(PRIOR_MODERN, modern)
-    if prior_missing or modern_missing:
-        print(f"ERROR: removed {len(prior_missing)} neutral and {len(modern_missing)} modern M10 signatures")
+    prior_modern_missing = missing(PRIOR_MODERN, modern)
+    if m11_missing or m11_modern_missing or prior_missing or prior_modern_missing:
+        print("ERROR: M11.1 removed an immutable M10/M11 signature")
         return 1
-    print(f"M11 binary/API compatibility PASS: {neutral.count('CLASS ')} Java 8 and {modern.count('CLASS ')} Java 21 classes; M10 preserved")
+    print(f"M11.1 binary/API compatibility PASS: {neutral.count('CLASS ')} Java 8 and "
+          f"{modern.count('CLASS ')} Java 21 classes; immutable M10/M11 baselines preserved")
     return 0
 
 if __name__ == "__main__":

@@ -1,7 +1,8 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — PR #17 merged at `355748d2386a7d0c554e346bd8911dd72799e395`; final-integration checkpoint complete; M11 exit criteria remain open
-**Checkpoint scope:** Phases 1–4 plus M08 lifecycle, M09 presentation and primary Paper projection integration
+**Milestone status:** COMPLETE — PR #17 plus the M11.1 corrective implementation and certification
+**Scope:** Phases 1–4, M11.1 scripting/configuration/mechanics, atomic inventory and SQL recovery,
+M08 lifecycle, M09 presentation and exact primary Paper integration
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
 ## Implemented in Phase 1
@@ -54,12 +55,11 @@
   `ZBW-ADDON-141..147`, `184..201`, `300..322`, `341..349`, `363..368`, `379..388` and
   `438..452`; final presentation, Paper certification and later-owner cells remain open.
 
-## Deliberately not implemented
+## Retained later-milestone ownership
 
-This checkpoint does not implement final named-mode orchestration,
-Paper inventory/effect adapters, shop/generator/item GUIs or commands, runtime configuration loaders or the
-declarative interpreter. It also does not implement any M12, M15, M16, M19, M20, M21 or M22
-ownership. `zbw-scripting-engine` remains planned until a real later-M11 execution phase.
+M11.1 completed the formerly missing named-mode orchestration, Paper inventory/effect adapter,
+M09 shop/generator/item presentation bindings, runtime configuration and declarative interpreter.
+M12, M15, M16, M17, M18, M19, M20, M21 and M22 ownership remains deliberately unimplemented.
 
 ## Final integration checkpoint
 
@@ -73,19 +73,18 @@ ownership. `zbw-scripting-engine` remains planned until a real later-M11 executi
 - Exact M11 Java 8/21 API baselines and strict JavaDoc archives are generated independently while
   proving every M10 public signature remains present.
 
-This checkpoint intentionally does not claim the M11 milestone exit. The planned
-`zbw-scripting-engine`, complete named-mode orchestration, concrete shop/inventory/configuration
-adapters and the full item/purchase/generator/upgrade/mode/Paper acceptance matrices remain required.
-M12 is not active.
+M11.1 supplies the scripting engine, complete named-mode orchestration, concrete
+shop/inventory/configuration/SQL/Paper adapters and the full acceptance matrices. See
+`docs/IMPLEMENTATION_M11_1.md`. M11 is complete and M12 is next but has not started.
 
 ## Post-merge closure audit
 
 The governance-only audit of merged PR #17 confirmed that its published checks passed, but the
 merged evidence itself retains the missing `zbw-scripting-engine`, complete named-mode
 orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices.
-M11.1 Phase 1 supplies the previously missing scripting engine plus transactional M11 configuration
-and balance-loading foundations. Complete named-mode mechanics, concrete inventory/Paper adapters
-and full acceptance matrices still prevent movement to `completed_milestones`; M12 remains blocked.
+M11.1 Phase 1 supplied the scripting engine and transactional configuration, Phase 2 supplied the
+named-mode mechanics, and the final sprint supplied atomic inventory/SQL/Paper adapters and full
+acceptance matrices. This is the evidence that permits movement to `completed_milestones`.
 
 ## Verification
 
@@ -125,10 +124,9 @@ zero findings. JaCoCo met every configured module threshold; current M11 module 
 | `zbw-shop` | 93.22% | 76.65% |
 | `zbw-content` | 96.63% | 85.71% |
 
-The M10 Paper 1.21.1 build 133 certification was rerun against the M11 plugin artifact and passed
-selector, queue command/GUI, parity, owner-thread, bounded-worker, stale/duplicate and cleanup
-assertions. M11-specific Paper projection tests pass, but a complete M11 gameplay certification
-harness remains part of the open M11 exit work described above.
+The dedicated mandatory M11 Paper 1.21.1 build 133 certification verifies real shop inventory,
+item/forge delivery, generator drops, blocks, particles, sounds, entities, duplicate prevention,
+owner-thread execution and cleanup. The runner rejects missing or false evidence.
 
 All 36 governance tests pass. The deterministic gates retain 672/672 requirement rows, 6,438
 Master Prompt assertions, 49 addon references/473 addon IDs, 55 decision IDs and 100% coverage.
@@ -141,8 +139,6 @@ granular permissions. The feature dashboard contains all 672 requirement rows de
 
 ## Reactor wiring note
 
-The planned `zbw-storage-sql -> zbw-shop` adapter dependency is intentionally not activated in
-Phase 1: no SQL shop adapter exists yet, and enabling the edge would close the existing test-only
-reactor path `zbw-arena -> zbw-storage-sql -> zbw-shop -> zbw-arena`. The future SQL adapter phase
-must introduce a cycle-free test-fixture boundary before activating that planned edge. This does
-not affect the neutral asynchronous preference/history/rotation ports delivered here.
+M11.1 removed the arena/game test-only dependencies on concrete `zbw-storage-sql`, activated the
+architectural `zbw-storage-sql -> zbw-shop` adapter edge and added `JdbcShopStateStore` contract
+tests. The resulting reactor is acyclic and persistence remains outside neutral modules.

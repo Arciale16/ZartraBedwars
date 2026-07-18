@@ -10,8 +10,9 @@ ROOT = Path(__file__).resolve().parents[2]
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
+    completed = state.get("completed_milestones", [])
     if (state.get("active_milestone") not in (None, "M11")
-            or state.get("completed_milestones") != [f"M{value:02d}" for value in range(11)]):
+            or completed[:11] != [f"M{value:02d}" for value in range(11)]):
         errors.append("M10 must be closed in ordered milestone state")
     source = ROOT / "game/zbw-game/src/main/java/io/zartra/bedwars/game"
     for package in ("mode", "selector", "matchmaking", "spectator"):

@@ -6,7 +6,8 @@ import api_docs
 ROOT = Path(__file__).resolve().parents[2]
 NEUTRAL_MODULES = api_docs.NEUTRAL_MODULES + (
     "arena/zbw-arena", "game/zbw-game", "command/zbw-command-api", "ui/zbw-ui-api",
-    "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content")
+    "scripting/zbw-scripting-api", "scripting/zbw-scripting-engine", "shop/zbw-shop",
+    "content/zbw-content", "storage/zbw-storage-sql")
 MODERN_MODULES = api_docs.MODERN_MODULES + (
     "command/zbw-command-paper", "ui/zbw-ui-paper", "platform/paper/zbw-paper-modern")
 
