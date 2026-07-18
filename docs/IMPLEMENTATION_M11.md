@@ -1,7 +1,7 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — Phase 1 checkpoint complete; M11 exit criteria are not yet met
-**Checkpoint scope:** Shop and Content Foundations
+**Milestone status:** ACTIVE — Phase 2 checkpoint complete; M11 exit criteria are not yet met
+**Checkpoint scope:** Shop/content foundations plus generator and resource system
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
 
 ## Implemented in Phase 1
@@ -18,10 +18,24 @@
 - Preserved the M09 command/UI frameworks unchanged; later M11 feature adapters must invoke these
   use cases and may not recreate a command or GUI framework.
 
+## Implemented in Phase 2
+
+- Added Java 8-neutral immutable generator configuration for native and custom resources.
+- Added arena/team ownership, enabled state, independent intervals, bounded capacities, yields and
+  world-drop/direct/split delivery rules.
+- Added a deterministic synchronized runtime with monotonic sequences, stable idempotency keys,
+  bounded catch-up work, retry-preserved batches and terminal cleanup.
+- Added a deterministic M07 arena projection with validated per-arena overrides and an M08
+  `MatchSnapshot` fleet coordinator that starts only in `PLAYING` and cleans on completion/reset.
+- Added fair rotating allocation of indivisible Generator Split amounts and independent runtime
+  state for multiple generators and resource types.
+- Implemented Phase 2 portions of `ZBW-SHOP-006`, `ZBW-ADDON-194..201` and
+  `ZBW-ADDON-363..368`; later-milestone cells remain deferred.
+
 ## Deliberately not implemented
 
-This checkpoint does not implement generators, upgrades, traps, utility-item mechanics, named-mode
-mechanics, Paper inventory adapters, shop GUIs/commands, runtime configuration loaders or the
+This checkpoint does not implement upgrades, traps, utility-item mechanics, named-mode mechanics,
+Paper inventory adapters, shop/generator GUIs or commands, runtime configuration loaders or the
 declarative interpreter. It also does not implement any M12, M15, M16, M19, M20, M21 or M22
 ownership. `zbw-scripting-engine` remains planned until a real later-M11 execution phase.
 
@@ -36,6 +50,12 @@ Tests are deterministic and contain no skipped cases:
 | `zbw-shop` | 18 | PASS |
 | `zbw-content` | 3 | PASS |
 | **Phase 1 total** | **24** | **PASS** |
+
+Phase 2 adds six generator tests covering definitions/resources, timing, capacity, multiple and
+custom resources, per-arena overrides, enable/disable, deterministic and duplicate-free generation,
+retry-safe delivery, concurrent ticks, split fairness, bounded catch-up and match-end cleanup. The
+affected reactor now runs 24 `zbw-shop` tests with zero failures/errors/skips. JDK 21
+`-Pquality verify` passes Checkstyle and SpotBugs with zero findings and every JaCoCo threshold.
 
 The full JDK 21 reactor passed 324 tests in 63 suites with zero failures, errors or skips. The
 neutral Phase 1 reactor also passed on the pinned Temurin 8u442 toolchain. Strict JavaDoc passed
