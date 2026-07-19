@@ -8,6 +8,9 @@
 - **Status:** OPEN. The implementation and cycle correction are complete, but GitHub rejects every
   PR #18 job before its first step because of the account billing/spending limit. Resolution requires
   the complete quality, governance and locked Paper 1.21.1 build 133 gates to execute and pass.
+  `M11.1-MERGE-EXCEPTION-001` records the available local evidence without treating unavailable
+  GitHub jobs as successful. A merge under that governance exception leaves RC-087 open, M11 active
+  and M12 blocked until the immutable commit passes every mandatory remote gate.
 
 ## RC-088 — Missing machine-readable M12 module allocation
 

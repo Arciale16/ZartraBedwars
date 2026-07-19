@@ -6,6 +6,9 @@
 `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..201`, `236..244`, `300..322`,
 `341..349`, `363..368`, `379..397`, `438..452`.
 
+The governance-only exception record `docs/M11_1_MERGE_EXCEPTION.md` preserves the completed local
+evidence for PR #18. It does not report GitHub Actions as passed, close RC-087 or unblock M12.
+
 ## Corrective result
 
 M11.1 implements the RC-087 corrective scope without entering M12. Phase 1 materialized the Java-8-neutral,
