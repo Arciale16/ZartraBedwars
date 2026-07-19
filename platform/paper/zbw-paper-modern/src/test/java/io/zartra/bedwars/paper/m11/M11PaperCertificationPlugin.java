@@ -182,7 +182,9 @@ public final class M11PaperCertificationPlugin extends JavaPlugin {
         private final Location origin;
         private final Block block;
         private Mapping(final TestActor actor, final Location origin, final Block block) {
-            this.actor = actor; this.origin = origin; this.block = block;
+            this.actor = actor;
+            this.origin = origin;
+            this.block = block;
         }
         @Override public Optional<Object> generatorLocation(final DefinitionId id) { return Optional.of(origin); }
         @Override public Optional<String> material(final ResourceId id) {
@@ -213,15 +215,20 @@ public final class M11PaperCertificationPlugin extends JavaPlugin {
         private final Inventory inventory = Bukkit.createInventory(null, 9);
         private int sounds;
         private int particles;
-        TestActor(final World world, final Location location) { this.world = world; this.location = location; }
+        TestActor(final World world, final Location location) {
+            this.world = world;
+            this.location = location;
+        }
         public Inventory getInventory() { return inventory; }
         public Location getLocation() { return location; }
         public World getWorld() { return world; }
         public void playSound(final Location where, final String sound, final float volume, final float pitch) {
-            world.playSound(where, Sound.valueOf(sound), volume, pitch); sounds++;
+            world.playSound(where, Sound.valueOf(sound), volume, pitch);
+            sounds++;
         }
         public void spawnParticle(final Particle particle, final Location where, final int count) {
-            world.spawnParticle(particle, where, count); particles += count;
+            world.spawnParticle(particle, where, count);
+            particles += count;
         }
     }
 }

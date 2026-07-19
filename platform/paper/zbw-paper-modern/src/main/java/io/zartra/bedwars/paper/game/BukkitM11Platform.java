@@ -94,14 +94,21 @@ public final class BukkitM11Platform implements M11PaperProjection.Platform {
         Objects.requireNonNull(request, "request");
         if (!begin(request.key())) { return true; }
         final Object actor = mappings.player(request.context().playerId()).orElse(null);
-        if (actor == null) { completed.remove(request.key()); return false; }
+        if (actor == null) {
+            completed.remove(request.key());
+            return false;
+        }
         final List<Object> locations = mappings.utilityBlocks(effect, definition, request);
         if (locations.size() > MAX_PROJECTED_UNITS) {
-            completed.remove(request.key()); return false;
+            completed.remove(request.key());
+            return false;
         }
         if (!locations.isEmpty()) {
             final Optional<String> configured = mappings.utilityMaterial(effect, definition);
-            if (!configured.isPresent()) { completed.remove(request.key()); return false; }
+            if (!configured.isPresent()) {
+                completed.remove(request.key());
+                return false;
+            }
             final Object material = material(configured.get());
             final List<BlockSnapshot> owned = playerBlocks.computeIfAbsent(
                     request.context().playerId(), ignored -> new ArrayList<>());
@@ -113,7 +120,8 @@ public final class BukkitM11Platform implements M11PaperProjection.Platform {
                 PaperReflection.invoke(block, "setType",
                         new Class<?>[] {PaperReflection.MATERIAL, boolean.class}, material, false);
                 final BlockSnapshot snapshot = new BlockSnapshot(block, original);
-                owned.add(snapshot); matchOwned.add(snapshot);
+                owned.add(snapshot);
+                matchOwned.add(snapshot);
             }
         }
         applyEffect(actor, mappings.effect(effect));
@@ -201,7 +209,8 @@ public final class BukkitM11Platform implements M11PaperProjection.Platform {
         if (!completed.add(key)) { return false; }
         if (completed.size() > MAX_KEYS) {
             final Iterator<IdempotencyKey> iterator = completed.iterator();
-            iterator.next(); iterator.remove();
+            iterator.next();
+            iterator.remove();
         }
         return true;
     }
@@ -243,7 +252,9 @@ public final class BukkitM11Platform implements M11PaperProjection.Platform {
                     || pitch < 0.5F || pitch > 2F || particleCount < 0 || particleCount > 512) {
                 throw new IllegalArgumentException("effect mapping is outside bounds");
             }
-            this.volume = volume; this.pitch = pitch; this.particleCount = particleCount;
+            this.volume = volume;
+            this.pitch = pitch;
+            this.particleCount = particleCount;
         }
         private static String enumName(final Optional<String> value, final String label) {
             final String result = Objects.requireNonNull(value, label).orElse(null);
@@ -263,7 +274,8 @@ public final class BukkitM11Platform implements M11PaperProjection.Platform {
         private final Object block;
         private final Object original;
         private BlockSnapshot(final Object block, final Object original) {
-            this.block = block; this.original = original;
+            this.block = block;
+            this.original = original;
         }
         private void restore() {
             PaperReflection.invoke(block, "setBlockData",
