@@ -99,7 +99,7 @@ def validate() -> list[str]:
     sql_dependencies = dependencies(SQL_MODULE)
     expected_compile = {
         "io.zartra.bedwars:zbw-storage-api", "com.zaxxer:HikariCP",
-        "com.github.ben-manes.caffeine:caffeine",
+        "com.github.ben-manes.caffeine:caffeine", "io.zartra.bedwars:zbw-shop",
     }
     actual_compile = {key for key, scope in sql_dependencies.items() if scope == "compile"}
     if actual_compile != expected_compile:

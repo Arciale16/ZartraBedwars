@@ -1,5 +1,23 @@
 # ZartraBedWars Risks, Conflicts and Missing Decisions
 
+## RC-087 — M11 merge versus milestone completion state — OPEN
+
+- **Fact:** PR #17 merged successfully and every published check concluded successfully.
+- **Fact:** PR #17 left `zbw-scripting-engine`, complete named-mode orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices open. M11.1 Phase 1 supplied the engine and transactional configuration, Phase 2 supplied the twelve mechanic families, and the final sprint supplied atomic inventory execution, the cycle-free SQL adapter, M09 bindings, exact Paper projections and mandatory acceptance evidence.
+- **Decision:** merge status alone remains insufficient; M11 closes only because each missing artifact now has implementation, tests, documentation and deterministic certification. Later M12/M15/M16/M17/M18/M19/M20/M21/M22 ownership remains open.
+- **Status:** OPEN. The implementation and cycle correction are complete, but GitHub rejects every
+  PR #18 job before its first step because of the account billing/spending limit. Resolution requires
+  the complete quality, governance and locked Paper 1.21.1 build 133 gates to execute and pass.
+  `M11.1-MERGE-EXCEPTION-001` records the available local evidence without treating unavailable
+  GitHub jobs as successful. A merge under that governance exception leaves RC-087 open, M11 active
+  and M12 blocked until the immutable commit passes every mandatory remote gate.
+
+## RC-088 — Missing machine-readable M12 module allocation
+
+- **Fact:** architecture and addon mappings referenced `zbw-progression`, but the planned module was absent from `build/module-graph.json`.
+- **Decision:** allocate the Java-8-neutral `zbw-progression` application module to M12 without materializing it. Later ownership remains with M15/M16/M17/M18/M19/M20/M21/M22.
+- **Status:** RESOLVED when the deterministic module, traceability, catalogue, dashboard and governance validators pass.
+
 ## Reading guide
 
 - **Fact:** directly stated or logically forced by `MASTER_PROMPT.md`/platform semantics.
@@ -179,4 +197,4 @@ RC-003/004/017/018/021/022/024/027/029/040/041/043/046/050/059/061/062/065/066/0
 
 | ID | Classification | Finding / risk | Preserving resolution |
 |---|---|---|---|
-| RC-087 | Verified reactor constraint — **OPEN; non-blocking for Phase 1** | Activating the planned `zbw-storage-sql -> zbw-shop` adapter edge before an adapter exists closes the current test-only reactor path `zbw-arena -> zbw-storage-sql -> zbw-shop -> zbw-arena`. Keeping the edge now would make the build cyclic without delivering persistence behavior. | Phase 1 publishes only neutral asynchronous preference/history/rotation ports and does not claim a SQL adapter. A later M11 persistence phase must first extract or invert the arena SQL test-fixture dependency, then implement and contract-test the adapter before activating the planned edge. No persistence behavior or later milestone is claimed by this checkpoint. |
+| RC-087 | Verified reactor constraint — **OPEN; implementation complete, certification blocked** | Activating `zbw-storage-sql -> zbw-shop` originally closed the test-only path `zbw-arena -> zbw-storage-sql -> zbw-shop -> zbw-arena`. | M11.1 removed concrete SQL test dependencies from arena/game, retained the generic M04 SQL contract suite in `zbw-storage-sql`, activated the production adapter edge, and added restart/conflict/duplicate/bounded-history tests. The graph is acyclic and no M12 ledger behavior moved into M11. Close only after PR #18 mandatory CI and Paper evidence executes successfully; GitHub billing currently prevents job startup. |

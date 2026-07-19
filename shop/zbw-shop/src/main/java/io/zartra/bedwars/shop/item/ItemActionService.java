@@ -23,6 +23,7 @@ public final class ItemActionService {
     private final Map<String, Integer> counts = new HashMap<String, Integer>();
     private long revision;
     private boolean cleaned;
+    private boolean active;
 
     /** Creates an isolated action runtime for one match owner. */
     public ItemActionService(final UtilityItemCatalog catalog,
@@ -46,6 +47,7 @@ public final class ItemActionService {
                 || !match.session(request.context().playerId()).isPresent()) {
             return ItemActionResult.of(ItemActionResult.Status.INVALID_STATE);
         }
+        active = true;
         if (completed.contains(request.key())) {
             return ItemActionResult.of(ItemActionResult.Status.DUPLICATE);
         }
@@ -121,7 +123,8 @@ public final class ItemActionService {
     /** Consumes M08 lifecycle without recreating it. */
     public synchronized void synchronize(final MatchSnapshot snapshot) {
         Objects.requireNonNull(snapshot, "snapshot");
-        if (snapshot.state() != MatchSnapshot.State.PLAYING) { cleanup(); }
+        if (snapshot.state() == MatchSnapshot.State.PLAYING) { active = true; }
+        else if (active) { cleanup(); }
     }
     /** @return local optimistic revision */ public synchronized long revision() { return revision; }
     /** @return terminal cleanup state */ public synchronized boolean cleaned() { return cleaned; }

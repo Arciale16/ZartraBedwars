@@ -57,6 +57,11 @@ class M11MatchRuntimeTest {
         final M11MatchRuntime runtime = new M11MatchRuntime(fleet, delivery,
                 Collections.emptyList(), items);
 
+        assertEquals(0, runtime.onSnapshot(snapshot(MatchSnapshot.State.WAITING), NOW));
+        assertFalse(runtime.started());
+        assertFalse(runtime.cleaned());
+        assertEquals(0, runtime.onSnapshot(snapshot(MatchSnapshot.State.COUNTDOWN), NOW));
+        assertFalse(runtime.cleaned());
         assertEquals(0, runtime.onSnapshot(snapshot(MatchSnapshot.State.PLAYING), NOW));
         assertTrue(runtime.started());
         assertFalse(runtime.cleaned());

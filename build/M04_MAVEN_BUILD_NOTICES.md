@@ -66,6 +66,10 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `junit:junit:4.13.2` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna-platform:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.kyori:adventure-api:4.17.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.kyori:adventure-key:4.17.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.kyori:examination-api:1.3.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.kyori:examination-string:1.3.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.sf.saxon:Saxon-HE:10.6` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.sf.saxon:Saxon-HE:12.5` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.antlr:antlr4-runtime:4.13.2` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -178,6 +182,7 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `org.javassist:javassist:3.28.0-GA` | MPL-1.1; LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.jdom:jdom2:2.0.6.1` | LicenseRef-JDOM | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.jetbrains:annotations:17.0.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.jetbrains:annotations:24.1.0` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter-api:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter-engine:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.junit.jupiter:junit-jupiter-params:5.11.4` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |

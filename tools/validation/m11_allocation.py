@@ -18,7 +18,8 @@ M11_MODULES = {
     "zbw-content": (
         8, "M11", ["zbw-api", "zbw-domain", "zbw-application", "zbw-shop"]),
 }
-PHASE_1_MODULES = {"zbw-scripting-api", "zbw-shop", "zbw-content"}
+PHASE_1_MODULES = {
+    "zbw-scripting-api", "zbw-scripting-engine", "zbw-shop", "zbw-content"}
 STATISTICS_IDS = {
     "ZBW-ADDON-010", "ZBW-ADDON-061", "ZBW-ADDON-300",
     "ZBW-ADDON-315", "ZBW-ADDON-341", "ZBW-ADDON-438",
@@ -79,19 +80,15 @@ def validate() -> list[str]:
             errors.append(f"{identifier}: incorrect M11 allocation {actual}")
         if identifier in PHASE_1_MODULES and identifier not in materialized:
             errors.append(f"{identifier}: M11 Phase 1 module is not materialized")
-        if identifier == "zbw-scripting-engine" and identifier in materialized:
-            errors.append("zbw-scripting-engine must remain deferred until an M11 execution phase")
 
     for identifier in sorted(PHASE_1_MODULES):
         row = next((entry for entry in graph["materialized_build_modules"]
                     if entry["id"] == identifier), None)
         if row is None or not (ROOT / row["path"]).is_file():
             errors.append(f"{identifier}: missing materialized Phase 1 Maven module")
-    if (ROOT / "scripting/zbw-scripting-engine/pom.xml").exists():
-        errors.append("M11 Phase 1 must not create zbw-scripting-engine")
-
     forbidden = ("org.bukkit", "io.papermc", "net.minecraft", "java.sql", "java.nio.file")
     for relative in ("scripting/zbw-scripting-api/src/main/java",
+                     "scripting/zbw-scripting-engine/src/main/java",
                      "shop/zbw-shop/src/main/java", "content/zbw-content/src/main/java"):
         source = ROOT / relative
         for path in source.rglob("*.java"):
@@ -113,12 +110,14 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    if state.get("active_milestone") != "M11":
-        errors.append("milestone state must identify M11 as active during implementation")
-    if state.get("next_milestone") != "M11":
-        errors.append("milestone state must identify M11 as the next milestone")
-    if state.get("completed_milestones") != [f"M{value:02d}" for value in range(11)]:
-        errors.append("milestone state must retain exactly M00 through M10 as completed")
+    completed_m11 = state.get("completed_milestones") == [f"M{value:02d}" for value in range(12)]
+    active_m11 = (state.get("active_milestone") == "M11"
+                  and state.get("next_milestone") == "M11"
+                  and state.get("completed_milestones") == [f"M{value:02d}" for value in range(11)])
+    closed_m11 = (completed_m11 and state.get("active_milestone") is None
+                  and state.get("next_milestone") == "M12")
+    if not (active_m11 or closed_m11):
+        errors.append("milestone state must represent active M11 or completed M11 with M12 next")
     if "M11_SCOPE_RECONCILIATION" not in state.get("completed_governance_checkpoints", []):
         errors.append("milestone state must record the M11 governance checkpoint")
 
@@ -180,8 +179,8 @@ def main() -> int:
     if errors:
         return 1
     print(
-        "M11 allocation PASS: 4 planned Java-8 modules, 3 Phase 1 modules materialized, "
-        "scripting engine deferred, 132 addon rows and later ownership retained")
+        "M11 allocation PASS: 4 planned Java-8 modules, 4 M11.1 Phase 1 modules materialized, "
+        "132 addon rows and later ownership retained")
     return 0
 
 

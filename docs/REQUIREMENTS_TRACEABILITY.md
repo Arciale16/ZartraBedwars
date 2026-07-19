@@ -644,3 +644,51 @@ later consumer or adapter exists.
 
 The final-integration checkpoint is additive and preserves every M10 public signature. It does not
 satisfy the complete M11 exit criteria, activate M12 or reassign any retained later-milestone cell.
+
+### M11.1 Phase 1 corrective evidence
+
+| Allocation | Implemented Phase 1 portion | Evidence / remaining M11 owner |
+|---|---|---|
+| `ZBW-READY-004` | materialized disabled-by-default bounded declarative interpreter; action/capability allowlists, scheduler deadlines, cancellation, depth/operation quotas, validation and secret-free audit | `DeclarativeScriptEngineTest`; Phase 2+ feature handler integration remains M11 |
+| `ZBW-READY-015`, `ZBW-CONTENT-002/003` | versioned eight-section M11 configuration snapshots, consecutive migration, deterministic validation/activation, rollback, last-known-good retention and golden mode-balance simulation | `M11RuntimeConfigurationTest`, `ModeBalanceCatalogTest`; concrete named-mode packs and Paper activation remain later M11.1 phases |
+| `ZBW-GAME-004/005`, `ZBW-SHOP-001..007`, M11 addon configuration portions | typed shops/generators/upgrades/traps/items/modes/rotations/scripts configuration families can activate atomically without platform dependencies | complete mechanics, inventory/Paper adapters and acceptance matrices remain M11.1 Phases 2–5 |
+
+## M12 planned ownership overlay
+
+This governance allocation is planning evidence only. `zbw-progression` is not materialized and
+M12 remains inactive until M11 satisfies its exit criteria.
+
+| Requirement allocation | Planned M12 ownership | Ownership explicitly retained |
+|---|---|---|
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` | exactly-once progression projection, XP, levels, prestige, internal persistent/virtual currencies, immutable transaction ledger and transactional rewards | M15 statistics; M16 placeholders; M17 replay; M18 Atlas; M19/M20 distributed/proxy transport; M21 Vault/NPC/hologram providers; M22 legacy compatibility |
+| `ZBW-SHOP-003/004` M12 portion | persistent/virtual tender provider and ledger settlement through the stable M11 quote/tender SPI | M11 catalog, quote, match resources and purchase policy; M21 Vault; M16 placeholders |
+| `ZBW-GAME-003` M12 portion | reward/progression consumer of the M08 completion event | M08 lifecycle/completion; M15 statistics; M17 replay |
+| `ZBW-ADDON-174..183` | Reward Commands policy, idempotent execution and primary M09 presentation | M16 placeholders; M19/M20 distributed transport; M22 compatibility |
+| `ZBW-ADDON-210..216` | Golden GG post-game policy and primary presentation | M16 visible-state placeholders where applicable; M22 legacy rendering |
+| `ZBW-ADDON-245..251` | XP Bar progression projection and primary display contract | M16 placeholders; M22 packet/API fallbacks and full compatibility |
+| `ZBW-ADDON-266..273` | reward aggregation, ledger/delivery state, history and primary summary presentation | M13 later reward-source integrations; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |
+| `ZBW-ADDON-274..282` | holiday campaign eligibility, claims, idempotent reward delivery and primary calendar/claim presentation | M14 general profile/calendar platform; M16 placeholders; M19/M20 distributed delivery; M22 compatibility |
+
+### M11.1 Phase 2 corrective evidence
+
+| Allocation | Implemented Phase 2 portion | Evidence / remaining owner |
+|---|---|---|
+| `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..193` | Armed, bounded LuckyBlock, sponge and Pop-up Tower neutral mechanics with typed M10 bindings and atomic effect intents | `ModeMechanicsTest`; concrete Paper effects remain M11.1 Phase 3, compatibility remains M22 |
+
+### M11.1 final integration and certification evidence
+
+| Requirement allocation | Final M11 implementation | Verification and retained ownership |
+|---|---|---|
+| `ZBW-SHOP-001..004` | owner-thread atomic inventory/tender purchase execution; `JdbcShopStateStore` Quick Buy, favourites, history and local rotation recovery | `AtomicInventoryPurchasePortTest`, `JdbcShopStateStoreTest`; M12 virtual-currency ledgers and M21 Vault remain deferred |
+| `ZBW-SHOP-005..007`, `ZBW-CONTENT-002/003` | lifecycle-integrated upgrades, forge, traps, generators, utility actions, original content and transactional configuration | shop/configuration/content suites plus exact Paper certification; M16 placeholders and M22 fallbacks remain deferred |
+| `ZBW-GAME-004/005` and all M11 addon ranges | M10-bound named mechanics run from M08 snapshots through one deterministic M11 coordinator | `ModeMechanicsTest`, `M11MatchRuntimeTest`, addon catalogue validator; M15 statistics and all listed later cells remain deferred |
+| M11 commands, GUIs and permissions | all 25 M11 actions bind to the M09 registry, unified command tree and generated parity pages through `M11PresentationBindings` | `M11BindingsTest`, M11 inventories, catalogue/dashboard validation; no replacement framework |
+| M11 primary platform surface | Java 21 `BukkitM11Platform` translates committed intents to inventory, drops, blocks, sounds, particles, effects and cleanup | mandatory `m11_paper_e2e.py` on Paper 1.21.1 build 133; M22 legacy certification remains deferred |
+
+The RC-087 implementation uses the cycle-free production edge `zbw-storage-sql -> zbw-shop`;
+arena/game no longer depend on the concrete SQL implementation. Closure remains blocked until PR
+#18 mandatory CI and Paper jobs can execute; GitHub currently rejects them before step one because
+of account billing. The matrix retains 672 requirements and every later
+M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation.
+| `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
+| `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |

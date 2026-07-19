@@ -17,6 +17,7 @@
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-content</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-scripting-api</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.mirror.paper</groupId><artifactId>paper-api</artifactId><version>${paper-api-mirror.version}</version><scope>provided</scope></dependency>
+    <dependency><groupId>net.kyori</groupId><artifactId>adventure-api</artifactId><version>4.17.0</version><scope>test</scope></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
   </dependencies>
   <build><resources><resource><directory>src/main/resources</directory><filtering>true</filtering></resource></resources><plugins><plugin>

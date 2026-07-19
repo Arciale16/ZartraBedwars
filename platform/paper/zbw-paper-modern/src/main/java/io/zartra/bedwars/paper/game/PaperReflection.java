@@ -15,6 +15,13 @@ final class PaperReflection {
     static final Class<?> BAR_COLOR = type("org.bukkit.boss.BarColor");
     static final Class<?> BAR_STYLE = type("org.bukkit.boss.BarStyle");
     static final Class<?> BAR_FLAG = type("org.bukkit.boss.BarFlag");
+    static final Class<?> MATERIAL = type("org.bukkit.Material");
+    static final Class<?> INVENTORY = type("org.bukkit.inventory.Inventory");
+    static final Class<?> BLOCK = type("org.bukkit.block.Block");
+    static final Class<?> BLOCK_DATA = type("org.bukkit.block.data.BlockData");
+    static final Class<?> ENTITY = type("org.bukkit.entity.Entity");
+    static final Class<?> POTION_EFFECT = type("org.bukkit.potion.PotionEffect");
+    static final Class<?> POTION_EFFECT_TYPE = type("org.bukkit.potion.PotionEffectType");
     private PaperReflection() { }
 
     static Object invoke(final Object target, final String method,
@@ -48,7 +55,7 @@ final class PaperReflection {
 
     static Object emptyArray(final Class<?> component) { return Array.newInstance(component, 0); }
 
-    private static Class<?> type(final String name) {
+    static Class<?> type(final String name) {
         try {
             return Class.forName(name, false, PaperReflection.class.getClassLoader());
         } catch (ClassNotFoundException failure) {

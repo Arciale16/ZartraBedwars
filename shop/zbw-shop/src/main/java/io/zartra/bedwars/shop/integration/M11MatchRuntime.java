@@ -5,6 +5,7 @@ import io.zartra.bedwars.game.model.MatchSnapshot;
 import io.zartra.bedwars.shop.generator.GeneratorFleet;
 import io.zartra.bedwars.shop.generator.ResourceDeliveryPort;
 import io.zartra.bedwars.shop.item.ItemActionService;
+import io.zartra.bedwars.shop.mode.ModeMechanics;
 import io.zartra.bedwars.shop.upgrade.TeamUpgradeService;
 import java.time.Instant;
 import java.util.Collection;
@@ -19,6 +20,7 @@ public final class M11MatchRuntime {
     private final ResourceDeliveryPort delivery;
     private final Map<DefinitionId, TeamUpgradeService> upgrades;
     private final ItemActionService items;
+    private final ModeMechanics.Runtime modes;
     private boolean started;
     private boolean cleaned;
 
@@ -26,6 +28,13 @@ public final class M11MatchRuntime {
     public M11MatchRuntime(final GeneratorFleet generators, final ResourceDeliveryPort delivery,
                            final Collection<TeamUpgradeService> upgrades,
                            final ItemActionService items) {
+        this(generators, delivery, upgrades, items, null);
+    }
+
+    /** Creates a coordinator including the configured named-mode runtime. */
+    public M11MatchRuntime(final GeneratorFleet generators, final ResourceDeliveryPort delivery,
+                           final Collection<TeamUpgradeService> upgrades,
+                           final ItemActionService items, final ModeMechanics.Runtime modes) {
         this.generators = Objects.requireNonNull(generators, "generators");
         this.delivery = Objects.requireNonNull(delivery, "delivery");
         final Map<DefinitionId, TeamUpgradeService> copy = new TreeMap<DefinitionId, TeamUpgradeService>();
@@ -37,6 +46,7 @@ public final class M11MatchRuntime {
         }
         this.upgrades = Collections.unmodifiableMap(copy);
         this.items = Objects.requireNonNull(items, "items");
+        this.modes = modes;
     }
 
     /** Applies one immutable M08 snapshot and returns the number of delivered generator batches. */
@@ -46,10 +56,13 @@ public final class M11MatchRuntime {
         if (cleaned) { return 0; }
         for (TeamUpgradeService service : upgrades.values()) { service.observe(snapshot); }
         items.synchronize(snapshot);
-        if (snapshot.state() != MatchSnapshot.State.PLAYING) {
+        if (modes != null) { modes.observe(snapshot); }
+        if (snapshot.state() == MatchSnapshot.State.COMPLETING
+                || snapshot.state() == MatchSnapshot.State.RESETTING) {
             cleanup();
             return 0;
         }
+        if (snapshot.state() != MatchSnapshot.State.PLAYING) { return 0; }
         if (!started) {
             generators.start(snapshot, now);
             started = true;
@@ -62,6 +75,7 @@ public final class M11MatchRuntime {
         if (cleaned) { return; }
         generators.cleanup();
         items.cleanup();
+        if (modes != null) { modes.cleanup(); }
         cleaned = true;
     }
     /** @return whether PLAYING initialization occurred */ public synchronized boolean started() { return started; }

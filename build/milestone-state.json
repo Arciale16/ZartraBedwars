@@ -4,7 +4,7 @@
   "next_milestone": "M11",
   "completed_milestones": ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10"],
   "completed_hardening_milestones": ["M08.1"],
-  "completed_governance_checkpoints": ["M11_SCOPE_RECONCILIATION"],
+  "completed_governance_checkpoints": ["M11_SCOPE_RECONCILIATION", "M11_POST_MERGE_AUDIT_M12_ALLOCATION"],
   "functional_production_path": true,
   "java_implementation_started": true,
   "runtime_behavior_started": true
