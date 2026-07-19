@@ -213,7 +213,8 @@ public final class JdbcShopStateStore implements ShopUserData.PreferencePort,
                 output.writeInt(quickBuy.assignments().size());
                 for (Map.Entry<Integer, ShopIds.ItemId> entry
                         : quickBuy.assignments().entrySet()) {
-                    output.writeInt(entry.getKey()); output.writeUTF(entry.getValue().toString());
+                    output.writeInt(entry.getKey());
+                    output.writeUTF(entry.getValue().toString());
                 }
                 output.writeInt(favourites.items().size());
                 for (ShopIds.ItemId item : favourites.items()) { output.writeUTF(item.toString()); }
@@ -241,11 +242,14 @@ public final class JdbcShopStateStore implements ShopUserData.PreferencePort,
             return write(output -> {
                 output.writeInt(entries.size());
                 for (ShopUserData.HistoryEntry entry : entries) {
-                    output.writeUTF(entry.key().toString()); output.writeUTF(entry.itemId().toString());
-                    output.writeInt(entry.batches()); output.writeLong(entry.committedAt().toEpochMilli());
+                    output.writeUTF(entry.key().toString());
+                    output.writeUTF(entry.itemId().toString());
+                    output.writeInt(entry.batches());
+                    output.writeLong(entry.committedAt().toEpochMilli());
                     output.writeInt(entry.charged().amounts().size());
                     for (ShopCatalog.ResourceAmount amount : entry.charged().amounts()) {
-                        output.writeUTF(amount.resourceId().toString()); output.writeLong(amount.amount());
+                        output.writeUTF(amount.resourceId().toString());
+                        output.writeLong(amount.amount());
                     }
                 }
             });
@@ -257,7 +261,8 @@ public final class JdbcShopStateStore implements ShopUserData.PreferencePort,
                 for (int index = 0; index < count; index++) {
                     final IdempotencyKey key = IdempotencyKey.parse(input.readUTF());
                     final ShopIds.ItemId item = ShopIds.ItemId.parse(input.readUTF());
-                    final int batches = input.readInt(); final Instant committed = Instant.ofEpochMilli(input.readLong());
+                    final int batches = input.readInt();
+                    final Instant committed = Instant.ofEpochMilli(input.readLong());
                     final int prices = bounded(input.readInt(), 1, 16, "price count");
                     final List<ShopCatalog.ResourceAmount> amounts = new ArrayList<ShopCatalog.ResourceAmount>();
                     for (int price = 0; price < prices; price++) {
