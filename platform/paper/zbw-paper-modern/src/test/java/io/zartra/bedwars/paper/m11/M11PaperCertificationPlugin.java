@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -101,8 +102,8 @@ public final class M11PaperCertificationPlugin extends JavaPlugin {
         projection.apply(DefinitionId.of("zartra", "effect/tower"), tower, request);
         final boolean blockApplied = block.getType() == Material.WHITE_WOOL;
 
-        final Inventory shopInventory = Bukkit.createInventory(null, 54, "M11 Shop");
-        shopInventory.setItem(0, new ItemStack(Material.WOOL));
+        final Inventory shopInventory = Bukkit.createInventory(null, 54, Component.text("M11 Shop"));
+        shopInventory.setItem(0, new ItemStack(Material.WHITE_WOOL));
         shopInventory.setItem(1, new ItemStack(Material.IRON_INGOT));
         final int actions = M11PresentationBindings.create((action, input) ->
                 java.util.concurrent.CompletableFuture.completedFuture(PresentationActions.Response.simple(
