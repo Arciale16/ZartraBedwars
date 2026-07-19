@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.junit.jupiter.api.Test;
 
@@ -92,6 +93,9 @@ final class BukkitM11PlatformTest {
         assertFalse(platform.apply(effect, definition(), request("bounded")));
         mapping.locations = Collections.singletonList(new Object());
         assertFalse(platform.apply(effect, definition(), request("missing-material")));
+        mapping.utilityMaterial = Optional.of("bad material");
+        assertThrows(IllegalArgumentException.class,
+                () -> platform.apply(effect, definition(), request("invalid-material")));
         mapping.locations = Collections.emptyList();
         assertTrue(platform.apply(effect, definition(), request("success")));
         assertTrue(platform.apply(effect, definition(), request("success")));
@@ -133,12 +137,25 @@ final class BukkitM11PlatformTest {
         final Mapping mapping = new Mapping();
         mapping.player = Optional.of(actor);
         mapping.feedback = new BukkitM11Platform.EffectMapping(
-                Optional.empty(), Optional.empty(), 1F, 1F, 0);
+                Optional.of("BLOCK_NOTE_BLOCK_PLING"), Optional.empty(), 1F, 1F, 0);
         final BukkitM11Platform platform = new BukkitM11Platform(mapping);
         platform.apply(new TeamEffectIntent(
                 IdempotencyKey.of("test", "forge"), TeamEffectIntent.Kind.FORGE_RESOURCES,
                 DefinitionId.of("test", "team/red"), DefinitionId.of("test", "effect/forge"),
                 null, Collections.singletonMap(ResourceId.of("minecraft", "iron_ingot"), 1)));
+        platform.apply(effect("target-feedback", player()));
+        assertEquals(1, actor.sounds);
+        assertThrows(IllegalArgumentException.class, () -> platform.apply(new TeamEffectIntent(
+                IdempotencyKey.of("test", "forge-missing-material"),
+                TeamEffectIntent.Kind.FORGE_RESOURCES, DefinitionId.of("test", "team/red"),
+                DefinitionId.of("test", "effect/forge"), player(),
+                Collections.singletonMap(ResourceId.of("minecraft", "iron_ingot"), 1))));
+        mapping.material = Optional.of("bad material");
+        assertThrows(IllegalArgumentException.class, () -> platform.apply(new TeamEffectIntent(
+                IdempotencyKey.of("test", "forge-invalid-material"),
+                TeamEffectIntent.Kind.FORGE_RESOURCES, DefinitionId.of("test", "team/red"),
+                DefinitionId.of("test", "effect/forge"), player(),
+                Collections.singletonMap(ResourceId.of("minecraft", "iron_ingot"), 1))));
         assertTrue(platform.apply(DefinitionId.of("test", "effect/feedback"), definition(),
                 request("feedback")));
 
@@ -255,7 +272,11 @@ final class BukkitM11PlatformTest {
     }
 
     public static final class Actor {
-        public Object getLocation() { return new Object(); }
+        private int sounds;
+        public Object getInventory() { return new Object(); }
+        public Location getLocation() { return null; }
+        public void playSound(final Location location, final String sound,
+                              final float volume, final float pitch) { sounds++; }
     }
 
     public static final class RestorableBlock {
@@ -276,6 +297,7 @@ final class BukkitM11PlatformTest {
         private Optional<String> material = Optional.empty();
         private Optional<Object> player = Optional.empty();
         private List<Object> locations = Collections.emptyList();
+        private Optional<String> utilityMaterial = Optional.empty();
         private BukkitM11Platform.EffectMapping feedback;
         private int generatorCalls;
         private int playerCalls;
@@ -300,7 +322,7 @@ final class BukkitM11PlatformTest {
             return locations;
         }
         @Override public Optional<String> utilityMaterial(final DefinitionId effect,
-                final UtilityItemDefinition definition) { return Optional.empty(); }
+                final UtilityItemDefinition definition) { return utilityMaterial; }
         @Override public BukkitM11Platform.EffectMapping effect(final DefinitionId id) {
             return feedback;
         }
