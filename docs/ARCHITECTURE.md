@@ -65,7 +65,7 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-storage-sql` | SQLite/MySQL/MariaDB repositories, Hikari, migrations | storage API | Gameplay listeners |
 | `zbw-redis-api`, `zbw-redis` | Versioned coordination contracts and Redis adapter | application ports | Durable source-of-truth decisions |
 | `zbw-game`, `zbw-arena`, `zbw-world` | Game state machine and arena/world use cases; all three compile to Java 8. `zbw-world` is the neutral world-provider/reset orchestration boundary first allocated to M06, `zbw-arena` is the presentation-neutral arena/map/setup application module first allocated to M07, and `zbw-game` is the platform-neutral owner of all game/session/team/lobby rules and state machines first allocated to M08 | application/domain | Concrete world providers, platform types, commands, GUIs or presentation policy |
-| `zbw-shop`, `zbw-progression`, `zbw-statistics` | Their domain policies, projections and use cases. `zbw-progression` is planned for M12 as a Java 8 application module and is not materialized by this governance checkpoint. | application/domain plus neutral storage/event contracts | GUI/provider implementations |
+| `zbw-shop`, `zbw-progression`, `zbw-statistics` | Their domain policies, projections and use cases. M12 Phase 1 materializes `zbw-progression` as a Java 8 application module containing immutable progression/economy values, repository ports and projection contracts only. | application/domain plus neutral storage/event contracts | GUI/provider implementations |
 | `zbw-content` | Versioned starter catalogues, configurable content packs, semantic effect IDs and provenance references | application/domain/config | Platform rendering or unlicensed asset files |
 | `zbw-scripting-api`, `zbw-scripting-engine` | Declarative action graph, capability/scopes, compiler/interpreter, quotas and audit | API/application immutable snapshots | General JVM code, host/file/process/network access or main-thread evaluation |
 | `zbw-replay-api`, `zbw-replay-engine` | Replay model, capture/codec/playback/retention ports | application/domain | NMS packet code/storage backend specifics |
@@ -464,12 +464,12 @@ full 1.8–1.21.x support remains the M22 release gate.
 
 ## M12 planned progression boundary
 
-M12 plans, but does not yet materialize, the Java-8-neutral `zbw-progression` application module.
+M12 Phase 1 materializes the Java-8-neutral `zbw-progression` application module.
 It depends inward on `zbw-api`, `zbw-domain`, `zbw-application`, `zbw-storage-api`, M08 game events
 and the stable M11 shop/tender contracts. It owns progression, XP, levels, prestige, internal
 persistent currencies, the immutable transaction ledger and transactional reward policies.
 
-Repository ports belong to the neutral M12 boundary; JDBC and migrations remain exclusively in
+Phase 1 repository ports belong to the neutral M12 boundary; JDBC and migrations remain exclusively in
 `zbw-storage-sql`. Existing M09 command/UI modules and `zbw-paper-modern` may later adapt M12 use
 cases but never own progression policy. M15 retains statistics, M16 PlaceholderAPI, M17 replay,
 M18 Atlas, M19/M20 distributed and proxy transports, M21 Vault/NPC/hologram providers and M22

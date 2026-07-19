@@ -114,7 +114,7 @@ def validate() -> list[str]:
     active_m11 = (state.get("active_milestone") == "M11"
                   and state.get("next_milestone") == "M11"
                   and state.get("completed_milestones") == [f"M{value:02d}" for value in range(11)])
-    closed_m11 = (completed_m11 and state.get("active_milestone") is None
+    closed_m11 = (completed_m11 and state.get("active_milestone") in (None, "M12")
                   and state.get("next_milestone") == "M12")
     if not (active_m11 or closed_m11):
         errors.append("milestone state must represent active M11 or completed M11 with M12 next")

@@ -16,6 +16,7 @@ VALID = {"NOT_STARTED", "IN_PROGRESS", "PARTIAL", "IMPLEMENTED", "VERIFIED", "BL
 M09_ADDONS = tuple(range(1, 10)) + tuple(range(108, 115)) + tuple(range(124, 131)) + tuple(range(148, 155)) + tuple(range(334, 341)) + tuple(range(398, 438))
 M10_ADDONS = tuple(range(92, 102)) + tuple(range(115, 124)) + tuple(range(131, 141)) + tuple(range(155, 164)) + tuple(range(236, 245))
 M11_ADDONS = tuple(range(10, 26)) + tuple(range(61, 71)) + tuple(range(141, 148)) + tuple(range(184, 202)) + tuple(range(236, 245)) + tuple(range(300, 323)) + tuple(range(341, 350)) + tuple(range(363, 369)) + tuple(range(379, 398)) + tuple(range(438, 453))
+M12_PHASE1 = {"ZBW-PROG-001", "ZBW-PROG-002", "ZBW-PROG-003", "ZBW-PROG-004", "ZBW-PROG-005", "ZBW-PROG-011"}
 
 
 def cells(line: str) -> list[str]:
@@ -83,6 +84,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M10 shared-server framework verified; M11/M15/M16/M17/M20/M22 allocations remain"
     if m11_requirement(identifier):
         return "PARTIAL", "M11-owned portion verified; later allocations remain visible in traceability"
+    if identifier in M12_PHASE1:
+        return "PARTIAL", "M12 Phase 1 neutral model/repository/projection foundation implemented; later M12 phases remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -190,7 +193,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M11 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
+        "M00–M11 and hardening M08.1 are complete; M12 Phase 1 is active in `build/milestone-state.json`.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

@@ -34,6 +34,7 @@
     <module>scripting/zbw-scripting-engine</module>
     <module>shop/zbw-shop</module>
     <module>content/zbw-content</module>
+    <module>progression/zbw-progression</module>
   </modules>
 
   <properties>

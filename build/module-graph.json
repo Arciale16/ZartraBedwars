@@ -30,6 +30,7 @@
     {"id": "zbw-scripting-engine", "path": "scripting/zbw-scripting-engine/pom.xml", "packaging": "jar", "responsibility": "Java 8 bounded disabled-by-default declarative action interpreter"},
     {"id": "zbw-shop", "path": "shop/zbw-shop/pom.xml", "packaging": "jar", "responsibility": "Java 8 typed shop catalog, tender, quote and atomic purchase application"},
     {"id": "zbw-content", "path": "content/zbw-content/pom.xml", "packaging": "jar", "responsibility": "Java 8 original versioned shop content and balance profiles"},
+    {"id": "zbw-progression", "path": "progression/zbw-progression/pom.xml", "packaging": "jar", "responsibility": "Java 8 immutable progression/economy values, repository ports and projection contracts"},
     {"id": "zbw-compat-v1_20-v1_21", "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"},
     {"id": "zbw-command-paper", "path": "command/zbw-command-paper/pom.xml", "packaging": "jar", "responsibility": "Java 21 Paper command registration, sender/output translation and bounded execution adapter"},
     {"id": "zbw-ui-paper", "path": "ui/zbw-ui-paper/pom.xml", "packaging": "jar", "responsibility": "Java 21 Paper inventory rendering and input/lifecycle translation adapter"},
