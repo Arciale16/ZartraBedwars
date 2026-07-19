@@ -1,6 +1,6 @@
 # Milestone 11 implementation evidence
 
-**Milestone status:** ACTIVE — M11.1 implementation complete; mandatory CI certification blocked
+**Milestone status:** COMPLETED — verified locally and by mandatory PR #18 remote certification
 **Scope:** Phases 1–4, M11.1 scripting/configuration/mechanics, atomic inventory and SQL recovery,
 M08 lifecycle, M09 presentation and exact primary Paper integration
 **Branch:** `agent/milestone-11-shop-content-generators-upgrades`
@@ -75,17 +75,16 @@ M12, M15, M16, M17, M18, M19, M20, M21 and M22 ownership remains deliberately un
 
 M11.1 supplies the scripting engine, complete named-mode orchestration, concrete
 shop/inventory/configuration/SQL/Paper adapters and the full acceptance matrices. See
-`docs/IMPLEMENTATION_M11_1.md`. M11 remains active and M12 has not started until certification passes.
+`docs/IMPLEMENTATION_M11_1.md`. M11 is complete; M12 is the next planned milestone and has not started.
 
 ## Post-merge closure audit
 
-The governance-only audit of merged PR #17 confirmed that its published checks passed, but the
-merged evidence itself retains the missing `zbw-scripting-engine`, complete named-mode
-orchestration, concrete inventory/configuration adapters and full M11 acceptance matrices.
-M11.1 Phase 1 supplied the scripting engine and transactional configuration, Phase 2 supplied the
-named-mode mechanics, and the final sprint supplied atomic inventory/SQL/Paper adapters and full
-acceptance matrices. Movement to `completed_milestones` still requires the immutable CI and Paper
-jobs, which GitHub currently rejects before execution due to the account billing/spending limit.
+The governance-only audit of merged PR #17 identified the corrective M11.1 scope. PR #18 supplied
+that scope and was squash-merged to `main` as
+`3e68835c361216e6dc8be37b9e024734bb565884`. The same published revision subsequently passed the
+mandatory remote Java/toolchain, quality, governance, API, database and exact Paper 1.21.1 jobs.
+This closes the temporary billing-limited evidence gap without rewriting the historical merge
+exception. M11 is recorded in `completed_milestones`; M12 remains inactive.
 
 ## Verification
 

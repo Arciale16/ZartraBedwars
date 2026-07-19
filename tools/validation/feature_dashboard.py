@@ -82,7 +82,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if m10_requirement(identifier):
         return "PARTIAL", "M10 shared-server framework verified; M11/M15/M16/M17/M20/M22 allocations remain"
     if m11_requirement(identifier):
-        return "PARTIAL", "M11.1 implemented; mandatory CI/Paper certification blocked by GitHub billing"
+        return "PARTIAL", "M11-owned portion verified; later allocations remain visible in traceability"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -150,7 +150,7 @@ def row(feature: str, identifier: str, category: str, planned: str,
         "Documentation": "M11 and M11.1 implementation/API evidence" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")),
         "Configurable or hardcoded": "Typed replaceable catalog/policy" if m11 else ("Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement")),
         "Blocker or deferred dependency": blocker,
-        "Notes": "M11.1 implementation complete; milestone closure not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
+        "Notes": "M11-owned portion verified; later owners are not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")),
     }
 
 
@@ -190,12 +190,12 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M10 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
+        "M00–M11 and hardening M08.1 are recorded complete in `build/milestone-state.json`.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
-        "Merged PR #17 supplies M11 Phases 1-4 and final-integration checkpoint evidence, but its",
-        "own accepted evidence leaves the scripting engine, complete mode orchestration, concrete adapters",
-        "and complete acceptance matrices open. M11 remains active; M12 is planned and inactive.",
+        "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
+        "implementation and successful mandatory remote certification. M11 is complete; M12 is the next",
+        "planned milestone and remains inactive.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])
