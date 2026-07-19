@@ -44,7 +44,7 @@
     {"id": "zbw-integration-discord-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
     {"id": "zbw-config", "layer": "adapter", "bytecode": 8, "first_milestone": "M03", "depends_on": ["zbw-api", "zbw-application", "zbw-shop", "zbw-content", "zbw-scripting-api"], "dependency_since": {"zbw-shop": "M11", "zbw-content": "M11", "zbw-scripting-api": "M11"}},
     {"id": "zbw-storage-api", "layer": "api", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-api", "zbw-domain"]},
-    {"id": "zbw-storage-sql", "layer": "adapter", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-storage-api", "zbw-shop"], "dependency_since": {"zbw-shop": "M11"}},
+      {"id": "zbw-storage-sql", "layer": "adapter", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-storage-api", "zbw-shop", "zbw-progression"], "dependency_since": {"zbw-shop": "M11", "zbw-progression": "M12"}},
     {"id": "zbw-observability", "layer": "adapter", "bytecode": 8, "first_milestone": "M05", "depends_on": ["zbw-api", "zbw-application"]},
     {"id": "zbw-compat-api", "layer": "api", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api"]},
     {"id": "zbw-world", "layer": "application", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api", "zbw-application"]},
