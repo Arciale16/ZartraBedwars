@@ -111,6 +111,7 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | `ZBW-PROG-002/003/005` | immutable account, XP, level and prestige definitions/states with typed identity, revision and audit metadata | model/validation tests; formulas, mutations, history persistence and migrations remain later M12 |
 | `ZBW-PROG-004` | immutable persistent-currency definition/account and append-only ledger entry, explicitly separate from M11 match tenders | model/validation tests; atomic persistence, refunds and M11 tender provider binding remain later M12 |
 | `ZBW-PROG-011` | immutable reward registration identity/record and repository port only | idempotency contract tests; reward planning/delivery/retry/compensation remain later M12 |
+| `ZBW-PROG-001/002/003/005/011` — M12 Phase 3 | configurable M08/M11 projection adapter; versioned XP/anti-farming policy; level preview/recalculation; atomic prestige intent; generic unlock outputs; atomically claimed offline/retry/expiry/compensation reward engine; M03-authorized application ports | `ProgressionEngineTest`, `ProgressionIntegrationTest`; `IMPLEMENTATION_M12_PHASE3.md`, `API_M12_PHASE3.md`, `REWARD_ENGINE_M12.md`; final M12 commands/GUI/Paper/addon presentation remains open |
 | M12 storage boundary | eight Java-8-neutral repository interfaces accept caller-owned M04 `UnitOfWork` and typed revisions/results | architecture and reflection tests; no JDBC, SQL or migration code in Phase 1 |
 
 ## Replay (10)
