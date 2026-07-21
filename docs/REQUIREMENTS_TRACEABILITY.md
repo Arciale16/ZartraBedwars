@@ -116,6 +116,19 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 5 closure | XP/level/prestige formulas+revisions, currency/ledger safety, retry/failure/reward projection, recovery, admin/cfg/presentation integration and Paper certification evidence | `Progression*` integration suite; `M12StorageValidationTest`; M12 dashboard and exit evidence |
 | M12 storage boundary | eight Java-8-neutral repository interfaces accept caller-owned M04 `UnitOfWork` and typed revisions/results | architecture and reflection tests; no JDBC, SQL or migration code in Phase 1 |
 
+### M13 Phase 1 objective/content-foundation evidence
+
+| Allocation | Implemented Phase 1 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-009`, `ZBW-ADDON-081..091` | typed immutable quest identities, schedules, objective/reward references, claim policy, cooldown and assignment lifecycle snapshots plus neutral repository ports | `M13FoundationTest`; runtime assignment, chains, claims, persistence, admin and M09 presentation remain in later M13 phases |
+| `ZBW-PROG-010` | typed objective/event/filter/scope/composition definitions, monotonic bounded progress snapshots and optimistic persistence port | catalogue/reference and idempotency tests; full event projection, composite runtime and durable storage remain in later M13 phases |
+| `ZBW-PROG-012` | typed tiered achievement definitions with monotonic targets, points and M12 reward references | tier/validation tests; progress history, notifications and presentation remain in later M13 phases |
+| `ZBW-PROG-013` | typed challenge variants and versioned battle-pass season/free/premium tier definitions with validated windows | challenge/season/catalogue tests; claims, rollover, migration, persistence and presentation remain in later M13 phases |
+| `ZBW-CONTENT-004..006` | immutable cross-reference catalogue capable of validating objective, quest, achievement, challenge and season definition graphs | starter catalogue activation remains in a later M13 phase; no proprietary content or assets introduced |
+
+M13 Phase 1 deliberately introduces no statistics, PlaceholderAPI, replay, Atlas, distributed
+transport, external provider or legacy compatibility implementation. Those owners remain M15 through M22.
+
 ## Replay (10)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
