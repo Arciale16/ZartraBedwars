@@ -76,13 +76,13 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
 |---|---|---|---|---|---|---|---|---|
-| ZBW-SHOP-001 | M11 Phase 1 PARTIAL: immutable scoped catalog, categories, Quick Buy/favourite/history contracts in `zbw-shop`; storage adapter remains later/inward | shops | M11 feature actions later extend the verified unified command tree / shop.use | M11 pages later use the verified Shop/Quick Buy framework | `ShopCatalog`, `ShopIds`, `ShopUserData` | M16 shop/category state | catalog, duplicate, scope, Quick Buy/favourite/history tests PASS; E2E later M11; placeholder CT M16 | `IMPLEMENTATION_M11.md`, `API_M11_PHASE1.md`; M11 Phase 1/M16 PH/M22 compatibility |
-| ZBW-SHOP-002 | M11 Phase 1 PARTIAL: typed icon/slot/order/visibility/permission/condition and purchase-history model; M09 presentation framework retained unchanged | shops/gui | M11 manage actions later use the verified unified command tree / shop.manage | M11 full shop/editor pages remain later on the verified common framework | category/item presentation metadata and extension-safe IDs | M16 visible price/state | configuration boundary/unit tests PASS; GUI input/load E2E later M11; PH CT M16 | `API_M11_PHASE1.md`; M11 Phase 1/presentation later/M16 PH/M22 compatibility |
-| ZBW-SHOP-003 | M11 Phase 1 PARTIAL: quoted match-resource validation and single atomic `PurchaseTransactionPort` commit with limits/cooldowns/idempotency; all required permissions are revalidated immediately before commit; M12 adds persistent/virtual ledger provider | shops/items | purchase admin later through verified M09 framework | confirmation/history presentation later through verified M09 framework | `PurchaseService`, typed request/quote/result/failure/validator/transaction contracts | M16 purchase limits | 18 shop tests cover atomic outcome, authorization revocation, race, limit, cooldown, malformed and custom-condition paths; Paper/E2E later M11; persistent-provider CT M12 | `IMPLEMENTATION_M11.md`, `API_M11_PHASE1.md`; M11 match transactions/M12 persistent currency |
-| ZBW-SHOP-004 | M11 Phase 1 PARTIAL: tender registry plus iron/gold/diamond/emerald/custom/multiple match-resource quote support; concrete inventory adapters remain later M11, M12 persistent/virtual and M21 Vault | shops/integrations | currency diagnostics later through verified M09 framework; provider diagnostics M12/M21 | price/tender views later through verified M09 framework; currency audit M12 | `TenderRegistry` and atomic multi-resource price/commit boundary | M16 tender values | native/custom/multiple tender, insufficiency and all-or-nothing commit tests PASS; adapter atomicity later M11; ledger CT M12; Vault CT M21 | `API_M11_PHASE1.md`; M11 Phase 1/M12/M21, PH M16 |
-| ZBW-SHOP-005 | M11 Phase 3 VERIFIED neutral upgrade catalogue/levels/costs/dependencies, recoverable match/team state, atomic idempotent purchase, queued traps, heal pool, dragon buff, deterministic bounded forge and runtime effect intents; presentation remains later M11 | upgrades | upgrade manage / upgrade.* later M11 through the verified command framework | upgrade shop/editor later M11 on the verified UI framework | `UpgradeDefinition`, `UpgradeCatalog`, `TeamUpgradeState`, `TeamUpgradeService`, `UpgradeTransactionPort`, `ForgePolicy`, `ForgeRuntime`, typed result/effect intents | M16 levels/traps | 9 Phase 3 tests cover purchase success/rejection, insufficiency, duplicates, levels, dependencies, forge, traps, effects, isolation, recovery and cleanup PASS; Paper/E2E later M11; legacy matrix M22 | `API_M11_PHASE3.md`, `IMPLEMENTATION_M11.md`; M11 Phase 3 core verified / later M11 presentation / M16 PH / M22 compatibility |
-| ZBW-SHOP-006 | M11 Phase 2 VERIFIED neutral definitions, ownership, lifecycle/state/timing/capacity, M07 arena projection, M08 lifecycle consumption, bounded retry-safe idempotent delivery, custom resources, overrides and deterministic split; upgrades/display intent remain later M11; M21 concrete hologram providers | generators; typed per-arena overrides | generator manage / generator.* remains later M11 on verified commands | generator editor remains later M11 on verified UI; provider manager M21 | `GeneratorConfiguration`, `GeneratorRuntime`, `GeneratorFleet`, `ArenaGeneratorPlan`, `GeneratorSplitPolicy`, `ResourceDeliveryPort`; HologramProvider M21 | M16 state/countdown/level | 6 Phase 2 tests cover validation, timing, cap, native/custom multiple resources, split, overrides, disable/enable, determinism, duplicate prevention, retry/delivery, concurrency, cleanup/recovery and bounded work PASS; provider/legacy tests later | `API_M11_PHASE2.md`, `IMPLEMENTATION_M11.md`; M11 Phase 2 core verified / later M11 upgrades/presentation / M16 PH / M21 providers / M22 compatibility |
-| ZBW-SHOP-007 | M11 Phase 4 VERIFIED neutral utility-item catalogue/action lifecycle, exact authorization, atomic match-resource/inventory boundary, cooldown/limit/idempotency, typed target validation, cleanup and bounded addon effect intents; final M11 presentation/Paper mapping and M22 legacy mappings remain open | items/security | item manage / item.* later M11 through verified commands | item editor/preview later M11 on verified UI | `UtilityItemDefinition`, `UtilityItemCatalog`, `ItemActionRequest`, `ItemActionService`, typed transaction/effect ports and results | M16 item cooldown/state | 7 Phase 4 tests cover creation, validation, purchase integration, permissions, costs, cooldowns, targets, concurrency, duplicates, reconnect ownership, cleanup and eight addon families PASS; Paper/E2E later M11; legacy matrix M22 | `API_M11_PHASE4.md`, `IMPLEMENTATION_M11.md`; M11 Phase 4 neutral core verified / final M11 integration / M16 PH / M22 compatibility |
+| ZBW-SHOP-001 | M11 VERIFIED: immutable scoped catalog, categories, Quick Buy/favourite/history plus cycle-free SQL recovery | shops | verified M09-bound actions / shop.use | verified M09 parity pages | `ShopCatalog`, `ShopIds`, `ShopUserData` | M16 shop/category state | catalog, recovery, presentation and Paper suites PASS; placeholder CT M16 | `IMPLEMENTATION_M11.md`, `IMPLEMENTATION_M11_1.md`; M11 verified / M16 PH / M22 compatibility |
+| ZBW-SHOP-002 | M11 VERIFIED: typed presentation metadata, conditions, configuration and purchase history using the unchanged M09 framework | shops/gui | verified manage actions / shop.manage | verified shop/editor parity bindings | category/item presentation metadata and extension-safe IDs | M16 visible price/state | configuration, GUI parity and Paper suites PASS; PH CT M16 | `API_M11.md`; M11 verified / M16 PH / M22 compatibility |
+| ZBW-SHOP-003 | M11 VERIFIED portion: quoted match-resource validation and atomic owner-thread purchase with authorization, limits, cooldowns, rollback and idempotency | shops/items | verified purchase/admin bindings | verified confirmation/history bindings | `PurchaseService` and typed transaction contracts | M16 purchase limits | atomic inventory, race, rollback, malformed and Paper suites PASS; persistent-provider CT M12 | `IMPLEMENTATION_M11_1.md`; M11 match transactions verified / M12 persistent currency |
+| ZBW-SHOP-004 | M11 VERIFIED portion: native/custom/multiple match tenders and concrete inventory adapter; M12 retains persistent/virtual ledger and M21 Vault | shops/integrations | verified local diagnostics; provider diagnostics M12/M21 | verified local price/tender views; currency audit M12 | `TenderRegistry` and atomic multi-resource commit boundary | M16 tender values | adapter atomicity/Paper PASS; ledger CT M12; Vault CT M21 | `API_M11.md`; M11 verified / M12/M21 retained / M16 PH |
+| ZBW-SHOP-005 | M11 VERIFIED: upgrades, forge, traps, effects, recovery, M09 presentation and primary Paper projection | upgrades | verified upgrade actions / upgrade.* | verified upgrade parity bindings | typed upgrade/forge/effect contracts | M16 levels/traps | unit, lifecycle, recovery, presentation and Paper suites PASS; legacy matrix M22 | `IMPLEMENTATION_M11_1.md`; M11 verified / M16 PH / M22 compatibility |
+| ZBW-SHOP-006 | M11 VERIFIED: deterministic generators, custom resources, overrides, split, recovery, presentation and primary Paper projection; M21 retains hologram provider | generators; typed per-arena overrides | verified generator actions / generator.* | verified generator parity bindings; provider manager M21 | typed generator/runtime/delivery contracts; HologramProvider M21 | M16 state/countdown/level | timing, concurrency, recovery, presentation and Paper suites PASS; provider/legacy later | `IMPLEMENTATION_M11_1.md`; M11 verified / M16 PH / M21 providers / M22 compatibility |
+| ZBW-SHOP-007 | M11 VERIFIED: utility action lifecycle, authorization, match-resource/inventory atomicity, addon intents, M09 presentation and primary Paper mapping | items/security | verified item actions / item.* | verified item parity bindings | typed item/action/effect contracts | M16 item cooldown/state | action, security, cleanup, presentation and Paper suites PASS; legacy matrix M22 | `IMPLEMENTATION_M11_1.md`; M11 verified / M16 PH / M22 compatibility |
 
 ## Progression and rewards (14)
 
@@ -102,6 +102,19 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | ZBW-PROG-012 | achievement definitions/progress/history | achievements | achievement admin / achievement.* | achievement/editor | Achievement API/events | achievement values | shared-objective E2E | achievement guide; M13 |
 | ZBW-PROG-013 | challenge/pass/season/claim data + migration | challenges/battlepass | challenge/pass admin / battlepass.* | challenge/pass/editors | Challenge/BattlePass API/events | pass/challenge/season | claim/rollover/MT/ST | battle pass guide; M13 |
 | ZBW-PROG-014 | profile/settings/calendar data; privacy deletion | profile/rewards/security | profile/settings/admin repair / profile.* | profile/settings/calendar admin | Profile/Calendar APIs | all profile settings | privacy/calendar/MT | profile/privacy guide; M14 |
+
+### M12 Phase 1 progression-foundation evidence
+
+| Allocation | Implemented Phase 1 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-001` | typed M08 event input, M04-style inbox idempotency port, projection result/checkpoint and bounded recovery state | projection contract tests; durable projectors and adapters completed |
+| `ZBW-PROG-002/003/005` | immutable account, XP, level and prestige definitions/states with typed identity, revision and audit metadata | model/validation tests; deterministic formulas; migration/recalculation persistence |
+| `ZBW-PROG-004` | immutable persistent-currency definition/account and append-only ledger entry, explicitly separate from M11 match tenders | model/validation tests; atomic persistence and M11 tender provider binding |
+| `ZBW-PROG-011` | immutable reward registration identity/record and repository model | idempotency contract tests; reward planning/delivery/retry/compensation |
+| `ZBW-PROG-001/002/003/005/011` — M12 Phase 3 | configurable M08/M11 projection adapter; versioned XP/anti-farming policy; level preview/recalculation; atomic prestige intent; generic unlock outputs; atomically claimed offline/retry/expiry/compensation reward engine; M03-authorized application ports | `ProgressionEngineTest`, `ProgressionIntegrationTest`; `IMPLEMENTATION_M12_PHASE3.md`, `API_M12_PHASE3.md`, `REWARD_ENGINE_M12.md` |
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 4 | 17 additive M09 command/GUI parity actions; granular M03 permissions; confirmation-marked mutations; async page bindings; Java 21 owner-thread feedback, inventory and cleanup projection | `M12PresentationCatalogTest`, `M12PresentationBindingsTest`, `M12GuiPagesTest`, `M12PaperProjectionTest`; generated through-M12 inventories; `IMPLEMENTATION_M12_PHASE4.md`, `API_M12_PHASE4.md`, `M12_COMMANDS.md`, `M12_GUI.md`, `M12_ADMIN_GUIDE.md` |
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 5 closure | XP/level/prestige formulas+revisions, currency/ledger safety, retry/failure/reward projection, recovery, admin/cfg/presentation integration and Paper certification evidence | `Progression*` integration suite; `M12StorageValidationTest`; M12 dashboard and exit evidence |
+| M12 storage boundary | eight Java-8-neutral repository interfaces accept caller-owned M04 `UnitOfWork` and typed revisions/results | architecture and reflection tests; no JDBC, SQL or migration code in Phase 1 |
 
 ## Replay (10)
 
@@ -625,9 +638,9 @@ materialize source modules or activate M11.
 | M11 / ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452 | Every listed atomic mechanic, configuration, feature-specific M09 presentation, API/event, security/performance rule and primary Paper 1.21.1 behavior | M15 statistics where named; M16 every placeholder cell; M19 Redis coordination and M20 proxy/server synchronization for ZBW-ADDON-387; M21 external provider cells; M22 legacy/full-matrix compatibility |
 | M11 / ZBW-ADDON-387 | Local deterministic schedule, durable active-rotation state, transition event and recovery port | M19 cross-node coordination; M20 proxy/server distribution; M16 placeholders; M22 compatibility |
 
-M11 Phase 1 materializes typed `RotationContracts` and its local asynchronous state/event ports for
-ZBW-ADDON-380..388. Selection, overrides, durable adapters, M09 presentation and runtime mechanics
-remain later M11 work; M19/M20 retain all cross-node coordination and distribution.
+M11 materializes typed `RotationContracts`, local state/events, selection, overrides, durable
+recovery, M09 presentation and runtime mechanics for ZBW-ADDON-380..388. M19/M20 retain all
+cross-node coordination and distribution.
 
 M11 implementation may emit immutable events and cached state for later statistics, PlaceholderAPI,
 Redis, proxy, provider and compatibility consumers. Emitting those contracts is not evidence that a
@@ -637,26 +650,26 @@ later consumer or adapter exists.
 
 | Allocation | Implemented integration | Verification | Remaining owner |
 |---|---|---|---|
-| `ZBW-SHOP-001..004` | 25 additive M09 command/GUI parity actions and generated 140-action command/permission inventories | `M11PresentationCatalogTest`; `m11_inventories.py` | concrete inventory/configuration adapters and full M11 E2E remain M11; persistent currency M12 |
-| `ZBW-SHOP-005..007` | `M11MatchRuntime` consumes M08 snapshots; Java 21 `M11PaperProjection` translates committed generator, upgrade and utility intents | lifecycle integration tests, owner-thread projection tests, exact M11 API/JavaDoc gates | full M11 acceptance matrices; placeholders M16; external providers M21; legacy M22 |
-| M11 addon allocations | Phase 4 bounded utility/addon mechanics remain explicitly mapped; no catalogue row is removed | 49 addon references/473 IDs and dashboard validation | complete named-mode orchestration and remaining addon cells remain M11; later cells retain M15/M16/M19/M20/M21/M22 |
-| `ZBW-READY-004` | typed scripting references remain Java 8 neutral | API baseline and strict JavaDoc | disabled declarative `zbw-scripting-engine` remains M11 and is not reported complete |
+| `ZBW-SHOP-001..004` | 25 additive M09 command/GUI parity actions, concrete inventory/configuration/SQL adapters and generated 140-action inventories | acceptance suites; `m11_inventories.py`; Paper certification | persistent currency M12; placeholders M16; Vault M21; legacy M22 |
+| `ZBW-SHOP-005..007` | `M11MatchRuntime` consumes M08 snapshots; Java 21 Paper adapters translate committed generator, upgrade and utility intents | lifecycle, owner-thread, API/JavaDoc and Paper gates | placeholders M16; external providers M21; legacy M22 |
+| M11 addon allocations | bounded named-mode/addon mechanics remain explicitly mapped; no catalogue row is removed | 49 addon references/473 IDs, dashboard and Paper validation | later cells retain M15/M16/M19/M20/M21/M22 |
+| `ZBW-READY-004` | Java-8-neutral, disabled-by-default bounded declarative engine | security tests, API baseline and strict JavaDoc | later extension/provider ownership remains unchanged |
 
-The final-integration checkpoint is additive and preserves every M10 public signature. It does not
-satisfy the complete M11 exit criteria, activate M12 or reassign any retained later-milestone cell.
+The final-integration checkpoint is additive and preserves every M10 public signature. Together
+with the completed M11.1 corrective scope and PR #18 remote certification, it satisfies the M11
+exit criteria. It also preserves M12 ownership boundaries while M12 was executed separately for full closure.
 
 ### M11.1 Phase 1 corrective evidence
 
-| Allocation | Implemented Phase 1 portion | Evidence / remaining M11 owner |
+| Allocation | Implemented Phase 1 portion | Evidence / subsequent completion |
 |---|---|---|
-| `ZBW-READY-004` | materialized disabled-by-default bounded declarative interpreter; action/capability allowlists, scheduler deadlines, cancellation, depth/operation quotas, validation and secret-free audit | `DeclarativeScriptEngineTest`; Phase 2+ feature handler integration remains M11 |
-| `ZBW-READY-015`, `ZBW-CONTENT-002/003` | versioned eight-section M11 configuration snapshots, consecutive migration, deterministic validation/activation, rollback, last-known-good retention and golden mode-balance simulation | `M11RuntimeConfigurationTest`, `ModeBalanceCatalogTest`; concrete named-mode packs and Paper activation remain later M11.1 phases |
-| `ZBW-GAME-004/005`, `ZBW-SHOP-001..007`, M11 addon configuration portions | typed shops/generators/upgrades/traps/items/modes/rotations/scripts configuration families can activate atomically without platform dependencies | complete mechanics, inventory/Paper adapters and acceptance matrices remain M11.1 Phases 2–5 |
+| `ZBW-READY-004` | materialized disabled-by-default bounded declarative interpreter; action/capability allowlists, scheduler deadlines, cancellation, depth/operation quotas, validation and secret-free audit | `DeclarativeScriptEngineTest`; feature-handler integration completed by the final M11.1 checkpoint |
+| `ZBW-READY-015`, `ZBW-CONTENT-002/003` | versioned eight-section M11 configuration snapshots, consecutive migration, deterministic validation/activation, rollback, last-known-good retention and golden mode-balance simulation | `M11RuntimeConfigurationTest`, `ModeBalanceCatalogTest`; named-mode packs and Paper activation completed by M11.1 |
+| `ZBW-GAME-004/005`, `ZBW-SHOP-001..007`, M11 addon configuration portions | typed shops/generators/upgrades/traps/items/modes/rotations/scripts configuration families can activate atomically without platform dependencies | mechanics, inventory/Paper adapters and acceptance matrices completed and remotely certified by PR #18 |
 
 ## M12 planned ownership overlay
 
-This governance allocation is planning evidence only. `zbw-progression` is not materialized and
-M12 remains inactive until M11 satisfies its exit criteria.
+M12 is now materialized and complete; this section is retained for requirement ownership boundaries.
 
 | Requirement allocation | Planned M12 ownership | Ownership explicitly retained |
 |---|---|---|
@@ -686,9 +699,9 @@ M12 remains inactive until M11 satisfies its exit criteria.
 | M11 primary platform surface | Java 21 `BukkitM11Platform` translates committed intents to inventory, drops, blocks, sounds, particles, effects and cleanup | mandatory `m11_paper_e2e.py` on Paper 1.21.1 build 133; M22 legacy certification remains deferred |
 
 The RC-087 implementation uses the cycle-free production edge `zbw-storage-sql -> zbw-shop`;
-arena/game no longer depend on the concrete SQL implementation. Closure remains blocked until PR
-#18 mandatory CI and Paper jobs can execute; GitHub currently rejects them before step one because
-of account billing. The matrix retains 672 requirements and every later
-M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation.
+arena/game no longer depend on the concrete SQL implementation. PR #18 subsequently passed its
+mandatory CI and Paper 1.21.1 jobs and was squash-merged as
+`3e68835c361216e6dc8be37b9e024734bb565884`, resolving RC-087. The matrix retains 672 requirements
+and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation; M12 is now complete.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |

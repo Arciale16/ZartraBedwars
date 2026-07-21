@@ -27,6 +27,7 @@ the script ID. The exact additive Java 8 surface is locked by
 `build/api-signature-baseline-m11-1.txt` and additive final compatibility evidence. Retained
 M12/M15/M16/M17/M18/M19/M20/M21/M22 provider surfaces are not reported complete.
 
-Historical M02–M11 baselines remain immutable and additive checks cover the M11.1 surface. M11.1
-implementation is complete, but M11 closure awaits executable CI evidence; this document does not
-claim M12 implementation or activation.
+Historical M02–M11 baselines remain immutable and additive checks cover the M11.1 surface. PR #18
+completed the mandatory remote API and strict-JavaDoc validation before its squash merge
+`3e68835c361216e6dc8be37b9e024734bb565884`. M11 is complete; this document does not claim M12
+implementation or activation.

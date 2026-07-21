@@ -1,13 +1,15 @@
 # M11.1 corrective implementation and certification
 
-**Status:** IMPLEMENTATION COMPLETE; CLOSURE BLOCKED by GitHub Actions billing
+**Status:** COMPLETED and remotely certified; squash-merged to `main` on 2026-07-19
 **Requirements:** `ZBW-GAME-004`, `ZBW-GAME-005`, `ZBW-SHOP-001..007`,
 `ZBW-CONTENT-002..003`, `ZBW-READY-004`, `ZBW-READY-015`, and the M11-owned portions of
 `ZBW-ADDON-010..025`, `061..070`, `141..147`, `184..201`, `236..244`, `300..322`,
 `341..349`, `363..368`, `379..397`, `438..452`.
 
 The governance-only exception record `docs/M11_1_MERGE_EXCEPTION.md` preserves the completed local
-evidence for PR #18. It does not report GitHub Actions as passed, close RC-087 or unblock M12.
+evidence from the temporary runner outage and does not falsely report those unavailable runs as
+successful. PR #18 later executed all mandatory jobs successfully and was squash-merged as
+`3e68835c361216e6dc8be37b9e024734bb565884`; that later evidence closes RC-087.
 
 ## Corrective result
 
@@ -47,12 +49,13 @@ unless all mandatory Paper assertions are true: shop inventory, item delivery, g
 duplicate prevention, reversible blocks, particles, sounds, forge/team effects, owner-thread
 execution and cleanup.
 
-Final publication evidence must consist of the complete Java 8/11/16/17/21 matrix, clean Java 21
+Final publication evidence consists of the complete Java 8/11/16/17/21 matrix, clean Java 21
 reactor, Checkstyle, SpotBugs, JaCoCo, strict JavaDoc, binary compatibility, dependency/licence/SBOM,
 governance, traceability, addon catalogue, dashboard and Paper certification reports. No mandatory
-test is permitted to be skipped. PR #18 currently cannot produce this evidence because GitHub rejects
-every job before its first step with an account billing/spending-limit annotation. Therefore RC-087
-and M11 remain open until the same immutable commit passes the mandatory workflows.
+test is permitted to be skipped. The local exception evidence recorded 346 tests with zero
+failures/errors/skips, 36/36 governance tests, 49 addons/473 mappings, 672 dashboard rows and passing
+JavaDoc, API compatibility and dependency/licence/SBOM gates. PR #18 later supplied the missing
+remote matrices, including exact Paper 1.21.1 certification, on the immutable merged revision.
 
 ## Deferred ownership
 
