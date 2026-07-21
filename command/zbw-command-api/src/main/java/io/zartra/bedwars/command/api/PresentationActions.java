@@ -298,6 +298,33 @@ public final class PresentationActions {
             return Collections.unmodifiableList(result);
         }
 
+        /** @return additive immutable M12 progression, economy and reward actions */
+        public static List<Definition> m12() {
+            final List<Definition> definitions = new ArrayList<Definition>();
+            addM12(definitions, "progression", new String[] {"view", "level", "xp", "prestige"},
+                    "progression", false, "ZBW-PROG-001", "ZBW-PROG-002",
+                    "ZBW-PROG-003", "ZBW-PROG-004");
+            addM12(definitions, "currency", new String[] {"balances"}, "currency", false,
+                    "ZBW-PROG-005");
+            addM12(definitions, "reward", new String[] {"list", "claim", "unlocks"},
+                    "reward", false, "ZBW-PROG-005", "ZBW-PROG-011");
+            addM12(definitions, "admin-progression", new String[] {"inspect", "grant-xp",
+                    "adjust", "recalculate"}, "progression", true,
+                    "ZBW-PROG-001", "ZBW-PROG-002", "ZBW-PROG-003", "ZBW-PROG-004");
+            addM12(definitions, "admin-reward", new String[] {"inspect", "grant",
+                    "failures"}, "reward", true, "ZBW-PROG-005", "ZBW-PROG-011");
+            addM12(definitions, "admin-currency", new String[] {"inspect", "ledger"},
+                    "currency", true, "ZBW-PROG-005");
+            return Collections.unmodifiableList(definitions);
+        }
+
+        /** @return immutable presentation catalogue through M12 */
+        public static List<Definition> throughM12() {
+            final List<Definition> result = new ArrayList<Definition>(throughM11());
+            result.addAll(m12());
+            return Collections.unmodifiableList(result);
+        }
+
         private static void add(final List<Definition> result, final String family,
                                 final String[] operations, final String permissionFamily,
                                 final String... requirementIds) {
@@ -339,6 +366,23 @@ public final class PresentationActions {
                         "/zbw " + family + " " + operation,
                         GuiPageId.of("zartra", "m11/" + family + "/" + operation),
                         PermissionNode.of("zartrabedwars." + permissionFamily + "."
+                                + operation.replace('-', '.')),
+                        destructive, java.util.Arrays.asList(requirementIds)));
+            }
+        }
+
+        private static void addM12(final List<Definition> result, final String family,
+                                   final String[] operations, final String permissionFamily,
+                                   final boolean administrative, final String... requirementIds) {
+            for (String operation : operations) {
+                final boolean destructive = operation.matches("claim|grant|grant-xp|adjust|recalculate");
+                final String commandFamily = family.startsWith("admin-")
+                        ? "admin " + family.substring("admin-".length()) : family;
+                result.add(new Definition(ActionId.of("m12/" + family + "/" + operation),
+                        "/zbw " + commandFamily + " " + operation,
+                        GuiPageId.of("zartra", "m12/" + family + "/" + operation),
+                        PermissionNode.of("zartrabedwars." + permissionFamily + "."
+                                + (administrative ? "admin." : "")
                                 + operation.replace('-', '.')),
                         destructive, java.util.Arrays.asList(requirementIds)));
             }

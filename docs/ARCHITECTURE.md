@@ -470,8 +470,10 @@ and the stable M11 shop/tender contracts. It owns progression, XP, levels, prest
 persistent currencies, the immutable transaction ledger and transactional reward policies.
 
 Phase 1 repository ports belong to the neutral M12 boundary; JDBC and migrations remain exclusively in
-`zbw-storage-sql`. Existing M09 command/UI modules and `zbw-paper-modern` may later adapt M12 use
-cases but never own progression policy. M15 retains statistics, M16 PlaceholderAPI, M17 replay,
+`zbw-storage-sql`. Phase 4 extends the existing M09 action/page catalogues and adds a one-way
+`zbw-paper-modern -> zbw-progression` dependency activated in M12. The Java 21 Paper composition
+adapters delegate to M12 use cases and project only committed semantic feedback on the owner thread;
+they never own progression policy or perform synchronous SQL. M15 retains statistics, M16 PlaceholderAPI, M17 replay,
 M18 Atlas, M19/M20 distributed and proxy transports, M21 Vault/NPC/hologram providers and M22
 legacy compatibility. No dependency from `zbw-progression` to any of those later implementations
 is permitted.
