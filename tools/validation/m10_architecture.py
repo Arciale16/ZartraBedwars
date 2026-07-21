@@ -7,12 +7,25 @@ import re
 
 ROOT = Path(__file__).resolve().parents[2]
 
+
+def is_closed_m10_state(state: dict[str, object]) -> bool:
+    """Accept an exact ordered M10-or-later milestone transition."""
+    completed = state.get("completed_milestones", [])
+    if not isinstance(completed, list):
+        return False
+    ordered = [f"M{value:02d}" for value in range(len(completed))]
+    if completed != ordered or len(completed) < 11:
+        return False
+    active = state.get("active_milestone")
+    if active is None:
+        return True
+    expected_active = f"M{len(completed):02d}"
+    return active == expected_active and state.get("next_milestone") == expected_active
+
 def validate() -> list[str]:
     errors: list[str] = []
     state = json.loads((ROOT / "build/milestone-state.json").read_text(encoding="utf-8"))
-    completed = state.get("completed_milestones", [])
-    if (state.get("active_milestone") not in (None, "M11", "M12")
-            or completed[:11] != [f"M{value:02d}" for value in range(11)]):
+    if not is_closed_m10_state(state):
         errors.append("M10 must be closed in ordered milestone state")
     source = ROOT / "game/zbw-game/src/main/java/io/zartra/bedwars/game"
     for package in ("mode", "selector", "matchmaking", "spectator"):

@@ -27,6 +27,26 @@ class M11AllocationTest(unittest.TestCase):
     def test_reconciled_allocation_is_consistent(self) -> None:
         self.assertEqual([], load_validator().validate())
 
+    def test_historical_state_accepts_only_ordered_m11_or_later(self) -> None:
+        validator = load_validator()
+        active_m11 = [f"M{value:02d}" for value in range(11)]
+        completed_m12 = [f"M{value:02d}" for value in range(13)]
+        self.assertTrue(validator.is_active_or_closed_m11_state({
+            "active_milestone": "M11",
+            "next_milestone": "M11",
+            "completed_milestones": active_m11,
+        }))
+        self.assertTrue(validator.is_active_or_closed_m11_state({
+            "active_milestone": "M13",
+            "next_milestone": "M13",
+            "completed_milestones": completed_m12,
+        }))
+        self.assertFalse(validator.is_active_or_closed_m11_state({
+            "active_milestone": "M13",
+            "next_milestone": "M13",
+            "completed_milestones": completed_m12[:11] + completed_m12[12:],
+        }))
+
 
 if __name__ == "__main__":
     unittest.main()

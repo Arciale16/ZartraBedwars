@@ -26,6 +26,10 @@ MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",
     "platform/paper/zbw-paper-modern",
 )
+NEUTRAL_CLASSPATH_MODULES = (
+    "shop/zbw-shop",
+    "progression/zbw-progression",
+)
 MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "arena/zbw-arena",
     "game/zbw-game",
@@ -121,6 +125,7 @@ def main() -> int:
     neutral_classpath = [
         ROOT / ".m2/repository/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar",
         ROOT / ".m2/repository/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar",
+        *artifacts(NEUTRAL_CLASSPATH_MODULES),
     ]
     result = generate(executable("8", "1.8.0_442"), "8", neutral_sources,
                       NEUTRAL_OUTPUT, neutral_classpath)

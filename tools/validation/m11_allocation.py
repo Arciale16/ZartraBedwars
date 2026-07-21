@@ -63,6 +63,26 @@ def catalogue_allocations() -> dict[str, str]:
     return allocations
 
 
+def is_active_or_closed_m11_state(state: dict[str, object]) -> bool:
+    """Accept exact ordered M11 implementation, closure, or later transitions."""
+    completed = state.get("completed_milestones", [])
+    if not isinstance(completed, list):
+        return False
+    ordered = [f"M{value:02d}" for value in range(len(completed))]
+    if completed != ordered:
+        return False
+    active = state.get("active_milestone")
+    next_milestone = state.get("next_milestone")
+    if len(completed) == 11:
+        return active == "M11" and next_milestone == "M11"
+    if len(completed) < 12:
+        return False
+    if active is None:
+        return next_milestone == f"M{len(completed):02d}"
+    expected_active = f"M{len(completed):02d}"
+    return active == expected_active and next_milestone == expected_active
+
+
 def validate() -> list[str]:
     """Return every M11 reconciliation inconsistency."""
     errors: list[str] = []
@@ -110,14 +130,8 @@ def validate() -> list[str]:
                     f"({dependency_row['first_milestone']})")
 
     state = json.loads(read("build/milestone-state.json"))
-    completed_m11 = state.get("completed_milestones") == [f"M{value:02d}" for value in range(12)]
-    active_m11 = (state.get("active_milestone") == "M11"
-                  and state.get("next_milestone") == "M11"
-                  and state.get("completed_milestones") == [f"M{value:02d}" for value in range(11)])
-    closed_m11 = (completed_m11 and state.get("active_milestone") in (None, "M12")
-                  and state.get("next_milestone") == "M12")
-    if not (active_m11 or closed_m11):
-        errors.append("milestone state must represent active M11 or completed M11 with M12 next")
+    if not is_active_or_closed_m11_state(state):
+        errors.append("milestone state must represent ordered active or completed M11 state")
     if "M11_SCOPE_RECONCILIATION" not in state.get("completed_governance_checkpoints", []):
         errors.append("milestone state must record the M11 governance checkpoint")
 
