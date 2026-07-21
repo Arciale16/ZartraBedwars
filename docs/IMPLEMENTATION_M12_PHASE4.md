@@ -34,6 +34,6 @@ fail closed and do not reach the M12 mutation facade.
 
 ## Deferred
 
-Final M12 integration certification remains pending. Statistics (M15), PlaceholderAPI (M16),
+Final M12 integration certification is closed in Phase 5. Statistics (M15), PlaceholderAPI (M16),
 replay (M17), Atlas (M18), distributed/proxy behavior (M19/M20), external providers (M21), legacy
 compatibility (M22), and quests/achievements/battle pass/cosmetics remain with their owners.

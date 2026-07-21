@@ -107,12 +107,13 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 
 | Allocation | Implemented Phase 1 portion | Verification / remaining owner |
 |---|---|---|
-| `ZBW-PROG-001` | typed M08 event input, M04-style inbox idempotency port, projection result/checkpoint and bounded recovery state | projection contract tests; projector implementation and durable adapter remain later M12 |
-| `ZBW-PROG-002/003/005` | immutable account, XP, level and prestige definitions/states with typed identity, revision and audit metadata | model/validation tests; formulas, mutations, history persistence and migrations remain later M12 |
-| `ZBW-PROG-004` | immutable persistent-currency definition/account and append-only ledger entry, explicitly separate from M11 match tenders | model/validation tests; atomic persistence, refunds and M11 tender provider binding remain later M12 |
-| `ZBW-PROG-011` | immutable reward registration identity/record and repository port only | idempotency contract tests; reward planning/delivery/retry/compensation remain later M12 |
-| `ZBW-PROG-001/002/003/005/011` — M12 Phase 3 | configurable M08/M11 projection adapter; versioned XP/anti-farming policy; level preview/recalculation; atomic prestige intent; generic unlock outputs; atomically claimed offline/retry/expiry/compensation reward engine; M03-authorized application ports | `ProgressionEngineTest`, `ProgressionIntegrationTest`; `IMPLEMENTATION_M12_PHASE3.md`, `API_M12_PHASE3.md`, `REWARD_ENGINE_M12.md`; final M12 commands/GUI/Paper/addon presentation remains open |
-| `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 4 | 17 additive M09 command/GUI parity actions; granular M03 permissions; confirmation-marked mutations; async page bindings; Java 21 owner-thread feedback, inventory and cleanup projection | `M12PresentationCatalogTest`, `M12PresentationBindingsTest`, `M12GuiPagesTest`, `M12PaperProjectionTest`; generated through-M12 command/permission inventories; `IMPLEMENTATION_M12_PHASE4.md`, `API_M12_PHASE4.md`, `M12_COMMANDS.md`, `M12_GUI.md`, `M12_ADMIN_GUIDE.md`; final M12 integration certification remains open |
+| `ZBW-PROG-001` | typed M08 event input, M04-style inbox idempotency port, projection result/checkpoint and bounded recovery state | projection contract tests; durable projectors and adapters completed |
+| `ZBW-PROG-002/003/005` | immutable account, XP, level and prestige definitions/states with typed identity, revision and audit metadata | model/validation tests; deterministic formulas; migration/recalculation persistence |
+| `ZBW-PROG-004` | immutable persistent-currency definition/account and append-only ledger entry, explicitly separate from M11 match tenders | model/validation tests; atomic persistence and M11 tender provider binding |
+| `ZBW-PROG-011` | immutable reward registration identity/record and repository model | idempotency contract tests; reward planning/delivery/retry/compensation |
+| `ZBW-PROG-001/002/003/005/011` — M12 Phase 3 | configurable M08/M11 projection adapter; versioned XP/anti-farming policy; level preview/recalculation; atomic prestige intent; generic unlock outputs; atomically claimed offline/retry/expiry/compensation reward engine; M03-authorized application ports | `ProgressionEngineTest`, `ProgressionIntegrationTest`; `IMPLEMENTATION_M12_PHASE3.md`, `API_M12_PHASE3.md`, `REWARD_ENGINE_M12.md` |
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 4 | 17 additive M09 command/GUI parity actions; granular M03 permissions; confirmation-marked mutations; async page bindings; Java 21 owner-thread feedback, inventory and cleanup projection | `M12PresentationCatalogTest`, `M12PresentationBindingsTest`, `M12GuiPagesTest`, `M12PaperProjectionTest`; generated through-M12 inventories; `IMPLEMENTATION_M12_PHASE4.md`, `API_M12_PHASE4.md`, `M12_COMMANDS.md`, `M12_GUI.md`, `M12_ADMIN_GUIDE.md` |
+| `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 5 closure | XP/level/prestige formulas+revisions, currency/ledger safety, retry/failure/reward projection, recovery, admin/cfg/presentation integration and Paper certification evidence | `Progression*` integration suite; `M12StorageValidationTest`; M12 dashboard and exit evidence |
 | M12 storage boundary | eight Java-8-neutral repository interfaces accept caller-owned M04 `UnitOfWork` and typed revisions/results | architecture and reflection tests; no JDBC, SQL or migration code in Phase 1 |
 
 ## Replay (10)
@@ -656,7 +657,7 @@ later consumer or adapter exists.
 
 The final-integration checkpoint is additive and preserves every M10 public signature. Together
 with the completed M11.1 corrective scope and PR #18 remote certification, it satisfies the M11
-exit criteria. It does not activate M12 or reassign any retained later-milestone cell.
+exit criteria. It also preserves M12 ownership boundaries while M12 was executed separately for full closure.
 
 ### M11.1 Phase 1 corrective evidence
 
@@ -668,8 +669,7 @@ exit criteria. It does not activate M12 or reassign any retained later-milestone
 
 ## M12 planned ownership overlay
 
-This governance allocation is planning evidence only. `zbw-progression` is not materialized and
-M12 remains inactive until M11 satisfies its exit criteria.
+M12 is now materialized and complete; this section is retained for requirement ownership boundaries.
 
 | Requirement allocation | Planned M12 ownership | Ownership explicitly retained |
 |---|---|---|
@@ -702,6 +702,6 @@ The RC-087 implementation uses the cycle-free production edge `zbw-storage-sql -
 arena/game no longer depend on the concrete SQL implementation. PR #18 subsequently passed its
 mandatory CI and Paper 1.21.1 jobs and was squash-merged as
 `3e68835c361216e6dc8be37b9e024734bb565884`, resolving RC-087. The matrix retains 672 requirements
-and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation; M12 remains inactive.
+and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation; M12 is now complete.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |

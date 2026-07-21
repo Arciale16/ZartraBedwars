@@ -8,4 +8,4 @@ Operations use prepared statements, positive timeouts, caller-owned M04 `UnitOfW
 
 SQLite contracts cover migration replay/checksum stability, all repository ports, commit, rollback, optimistic conflict, duplicate suppression, restart recovery, deterministic histories, and entitlement/reward recovery. Existing M04 outbox/inbox, retry, retention, tombstone, backup, MySQL, and MariaDB infrastructure remains authoritative. External MySQL/MariaDB execution remains assigned to the container contract workflow; no local container engine was available.
 
-Phase 3 reward delivery, levels/rewards policy, commands, GUIs, and Paper integration remain unstarted.
+Phase 3 reward delivery, levels/rewards policy, commands, GUIs and Paper integration are now implemented by M12 and documented in subsequent phase evidence.

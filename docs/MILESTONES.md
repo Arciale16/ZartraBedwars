@@ -127,10 +127,12 @@ The master prompt's sequential “documentation/testing near the end” list is 
 ### M12 — Progression transaction core
 
 - **Requirements:** PROG-001..005, PROG-011; ZBW-ADDON-174..183, 210..216, 245..251, 266..282.
-- **Entry:** M04 outbox, M08 events and the completed M11 quoted-tender/match-resource contracts are stable; RC-087 is resolved. This governance checkpoint satisfies the predecessor gate but does not activate or implement M12.
-- **Phase 1–4 status:** ACTIVE checkpoint. Phase 1 materialized the Java-8-neutral domain and ports; Phase 2 added SQL repositories, checksum-locked schema and transaction/recovery adapters in `zbw-storage-sql`; Phase 3 added deterministic XP/level/prestige/unlock policies, centrally authorized application use cases, configurable M08/M11 projection mappings and the exactly-once/offline/retry/compensation reward engine; Phase 4 adds the M09 command/GUI catalogue and bindings plus Java 21 owner-thread Paper projections. M12 is not complete: final integration and certification remain pending within M12, and every M13+ ownership boundary remains unchanged.
-- **Deliver:** event projection, XP/level/prestige, persistent/virtual currencies, immutable transaction ledger and unified transactional reward engine with offline/cross-server-ready delivery contracts. M15 retains statistics, M16 PlaceholderAPI, M17 replay, M18 Atlas, M19/M20 distributed/proxy transports, M21 Vault/NPC/hologram providers and M22 legacy compatibility.
-- **Exit:** duplicate/retry/crash tests cannot double award; formula/migration/admin/audit tests pass; reward summary has all presentation adapters.
+- **Entry:** M04 outbox, M08 events and the completed M11 quoted-tender/match-resource contracts are stable; RC-087 is resolved; M12 is now active and all predecessor gates are satisfied.
+- **Phase 1–5 status:** VERIFIED and completed on 2026-07-21. Phases 1–4 were completed in commits
+  `8aa3c879cf0d1dd060ea143de87a0cc01950467c`, `7569ddd364801de49e5053ac7980fe197de0ec01`,
+  `f591ec3f3c0f34c95cd4235e2222459a163731c8` and `c2f139c`; Phase 5 performs final closure and certification.
+- **Deliver:** event projection, XP/level/prestige, persistent/virtual currencies, immutable transaction ledger and unified transactional reward engine with offline/cross-server-ready delivery contracts. M09 player/admin commands, M09 GUI presentation and Java 21 owner-thread Paper projections are complete. M15 retains statistics, M16 PlaceholderAPI, M17 replay, M18 Atlas, M19/M20 distributed/proxy transports, M21 Vault/NPC/hologram providers and M22 legacy compatibility.
+- **Exit:** duplicate/retry/crash tests cannot double award; formula/migration/admin/audit/recovery tests pass; reward summary has complete presentation adapters; M11 settlement integration and M11.1 command/GUI ownership are confirmed; full M12 exit evidence is recorded in phase-5 documentation.
 
 ### M13 — Objectives, quests, achievements and battle pass
 

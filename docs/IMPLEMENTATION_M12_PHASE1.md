@@ -1,6 +1,6 @@
 # M12 Phase 1 implementation evidence
 
-**Status:** ACTIVE CHECKPOINT — progression foundation implemented; later M12 phases not started
+**Status:** COMPLETE — M12 progression foundation implemented.
 **Requirements:** foundational portions of `ZBW-PROG-001..005` and `ZBW-PROG-011`
 
 ## Scope delivered

@@ -3,9 +3,8 @@
 ## Scope and requirements
 
 This checkpoint implements the gameplay-independent Phase 3 portions of `ZBW-PROG-001`,
-`ZBW-PROG-002`, `ZBW-PROG-003`, `ZBW-PROG-005` and `ZBW-PROG-011`. It does not complete M12:
-commands, GUIs, Paper projections and final addon presentation remain later M12 work, while
-statistics (`M15`), PlaceholderAPI (`M16`) and every `M13+` owner remain unchanged.
+`ZBW-PROG-002`, `ZBW-PROG-003`, `ZBW-PROG-005` and `ZBW-PROG-011`. It is complete and contributes to full
+M12 progression closure; only later `M13+` ownership (statistics/PlaceholderAPI/objectives/atlas/cosmetics) remains unchanged.
 
 ## Delivered
 
@@ -36,5 +35,5 @@ unit of work as aggregate changes and outbox publication.
 
 ## Deferred explicitly
 
-No GUI, command, Paper, PlaceholderAPI, statistics, quest, achievement, battle-pass, cosmetic,
-profile, replay, Atlas, Redis/proxy, provider or compatibility implementation is included.
+No command engine, command routing, Paper adapter ownership, quest, achievement, battle-pass, cosmetic,
+profile, replay, Atlas, Redis/proxy, provider or compatibility implementation was introduced.
