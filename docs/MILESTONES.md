@@ -138,7 +138,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 - **Requirements:** PROG-009/010/012/013; CONTENT-004..006; ZBW-ADDON-081..091.
 - **Entry:** M12 reward/progression core and M09 UI ready.
-- **Phase 1 status:** Java 8 neutral definition, lifecycle, repository and deterministic catalogue contracts are implemented in `zbw-progression`; runtime projection, SQL persistence, starter content, commands, GUI and Paper adapters remain open within M13.
+- **Phase 1–2 status:** Java 8 neutral definitions/catalogue plus deterministic objective execution, quest/achievement/challenge/pass runtime, M08/M11/M12 event adaptation, M12 reward intents and M04-backed SQL state/recovery are implemented. Starter content activation, commands, GUI, Paper adapters, editors, notification channels and final external certification remain open within M13.
 - **Deliver:** reusable objective engine, every listed objective/scope, quest/achievement/challenge/pass definitions and editors.
 - **Exit:** objective/reward catalog tests, season rollover, claims/rerolls/chains and migration/security E2E pass; no duplicated objective logic.
 

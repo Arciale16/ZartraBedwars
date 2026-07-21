@@ -491,3 +491,11 @@ and M09 presentation adapters. Paper code remains a Java 21 translation boundary
 Phase 1. Statistics, PlaceholderAPI, replay, Atlas, distributed/proxy transports, external providers
 and legacy compatibility remain isolated in M15 through M22; `zbw-progression` must not depend on
 those implementations.
+
+M13 Phase 2 implements that projection boundary inside `zbw-progression`: configured adapters turn
+existing M08/M11/M12 facts into immutable objective events; the stateless evaluator produces
+revisioned state and M12 reward intents. Exactly-once ownership is established through a durable
+event claim in the same caller-owned M04 `UnitOfWork` used to save state. The neutral module never
+opens a transaction and never imports JDBC. `zbw-storage-sql` owns `JdbcM13StateRepository` and the
+checksum-locked version-13 migration for objective, quest, achievement, challenge and season state.
+No platform thread may call the JDBC adapter synchronously.

@@ -93,7 +93,7 @@ def m12_requirement(identifier: str) -> bool:
 
 
 def m13_requirement(identifier: str) -> bool:
-    """Return whether M13 Phase 1 supplies a foundation portion."""
+    """Return whether M13 Phase 1-2 supplies an implemented portion."""
     if identifier in M13_REQUIREMENTS:
         return True
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
@@ -114,7 +114,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if m12_requirement(identifier):
         return "PARTIAL", "M12-owned portion verified; M13+ integrations remain visible in traceability"
     if m13_requirement(identifier):
-        return "PARTIAL", "M13 Phase 1 neutral contracts/models verified; runtime, persistence and presentation remain"
+        return "PARTIAL", "M13 Phase 1-2 neutral contracts, runtime and persistence verified; presentation/final content remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -175,16 +175,16 @@ def row(feature: str, identifier: str, category: str, planned: str,
     return {
         "Feature": feature.replace("|", "\\|"), "Requirement ID": identifier,
         "Category": category, "Planned milestone": planned, "Current status": status,
-        "Core implementation": "M13 Phase 1 objective/content contracts" if m13 else ("M12 progression/reward implementation" if m12 else ("M11 checkpoint implementation" if m11 else ("M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability")))),
+        "Core implementation": "M13 objective/content runtime and persistence" if m13 else ("M12 progression/reward implementation" if m12 else ("M11 checkpoint implementation" if m11 else ("M10 typed framework" if m10 else ("M07/M08 typed use case" if m09 else "See traceability")))),
         "Paper implementation": "M12 primary Paper projection certified" if m12 else ("M11 primary Paper projection certified" if m11 else ("M10 primary projection" if m10 else ("M09 primary adapter verified" if m09 else "See traceability"))),
         "Command": "Generated M12 action path where allocated" if m12 else ("Generated M11 action path where allocated" if m11 else ("Generated M10 action path" if m10 else ("Generated action path" if m09 else "See traceability"))),
         "GUI": "Generated M12 parity page where allocated" if m12 else ("Generated M11 parity page where allocated" if m11 else ("Generated M10 parity page" if m10 else ("Generated parity page" if m09 else "See traceability"))),
         "Permission": "M03 central authorization and execution revalidation" if m12 else ("Central authorization contract" if m11 else ("M03 execution revalidation + M10 node" if m10 else ("M03 revalidation + granular node" if m09 else "See traceability"))),
-        "Tests": "M13 model/catalogue/architecture tests" if m13 else ("M12 unit/integration/recovery/Paper certification evidence" if m12 else ("M11 unit/integration/security/Paper certification evidence" if m11 else ("M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence")))),
-        "Documentation": "M13 Phase 1 implementation/API evidence" if m13 else ("M12 phase implementation/API and closure evidence" if m12 else ("M11 and M11.1 implementation/API evidence" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")))),
+        "Tests": "M13 model/runtime/idempotency/SQLite recovery tests" if m13 else ("M12 unit/integration/recovery/Paper certification evidence" if m12 else ("M11 unit/integration/security/Paper certification evidence" if m11 else ("M10 unit/quality/Paper evidence" if m10 else ("M09 unit/parity/Paper E2E" if m09 else "Milestone evidence")))),
+        "Documentation": "M13 Phase 1-2 implementation/API evidence" if m13 else ("M12 phase implementation/API and closure evidence" if m12 else ("M11 and M11.1 implementation/API evidence" if m11 else ("M10 guides and inventories" if m10 else ("M09 framework/inventories" if m09 else "PRD + traceability")))),
         "Configurable or hardcoded": "Typed immutable versioned definitions" if m13 else ("Typed versioned progression/reward policy" if m12 else ("Typed replaceable catalog/policy" if m11 else ("Typed replaceable policy" if m10 else ("Typed/configurable; no adapter policy" if m09 else "Per requirement")))),
         "Blocker or deferred dependency": blocker,
-        "Notes": "M13 Phase 1 only; SQL, commands, GUI, Paper and later integrations are not claimed" if m13 else ("M12-owned portion verified; M13+ and M15/M16/later integrations are not claimed" if m12 else ("M11-owned portion verified; later owners are not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")))),
+        "Notes": "M13 Phase 1-2 only; commands, GUI, Paper, final content and later milestones are not claimed" if m13 else ("M12-owned portion verified; M13+ and M15/M16/later integrations are not claimed" if m12 else ("M11-owned portion verified; later owners are not claimed" if m11 else ("Framework only; named-mode gameplay is not claimed" if m10 else ("M09 baseline retained" if m09 else "Scope is not advanced beyond completed milestones")))),
     }
 
 
@@ -203,7 +203,7 @@ def render() -> str:
         "This generated file is the authoritative human-readable project dashboard. Run",
         "`python tools/validation/feature_dashboard.py` to reject stale or contradictory rows.",
         "A requirement can remain `PARTIAL` after one allocated portion is verified; its blocker column",
-        "identifies remaining ownership. M13 Phase 1 never implies completion of runtime or later allocations.",
+        "identifies remaining ownership. M13 Phase 1-2 never implies completion of presentation or later allocations.",
         "",
         "## Project totals",
         "",
@@ -224,13 +224,13 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M12 and hardening M08.1 are complete; M13 Phase 1 is in progress.",
+        "M00–M12 and hardening M08.1 are complete; M13 Phase 1-2 is in progress.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
         "implementation and successful mandatory remote certification. M12 Phases 1–5 complete progression,",
-        "persistence, rewards and primary presentation. M13 Phase 1 adds neutral objective/content contracts;",
-        "M13 runtime/persistence/presentation and all later owner allocations remain unclaimed.",
+        "persistence, rewards and primary presentation. M13 Phase 1-2 adds neutral objective/content",
+        "contracts, deterministic runtime and SQL persistence; presentation and later owners remain unclaimed.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

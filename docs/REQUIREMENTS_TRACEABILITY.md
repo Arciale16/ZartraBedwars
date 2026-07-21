@@ -129,6 +129,19 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 M13 Phase 1 deliberately introduces no statistics, PlaceholderAPI, replay, Atlas, distributed
 transport, external provider or legacy compatibility implementation. Those owners remain M15 through M22.
 
+### M13 Phase 2 objective-runtime and persistence evidence
+
+| Allocation | Implemented Phase 2 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-010` | deterministic filtered evaluation, repeatable/non-repeatable accumulation, completion/expiration, version/revision/audit evidence, durable duplicate claim and recovery-safe M04 transaction port | `M13RuntimeTest`, `JdbcM13StateRepositoryTest`; composite catalogue activation/editors and presentation remain later M13 |
+| `ZBW-PROG-009`, `ZBW-ADDON-081..091` | daily/weekly/custom-capable assignment runtime, activation, progress linkage, completion, expiration/reset, chain advancement and exactly-once M12 reward intents | quest lifecycle/duplicate/restart tests; reroll/abandon/history/admin/UI/notification surfaces remain later M13 |
+| `ZBW-PROG-012` | hidden discovery, one-time monotonic tier unlock, reward references and durable achievement snapshots | achievement runtime and SQL restart tests; M15 statistics remain explicitly excluded |
+| `ZBW-PROG-013` | timed challenge activation/completion/expiration; active season XP, tier and free-claim state; durable challenge/season snapshots | challenge/pass/claim/SQLite recovery tests; premium purchase, rollover and presentation remain later M13 |
+| `ZBW-CONTENT-004..006` | runtime consumes the immutable versioned Phase 1 catalogue and rejects definition/state version mismatch | starter content activation and golden catalogue simulation remain later M13 |
+
+Phase 2 adds no command, GUI, Paper, PlaceholderAPI, statistics, replay, Atlas, distributed,
+provider or compatibility implementation. M15–M22 ownership remains unchanged.
+
 ## Replay (10)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
