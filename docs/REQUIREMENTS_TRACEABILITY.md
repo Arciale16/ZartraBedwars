@@ -159,6 +159,19 @@ M13 is completed by checkpoints `162b62cdfe64d0f9979d19cb78fe7057154c9529`,
 M14 is the next active milestone. M15 statistics, M16 PlaceholderAPI, M17 replay and every later
 milestone boundary remain unchanged and unclaimed.
 
+### M14 Phase 1 cosmetic/profile/calendar foundation evidence
+
+| Allocation | Implemented Phase 1 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-006..008`, `ZBW-ADDON-026..040`, `ZBW-ADDON-369..378` | typed cosmetic/category/rarity identities, immutable versioned definitions, revisioned/audited loadouts, production-count gate and bounded effect/entity configuration contracts | `M14FoundationTest`; concrete ownership/equipment/runtime effects, approved 300-definition catalogue, M09 presentation and Paper projection remain later M14 phases |
+| `ZBW-PROG-014`, M14 portion of `ZBW-ADDON-274..282` | private profile/effect settings and versioned calendar campaign windows that reference existing M12 rewards | invalid-window/privacy/revision tests; application/persistence/claim/calendar presentation remain later M14 phases |
+| M12/M13 dependency boundary | cosmetic definitions reuse M12 entitlement IDs and M13 quest/achievement IDs; campaigns reuse M12 reward IDs | additive 129-class API checkpoint preserves every immutable M13 signature |
+| M14 persistence boundary | `CosmeticStateRepository`, `ProfileSettingsRepository` and `M14Service` accept caller-owned M04/M12 `UnitOfWork`, optimistic revisions, idempotency keys and audit metadata | contract/API review; concrete SQL remains a later M14 phase, with no duplicate storage system |
+
+Phase 1 adds no M09 presentation or Paper behavior and does not implement M15 statistics, M16
+PlaceholderAPI, M17 replay, M18 Atlas/moderation, M19/M20 distributed systems, M21 external
+providers or M22 compatibility.
+
 ## Replay (10)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |

@@ -145,10 +145,11 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M14 — Cosmetics, profiles and calendar rewards
 
-- **Milestone status:** active/next by project policy; no M14 implementation is included in the M13 closure commit.
+- **Milestone status:** active; Phase 1 Java 8-neutral foundation implemented on 2026-07-22 with evidence in `docs/IMPLEMENTATION_M14_PHASE1.md` and `docs/API_M14_PHASE1.md`.
 - **Requirements:** PROG-006..008/014; CONTENT-007/009/011; ZBW-ADDON-026..040, 369..378.
 - **Entry:** M12/M13 complete; original content/license ADR accepted.
 - **Deliver:** 300 original definitions, rarity/ownership/equipment/effects, profile/privacy/settings and holiday/calendar rewards.
+- **Phase 1 boundary:** typed cosmetic/profile/calendar models, M12 reward/entitlement and M13 unlock references, validation/configuration contracts and caller-owned M12 storage ports only. Concrete persistence, runtime effects, content batches and M09 presentation remain later M14 phases.
 - **Exit:** catalog count/license scan, ownership/expiry/preset/migration and rate-limit load tests pass; low-performance/emergency controls meet budgets.
 
 ### M15 — Statistics, ratios, streaks and leaderboards
