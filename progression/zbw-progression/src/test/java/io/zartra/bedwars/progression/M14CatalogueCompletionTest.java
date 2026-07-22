@@ -49,7 +49,7 @@ final class M14CatalogueCompletionTest {
         assertEquals(10, payload.campaigns().size());
         assertEquals(REQUIRED_DEFINITIONS, payload.expectedLineCount());
         assertEquals(10, payload.categories().size());
-        assertEquals(6, payload.rarities().size());
+        assertEquals(6, payload.rarityDefinitions().size());
         assertEquals(payload.ids(), sortedIds(payload.cosmetics()), "catalogue rows must be deterministic and sorted by definition");
         assertEquals(payload.sortedCosmetics(), payload.cosmetics(), "catalogue rows must preserve sorted source order");
         assertEquals(10, countUniqueCampaigns(payload.campaignIds()), "campaign identifiers must cover ten unique windows");
