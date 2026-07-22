@@ -99,6 +99,10 @@ final class M14CatalogueCompletionTest {
                 "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tKILL\tnot-an-id\t\t\tseason\torigin:zbw-native\tapproved\towner:team\th1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
         assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
                 "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tNON_EXISTENT_TRIGGER\t\t\tseason\tevent\torigin:zbw-native\tapproved\towner:team\th1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+        assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
+                "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tKILL\t\t\tseason\torigin:zbw-native\tapproved\towner:team")));
+        assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
+                "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tKILL\t\t\tseason\tzbw-native\tapproved\towner:team\th1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
     }
 
     private static CataloguePayload parseCatalogue(final List<String> lines) {
