@@ -1,5 +1,7 @@
 # M13 Phase 1 implementation
 
+> Final status: M13 completed on 2026-07-22 after Phases 2 and 3. Final presentation/runtime integration and validation evidence is in `IMPLEMENTATION_M13_PHASE3.md`.
+
 ## Scope
 
 M13 Phase 1 establishes the Java 8 platform-neutral foundation for `ZBW-PROG-009`,

@@ -1,5 +1,7 @@
 # M13 Phase 2 implementation
 
+> Final status: M13 completed on 2026-07-22 after Phase 3. Final presentation/runtime integration and validation evidence is in `IMPLEMENTATION_M13_PHASE3.md`.
+
 ## Scope and requirements
 
 Phase 2 implements the runtime and durable-state portions of `ZBW-PROG-009`,
@@ -32,9 +34,11 @@ durable event-claim table as checksum-locked schema version 13, reusing M04/M12 
 schema-history infrastructure. SQLite restart, rollback, duplicate claim and conflict tests provide
 local recovery evidence. MySQL/MariaDB certification remains part of the M13 final external gate.
 
-## Explicitly deferred
+## Deferred at the Phase 2 checkpoint
 
 Commands, GUI, Paper projection, notifications, editors, starter content activation and complete
 season rollover remain later M13 phases. Statistics (M15), PlaceholderAPI (M16), replay (M17),
 Atlas (M18), distributed/proxy systems (M19/M20), external providers (M21) and compatibility (M22)
 remain unchanged and unclaimed.
+
+These M13-local presentation items were completed in Phase 3. The named M15–M22 ownership remains deferred exactly as recorded above.

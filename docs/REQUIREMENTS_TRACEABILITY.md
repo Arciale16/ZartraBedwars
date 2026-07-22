@@ -142,6 +142,23 @@ transport, external provider or legacy compatibility implementation. Those owner
 Phase 2 adds no command, GUI, Paper, PlaceholderAPI, statistics, replay, Atlas, distributed,
 provider or compatibility implementation. M15–M22 ownership remains unchanged.
 
+### M13 Phase 3 presentation, runtime-integration and closure evidence
+
+| Allocation | Completed M13 portion | Verification / retained owner |
+|---|---|---|
+| `ZBW-PROG-009/010/012/013`, `ZBW-ADDON-081..091` | existing M09 command and GUI frameworks expose player/admin objective, quest, achievement, challenge, battle-pass and reward-claim flows with M03 execution authorization, audit context, validation, pagination/filtering, stale-view rejection and confirmation-protected mutation | `M13PresentationCatalogTest`, `M13PresentationTest`, `m13_inventories.py`; M15 statistics, M16 PlaceholderAPI and M17 replay remain separate owners |
+| `ZBW-PROG-009/010/012/013` runtime closure | M08 event adaptation, durable M13 objective projection/completion, stable M12 reward intent/delivery and player feedback form the validated end-to-end path; duplicate, reconnect, restart, expiry, invalid-definition and reward-failure paths retain idempotent recovery | `M13RuntimeTest`, `JdbcM13StateRepositoryTest`, Java 8/21 reactors and quality gates; M19/M20 distributed transport and M22 compatibility remain later owners |
+| `ZBW-CONTENT-004..006` | immutable validated quest, achievement and season definition graphs are consumed by the completed runtime and presentation surfaces | catalogue/reference tests and strict JavaDoc/API compatibility; M14 cosmetic content is not started |
+| M13 primary Paper projection | Java 21 owner-thread feedback uses titles, action bars, sounds and particles without business logic or synchronous database access | `M13PresentationTest`; M22 retains legacy/runtime compatibility certification |
+
+M13 is completed by checkpoints `162b62cdfe64d0f9979d19cb78fe7057154c9529`,
+`8915963f47907dfd27903040381fa60d9eca174f` and
+`2b22e83bb22102719003c2cd1485165b4a21958f`. The implementation references are
+`IMPLEMENTATION_M13_PHASE1.md`, `IMPLEMENTATION_M13_PHASE2.md`,
+`IMPLEMENTATION_M13_PHASE3.md`, `API_M13_PHASE3.md`, `M13_COMMANDS.md` and `M13_GUI.md`.
+M14 is the next active milestone. M15 statistics, M16 PlaceholderAPI, M17 replay and every later
+milestone boundary remain unchanged and unclaimed.
+
 ## Replay (10)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |
