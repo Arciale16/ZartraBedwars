@@ -168,6 +168,15 @@ milestone boundary remain unchanged and unclaimed.
 | M12/M13 dependency boundary | cosmetic definitions reuse M12 entitlement IDs and M13 quest/achievement IDs; campaigns reuse M12 reward IDs | additive 129-class API checkpoint preserves every immutable M13 signature |
 | M14 persistence boundary | `CosmeticStateRepository`, `ProfileSettingsRepository` and `M14Service` accept caller-owned M04/M12 `UnitOfWork`, optimistic revisions, idempotency keys and audit metadata | contract/API review; concrete SQL remains a later M14 phase, with no duplicate storage system |
 
+### M14 runtime and primary-presentation implementation evidence
+
+| Allocation | Implemented M14 portion | Verification / retained owner |
+|---|---|---|
+| `ZBW-PROG-006..008` | versioned catalogue lookup, M12 entitlement ownership check, duplicate-safe revisioned loadout persistence, disabled/unknown fallback, M09 command/GUI registration and owner-thread budgeted Paper feedback | Java 8/21 reactor evidence; `M14Runtime`, `M14PresentationBindings`, `M14GuiPages`, `M14PaperProjection`; 300 approved original definitions and production PT remain the M14 content/release gate |
+| `ZBW-PROG-014`, `ZBW-ADDON-274..282` | immutable profile updates/visibility, revision/audit persistence port use, calendar active/not-started/expired decisions and M12 reward-reference handoff | `M14ProfileRuntime`, `M14CampaignRuntime`, M09 presentation catalogue; no second reward or storage system |
+
+M14 implementation does not allocate statistics (M15), PlaceholderAPI (M16), replay (M17), Atlas/moderation (M18), distributed systems (M19/M20), external providers (M21), or compatibility (M22).
+
 Phase 1 adds no M09 presentation or Paper behavior and does not implement M15 statistics, M16
 PlaceholderAPI, M17 replay, M18 Atlas/moderation, M19/M20 distributed systems, M21 external
 providers or M22 compatibility.

@@ -362,6 +362,31 @@ public final class PresentationActions {
             return Collections.unmodifiableList(result);
         }
 
+        /** @return additive immutable M14 cosmetics, profile and calendar actions */
+        public static List<Definition> m14() {
+            final List<Definition> definitions = new ArrayList<Definition>();
+            addM14(definitions, "cosmetics", new String[] {"view", "categories", "rarities", "equip"},
+                    "cosmetics", "ZBW-PROG-006", "ZBW-PROG-007", "ZBW-PROG-008");
+            addM14(definitions, "profile", new String[] {"view", "settings", "privacy"},
+                    "profile", "ZBW-PROG-014");
+            addM14(definitions, "campaigns", new String[] {"active"}, "campaigns",
+                    "ZBW-PROG-014");
+            addM14(definitions, "admin cosmetics", new String[] {"inspect", "grant", "manage"},
+                    "cosmetics.manage", "ZBW-PROG-006", "ZBW-PROG-007");
+            addM14(definitions, "admin campaigns", new String[] {"manage"}, "campaigns.manage",
+                    "ZBW-PROG-014");
+            addM14(definitions, "admin profile", new String[] {"inspect", "audit"}, "profiles.manage",
+                    "ZBW-PROG-014");
+            return Collections.unmodifiableList(definitions);
+        }
+
+        /** @return immutable presentation catalogue through M14 */
+        public static List<Definition> throughM14() {
+            final List<Definition> result = new ArrayList<Definition>(throughM13());
+            result.addAll(m14());
+            return Collections.unmodifiableList(result);
+        }
+
         private static void add(final List<Definition> result, final String family,
                                 final String[] operations, final String permissionFamily,
                                 final String... requirementIds) {
@@ -434,6 +459,20 @@ public final class PresentationActions {
                 result.add(new Definition(ActionId.of("m13/" + family + "/" + operation),
                         "/zbw " + commandFamily + " " + operation,
                         GuiPageId.of("zartra", "m13/" + family + "/" + operation),
+                        PermissionNode.of("zartrabedwars." + permission), destructive,
+                        java.util.Arrays.asList(requirementIds)));
+            }
+        }
+
+        private static void addM14(final List<Definition> result, final String commandFamily,
+                                   final String[] operations, final String permission,
+                                   final String... requirementIds) {
+            for (String operation : operations) {
+                final String family = commandFamily.replace(' ', '-');
+                final boolean destructive = operation.matches("equip|settings|privacy|grant|manage");
+                result.add(new Definition(ActionId.of("m14/" + family + "/" + operation),
+                        "/zbw " + commandFamily + " " + operation,
+                        GuiPageId.of("zartra", "m14/" + family + "/" + operation),
                         PermissionNode.of("zartrabedwars." + permission), destructive,
                         java.util.Arrays.asList(requirementIds)));
             }
