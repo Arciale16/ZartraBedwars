@@ -103,7 +103,7 @@ final class M14CatalogueCompletionTest {
 
     private static CataloguePayload parseCatalogue(final List<String> lines) {
         final List<CosmeticDefinition> cosmetics = new ArrayList<CosmeticDefinition>();
-        final List<CalendarCampaign> campaigns = new ArrayList<CalendarCampaign>();
+        final Map<String, CalendarCampaign> campaigns = new LinkedHashMap<String, CalendarCampaign>();
         final Map<String, CosmeticCategoryId> categories = new LinkedHashMap<String, CosmeticCategoryId>();
         final Map<String, CosmeticRarity> rarities = new LinkedHashMap<String, CosmeticRarity>();
         final Map<String, Map<String, String>> provenance = new LinkedHashMap<String, Map<String, String>>();
@@ -143,10 +143,12 @@ final class M14CatalogueCompletionTest {
                     optionalAchievement(achievement), true);
             cosmetics.add(definition);
 
-            campaigns.add(new CalendarCampaign(CalendarCampaignId.of("zbw", campaign),
-                    1, Instant.parse("2026-01-01T00:00:00Z"), Instant.parse("2027-01-01T00:00:00Z"),
-                    Arrays.<RewardId>asList(RewardId.of("zbw", "reward-" + campaign)),
-                    Optional.<String>empty()));
+            if (!campaigns.containsKey(campaign)) {
+                campaigns.put(campaign, new CalendarCampaign(CalendarCampaignId.of("zbw", campaign),
+                        1, Instant.parse("2026-01-01T00:00:00Z"), Instant.parse("2027-01-01T00:00:00Z"),
+                        Arrays.<RewardId>asList(RewardId.of("zbw", "reward-" + campaign)),
+                        Optional.<String>empty()));
+            }
 
             final Map<String, String> provenanceFields = new LinkedHashMap<String, String>();
             provenanceFields.put("source", stripPrefix(source, "origin:"));
@@ -157,7 +159,8 @@ final class M14CatalogueCompletionTest {
         }
 
         final List<CosmeticDefinition> sorted = sortById(cosmetics);
-        return new CataloguePayload(lines.size(), cosmetics, campaigns, new ArrayList<CosmeticCategoryId>(categories.values()),
+        return new CataloguePayload(lines.size(), cosmetics, new ArrayList<CalendarCampaign>(campaigns.values()),
+                new ArrayList<CosmeticCategoryId>(categories.values()),
                 new ArrayList<CosmeticRarity>(rarities.values()), sorted, provenance);
     }
 
