@@ -325,6 +325,43 @@ public final class PresentationActions {
             return Collections.unmodifiableList(result);
         }
 
+        /** @return additive immutable M13 objective and seasonal-progression actions */
+        public static List<Definition> m13() {
+            final List<Definition> definitions = new ArrayList<Definition>();
+            addM13(definitions, "objectives", new String[] {"view"}, "objectives.view", false,
+                    "ZBW-PROG-010");
+            addM13(definitions, "quests", new String[] {"active", "completed"}, "quests.view", false,
+                    "ZBW-PROG-009");
+            addM13(definitions, "achievements", new String[] {"view"}, "achievements.view", false,
+                    "ZBW-PROG-012");
+            addM13(definitions, "challenges", new String[] {"view"}, "challenges.view", false,
+                    "ZBW-PROG-013");
+            addM13(definitions, "battlepass", new String[] {"view", "tiers"}, "battlepass.view", false,
+                    "ZBW-PROG-013");
+            addM13(definitions, "rewards", new String[] {"claim"}, "rewards.claim", true,
+                    "ZBW-PROG-009", "ZBW-PROG-011", "ZBW-PROG-012", "ZBW-PROG-013");
+            addM13(definitions, "admin progression", new String[] {"inspect"}, "objectives.manage", false,
+                    "ZBW-PROG-010");
+            addM13(definitions, "admin quest", new String[] {"assign", "remove"}, "quests.manage", true,
+                    "ZBW-PROG-009");
+            addM13(definitions, "admin achievement", new String[] {"grant", "inspect"}, "achievements.manage", true,
+                    "ZBW-PROG-012");
+            addM13(definitions, "admin challenge", new String[] {"modify"}, "challenges.manage", true,
+                    "ZBW-PROG-013");
+            addM13(definitions, "admin season", new String[] {"inspect", "manage"}, "battlepass.manage", true,
+                    "ZBW-PROG-013");
+            addM13(definitions, "admin progression", new String[] {"audit"}, "progression.audit", false,
+                    "ZBW-PROG-009", "ZBW-PROG-010", "ZBW-PROG-012", "ZBW-PROG-013");
+            return Collections.unmodifiableList(definitions);
+        }
+
+        /** @return immutable presentation catalogue through M13 */
+        public static List<Definition> throughM13() {
+            final List<Definition> result = new ArrayList<Definition>(throughM12());
+            result.addAll(m13());
+            return Collections.unmodifiableList(result);
+        }
+
         private static void add(final List<Definition> result, final String family,
                                 final String[] operations, final String permissionFamily,
                                 final String... requirementIds) {
@@ -385,6 +422,20 @@ public final class PresentationActions {
                                 + (administrative ? "admin." : "")
                                 + operation.replace('-', '.')),
                         destructive, java.util.Arrays.asList(requirementIds)));
+            }
+        }
+
+        private static void addM13(final List<Definition> result, final String commandFamily,
+                                   final String[] operations, final String permission,
+                                   final boolean mutations, final String... requirementIds) {
+            for (String operation : operations) {
+                final String family = commandFamily.replace(' ', '-');
+                final boolean destructive = mutations && !operation.matches("inspect");
+                result.add(new Definition(ActionId.of("m13/" + family + "/" + operation),
+                        "/zbw " + commandFamily + " " + operation,
+                        GuiPageId.of("zartra", "m13/" + family + "/" + operation),
+                        PermissionNode.of("zartrabedwars." + permission), destructive,
+                        java.util.Arrays.asList(requirementIds)));
             }
         }
 
