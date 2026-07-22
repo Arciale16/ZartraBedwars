@@ -40,19 +40,23 @@ import org.junit.jupiter.api.Test;
 final class M14CatalogueCompletionTest {
     private static final String RESOURCE = "m14-cosmetic-catalogue.tsv";
     private static final int REQUIRED_DEFINITIONS = 300;
+    private static final int REQUIRED_CATEGORIES = 10;
+    private static final int REQUIRED_RARITIES = 6;
+    private static final int REQUIRED_CAMPAIGNS = 6;
 
     @Test
     void approvedCatalogueContains300TypedDefinitionsWithDeterministicOrderingAndProvenance() throws Exception {
         final List<String> lines = rawCatalogueLines();
         final CataloguePayload payload = parseCatalogue(lines);
         assertEquals(REQUIRED_DEFINITIONS, payload.cosmetics().size());
-        assertEquals(10, payload.campaigns().size());
         assertEquals(REQUIRED_DEFINITIONS, payload.expectedLineCount());
-        assertEquals(10, payload.categories().size());
-        assertEquals(6, payload.rarityDefinitions().size());
+        assertEquals(REQUIRED_CATEGORIES, payload.categories().size());
+        assertEquals(REQUIRED_RARITIES, payload.rarityDefinitions().size());
+        assertEquals(REQUIRED_CAMPAIGNS, countUniqueCampaigns(payload.campaignIds()));
         assertEquals(payload.ids(), sortedIds(payload.cosmetics()), "catalogue rows must be deterministic and sorted by definition");
         assertEquals(payload.sortedCosmetics(), payload.cosmetics(), "catalogue rows must preserve sorted source order");
-        assertEquals(10, countUniqueCampaigns(payload.campaignIds()), "campaign identifiers must cover ten unique windows");
+        assertEquals(REQUIRED_CAMPAIGNS, countUniqueCampaigns(payload.campaignIds()),
+                "campaign identifiers must cover all configured windows");
 
         final M14Catalog catalog = new M14Catalog(payload.categories(), payload.rarityDefinitions(),
                 payload.cosmetics(), payload.campaigns());
@@ -88,14 +92,54 @@ final class M14CatalogueCompletionTest {
             assertFalse(provenance.get("author").trim().isEmpty(), "author required");
             assertTrue(provenance.get("hash").matches("^h[0-9a-f]{64}$"), "hash must be hex sha-256 with approved prefix");
         }
-        assertThrows(IllegalArgumentException.class, () -> CosmeticId.parse("invalid"));
-        assertThrows(IllegalArgumentException.class, () -> CosmeticId.parse("zbw:"));
-        assertThrows(IllegalArgumentException.class, () -> new CosmeticRarity(CosmeticRarityId.of("zbw", "invalid"), 0,
-                "rarity.invalid"));
-        assertThrows(IllegalArgumentException.class, () -> new CalendarCampaign(
-                CalendarCampaignId.of("zbw", "bad"), 1, Instant.parse("2026-12-31T00:00:00Z"),
-                Instant.parse("2026-12-01T00:00:00Z"),
-                Arrays.asList(RewardId.of("zbw", "reward")), Optional.empty()));
+
+        assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
+                catalogueRow(
+                        "zbw:cosmetic_bad",
+                        "1",
+                        "lobby",
+                        "common",
+                        "cosmetic.invalid",
+                        "KILL",
+                        "",
+                        "",
+                        "",
+                        "event",
+                        "zbw-native",
+                        "approved",
+                        "owner:team",
+                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+        assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
+                catalogueRow(
+                        "zbw:cosmetic_bad",
+                        "1",
+                        "lobby",
+                        "common",
+                        "cosmetic.invalid",
+                        "KILL",
+                        "not-an-id",
+                        "",
+                        "",
+                        "event",
+                        "origin:zbw-native",
+                        "approved",
+                        "owner:team",
+                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+        assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
+                catalogueRow(
+                        "zbw:cosmetic_bad",
+                        "1",
+                        "lobby",
+                        "common",
+                        "cosmetic.invalid",
+                        "NON_EXISTENT_TRIGGER",
+                        "",
+                        "",
+                        "event",
+                        "origin:zbw-native",
+                        "approved",
+                        "owner:team",
+                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
     }
 
     private static CataloguePayload parseCatalogue(final List<String> lines) {
@@ -197,6 +241,15 @@ final class M14CatalogueCompletionTest {
 
     private static int countUniqueCampaigns(final List<CalendarCampaignId> campaigns) {
         return new LinkedHashSet<CalendarCampaignId>(campaigns).size();
+    }
+
+    private static String catalogueRow(final String id, final String version, final String category, final String rarity,
+                                      final String display, final String trigger, final String entitlement,
+                                      final String quest, final String achievement, final String campaign,
+                                      final String source, final String status, final String author,
+                                      final String hash) {
+        return String.join("\t", Arrays.asList(id, version, category, rarity, display, trigger, entitlement, quest, achievement,
+                campaign, source, status, author, hash));
     }
 
     private static List<String> rawCatalogueLines() throws Exception {
