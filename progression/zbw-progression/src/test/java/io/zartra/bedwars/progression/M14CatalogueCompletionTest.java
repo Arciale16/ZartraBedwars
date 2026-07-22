@@ -94,52 +94,11 @@ final class M14CatalogueCompletionTest {
         }
 
         assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
-                catalogueRow(
-                        "zbw:cosmetic_bad",
-                        "1",
-                        "lobby",
-                        "common",
-                        "cosmetic.invalid",
-                        "KILL",
-                        "",
-                        "",
-                        "",
-                        "event",
-                        "zbw-native",
-                        "approved",
-                        "owner:team",
-                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+                "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tKILL\t\t\t\tevent\tzbw-native\tapproved\towner:team\tbad-hash")));
         assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
-                catalogueRow(
-                        "zbw:cosmetic_bad",
-                        "1",
-                        "lobby",
-                        "common",
-                        "cosmetic.invalid",
-                        "KILL",
-                        "not-an-id",
-                        "",
-                        "",
-                        "event",
-                        "origin:zbw-native",
-                        "approved",
-                        "owner:team",
-                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+                "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tKILL\tnot-an-id\t\t\tseason\torigin:zbw-native\tapproved\towner:team\th1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
         assertThrows(IllegalArgumentException.class, () -> parseCatalogue(Arrays.asList(
-                catalogueRow(
-                        "zbw:cosmetic_bad",
-                        "1",
-                        "lobby",
-                        "common",
-                        "cosmetic.invalid",
-                        "NON_EXISTENT_TRIGGER",
-                        "",
-                        "",
-                        "event",
-                        "origin:zbw-native",
-                        "approved",
-                        "owner:team",
-                        "h1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
+                "zbw:cosmetic_bad\t1\tlobby\tcommon\tcosmetic.invalid\tNON_EXISTENT_TRIGGER\t\t\tseason\tevent\torigin:zbw-native\tapproved\towner:team\th1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef")));
     }
 
     private static CataloguePayload parseCatalogue(final List<String> lines) {
@@ -241,15 +200,6 @@ final class M14CatalogueCompletionTest {
 
     private static int countUniqueCampaigns(final List<CalendarCampaignId> campaigns) {
         return new LinkedHashSet<CalendarCampaignId>(campaigns).size();
-    }
-
-    private static String catalogueRow(final String id, final String version, final String category, final String rarity,
-                                      final String display, final String trigger, final String entitlement,
-                                      final String quest, final String achievement, final String campaign,
-                                      final String source, final String status, final String author,
-                                      final String hash) {
-        return String.join("\t", Arrays.asList(id, version, category, rarity, display, trigger, entitlement, quest, achievement,
-                campaign, source, status, author, hash));
     }
 
     private static List<String> rawCatalogueLines() throws Exception {
