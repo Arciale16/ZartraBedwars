@@ -215,7 +215,7 @@ class M14RuntimeTest {
             public Result<io.zartra.bedwars.progression.model.EntitlementGrant> grant(
                     final UnitOfWork unitOfWork, final io.zartra.bedwars.progression.model.EntitlementGrant grant) {
                 return Result.success(new io.zartra.bedwars.progression.model.EntitlementGrant(
-                        grant.recipient(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
+                        grant.owner(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
             }
 
             @Override
@@ -237,7 +237,7 @@ class M14RuntimeTest {
             public Result<io.zartra.bedwars.progression.model.EntitlementGrant> grant(
                     final UnitOfWork unitOfWork, final io.zartra.bedwars.progression.model.EntitlementGrant grant) {
                 return Result.success(new io.zartra.bedwars.progression.model.EntitlementGrant(
-                        grant.recipient(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
+                        grant.owner(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
             }
 
             @Override
@@ -259,7 +259,7 @@ class M14RuntimeTest {
             public Result<io.zartra.bedwars.progression.model.EntitlementGrant> grant(
                     final UnitOfWork unitOfWork, final io.zartra.bedwars.progression.model.EntitlementGrant grant) {
                 return Result.success(new io.zartra.bedwars.progression.model.EntitlementGrant(
-                        grant.recipient(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
+                        grant.owner(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
             }
 
             @Override
@@ -281,7 +281,7 @@ class M14RuntimeTest {
             public Result<io.zartra.bedwars.progression.model.EntitlementGrant> grant(
                     final UnitOfWork unitOfWork, final io.zartra.bedwars.progression.model.EntitlementGrant grant) {
                 return Result.success(new io.zartra.bedwars.progression.model.EntitlementGrant(
-                        grant.recipient(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
+                        grant.owner(), grant.entitlementId(), grant.idempotencyKey(), grant.audit()));
             }
 
             @Override
