@@ -65,7 +65,8 @@ class M14RuntimeTest {
 
     @Test
     void validatesSelectionBranchStatesAndDefinitionLookup() {
-        final M14Runtime emergency = new M14Runtime(catalog(), new M14Configuration(1, 1, 1, 1, true),
+        final M14Configuration emergencyConfiguration = new M14Configuration(1, 300, 1, 1, true);
+        final M14Runtime emergency = new M14Runtime(catalog(), emergencyConfiguration,
                 loadoutRepositoryNoInteraction(), ownedEntitlementRepository());
         assertEquals(M14Runtime.Status.DISABLED,
                 emergency.validateSelection(unitOfWork(), PLAYER, ENABLED_NO_ENTITLEMENT, NOW).status());
@@ -166,7 +167,7 @@ class M14RuntimeTest {
         assertTrue(runtime.mayView(new ProfileSettings(PLAYER, ProfileSettings.Visibility.PUBLIC,
                 false, false, RecordRevision.initial(), AUDIT), false, false, false, false));
         assertTrue(runtime.mayView(profile, false, false, false, true));
-        assertThrows(IllegalArgumentException.class, () -> runtime.mayView(null, true, true, true, false));
+        assertThrows(NullPointerException.class, () -> runtime.mayView(null, true, true, true, false));
     }
 
     private static M14Catalog catalog() {
@@ -188,7 +189,7 @@ class M14RuntimeTest {
     }
 
     private static M14Configuration enabledConfiguration() {
-        return new M14Configuration(1, 1, 32, 128, false);
+        return new M14Configuration(1, 300, 32, 128, false);
     }
 
     private static UnitOfWork unitOfWork() {
