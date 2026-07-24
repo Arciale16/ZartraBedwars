@@ -15,6 +15,7 @@ public final class StatisticsSchemaMigrator {
     private static final int VERSION = 15;
     private static final String[] SQL = {
         "CREATE TABLE IF NOT EXISTS statistics_event_claims (idempotency_key VARCHAR(129) PRIMARY KEY, claimed_at BIGINT NOT NULL)",
+        "CREATE TABLE IF NOT EXISTS statistics_match_aggregates (match_id VARCHAR(36) NOT NULL, statistic_id VARCHAR(129) NOT NULL, value BIGINT NOT NULL, revision BIGINT NOT NULL, PRIMARY KEY(match_id,statistic_id))",
         "CREATE TABLE IF NOT EXISTS statistics_player_aggregates (player_id VARCHAR(36) NOT NULL, statistic_id VARCHAR(129) NOT NULL, scope_id VARCHAR(129) NOT NULL, value BIGINT NOT NULL, revision BIGINT NOT NULL, actor VARCHAR(128) NOT NULL, correlation_id VARCHAR(36) NOT NULL, recorded_at BIGINT NOT NULL, PRIMARY KEY(player_id,statistic_id,scope_id))"
     };
     private final int timeoutSeconds;
