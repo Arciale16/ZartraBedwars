@@ -38,8 +38,23 @@ public final class M14PaperProjection {
             throw new IllegalStateException("M14 Paper mutation attempted off owner thread");
         }
     }
-    /** Owner-thread predicate supplied by the composition root. */ public interface OwnerThread { /** @return true only on the owner thread */ boolean isOwnerThread(); }
-    /** Platform renderer performs no M14 business decision. */ public interface Platform { /** Renders feedback. */ void feedback(Feedback feedback); /** Opens UI. */ void open(PlayerId player, Object inventory); /** Clears effects. */ void clear(PlayerId player); }
+    /** Owner-thread predicate supplied by the composition root. */
+    public interface OwnerThread {
+        /** @return true only on the owner thread */
+        boolean isOwnerThread();
+    }
+
+    /** Platform renderer performs no M14 business decision. */
+    public interface Platform {
+        /** Renders feedback. */
+        void feedback(Feedback feedback);
+
+        /** Opens UI. */
+        void open(PlayerId player, Object inventory);
+
+        /** Clears effects. */
+        void clear(PlayerId player);
+    }
     /** Per-intent effect budget. */ public record Budget(int maximumParticles, int maximumEntities) {
         /** Validates bounded budgets. */ public Budget {
             if (maximumParticles < 0 || maximumEntities < 0) {
