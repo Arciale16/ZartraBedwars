@@ -158,6 +158,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Entry:** M08 event schema and M12 projection/idempotency patterns stable.
 - **Deliver:** authoritative projections, all dimensions/ratios/streaks, administration and cached ranking engine, including every isolated-statistics cell retained from M11 named modes and addon mappings.
 - **Exit:** duplicate/private/test separation, ratio/tie/reset/repair/migration and large-data ranking tests pass; no full-table query per request.
+- **Phase 1 (in progress):** materialize the Java-8-neutral `zbw-statistics` module and only its immutable statistic models, existing-event adaptation contracts, transaction-bound projection/idempotency/rebuild ports, JDBC-free repositories and deterministic leaderboard contracts. SQL, Paper presentation, commands, GUI, PlaceholderAPI, web, Redis/distributed ranking and external providers remain out of phase.
 
 ### M16 — PlaceholderAPI and external statistics surfaces
 
