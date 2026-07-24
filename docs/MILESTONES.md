@@ -136,16 +136,20 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M13 — Objectives, quests, achievements and battle pass
 
+- **Implementation status:** VERIFIED and completed on 2026-07-22. Phase checkpoints are `162b62cdfe64d0f9979d19cb78fe7057154c9529`, `8915963f47907dfd27903040381fa60d9eca174f` and `2b22e83bb22102719003c2cd1485165b4a21958f`; final evidence is recorded in `docs/IMPLEMENTATION_M13_PHASE1.md`, `docs/IMPLEMENTATION_M13_PHASE2.md` and `docs/IMPLEMENTATION_M13_PHASE3.md`. This closes only M13 ownership.
 - **Requirements:** PROG-009/010/012/013; CONTENT-004..006; ZBW-ADDON-081..091.
 - **Entry:** M12 reward/progression core and M09 UI ready.
+- **Phase 1–3 status:** complete. Java 8 neutral definitions/catalogue, deterministic objective execution, quest/achievement/challenge/pass runtime, M08/M11/M12 event adaptation, M12 reward intents, M04-backed SQL state/recovery and M09 command/GUI plus Java 21 Paper presentation are implemented and validated.
 - **Deliver:** reusable objective engine, every listed objective/scope, quest/achievement/challenge/pass definitions and editors.
-- **Exit:** objective/reward catalog tests, season rollover, claims/rerolls/chains and migration/security E2E pass; no duplicated objective logic.
+- **Exit:** satisfied by objective/reward catalogue, lifecycle, duplicate/restart/recovery, claims/chains, permission/audit/confirmation, GUI stale-state, Paper owner-thread, Java 8/21 reactor, quality, API, governance and SBOM/licence evidence. No objective logic is duplicated in Paper.
 
 ### M14 — Cosmetics, profiles and calendar rewards
 
+- **Milestone status:** active; Phase 1 foundation and the M14 runtime/presentation implementation are recorded in `docs/IMPLEMENTATION_M14_PHASE1.md`, `docs/API_M14_PHASE1.md`, `docs/IMPLEMENTATION_M14_COMPLETE.md` and `docs/API_M14_COMPLETE.md`. Completion remains gated on the required approved 300-definition original-content/provenance and production visual/performance evidence; no later milestone is active.
 - **Requirements:** PROG-006..008/014; CONTENT-007/009/011; ZBW-ADDON-026..040, 369..378.
 - **Entry:** M12/M13 complete; original content/license ADR accepted.
 - **Deliver:** 300 original definitions, rarity/ownership/equipment/effects, profile/privacy/settings and holiday/calendar rewards.
+- **Phase 1 boundary:** typed cosmetic/profile/calendar models, M12 reward/entitlement and M13 unlock references, validation/configuration contracts and caller-owned M12 storage ports only. Concrete persistence, runtime effects, content batches and M09 presentation remain later M14 phases.
 - **Exit:** catalog count/license scan, ownership/expiry/preset/migration and rate-limit load tests pass; low-performance/emergency controls meet budgets.
 
 ### M15 — Statistics, ratios, streaks and leaderboards

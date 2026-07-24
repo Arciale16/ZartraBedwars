@@ -15,3 +15,6 @@ port. It contains no arena, lobby or game rule.
 Fallback interaction is part of component accessibility metadata: every actionable component has
 plain-language description, keyboard/chat equivalent and Bedrock-safe interaction intent. M22 owns
 legacy runtime rendering certification; M09 certifies the primary Paper 1.21.1 mapping only.
+## M13 extension inventory
+
+M13 adds 17 objective, quest, achievement, challenge, battle-pass, reward-claim and administration parity pages through the existing registry. Their canonical IDs and permissions are generated in `build/m13-command-inventory.json`; behavior and states are specified in `M13_GUI.md`. Requirements: ZBW-PROG-009..013 and ZBW-UX-001..006.

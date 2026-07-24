@@ -116,6 +116,71 @@ This baseline contains 672 stable semantic requirement IDs. Part I contains exac
 | `ZBW-PROG-001..005`, `ZBW-PROG-011` — M12 Phase 5 closure | XP/level/prestige formulas+revisions, currency/ledger safety, retry/failure/reward projection, recovery, admin/cfg/presentation integration and Paper certification evidence | `Progression*` integration suite; `M12StorageValidationTest`; M12 dashboard and exit evidence |
 | M12 storage boundary | eight Java-8-neutral repository interfaces accept caller-owned M04 `UnitOfWork` and typed revisions/results | architecture and reflection tests; no JDBC, SQL or migration code in Phase 1 |
 
+### M13 Phase 1 objective/content-foundation evidence
+
+| Allocation | Implemented Phase 1 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-009`, `ZBW-ADDON-081..091` | typed immutable quest identities, schedules, objective/reward references, claim policy, cooldown and assignment lifecycle snapshots plus neutral repository ports | `M13FoundationTest`; runtime assignment, chains, claims, persistence, admin and M09 presentation remain in later M13 phases |
+| `ZBW-PROG-010` | typed objective/event/filter/scope/composition definitions, monotonic bounded progress snapshots and optimistic persistence port | catalogue/reference and idempotency tests; full event projection, composite runtime and durable storage remain in later M13 phases |
+| `ZBW-PROG-012` | typed tiered achievement definitions with monotonic targets, points and M12 reward references | tier/validation tests; progress history, notifications and presentation remain in later M13 phases |
+| `ZBW-PROG-013` | typed challenge variants and versioned battle-pass season/free/premium tier definitions with validated windows | challenge/season/catalogue tests; claims, rollover, migration, persistence and presentation remain in later M13 phases |
+| `ZBW-CONTENT-004..006` | immutable cross-reference catalogue capable of validating objective, quest, achievement, challenge and season definition graphs | starter catalogue activation remains in a later M13 phase; no proprietary content or assets introduced |
+
+M13 Phase 1 deliberately introduces no statistics, PlaceholderAPI, replay, Atlas, distributed
+transport, external provider or legacy compatibility implementation. Those owners remain M15 through M22.
+
+### M13 Phase 2 objective-runtime and persistence evidence
+
+| Allocation | Implemented Phase 2 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-010` | deterministic filtered evaluation, repeatable/non-repeatable accumulation, completion/expiration, version/revision/audit evidence, durable duplicate claim and recovery-safe M04 transaction port | `M13RuntimeTest`, `JdbcM13StateRepositoryTest`; composite catalogue activation/editors and presentation remain later M13 |
+| `ZBW-PROG-009`, `ZBW-ADDON-081..091` | daily/weekly/custom-capable assignment runtime, activation, progress linkage, completion, expiration/reset, chain advancement and exactly-once M12 reward intents | quest lifecycle/duplicate/restart tests; reroll/abandon/history/admin/UI/notification surfaces remain later M13 |
+| `ZBW-PROG-012` | hidden discovery, one-time monotonic tier unlock, reward references and durable achievement snapshots | achievement runtime and SQL restart tests; M15 statistics remain explicitly excluded |
+| `ZBW-PROG-013` | timed challenge activation/completion/expiration; active season XP, tier and free-claim state; durable challenge/season snapshots | challenge/pass/claim/SQLite recovery tests; premium purchase, rollover and presentation remain later M13 |
+| `ZBW-CONTENT-004..006` | runtime consumes the immutable versioned Phase 1 catalogue and rejects definition/state version mismatch | starter content activation and golden catalogue simulation remain later M13 |
+
+Phase 2 adds no command, GUI, Paper, PlaceholderAPI, statistics, replay, Atlas, distributed,
+provider or compatibility implementation. M15–M22 ownership remains unchanged.
+
+### M13 Phase 3 presentation, runtime-integration and closure evidence
+
+| Allocation | Completed M13 portion | Verification / retained owner |
+|---|---|---|
+| `ZBW-PROG-009/010/012/013`, `ZBW-ADDON-081..091` | existing M09 command and GUI frameworks expose player/admin objective, quest, achievement, challenge, battle-pass and reward-claim flows with M03 execution authorization, audit context, validation, pagination/filtering, stale-view rejection and confirmation-protected mutation | `M13PresentationCatalogTest`, `M13PresentationTest`, `m13_inventories.py`; M15 statistics, M16 PlaceholderAPI and M17 replay remain separate owners |
+| `ZBW-PROG-009/010/012/013` runtime closure | M08 event adaptation, durable M13 objective projection/completion, stable M12 reward intent/delivery and player feedback form the validated end-to-end path; duplicate, reconnect, restart, expiry, invalid-definition and reward-failure paths retain idempotent recovery | `M13RuntimeTest`, `JdbcM13StateRepositoryTest`, Java 8/21 reactors and quality gates; M19/M20 distributed transport and M22 compatibility remain later owners |
+| `ZBW-CONTENT-004..006` | immutable validated quest, achievement and season definition graphs are consumed by the completed runtime and presentation surfaces | catalogue/reference tests and strict JavaDoc/API compatibility; M14 cosmetic content is not started |
+| M13 primary Paper projection | Java 21 owner-thread feedback uses titles, action bars, sounds and particles without business logic or synchronous database access | `M13PresentationTest`; M22 retains legacy/runtime compatibility certification |
+
+M13 is completed by checkpoints `162b62cdfe64d0f9979d19cb78fe7057154c9529`,
+`8915963f47907dfd27903040381fa60d9eca174f` and
+`2b22e83bb22102719003c2cd1485165b4a21958f`. The implementation references are
+`IMPLEMENTATION_M13_PHASE1.md`, `IMPLEMENTATION_M13_PHASE2.md`,
+`IMPLEMENTATION_M13_PHASE3.md`, `API_M13_PHASE3.md`, `M13_COMMANDS.md` and `M13_GUI.md`.
+M14 is the next active milestone. M15 statistics, M16 PlaceholderAPI, M17 replay and every later
+milestone boundary remain unchanged and unclaimed.
+
+### M14 Phase 1 cosmetic/profile/calendar foundation evidence
+
+| Allocation | Implemented Phase 1 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-PROG-006..008`, `ZBW-ADDON-026..040`, `ZBW-ADDON-369..378` | typed cosmetic/category/rarity identities, immutable versioned definitions, revisioned/audited loadouts, production-count gate and bounded effect/entity configuration contracts | `M14FoundationTest`; concrete ownership/equipment/runtime effects, approved 300-definition catalogue, M09 presentation and Paper projection remain later M14 phases |
+| `ZBW-PROG-014`, M14 portion of `ZBW-ADDON-274..282` | private profile/effect settings and versioned calendar campaign windows that reference existing M12 rewards | invalid-window/privacy/revision tests; application/persistence/claim/calendar presentation remain later M14 phases |
+| M12/M13 dependency boundary | cosmetic definitions reuse M12 entitlement IDs and M13 quest/achievement IDs; campaigns reuse M12 reward IDs | additive 129-class API checkpoint preserves every immutable M13 signature |
+| M14 persistence boundary | `CosmeticStateRepository`, `ProfileSettingsRepository` and `M14Service` accept caller-owned M04/M12 `UnitOfWork`, optimistic revisions, idempotency keys and audit metadata | contract/API review; concrete SQL remains a later M14 phase, with no duplicate storage system |
+
+### M14 runtime and primary-presentation implementation evidence
+
+| Allocation | Implemented M14 portion | Verification / retained owner |
+|---|---|---|
+| `ZBW-PROG-006..008` | versioned catalogue lookup, M12 entitlement ownership check, duplicate-safe revisioned loadout persistence, disabled/unknown fallback, M09 command/GUI registration and owner-thread budgeted Paper feedback | Java 8/21 reactor evidence; `M14Runtime`, `M14PresentationBindings`, `M14GuiPages`, `M14PaperProjection`; 300 approved original definitions and production PT remain the M14 content/release gate |
+| `ZBW-PROG-014`, `ZBW-ADDON-274..282` | immutable profile updates/visibility, revision/audit persistence port use, calendar active/not-started/expired decisions and M12 reward-reference handoff | `M14ProfileRuntime`, `M14CampaignRuntime`, M09 presentation catalogue; no second reward or storage system |
+
+M14 implementation does not allocate statistics (M15), PlaceholderAPI (M16), replay (M17), Atlas/moderation (M18), distributed systems (M19/M20), external providers (M21), or compatibility (M22).
+
+Phase 1 adds no M09 presentation or Paper behavior and does not implement M15 statistics, M16
+PlaceholderAPI, M17 replay, M18 Atlas/moderation, M19/M20 distributed systems, M21 external
+providers or M22 compatibility.
+
 ## Replay (10)
 
 | Requirement | Planned implementation and data/migration | Configuration | Cmd / permission | GUI | API / events | PH | Tests | Documentation / milestone |

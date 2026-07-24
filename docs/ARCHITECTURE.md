@@ -477,3 +477,25 @@ they never own progression policy or perform synchronous SQL. M15 retains statis
 M18 Atlas, M19/M20 distributed and proxy transports, M21 Vault/NPC/hologram providers and M22
 legacy compatibility. No dependency from `zbw-progression` to any of those later implementations
 is permitted.
+
+## M13 objective and content boundary
+
+M13 extends the existing Java-8-neutral `zbw-progression` module; it does not create a second
+progression module. Phase 1 owns immutable, versioned objective, quest, achievement, challenge and
+battle-pass definitions, typed identities, bounded progress/assignment snapshots, neutral repository
+ports and deterministic catalogue reference validation. These contracts reuse M12 reward identities
+and preserve the one-way dependency on M08 event contracts without changing M08, M11 or M12 behavior.
+
+Later M13 phases own objective projection, durable M04-backed persistence, starter content activation
+and M09 presentation adapters. Paper code remains a Java 21 translation boundary and is not part of
+Phase 1. Statistics, PlaceholderAPI, replay, Atlas, distributed/proxy transports, external providers
+and legacy compatibility remain isolated in M15 through M22; `zbw-progression` must not depend on
+those implementations.
+
+M13 Phase 2 implements that projection boundary inside `zbw-progression`: configured adapters turn
+existing M08/M11/M12 facts into immutable objective events; the stateless evaluator produces
+revisioned state and M12 reward intents. Exactly-once ownership is established through a durable
+event claim in the same caller-owned M04 `UnitOfWork` used to save state. The neutral module never
+opens a transaction and never imports JDBC. `zbw-storage-sql` owns `JdbcM13StateRepository` and the
+checksum-locked version-13 migration for objective, quest, achievement, challenge and season state.
+No platform thread may call the JDBC adapter synchronously.
