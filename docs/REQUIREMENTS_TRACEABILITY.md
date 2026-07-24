@@ -156,7 +156,7 @@ M13 is completed by checkpoints `162b62cdfe64d0f9979d19cb78fe7057154c9529`,
 `2b22e83bb22102719003c2cd1485165b4a21958f`. The implementation references are
 `IMPLEMENTATION_M13_PHASE1.md`, `IMPLEMENTATION_M13_PHASE2.md`,
 `IMPLEMENTATION_M13_PHASE3.md`, `API_M13_PHASE3.md`, `M13_COMMANDS.md` and `M13_GUI.md`.
-M14 is the next active milestone. M15 statistics, M16 PlaceholderAPI, M17 replay and every later
+M15 is the next active milestone. M15 statistics, M16 PlaceholderAPI, M17 replay and every later
 milestone boundary remain unchanged and unclaimed.
 
 ### M14 Phase 1 cosmetic/profile/calendar foundation evidence

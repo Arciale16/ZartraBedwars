@@ -145,7 +145,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 
 ### M14 — Cosmetics, profiles and calendar rewards
 
-- **Milestone status:** active; Phase 1 foundation and the M14 runtime/presentation implementation are recorded in `docs/IMPLEMENTATION_M14_PHASE1.md`, `docs/API_M14_PHASE1.md`, `docs/IMPLEMENTATION_M14_COMPLETE.md` and `docs/API_M14_COMPLETE.md`. Completion remains gated on the required approved 300-definition original-content/provenance and production visual/performance evidence; no later milestone is active.
+- **Milestone status:** VERIFIED and completed; Phase 1 foundation and the runtime/presentation implementation are recorded in `docs/IMPLEMENTATION_M14_PHASE1.md`, `docs/API_M14_PHASE1.md`, `docs/IMPLEMENTATION_M14_COMPLETE.md` and `docs/API_M14_COMPLETE.md`. M15 is the next milestone and no later milestone is currently active.
 - **Requirements:** PROG-006..008/014; CONTENT-007/009/011; ZBW-ADDON-026..040, 369..378.
 - **Entry:** M12/M13 complete; original content/license ADR accepted.
 - **Deliver:** 300 original definitions, rarity/ownership/equipment/effects, profile/privacy/settings and holiday/calendar rewards.
