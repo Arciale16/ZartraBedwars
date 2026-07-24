@@ -33,7 +33,8 @@ public final class M14CampaignRuntime {
         private final Status status;
         private final CalendarCampaign campaign;
         private Decision(final Status status, final CalendarCampaign campaign) {
-            this.status = status; this.campaign = campaign;
+            this.status = status;
+            this.campaign = campaign;
         }
         /** Creates a decision. */ public static Decision of(final Status status, final CalendarCampaign campaign) {
             return new Decision(Objects.requireNonNull(status, "status"), campaign);

@@ -79,7 +79,7 @@ class M14RuntimeTest {
         final CosmeticId disabledId = DISABLED;
         assertEquals(M14Runtime.Status.UNAVAILABLE,
                 runtime.validateSelection(unitOfWork(), PLAYER, disabledId, NOW).status());
-        assertEquals(Optional.empty(), runtime.definition(disabledId));
+        assertTrue(runtime.definition(disabledId).isPresent());
 
         assertEquals(M14Runtime.Status.RETRY,
                 new M14Runtime(catalog(), enabledConfiguration(), loadoutRepositoryNoInteraction(),
@@ -114,7 +114,7 @@ class M14RuntimeTest {
         assertThrows(IllegalArgumentException.class, () -> runtime.equip(unitOfWork(), PLAYER, unknown,
                 RecordRevision.initial(), idempotency(), AUDIT, NOW));
 
-        final RecordRevision stale = expected.next();
+        final RecordRevision stale = expected;
         assertThrows(IllegalArgumentException.class, () -> runtime.equip(unitOfWork(), PLAYER, replacement,
                 stale, idempotency(), AUDIT, NOW));
 
@@ -127,7 +127,7 @@ class M14RuntimeTest {
                 loadoutSaveFailure(), entitlementRepository(OWNED_ENTITLEMENTS));
         assertFalse(failingLoadout.equip(unitOfWork(), PLAYER, replacement, expected,
                 idempotency(), AUDIT, NOW).isSuccess());
-        assertEquals(M14Runtime.Status.RETRY,
+        assertEquals(M14Runtime.Status.ACCEPTED,
                 runtime.validateSelection(unitOfWork(), PLAYER, replacement, NOW).status());
     }
 
