@@ -41,7 +41,7 @@ Total requirements: **672**.
 
 ## Milestone and evidence summary
 
-M00–M15 and hardening M08.1 are complete; M16 is the next milestone.
+M00–M13 and hardening M08.1 are complete; M14 Phase 1 is in progress.
 M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,
 with deterministic 115-action inventories and strict quality/API/runtime evidence.
 Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective
