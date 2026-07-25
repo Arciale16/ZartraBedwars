@@ -1,21 +1,21 @@
-# ZartraBedWars Dependency-Aware Milestones
+﻿# ZartraBedWars Dependency-Aware Milestones
 
 ## Rules
 
 Each milestone is a small reviewable merge unit. Tests and documentation are produced with the feature, not postponed to the final testing/documentation milestones. A milestone exits only with a clean build, all applicable tests, traceability updates, no production TODO/stub and evidence for its core and `ZBW-ADDON-*` IDs. Later milestones may not bypass an unmet dependency.
 
-The master prompt's sequential “documentation/testing near the end” list is treated as final hardening order; continuous testing and documentation requirements have higher safety value and apply to every milestone.
+The master prompt's sequential â€œdocumentation/testing near the endâ€ list is treated as final hardening order; continuous testing and documentation requirements have higher safety value and apply to every milestone.
 
 ## Plan
 
-### M00 — Requirements, architecture and pre-code decision baseline
+### M00 â€” Requirements, architecture and pre-code decision baseline
 
 - **Requirements:** ZBW-GOV-001..011, ZBW-QA-007, ZBW-READY-001..020, architecture/plan portions of all 672 semantic IDs.
 - **Entry:** `MASTER_PROMPT.md` available and read completely.
 - **Deliver:** PRD, architecture, milestones, requirement-level traceability, deterministic Master/addon/decision coverage reports; all 25 pre-code decision outcomes, sixteen ADRs and normative runtime/performance/privacy/network/scripting/licensing/content/operations/quality specifications; risks/conflicts and repository instructions.
-- **Exit:** 672 unique semantic IDs (199 Part I plus 473 addon); Parts I–III and all decision-document inventories validate; source hash/line count, 49-addon inventory, 8/41 split, sixteen accepted ADRs and required schemas match; all atomic rows are `COVERED`, combined functional coverage is 100%, the pre-code readiness report has no unresolved pre-code decision and no Java source/build scaffold exists.
+- **Exit:** 672 unique semantic IDs (199 Part I plus 473 addon); Parts Iâ€“III and all decision-document inventories validate; source hash/line count, 49-addon inventory, 8/41 split, sixteen accepted ADRs and required schemas match; all atomic rows are `COVERED`, combined functional coverage is 100%, the pre-code readiness report has no unresolved pre-code decision and no Java source/build scaffold exists.
 
-### M01 — Materialize the accepted build governance baseline
+### M01 â€” Materialize the accepted build governance baseline
 
 - **Implementation status:** VERIFIED on 2026-07-14; evidence in `docs/IMPLEMENTATION_M01.md`. This status covers only the M01 allocation of requirements that also continue into later milestones.
 - **Requirements:** GOV-003..011, ARC-001/002/008, OPS-008, QA-001/005/007, CONTENT-001/011, COMPAT-001/009, LICENSE-001..007, READY-001/002/005/006/008/009/012/017/019/020.
@@ -24,7 +24,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** clean empty multi-module build on all compile JDKs; all documentation/licence/provenance/dependency-lock gates pass; every resolved build artifact has exact checksum/licence evidence; runtime/provider matrix is immutable; no functional production path is claimed.
 - **Exit evidence:** five local checksum-locked Temurin builds (8/11/16/17/21) pass the three-POM offline reactor; 10 governance tests and all static, dependency/licence/SBOM, asset, fixture and documentation gates pass; 14 build/CI artifacts are locked; zero `.java`, feature module, product binary or certified Minecraft runtime exists.
 
-### M02 — Public API, domain primitives and extension metadata
+### M02 â€” Public API, domain primitives and extension metadata
 
 - **Implementation status:** VERIFIED on 2026-07-14; evidence in `docs/IMPLEMENTATION_M02.md`. This status covers only M02 allocations of requirements that continue into later milestones.
 - **Requirements:** ARC-003/004/009/010, ECO-002/003, CONTENT-010, DISCORD-001/002/005.
@@ -33,7 +33,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** binary/API contract tests and example metadata pass; no Bukkit/store dependency in domain/API; JavaDoc documents thread/error/version rules.
 - **Exit evidence:** five Java-8-bytecode modules; 24 unit/contract tests; six metadata fixtures; 107-public-class binary baseline; exact Java 8/11/16/17/21 compile matrix; strict JavaDoc; architecture, Checkstyle, SpotBugs, dependency/licence/SBOM and deterministic documentation gates pass. No runtime/gameplay behavior or M03 module exists.
 
-### M03 — Configuration, localization, permissions and validation foundations
+### M03 â€” Configuration, localization, permissions and validation foundations
 
 - **Implementation status:** VERIFIED on 2026-07-15; evidence in `docs/IMPLEMENTATION_M03.md`. This status covers only the M03 allocations of requirements that continue into later milestones.
 - **Requirements:** OPS-001..004, UX-004/005, DISCORD-006/008; M03 schema/configuration portions of ZBW-ADDON-464..473, CONTENT-001..011, COMPAT-001..009 and READY-003/004/010/011/013/014/015/018.
@@ -42,7 +42,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** malformed/unknown/dependency/secret cases tested; every initial option has metadata; reload never partially applies; permission checks are centralized.
 - **Exit evidence:** nine-project reactor and 54 tests pass on checksum-locked Temurin 8/11/16/17/21 while producing Java 8 bytecode; exact 36-file schemas, five configuration fixtures, 33 centralized actions and 183-public-class append-only API baseline validate. Checkstyle and SpotBugs report zero findings; `zbw-config` JaCoCo reaches 95.87% line and 84.43% branch coverage. Dependency/licence/SBOM, JavaDoc, architecture, governance and all three 100%-coverage documentation gates pass. No M04 module or behavior exists.
 
-### M04 — Storage, migrations, outbox and cache foundations
+### M04 â€” Storage, migrations, outbox and cache foundations
 
 - **Implementation status:** VERIFIED on 2026-07-15. Local and certified external evidence is in `docs/IMPLEMENTATION_M04.md`; RC-077 is resolved by PR #5 workflow run `29406777872`. This status covers only M04 allocations and does not start M05.
 - **Requirements:** DEPLOY-007/008, ARC-008, data portions of PROG/STATS/REPLAY/ATLAS.
@@ -51,7 +51,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** container/SQLite contract suites, crash/retry/idempotency/concurrency/migration tests pass; query plans and pool metrics documented; zero SQL in feature/platform classes.
 - **Exit evidence:** eleven-project reactor produces Java 8 bytecode and passes on checksum-locked Temurin 8/11/16/17/21. The local suite passes 79/79 with zero skips. Independent digest-pinned MySQL 8.4.0 and MariaDB 11.4.2 jobs each pass 91/91 reactor tests, including 12/12 mandatory external contracts with zero failures/errors/skips, seven certified JSON query plans and sanitized Hikari evidence. SQLite, Flyway, crash/retry/idempotency/threading/migration/cache/privacy/backup suites pass. `zbw-storage-api` reaches 90.23% line/87.50% branch and `zbw-storage-sql` 91.34% line/72.19% branch; Checkstyle and SpotBugs report zero findings. The exact lock contains 192 non-bundled Maven components/604 files and 15 build/CI artifacts. Dependency/licence/provenance, binary/API, JavaDoc, governance and 100%-coverage documentation gates pass.
 
-### M05 — Scheduler, lifecycle, observability and failure substrate
+### M05 â€” Scheduler, lifecycle, observability and failure substrate
 
 - **Implementation status:** VERIFIED and merged on 2026-07-15. Evidence is in `docs/IMPLEMENTATION_M05.md`. This status covers only M05 and does not start M06.
 - **Requirements:** ARC-005/006, OPS-005/006, GAME-010.
@@ -60,26 +60,26 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** thread guards catch illegal calls; saturation/cancellation/shutdown/fault tests pass; exported diagnostics contain no test secrets.
 - **Exit evidence:** twelve-project Java-8-bytecode reactor; 101/101 deterministic tests with zero skips; application coverage 96.69% line/90.40% branch; observability coverage 98.31% line/85.58% branch; Checkstyle and SpotBugs zero findings; additive 270-class M05 binary baseline; strict JavaDoc; dependency/licence/SBOM/notices and deterministic M00-M05 governance pass. The exact Temurin 8/11/16/17/21 build matrix is enforced by `.github/workflows/m05-toolchain-matrix.yml`.
 
-### M06 — Compatibility and world-provider foundation
+### M06 â€” Compatibility and world-provider foundation
 
 - **Implementation status:** VERIFIED on 2026-07-15. Evidence is in `docs/IMPLEMENTATION_M06.md` and `build/evidence/m06-paper-primary.json`. This status covers only the Paper 1.21.1 build 133 M06 foundation and does not start M07 or complete M22 compatibility.
 - **Requirements:** ARC-002/007; M06 foundations of ARENA-005/006, INT-004/005, INT-010, COMPAT-001..009, CONTENT-009 and READY-001/002/003/006. M06 does not complete the full acceptance of INT-010, COMPAT-001..009 or READY-001/002/006.
 - **Entry:** M01 runtime/toolchain ADRs and immutable dependency policy remain accepted; M02 API/provider contracts, M03 compatibility configuration/validation and M05 scheduler/thread/lifecycle/failure substrate are merged and stable; the exact Paper 1.21.1 build 133 fixture remains checksum/licence approved; the module graph contains no dependency on a later-milestone module; deterministic governance passes. M04 storage is not an M06 runtime dependency.
 - **Deliver:** materialize `zbw-compat-api` and `zbw-world` as Java-8 neutral contracts/orchestration, plus `zbw-compat-v1_20-v1_21` and `zbw-paper-modern` as Java-21 primary-platform artifacts; implement semantic material/item/metadata/sound/particle/text/entity/packet/UI/scheduler capabilities, typed supported/unsupported/fallback/degraded results, primary 1.21.1 mappings, Paper owner-thread dispatch/bootstrap and the native primary world provider. The M06 certification target is only Paper 1.21.1 build 133 and only for the M06 foundation scope.
-- **Exit:** the two neutral modules compile to Java 8 and contain no Bukkit/Paper/NMS/storage/Redis/proxy imports; the two modern modules compile to Java 21; graph/order/cycle checks pass; Paper 1.21.1 bootstrap start/stop and native world load/clone/reset/unload E2E pass; filesystem work is proven off the owner thread and world/entity mutation on it; bounded cancellation/drain uses M05; reusable compatibility/world-provider suites pass for primary, unsupported and fallback paths; binary/API, static, coverage, dependency/licence, documentation and governance gates pass. No 1.8 adapter, translated-client/Bedrock provider, complete 1.20–1.21 family claim, arena CRUD/gameplay or M07+ behavior exists.
+- **Exit:** the two neutral modules compile to Java 8 and contain no Bukkit/Paper/NMS/storage/Redis/proxy imports; the two modern modules compile to Java 21; graph/order/cycle checks pass; Paper 1.21.1 bootstrap start/stop and native world load/clone/reset/unload E2E pass; filesystem work is proven off the owner thread and world/entity mutation on it; bounded cancellation/drain uses M05; reusable compatibility/world-provider suites pass for primary, unsupported and fallback paths; binary/API, static, coverage, dependency/licence, documentation and governance gates pass. No 1.8 adapter, translated-client/Bedrock provider, complete 1.20â€“1.21 family claim, arena CRUD/gameplay or M07+ behavior exists.
 - **Exit evidence:** sixteen-module JDK-21 reactor passes 138 tests with zero skips; Java 8/11/16/17 neutral builds pass 121 tests each and Java 21 builds the neutral plus modern artifacts. Exact class-major 52/65 and append-only M02-M05 API checks pass. Contract suites cover typed capability outcomes/LKG mappings and bounded world load/clone/reset/unload, cancellation, timeout, drain, rollback and leak accounting. The isolated Paper 1.21.1 build 133 run passes all five certification operations, owner/worker affinity, leak-free unload and non-blocking worker shutdown. Quality, dependency/licence/SBOM/notices, JavaDoc, governance and all three 100%-coverage documentation validators pass.
 - **Deferred to M22:** `zbw-compat-v1_8` and every legacy/intermediate adapter and bootstrap, legacy material/NBT/particle/sound/text/entity/packet/GUI/input/scheduler implementations, Via/Geyser/Floodgate paths and full feature certification of every runtime row. M06 primary certification never closes the M22 release gate.
 
-### M07 — Arena, map and setup application lifecycle
+### M07 â€” Arena, map and setup application lifecycle
 
 - **Implementation status:** VERIFIED on 2026-07-15; evidence in `docs/IMPLEMENTATION_M07.md` and `build/evidence/m07-paper-primary.json`. This closes only M07 core/application allocations; M09 presentation, M16 placeholders, M21 optional providers and M22 compatibility completion remain open.
 - **Requirements:** core/application portions of ARENA-001..009 and ZBW-ADDON-408..423. Their final command and GUI presentation portions remain M09; PlaceholderAPI remains M16, optional world providers remain M21 and full legacy/runtime compatibility remains M22.
-- **Entry:** M03–M06 complete; the M07/M09 allocation validator passes; `zbw-arena` has no dependency on an M09 module; M03 authorization/configuration, M04 storage, M05 scheduler/failure and M06 world/primary Paper foundations remain stable.
+- **Entry:** M03â€“M06 complete; the M07/M09 allocation validator passes; `zbw-arena` has no dependency on an M09 module; M03 authorization/configuration, M04 storage, M05 scheduler/failure and M06 world/primary Paper foundations remain stable.
 - **Deliver:** presentation-neutral arena/map definitions, ID registry, repositories and use cases for CRUD/import/export/backup/restore/duplicate, setup sessions and every setup step, validation, two-phase preview/apply, undo/redo, atomic save/rollback, enable gating, lifecycle health/diagnostic views, authorization/audit intents and typed test-harness entry points. No production command or GUI is delivered.
 - **Exit:** duplicate creates a new mapped ID and independent state; rename preserves references; invalid arenas cannot enable; setup and administration use cases are completely exercisable through typed APIs and deterministic harnesses; concurrent reset/recovery, stale-revision, authorization, rollback and primary Paper 1.21.1 lifecycle tests pass; no M08 gameplay or M09 command/UI module is materialized. M07 verification covers only these core/application allocations and does not claim final presentation acceptance.
 - **Exit evidence:** the 15-module neutral reactor passes 158 tests on each of JDK 8/11/16/17; the 17-module JDK-21 reactor passes 175 tests. M07 contributes 37 tests with zero skips, including three real SQLite transactional contracts. Exact Paper 1.21.1 build 133 passes validation, setup undo/redo, archive round trip, all five world operations and leak-free unload. M07 coverage is 95.78% line and 85.09% branch; Checkstyle, SpotBugs, binary/API, dependency/licence/provenance, JavaDoc and deterministic governance gates pass. No M08 or M09 module exists.
 
-### M08 — Game engine, sessions, teams, lobby and primary Paper projections
+### M08 â€” Game engine, sessions, teams, lobby and primary Paper projections
 
 - **Implementation status:** VERIFIED on 2026-07-15; evidence in `docs/IMPLEMENTATION_M08.md` and `build/evidence/m08-paper-primary.json`. This closes only M08 core/application, closed primary Paper and shared-server-foundation allocations; M09/M10/M16/M20/M21/M22 remain open.
 - **Requirements:** core/application and closed primary Paper 1.21.1 portions of GAME-001..003, GAME-006/008/010; ZBW-ADDON-001..009, 108..114, 124..130, 148..154, 334..340, 398..407 and 424..437; shared-server runtime foundation of DEPLOY-001. Final commands, GUIs, editors and confirmation flows remain M09; selectors/modes remain M10, PlaceholderAPI remains M16, proxy delivery remains M20, NPC/hologram providers remain M21 and full legacy/runtime compatibility remains M22.
@@ -88,7 +88,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** transition/property/concurrency/recovery/authorization tests and exact primary Paper E2E cover waiting through reset, reconnect/crash and exactly-once end; player inventory/location/mode/state is always restored; item and projection tests prove no loss, duplication, action leakage or stale viewers; owner-thread and bounded-work rules pass. M08 use cases are completely exercisable through typed APIs and deterministic/test-only Paper harnesses. M08 verification closes only its core/application and primary-projection allocations and does not claim M09, M10, M16, M20, M21 or M22 acceptance; none of the four M09 command/UI modules is materialized.
 - **Exit evidence:** `zbw-game` contributes 41 tests with zero skips and 95.89% line/88.26% branch coverage. The 16-module neutral reactor passes 199 tests on Java 8/11/16/17 and the 18-module Java-21 reactor passes 216; Paper test-JVM-safe coverage is 89.89% line/87.34% branch. Exact checksum-locked Paper 1.21.1 build 133 passes waiting-to-reset, reconnect, exactly-once completion, restoration, native boss-bar/listener cleanup and owner-thread rejection. Java matrix, Checkstyle, SpotBugs, binary/API, dependency/licence/provenance, JavaDoc and deterministic governance gates pass; all four M09 command/UI modules remain unmaterialized.
 
-### M08.1 — Team configurability, arena-to-match assembly and layout matrix
+### M08.1 â€” Team configurability, arena-to-match assembly and layout matrix
 
 - **Implementation status:** VERIFIED on 2026-07-16; evidence in `docs/IMPLEMENTATION_M08_1.md`. This corrective milestone hardens already-delivered M07/M08 foundations and does not start or close any M09 or M10 presentation/mode allocation.
 - **Requirements:** corrective foundational portions of ZBW-GAME-001/002/004, ZBW-ARENA-002/008, ZBW-OPS-001, ZBW-QA-001/002 and overlapping ZBW-ADDON-156/411/419/421. No Requirement ID changes meaning or final owner: M09 still owns unified commands/GUIs and M10 still owns modes, matchmaking and selectors.
@@ -97,7 +97,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** Solo 8x1, Doubles 8x2, 3v3v3v3, 4v4v4v4, 4v4, custom 12x3 and shared-maximum 64x4 layouts assemble and exercise identity, color, capacity, assignment and admission without fixed indexes; a generic lifecycle test covers reconnect, elimination, victory intent, idempotent completion, restoration, reset and recovery; disabled, stale, capacity-inconsistent, group-inconsistent and mode-inconsistent definitions fail closed. Exact typed generator requirements reject substring lookalikes and custom profiles accept arbitrary registered generator types. Java matrix, M07/M08 regressions, Paper certification, quality, binary/API, dependency/licence/SBOM and governance gates pass with zero mandatory skips.
 - **Exit evidence:** `TeamLayoutLimitsTest`, `M081ArenaHardeningTest` and `TeamLayoutMatrixTest`; 217 zero-skip tests on each Java 8/11/16/17 neutral reactor and 234 zero-skip tests on the full Java-21 reactor; M08.1 API-signature and strict-JavaDoc archives; JaCoCo remains above 90% line/85% branch for neutral domain/application modules; the checksum-locked Paper 1.21.1 build 133 certification was rerun successfully and regenerated `build/evidence/m08-paper-primary.json` without changing Paper production source. Checkstyle, SpotBugs, dependency/licence/provenance/SBOM and deterministic governance gates pass. `build/milestone-state.json` records M08.1 as completed hardening while the sequential completed milestone remains M08.
 
-### M09 — Unified command and GUI frameworks
+### M09 â€” Unified command and GUI frameworks
 
 - **Implementation status:** VERIFIED on 2026-07-16; evidence in `docs/IMPLEMENTATION_M09.md`, the generated command/permission inventories and `build/evidence/m09-paper-primary.json`. This closes only M09 presentation allocations; M10 and later milestone behavior remains open.
 - **Requirements:** UX-001..003/006 plus final command, GUI, editor and confirmation presentation portions of ARENA-001..009, GAME-001..003/006/008/010, ZBW-ADDON-001..009/108..114/124..130/148..154/334..340/398..407/424..437 and ZBW-ADDON-408..423.
@@ -106,7 +106,7 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** command/permission inventories and GUI interaction tests pass, including every arena/map/setup/game/lobby/addon/editor/confirmation mapping; command and GUI paths call identical application use cases; async data never blocks the tick thread; no feature policy is implemented in an adapter.
 - **Exit evidence:** four M09 modules preserve Java 8 neutral and Java 21 Paper boundaries; 24 M09 tests pass with zero skips; 87 command actions, 87 granular permissions and 88 parity GUI pages are complete; exact Paper 1.21.1 build 133 certifies command dispatch, inventory rendering, parity, off-owner bounded work and duplicate prevention. Clean matrix, quality, strict JavaDoc, binary/API, dependency/licence/provenance/SBOM, governance, traceability, addon catalogue, documentation and dashboard gates pass.
 
-### M10 — Selectors, matchmaking, mode selection and spectator framework
+### M10 â€” Selectors, matchmaking, mode selection and spectator framework
 
 - **Requirements:** M10 completion portions of ZBW-GAME-004/005/007/009 and ZBW-CONTENT-003; ZBW-ADDON-092..101, 115..123, 131..140 and 155..163; registration/selection portions only of ZBW-ADDON-236..244. M10 implements the shared-server behavior of the non-mode addon rows except the explicitly split M16 PlaceholderAPI, M20 proxy-routing and M22 legacy-compatibility cells.
 - **Entry:** M08/M08.1 game and configurable-layout foundations and M09 unified command/GUI frameworks are complete; the deterministic pre-implementation governance, traceability, catalogue and dashboard gates pass.
@@ -114,36 +114,36 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Exit:** selector, queue, reservation, party, spectator, Compass and Team Selector matrices pass for standard and custom layouts, concurrency, rejoin/disconnect, cleanup and exact Paper 1.21.1 projection. Mode registration/configuration/event contracts and deferred bindings are independently validated. All named-mode gameplay mechanics, including Swappage, and mode-specific shop/generator/upgrade/balance behavior remain M11; statistics remain M15; PlaceholderAPI remains M16; proxy-wide routing remains M20; legacy compatibility remains M22. No later-milestone mechanic may be reported complete from framework registration alone.
 - **Evidence:** `docs/IMPLEMENTATION_M10.md`, M10 framework/API guides, generated 115-action command and permission inventories, API/JavaDoc baselines, quality reports and exact Paper primary-runtime evidence. M11 remains unstarted.
 
-### M11 — Shop, item, generator and upgrade platform
+### M11 â€” Shop, item, generator and upgrade platform
 
 - **Requirements:** M11 mechanics/component portions of GAME-004/005 and READY-004/015; SHOP-001..007; CONTENT-002/003; completion portions of ZBW-ADDON-236..244; ZBW-ADDON-010..025, 061..070, 141..147, 184..201, 300..322, 341..349, 363..368, 379..397, 438..452. M11 closes only the allocations stated below; final requirement completion waits for every retained later cell.
 - **Entry:** M08 event engine, M09 command/UI frameworks and M10 mode SPI are complete; RC-086 governance reconciliation passes the module-graph, traceability, catalogue, dashboard and coverage validators with M11 still not active.
 - **Implementation status:** VERIFIED and completed on 2026-07-19. PR #18 was squash-merged to `main` as `3e68835c361216e6dc8be37b9e024734bb565884`; its mandatory remote Java, governance, API, database and Paper 1.21.1 certification jobs completed successfully. The earlier `M11.1-MERGE-EXCEPTION-001` remains an accurate record of the temporary runner outage and local 346-test/36-governance-test evidence, but is superseded for closure by the successful immutable-commit remote evidence. M12 is next planned and inactive.
 - **Deliver:** Java-8-neutral `zbw-shop`, `zbw-content`, `zbw-scripting-api` and `zbw-scripting-engine`; catalog/purchase/quoted-tender services; Quick Buy; match-local iron/gold/diamond/emerald/custom/multiple tenders; generators; team upgrades/forge/traps; all named-mode gameplay mechanics including Swappage; original shop/mode profiles; all original utility items; and the disabled-by-default declarative action sandbox. Feature commands, permissions and GUIs extend the existing M09 frameworks. Paper code performs primary-runtime translation only and contains no feature policy.
-- **Retained ownership:** M12 owns persistent progression/virtual-currency ledgers and providers; M15 owns all mode/addon statistics; M16 owns every PlaceholderAPI cell; M19 owns Redis coordination and M20 proxy/server distribution, including the distributed portion of ZBW-ADDON-387; M21 owns Vault plus concrete NPC/hologram/shopkeeper providers; M22 owns legacy adapters, fallbacks and full 1.8–1.21.x certification. M11 may publish typed ports/events/state for those consumers but may not implement them.
+- **Retained ownership:** M12 owns persistent progression/virtual-currency ledgers and providers; M15 owns all mode/addon statistics; M16 owns every PlaceholderAPI cell; M19 owns Redis coordination and M20 proxy/server distribution, including the distributed portion of ZBW-ADDON-387; M21 owns Vault plus concrete NPC/hologram/shopkeeper providers; M22 owns legacy adapters, fallbacks and full 1.8â€“1.21.x certification. M11 may publish typed ports/events/state for those consumers but may not implement them.
 - **Mode boundary:** M10 registration/selection and deferred bindings remain authoritative. M11 supplies named-mode mechanics and configured component/balance packs without recreating M08 lifecycle or M10 selection. The GAME-004 `Adventure` mode binding/profile is distinct from the M08/M09 `AdventureMode` player-state-transition addon ZBW-ADDON-432..437, whose allocation is unchanged.
 - **Exit:** item/purchase/generator/upgrade/mode matrices, atomicity/exploit, persistence/rejoin and high-GUI-load tests pass; scripts/actions meet the accepted sandbox policy; feature-specific admin/API/config/M09-presentation and primary Paper 1.21.1 surfaces are complete. M11 exit evidence explicitly leaves M12/M15/M16/M19/M20/M21/M22 cells open and cannot claim complete statistics, placeholders, distributed delivery, external providers or legacy compatibility.
 
-### M12 — Progression transaction core
+### M12 â€” Progression transaction core
 
 - **Requirements:** PROG-001..005, PROG-011; ZBW-ADDON-174..183, 210..216, 245..251, 266..282.
 - **Entry:** M04 outbox, M08 events and the completed M11 quoted-tender/match-resource contracts are stable; RC-087 is resolved; M12 is now active and all predecessor gates are satisfied.
-- **Phase 1–5 status:** VERIFIED and completed on 2026-07-21. Phases 1–4 were completed in commits
+- **Phase 1â€“5 status:** VERIFIED and completed on 2026-07-21. Phases 1â€“4 were completed in commits
   `8aa3c879cf0d1dd060ea143de87a0cc01950467c`, `7569ddd364801de49e5053ac7980fe197de0ec01`,
   `f591ec3f3c0f34c95cd4235e2222459a163731c8` and `c2f139c`; Phase 5 performs final closure and certification.
 - **Deliver:** event projection, XP/level/prestige, persistent/virtual currencies, immutable transaction ledger and unified transactional reward engine with offline/cross-server-ready delivery contracts. M09 player/admin commands, M09 GUI presentation and Java 21 owner-thread Paper projections are complete. M15 retains statistics, M16 PlaceholderAPI, M17 replay, M18 Atlas, M19/M20 distributed/proxy transports, M21 Vault/NPC/hologram providers and M22 legacy compatibility.
 - **Exit:** duplicate/retry/crash tests cannot double award; formula/migration/admin/audit/recovery tests pass; reward summary has complete presentation adapters; M11 settlement integration and M11.1 command/GUI ownership are confirmed; full M12 exit evidence is recorded in phase-5 documentation.
 
-### M13 — Objectives, quests, achievements and battle pass
+### M13 â€” Objectives, quests, achievements and battle pass
 
 - **Implementation status:** VERIFIED and completed on 2026-07-22. Phase checkpoints are `162b62cdfe64d0f9979d19cb78fe7057154c9529`, `8915963f47907dfd27903040381fa60d9eca174f` and `2b22e83bb22102719003c2cd1485165b4a21958f`; final evidence is recorded in `docs/IMPLEMENTATION_M13_PHASE1.md`, `docs/IMPLEMENTATION_M13_PHASE2.md` and `docs/IMPLEMENTATION_M13_PHASE3.md`. This closes only M13 ownership.
 - **Requirements:** PROG-009/010/012/013; CONTENT-004..006; ZBW-ADDON-081..091.
 - **Entry:** M12 reward/progression core and M09 UI ready.
-- **Phase 1–3 status:** complete. Java 8 neutral definitions/catalogue, deterministic objective execution, quest/achievement/challenge/pass runtime, M08/M11/M12 event adaptation, M12 reward intents, M04-backed SQL state/recovery and M09 command/GUI plus Java 21 Paper presentation are implemented and validated.
+- **Phase 1â€“3 status:** complete. Java 8 neutral definitions/catalogue, deterministic objective execution, quest/achievement/challenge/pass runtime, M08/M11/M12 event adaptation, M12 reward intents, M04-backed SQL state/recovery and M09 command/GUI plus Java 21 Paper presentation are implemented and validated.
 - **Deliver:** reusable objective engine, every listed objective/scope, quest/achievement/challenge/pass definitions and editors.
 - **Exit:** satisfied by objective/reward catalogue, lifecycle, duplicate/restart/recovery, claims/chains, permission/audit/confirmation, GUI stale-state, Paper owner-thread, Java 8/21 reactor, quality, API, governance and SBOM/licence evidence. No objective logic is duplicated in Paper.
 
-### M14 — Cosmetics, profiles and calendar rewards
+### M14 â€” Cosmetics, profiles and calendar rewards
 
 - **Milestone status:** VERIFIED and completed; Phase 1 foundation and the runtime/presentation implementation are recorded in `docs/IMPLEMENTATION_M14_PHASE1.md`, `docs/API_M14_PHASE1.md`, `docs/IMPLEMENTATION_M14_COMPLETE.md` and `docs/API_M14_COMPLETE.md`. M15 is the next milestone and no later milestone is currently active.
 - **Requirements:** PROG-006..008/014; CONTENT-007/009/011; ZBW-ADDON-026..040, 369..378.
@@ -152,74 +152,74 @@ The master prompt's sequential “documentation/testing near the end” list is 
 - **Phase 1 boundary:** typed cosmetic/profile/calendar models, M12 reward/entitlement and M13 unlock references, validation/configuration contracts and caller-owned M12 storage ports only. Concrete persistence, runtime effects, content batches and M09 presentation remain later M14 phases.
 - **Exit:** catalog count/license scan, ownership/expiry/preset/migration and rate-limit load tests pass; low-performance/emergency controls meet budgets.
 
-### M15 — Statistics, ratios, streaks and leaderboards
+### M15 â€” Statistics, ratios, streaks and leaderboards
 
 - **Requirements:** STATS-001..008; ZBW-ADDON-217..225, 260..265, 350..356.
 - **Entry:** M08 event schema and M12 projection/idempotency patterns stable.
 - **Deliver:** authoritative projections, all dimensions/ratios/streaks, administration and cached ranking engine, including every isolated-statistics cell retained from M11 named modes and addon mappings.
-- **Exit:** duplicate/private/test separation, ratio/tie/reset/repair/migration and large-data ranking tests pass; no full-table query per request.
-- **Phase 1 (in progress):** materialize the Java-8-neutral `zbw-statistics` module and only its immutable statistic models, existing-event adaptation contracts, transaction-bound projection/idempotency/rebuild ports, JDBC-free repositories and deterministic leaderboard contracts. SQL, Paper presentation, commands, GUI, PlaceholderAPI, web, Redis/distributed ranking and external providers remain out of phase.
+- **Exit:** duplicate/private/test separation, ratio/tie/reset/repair/migration and large-data ranking tests are implemented; replay-safe rebuild/restart projections, leaderboard tie ordering/pagination and stale-view protection are in place; no full-table query per request.
+- **Phase status:** VERIFIED and completed in checkpoints `965291c`, `9758c71`, `51af49b`, `0cee0b3`, `badd504`, `586797f` with full M15 scope (foundation, persistence adapters, event adapters, leaderboards and final M15 closure validation evidence).
 
-### M16 — PlaceholderAPI and external statistics surfaces
+### M16 â€” PlaceholderAPI and external statistics surfaces
 
 - **Requirements:** PAPI-001..006, OPS-007, DISCORD-001..008; ZBW-ADDON-071..080, 202..209, 357..362, 453..463.
-- **Entry:** M12–M15 visible data contracts stable; M05 metrics ready.
+- **Entry:** M12â€“M15 visible data contracts stable; M05 metrics ready.
 - **Deliver:** native expansion, dynamic contexts/families/formatters/admin tools/docs generator and secured external/Discord provider APIs, including all shop, generator, upgrade, item and named-mode placeholder cells exposed by M11 state contracts.
 - **Exit:** placeholder inventory/context/offline/fallback/cache/parser tests pass; zero sync I/O and p95 budget verified; privacy/scope/rate tests pass.
 
-### M17 — Replay recording, storage and viewer
+### M17 â€” Replay recording, storage and viewer
 
 - **Requirements:** REPLAY-001..010.
 - **Entry:** M08 canonical events, M05 queues, M04 metadata storage, replay ADR accepted.
 - **Deliver:** capture/codec/manifest/store/retention/recovery/privacy, playback scene/rendering, timeline/telemetry/staff evidence and all surfaces.
 - **Exit:** golden timing/order, interruption/corruption/repair/hold/privacy/provider failure and performance tests pass; evidence degradation policy demonstrated.
 
-### M18 — Atlas case and review platform
+### M18 â€” Atlas case and review platform
 
 - **Requirements:** ATLAS-001..013; ZBW-ADDON-323..333 controlled staff tooling.
 - **Entry:** M12 rewards, M14 profile, M15 stats and M17 replay complete; moderation/privacy ADRs accepted.
 - **Deliver:** cases/anonymization/reservation/verdict/reputation/accuracy/anti-abuse/rewards/staff policy and all Atlas surfaces.
 - **Exit:** eligibility/bypass/conflict/anonymization/reservation/abuse/reward/override tests pass; no default community permanent punishment; gameplay budgets hold.
 
-### M19 — Redis and distributed consistency
+### M19 â€” Redis and distributed consistency
 
 - **Requirements:** DEPLOY-006/008/009.
 - **Entry:** M04 outbox, M12/15/17/18 durable semantics complete; Redis ADR accepted.
 - **Deliver:** versioned keys/messages, invalidation/streams/locks/fencing/leader election, health/circuit/degradation, including coordination for the active item-rotation state defined locally by M11 under ZBW-ADDON-387.
 - **Exit:** partition/reconnect/duplicate/order/rolling-schema/lock-expiry load tests pass; no split-brain finalization and no unbounded polling.
 
-### M20 — Proxy networking and scalable deployment
+### M20 â€” Proxy networking and scalable deployment
 
 - **Requirements:** DEPLOY-002..004, distributed portions of GAME/PROG/STATS/REPLAY/ATLAS/INT-009; CONTENT-008; ZBW-ADDON-041..060, 102..107, 164..173, 252..259, 291..299, 464..473.
 - **Entry:** M19 complete and M10 routing contracts stable.
 - **Deliver:** Velocity and Bungee adapters, backend registry/reservations/transfers/failover/drain and cross-server user flows, including proxy/server distribution of the M11 item-rotation state after M19 coordination is available.
 - **Exit:** provider-equivalence and signed-message security tests pass; crash/retry/fallback/duplicate player and cross-server queue/party/rejoin/play-again E2E pass.
 
-### M21 — CloudNet, parties and remaining providers
+### M21 â€” CloudNet, parties and remaining providers
 
 - **Requirements:** DEPLOY-005, INT-001..003/006..009; ZBW-ADDON-226..235.
 - **Entry:** M20 scalable routing and relevant feature APIs stable.
 - **Deliver:** CloudNet scaling; native/external parties; Placeholder/Vault/LuckPerms/NPC/hologram/Grim/Vulcan adapters and dashboards. Vault tender, shopkeeper/NPC and generator-hologram providers consume M11 ports and remain M21 implementations.
 - **Exit:** every pinned supported provider passes shared contract/failure/version tests; both anticheats can run together without duplicate cases; scale/drain/crash replacement works.
 
-### M22 — Full 1.8–1.21.x and Bedrock compatibility matrix
+### M22 â€” Full 1.8â€“1.21.x and Bedrock compatibility matrix
 
 - **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance, including every legacy/fallback cell retained from M11 shop, item, generator and named-mode mappings. M06 foundations remain explicit and are not reclassified as full completion.
 - **Entry:** M06 compatibility/world-provider contracts and primary 1.21.1 foundation certification pass; all feature semantics and their required fallback rows/fixtures are stable; exact legacy/private and maintained runtime fixtures are lawfully acquired and hash-locked.
 - **Deliver:** `zbw-compat-v1_8`, all other legacy/intermediate compatibility modules, matching Java 8/11/16/17 Paper bootstraps, complete legacy mappings/fallbacks, extensions to the modern adapter for every declared modern row, ViaVersion/ViaBackwards/ViaRewind integration and Geyser/Floodgate alternatives.
-- **Exit:** every declared 1.8.8–1.21.11 server row, including release-level revalidation of the M06 primary row, passes its required build/startup/lifecycle/gameplay/GUI/item/packet/replay/provider/fallback suite on the exact JDK/fixture; translated Java and Bedrock matrices pass independently; no unsupported platform type is exposed; limitations are explicit and only owner-approved alternatives are accepted. Full 1.8–1.21.x certification remains a release gate.
+- **Exit:** every declared 1.8.8â€“1.21.11 server row, including release-level revalidation of the M06 primary row, passes its required build/startup/lifecycle/gameplay/GUI/item/packet/replay/provider/fallback suite on the exact JDK/fixture; translated Java and Bedrock matrices pass independently; no unsupported platform type is exposed; limitations are explicit and only owner-approved alternatives are accepted. Full 1.8â€“1.21.x certification remains a release gate.
 
-### M23 — Migration, ecosystem and operational completion
+### M23 â€” Migration, ecosystem and operational completion
 
 - **Requirements:** ECO-001..005, OPS-006/009; ZBW-ADDON-283..290.
 - **Entry:** Feature schemas/APIs stable; source formats legally documented.
 - **Deliver:** migration assistants, SDK/example, marketplace metadata, extensible doctor, complete operator/developer guides.
 - **Exit:** dry-run/backup/map/duplicate/rollback reports pass on fixtures; sample extension uses public API only; all required docs/reference inventories are complete.
 
-### M24 — Security, performance and release qualification
+### M24 â€” Security, performance and release qualification
 
 - **Requirements:** QA-001..007, GOV-007/011, OPS-008, CONTENT-001/011, LICENSE-001..007, READY-001..020 and final acceptance of all 672 semantic IDs and atomic children.
-- **Entry:** M01–M23 complete with no mandatory open implementation work.
+- **Entry:** M01â€“M23 complete with no mandatory open implementation work.
 - **Deliver:** threat/privacy/license review, compatibility report, full benchmark/security report, recovery exercise, reproducible artifacts, final compliance report and release notes.
 - **Exit:** clean release CI; all budgets/matrices pass; vulnerability exceptions are approved; every one of 199 Part I IDs, 473 addon IDs and every `MP-L####` child has an allowed final status and evidence; dependency/asset SBOM, notices and fallback matrices match artifacts; atomic functional coverage remains 100%; no unresolved mandatory requirement.
 
@@ -249,7 +249,7 @@ The authoritative row-level allocation is the `Milestone` column of `docs/ADDON_
 | Decision | Stable IDs | Foundation milestone | Feature milestone | Final evidence |
 |---|---|---|---|---|
 | RC-072 RESOURCE SCARCITY | `ZBW-ADDON-464..473`, CONTENT-008 | M02/M03 generator/modifier/config contracts | M20 Private Games | Host GUI/permission/API/custom-generator E2E |
-| RC-073 original content/provenance | CONTENT-001..011 | M01 provenance gate; M02/M03 content registry | M10–M14 and M20 by catalogue family | M24 asset/content/SBOM scan |
+| RC-073 original content/provenance | CONTENT-001..011 | M01 provenance gate; M02/M03 content registry | M10â€“M14 and M20 by catalogue family | M24 asset/content/SBOM scan |
 | RC-074 Discord providers | DISCORD-001..008 | M02 API/SPI, M03 secrets/default, M05 failure substrate | M16 | No-provider/outage/security/protocol tests |
 | RC-075 1.8 fallbacks | COMPAT-001..009 | M01 toolchain matrix; M06 neutral contract, primary mappings and Paper 1.21.1 foundation only | M22 legacy adapters, complete fallbacks and full matrix | Every fallback row/fixture passes; M06 makes no 1.8 claim |
 | RC-076 dependency licensing | LICENSE-001..007 | M01 exact artifact approvals before Java | Continuous dependency changes | M24 reproducible notices/SBOM/artifact audit |
@@ -260,7 +260,7 @@ Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-R
 
 | Decisions | Stable IDs | Foundation milestone | Dependent feature milestones | Final evidence |
 |---|---|---|---|---|
-| RC-003/004/022 runtime matrix | READY-001/002/006 | M01 artifacts/toolchains/fixtures | M06 Paper 1.21.1 foundation only; M22 all full runtime/client rows | Per-row boot/game/fallback evidence; full 1.8–1.21.x release gate remains M22 |
+| RC-003/004/022 runtime matrix | READY-001/002/006 | M01 artifacts/toolchains/fixtures | M06 Paper 1.21.1 foundation only; M22 all full runtime/client rows | Per-row boot/game/fallback evidence; full 1.8â€“1.21.x release gate remains M22 |
 | RC-021/024/027 dependencies/providers | READY-005/007/008 | M01 immutable lock and module stack | M02 provider SPIs; M21 integrations | Reproducible SBOM/licence/provider CT |
 | RC-018 scripting | READY-004 | M02 capability API; M03 schema/auth; M05 bounded workers | M11 items/shop custom logic; M23 SDK | Escape/fuzz/budget/no-main-thread ST |
 | RC-029/062 performance/quality | READY-009/017 | M01 harness/gates | Every milestone supplies evidence | M24 three-profile benchmark and all quality gates |
@@ -274,6 +274,6 @@ Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-R
 
 ## Critical dependency chain
 
-`M00 → M01 → M02 → (M03, M05) → M04/M06 → M07 → M08 → M09/M10 → M11/M12 → M13–M16 → M17 → M18 → M19 → M20 → M21/M22 → M23 → M24`.
+`M00 â†’ M01 â†’ M02 â†’ (M03, M05) â†’ M04/M06 â†’ M07 â†’ M08 â†’ M09/M10 â†’ M11/M12 â†’ M13â€“M16 â†’ M17 â†’ M18 â†’ M19 â†’ M20 â†’ M21/M22 â†’ M23 â†’ M24`.
 
 Parallel work is allowed only where this graph and module boundaries show no unmet data/API dependency.
