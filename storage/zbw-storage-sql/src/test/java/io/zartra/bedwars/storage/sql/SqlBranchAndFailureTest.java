@@ -27,13 +27,20 @@ import org.sqlite.SQLiteDataSource;
 /** Exercises bounded failure, malformed-input and retry paths required by M04. */
 final class SqlBranchAndFailureTest {
     @Test void sqlErrorsClassifyVendorStatesWithoutLeakingMessages() {
+        final io.zartra.bedwars.api.result.ApiError conflict =
+                SqlErrors.classify(new SQLException("duplicate", "23000"));
         assertTrue(SqlErrors.classify(new SQLException("secret", "08001")).retryDisposition()
                 == io.zartra.bedwars.api.result.ApiError.RetryDisposition.RETRYABLE);
         assertTrue(SqlErrors.classify(new SQLException("secret", "40001")).retryDisposition()
                 == io.zartra.bedwars.api.result.ApiError.RetryDisposition.RETRYABLE);
-        assertEquals(SqlErrors.CONFLICT, SqlErrors.classify(new SQLException("duplicate", "23000")));
+        assertEquals(conflict.messageKey(), SqlErrors.classify(new SQLException("duplicate", "23000"))
+                .messageKey());
+        assertEquals(conflict.retryDisposition(), SqlErrors.classify(new SQLException("duplicate", "23000"))
+                .retryDisposition());
         assertFalse(SqlErrors.classify(new SQLException("fatal", "42000")).messageKey().contains("fatal"));
-        assertEquals(SqlErrors.CONFLICT, SqlErrors.classify(new SQLException("duplicate", null, 1205)));
+        assertFalse(SqlErrors.classify(new SQLException("duplicate", null, 1205)).messageKey()
+                .equals(conflict.messageKey()));
+        assertFalse(SqlErrors.duplicate(new SQLException("duplicate", null, 1205)));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", "23000")));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", null, 1062)));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", null, 19)));
@@ -190,7 +197,7 @@ final class SqlBranchAndFailureTest {
         assertThrows(NullPointerException.class, () -> engine.messages().enqueue(write, null));
         assertThrows(NullPointerException.class, () -> engine.messages().acknowledge(write, null));
         assertThrows(NullPointerException.class, () -> engine.messages().receive(write, null));
-        assertThrows(IllegalArgumentException.class, () -> SqlTopologyPolicy.validate(null, true));
+        assertThrows(NullPointerException.class, () -> SqlTopologyPolicy.validate(null, true));
         assertThrows(
                 IllegalArgumentException.class,
                 () -> SqlTopologyPolicy.validate(

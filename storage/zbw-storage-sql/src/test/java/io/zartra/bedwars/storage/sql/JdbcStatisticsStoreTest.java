@@ -125,7 +125,7 @@ final class JdbcStatisticsStoreTest {
             }
 
             try (UnitOfWork unit = write(engine)) {
-                assertThrows(NullPointerException.class,
+                assertThrows(IllegalArgumentException.class,
                         () -> store.find(null, PLAYER, WINS, SCOPE));
                 assertThrows(NullPointerException.class,
                         () -> store.find(unit, null, WINS, SCOPE));
