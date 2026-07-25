@@ -35,6 +35,7 @@
     <module>shop/zbw-shop</module>
     <module>content/zbw-content</module>
     <module>progression/zbw-progression</module>
+    <module>statistics/zbw-statistics</module>
   </modules>
 
   <properties>

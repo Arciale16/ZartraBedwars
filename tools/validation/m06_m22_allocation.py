@@ -28,9 +28,19 @@ def read(relative: str) -> str:
     return (ROOT / relative).read_text(encoding="utf-8")
 
 
+def _normalize(text: str) -> str:
+    """Normalize mojibake/UTF-8 variant punctuation for stable checks."""
+    return (
+        text
+        .replace("â€“", "–")
+        .replace("â€”", "—")
+        .replace("â†’", "→")
+    )
+
+
 def require(text: str, token: str, location: str, errors: list[str]) -> None:
     """Record a missing normative assertion."""
-    if token not in text:
+    if _normalize(token) not in _normalize(text):
         errors.append(f"{location}: missing allocation assertion: {token}")
 
 

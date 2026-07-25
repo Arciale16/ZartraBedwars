@@ -31,6 +31,10 @@ M14_REQUIREMENTS = {
     "ZBW-PROG-006", "ZBW-PROG-007", "ZBW-PROG-008", "ZBW-PROG-014",
     "ZBW-CONTENT-007", "ZBW-CONTENT-009", "ZBW-CONTENT-011",
 }
+M15_REQUIREMENTS = {
+    "ZBW-STATS-001", "ZBW-STATS-002", "ZBW-STATS-003", "ZBW-STATS-004",
+    "ZBW-STATS-005", "ZBW-STATS-006", "ZBW-STATS-007", "ZBW-STATS-008",
+}
 
 
 def cells(line: str) -> list[str]:
@@ -113,6 +117,10 @@ def m14_requirement(identifier: str) -> bool:
     return bool(match and int(match.group(1)) in M14_ADDONS)
 
 
+def m15_requirement(identifier: str) -> bool:
+    return identifier in M15_REQUIREMENTS
+
+
 def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in {"ZBW-UX-001", "ZBW-UX-002", "ZBW-UX-003", "ZBW-UX-006"}:
         return "VERIFIED", "M09 implementation, tests, documentation and Paper evidence complete"
@@ -130,6 +138,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "VERIFIED", "M13 objectives, runtime, persistence and primary presentation are complete; later owners remain explicit"
     if m14_requirement(identifier):
         return "PARTIAL", "M14 Phase 1 neutral models, validation and storage/service ports implemented; runtime/content/presentation remain"
+    if m15_requirement(identifier):
+        return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"

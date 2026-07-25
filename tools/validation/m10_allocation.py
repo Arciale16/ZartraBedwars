@@ -11,10 +11,20 @@ import re
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _normalize(text: str) -> str:
+    """Normalize mojibake/UTF-8 variant punctuation for stable checks."""
+    return (
+        text
+        .replace("â€“", "–")
+        .replace("â€”", "—")
+        .replace("â†’", "→")
+    )
+
+
 def _require(path: str, assertions: tuple[str, ...], errors: list[str]) -> None:
-    text = (ROOT / path).read_text(encoding="utf-8")
+    text = _normalize((ROOT / path).read_text(encoding="utf-8"))
     for assertion in assertions:
-        if assertion not in text:
+        if _normalize(assertion) not in text:
             errors.append(f"{path} lacks reconciled M10 assertion: {assertion}")
 
 

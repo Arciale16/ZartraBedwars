@@ -8,12 +8,20 @@ ROOT = Path(__file__).resolve().parents[2]
 NEUTRAL_MODULES = api_docs.NEUTRAL_MODULES + ("arena/zbw-arena", "game/zbw-game", "command/zbw-command-api", "ui/zbw-ui-api")
 MODERN_MODULES = api_docs.MODERN_MODULES + ("command/zbw-command-paper", "ui/zbw-ui-paper", "platform/paper/zbw-paper-modern")
 CURRENT_CLASSPATH_MODULES = NEUTRAL_MODULES + (
-    "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content")
+    "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content",
+    "progression/zbw-progression")
 
 def main() -> int:
     neutral = api_docs.sources(NEUTRAL_MODULES)
-    result = api_docs.generate(api_docs.executable("8", "1.8.0_442"), "8", neutral,
-            ROOT / "target/apidocs-m10-neutral", [ROOT / ".m2/repository/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar", ROOT / ".m2/repository/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar"])
+    result = api_docs.generate(
+        api_docs.executable("8", "1.8.0_442"),
+        "8",
+        neutral,
+        ROOT / "target/apidocs-m10-neutral",
+        [ROOT / ".m2/repository/com/zaxxer/HikariCP/4.0.3/HikariCP-4.0.3.jar",
+         ROOT / ".m2/repository/com/github/ben-manes/caffeine/caffeine/2.9.3/caffeine-2.9.3.jar",
+         *api_docs.artifacts(CURRENT_CLASSPATH_MODULES)],
+    )
     if result:
         return result
     api_docs.archive(ROOT / "target/apidocs-m10-neutral", ROOT / "target/zartrabedwars-m10-neutral-javadoc.zip")

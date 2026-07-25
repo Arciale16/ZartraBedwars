@@ -27,12 +27,20 @@ import org.sqlite.SQLiteDataSource;
 /** Exercises bounded failure, malformed-input and retry paths required by M04. */
 final class SqlBranchAndFailureTest {
     @Test void sqlErrorsClassifyVendorStatesWithoutLeakingMessages() {
+        final io.zartra.bedwars.api.result.ApiError conflict =
+                SqlErrors.classify(new SQLException("duplicate", "23000"));
         assertTrue(SqlErrors.classify(new SQLException("secret", "08001")).retryDisposition()
                 == io.zartra.bedwars.api.result.ApiError.RetryDisposition.RETRYABLE);
         assertTrue(SqlErrors.classify(new SQLException("secret", "40001")).retryDisposition()
                 == io.zartra.bedwars.api.result.ApiError.RetryDisposition.RETRYABLE);
-        assertEquals(SqlErrors.CONFLICT, SqlErrors.classify(new SQLException("duplicate", "23000")));
+        assertEquals(conflict.messageKey(), SqlErrors.classify(new SQLException("duplicate", "23000"))
+                .messageKey());
+        assertEquals(conflict.retryDisposition(), SqlErrors.classify(new SQLException("duplicate", "23000"))
+                .retryDisposition());
         assertFalse(SqlErrors.classify(new SQLException("fatal", "42000")).messageKey().contains("fatal"));
+        assertFalse(SqlErrors.classify(new SQLException("duplicate", null, 1205)).messageKey()
+                .equals(conflict.messageKey()));
+        assertFalse(SqlErrors.duplicate(new SQLException("duplicate", null, 1205)));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", "23000")));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", null, 1062)));
         assertTrue(SqlErrors.duplicate(new SQLException("duplicate", null, 19)));
@@ -89,7 +97,8 @@ final class SqlBranchAndFailureTest {
                 null, Duration.ofSeconds(1)));
 
         final CaffeineVersionedCache cache = new CaffeineVersionedCache(1);
-        assertThrows(NullPointerException.class, () -> cache.get(null, RecordRevision.initial()));
+        assertThrows(NullPointerException.class,
+                () -> cache.get(null, RecordRevision.initial()));
         assertThrows(NullPointerException.class, () -> cache.invalidate(null));
         assertThrows(IllegalArgumentException.class, () -> cache.put(record("x"),
                 Duration.ofSeconds(Long.MAX_VALUE)));
@@ -103,7 +112,8 @@ final class SqlBranchAndFailureTest {
             sqlite.migrate(connection).requireValue();
             connection.commit();
             connection.createStatement().executeUpdate(
-                    "UPDATE zbw_schema_history SET checksum = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'");
+                    "UPDATE zbw_schema_history SET checksum = "
+                            + "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'");
             assertTrue(sqlite.migrate(connection).isFailure());
         }
         assertTrue(new SchemaMigrator(EngineKind.MYSQL, 1).plan().requiresBackup());
@@ -113,6 +123,23 @@ final class SqlBranchAndFailureTest {
         assertFalse(report.alreadyCurrent());
         assertThrows(IllegalArgumentException.class,
                 () -> SchemaMigrator.MigrationReport.of(1, 2, false));
+    }
+
+    @Test void statisticsSchemaMigrationDetectsChecksumDrift() throws Exception {
+        final JdbcStorageEngine engine = memoryEngine();
+        try (UnitOfWork unit = engine.begin(TransactionOptions.of(
+                TransactionOptions.AccessMode.READ_WRITE, Duration.ofSeconds(1), 0)).requireValue()) {
+            final JdbcUnitOfWork jdbc = (JdbcUnitOfWork) unit;
+            final StatisticsSchemaMigrator migrator = new StatisticsSchemaMigrator(5);
+            migrator.migrate(jdbc.connection()).requireValue();
+            jdbc.connection().createStatement().executeUpdate(
+                    "UPDATE zbw_schema_history SET "
+                            + "checksum='cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc' "
+                            + "WHERE version = 15");
+            assertTrue(migrator.migrate(jdbc.connection()).isFailure());
+            unit.rollback().requireValue();
+        }
+        engine.close();
     }
 
     @Test void flywayBridgeRunsApprovedClasspathMigration(final @TempDir Path temporary) throws Exception {
@@ -170,6 +197,12 @@ final class SqlBranchAndFailureTest {
         assertThrows(NullPointerException.class, () -> engine.messages().enqueue(write, null));
         assertThrows(NullPointerException.class, () -> engine.messages().acknowledge(write, null));
         assertThrows(NullPointerException.class, () -> engine.messages().receive(write, null));
+        assertThrows(NullPointerException.class, () -> SqlTopologyPolicy.validate(null, true));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> SqlTopologyPolicy.validate(
+                        io.zartra.bedwars.storage.api.StorageEngine.EngineKind.SQLITE,
+                        true));
         write.rollback();
         engine.close();
     }
