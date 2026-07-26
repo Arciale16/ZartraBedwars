@@ -64,6 +64,7 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `javax.xml.bind:jaxb-api:2.3.1` | CDDL-1.1; GPL-2.0-only WITH Classpath-exception-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `jaxen:jaxen:2.0.0` | BSD-2-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `junit:junit:4.13.2` | EPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `me.clip:placeholderapi:2.12.2` | GPL-3.0-only | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna-platform:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.java.dev.jna:jna:5.13.0` | LGPL-2.1-or-later; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.kyori:adventure-api:4.17.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |

@@ -1,81 +1,667 @@
 {
-  "schema_version": 1,
-  "policy": {
-    "functional_modules_materialized_in_m01": 0,
-    "platform_imports_forbidden_in": ["api", "domain", "application", "config"],
-    "cycles_allowed": false,
-    "unlisted_module_dependencies_allowed": false,
-    "later_milestone_dependencies_allowed": false
-  },
-  "materialized_build_modules": [
-    {"id": "zartrabedwars-parent", "path": "pom.xml", "packaging": "pom", "responsibility": "reactor and approved plugin version governance"},
-    {"id": "zbw-bom", "path": "build/zbw-bom/pom.xml", "packaging": "pom", "responsibility": "approved exact dependency selections"},
-    {"id": "zbw-build-tools", "path": "build/zbw-build-tools/pom.xml", "packaging": "pom", "responsibility": "deterministic build-governance descriptor"},
-    {"id": "zbw-api", "path": "api/zbw-api/pom.xml", "packaging": "jar", "responsibility": "versioned public contracts and platform-neutral primitives"},
-    {"id": "zbw-domain", "path": "domain/zbw-domain/pom.xml", "packaging": "jar", "responsibility": "platform-neutral generator and private-game domain contracts"},
-    {"id": "zbw-application", "path": "application/zbw-application/pom.xml", "packaging": "jar", "responsibility": "immutable content and provider capability policies"},
-    {"id": "zbw-config", "path": "configuration/zbw-config/pom.xml", "packaging": "jar", "responsibility": "typed configuration, migration, reload, localization, authorization, secret and validation foundations"},
-    {"id": "zbw-observability", "path": "observability/zbw-observability/pom.xml", "packaging": "jar", "responsibility": "bounded health, metrics, diagnostics and Plugin Doctor runtime substrate"},
-    {"id": "zbw-storage-api", "path": "storage/zbw-storage-api/pom.xml", "packaging": "jar", "responsibility": "JDBC-free repository, unit-of-work, migration, mutation, cache, retention and recovery contracts"},
-    {"id": "zbw-storage-sql", "path": "storage/zbw-storage-sql/pom.xml", "packaging": "jar", "responsibility": "SQLite, MySQL and MariaDB storage adapters, migrations, outbox/inbox, cache and recovery foundations"},
-    {"id": "zbw-sdk", "path": "sdk/zbw-sdk/pom.xml", "packaging": "jar", "responsibility": "extension metadata reader and deterministic validator"},
-    {"id": "zbw-integration-discord-api", "path": "integrations/discord/zbw-integration-discord-api/pom.xml", "packaging": "jar", "responsibility": "optional Discord provider and integration contracts"},
-    {"id": "zbw-compat-api", "path": "compatibility/zbw-compat-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral semantic capability and fallback contracts"},
-    {"id": "zbw-world", "path": "world/zbw-world/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral bounded world lifecycle orchestration"},
-    {"id": "zbw-arena", "path": "arena/zbw-arena/pom.xml", "packaging": "jar", "responsibility": "Java 8 presentation-neutral arena, map and setup application lifecycle"},
-    {"id": "zbw-game", "path": "game/zbw-game/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral match, session, team, lobby and allocated addon application behavior"},
-    {"id": "zbw-command-api", "path": "command/zbw-command-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral typed command tree, dispatch and presentation-action contracts"},
-    {"id": "zbw-ui-api", "path": "ui/zbw-ui-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 platform-neutral GUI, confirmation, editor, dashboard and parity contracts"},
-    {"id": "zbw-scripting-api", "path": "scripting/zbw-scripting-api/pom.xml", "packaging": "jar", "responsibility": "Java 8 typed references for versioned declarative action graphs"},
-    {"id": "zbw-scripting-engine", "path": "scripting/zbw-scripting-engine/pom.xml", "packaging": "jar", "responsibility": "Java 8 bounded disabled-by-default declarative action interpreter"},
-    {"id": "zbw-shop", "path": "shop/zbw-shop/pom.xml", "packaging": "jar", "responsibility": "Java 8 typed shop catalog, tender, quote and atomic purchase application"},
-    {"id": "zbw-content", "path": "content/zbw-content/pom.xml", "packaging": "jar", "responsibility": "Java 8 original versioned shop content and balance profiles"},
-    {"id": "zbw-progression", "path": "progression/zbw-progression/pom.xml", "packaging": "jar", "responsibility": "Java 8 immutable progression/economy, objective/content values, repository ports and projection contracts"},
-    {"id": "zbw-statistics", "path": "statistics/zbw-statistics/pom.xml", "packaging": "jar", "responsibility": "Java 8 immutable match/player/team/season statistic aggregation and leaderboard foundation"},
-    {"id": "zbw-compat-v1_20-v1_21", "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"},
-    {"id": "zbw-command-paper", "path": "command/zbw-command-paper/pom.xml", "packaging": "jar", "responsibility": "Java 21 Paper command registration, sender/output translation and bounded execution adapter"},
-    {"id": "zbw-ui-paper", "path": "ui/zbw-ui-paper/pom.xml", "packaging": "jar", "responsibility": "Java 21 Paper inventory rendering and input/lifecycle translation adapter"},
-    {"id": "zbw-paper-modern", "path": "platform/paper/zbw-paper-modern/pom.xml", "packaging": "jar", "responsibility": "Java 21 primary Paper bootstrap, native world provider, closed game projections and M09 presentation adapters"}
-  ],
-  "planned_production_modules": [
-    {"id": "zbw-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": []},
-    {"id": "zbw-domain", "layer": "domain", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
-    {"id": "zbw-application", "layer": "application", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api", "zbw-domain"]},
-    {"id": "zbw-sdk", "layer": "sdk", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
-    {"id": "zbw-integration-discord-api", "layer": "api", "bytecode": 8, "first_milestone": "M02", "depends_on": ["zbw-api"]},
-    {"id": "zbw-config", "layer": "adapter", "bytecode": 8, "first_milestone": "M03", "depends_on": ["zbw-api", "zbw-application", "zbw-shop", "zbw-content", "zbw-scripting-api"], "dependency_since": {"zbw-shop": "M11", "zbw-content": "M11", "zbw-scripting-api": "M11"}},
-    {"id": "zbw-storage-api", "layer": "api", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-api", "zbw-domain"]},
-      {"id": "zbw-storage-sql", "layer": "adapter", "bytecode": 8, "first_milestone": "M04", "depends_on": ["zbw-storage-api", "zbw-shop", "zbw-progression", "zbw-statistics"], "dependency_since": {"zbw-shop": "M11", "zbw-progression": "M12", "zbw-statistics": "M15"}},
-    {"id": "zbw-observability", "layer": "adapter", "bytecode": 8, "first_milestone": "M05", "depends_on": ["zbw-api", "zbw-application"]},
-    {"id": "zbw-compat-api", "layer": "api", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api"]},
-    {"id": "zbw-world", "layer": "application", "bytecode": 8, "first_milestone": "M06", "depends_on": ["zbw-api", "zbw-application"]},
-    {"id": "zbw-arena", "layer": "application", "bytecode": 8, "first_milestone": "M07", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-world"]},
-    {"id": "zbw-game", "layer": "application", "bytecode": 8, "first_milestone": "M08", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-arena"]},
-    {"id": "zbw-command-api", "layer": "api", "bytecode": 8, "first_milestone": "M09", "depends_on": ["zbw-api", "zbw-application"]},
-    {"id": "zbw-command-paper", "layer": "adapter", "bytecode": 21, "first_milestone": "M09", "depends_on": ["zbw-command-api", "zbw-ui-api", "zbw-arena", "zbw-game"]},
-    {"id": "zbw-ui-api", "layer": "api", "bytecode": 8, "first_milestone": "M09", "depends_on": ["zbw-api", "zbw-application", "zbw-command-api"]},
-    {"id": "zbw-ui-paper", "layer": "adapter", "bytecode": 21, "first_milestone": "M09", "depends_on": ["zbw-ui-api", "zbw-command-api", "zbw-arena", "zbw-game", "zbw-compat-api"]},
-    {"id": "zbw-scripting-api", "layer": "api", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api"]},
-    {"id": "zbw-scripting-engine", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-application", "zbw-scripting-api"]},
-    {"id": "zbw-shop", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-storage-api", "zbw-compat-api", "zbw-arena", "zbw-game", "zbw-scripting-api"]},
-    {"id": "zbw-content", "layer": "application", "bytecode": 8, "first_milestone": "M11", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-shop"]},
-    {"id": "zbw-progression", "layer": "application", "bytecode": 8, "first_milestone": "M12", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-storage-api", "zbw-game", "zbw-shop"]},
-    {"id": "zbw-statistics", "layer": "application", "bytecode": 8, "first_milestone": "M15", "depends_on": ["zbw-api", "zbw-domain", "zbw-application", "zbw-storage-api", "zbw-game", "zbw-shop", "zbw-progression"]},
-    {"id": "zbw-compat-v1_8", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_9", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_10", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_11", "layer": "platform", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_12-v1_16_4", "layer": "platform", "bytecode": 11, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_16_5", "layer": "platform", "bytecode": 16, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_17-v1_19", "layer": "platform", "bytecode": 17, "first_milestone": "M22", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-compat-v1_20-v1_21", "layer": "platform", "bytecode": 21, "first_milestone": "M06", "depends_on": ["zbw-compat-api"]},
-    {"id": "zbw-paper-legacy", "layer": "bootstrap", "bytecode": 8, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_8"]},
-    {"id": "zbw-paper-j11", "layer": "bootstrap", "bytecode": 11, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_12-v1_16_4"]},
-    {"id": "zbw-paper-j16", "layer": "bootstrap", "bytecode": 16, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_16_5"]},
-    {"id": "zbw-paper-j17", "layer": "bootstrap", "bytecode": 17, "first_milestone": "M22", "depends_on": ["zbw-application", "zbw-compat-v1_17-v1_19"]},
-    {"id": "zbw-paper-modern", "layer": "bootstrap", "bytecode": 21, "first_milestone": "M06", "depends_on": ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game", "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content", "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression"], "dependency_since": {"zbw-game": "M08", "zbw-command-paper": "M09", "zbw-ui-paper": "M09", "zbw-shop": "M11", "zbw-content": "M11", "zbw-scripting-api": "M11", "zbw-scripting-engine": "M11", "zbw-progression": "M12"}},
-    {"id": "zbw-proxy-api", "layer": "api", "bytecode": 8, "first_milestone": "M20", "depends_on": ["zbw-api"]},
-    {"id": "zbw-bungeecord", "layer": "bootstrap", "bytecode": 8, "first_milestone": "M20", "depends_on": ["zbw-proxy-api"]},
-    {"id": "zbw-velocity", "layer": "bootstrap", "bytecode": 21, "first_milestone": "M20", "depends_on": ["zbw-proxy-api"]}
-  ]
+    "schema_version": 1,
+    "policy": {
+        "functional_modules_materialized_in_m01": 0,
+        "platform_imports_forbidden_in": [
+            "api",
+            "domain",
+            "application",
+            "config"
+        ],
+        "cycles_allowed": false,
+        "unlisted_module_dependencies_allowed": false,
+        "later_milestone_dependencies_allowed": false
+    },
+    "materialized_build_modules": [
+        {
+            "id": "zartrabedwars-parent",
+            "path": "pom.xml",
+            "packaging": "pom",
+            "responsibility": "reactor and approved plugin version governance"
+        },
+        {
+            "id": "zbw-bom",
+            "path": "build/zbw-bom/pom.xml",
+            "packaging": "pom",
+            "responsibility": "approved exact dependency selections"
+        },
+        {
+            "id": "zbw-build-tools",
+            "path": "build/zbw-build-tools/pom.xml",
+            "packaging": "pom",
+            "responsibility": "deterministic build-governance descriptor"
+        },
+        {
+            "id": "zbw-api",
+            "path": "api/zbw-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "versioned public contracts and platform-neutral primitives"
+        },
+        {
+            "id": "zbw-domain",
+            "path": "domain/zbw-domain/pom.xml",
+            "packaging": "jar",
+            "responsibility": "platform-neutral generator and private-game domain contracts"
+        },
+        {
+            "id": "zbw-application",
+            "path": "application/zbw-application/pom.xml",
+            "packaging": "jar",
+            "responsibility": "immutable content and provider capability policies"
+        },
+        {
+            "id": "zbw-config",
+            "path": "configuration/zbw-config/pom.xml",
+            "packaging": "jar",
+            "responsibility": "typed configuration, migration, reload, localization, authorization, secret and validation foundations"
+        },
+        {
+            "id": "zbw-observability",
+            "path": "observability/zbw-observability/pom.xml",
+            "packaging": "jar",
+            "responsibility": "bounded health, metrics, diagnostics and Plugin Doctor runtime substrate"
+        },
+        {
+            "id": "zbw-storage-api",
+            "path": "storage/zbw-storage-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "JDBC-free repository, unit-of-work, migration, mutation, cache, retention and recovery contracts"
+        },
+        {
+            "id": "zbw-storage-sql",
+            "path": "storage/zbw-storage-sql/pom.xml",
+            "packaging": "jar",
+            "responsibility": "SQLite, MySQL and MariaDB storage adapters, migrations, outbox/inbox, cache and recovery foundations"
+        },
+        {
+            "id": "zbw-sdk",
+            "path": "sdk/zbw-sdk/pom.xml",
+            "packaging": "jar",
+            "responsibility": "extension metadata reader and deterministic validator"
+        },
+        {
+            "id": "zbw-integration-discord-api",
+            "path": "integrations/discord/zbw-integration-discord-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "optional Discord provider and integration contracts"
+        },
+        {
+            "id": "zbw-integration-placeholderapi-api",
+            "path": "integrations/placeholderapi/zbw-integration-placeholderapi-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "typed PlaceholderAPI contracts, registry and resolver SPI"
+        },
+        {
+            "id": "zbw-integration-placeholderapi",
+            "path": "integrations/placeholderapi/zbw-integration-placeholderapi/pom.xml",
+            "packaging": "jar",
+            "responsibility": "optional Paper lifecycle bridge and neutral placeholder expansion wiring"
+        },
+        {
+            "id": "zbw-compat-api",
+            "path": "compatibility/zbw-compat-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 platform-neutral semantic capability and fallback contracts"
+        },
+        {
+            "id": "zbw-world",
+            "path": "world/zbw-world/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 platform-neutral bounded world lifecycle orchestration"
+        },
+        {
+            "id": "zbw-arena",
+            "path": "arena/zbw-arena/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 presentation-neutral arena, map and setup application lifecycle"
+        },
+        {
+            "id": "zbw-game",
+            "path": "game/zbw-game/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 platform-neutral match, session, team, lobby and allocated addon application behavior"
+        },
+        {
+            "id": "zbw-command-api",
+            "path": "command/zbw-command-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 platform-neutral typed command tree, dispatch and presentation-action contracts"
+        },
+        {
+            "id": "zbw-ui-api",
+            "path": "ui/zbw-ui-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 platform-neutral GUI, confirmation, editor, dashboard and parity contracts"
+        },
+        {
+            "id": "zbw-scripting-api",
+            "path": "scripting/zbw-scripting-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 typed references for versioned declarative action graphs"
+        },
+        {
+            "id": "zbw-scripting-engine",
+            "path": "scripting/zbw-scripting-engine/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 bounded disabled-by-default declarative action interpreter"
+        },
+        {
+            "id": "zbw-shop",
+            "path": "shop/zbw-shop/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 typed shop catalog, tender, quote and atomic purchase application"
+        },
+        {
+            "id": "zbw-content",
+            "path": "content/zbw-content/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 original versioned shop content and balance profiles"
+        },
+        {
+            "id": "zbw-progression",
+            "path": "progression/zbw-progression/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable progression/economy, objective/content values, repository ports and projection contracts"
+        },
+        {
+            "id": "zbw-statistics",
+            "path": "statistics/zbw-statistics/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable match/player/team/season statistic aggregation and leaderboard foundation"
+        },
+        {
+            "id": "zbw-compat-v1_20-v1_21",
+            "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 primary Paper 1.21.1 build 133 semantic adapter"
+        },
+        {
+            "id": "zbw-command-paper",
+            "path": "command/zbw-command-paper/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 Paper command registration, sender/output translation and bounded execution adapter"
+        },
+        {
+            "id": "zbw-ui-paper",
+            "path": "ui/zbw-ui-paper/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 Paper inventory rendering and input/lifecycle translation adapter"
+        },
+        {
+            "id": "zbw-paper-modern",
+            "path": "platform/paper/zbw-paper-modern/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 primary Paper bootstrap, native world provider, closed game projections and M09 presentation adapters"
+        }
+    ],
+    "planned_production_modules": [
+        {
+            "id": "zbw-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M02",
+            "depends_on": []
+        },
+        {
+            "id": "zbw-domain",
+            "layer": "domain",
+            "bytecode": 8,
+            "first_milestone": "M02",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-application",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M02",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain"
+            ]
+        },
+        {
+            "id": "zbw-sdk",
+            "layer": "sdk",
+            "bytecode": 8,
+            "first_milestone": "M02",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-integration-discord-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M02",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-config",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M03",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application",
+                "zbw-shop",
+                "zbw-content",
+                "zbw-scripting-api"
+            ],
+            "dependency_since": {
+                "zbw-shop": "M11",
+                "zbw-content": "M11",
+                "zbw-scripting-api": "M11"
+            }
+        },
+        {
+            "id": "zbw-storage-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M04",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain"
+            ]
+        },
+        {
+            "id": "zbw-storage-sql",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M04",
+            "depends_on": [
+                "zbw-storage-api",
+                "zbw-shop",
+                "zbw-progression",
+                "zbw-statistics"
+            ],
+            "dependency_since": {
+                "zbw-shop": "M11",
+                "zbw-progression": "M12",
+                "zbw-statistics": "M15"
+            }
+        },
+        {
+            "id": "zbw-observability",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M05",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application"
+            ]
+        },
+        {
+            "id": "zbw-compat-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M06",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-world",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M06",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application"
+            ]
+        },
+        {
+            "id": "zbw-arena",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M07",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-world"
+            ]
+        },
+        {
+            "id": "zbw-game",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M08",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-arena"
+            ]
+        },
+        {
+            "id": "zbw-command-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M09",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application"
+            ]
+        },
+        {
+            "id": "zbw-command-paper",
+            "layer": "adapter",
+            "bytecode": 21,
+            "first_milestone": "M09",
+            "depends_on": [
+                "zbw-command-api",
+                "zbw-ui-api",
+                "zbw-arena",
+                "zbw-game"
+            ]
+        },
+        {
+            "id": "zbw-ui-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M09",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application",
+                "zbw-command-api"
+            ]
+        },
+        {
+            "id": "zbw-ui-paper",
+            "layer": "adapter",
+            "bytecode": 21,
+            "first_milestone": "M09",
+            "depends_on": [
+                "zbw-ui-api",
+                "zbw-command-api",
+                "zbw-arena",
+                "zbw-game",
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-scripting-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M11",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-scripting-engine",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M11",
+            "depends_on": [
+                "zbw-api",
+                "zbw-application",
+                "zbw-scripting-api"
+            ]
+        },
+        {
+            "id": "zbw-shop",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M11",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-storage-api",
+                "zbw-compat-api",
+                "zbw-arena",
+                "zbw-game",
+                "zbw-scripting-api"
+            ]
+        },
+        {
+            "id": "zbw-content",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M11",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-shop"
+            ]
+        },
+        {
+            "id": "zbw-progression",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M12",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-storage-api",
+                "zbw-game",
+                "zbw-shop"
+            ]
+        },
+        {
+            "id": "zbw-statistics",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M15",
+            "depends_on": [
+                "zbw-api",
+                "zbw-domain",
+                "zbw-application",
+                "zbw-storage-api",
+                "zbw-game",
+                "zbw-shop",
+                "zbw-progression"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_8",
+            "layer": "platform",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_9",
+            "layer": "platform",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_10",
+            "layer": "platform",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_11",
+            "layer": "platform",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_12-v1_16_4",
+            "layer": "platform",
+            "bytecode": 11,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_16_5",
+            "layer": "platform",
+            "bytecode": 16,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_17-v1_19",
+            "layer": "platform",
+            "bytecode": 17,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-compat-v1_20-v1_21",
+            "layer": "platform",
+            "bytecode": 21,
+            "first_milestone": "M06",
+            "depends_on": [
+                "zbw-compat-api"
+            ]
+        },
+        {
+            "id": "zbw-paper-legacy",
+            "layer": "bootstrap",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-application",
+                "zbw-compat-v1_8"
+            ]
+        },
+        {
+            "id": "zbw-paper-j11",
+            "layer": "bootstrap",
+            "bytecode": 11,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-application",
+                "zbw-compat-v1_12-v1_16_4"
+            ]
+        },
+        {
+            "id": "zbw-paper-j16",
+            "layer": "bootstrap",
+            "bytecode": 16,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-application",
+                "zbw-compat-v1_16_5"
+            ]
+        },
+        {
+            "id": "zbw-paper-j17",
+            "layer": "bootstrap",
+            "bytecode": 17,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-application",
+                "zbw-compat-v1_17-v1_19"
+            ]
+        },
+        {
+            "id": "zbw-paper-modern",
+            "layer": "bootstrap",
+            "bytecode": 21,
+            "first_milestone": "M06",
+            "depends_on": [
+                "zbw-application",
+                "zbw-world",
+                "zbw-compat-v1_20-v1_21",
+                "zbw-game",
+                "zbw-command-paper",
+                "zbw-ui-paper",
+                "zbw-shop",
+                "zbw-content",
+                "zbw-scripting-api",
+                "zbw-scripting-engine",
+                "zbw-progression",
+                "zbw-integration-placeholderapi"
+            ],
+            "dependency_since": {
+                "zbw-game": "M08",
+                "zbw-command-paper": "M09",
+                "zbw-ui-paper": "M09",
+                "zbw-shop": "M11",
+                "zbw-content": "M11",
+                "zbw-scripting-api": "M11",
+                "zbw-scripting-engine": "M11",
+                "zbw-progression": "M12",
+                "zbw-integration-placeholderapi": "M16"
+            }
+        },
+        {
+            "id": "zbw-proxy-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M20",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-bungeecord",
+            "layer": "bootstrap",
+            "bytecode": 8,
+            "first_milestone": "M20",
+            "depends_on": [
+                "zbw-proxy-api"
+            ]
+        },
+        {
+            "id": "zbw-velocity",
+            "layer": "bootstrap",
+            "bytecode": 21,
+            "first_milestone": "M20",
+            "depends_on": [
+                "zbw-proxy-api"
+            ]
+        },
+        {
+            "id": "zbw-integration-placeholderapi-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M16",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-integration-placeholderapi",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M16",
+            "depends_on": [
+                "zbw-integration-placeholderapi-api"
+            ],
+            "dependency_since": {
+                "zbw-integration-placeholderapi-api": "M16"
+            }
+        },
+        {
+            "id": "zbw-integration-placeholderapi-runtime",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M16",
+            "depends_on": [
+                "zbw-integration-placeholderapi"
+            ],
+            "dependency_since": {
+                "zbw-integration-placeholderapi": "M16"
+            }
+        }
+    ]
 }
