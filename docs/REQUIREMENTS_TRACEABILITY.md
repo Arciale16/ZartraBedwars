@@ -798,3 +798,13 @@ Phase 2 still excludes packet/snapshot recording, codecs, concrete repositories/
 ### M17 Phase 3 replay persistence evidence
 
 - ZBW-REPLAY-001/003/008/009: asynchronous isolated metadata/session/event repositories, checksum-locked SQL migration, transaction-safe ordered append, duplicate/conflict handling, failed/archive state persistence and restart-safe deterministic loading are implemented in `zbw-replay-sql`. SQLite tests cover insert/load, ordering, duplicate suppression, batch rollback, malformed rows, checksum drift and restart. Payload providers, retention/hold, repair/quarantine, capture and all playback/viewer surfaces remain later M17 work.
+### M17 Phase 4 replay playback-engine foundation evidence
+
+| Requirement | Implemented Phase 4 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-003`, `ZBW-REPLAY-005` | Immutable cursor/position/snapshot models and a pure event-applier boundary rebuild one canonical ordered timeline without timing or ordering mutation | Ordering, inclusive event/timestamp seek and identical fresh-session rebuild tests pass; telemetry fidelity classification and the complete searchable index remain later M17 work |
+| `ZBW-REPLAY-004` | Java 8 platform-neutral playback lifecycle covers `CREATED`, `LOADING`, `READY`, `PLAYING`, `PAUSED`, `SEEKING`, `COMPLETED` and `FAILED`, with bounded 0.10-4.00 speed, forward stepping, pause/resume, seek and verified snapshot restoration | Playback state, speed, cursor, pause/resume, seek and snapshot tests pass; viewer controls, rendering, camera, NPC, hologram, web and UI surfaces are explicitly not implemented |
+| `ZBW-REPLAY-009` | Non-playable recordings and event-applier corruption terminate in an immutable `FAILED` session with sanitized failure codes and no cursor advancement beyond the last valid snapshot | Unfinished/empty/corrupted event regression tests pass; capture repair, quarantine and payload integrity remain later M17 work |
+
+Phase 4 adds no Paper dependency, Minecraft entity behavior, viewer/UI, Redis, external
+provider or change to the M08/M11/M12/M15/M16 ownership boundaries.

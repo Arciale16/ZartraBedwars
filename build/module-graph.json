@@ -573,12 +573,6 @@
             ]
         },
         {
-            "id": "zbw-replay-sql",
-            "path": "replay/zbw-replay-sql/pom.xml",
-            "packaging": "jar",
-            "responsibility": "Java 8 asynchronous JDBC replay metadata, session and ordered-event persistence adapter"
-        },
-        {
             "id": "zbw-compat-v1_20-v1_21",
             "layer": "platform",
             "bytecode": 21,

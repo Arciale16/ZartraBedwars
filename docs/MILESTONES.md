@@ -171,7 +171,7 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 - **Requirements:** REPLAY-001..010.
 - **Entry:** M08 canonical events, M05 queues, M04 metadata storage, replay ADR accepted.
-- **Phase status:** IN PROGRESS — foundation checkpoint allocates immutable replay contracts, deterministic ingestion/timeline, repository ports and privacy/access policy; capture codecs, payload providers and every viewer surface remain unclaimed.
+- **Phase status:** IN PROGRESS — Phases 1-4 allocate immutable replay contracts, deterministic ingestion/timeline, repository ports, SQL persistence, privacy/access policy and the platform-neutral playback engine foundation; capture codecs, payload providers, rendering and every viewer surface remain unclaimed.
 - **Deliver:** capture/codec/manifest/store/retention/recovery/privacy, playback scene/rendering, timeline/telemetry/staff evidence and all surfaces.
 - **Exit:** golden timing/order, interruption/corruption/repair/hold/privacy/provider failure and performance tests pass; evidence degradation policy demonstrated.
 
