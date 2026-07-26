@@ -1,11 +1,35 @@
 {
-  "schema_version": 1,
-  "active_milestone": "M16",
-  "next_milestone": "M16",
-  "completed_milestones": ["M00", "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15"],
-  "completed_hardening_milestones": ["M08.1"],
-  "completed_governance_checkpoints": ["M11_SCOPE_RECONCILIATION", "M11_POST_MERGE_AUDIT_M12_ALLOCATION", "M11_FINAL_CLOSURE_M12_PREPARATION"],
-  "functional_production_path": true,
-  "java_implementation_started": true,
-  "runtime_behavior_started": true
+    "schema_version":  1,
+    "active_milestone":  "M17",
+    "next_milestone":  "M17",
+    "completed_milestones":  [
+                                 "M00",
+                                 "M01",
+                                 "M02",
+                                 "M03",
+                                 "M04",
+                                 "M05",
+                                 "M06",
+                                 "M07",
+                                 "M08",
+                                 "M09",
+                                 "M10",
+                                 "M11",
+                                 "M12",
+                                 "M13",
+                                 "M14",
+                                 "M15",
+                                 "M16"
+                             ],
+    "completed_hardening_milestones":  [
+                                           "M08.1"
+                                       ],
+    "completed_governance_checkpoints":  [
+                                             "M11_SCOPE_RECONCILIATION",
+                                             "M11_POST_MERGE_AUDIT_M12_ALLOCATION",
+                                             "M11_FINAL_CLOSURE_M12_PREPARATION"
+                                         ],
+    "functional_production_path":  true,
+    "java_implementation_started":  true,
+    "runtime_behavior_started":  true
 }

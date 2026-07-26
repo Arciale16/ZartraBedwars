@@ -24,6 +24,8 @@
     <module>storage/zbw-storage-sql</module>
     <module>sdk/zbw-sdk</module>
     <module>integrations/discord/zbw-integration-discord-api</module>
+    <module>integrations/placeholderapi/zbw-integration-placeholderapi-api</module>
+    <module>integrations/placeholderapi/zbw-integration-placeholderapi</module>
     <module>compatibility/zbw-compat-api</module>
     <module>world/zbw-world</module>
     <module>arena/zbw-arena</module>
