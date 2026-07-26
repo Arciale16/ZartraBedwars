@@ -18,6 +18,19 @@ public final class ReplaySession {
         this.failureReason = failureReason;
     }
 
+    /** Restores one validated immutable session from an authoritative repository. */
+    public static ReplaySession restore(final ReplayMetadata metadata, final ReplayState state,
+                                        final ReplayTimeline timeline, final String failureReason) {
+        Objects.requireNonNull(state, "state");
+        if ((state == ReplayState.FAILED) != (failureReason != null)) {
+            throw new IllegalArgumentException("failure reason must exist only for FAILED state");
+        }
+        if (state == ReplayState.CREATED && !timeline.events().isEmpty()) {
+            throw new IllegalArgumentException("created replay cannot contain events");
+        }
+        if (failureReason != null) { requireReason(failureReason); }
+        return new ReplaySession(metadata, state, timeline, failureReason);
+    }
     /** Creates a session before recording begins. */
     public static ReplaySession create(final ReplayMetadata metadata) {
         return new ReplaySession(metadata, ReplayState.CREATED, ReplayTimeline.empty(), null);

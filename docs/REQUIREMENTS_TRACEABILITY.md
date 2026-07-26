@@ -793,3 +793,8 @@ Excluded here: Minecraft packet recording, NPC/web/UI viewers, Redis/distributed
 | `ZBW-REPLAY-009` | Typed `ACCEPTED`, `DUPLICATE`, `MALFORMED`, `UNSUPPORTED` and `INVALID_STATE` outcomes leave the prior immutable session unchanged on every non-acceptance path | State, malformed, unsupported and duplicate regression tests; bounded queues, codecs and recovery remain later M17 work |
 
 Phase 2 still excludes packet/snapshot recording, codecs, concrete repositories/providers, Redis, playback rendering and every viewer/UI surface.
+
+
+### M17 Phase 3 replay persistence evidence
+
+- ZBW-REPLAY-001/003/008/009: asynchronous isolated metadata/session/event repositories, checksum-locked SQL migration, transaction-safe ordered append, duplicate/conflict handling, failed/archive state persistence and restart-safe deterministic loading are implemented in `zbw-replay-sql`. SQLite tests cover insert/load, ordering, duplicate suppression, batch rollback, malformed rows, checksum drift and restart. Payload providers, retention/hold, repair/quarantine, capture and all playback/viewer surfaces remain later M17 work.

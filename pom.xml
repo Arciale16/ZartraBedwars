@@ -40,6 +40,7 @@
     <module>statistics/zbw-statistics</module>
     <module>replay/zbw-replay-api</module>
     <module>replay/zbw-replay</module>
+    <module>replay/zbw-replay-sql</module>
   </modules>
 
   <properties>
