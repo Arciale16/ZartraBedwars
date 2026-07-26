@@ -76,11 +76,36 @@ class ReplayEventIngestionTest {
         assertEquals(result, ingestion.ingestGame(result, duplicate, "transition-1"));
     }
 
+    @Test void serviceDispatchesMatchAndSettlementAdapters() {
+        final DefinitionId red = DefinitionId.of("team", "red");
+        final MatchSnapshot snapshot = new MatchSnapshot(MatchId.random(), ArenaId.random(), 1,
+                MatchSnapshot.State.WAITING, 0,
+                Arrays.asList(TeamSnapshot.empty(red, 1),
+                        TeamSnapshot.empty(DefinitionId.of("team", "blue"), 1)),
+                Collections.emptyList(), null, null, false, START.plusMillis(3));
+        final MatchTransition transition = new MatchTransition(snapshot, snapshot,
+                Collections.singletonList(new MatchTransition.Fact(
+                        DefinitionId.of("game", "join"), PLAYER, red)), false);
+        final ReplayIngestionService service = new ReplayIngestionService();
+        final ReplaySession recording = ReplaySession.create(metadata()).start();
+        final ReplayIngestionResult game = service.ingest(recording, transition, "transition");
+        final ReplayIngestionResult gameDuplicate = service.ingest(
+                game.session(), transition, "transition");
+        final PurchaseOutcome purchase = new PurchaseOutcome(quote(), false, START.plusMillis(5));
+        final ReplayIngestionResult settlement = service.ingest(
+                gameDuplicate.session(), purchase, "purchase");
+        final ReplayIngestionResult settlementDuplicate = service.ingest(settlement.session(),
+                new PurchaseOutcome(quote(), true, START.plusMillis(5)), "purchase-retry");
+        assertEquals(ReplayIngestionResult.Status.ACCEPTED, game.status());
+        assertEquals(ReplayIngestionResult.Status.DUPLICATE, gameDuplicate.status());
+        assertEquals(ReplayIngestionResult.Status.ACCEPTED, settlement.status());
+        assertEquals(ReplayIngestionResult.Status.DUPLICATE, settlementDuplicate.status());
+    }
     @Test void shopOutcomeIsConsumedWithoutSettlementOwnership() {
-        final PurchaseOutcome outcome = new PurchaseOutcome(quote(), true, START.plusMillis(5));
+        final PurchaseOutcome outcome = new PurchaseOutcome(quote(), false, START.plusMillis(5));
         final ReplaySession result = new ReplayEventIngestion().ingestShop(
                 ReplaySession.create(metadata()).start(), outcome, "purchase-1");
-        assertEquals("true", result.timeline().events().get(0).attributes().get("duplicate"));
+        assertEquals("false", result.timeline().events().get(0).attributes().get("duplicate"));
         assertEquals(ReplayEvent.Source.SHOP, result.timeline().events().get(0).source());
     }
 

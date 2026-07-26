@@ -61,6 +61,17 @@ class ReplayModelTest {
                 ReplayEvent.Source.GAME, "type", Collections.<String, String>emptyMap()));
     }
 
+    @Test void malformedEventFieldsAreRejectedAtTheContractBoundary() {
+        final Map<String, String> tooMany = new HashMap<String, String>();
+        for (int index = 0; index < 33; index++) { tooMany.put("key" + index, "value"); }
+        assertThrows(IllegalArgumentException.class, () -> event("many", 0, 0, tooMany));
+        final Map<String, String> blankKey = new HashMap<String, String>();
+        blankKey.put(" ", "value");
+        assertThrows(IllegalArgumentException.class, () -> event("blank", 0, 0, blankKey));
+        final String longId = String.join("", Collections.nCopies(161, "x"));
+        assertThrows(IllegalArgumentException.class, () -> event(longId, 0, 0,
+                Collections.<String, String>emptyMap()));
+    }
     @Test void sessionRejectsInvalidStatesAndPreservesEvents() {
         final ReplaySession created = ReplaySession.create(metadata(false));
         assertEquals(ReplayState.CREATED, created.state());

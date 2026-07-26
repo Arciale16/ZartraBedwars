@@ -44,8 +44,9 @@ public final class ReplayEventIngestion {
     public ReplaySession ingestShop(final ReplaySession session, final PurchaseOutcome outcome,
                                     final String sourceEventId) {
         Objects.requireNonNull(outcome, "outcome");
+        if (outcome.duplicate()) { return Objects.requireNonNull(session, "session"); }
         return append(session, sourceEventId, outcome.observedAt(), ReplayEvent.Source.SHOP,
-                "shop.purchase", Collections.singletonMap("duplicate", String.valueOf(outcome.duplicate())));
+                "shop.purchase", Collections.singletonMap("duplicate", "false"));
     }
 
     /** Converts one immutable M12 projection input using the source event identity. */

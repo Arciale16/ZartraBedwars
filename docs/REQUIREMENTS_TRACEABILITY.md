@@ -782,3 +782,14 @@ M17 is **IN PROGRESS**. This checkpoint materializes `zbw-replay-api` and `zbw-r
 | ZBW-GAME-003; ZBW-ARC-004 | Explicit source adapters consume existing ordered facts without lifecycle ownership | PARTIAL — M08 end-game close orchestration remains unchanged until its allocated M17 adapter checkpoint |
 
 Excluded here: Minecraft packet recording, NPC/web/UI viewers, Redis/distributed replay, external providers, concrete SQL/object storage, playback rendering and PlaceholderAPI additions.
+
+### M17 Phase 2 replay event-ingestion evidence
+
+| Requirement | Implemented Phase 2 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001`, `ZBW-GAME-003`, `ZBW-ARC-004` | Dedicated one-way adapters consume immutable M08 `MatchTransition`, M11 `PurchaseOutcome` and M12 `ProgressionEventInput` contracts; producer lifecycles remain unchanged | Adapter/service tests cover all three sources; capture closure and persistence orchestration remain later M17 work |
+| `ZBW-REPLAY-003`, `ZBW-PROG-001` | Stateless ingestion coordinator assigns contiguous replay-local sequences, preserves source timestamps and suppresses producer or event-ID retries exactly once | Ordering, duplicate, temporal-regression and identical-input deterministic-timeline tests pass |
+| `ZBW-REPLAY-005` | Version-neutral type and bounded immutable string attributes retain source identity for lifecycle, purchase and progression timeline facts | Malformed envelopes, bounded event fields, empty conversions and unsupported source classes are rejected explicitly; the complete event catalogue remains later M17 work |
+| `ZBW-REPLAY-009` | Typed `ACCEPTED`, `DUPLICATE`, `MALFORMED`, `UNSUPPORTED` and `INVALID_STATE` outcomes leave the prior immutable session unchanged on every non-acceptance path | State, malformed, unsupported and duplicate regression tests; bounded queues, codecs and recovery remain later M17 work |
+
+Phase 2 still excludes packet/snapshot recording, codecs, concrete repositories/providers, Redis, playback rendering and every viewer/UI surface.

@@ -32,10 +32,20 @@ public final class ReplayEvent {
         this.occurredAt = Objects.requireNonNull(occurredAt, "occurredAt");
         this.source = Objects.requireNonNull(source, "source");
         this.type = requireText(type, "type");
+        if (this.eventId.length() > 160 || this.type.length() > 160) {
+            throw new IllegalArgumentException("eventId and type must not exceed 160 characters");
+        }
         final Map<String, String> copy = new LinkedHashMap<String, String>(
                 Objects.requireNonNull(attributes, "attributes"));
         if (copy.containsKey(null) || copy.containsValue(null)) {
             throw new IllegalArgumentException("attributes cannot contain null");
+        }
+        if (copy.size() > 32) { throw new IllegalArgumentException("attributes exceed 32 entries"); }
+        for (Map.Entry<String, String> entry : copy.entrySet()) {
+            if (entry.getKey().trim().isEmpty() || entry.getKey().length() > 128
+                    || entry.getValue().length() > 512) {
+                throw new IllegalArgumentException("attribute key or value is malformed");
+            }
         }
         this.attributes = Collections.unmodifiableMap(copy);
     }
