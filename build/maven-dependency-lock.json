@@ -932,13 +932,13 @@
     },
     {
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
-      "sha256": "8BC0DE0E79FF04B4674EFB058D69A5B7EC9E03929BCA501AA1CA4764B2A39B11",
+      "sha256": "8bc0de0e79ff04b4674efb058d69a5b7ec9e03929bca501aa1ca4764b2a39b11",
       "size": 153719,
       "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
     },
     {
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom",
-      "sha256": "7FDF7EF60105D76FA9484255AEF8311B62C96A63CDF248FB69731B45D6DE3BF2",
+      "sha256": "7fdf7ef60105d76fa9484255aef8311b62c96a63cdf248fb69731b45d6de3bf2",
       "size": 396,
       "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
     },
