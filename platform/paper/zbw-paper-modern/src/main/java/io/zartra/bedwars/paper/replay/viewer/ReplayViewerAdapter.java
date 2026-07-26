@@ -3,6 +3,7 @@ package io.zartra.bedwars.paper.replay.viewer;
 import io.zartra.bedwars.paper.replay.PaperReplayCommands;
 import io.zartra.bedwars.paper.replay.ReplayAudience;
 import io.zartra.bedwars.paper.replay.ReplayRuntimeResult;
+import io.zartra.bedwars.paper.replay.visual.ReplayVisualAdapter;
 import io.zartra.bedwars.replay.api.ReplayId;
 import java.util.ArrayList;
 import java.util.Map;
@@ -14,11 +15,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.function.LongSupplier;
 
 /** Viewer lifecycle/presentation adapter over the existing Paper replay runtime. */
 public final class ReplayViewerAdapter {
     private final PaperReplayCommands runtime;
     private final ReplayViewerPresentation presentation;
+    private final ReplayVisualAdapter visuals;
+    private final LongSupplier currentTick;
     private final Map<UUID, ReplayViewerSession> viewers =
             new ConcurrentHashMap<UUID, ReplayViewerSession>();
     private final Set<UUID> opening = ConcurrentHashMap.newKeySet();
@@ -26,8 +30,18 @@ public final class ReplayViewerAdapter {
     /** Creates a viewer adapter without owning replay engine or persistence policy. */
     public ReplayViewerAdapter(final PaperReplayCommands runtime,
                                final ReplayViewerPresentation presentation) {
+        this(runtime, presentation, null, () -> 0L);
+    }
+
+    /** Creates a viewer adapter synchronized with a bounded visual projection. */
+    public ReplayViewerAdapter(final PaperReplayCommands runtime,
+                               final ReplayViewerPresentation presentation,
+                               final ReplayVisualAdapter visuals,
+                               final LongSupplier currentTick) {
         this.runtime = Objects.requireNonNull(runtime, "runtime");
         this.presentation = Objects.requireNonNull(presentation, "presentation");
+        this.visuals = visuals;
+        this.currentTick = Objects.requireNonNull(currentTick, "currentTick");
     }
 
     /** Opens and starts one authorized replay viewer session. */
@@ -63,6 +77,7 @@ public final class ReplayViewerAdapter {
                 }
                 final ReplayViewerSession watching = connected.start();
                 viewers.put(viewerId, watching);
+                synchronizeVisuals(viewerId, started);
                 presentation.show(watching);
                 result.complete(ReplayViewerResult.success(watching));
             } finally {
@@ -98,6 +113,7 @@ public final class ReplayViewerAdapter {
         }
         final ReplayRuntimeResult stopped = runtime.stop(viewerId);
         final ReplayViewerSession disconnected = current.disconnect();
+        cleanupVisuals(viewerId);
         presentation.clear(viewerId);
         if (stopped.status() != ReplayRuntimeResult.Status.STOPPED) {
             presentation.reject(viewerId, map(stopped.status()));
@@ -146,6 +162,7 @@ public final class ReplayViewerAdapter {
             return ReplayViewerResult.of(status);
         }
         viewers.put(viewerId, next);
+        synchronizeVisuals(viewerId, runtimeResult);
         presentation.show(next);
         return ReplayViewerResult.success(next);
     }
@@ -156,6 +173,19 @@ public final class ReplayViewerAdapter {
         presentation.reject(viewerId, status);
         presentation.clear(viewerId);
         result.complete(ReplayViewerResult.of(status));
+    }
+
+    private void synchronizeVisuals(final UUID viewerId,
+                                    final ReplayRuntimeResult runtimeResult) {
+        if (visuals != null && runtimeResult.session().isPresent()) {
+            visuals.synchronize(viewerId,
+                    runtimeResult.session().get().context().playback(),
+                    currentTick.getAsLong());
+        }
+    }
+
+    private void cleanupVisuals(final UUID viewerId) {
+        if (visuals != null) { visuals.cleanup(viewerId); }
     }
 
     private static ReplayRuntimeResult.Status expected(final ViewerControlAction action) {

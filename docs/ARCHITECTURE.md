@@ -518,3 +518,15 @@ boundary. A separate disconnect registration removes viewer state and clears own
 before the replay runtime performs final spectator restoration. The presentation is limited to
 sanitized messages; scene rendering, world isolation/cloning, entities, cameras, advanced effects,
 complex GUI and external transports remain deferred.
+
+### M17 Phase 7 replay visual boundary
+
+The Phase 7 visual engine remains inside `zbw-paper-modern` and consumes only the immutable
+`PlaybackSession` timeline and cursor. A pure reconstruction pass produces identity-ordered player
+representations, positions, equipment, health/alive snapshots and bounded important match events;
+it does not advance playback or own any M08/M11/M12 lifecycle. The owner-thread renderer reconciles
+that projection into non-persistent Paper representations, applies backward seeks immediately and
+throttles ordinary updates. Entity, important-event and viewer counts are capped, and failed or
+corrupt reconstruction detaches all owned representations. The Bukkit reflection boundary is
+contract-tested independently from semantic reconstruction. World cloning, packet/NPC providers,
+cameras, cinematics, advanced effects, complex GUI, web, Redis and external hosting remain deferred.

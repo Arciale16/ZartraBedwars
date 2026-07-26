@@ -832,3 +832,15 @@ Redis, external hosting/provider or M08/M11/M12/M15/M16 behavior is introduced.
 Phase 6 adds only minimal message presentation and command routing in `zbw-paper-modern`.
 It does not clone worlds, spawn replay entities/NPCs/holograms, implement advanced visual effects or
 GUI/web viewers, or add Redis, hosting or external-provider behavior.
+
+### M17 Phase 7 replay visual-engine evidence
+
+| Requirement | Implemented Phase 7 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-003`, `ZBW-REPLAY-005` | Deterministic cursor-bounded reconstruction models visual identity, movement/position, equipment, health/alive state, kills, deaths, bed destruction and bounded important match events | Identical rebuild, ordered entity/event, movement, equipment, health, kill/death/bed and malformed-event tests pass; capture fidelity and searchable telemetry remain later M17 work |
+| `ZBW-REPLAY-004` | Paper visual adapter reconciles playback projections into non-persistent representations and updates on cursor changes, including immediate backward seek | Spawn/update/remove, cadence, seek and Paper reflection-contract tests pass; cameras, cinematics, packet/NPC rendering and advanced effects remain later M17/M22 work |
+| `ZBW-REPLAY-009`, `ZBW-ARC-006` | Entity/event/viewer caps, controlled tick cadence, corruption/overflow rejection, transactional spawn cleanup and idempotent viewer/shutdown cleanup bound runtime cost | Overflow, corrupted data, failed render, repeated cleanup and shutdown tests pass |
+
+Phase 7 changes only `zbw-paper-modern`; replay API/core contracts and M08/M11/M12/M15/M16
+behavior remain unchanged. No world cloning, GUI/cinematic editor, web, Redis, external provider or
+distributed replay behavior is introduced.

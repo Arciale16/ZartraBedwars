@@ -12,6 +12,9 @@ import io.zartra.bedwars.paper.replay.viewer.BukkitReplayViewerPresentation;
 import io.zartra.bedwars.paper.replay.viewer.ReplayViewerAdapter;
 import io.zartra.bedwars.paper.replay.viewer.ReplayViewerBootstrap;
 import io.zartra.bedwars.paper.replay.viewer.ReplayViewerCommandRouter;
+import io.zartra.bedwars.paper.replay.visual.BukkitReplayVisualRenderer;
+import io.zartra.bedwars.paper.replay.visual.ReplayVisualAdapter;
+import io.zartra.bedwars.paper.replay.visual.ReplayVisualEngine;
 import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
@@ -85,8 +88,11 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
         final ReplayRuntimeBootstrap candidate = new ReplayRuntimeBootstrap(service, adapter);
         candidate.start();
         final PaperReplayCommands commands = candidate.commands();
+        final ReplayVisualAdapter visuals = new ReplayVisualAdapter(
+                new ReplayVisualEngine(128, 256), new BukkitReplayVisualRenderer(), 2L);
         final ReplayViewerAdapter viewer = new ReplayViewerAdapter(commands,
-                new BukkitReplayViewerPresentation(Bukkit::getPlayer));
+                new BukkitReplayViewerPresentation(Bukkit::getPlayer), visuals,
+                Bukkit::getCurrentTick);
         final ReplayViewerBootstrap viewerCandidate = new ReplayViewerBootstrap(viewer, adapter);
         try {
             viewerCandidate.start();
