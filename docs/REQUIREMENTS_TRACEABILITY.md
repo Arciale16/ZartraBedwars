@@ -769,3 +769,16 @@ mandatory CI and Paper 1.21.1 jobs and was squash-merged as
 and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation; M12 is now complete.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |
+## M17 replay foundation checkpoint
+
+M17 is **IN PROGRESS**. This checkpoint materializes `zbw-replay-api` and `zbw-replay` without changing the M08 match lifecycle, M11 settlement, M12 persistence/progression, M13 objectives, M14 cosmetics, M15 statistics or M16 PlaceholderAPI. The replay application is a one-way consumer of their immutable facts and never owns those lifecycles.
+
+| Requirement | Foundation evidence | Status retained after checkpoint |
+|---|---|---|
+| ZBW-REPLAY-001; ZBW-ARC-008; ZBW-ARC-009 | Immutable `ReplayId`, versioned `ReplayMetadata`, `ReplayEvent`, `ReplayTimeline` and `ReplaySession` contracts | PARTIAL — packet/snapshot capture, codec, manifests and finalization remain M17 |
+| ZBW-REPLAY-003; ZBW-PROG-001 | Deterministic sequence ordering, immutable event payloads and duplicate-event decisions over existing M08/M11/M12 facts | PARTIAL — telemetry accuracy classification and golden playback remain M17 |
+| ZBW-REPLAY-007; ZBW-REPLAY-010; ZBW-READY-010; ZBW-READY-011; ZBW-READY-018 | Deny-by-default participant/staff access policy with protected-evidence and identity-disclosure rules | PARTIAL — audited viewer/browser/export/deletion surfaces remain M17/M18 |
+| ZBW-REPLAY-008; ZBW-ARC-007 | JDBC-free metadata, event-stream and session repository ports; no provider implementation | PARTIAL — SQL metadata and payload-store adapters, integrity, retention and migration remain M17 |
+| ZBW-GAME-003; ZBW-ARC-004 | Explicit source adapters consume existing ordered facts without lifecycle ownership | PARTIAL — M08 end-game close orchestration remains unchanged until its allocated M17 adapter checkpoint |
+
+Excluded here: Minecraft packet recording, NPC/web/UI viewers, Redis/distributed replay, external providers, concrete SQL/object storage, playback rendering and PlaceholderAPI additions.

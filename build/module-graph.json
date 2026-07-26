@@ -170,6 +170,18 @@
             "responsibility": "Java 8 immutable match/player/team/season statistic aggregation and leaderboard foundation"
         },
         {
+            "id": "zbw-replay-api",
+            "path": "replay/zbw-replay-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable replay identities, metadata, event stream, timeline, access and storage contracts"
+        },
+        {
+            "id": "zbw-replay",
+            "path": "replay/zbw-replay/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 deterministic replay session state and one-way M08/M11/M12 event ingestion"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -455,6 +467,28 @@
                 "zbw-domain",
                 "zbw-application",
                 "zbw-storage-api",
+                "zbw-game",
+                "zbw-shop",
+                "zbw-progression"
+            ]
+        },
+        {
+            "id": "zbw-replay-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M17",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-replay",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M17",
+            "depends_on": [
+                "zbw-api",
+                "zbw-replay-api",
                 "zbw-game",
                 "zbw-shop",
                 "zbw-progression"
