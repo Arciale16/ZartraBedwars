@@ -22,6 +22,7 @@ NOTICES = ROOT / "build" / "M04_MAVEN_BUILD_NOTICES.md"
 DEFAULT_STAGING = ROOT / "target" / "m04-staging"
 DEFAULT_REPOSITORY = ROOT / ".m2" / "repository"
 CENTRAL = "https://repo.maven.apache.org/maven2/"
+EXTENDEDCLIP = "https://repo.extendedclip.com/content/repositories/placeholderapi/"
 SPDX_COMMIT = "c4a7237ec8f4654e867546f9f409749300f1bf4c"
 SPDX_TEXT = f"https://raw.githubusercontent.com/spdx/license-list-data/{SPDX_COMMIT}/text/"
 JDOM_LICENSE_SOURCE = (
@@ -378,6 +379,7 @@ def validate_lock() -> list[str]:
             errors.append(f"duplicate Maven path: {relative}")
         paths.add(relative)
         if not (artifact["source"].startswith(CENTRAL)
+                or artifact["source"].startswith(EXTENDEDCLIP)
                 or relative.startswith(PAPER_PREFIX)
                 and (artifact["source"].startswith("https://repo.papermc.io/")
                      or artifact["source"] == PAPER_GENERATED_POM)):

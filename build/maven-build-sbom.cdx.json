@@ -1568,6 +1568,32 @@
       "version": "4.13.2"
     },
     {
+      "bom-ref": "maven:me.clip:placeholderapi:2.12.2",
+      "group": "me.clip",
+      "licenses": [
+        {
+          "expression": "GPL-3.0-only"
+        }
+      ],
+      "name": "placeholderapi",
+      "properties": [
+        {
+          "name": "zartra.scope",
+          "value": "RUNTIME_OR_BUILD_NOT_BUNDLED"
+        },
+        {
+          "name": "zartra.productBundled",
+          "value": "false"
+        },
+        {
+          "name": "zartra.commercialUse",
+          "value": "true"
+        }
+      ],
+      "type": "library",
+      "version": "2.12.2"
+    },
+    {
       "bom-ref": "maven:net.java.dev.jna:jna-platform:5.13.0",
       "group": "net.java.dev.jna",
       "licenses": [
@@ -5672,7 +5698,7 @@
       "version": "0.6.0-SNAPSHOT"
     }
   },
-  "serialNumber": "urn:uuid:9f91e2ca-0cdc-5a63-185d-e257b34d8fed",
+  "serialNumber": "urn:uuid:370c4dbb-1a03-3870-c92d-9d343a6b84ac",
   "specVersion": "1.6",
   "version": 1
 }
