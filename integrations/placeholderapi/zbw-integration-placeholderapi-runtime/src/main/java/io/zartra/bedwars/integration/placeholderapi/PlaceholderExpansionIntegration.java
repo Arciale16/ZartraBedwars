@@ -4,6 +4,7 @@ import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderContext;
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderRegistry;
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderResult;
 import java.util.UUID;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -12,10 +13,10 @@ import org.bukkit.plugin.Plugin;
  */
 public final class PlaceholderExpansionIntegration {
 
-    private final PlaceholderLifecycle lifecycle;
+    private final PlaceholderApiLifecycle lifecycle;
     private volatile boolean loaded;
 
-    public PlaceholderExpansionIntegration(final PlaceholderLifecycle lifecycle) {
+    public PlaceholderExpansionIntegration(final PlaceholderApiLifecycle lifecycle) {
         this.lifecycle = lifecycle;
     }
 
@@ -90,7 +91,7 @@ public final class PlaceholderExpansionIntegration {
         }
 
         @Override
-        public String onRequest(final Player player, final String params) {
+        public String onRequest(final OfflinePlayer player, final String params) {
             final UUID playerId = player == null ? null : player.getUniqueId();
             return registry.resolve(PlaceholderContext.of(PlaceholderLifecycle.NAMESPACE, playerId, normalize(params), "-", true)).value();
         }

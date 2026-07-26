@@ -4,7 +4,6 @@ import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderRegistry;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
-import org.bukkit.plugin.Plugin;
 
 /**
  * Lifecycle entrypoint for PlaceholderAPI integration.
@@ -24,7 +23,7 @@ public final class PlaceholderApiIntegration {
         this.lifecycle = Objects.requireNonNull(lifecycle, "lifecycle");
     }
 
-    public boolean initialize(final Plugin plugin) {
+    public boolean initialize(final Object plugin) {
         if (plugin == null) {
             return false;
         }
@@ -50,10 +49,10 @@ public final class PlaceholderApiIntegration {
         return registered;
     }
 
-    private static Object invokeStart(final Plugin plugin, final PlaceholderApiLifecycle lifecycle) {
+    private static Object invokeStart(final Object plugin, final PlaceholderApiLifecycle lifecycle) {
         try {
             final Class<?> runtimeClass = Class.forName(RUNTIME_ADAPTER);
-            final Method start = runtimeClass.getMethod("initialize", Plugin.class, PlaceholderApiLifecycle.class);
+            final Method start = runtimeClass.getMethod("initialize", Object.class, PlaceholderApiLifecycle.class);
             return start.invoke(null, plugin, lifecycle);
         } catch (final ClassNotFoundException | NoSuchMethodException e) {
             return null;

@@ -12,9 +12,13 @@ public final class PlaceholderApiRuntimeIntegration {
     private PlaceholderApiRuntimeIntegration() {
     }
 
-    public static Object initialize(final Plugin plugin, final PlaceholderApiLifecycle lifecycle) {
+    public static Object initialize(final Object plugin, final PlaceholderApiLifecycle lifecycle) {
+        if (!(plugin instanceof Plugin)) {
+            return null;
+        }
+        final Plugin paperPlugin = (Plugin) plugin;
         final PlaceholderExpansionIntegration integration = new PlaceholderExpansionIntegration(lifecycle);
-        if (!integration.register(plugin)) {
+        if (!integration.register(paperPlugin)) {
             return null;
         }
 
