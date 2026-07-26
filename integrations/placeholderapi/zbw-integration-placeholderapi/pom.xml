@@ -18,6 +18,18 @@
 
     <name>Zartra BedWars PlaceholderAPI Integration</name>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.zartra.bedwars</groupId>
+                <artifactId>zbw-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>io.zartra.bedwars</groupId>
@@ -33,7 +45,6 @@
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>${placeholderapi.version}</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
