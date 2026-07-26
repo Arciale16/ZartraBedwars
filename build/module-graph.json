@@ -95,7 +95,13 @@
                                            "id":  "zbw-integration-placeholderapi",
                                            "path":  "integrations/placeholderapi/zbw-integration-placeholderapi/pom.xml",
                                            "packaging":  "jar",
-                                           "responsibility":  "Paper runtime integration and neutral placeholder expansion wiring"
+                                           "responsibility":  "optional Paper lifecycle bridge and neutral placeholder expansion wiring"
+                                       },
+                                       {
+                                           "id":  "zbw-integration-placeholderapi-runtime",
+                                           "path":  "integrations/placeholderapi/zbw-integration-placeholderapi-runtime/pom.xml",
+                                           "packaging":  "jar",
+                                           "responsibility":  "opt-in external PlaceholderAPI runtime adapter isolated from the offline reactor"
                                        },
                                        {
                                            "id":  "zbw-compat-api",
@@ -295,6 +301,12 @@
                                                               "zbw-api",
                                                               "zbw-application"
                                                           ]
+                                       },
+                                       {
+                                           "id":  "zbw-integration-placeholderapi-runtime",
+                                           "path":  "integrations/placeholderapi/zbw-integration-placeholderapi-runtime/pom.xml",
+                                           "packaging":  "jar",
+                                           "responsibility":  "opt-in external PlaceholderAPI runtime adapter isolated from the offline reactor"
                                        },
                                        {
                                            "id":  "zbw-compat-api",
@@ -591,7 +603,8 @@
                                                               "zbw-scripting-api",
                                                               "zbw-scripting-engine",
                                                               "zbw-progression",
-                                                              "zbw-integration-placeholderapi"
+                                                              "zbw-integration-placeholderapi",
+                                                              "zbw-integration-placeholderapi-runtime"
                                                           ],
                                            "dependency_since":  {
                                                                     "zbw-game":  "M08",
@@ -601,7 +614,7 @@
                                                                     "zbw-content":  "M11",
                                                                     "zbw-scripting-api":  "M11",
                                                                     "zbw-scripting-engine":  "M11",
-                                                                    "zbw-progression":  "M12" ,                                                                    "zbw-integration-placeholderapi":  "M16"                                                                }
+                                                                    "zbw-progression":  "M12" ,                                                                    "zbw-integration-placeholderapi":  "M16",                                                                    "zbw-integration-placeholderapi-runtime":  "M16"                                                                }
                                        },
                                        {
                                            "id":  "zbw-proxy-api",
@@ -649,6 +662,18 @@
                                                           ],
                                            "dependency_since":  {
                                                                     "zbw-integration-placeholderapi-api":  "M16"
+                                                                }
+                                       },
+                                       {
+                                           "id":  "zbw-integration-placeholderapi-runtime",
+                                           "layer":  "adapter",
+                                           "bytecode":  8,
+                                           "first_milestone":  "M16",
+                                           "depends_on":  [
+                                                              "zbw-integration-placeholderapi"
+                                                          ],
+                                           "dependency_since":  {
+                                                                    "zbw-integration-placeholderapi":  "M16"
                                                                 }
                                        }
                                    ]

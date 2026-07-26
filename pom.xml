@@ -26,7 +26,6 @@
     <module>integrations/discord/zbw-integration-discord-api</module>
     <module>integrations/placeholderapi/zbw-integration-placeholderapi-api</module>
     <module>integrations/placeholderapi/zbw-integration-placeholderapi</module>
-    <module>integrations/placeholderapi/zbw-integration-placeholderapi-runtime</module>
     <module>compatibility/zbw-compat-api</module>
     <module>world/zbw-world</module>
     <module>arena/zbw-arena</module>
@@ -208,6 +207,12 @@
         <module>command/zbw-command-paper</module>
         <module>ui/zbw-ui-paper</module>
         <module>platform/paper/zbw-paper-modern</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>placeholderapi-runtime</id>
+      <modules>
+        <module>integrations/placeholderapi/zbw-integration-placeholderapi-runtime</module>
       </modules>
     </profile>
     <profile>

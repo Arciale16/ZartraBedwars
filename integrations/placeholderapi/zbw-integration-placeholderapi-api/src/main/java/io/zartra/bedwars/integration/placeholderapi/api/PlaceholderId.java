@@ -5,7 +5,6 @@ import java.util.Objects;
 /**
  * Typed identifier for a registered placeholder.
  *
- * @param value the identifier value in lowercase snake_case.
  */
 public final class PlaceholderId {
 

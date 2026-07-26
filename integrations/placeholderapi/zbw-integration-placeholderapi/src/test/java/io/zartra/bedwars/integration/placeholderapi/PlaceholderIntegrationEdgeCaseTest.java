@@ -2,7 +2,6 @@ package io.zartra.bedwars.integration.placeholderapi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 

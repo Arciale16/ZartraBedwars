@@ -25,9 +25,10 @@ public final class PlaceholderApiRuntimeIntegration {
     }
 
     public static void close(final Object handle) {
-        if (!(handle instanceof RuntimeHandle runtimeHandle)) {
+        if (!(handle instanceof RuntimeHandle)) {
             return;
         }
+        final RuntimeHandle runtimeHandle = (RuntimeHandle) handle;
         runtimeHandle.close();
     }
 

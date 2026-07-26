@@ -7,11 +7,6 @@ import java.util.UUID;
 /**
  * Context passed to PlaceholderAPI resolvers during placeholder expansion.
  *
- * @param namespace the placeholder namespace.
- * @param playerId the player identifier, if present.
- * @param requestedId the raw placeholder token identifier.
- * @param fallback a configured fallback string.
- * @param offlineAllowed whether missing players should be resolved from persistence.
  */
 public final class PlaceholderContext {
 

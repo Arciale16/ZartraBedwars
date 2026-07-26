@@ -5,9 +5,6 @@ import java.util.Objects;
 /**
  * Result of a placeholder resolution.
  *
- * @param value resolved placeholder value.
- * @param found whether a concrete value was produced.
- * @param fallback whether fallback handling was used.
  */
 public final class PlaceholderResult {
 
