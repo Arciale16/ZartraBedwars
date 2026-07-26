@@ -1,18 +1,23 @@
 package io.zartra.bedwars.integration.placeholderapi;
 
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderRegistry;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Objects;
 import org.bukkit.plugin.Plugin;
 
 /**
  * Lifecycle entrypoint for PlaceholderAPI integration.
  *
- * The integration is optional and remains disabled when PlaceholderAPI is absent.
+ * Runtime adapter is intentionally isolated in a separate module to keep core builds offline-friendly.
  */
 public final class PlaceholderApiIntegration {
 
+    private static final String RUNTIME_ADAPTER =
+            "io.zartra.bedwars.integration.placeholderapi.runtime.PlaceholderApiRuntimeIntegration";
+
     private final PlaceholderApiLifecycle lifecycle;
-    private PlaceholderExpansionIntegration.PluginExpansion expansion;
+    private Object runtimeHandle;
     private boolean registered;
 
     public PlaceholderApiIntegration(final PlaceholderApiLifecycle lifecycle) {
@@ -20,22 +25,23 @@ public final class PlaceholderApiIntegration {
     }
 
     public boolean initialize(final Plugin plugin) {
+        if (plugin == null) {
+            return false;
+        }
         final PlaceholderRegistry registry = lifecycle.registry();
-        if (!new PlaceholderExpansionIntegration(lifecycle).register(plugin)) {
+        final Object handle = invokeStart(plugin, lifecycle);
+        if (handle == null) {
             return false;
         }
-        if (!isPlaceholderApiAvailable()) {
-            return false;
-        }
-        expansion = new PlaceholderExpansionIntegration.PluginExpansion(registry);
+        runtimeHandle = handle;
         registered = true;
-        expansion.register();
         return true;
     }
 
     public void close() {
-        if (expansion != null) {
-            expansion.unregister();
+        if (runtimeHandle != null) {
+            invokeClose(runtimeHandle);
+            runtimeHandle = null;
         }
         registered = false;
     }
@@ -44,16 +50,26 @@ public final class PlaceholderApiIntegration {
         return registered;
     }
 
-    private static boolean isPlaceholderApiAvailable() {
-        return tryLoad("me.clip.placeholderapi.PlaceholderAPI");
+    private static Object invokeStart(final Plugin plugin, final PlaceholderApiLifecycle lifecycle) {
+        try {
+            final Class<?> runtimeClass = Class.forName(RUNTIME_ADAPTER);
+            final Method start = runtimeClass.getMethod("initialize", Plugin.class, PlaceholderApiLifecycle.class);
+            return start.invoke(null, plugin, lifecycle);
+        } catch (final ClassNotFoundException | NoSuchMethodException e) {
+            return null;
+        } catch (final IllegalAccessException | InvocationTargetException e) {
+            final Throwable cause = e.getCause() == null ? e : e.getCause();
+            throw new IllegalStateException("Runtime PlaceholderAPI adapter failed", cause);
+        }
     }
 
-    private static boolean tryLoad(final String name) {
+    private static void invokeClose(final Object handle) {
         try {
-            Class.forName(name, false, PlaceholderApiIntegration.class.getClassLoader());
-            return true;
-        } catch (final Exception exception) {
-            return false;
+            final Class<?> runtimeClass = Class.forName(RUNTIME_ADAPTER);
+            final Method close = runtimeClass.getMethod("close", Object.class);
+            close.invoke(null, handle);
+        } catch (final Exception ignored) {
+            // Keep plugin shutdown tolerant when runtime adapter is absent.
         }
     }
 }

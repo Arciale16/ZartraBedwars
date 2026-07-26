@@ -3,7 +3,6 @@ package io.zartra.bedwars.integration.placeholderapi;
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderContext;
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderRegistry;
 import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderResult;
-import io.zartra.bedwars.integration.placeholderapi.api.PlaceholderId;
 import java.util.UUID;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -15,14 +14,12 @@ public final class PlaceholderExpansionIntegration {
 
     private final PlaceholderLifecycle lifecycle;
     private volatile boolean loaded;
-    private Plugin plugin;
 
     public PlaceholderExpansionIntegration(final PlaceholderLifecycle lifecycle) {
         this.lifecycle = lifecycle;
     }
 
     public boolean register(final Plugin plugin) {
-        this.plugin = plugin;
         if (!isPlaceholderApiPresent()) {
             return false;
         }
