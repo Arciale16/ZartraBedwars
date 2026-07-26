@@ -16,7 +16,7 @@ commands:
     usage: /deposit [hand|resources|all]
   replay:
     description: Open and control an authorized replay viewer session
-    usage: /replay <view|pause|resume|stop|seek>
+    usage: /replay <open|info|play|pause|speed|seek|stop>
 permissions:
   zartrabedwars.replay.view:
     description: Open participant-authorized replay sessions

@@ -7,7 +7,8 @@ import java.util.Optional;
 public final class ReplayRuntimeResult {
     /** Stable outcomes suitable for command localization without leaking storage failures. */
     public enum Status {
-        OPENED, STARTED, PAUSED, STOPPED, SEEKED, FORBIDDEN, NOT_FOUND,
+        OPENED, STARTED, PAUSED, STOPPED, SEEKED, SPEED_CHANGED, INSPECTED,
+        FORBIDDEN, NOT_FOUND,
         FAILED, INACTIVE, ALREADY_OPEN, NO_SESSION, INVALID_STATE
     }
 

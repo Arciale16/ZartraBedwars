@@ -12,39 +12,63 @@ public final class ReplayViewerSession {
     private final ViewerState state;
     private final ViewerControlAction lastAction;
     private final Integer requestedEventIndex;
+    private final ReplayViewerSpeed speed;
 
     private ReplayViewerSession(final UUID viewerId, final ReplayId replayId,
                                 final ViewerState state, final ViewerControlAction lastAction,
-                                final Integer requestedEventIndex) {
+                                final Integer requestedEventIndex,
+                                final ReplayViewerSpeed speed) {
         this.viewerId = Objects.requireNonNull(viewerId, "viewerId");
         this.replayId = Objects.requireNonNull(replayId, "replayId");
         this.state = Objects.requireNonNull(state, "state");
         this.lastAction = Objects.requireNonNull(lastAction, "lastAction");
         this.requestedEventIndex = requestedEventIndex;
+        this.speed = Objects.requireNonNull(speed, "speed");
     }
 
     /** Creates a connected viewer after runtime admission succeeds. */
     public static ReplayViewerSession connected(final UUID viewerId, final ReplayId replayId) {
         return new ReplayViewerSession(viewerId, replayId, ViewerState.CONNECTED,
-                ViewerControlAction.VIEW, null);
+                ViewerControlAction.VIEW, null, ReplayViewerSpeed.NORMAL);
     }
 
-    /** Starts initial viewing from CONNECTED. */
+    /** Starts initial compatibility viewing from CONNECTED. */
     public ReplayViewerSession start() {
         requireState(ViewerState.CONNECTED);
-        return transition(ViewerState.WATCHING, ViewerControlAction.VIEW, null);
+        return transition(ViewerState.WATCHING, ViewerControlAction.VIEW,
+                requestedEventIndex, speed);
+    }
+
+    /** Plays from CONNECTED or resumes from PAUSED. */
+    public ReplayViewerSession play() {
+        if (state != ViewerState.CONNECTED && state != ViewerState.PAUSED) {
+            throw new IllegalStateException("viewer cannot play in " + state);
+        }
+        return transition(ViewerState.WATCHING, ViewerControlAction.PLAY,
+                requestedEventIndex, speed);
     }
 
     /** Pauses active viewing. */
     public ReplayViewerSession pause() {
         requireState(ViewerState.WATCHING);
-        return transition(ViewerState.PAUSED, ViewerControlAction.PAUSE, requestedEventIndex);
+        return transition(ViewerState.PAUSED, ViewerControlAction.PAUSE,
+                requestedEventIndex, speed);
     }
 
     /** Resumes paused viewing. */
     public ReplayViewerSession resume() {
         requireState(ViewerState.PAUSED);
-        return transition(ViewerState.WATCHING, ViewerControlAction.RESUME, requestedEventIndex);
+        return transition(ViewerState.WATCHING, ViewerControlAction.RESUME,
+                requestedEventIndex, speed);
+    }
+
+    /** Applies one of the exact UX speed choices without changing lifecycle state. */
+    public ReplayViewerSession changeSpeed(final ReplayViewerSpeed nextSpeed) {
+        if (state == ViewerState.DISCONNECTED) {
+            throw new IllegalStateException("disconnected viewer cannot change speed");
+        }
+        return transition(state, ViewerControlAction.SPEED, requestedEventIndex,
+                Objects.requireNonNull(nextSpeed, "nextSpeed"));
     }
 
     /** Records an inclusive event-index seek request without changing play/pause state. */
@@ -55,22 +79,31 @@ public final class ReplayViewerSession {
         if (eventIndex < -1) {
             throw new IllegalArgumentException("event index must be at least -1");
         }
-        return transition(state, ViewerControlAction.SEEK, Integer.valueOf(eventIndex));
+        return transition(state, ViewerControlAction.SEEK, Integer.valueOf(eventIndex), speed);
     }
 
+    /** Returns an immutable information action without changing viewer state. */
+    public ReplayViewerSession inspect() {
+        if (state == ViewerState.DISCONNECTED) {
+            throw new IllegalStateException("disconnected viewer cannot be inspected");
+        }
+        return transition(state, ViewerControlAction.INFO, requestedEventIndex, speed);
+    }
     /** Disconnects any non-disconnected viewer. */
     public ReplayViewerSession disconnect() {
         if (state == ViewerState.DISCONNECTED) {
             throw new IllegalStateException("viewer already disconnected");
         }
         return transition(ViewerState.DISCONNECTED, ViewerControlAction.STOP,
-                requestedEventIndex);
+                requestedEventIndex, speed);
     }
 
     private ReplayViewerSession transition(final ViewerState nextState,
                                            final ViewerControlAction action,
-                                           final Integer eventIndex) {
-        return new ReplayViewerSession(viewerId, replayId, nextState, action, eventIndex);
+                                           final Integer eventIndex,
+                                           final ReplayViewerSpeed nextSpeed) {
+        return new ReplayViewerSession(viewerId, replayId, nextState, action,
+                eventIndex, nextSpeed);
     }
 
     private void requireState(final ViewerState expected) {
@@ -79,14 +112,13 @@ public final class ReplayViewerSession {
         }
     }
 
-    /** @return viewer identity */
-    public UUID viewerId() { return viewerId; }
-    /** @return replay identity */
-    public ReplayId replayId() { return replayId; }
-    /** @return current viewer lifecycle state */
-    public ViewerState state() { return state; }
-    /** @return last successful viewer action */
-    public ViewerControlAction lastAction() { return lastAction; }
+    /** @return viewer identity */ public UUID viewerId() { return viewerId; }
+    /** @return replay identity */ public ReplayId replayId() { return replayId; }
+    /** @return current viewer lifecycle state */ public ViewerState state() { return state; }
+    /** @return last successful viewer action */ public ViewerControlAction lastAction() {
+        return lastAction;
+    }
+    /** @return selected exact UX speed */ public ReplayViewerSpeed speed() { return speed; }
     /** @return last requested inclusive event index when present */
     public OptionalInt requestedEventIndex() {
         return requestedEventIndex == null

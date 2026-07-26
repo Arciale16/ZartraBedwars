@@ -530,3 +530,7 @@ throttles ordinary updates. Entity, important-event and viewer counts are capped
 corrupt reconstruction detaches all owned representations. The Bukkit reflection boundary is
 contract-tested independently from semantic reconstruction. World cloning, packet/NPC providers,
 cameras, cinematics, advanced effects, complex GUI, web, Redis and external hosting remain deferred.
+
+### M17 Phase 8 replay UX boundary
+
+The Paper-only UX projects each authorized spectator session into a bounded immutable menu with current/duration timing, participants, important events and exact 0.25x/0.5x/1x/2x/4x controls. Commands delegate to the existing Phase 5 runtime and Phase 4 playback engine; no replay ordering, lifecycle, persistence or access policy is duplicated. Viewer-owned projections are isolated by UUID and removed on stop, disconnect and shutdown. (ZBW-REPLAY-004/005/007/010)

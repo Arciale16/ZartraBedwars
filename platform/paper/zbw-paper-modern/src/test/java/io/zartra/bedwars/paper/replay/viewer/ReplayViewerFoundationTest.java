@@ -134,7 +134,7 @@ final class ReplayViewerFoundationTest {
     }
 
     @Test
-    void commandRouterAcceptsOnlyFiveExactFoundationRoutes() {
+    void commandRouterSupportsReplayUxControlRoutes() {
         final RuntimeHarness runtime = runtime(completed(Optional.of(completedReplay())));
         final ReplayViewerAdapter viewer =
                 new ReplayViewerAdapter(runtime.commands, new RecordingPresentation());
@@ -142,11 +142,17 @@ final class ReplayViewerFoundationTest {
         final FakeAudience audience = new FakeAudience(true);
 
         assertEquals(ReplayViewerResult.Status.SUCCESS,
-                route(router, audience, "view", REPLAY.toString()).status());
+                route(router, audience, "open", REPLAY.toString()).status());
+        assertEquals(ReplayViewerResult.Status.SUCCESS,
+                route(router, audience, "info").status());
+        assertEquals(ReplayViewerResult.Status.SUCCESS,
+                route(router, audience, "play").status());
+        assertEquals(ReplayViewerSpeed.DOUBLE,
+                route(router, audience, "speed", "2x").session().orElseThrow().speed());
         assertEquals(ViewerState.PAUSED,
                 route(router, audience, "pause").session().orElseThrow().state());
         assertEquals(ViewerState.WATCHING,
-                route(router, audience, "resume").session().orElseThrow().state());
+                route(router, audience, "play").session().orElseThrow().state());
         assertEquals(0, route(router, audience, "seek", "0").session()
                 .orElseThrow().requestedEventIndex().orElseThrow());
         assertEquals(ViewerState.DISCONNECTED,

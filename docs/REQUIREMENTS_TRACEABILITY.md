@@ -844,3 +844,12 @@ GUI/web viewers, or add Redis, hosting or external-provider behavior.
 Phase 7 changes only `zbw-paper-modern`; replay API/core contracts and M08/M11/M12/M15/M16
 behavior remain unchanged. No world cloning, GUI/cinematic editor, web, Redis, external provider or
 distributed replay behavior is introduced.
+
+### M17 Phase 8 replay UX and controls evidence
+
+| Requirement | Implemented Phase 8 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004`, `ZBW-REPLAY-005` | Paper viewer controls expose open/info/play/pause, exact 0.25x/0.5x/1x/2x/4x speed selection, inclusive seek and stop; immutable bounded menu projections synchronize timestamp, duration, participants and important events with the authoritative playback cursor | Command routing, speed allow-list, menu immutability/bounds and existing runtime/seek/cleanup suites pass; cinematic/editor/web UX remains later scope |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010`, `ZBW-READY-010`, `ZBW-READY-018` | All UX admission remains behind the existing participant/staff access policy; information is restricted to the caller's active viewer UUID and cleanup removes its session/menu projection | Permission, invalid/missing replay, failed load, session isolation and sanitized failure suites pass; export/deletion/audit workflows remain M17/M18 |
+
+Phase 8 changes only `zbw-paper-modern` and documentation; replay core, M08, M11, M12, M15 and M16 remain unchanged.

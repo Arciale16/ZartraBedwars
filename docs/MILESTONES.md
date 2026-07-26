@@ -278,3 +278,7 @@ Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-R
 `M00 â†’ M01 â†’ M02 â†’ (M03, M05) â†’ M04/M06 â†’ M07 â†’ M08 â†’ M09/M10 â†’ M11/M12 â†’ M13â€“M16 â†’ M17 â†’ M18 â†’ M19 â†’ M20 â†’ M21/M22 â†’ M23 â†’ M24`.
 
 Parallel work is allowed only where this graph and module boundaries show no unmet data/API dependency.
+
+#### M17 Phase 8 checkpoint
+
+Replay UX and controls now provide the Paper command/menu foundation, exact bounded speed choices, synchronized timeline information, permission-preserving inspection and viewer-isolated cleanup for ZBW-REPLAY-004/005/007/010. Web replay, Redis, external providers, advanced GUI and cinematics remain outside this checkpoint.

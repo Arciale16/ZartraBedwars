@@ -1,6 +1,7 @@
 package io.zartra.bedwars.paper.replay;
 
 import io.zartra.bedwars.replay.api.ReplayId;
+import io.zartra.bedwars.replay.playback.PlaybackSpeed;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -32,4 +33,10 @@ public final class PaperReplayCommands {
     /** @return stop/cleanup outcome */ public ReplayRuntimeResult stop(final UUID playerId) { return service.stop(playerId); }
     /** @return event-index seek outcome */
     public ReplayRuntimeResult seek(final UUID playerId, final int eventIndex) { return service.seek(playerId, eventIndex); }
+    /** @return exact playback-speed outcome */
+    public ReplayRuntimeResult speed(final UUID playerId, final PlaybackSpeed speed) {
+        return service.changeSpeed(playerId, speed);
+    }
+    /** @return current authorized replay projection without mutation */
+    public ReplayRuntimeResult info(final UUID playerId) { return service.inspect(playerId); }
 }

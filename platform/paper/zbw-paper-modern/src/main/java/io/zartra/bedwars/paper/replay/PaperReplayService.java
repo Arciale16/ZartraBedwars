@@ -7,6 +7,7 @@ import io.zartra.bedwars.replay.api.ReplaySession;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.PlaybackSession;
 import io.zartra.bedwars.replay.playback.PlaybackState;
+import io.zartra.bedwars.replay.playback.PlaybackSpeed;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,24 @@ public final class PaperReplayService {
     public ReplayRuntimeResult seek(final UUID playerId, final int eventIndex) {
         return update(playerId, playback -> playbackEngine.seekToEvent(playback, eventIndex),
                 ReplayRuntimeResult.Status.SEEKED);
+    }
+
+    /** Changes playback speed through the existing engine boundary. */
+    public ReplayRuntimeResult changeSpeed(final UUID playerId,
+                                           final PlaybackSpeed speed) {
+        Objects.requireNonNull(speed, "speed");
+        return update(playerId, playback -> playbackEngine.changeSpeed(playback, speed),
+                ReplayRuntimeResult.Status.SPEED_CHANGED);
+    }
+
+    /** Returns the current authorized runtime projection without mutation. */
+    public ReplayRuntimeResult inspect(final UUID playerId) {
+        requireOwnerThread();
+        final ActiveSession active = sessions.get(Objects.requireNonNull(playerId, "playerId"));
+        return active == null
+                ? ReplayRuntimeResult.of(ReplayRuntimeResult.Status.NO_SESSION)
+                : ReplayRuntimeResult.of(ReplayRuntimeResult.Status.INSPECTED,
+                        active.projection());
     }
 
     /** Stops one spectator session and restores its captured Paper state. */
