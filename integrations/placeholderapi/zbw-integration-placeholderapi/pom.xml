@@ -18,6 +18,20 @@
 
     <name>Zartra BedWars PlaceholderAPI Integration</name>
 
+    <repositories>
+        <repository>
+            <id>extendedclip</id>
+            <name>Extendedclip PlaceholderAPI repository</name>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
