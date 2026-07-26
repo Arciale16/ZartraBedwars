@@ -41,6 +41,8 @@ final class PaperFoundationSettingsTest {
             assertTrue(descriptor.contains("commands:"));
             assertTrue(descriptor.contains("  zbw:"));
             assertTrue(descriptor.contains("  deposit:"));
+            assertTrue(descriptor.contains("\n  replay:\n"));
+            assertTrue(descriptor.contains("/replay <view|pause|resume|stop|seek>"));
             assertTrue(descriptor.contains("permissions:"));
             assertTrue(descriptor.contains("  zartrabedwars.replay.view:"));
             assertTrue(descriptor.contains("  zartrabedwars.replay.staff:"));

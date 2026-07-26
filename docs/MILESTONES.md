@@ -171,7 +171,7 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 - **Requirements:** REPLAY-001..010.
 - **Entry:** M08 canonical events, M05 queues, M04 metadata storage, replay ADR accepted.
-- **Phase status:** IN PROGRESS — Phases 1-5 allocate immutable replay contracts, deterministic ingestion/timeline, repository ports, SQL persistence, privacy/access policy, the platform-neutral playback engine and its controlled Paper spectator/runtime adapter; capture codecs, payload providers, world cloning, rendering, GUI and every complete viewer surface remain unclaimed.
+- **Phase status:** IN PROGRESS — Phases 1-6 allocate immutable replay contracts, deterministic ingestion/timeline, repository ports, SQL persistence, privacy/access policy, the platform-neutral playback engine, controlled Paper spectator/runtime integration and the basic viewer lifecycle/command presentation; capture codecs, payload providers, world cloning, advanced rendering, complex GUI and every complete viewer surface remain unclaimed.
 - **Deliver:** capture/codec/manifest/store/retention/recovery/privacy, playback scene/rendering, timeline/telemetry/staff evidence and all surfaces.
 - **Exit:** golden timing/order, interruption/corruption/repair/hold/privacy/provider failure and performance tests pass; evidence degradation policy demonstrated.
 

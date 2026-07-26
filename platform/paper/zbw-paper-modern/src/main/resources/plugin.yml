@@ -14,6 +14,9 @@ commands:
   deposit:
     description: Deposit eligible BedWars resources
     usage: /deposit [hand|resources|all]
+  replay:
+    description: Open and control an authorized replay viewer session
+    usage: /replay <view|pause|resume|stop|seek>
 permissions:
   zartrabedwars.replay.view:
     description: Open participant-authorized replay sessions

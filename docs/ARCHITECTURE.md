@@ -510,3 +510,11 @@ state and restore captured player state without blocking the owner thread. Playb
 state transitions remain exclusively in the Java-8-neutral replay engine. World cloning, rendering,
 Minecraft entities, NPCs, holograms, GUI/web viewers, Redis and external hosting remain outside this
 phase.
+
+M17 Phase 6 layers an immutable viewer lifecycle and strict command router over that runtime.
+Viewer state is a presentation projection only: every playback mutation still delegates to
+`PaperReplayCommands`, and every initial view still passes the Phase 5 repository and access-policy
+boundary. A separate disconnect registration removes viewer state and clears owned presentation
+before the replay runtime performs final spectator restoration. The presentation is limited to
+sanitized messages; scene rendering, world isolation/cloning, entities, cameras, advanced effects,
+complex GUI and external transports remain deferred.

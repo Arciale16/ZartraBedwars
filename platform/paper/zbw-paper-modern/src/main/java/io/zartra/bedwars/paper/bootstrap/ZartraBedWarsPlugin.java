@@ -8,9 +8,14 @@ import io.zartra.bedwars.paper.replay.BukkitReplayRuntimeAdapter;
 import io.zartra.bedwars.paper.replay.PaperReplayCommands;
 import io.zartra.bedwars.paper.replay.PaperReplayService;
 import io.zartra.bedwars.paper.replay.ReplayRuntimeBootstrap;
+import io.zartra.bedwars.paper.replay.viewer.BukkitReplayViewerPresentation;
+import io.zartra.bedwars.paper.replay.viewer.ReplayViewerAdapter;
+import io.zartra.bedwars.paper.replay.viewer.ReplayViewerBootstrap;
+import io.zartra.bedwars.paper.replay.viewer.ReplayViewerCommandRouter;
 import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
+import java.util.Optional;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,6 +24,8 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     private PaperFoundationRuntime runtime;
     private PlaceholderApiIntegration placeholderIntegration;
     private ReplayRuntimeBootstrap replayRuntime;
+    private ReplayViewerBootstrap replayViewerRuntime;
+    private ReplayViewerCommandRouter replayViewerCommands;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -39,6 +46,12 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        if (replayViewerRuntime != null) {
+            replayViewerRuntime.stop();
+            replayViewerRuntime = null;
+            replayViewerCommands = null;
+            getLogger().info("M17 replay viewer cleanup complete");
+        }
         if (replayRuntime != null) {
             replayRuntime.stop();
             replayRuntime = null;
@@ -71,9 +84,26 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
                 new ReplayAccessPolicy(), new ReplayPlaybackEngine(), adapter);
         final ReplayRuntimeBootstrap candidate = new ReplayRuntimeBootstrap(service, adapter);
         candidate.start();
+        final PaperReplayCommands commands = candidate.commands();
+        final ReplayViewerAdapter viewer = new ReplayViewerAdapter(commands,
+                new BukkitReplayViewerPresentation(Bukkit::getPlayer));
+        final ReplayViewerBootstrap viewerCandidate = new ReplayViewerBootstrap(viewer, adapter);
+        try {
+            viewerCandidate.start();
+        } catch (RuntimeException failure) {
+            candidate.stop();
+            throw failure;
+        }
         replayRuntime = candidate;
-        getLogger().info("M17 Paper replay runtime installed");
-        return candidate.commands();
+        replayViewerRuntime = viewerCandidate;
+        replayViewerCommands = new ReplayViewerCommandRouter(viewer);
+        getLogger().info("M17 Paper replay runtime and viewer foundation installed");
+        return commands;
+    }
+
+    /** @return installed `/replay` viewer router when replay storage is composed */
+    public synchronized Optional<ReplayViewerCommandRouter> replayViewerCommands() {
+        return Optional.ofNullable(replayViewerCommands);
     }
     private void initializePlaceholderApi() {
         try {

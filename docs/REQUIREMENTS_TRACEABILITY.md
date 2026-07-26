@@ -820,3 +820,15 @@ provider or change to the M08/M11/M12/M15/M16 ownership boundaries.
 The plugin composition root exposes one repository-injected installation point and owns non-blocking
 shutdown. No fake repository, synchronous SQL, world clone, entity/NPC/hologram spawn, GUI, web,
 Redis, external hosting/provider or M08/M11/M12/M15/M16 behavior is introduced.
+
+### M17 Phase 6 replay viewer-foundation evidence
+
+| Requirement | Implemented Phase 6 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004` | Immutable `ReplayViewerSession`, `ViewerState` and `ViewerControlAction` model `CONNECTED`, `WATCHING`, `PAUSED` and `DISCONNECTED`; the Paper adapter delegates view/pause/resume/stop/inclusive seek to the existing Phase 5 runtime | Lifecycle, transition, seek-bound, runtime-control and disconnected-session tests pass; rewind/frame-step/speed/camera/rendering/complex GUI remain later M17/M22 work |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010` | Strict `/replay view|pause|resume|stop|seek` routing reaches the existing permission/access-policy boundary before viewer creation and exposes only sanitized outcomes | Permission rejection, failed load, missing/invalid session, malformed command and exact route tests pass; browser/history/settings/export/audit surfaces remain later M17/M18 work |
+| `ZBW-REPLAY-004`, `ZBW-REPLAY-009` cleanup | Viewer disconnect and shutdown registration stop runtime viewing, remove the viewer projection and clear every presentation element owned by this foundation | Disconnect, idempotent shutdown and spectator restoration tests pass |
+
+Phase 6 adds only minimal message presentation and command routing in `zbw-paper-modern`.
+It does not clone worlds, spawn replay entities/NPCs/holograms, implement advanced visual effects or
+GUI/web viewers, or add Redis, hosting or external-provider behavior.
