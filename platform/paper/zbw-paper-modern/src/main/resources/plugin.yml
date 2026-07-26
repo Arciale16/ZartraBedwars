@@ -14,3 +14,10 @@ commands:
   deposit:
     description: Deposit eligible BedWars resources
     usage: /deposit [hand|resources|all]
+permissions:
+  zartrabedwars.replay.view:
+    description: Open participant-authorized replay sessions
+    default: true
+  zartrabedwars.replay.staff:
+    description: Open protected staff-evidence replay sessions
+    default: op

@@ -4,6 +4,13 @@ import io.zartra.bedwars.api.time.TimeSource;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiIntegration;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiLifecycle;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiProviders;
+import io.zartra.bedwars.paper.replay.BukkitReplayRuntimeAdapter;
+import io.zartra.bedwars.paper.replay.PaperReplayCommands;
+import io.zartra.bedwars.paper.replay.PaperReplayService;
+import io.zartra.bedwars.paper.replay.ReplayRuntimeBootstrap;
+import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
+import io.zartra.bedwars.replay.api.ReplaySessionRepository;
+import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class ZartraBedWarsPlugin extends JavaPlugin {
     private PaperFoundationRuntime runtime;
     private PlaceholderApiIntegration placeholderIntegration;
+    private ReplayRuntimeBootstrap replayRuntime;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -31,6 +39,11 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        if (replayRuntime != null) {
+            replayRuntime.stop();
+            replayRuntime = null;
+            getLogger().info("M17 replay runtime cleanup scheduled");
+        }
         if (placeholderIntegration != null) {
             placeholderIntegration.close();
             placeholderIntegration = null;
@@ -42,6 +55,26 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
         }
     }
 
+    /**
+     * Installs the M17 replay runtime once an asynchronous repository is available.
+     *
+     * @param repository authoritative non-blocking replay-session boundary
+     * @return typed replay command-service foundation
+     */
+    public synchronized PaperReplayCommands installReplayRuntime(
+            final ReplaySessionRepository repository) {
+        if (replayRuntime != null) {
+            throw new IllegalStateException("M17 replay runtime already installed");
+        }
+        final BukkitReplayRuntimeAdapter adapter = new BukkitReplayRuntimeAdapter(this);
+        final PaperReplayService service = new PaperReplayService(repository,
+                new ReplayAccessPolicy(), new ReplayPlaybackEngine(), adapter);
+        final ReplayRuntimeBootstrap candidate = new ReplayRuntimeBootstrap(service, adapter);
+        candidate.start();
+        replayRuntime = candidate;
+        getLogger().info("M17 Paper replay runtime installed");
+        return candidate.commands();
+    }
     private void initializePlaceholderApi() {
         try {
             final PlaceholderApiIntegration candidate = new PlaceholderApiIntegration(

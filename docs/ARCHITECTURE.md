@@ -499,3 +499,14 @@ event claim in the same caller-owned M04 `UnitOfWork` used to save state. The ne
 opens a transaction and never imports JDBC. `zbw-storage-sql` owns `JdbcM13StateRepository` and the
 checksum-locked version-13 migration for objective, quest, achievement, challenge and season state.
 No platform thread may call the JDBC adapter synchronously.
+
+## M17 Paper replay runtime boundary
+
+M17 Phase 5 adds one-way `zbw-paper-modern -> zbw-replay-api/zbw-replay` dependencies. The Paper
+composition root injects the asynchronous `ReplaySessionRepository`; it never constructs a fake
+repository or performs synchronous persistence. Repository completion is dispatched to the owner
+thread before spectator admission or restoration. Disconnect and plugin shutdown detach runtime
+state and restore captured player state without blocking the owner thread. Playback ordering and
+state transitions remain exclusively in the Java-8-neutral replay engine. World cloning, rendering,
+Minecraft entities, NPCs, holograms, GUI/web viewers, Redis and external hosting remain outside this
+phase.

@@ -209,7 +209,7 @@
             "id": "zbw-paper-modern",
             "path": "platform/paper/zbw-paper-modern/pom.xml",
             "packaging": "jar",
-            "responsibility": "Java 21 primary Paper bootstrap, native world provider, closed game projections and M09 presentation adapters"
+            "responsibility": "Java 21 primary Paper bootstrap, native world provider, replay runtime, closed game projections and presentation adapters"
         }
     ],
     "planned_production_modules": [
@@ -638,7 +638,9 @@
                 "zbw-scripting-api",
                 "zbw-scripting-engine",
                 "zbw-progression",
-                "zbw-integration-placeholderapi"
+                "zbw-integration-placeholderapi",
+                "zbw-replay-api",
+                "zbw-replay"
             ],
             "dependency_since": {
                 "zbw-game": "M08",
@@ -649,7 +651,9 @@
                 "zbw-scripting-api": "M11",
                 "zbw-scripting-engine": "M11",
                 "zbw-progression": "M12",
-                "zbw-integration-placeholderapi": "M16"
+                "zbw-integration-placeholderapi": "M16",
+                "zbw-replay-api": "M17",
+                "zbw-replay": "M17"
             }
         },
         {

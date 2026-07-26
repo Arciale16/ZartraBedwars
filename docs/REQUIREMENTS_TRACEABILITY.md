@@ -808,3 +808,15 @@ Phase 2 still excludes packet/snapshot recording, codecs, concrete repositories/
 
 Phase 4 adds no Paper dependency, Minecraft entity behavior, viewer/UI, Redis, external
 provider or change to the M08/M11/M12/M15/M16 ownership boundaries.
+
+### M17 Phase 5 Paper replay runtime evidence
+
+| Requirement | Implemented Phase 5 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004` | `zbw-paper-modern` composes the existing replay engine through a typed open/start/pause/stop/seek service and immutable runtime context; engine semantics remain in `zbw-replay` | Paper reactor tests cover READY/open, start, pause, inclusive seek and stop; restart/frame-step/camera/rendering/GUI remain later M17/M22 work |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010`, `ZBW-READY-010`, `ZBW-READY-018` | Participant access requires `zartrabedwars.replay.view`; protected evidence additionally requires `zartrabedwars.replay.staff` and delegates to `ReplayAccessPolicy` before spectator mutation | Permission-before-load, participant, protected-evidence and staff tests pass; browser/history/settings/export/audit surfaces remain later M17/M18 work |
+| `ZBW-REPLAY-009` | Repository loads remain asynchronous, completion returns to the Paper owner thread, late completion after shutdown cannot admit a player, and disconnect/plugin shutdown restore captured spectator state | Failed/missing/non-playable load, disconnect cleanup, shutdown cleanup and late-completion tests pass; repair/quarantine/capture degradation remain later M17 work |
+
+The plugin composition root exposes one repository-injected installation point and owns non-blocking
+shutdown. No fake repository, synchronous SQL, world clone, entity/NPC/hologram spawn, GUI, web,
+Redis, external hosting/provider or M08/M11/M12/M15/M16 behavior is introduced.
