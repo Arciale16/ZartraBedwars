@@ -4,6 +4,11 @@ import io.zartra.bedwars.api.time.TimeSource;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiIntegration;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiLifecycle;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiProviders;
+import io.zartra.bedwars.paper.atlas.AtlasAudience;
+import io.zartra.bedwars.paper.atlas.AtlasCommandRouter;
+import io.zartra.bedwars.paper.atlas.AtlasPaperPort;
+import io.zartra.bedwars.paper.atlas.AtlasRuntimeBootstrap;
+import io.zartra.bedwars.paper.atlas.PaperAtlasService;
 import io.zartra.bedwars.paper.replay.BukkitReplayRuntimeAdapter;
 import io.zartra.bedwars.paper.replay.PaperReplayCommands;
 import io.zartra.bedwars.paper.replay.PaperReplayService;
@@ -22,8 +27,11 @@ import io.zartra.bedwars.paper.replay.visual.ReplayVisualEngine;
 import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Supplier;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,6 +46,8 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     private ReplayViewerAdapter replayViewerAdapter;
     private ReplayStaffCommandRouter replayStaffCommands;
     private ReplaySessionRepository replayRepository;
+    private AtlasRuntimeBootstrap atlasRuntime;
+    private AtlasCommandRouter atlasCommands;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -58,6 +68,12 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        if (atlasRuntime != null) {
+            atlasRuntime.stop();
+            atlasRuntime = null;
+            atlasCommands = null;
+            getLogger().info("M18 Atlas Paper runtime cleanup complete");
+        }
         if (replayViewerRuntime != null) {
             replayViewerRuntime.stop();
             replayViewerRuntime = null;
@@ -145,6 +161,53 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
         return replayStaffCommands;
     }
 
+    /**
+     * Installs the M18 Atlas adapter once its asynchronous application port is composed.
+     *
+     * @param port authoritative non-blocking Atlas application boundary
+     * @return strict `/atlas` command router
+     */
+    public synchronized AtlasCommandRouter installAtlasRuntime(final AtlasPaperPort port) {
+        if (atlasRuntime != null) {
+            throw new IllegalStateException("M18 Atlas runtime already installed");
+        }
+        final PaperAtlasService service = new PaperAtlasService(port,
+                command -> Bukkit.getScheduler().runTask(this, command));
+        final AtlasRuntimeBootstrap candidate = new AtlasRuntimeBootstrap(service);
+        atlasCommands = candidate.start();
+        atlasRuntime = candidate;
+        Objects.requireNonNull(getCommand("atlas"), "atlas command")
+                .setExecutor((sender, command, label, arguments) -> {
+                    final AtlasAudience audience = new AtlasAudience() {
+                        @Override public UUID playerId() {
+                            return UUID.nameUUIDFromBytes(("atlas:" + sender.getName())
+                                    .getBytes(StandardCharsets.UTF_8));
+                        }
+                        @Override public boolean hasPermission(final String permission) {
+                            return sender.hasPermission(permission);
+                        }
+                        @Override public void present(final String message) {
+                            sender.sendMessage(message);
+                        }
+                    };
+                    try {
+                        atlasCommands.route(audience, arguments).whenComplete((result, failure) ->
+                                Bukkit.getScheduler().runTask(this, () -> audience.present(
+                                        failure == null ? "Atlas request accepted"
+                                                : "Atlas request failed")));
+                    } catch (SecurityException denied) {
+                        audience.present("Atlas permission denied");
+                    }
+                    return true;
+                });
+        getLogger().info("M18 Atlas Paper adapter installed");
+        return atlasCommands;
+    }
+
+    /** @return installed `/atlas` router when Atlas ports are composed */
+    public synchronized Optional<AtlasCommandRouter> atlasCommands() {
+        return Optional.ofNullable(atlasCommands);
+    }
     /** @return installed `/replay staff` router when staff ports are composed */
     public synchronized Optional<ReplayStaffCommandRouter> replayStaffCommands() {
         return Optional.ofNullable(replayStaffCommands);

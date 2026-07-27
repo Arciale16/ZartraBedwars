@@ -688,7 +688,9 @@
                 "zbw-progression",
                 "zbw-integration-placeholderapi",
                 "zbw-replay-api",
-                "zbw-replay"
+                "zbw-replay",
+                "zbw-atlas-api",
+                "zbw-atlas"
             ],
             "dependency_since": {
                 "zbw-game": "M08",
@@ -701,7 +703,9 @@
                 "zbw-progression": "M12",
                 "zbw-integration-placeholderapi": "M16",
                 "zbw-replay-api": "M17",
-                "zbw-replay": "M17"
+                "zbw-replay": "M17",
+                "zbw-atlas-api": "M18",
+                "zbw-atlas": "M18"
             }
         },
         {

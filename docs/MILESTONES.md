@@ -1,4 +1,4 @@
-﻿# ZartraBedWars Dependency-Aware Milestones
+# ZartraBedWars Dependency-Aware Milestones
 
 ## Rules
 
@@ -185,7 +185,9 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
   review, privacy, repository-port and event contracts for `ZBW-ATLAS-001/003/004/005/006/011`.
   The module depends only on `zbw-api` and the M17 replay API. Atlas core, SQL, Paper surfaces,
   punishment policy and the remaining M18 workflow are not implemented by this checkpoint.
-- **Deliver:** cases/anonymization/reservation/verdict/reputation/accuracy/anti-abuse/rewards/staff policy and all Atlas surfaces.
+- **Phase 3 status:** CORE AND SQL COMPLETE. Java 8 workflow, evidence references, eligibility, reservations, advisory verdicts, integrations, checksum-locked persistence and separated identity vault are materialized.
+- **Phase 4 status:** COMPLETE. The Java 21 Paper adapter provides asynchronous `/atlas` routing, sanitized staff/reviewer projections, owner-thread presentation and cleanup. `ZBW-ADDON-323..333` use exact dotted permissions and guarded reason/confirmation/immunity/audit/rollback ports; game lifecycle ownership remains unchanged.
+- **Closure evidence:** `ATLAS_M18.md`, Atlas/Paper unit suites, strict API/JavaDoc and governance validators. M19 is next but is not started by this closure.- **Deliver:** cases/anonymization/reservation/verdict/reputation/accuracy/anti-abuse/rewards/staff policy and all Atlas surfaces.
 - **Exit:** eligibility/bypass/conflict/anonymization/reservation/abuse/reward/override tests pass; no default community permanent punishment; gameplay budgets hold.
 
 ### M19 â€” Redis and distributed consistency

@@ -42,9 +42,11 @@ M17_REQUIREMENTS = {
     "ZBW-REPLAY-009", "ZBW-REPLAY-010",
 }
 
-M18_API_REQUIREMENTS = {
+M18_REQUIREMENTS = {
     "ZBW-ATLAS-001", "ZBW-ATLAS-003", "ZBW-ATLAS-004",
     "ZBW-ATLAS-005", "ZBW-ATLAS-006", "ZBW-ATLAS-011",
+    "ZBW-ATLAS-002", "ZBW-ATLAS-007", "ZBW-ATLAS-008",
+    "ZBW-ATLAS-009", "ZBW-ATLAS-010", "ZBW-ATLAS-012", "ZBW-ATLAS-013",
 }
 
 
@@ -153,8 +155,11 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
     if identifier in M17_REQUIREMENTS:
         return "PARTIAL", "M17 replay allocation is complete; provider, distributed, compatibility and release qualification remain"
-    if identifier in M18_API_REQUIREMENTS:
-        return "PARTIAL", "M18 Atlas API contracts are materialized; core, persistence and Paper workflow remain"
+    if identifier in M18_REQUIREMENTS:
+        return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
+    match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
+    if match and 323 <= int(match.group(1)) <= 333:
+        return "VERIFIED", "M18 guarded staff operation, permission, confirmation, audit and rollback evidence complete"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -265,7 +270,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M17 and hardening M08.1 are complete; M18 Atlas API foundation is active, without core, SQL or Paper implementation.",
+        "M00–M18 and hardening M08.1 are complete; M19 remains the next unstarted milestone.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
@@ -274,7 +279,7 @@ def render() -> str:
         "contracts, deterministic runtime, SQL persistence and M09/Paper presentation. M14 Phase 1 adds",
         "neutral cosmetic/profile/calendar models and ports. M15/M16 are complete. M17 closes replay",
         "contracts, ingestion, SQL persistence, playback, bounded Paper viewer/visuals and staff tools;",
-        "provider/distributed/compatibility and final release qualification remain with M19-M24.",
+        "provider/distributed/compatibility and final release qualification remain with M19-M24. M18 closes Atlas API, core, SQL, privacy-preserving Paper staff surfaces and guarded ZBW-ADDON-323..333 operations.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

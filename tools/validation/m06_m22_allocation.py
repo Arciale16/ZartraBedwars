@@ -60,7 +60,8 @@ def validate() -> list[str]:
             ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
              "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content",
              "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression",
-             "zbw-integration-placeholderapi", "zbw-replay-api", "zbw-replay"],
+             "zbw-integration-placeholderapi", "zbw-replay-api", "zbw-replay",
+             "zbw-atlas-api", "zbw-atlas"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -84,10 +85,12 @@ def validate() -> list[str]:
             "zbw-integration-placeholderapi": "M16",
             "zbw-replay-api": "M17",
             "zbw-replay": "M17",
+            "zbw-atlas-api": "M18",
+            "zbw-atlas": "M18",
     }:
         errors.append(
             "zbw-paper-modern: later dependencies must activate only in their "
-            "declared M08/M09/M11/M12/M16/M17 milestones")
+            "declared M08/M09/M11/M12/M16/M17/M18 milestones")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)

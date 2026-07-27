@@ -917,3 +917,13 @@ offsets. M08-M16 behavior is unchanged. This checkpoint creates neither `zbw-atl
 | `ZBW-ATLAS-002/010/011` | Async neutral ports query M17 access and M15 statistics, request M12 rewards, emit M13 qualified outcomes and supply M16 query data | No upstream ownership or implementation is duplicated |
 
 No Paper, GUI, command, staff-tool or M19 implementation is introduced by this checkpoint.
+### M18 Phase 4 Paper staff interface and closure
+
+| Requirement | Materialized evidence | Boundary retained |
+|---|---|---|
+| `ZBW-ATLAS-004/005/011/012`, `ZBW-READY-010/018` | `PaperAtlasService`, strict `/atlas` router, sanitized immutable list/evidence/reviewer/verdict/audit projections, exact reviewer/staff/admin permissions, asynchronous port calls, owner-thread presentation and lifecycle cleanup | Paper contains presentation and composition only; identity-vault bytes, policy and persistence stay outside Paper |
+| `ZBW-ATLAS-011`, `ZBW-PAPI-004` | `AtlasPlaceholderProviderAdapter` exposes cached Atlas query projections only through M16 `PlaceholderDataProvider` | No second placeholder registry, resolver or engine; refresh is asynchronous and absence is fail-closed |
+| `ZBW-ADDON-323..333`, `ZBW-GAME-009`, `ZBW-OPS-004/005`, `ZBW-UX-002` | `ControlledStaffOperations` typed operation catalogue, exact dotted permissions, mandatory opaque actor/target/reason, confirmation, target immunity, before/after audit and opaque rollback token | The game-owned backend remains the only mutation authority; Atlas and Paper never receive raw game mutation access |
+| `ZBW-QA-001/003` | Permission, routing, GUI immutability/privacy, owner-executor, cleanup, denial, audit and rollback tests plus module graph/dashboard/governance evidence | JDK/provider/distributed/release certification stays in its allocated later milestone |
+
+M18 is complete in `build/milestone-state.json`. No milestone is active; M19 is recorded only as the next unstarted milestone, and this checkpoint contains no M19 implementation.
