@@ -17,6 +17,9 @@ commands:
   replay:
     description: Open and control an authorized replay viewer session
     usage: /replay <open|info|play|pause|speed|seek|stop|staff>
+  atlas:
+    description: Review Atlas cases through the authorized moderation workflow
+    usage: /atlas <list|open|review|verdict|final|diagnostics>
 permissions:
   zartrabedwars.replay.view:
     description: Open participant-authorized replay sessions
@@ -26,4 +29,43 @@ permissions:
     default: op
   zartrabedwars.replay.admin:
     description: Mark, archive and remove invalid replay evidence
+    default: op
+  zartrabedwars.atlas.review:
+    description: Review anonymized Atlas cases
+    default: op
+  zartrabedwars.atlas.staff:
+    description: Record the authoritative staff disposition for an Atlas case
+    default: op
+  zartrabedwars.atlas.admin:
+    description: Inspect sanitized Atlas diagnostics
+    default: op
+  zartrabedwars.admin.game.forcejoin:
+    description: Request a confirmed and audited force-join operation
+    default: op
+  zartrabedwars.admin.game.revive:
+    description: Request a confirmed and audited revive operation
+    default: op
+  zartrabedwars.admin.game.setteam:
+    description: Request a confirmed and audited team movement
+    default: op
+  zartrabedwars.admin.game.bed:
+    description: Request a confirmed and audited bed mutation
+    default: op
+  zartrabedwars.admin.game.skipevent:
+    description: Request confirmed advancement of a match event
+    default: op
+  zartrabedwars.admin.game.tool:
+    description: Request a controlled staff tool effect
+    default: op
+  zartrabedwars.admin.game.cage:
+    description: Request a controlled player cage operation
+    default: op
+  zartrabedwars.admin.game.inspect:
+    description: Inspect sanitized live match state
+    default: op
+  zartrabedwars.admin.game.rollback:
+    description: Roll back a reversible controlled staff operation
+    default: op
+  zartrabedwars.staff.immune:
+    description: Protect a target from controlled staff mutation
     default: op

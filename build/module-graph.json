@@ -188,6 +188,24 @@
             "responsibility": "Java 8 asynchronous JDBC replay metadata, session and ordered-event persistence adapter"
         },
         {
+            "id": "zbw-atlas-api",
+            "path": "atlas/zbw-atlas-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable Atlas case, evidence, review, privacy, event and asynchronous repository contracts"
+        },
+        {
+            "id": "zbw-atlas",
+            "path": "atlas/zbw-atlas/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 Paper-independent Atlas lifecycle, eligibility, reservation, verdict and audit domain"
+        },
+        {
+            "id": "zbw-atlas-sql",
+            "path": "atlas/zbw-atlas-sql/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 transactional Atlas persistence, checksum migration and isolated identity vault adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -510,6 +528,36 @@
             ]
         },
         {
+            "id": "zbw-atlas-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-api",
+                "zbw-replay-api"
+            ]
+        },
+        {
+            "id": "zbw-atlas",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-atlas-api",
+                "zbw-replay-api"
+            ]
+        },
+        {
+            "id": "zbw-atlas-sql",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-atlas-api",
+                "zbw-storage-api"
+            ]
+        },
+        {
             "id": "zbw-compat-v1_8",
             "layer": "platform",
             "bytecode": 8,
@@ -640,7 +688,9 @@
                 "zbw-progression",
                 "zbw-integration-placeholderapi",
                 "zbw-replay-api",
-                "zbw-replay"
+                "zbw-replay",
+                "zbw-atlas-api",
+                "zbw-atlas"
             ],
             "dependency_since": {
                 "zbw-game": "M08",
@@ -653,7 +703,9 @@
                 "zbw-progression": "M12",
                 "zbw-integration-placeholderapi": "M16",
                 "zbw-replay-api": "M17",
-                "zbw-replay": "M17"
+                "zbw-replay": "M17",
+                "zbw-atlas-api": "M18",
+                "zbw-atlas": "M18"
             }
         },
         {

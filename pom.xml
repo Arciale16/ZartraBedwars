@@ -41,6 +41,9 @@
     <module>replay/zbw-replay-api</module>
     <module>replay/zbw-replay</module>
     <module>replay/zbw-replay-sql</module>
+    <module>atlas/zbw-atlas-api</module>
+    <module>atlas/zbw-atlas</module>
+    <module>atlas/zbw-atlas-sql</module>
   </modules>
 
   <properties>
