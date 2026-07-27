@@ -71,6 +71,7 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `net.kyori:adventure-key:4.17.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.kyori:examination-api:1.3.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.kyori:examination-string:1.3.0` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `net.md-5:bungeecord-chat:1.21-R0.3` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.sf.saxon:Saxon-HE:10.6` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `net.sf.saxon:Saxon-HE:12.5` | MPL-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.antlr:antlr4-runtime:4.13.2` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
