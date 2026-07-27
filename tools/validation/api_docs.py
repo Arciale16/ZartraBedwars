@@ -42,6 +42,8 @@ MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "ui/zbw-ui-api",
     "integrations/placeholderapi/zbw-integration-placeholderapi-api",
     "integrations/placeholderapi/zbw-integration-placeholderapi",
+    "replay/zbw-replay-api",
+    "replay/zbw-replay",
 )
 
 
@@ -75,14 +77,17 @@ def sources(modules: tuple[str, ...]) -> list[Path]:
 
 
 def artifacts(modules: tuple[str, ...]) -> list[Path]:
-    """Return exact reactor artifacts used as the documentation class path."""
+    """Return materialized reactor classes and jars for the documentation class path."""
     result: list[Path] = []
     for module in modules:
+        classes = ROOT / module / "target" / "classes"
+        if not classes.is_dir():
+            raise SystemExit(f"Missing reactor classes for strict JavaDoc: {classes}")
         artifact_id = Path(module).name
         artifact = ROOT / module / "target" / f"{artifact_id}-0.1.0-SNAPSHOT.jar"
         if not artifact.is_file():
             raise SystemExit(f"Missing reactor artifact for strict JavaDoc: {artifact}")
-        result.append(artifact)
+        result.extend((classes, artifact))
     return result
 
 
