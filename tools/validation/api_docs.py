@@ -32,6 +32,10 @@ NEUTRAL_CLASSPATH_MODULES = (
     "progression/zbw-progression",
     "statistics/zbw-statistics",
 )
+ATLAS_CLASSPATH_MODULES = (
+    "atlas/zbw-atlas-api",
+    "atlas/zbw-atlas",
+)
 MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "arena/zbw-arena",
     "game/zbw-game",
@@ -44,7 +48,7 @@ MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "integrations/placeholderapi/zbw-integration-placeholderapi",
     "replay/zbw-replay-api",
     "replay/zbw-replay",
-)
+) + ATLAS_CLASSPATH_MODULES
 
 
 def executable(jdk: str, expected: str) -> Path:
