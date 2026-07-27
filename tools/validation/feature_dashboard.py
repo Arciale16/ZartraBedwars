@@ -258,7 +258,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M13 and hardening M08.1 are complete; M14 Phase 1 is in progress.",
+        "M00–M17 and hardening M08.1 are complete; M18 governance allocation is active, with no Atlas implementation.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

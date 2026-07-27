@@ -510,6 +510,36 @@
             ]
         },
         {
+            "id": "zbw-atlas-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-api",
+                "zbw-replay-api"
+            ]
+        },
+        {
+            "id": "zbw-atlas",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-atlas-api",
+                "zbw-replay-api"
+            ]
+        },
+        {
+            "id": "zbw-atlas-sql",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M18",
+            "depends_on": [
+                "zbw-atlas-api",
+                "zbw-storage-api"
+            ]
+        },
+        {
             "id": "zbw-compat-v1_8",
             "layer": "platform",
             "bytecode": 8,

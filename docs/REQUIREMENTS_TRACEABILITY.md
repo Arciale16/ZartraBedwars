@@ -873,4 +873,19 @@ Phase 9 changes only the Paper replay adapter, descriptor/tests and M17 document
 | `ZBW-REPLAY-006/007/010`, `ZBW-READY-010/011/018` | Participant/staff purpose access, isolated viewer projections, bounded staff search/inspection, least-privilege moderation and deterministic audit | Permission, privacy, concurrent viewer, audit, invalid-load and sanitized failure suites pass; Atlas/web/export workflows retain M18/M23 ownership |
 | `ZBW-REPLAY-008/009`, `ZBW-READY-009/016/017` | Archive/failed lifecycle, compare-state persistence, idempotent cleanup, 256-viewer admission, 128-entity/256-event visuals and 100-row staff normalization | Archive/restart/failed-only removal, overflow, presentation/render failure, disconnect/shutdown and all quality/governance gates pass; provider/distributed/compatibility and three-profile production benchmark/restore evidence remain M19-M22/M24 |
 
-M17 is complete in `build/milestone-state.json`; M18 is the next milestone and is not started. The detailed architecture, runtime limits, thread ownership and retention handoff are documented in `REPLAY_M17.md`.
+M17 is complete in `build/milestone-state.json`; M18 is the active milestone, while production implementation is not started. The detailed architecture, runtime limits, thread ownership and retention handoff are documented in `REPLAY_M17.md`.
+### M18 Phase 1 Atlas governance allocation
+
+| Requirement allocation | Planned owner | Boundary retained before implementation |
+|---|---|---|
+| `ZBW-ATLAS-001..013` public case, eligibility, anonymization, reservation, verdict, reviewer, anti-abuse, reward, staff and health contracts | `zbw-atlas-api` | Java 8 API depending only on `zbw-api` and `zbw-replay-api`; it owns no replay recording/playback, statistics, progression, PlaceholderAPI or Paper behavior |
+| `ZBW-ATLAS-001..010`, `ZBW-ATLAS-012/013` case workflow, eligibility, reservations, verdicts, reputation, accuracy, anti-abuse and staff policy | `zbw-atlas` | Java 8 Paper-independent application logic depending on Atlas/replay contracts; progression, statistics and replay remain external query/service ports |
+| `ZBW-ATLAS-003..005`, `ZBW-ATLAS-007..010`, `ZBW-ATLAS-012/013`, `ZBW-READY-010/011/018` persistence, identity separation, reservation conflicts, audit, retention and recovery | `zbw-atlas-sql` | Java 8 persistence adapter depending on `zbw-atlas-api` and `zbw-storage-api`; no policy, GUI, Paper or direct feature ownership |
+| `ZBW-ATLAS-005/011/012` owner-thread presentation, commands, GUI and staff review | future `zbw-paper-modern` adapter wiring | Paper remains an adapter over `zbw-atlas-api`/`zbw-atlas`; no Atlas policy or blocking persistence is allocated to Paper |
+| `ZBW-ADDON-323..333`, with `ZBW-GAME-009`, `ZBW-OPS-004/005` and `ZBW-UX-002` | M18 controlled staff use cases through `zbw-command-api`, `zbw-command-paper`, `zbw-game` and `zbw-ui-paper` | Existing game lifecycle ownership is unchanged; every operation uses guarded service contracts, granular authorization, target immunity, reason/confirmation, audit and safe rollback rather than raw state mutation |
+
+This checkpoint allocates planned modules and requirement ownership only. It creates no POM, source
+directory, production class, schema or runtime integration. M15 statistics, M16 PlaceholderAPI and
+M17 replay remain authoritative for their data and behavior; M18 may consume only their public
+contracts or injected query ports. Redis/distributed reservations remain M19, provider punishment
+and anticheat adapters remain M21, compatibility remains M22 and web presentation remains M23.

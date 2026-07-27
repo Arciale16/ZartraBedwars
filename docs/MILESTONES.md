@@ -179,6 +179,9 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 - **Requirements:** ATLAS-001..013; ZBW-ADDON-323..333 controlled staff tooling.
 - **Entry:** M12 rewards, M14 profile, M15 stats and M17 replay complete; moderation/privacy ADRs accepted.
+- **Phase 1 status:** GOVERNANCE ALLOCATED. `zbw-atlas-api`, `zbw-atlas` and
+  `zbw-atlas-sql` are planned Java 8 modules with one-way neutral dependencies; no Atlas POM,
+  source, runtime behavior or Paper adapter is materialized by this checkpoint.
 - **Deliver:** cases/anonymization/reservation/verdict/reputation/accuracy/anti-abuse/rewards/staff policy and all Atlas surfaces.
 - **Exit:** eligibility/bypass/conflict/anonymization/reservation/abuse/reward/override tests pass; no default community permanent punishment; gameplay budgets hold.
 
