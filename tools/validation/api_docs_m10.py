@@ -10,7 +10,8 @@ MODERN_MODULES = api_docs.MODERN_MODULES + ("command/zbw-command-paper", "ui/zbw
 CURRENT_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content",
     "progression/zbw-progression", "statistics/zbw-statistics",
-    "integrations/placeholderapi/zbw-integration-placeholderapi")
+    "integrations/placeholderapi/zbw-integration-placeholderapi",
+    "replay/zbw-replay-api", "replay/zbw-replay")
 
 def main() -> int:
     neutral = api_docs.sources(NEUTRAL_MODULES)
