@@ -769,3 +769,108 @@ mandatory CI and Paper 1.21.1 jobs and was squash-merged as
 and every later M12/M15/M16/M17/M18/M19/M20/M21/M22 allocation; M12 is now complete.
 | `ZBW-ADDON-236..244`, `300..322`, `341..349` | arbitrary-team Swappage mechanics, all seven Ultimate abilities, Voidless and Rush driven by M08 snapshots | 2/4/8-team, lifecycle, ability and bounds tests; M15 statistics and M16 placeholders remain deferred |
 | `ZBW-ADDON-363..368`, `379..397`, `438..452` | per-arena generator overrides, deterministic local rotation, metadata-preserving colour conversion and team-isolated BedSteal state | generator tests plus `ModeMechanicsTest`; M19/M20 distribution, M16 placeholders and M22 fallbacks remain deferred |
+## M17 replay foundation checkpoint
+
+M17 is **IN PROGRESS**. This checkpoint materializes `zbw-replay-api` and `zbw-replay` without changing the M08 match lifecycle, M11 settlement, M12 persistence/progression, M13 objectives, M14 cosmetics, M15 statistics or M16 PlaceholderAPI. The replay application is a one-way consumer of their immutable facts and never owns those lifecycles.
+
+| Requirement | Foundation evidence | Status retained after checkpoint |
+|---|---|---|
+| ZBW-REPLAY-001; ZBW-ARC-008; ZBW-ARC-009 | Immutable `ReplayId`, versioned `ReplayMetadata`, `ReplayEvent`, `ReplayTimeline` and `ReplaySession` contracts | PARTIAL — packet/snapshot capture, codec, manifests and finalization remain M17 |
+| ZBW-REPLAY-003; ZBW-PROG-001 | Deterministic sequence ordering, immutable event payloads and duplicate-event decisions over existing M08/M11/M12 facts | PARTIAL — telemetry accuracy classification and golden playback remain M17 |
+| ZBW-REPLAY-007; ZBW-REPLAY-010; ZBW-READY-010; ZBW-READY-011; ZBW-READY-018 | Deny-by-default participant/staff access policy with protected-evidence and identity-disclosure rules | PARTIAL — audited viewer/browser/export/deletion surfaces remain M17/M18 |
+| ZBW-REPLAY-008; ZBW-ARC-007 | JDBC-free metadata, event-stream and session repository ports; no provider implementation | PARTIAL — SQL metadata and payload-store adapters, integrity, retention and migration remain M17 |
+| ZBW-GAME-003; ZBW-ARC-004 | Explicit source adapters consume existing ordered facts without lifecycle ownership | PARTIAL — M08 end-game close orchestration remains unchanged until its allocated M17 adapter checkpoint |
+
+Excluded here: Minecraft packet recording, NPC/web/UI viewers, Redis/distributed replay, external providers, concrete SQL/object storage, playback rendering and PlaceholderAPI additions.
+
+### M17 Phase 2 replay event-ingestion evidence
+
+| Requirement | Implemented Phase 2 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001`, `ZBW-GAME-003`, `ZBW-ARC-004` | Dedicated one-way adapters consume immutable M08 `MatchTransition`, M11 `PurchaseOutcome` and M12 `ProgressionEventInput` contracts; producer lifecycles remain unchanged | Adapter/service tests cover all three sources; capture closure and persistence orchestration remain later M17 work |
+| `ZBW-REPLAY-003`, `ZBW-PROG-001` | Stateless ingestion coordinator assigns contiguous replay-local sequences, preserves source timestamps and suppresses producer or event-ID retries exactly once | Ordering, duplicate, temporal-regression and identical-input deterministic-timeline tests pass |
+| `ZBW-REPLAY-005` | Version-neutral type and bounded immutable string attributes retain source identity for lifecycle, purchase and progression timeline facts | Malformed envelopes, bounded event fields, empty conversions and unsupported source classes are rejected explicitly; the complete event catalogue remains later M17 work |
+| `ZBW-REPLAY-009` | Typed `ACCEPTED`, `DUPLICATE`, `MALFORMED`, `UNSUPPORTED` and `INVALID_STATE` outcomes leave the prior immutable session unchanged on every non-acceptance path | State, malformed, unsupported and duplicate regression tests; bounded queues, codecs and recovery remain later M17 work |
+
+Phase 2 still excludes packet/snapshot recording, codecs, concrete repositories/providers, Redis, playback rendering and every viewer/UI surface.
+
+
+### M17 Phase 3 replay persistence evidence
+
+- ZBW-REPLAY-001/003/008/009: asynchronous isolated metadata/session/event repositories, checksum-locked SQL migration, transaction-safe ordered append, duplicate/conflict handling, failed/archive state persistence and restart-safe deterministic loading are implemented in `zbw-replay-sql`. SQLite tests cover insert/load, ordering, duplicate suppression, batch rollback, malformed rows, checksum drift and restart. Payload providers, retention/hold, repair/quarantine, capture and all playback/viewer surfaces remain later M17 work.
+### M17 Phase 4 replay playback-engine foundation evidence
+
+| Requirement | Implemented Phase 4 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-003`, `ZBW-REPLAY-005` | Immutable cursor/position/snapshot models and a pure event-applier boundary rebuild one canonical ordered timeline without timing or ordering mutation | Ordering, inclusive event/timestamp seek and identical fresh-session rebuild tests pass; telemetry fidelity classification and the complete searchable index remain later M17 work |
+| `ZBW-REPLAY-004` | Java 8 platform-neutral playback lifecycle covers `CREATED`, `LOADING`, `READY`, `PLAYING`, `PAUSED`, `SEEKING`, `COMPLETED` and `FAILED`, with bounded 0.10-4.00 speed, forward stepping, pause/resume, seek and verified snapshot restoration | Playback state, speed, cursor, pause/resume, seek and snapshot tests pass; viewer controls, rendering, camera, NPC, hologram, web and UI surfaces are explicitly not implemented |
+| `ZBW-REPLAY-009` | Non-playable recordings and event-applier corruption terminate in an immutable `FAILED` session with sanitized failure codes and no cursor advancement beyond the last valid snapshot | Unfinished/empty/corrupted event regression tests pass; capture repair, quarantine and payload integrity remain later M17 work |
+
+Phase 4 adds no Paper dependency, Minecraft entity behavior, viewer/UI, Redis, external
+provider or change to the M08/M11/M12/M15/M16 ownership boundaries.
+
+### M17 Phase 5 Paper replay runtime evidence
+
+| Requirement | Implemented Phase 5 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004` | `zbw-paper-modern` composes the existing replay engine through a typed open/start/pause/stop/seek service and immutable runtime context; engine semantics remain in `zbw-replay` | Paper reactor tests cover READY/open, start, pause, inclusive seek and stop; restart/frame-step/camera/rendering/GUI remain later M17/M22 work |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010`, `ZBW-READY-010`, `ZBW-READY-018` | Participant access requires `zartrabedwars.replay.view`; protected evidence additionally requires `zartrabedwars.replay.staff` and delegates to `ReplayAccessPolicy` before spectator mutation | Permission-before-load, participant, protected-evidence and staff tests pass; browser/history/settings/export/audit surfaces remain later M17/M18 work |
+| `ZBW-REPLAY-009` | Repository loads remain asynchronous, completion returns to the Paper owner thread, late completion after shutdown cannot admit a player, and disconnect/plugin shutdown restore captured spectator state | Failed/missing/non-playable load, disconnect cleanup, shutdown cleanup and late-completion tests pass; repair/quarantine/capture degradation remain later M17 work |
+
+The plugin composition root exposes one repository-injected installation point and owns non-blocking
+shutdown. No fake repository, synchronous SQL, world clone, entity/NPC/hologram spawn, GUI, web,
+Redis, external hosting/provider or M08/M11/M12/M15/M16 behavior is introduced.
+
+### M17 Phase 6 replay viewer-foundation evidence
+
+| Requirement | Implemented Phase 6 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004` | Immutable `ReplayViewerSession`, `ViewerState` and `ViewerControlAction` model `CONNECTED`, `WATCHING`, `PAUSED` and `DISCONNECTED`; the Paper adapter delegates view/pause/resume/stop/inclusive seek to the existing Phase 5 runtime | Lifecycle, transition, seek-bound, runtime-control and disconnected-session tests pass; rewind/frame-step/speed/camera/rendering/complex GUI remain later M17/M22 work |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010` | Strict `/replay view|pause|resume|stop|seek` routing reaches the existing permission/access-policy boundary before viewer creation and exposes only sanitized outcomes | Permission rejection, failed load, missing/invalid session, malformed command and exact route tests pass; browser/history/settings/export/audit surfaces remain later M17/M18 work |
+| `ZBW-REPLAY-004`, `ZBW-REPLAY-009` cleanup | Viewer disconnect and shutdown registration stop runtime viewing, remove the viewer projection and clear every presentation element owned by this foundation | Disconnect, idempotent shutdown and spectator restoration tests pass |
+
+Phase 6 adds only minimal message presentation and command routing in `zbw-paper-modern`.
+It does not clone worlds, spawn replay entities/NPCs/holograms, implement advanced visual effects or
+GUI/web viewers, or add Redis, hosting or external-provider behavior.
+
+### M17 Phase 7 replay visual-engine evidence
+
+| Requirement | Implemented Phase 7 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-003`, `ZBW-REPLAY-005` | Deterministic cursor-bounded reconstruction models visual identity, movement/position, equipment, health/alive state, kills, deaths, bed destruction and bounded important match events | Identical rebuild, ordered entity/event, movement, equipment, health, kill/death/bed and malformed-event tests pass; capture fidelity and searchable telemetry remain later M17 work |
+| `ZBW-REPLAY-004` | Paper visual adapter reconciles playback projections into non-persistent representations and updates on cursor changes, including immediate backward seek | Spawn/update/remove, cadence, seek and Paper reflection-contract tests pass; cameras, cinematics, packet/NPC rendering and advanced effects remain later M17/M22 work |
+| `ZBW-REPLAY-009`, `ZBW-ARC-006` | Entity/event/viewer caps, controlled tick cadence, corruption/overflow rejection, transactional spawn cleanup and idempotent viewer/shutdown cleanup bound runtime cost | Overflow, corrupted data, failed render, repeated cleanup and shutdown tests pass |
+
+Phase 7 changes only `zbw-paper-modern`; replay API/core contracts and M08/M11/M12/M15/M16
+behavior remain unchanged. No world cloning, GUI/cinematic editor, web, Redis, external provider or
+distributed replay behavior is introduced.
+
+### M17 Phase 8 replay UX and controls evidence
+
+| Requirement | Implemented Phase 8 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-004`, `ZBW-REPLAY-005` | Paper viewer controls expose open/info/play/pause, exact 0.25x/0.5x/1x/2x/4x speed selection, inclusive seek and stop; immutable bounded menu projections synchronize timestamp, duration, participants and important events with the authoritative playback cursor | Command routing, speed allow-list, menu immutability/bounds and existing runtime/seek/cleanup suites pass; cinematic/editor/web UX remains later scope |
+| `ZBW-REPLAY-007`, `ZBW-REPLAY-010`, `ZBW-READY-010`, `ZBW-READY-018` | All UX admission remains behind the existing participant/staff access policy; information is restricted to the caller's active viewer UUID and cleanup removes its session/menu projection | Permission, invalid/missing replay, failed load, session isolation and sanitized failure suites pass; export/deletion/audit workflows remain M17/M18 |
+
+Phase 8 changes only `zbw-paper-modern` and documentation; replay core, M08, M11, M12, M15 and M16 remain unchanged.
+
+### M17 Phase 9 replay staff-tools evidence
+
+| Requirement | Implemented Phase 9 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001`, `ZBW-REPLAY-005` | Bounded asynchronous staff search supports participant, match, inclusive creation-date and duration filters; results are deterministically ordered by creation time and replay ID, and inspection exposes immutable metadata and ordered events | Filter, ordering, bounds, malformed query, player/match lookup and invalid replay tests pass; persistent index/provider implementation remains behind the injected port |
+| `ZBW-REPLAY-006`, `ZBW-GAME-009` | Existing viewer open is reused for staff evidence; inspect, mark/unmark, compare-state archive and failed-only removal are exposed through a strict staff router without duplicating playback or lifecycle logic | Permission, inspect, mark, archive, conflict/invalid-state, failed-only removal and cleanup regressions pass |
+| `ZBW-REPLAY-007/008/009/010`, `ZBW-READY-010/011/018` | `replay.staff` gates protected search/inspection/open and `replay.admin` independently gates mutations; every success, denial and sanitized failure emits an immutable monotonic audit record through a non-blocking authoritative sink | Least-privilege, deterministic timestamp/sequence, denied-action and audit-sink failure tests pass; retention scheduler, legal-hold workflow and durable provider implementation remain later M17/M18 ownership |
+
+Phase 9 changes only the Paper replay adapter, descriptor/tests and M17 documentation. Replay core/playback and M08-M16 behavior remain unchanged.
+
+### M17 Phase 10 replay closure evidence
+
+| Requirement | Closed M17 allocation | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001/002/003` | Immutable versioned metadata/events/sessions, deterministic M08/M11/M12 adapters, duplicate-safe sequence/time validation and asynchronous transactional SQL storage | API/ingestion/JDBC ordering, duplicate, rollback, malformed-row and restart tests pass; packet capture codecs and provider-specific payload transport remain outside this milestone |
+| `ZBW-REPLAY-004/005` | Platform-neutral playback, seek/snapshot restoration, bounded deterministic visual reconstruction, menu timeline and command controls | Playback, visual, cursor, speed, seek, deterministic rebuild and Paper routing tests pass; cross-version packet/NPC rendering remains M21/M22 |
+| `ZBW-REPLAY-006/007/010`, `ZBW-READY-010/011/018` | Participant/staff purpose access, isolated viewer projections, bounded staff search/inspection, least-privilege moderation and deterministic audit | Permission, privacy, concurrent viewer, audit, invalid-load and sanitized failure suites pass; Atlas/web/export workflows retain M18/M23 ownership |
+| `ZBW-REPLAY-008/009`, `ZBW-READY-009/016/017` | Archive/failed lifecycle, compare-state persistence, idempotent cleanup, 256-viewer admission, 128-entity/256-event visuals and 100-row staff normalization | Archive/restart/failed-only removal, overflow, presentation/render failure, disconnect/shutdown and all quality/governance gates pass; provider/distributed/compatibility and three-profile production benchmark/restore evidence remain M19-M22/M24 |
+
+M17 is complete in `build/milestone-state.json`; M18 is the next milestone and is not started. The detailed architecture, runtime limits, thread ownership and retention handoff are documented in `REPLAY_M17.md`.

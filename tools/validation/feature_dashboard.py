@@ -36,6 +36,12 @@ M15_REQUIREMENTS = {
     "ZBW-STATS-005", "ZBW-STATS-006", "ZBW-STATS-007", "ZBW-STATS-008",
 }
 
+M17_REQUIREMENTS = {
+    "ZBW-REPLAY-001", "ZBW-REPLAY-002", "ZBW-REPLAY-003", "ZBW-REPLAY-004",
+    "ZBW-REPLAY-005", "ZBW-REPLAY-006", "ZBW-REPLAY-007", "ZBW-REPLAY-008",
+    "ZBW-REPLAY-009", "ZBW-REPLAY-010",
+}
+
 
 def cells(line: str) -> list[str]:
     return [value.strip() for value in line.strip().strip("|").split("|")]
@@ -140,6 +146,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M14 Phase 1 neutral models, validation and storage/service ports implemented; runtime/content/presentation remain"
     if m15_requirement(identifier):
         return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
+    if identifier in M17_REQUIREMENTS:
+        return "PARTIAL", "M17 replay allocation is complete; provider, distributed, compatibility and release qualification remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -257,7 +265,9 @@ def render() -> str:
         "implementation and successful mandatory remote certification. M12 Phases 1–5 complete progression,",
         "persistence, rewards and primary presentation. M13 Phases 1–3 complete neutral objective/content",
         "contracts, deterministic runtime, SQL persistence and M09/Paper presentation. M14 Phase 1 adds",
-        "neutral cosmetic/profile/calendar models and ports; runtime, content and later owners remain unclaimed.",
+        "neutral cosmetic/profile/calendar models and ports. M15/M16 are complete. M17 closes replay",
+        "contracts, ingestion, SQL persistence, playback, bounded Paper viewer/visuals and staff tools;",
+        "provider/distributed/compatibility and final release qualification remain with M19-M24.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

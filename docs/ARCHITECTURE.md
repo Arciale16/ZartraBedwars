@@ -499,3 +499,46 @@ event claim in the same caller-owned M04 `UnitOfWork` used to save state. The ne
 opens a transaction and never imports JDBC. `zbw-storage-sql` owns `JdbcM13StateRepository` and the
 checksum-locked version-13 migration for objective, quest, achievement, challenge and season state.
 No platform thread may call the JDBC adapter synchronously.
+
+## M17 Paper replay runtime boundary
+
+M17 Phase 5 adds one-way `zbw-paper-modern -> zbw-replay-api/zbw-replay` dependencies. The Paper
+composition root injects the asynchronous `ReplaySessionRepository`; it never constructs a fake
+repository or performs synchronous persistence. Repository completion is dispatched to the owner
+thread before spectator admission or restoration. Disconnect and plugin shutdown detach runtime
+state and restore captured player state without blocking the owner thread. Playback ordering and
+state transitions remain exclusively in the Java-8-neutral replay engine. World cloning, rendering,
+Minecraft entities, NPCs, holograms, GUI/web viewers, Redis and external hosting remain outside this
+phase.
+
+M17 Phase 6 layers an immutable viewer lifecycle and strict command router over that runtime.
+Viewer state is a presentation projection only: every playback mutation still delegates to
+`PaperReplayCommands`, and every initial view still passes the Phase 5 repository and access-policy
+boundary. A separate disconnect registration removes viewer state and clears owned presentation
+before the replay runtime performs final spectator restoration. The presentation is limited to
+sanitized messages; scene rendering, world isolation/cloning, entities, cameras, advanced effects,
+complex GUI and external transports remain deferred.
+
+### M17 Phase 7 replay visual boundary
+
+The Phase 7 visual engine remains inside `zbw-paper-modern` and consumes only the immutable
+`PlaybackSession` timeline and cursor. A pure reconstruction pass produces identity-ordered player
+representations, positions, equipment, health/alive snapshots and bounded important match events;
+it does not advance playback or own any M08/M11/M12 lifecycle. The owner-thread renderer reconciles
+that projection into non-persistent Paper representations, applies backward seeks immediately and
+throttles ordinary updates. Entity, important-event and viewer counts are capped, and failed or
+corrupt reconstruction detaches all owned representations. The Bukkit reflection boundary is
+contract-tested independently from semantic reconstruction. World cloning, packet/NPC providers,
+cameras, cinematics, advanced effects, complex GUI, web, Redis and external hosting remain deferred.
+
+### M17 Phase 8 replay UX boundary
+
+The Paper-only UX projects each authorized spectator session into a bounded immutable menu with current/duration timing, participants, important events and exact 0.25x/0.5x/1x/2x/4x controls. Commands delegate to the existing Phase 5 runtime and Phase 4 playback engine; no replay ordering, lifecycle, persistence or access policy is duplicated. Viewer-owned projections are isolated by UUID and removed on stop, disconnect and shutdown. (ZBW-REPLAY-004/005/007/010)
+
+### M17 Phase 9 replay staff-tools boundary
+
+Phase 9 remains inside `zbw-paper-modern`. `ReplayStaffService` accepts only asynchronous injected search/moderation and audit ports, reuses `ReplaySessionRepository` compare-state persistence for archive, and delegates replay opening to the existing viewer adapter. Search results are bounded to 100 rows and normalized by creation instant then replay ID; participant, match, inclusive date and duration filters are revalidated before presentation. `replay.staff` gates evidence search/inspection/open while `replay.admin` separately gates mark, archive and invalid-only removal. Every allowed or denied action emits an immutable monotonically sequenced sanitized audit record. No replay core, playback, M08-M16, SQL, web, Redis or provider implementation changes. (ZBW-REPLAY-001/005/006/007/008/009/010; ZBW-READY-010/011/018)
+
+### M17 Phase 10 replay closure boundary
+
+The closed M17 runtime keeps replay ownership split across Java 8 API/engine/SQL modules and the Java 21 Paper adapter. Paper viewer admission is atomic and capped at 256; visual projections retain at most 128 entities and 256 important events, menu projections retain at most 128 participants and 64 events, and staff normalization rejects provider responses above 100 rows. Repository completion crosses the explicit owner-thread boundary once, while rendering consumes immutable playback projections only. Stop, disconnect, shutdown, failed presentation and corrupt rendering all detach menus/entities and restore captured spectator state. Archived sessions remain immutable and playable; failed sessions are rejected and can be removed only through audited administration. See `REPLAY_M17.md`. (ZBW-REPLAY-001..010; ZBW-READY-009/010/011/016/017/018)

@@ -32,7 +32,7 @@ final class PaperFoundationSettingsTest {
                 2, 32, 8, 64, Duration.ofMillis(1500)));
     }
 
-    @Test void primaryBootstrapDescriptorDeclaresOnlyM09PresentationEntrypoints() throws Exception {
+    @Test void primaryBootstrapDescriptorDeclaresPresentationAndReplayPermissions() throws Exception {
         try (InputStream stream = getClass().getClassLoader().getResourceAsStream("plugin.yml")) {
             final String descriptor = new String(stream.readAllBytes(), StandardCharsets.UTF_8);
             assertTrue(descriptor.contains("ZartraBedWarsPlugin"));
@@ -41,7 +41,14 @@ final class PaperFoundationSettingsTest {
             assertTrue(descriptor.contains("commands:"));
             assertTrue(descriptor.contains("  zbw:"));
             assertTrue(descriptor.contains("  deposit:"));
-            assertTrue(!descriptor.contains("permissions:"));
+            assertTrue(descriptor.contains("\n  replay:\n"));
+            assertTrue(descriptor.contains("/replay <open|info|play|pause|speed|seek|stop|staff>"));
+            assertTrue(descriptor.contains("permissions:"));
+            assertTrue(descriptor.contains("  zartrabedwars.replay.view:"));
+            assertTrue(descriptor.contains("  zartrabedwars.replay.staff:"));
+            assertTrue(descriptor.contains("  zartrabedwars.replay.admin:"));
+            assertTrue(descriptor.contains("    default: true"));
+            assertTrue(descriptor.contains("    default: op"));
         }
     }
 }

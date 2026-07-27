@@ -171,6 +171,7 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 - **Requirements:** REPLAY-001..010.
 - **Entry:** M08 canonical events, M05 queues, M04 metadata storage, replay ADR accepted.
+- **Phase status:** COMPLETE — Phases 1-10 deliver immutable replay contracts, deterministic M08/M11/M12 ingestion, transactional SQL persistence, platform-neutral playback, privacy/access policy, bounded Paper spectator/viewer/visual controls, staff search/moderation/audit and fail-closed lifecycle cleanup. Web, Redis, external hosting/provider adapters, packet/NPC rendering and cross-version visual fallbacks remain with M19-M22 and final scale/restore certification remains M24.
 - **Deliver:** capture/codec/manifest/store/retention/recovery/privacy, playback scene/rendering, timeline/telemetry/staff evidence and all surfaces.
 - **Exit:** golden timing/order, interruption/corruption/repair/hold/privacy/provider failure and performance tests pass; evidence degradation policy demonstrated.
 
@@ -277,3 +278,15 @@ Canonical requirements allocated below: `ZBW-READY-001`, `ZBW-READY-002`, `ZBW-R
 `M00 â†’ M01 â†’ M02 â†’ (M03, M05) â†’ M04/M06 â†’ M07 â†’ M08 â†’ M09/M10 â†’ M11/M12 â†’ M13â€“M16 â†’ M17 â†’ M18 â†’ M19 â†’ M20 â†’ M21/M22 â†’ M23 â†’ M24`.
 
 Parallel work is allowed only where this graph and module boundaries show no unmet data/API dependency.
+
+#### M17 Phase 8 checkpoint
+
+Replay UX and controls now provide the Paper command/menu foundation, exact bounded speed choices, synchronized timeline information, permission-preserving inspection and viewer-isolated cleanup for ZBW-REPLAY-004/005/007/010. Web replay, Redis, external providers, advanced GUI and cinematics remain outside this checkpoint.
+
+#### M17 Phase 9 checkpoint
+
+Replay staff tools add bounded metadata/event search and inspection, player/match/date/duration filters, least-privilege `replay.staff`/`replay.admin` actions, mark/archive/failed-only removal and deterministic asynchronous audit for ZBW-REPLAY-001/005/006/007/008/009/010. Durable provider implementations, web replay, Redis, external providers and M17 closure remain outside this checkpoint.
+
+#### M17 Phase 10 closure
+
+M17 closes with atomic 256-viewer admission, 128-entity/256-event visual bounds, bounded 100-row staff normalization, fail-closed Paper projection cleanup, archived/failed lifecycle rules and the operational record in `REPLAY_M17.md`. The three replay modules and one-way Paper dependencies remain unchanged. ZBW-REPLAY-001..010 and ZBW-READY-009/010/011/016/017/018 have implementation evidence for the M17 allocation; provider, distributed, cross-version and release-scale qualification stays explicitly allocated to M19-M22/M24. M18 is next but is not started by this checkpoint.

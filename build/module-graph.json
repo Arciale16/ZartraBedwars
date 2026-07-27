@@ -170,6 +170,24 @@
             "responsibility": "Java 8 immutable match/player/team/season statistic aggregation and leaderboard foundation"
         },
         {
+            "id": "zbw-replay-api",
+            "path": "replay/zbw-replay-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable replay identities, metadata, event stream, timeline, access and storage contracts"
+        },
+        {
+            "id": "zbw-replay",
+            "path": "replay/zbw-replay/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 deterministic replay session state, one-way M08/M11/M12 ingestion and platform-neutral playback"
+        },
+        {
+            "id": "zbw-replay-sql",
+            "path": "replay/zbw-replay-sql/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 asynchronous JDBC replay metadata, session and ordered-event persistence adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -191,7 +209,7 @@
             "id": "zbw-paper-modern",
             "path": "platform/paper/zbw-paper-modern/pom.xml",
             "packaging": "jar",
-            "responsibility": "Java 21 primary Paper bootstrap, native world provider, closed game projections and M09 presentation adapters"
+            "responsibility": "Java 21 primary Paper bootstrap, native world provider, bounded replay viewer/visual/staff runtime, closed game projections and presentation adapters"
         }
     ],
     "planned_production_modules": [
@@ -461,6 +479,37 @@
             ]
         },
         {
+            "id": "zbw-replay-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M17",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-replay",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M17",
+            "depends_on": [
+                "zbw-api",
+                "zbw-replay-api",
+                "zbw-game",
+                "zbw-shop",
+                "zbw-progression"
+            ]
+        },
+        {
+            "id": "zbw-replay-sql",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M17",
+            "depends_on": [
+                "zbw-replay-api"
+            ]
+        },
+        {
             "id": "zbw-compat-v1_8",
             "layer": "platform",
             "bytecode": 8,
@@ -589,7 +638,9 @@
                 "zbw-scripting-api",
                 "zbw-scripting-engine",
                 "zbw-progression",
-                "zbw-integration-placeholderapi"
+                "zbw-integration-placeholderapi",
+                "zbw-replay-api",
+                "zbw-replay"
             ],
             "dependency_since": {
                 "zbw-game": "M08",
@@ -600,7 +651,9 @@
                 "zbw-scripting-api": "M11",
                 "zbw-scripting-engine": "M11",
                 "zbw-progression": "M12",
-                "zbw-integration-placeholderapi": "M16"
+                "zbw-integration-placeholderapi": "M16",
+                "zbw-replay-api": "M17",
+                "zbw-replay": "M17"
             }
         },
         {

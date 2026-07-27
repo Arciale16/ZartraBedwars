@@ -11,6 +11,8 @@ CURRENT_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content",
     "progression/zbw-progression", "statistics/zbw-statistics",
     "integrations/placeholderapi/zbw-integration-placeholderapi")
+REPLAY_CLASSPATH_MODULES = ("replay/zbw-replay-api", "replay/zbw-replay")
+
 
 def main() -> int:
     neutral = api_docs.sources(NEUTRAL_MODULES)
@@ -28,7 +30,7 @@ def main() -> int:
     api_docs.archive(ROOT / "target/apidocs-m10-neutral", ROOT / "target/zartrabedwars-m10-neutral-javadoc.zip")
     modern = api_docs.sources(MODERN_MODULES)
     result = api_docs.generate(api_docs.executable("21", "21.0.6"), "21", modern,
-            ROOT / "target/apidocs-m10-modern", [ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar", *api_docs.artifacts(CURRENT_CLASSPATH_MODULES)])
+            ROOT / "target/apidocs-m10-modern", [ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar", *api_docs.artifacts(CURRENT_CLASSPATH_MODULES), *api_docs.artifacts(REPLAY_CLASSPATH_MODULES)])
     if result:
         return result
     api_docs.archive(ROOT / "target/apidocs-m10-modern", ROOT / "target/zartrabedwars-m10-modern-javadoc.zip")
