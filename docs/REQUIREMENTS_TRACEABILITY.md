@@ -863,3 +863,14 @@ Phase 8 changes only `zbw-paper-modern` and documentation; replay core, M08, M11
 | `ZBW-REPLAY-007/008/009/010`, `ZBW-READY-010/011/018` | `replay.staff` gates protected search/inspection/open and `replay.admin` independently gates mutations; every success, denial and sanitized failure emits an immutable monotonic audit record through a non-blocking authoritative sink | Least-privilege, deterministic timestamp/sequence, denied-action and audit-sink failure tests pass; retention scheduler, legal-hold workflow and durable provider implementation remain later M17/M18 ownership |
 
 Phase 9 changes only the Paper replay adapter, descriptor/tests and M17 documentation. Replay core/playback and M08-M16 behavior remain unchanged.
+
+### M17 Phase 10 replay closure evidence
+
+| Requirement | Closed M17 allocation | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001/002/003` | Immutable versioned metadata/events/sessions, deterministic M08/M11/M12 adapters, duplicate-safe sequence/time validation and asynchronous transactional SQL storage | API/ingestion/JDBC ordering, duplicate, rollback, malformed-row and restart tests pass; packet capture codecs and provider-specific payload transport remain outside this milestone |
+| `ZBW-REPLAY-004/005` | Platform-neutral playback, seek/snapshot restoration, bounded deterministic visual reconstruction, menu timeline and command controls | Playback, visual, cursor, speed, seek, deterministic rebuild and Paper routing tests pass; cross-version packet/NPC rendering remains M21/M22 |
+| `ZBW-REPLAY-006/007/010`, `ZBW-READY-010/011/018` | Participant/staff purpose access, isolated viewer projections, bounded staff search/inspection, least-privilege moderation and deterministic audit | Permission, privacy, concurrent viewer, audit, invalid-load and sanitized failure suites pass; Atlas/web/export workflows retain M18/M23 ownership |
+| `ZBW-REPLAY-008/009`, `ZBW-READY-009/016/017` | Archive/failed lifecycle, compare-state persistence, idempotent cleanup, 256-viewer admission, 128-entity/256-event visuals and 100-row staff normalization | Archive/restart/failed-only removal, overflow, presentation/render failure, disconnect/shutdown and all quality/governance gates pass; provider/distributed/compatibility and three-profile production benchmark/restore evidence remain M19-M22/M24 |
+
+M17 is complete in `build/milestone-state.json`; M18 is the next milestone and is not started. The detailed architecture, runtime limits, thread ownership and retention handoff are documented in `REPLAY_M17.md`.

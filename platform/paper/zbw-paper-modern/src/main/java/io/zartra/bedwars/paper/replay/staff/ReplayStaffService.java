@@ -56,6 +56,10 @@ public final class ReplayStaffService {
                 return audited(actor, ReplayStaffAction.SEARCH, null,
                         ReplayStaffResult.of(ReplayStaffResult.Status.FAILED));
             }
+            if (rows.get().size() > 100) {
+                return audited(actor, ReplayStaffAction.SEARCH, null,
+                        ReplayStaffResult.of(ReplayStaffResult.Status.FAILED));
+            }
             final List<ReplayStaffRecord> accepted = new ArrayList<ReplayStaffRecord>();
             for (ReplayStaffRecord row : rows.get()) {
                 if (row == null || !matches(row, query)) {

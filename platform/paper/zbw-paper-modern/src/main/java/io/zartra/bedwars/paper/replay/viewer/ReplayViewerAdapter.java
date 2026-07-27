@@ -19,11 +19,14 @@ import java.util.function.LongSupplier;
 
 /** Viewer lifecycle, controls and bounded menu projection over the Paper replay runtime. */
 public final class ReplayViewerAdapter {
+    private static final int DEFAULT_MAXIMUM_VIEWERS = 256;
     private final PaperReplayCommands runtime;
     private final ReplayViewerPresentation presentation;
     private final ReplayVisualAdapter visuals;
     private final LongSupplier currentTick;
     private final ReplayMenuFactory menuFactory;
+    private final int maximumViewers;
+    private final Object admissionLock = new Object();
     private final Map<UUID, ReplayViewerSession> viewers = new ConcurrentHashMap<UUID, ReplayViewerSession>();
     private final Map<UUID, ReplayMenuState> menus = new ConcurrentHashMap<UUID, ReplayMenuState>();
     private final Set<UUID> opening = ConcurrentHashMap.newKeySet();
@@ -39,11 +42,24 @@ public final class ReplayViewerAdapter {
                                final ReplayViewerPresentation presentation,
                                final ReplayVisualAdapter visuals,
                                final LongSupplier currentTick) {
+        this(runtime, presentation, visuals, currentTick, DEFAULT_MAXIMUM_VIEWERS);
+    }
+
+    /** Creates a viewer adapter with explicit concurrent-viewer admission bounds. */
+    public ReplayViewerAdapter(final PaperReplayCommands runtime,
+                               final ReplayViewerPresentation presentation,
+                               final ReplayVisualAdapter visuals,
+                               final LongSupplier currentTick,
+                               final int maximumViewers) {
+        if (maximumViewers < 1) {
+            throw new IllegalArgumentException("maximum viewers must be positive");
+        }
         this.runtime = Objects.requireNonNull(runtime, "runtime");
         this.presentation = Objects.requireNonNull(presentation, "presentation");
         this.visuals = visuals;
         this.currentTick = Objects.requireNonNull(currentTick, "currentTick");
         this.menuFactory = new ReplayMenuFactory();
+        this.maximumViewers = maximumViewers;
     }
 
     /** Opens and starts one authorized replay viewer session. */
@@ -51,7 +67,7 @@ public final class ReplayViewerAdapter {
         Objects.requireNonNull(audience, "audience");
         Objects.requireNonNull(replayId, "replayId");
         final UUID viewerId = audience.playerId();
-        if (viewers.containsKey(viewerId) || !opening.add(viewerId)) {
+        if (!admit(viewerId)) {
             presentation.reject(viewerId, ReplayViewerResult.Status.INVALID_STATE);
             return CompletableFuture.completedFuture(ReplayViewerResult.of(ReplayViewerResult.Status.INVALID_STATE));
         }
@@ -75,8 +91,13 @@ public final class ReplayViewerAdapter {
                 }
                 final ReplayViewerSession watching = connected.start();
                 viewers.put(viewerId, watching);
-                synchronize(viewerId, watching, started);
-                result.complete(ReplayViewerResult.success(watching));
+                try {
+                    synchronize(viewerId, watching, started);
+                    result.complete(ReplayViewerResult.success(watching));
+                } catch (RuntimeException projectionFailure) {
+                    failClosed(viewerId);
+                    result.complete(ReplayViewerResult.of(ReplayViewerResult.Status.FAILED));
+                }
             } finally {
                 opening.remove(viewerId);
             }
@@ -125,8 +146,14 @@ public final class ReplayViewerAdapter {
             presentation.reject(viewerId, status);
             return ReplayViewerResult.of(status);
         }
-        synchronize(viewerId, current.inspect(), inspected);
-        return ReplayViewerResult.success(current.inspect());
+        final ReplayViewerSession projected = current.inspect();
+        try {
+            synchronize(viewerId, projected, inspected);
+            return ReplayViewerResult.success(projected);
+        } catch (RuntimeException projectionFailure) {
+            failClosed(viewerId);
+            return ReplayViewerResult.of(ReplayViewerResult.Status.FAILED);
+        }
     }
 
     /** Stops runtime viewing and clears all owned presentation. */
@@ -190,8 +217,13 @@ public final class ReplayViewerAdapter {
             return ReplayViewerResult.of(status);
         }
         viewers.put(viewerId, next);
-        synchronize(viewerId, next, runtimeResult);
-        return ReplayViewerResult.success(next);
+        try {
+            synchronize(viewerId, next, runtimeResult);
+            return ReplayViewerResult.success(next);
+        } catch (RuntimeException projectionFailure) {
+            failClosed(viewerId);
+            return ReplayViewerResult.of(ReplayViewerResult.Status.FAILED);
+        }
     }
 
     private void synchronize(final UUID viewerId, final ReplayViewerSession session,
@@ -217,6 +249,33 @@ public final class ReplayViewerAdapter {
     }
 
     private void cleanupVisuals(final UUID viewerId) { if (visuals != null) { visuals.cleanup(viewerId); } }
+
+    private boolean admit(final UUID viewerId) {
+        synchronized (admissionLock) {
+            if (viewers.containsKey(viewerId) || opening.contains(viewerId)
+                    || viewers.size() + opening.size() >= maximumViewers) {
+                return false;
+            }
+            return opening.add(viewerId);
+        }
+    }
+
+    private void failClosed(final UUID viewerId) {
+        viewers.remove(viewerId);
+        menus.remove(viewerId);
+        runtime.stop(viewerId);
+        cleanupVisuals(viewerId);
+        try {
+            presentation.clear(viewerId);
+        } catch (RuntimeException ignored) {
+            // Runtime and visual resources are already detached.
+        }
+        try {
+            presentation.reject(viewerId, ReplayViewerResult.Status.FAILED);
+        } catch (RuntimeException ignored) {
+            // A presentation failure cannot retain the replay session.
+        }
+    }
 
     private static ReplayRuntimeResult.Status expected(final ViewerControlAction action) {
         switch (action) {

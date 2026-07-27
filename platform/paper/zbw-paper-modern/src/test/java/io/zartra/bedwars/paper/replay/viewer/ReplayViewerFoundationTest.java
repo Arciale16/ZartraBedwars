@@ -134,6 +134,54 @@ final class ReplayViewerFoundationTest {
     }
 
     @Test
+    void concurrentViewerAdmissionIsBoundedAndCapacityIsReleased() {
+        final RecordingPresentation presentation = new RecordingPresentation();
+        final RuntimeHarness runtime = runtime(completed(Optional.of(completedReplay())));
+        final ReplayViewerAdapter viewer = new ReplayViewerAdapter(
+                runtime.commands, presentation, null, () -> 0L, 1);
+        final FakeAudience first = new FakeAudience(PLAYER, true);
+        final FakeAudience second = new FakeAudience(new UUID(0L, 618L), true);
+
+        assertEquals(ReplayViewerResult.Status.SUCCESS,
+                viewer.view(first, REPLAY.toString()).toCompletableFuture().join().status());
+        assertEquals(ReplayViewerResult.Status.INVALID_STATE,
+                viewer.view(second, REPLAY.toString()).toCompletableFuture().join().status());
+        viewer.stop(first.playerId());
+        assertEquals(ReplayViewerResult.Status.SUCCESS,
+                viewer.view(second, REPLAY.toString()).toCompletableFuture().join().status());
+        viewer.close();
+        assertFalse(viewer.session(second.playerId()).isPresent());
+        assertThrows(IllegalArgumentException.class, () -> new ReplayViewerAdapter(
+                runtime.commands, presentation, null, () -> 0L, 0));
+    }
+
+    @Test
+    void presentationFailureFailsClosedAndRestoresSpectatorState() {
+        final RuntimeHarness runtime = runtime(completed(Optional.of(completedReplay())));
+        final FakeAudience audience = new FakeAudience(true);
+        final ReplayViewerPresentation failing = new ReplayViewerPresentation() {
+            @Override public void show(final ReplayViewerSession session) { }
+            @Override public void showMenu(final ReplayMenuState menu) {
+                throw new IllegalStateException("renderer unavailable");
+            }
+            @Override public void reject(final UUID viewerId,
+                                         final ReplayViewerResult.Status status) {
+                throw new IllegalStateException("rejection renderer unavailable");
+            }
+            @Override public void clear(final UUID viewerId) {
+                throw new IllegalStateException("cleanup renderer unavailable");
+            }
+        };
+        final ReplayViewerAdapter viewer = new ReplayViewerAdapter(runtime.commands, failing);
+
+        assertEquals(ReplayViewerResult.Status.FAILED,
+                viewer.view(audience, REPLAY.toString()).toCompletableFuture().join().status());
+        assertFalse(viewer.session(PLAYER).isPresent());
+        assertFalse(viewer.menu(PLAYER).isPresent());
+        assertEquals(1, audience.left.get());
+    }
+
+    @Test
     void commandRouterSupportsReplayUxControlRoutes() {
         final RuntimeHarness runtime = runtime(completed(Optional.of(completedReplay())));
         final ReplayViewerAdapter viewer =
@@ -256,10 +304,15 @@ final class ReplayViewerFoundationTest {
     }
 
     private static final class FakeAudience implements ReplayAudience {
+        private final UUID playerId;
         private final boolean permission;
         private final AtomicInteger left = new AtomicInteger();
-        private FakeAudience(final boolean permission) { this.permission = permission; }
-        @Override public UUID playerId() { return PLAYER; }
+        private FakeAudience(final boolean permission) { this(PLAYER, permission); }
+        private FakeAudience(final UUID playerId, final boolean permission) {
+            this.playerId = playerId;
+            this.permission = permission;
+        }
+        @Override public UUID playerId() { return playerId; }
         @Override public boolean hasPermission(final String node) { return permission; }
         @Override public Object enterSpectatorReplay() { return "restore"; }
         @Override public void leaveSpectatorReplay(final Object restoration) {

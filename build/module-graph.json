@@ -179,7 +179,7 @@
             "id": "zbw-replay",
             "path": "replay/zbw-replay/pom.xml",
             "packaging": "jar",
-            "responsibility": "Java 8 deterministic replay session state and one-way M08/M11/M12 event ingestion"
+            "responsibility": "Java 8 deterministic replay session state, one-way M08/M11/M12 ingestion and platform-neutral playback"
         },
         {
             "id": "zbw-replay-sql",
@@ -209,7 +209,7 @@
             "id": "zbw-paper-modern",
             "path": "platform/paper/zbw-paper-modern/pom.xml",
             "packaging": "jar",
-            "responsibility": "Java 21 primary Paper bootstrap, native world provider, replay runtime, closed game projections and presentation adapters"
+            "responsibility": "Java 21 primary Paper bootstrap, native world provider, bounded replay viewer/visual/staff runtime, closed game projections and presentation adapters"
         }
     ],
     "planned_production_modules": [

@@ -144,6 +144,15 @@ final class ReplayStaffServiceTest {
 
 
     @Test
+    void oversizedProviderResultFailsBeforeUnboundedProjection() {
+        final Harness harness = harness();
+        harness.store.oversized = true;
+
+        assertEquals(ReplayStaffResult.Status.FAILED,
+                join(harness.service.search(staff(), playerQuery())).status());
+    }
+
+    @Test
     void staffCommandRouterCoversSearchInspectionOpenAndAdminActions() {
         Harness harness = harness();
         ReplayStaffCommandRouter router = new ReplayStaffCommandRouter(
@@ -361,6 +370,7 @@ final class ReplayStaffServiceTest {
     private static final class FakeStore implements ReplayStaffStore {
         private final Map<ReplayId, ReplayStaffRecord> records =
                 new HashMap<ReplayId, ReplayStaffRecord>();
+        private boolean oversized;
         private FakeStore(final ReplaySession... sessions) {
             for (ReplaySession session : sessions) {
                 records.put(session.metadata().replayId(),
@@ -370,6 +380,11 @@ final class ReplayStaffServiceTest {
         @Override public CompletionStage<List<ReplayStaffRecord>> search(
                 final ReplayStaffQuery query) {
             final List<ReplayStaffRecord> result = new ArrayList<ReplayStaffRecord>();
+            if (oversized) {
+                return CompletableFuture.completedFuture(
+                        new ArrayList<ReplayStaffRecord>(Collections.nCopies(101,
+                                records.get(FIRST))));
+            }
             for (ReplayStaffRecord row : records.values()) {
                 final ReplaySession session = row.session();
                 final long duration = row.durationMillis();
