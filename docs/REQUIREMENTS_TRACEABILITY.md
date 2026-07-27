@@ -907,3 +907,13 @@ offsets. M08-M16 behavior is unchanged. This checkpoint creates neither `zbw-atl
 ### M18 Phase 3A Atlas core domain
 
 `zbw-atlas` materializes ZBW-ATLAS-001/002/003/005/006/012 lifecycle, reference-only evidence, eligibility/conflict, atomic single-node reservation, duplicate-review prevention, advisory verdict aggregation and immutable audit policies. Community consensus always returns staff-pending advice and never authorizes permanent punishment. SQL, Paper, GUI, commands, PlaceholderAPI and staff tools remain unimplemented.
+
+### M18 Phase 3B Atlas persistence and integrations
+
+| Requirements | Evidence | Remaining boundary |
+|---|---|---|
+| `ZBW-ATLAS-003/005/007/009`, `ZBW-READY-010/011/018` | `zbw-atlas-sql` checksum migration, transactional case/evidence/review/reservation/profile/reputation/audit stores, duplicate protection, restart recovery and malformed-row rejection | MySQL/MariaDB production qualification remains M24; Redis reservations remain M19 |
+| `ZBW-ATLAS-004` | Encrypted identity bytes live only in `atlas_identity_vault` and are never joined into community case projections | Authorization and Paper presentation remain later M18 phases |
+| `ZBW-ATLAS-002/010/011` | Async neutral ports query M17 access and M15 statistics, request M12 rewards, emit M13 qualified outcomes and supply M16 query data | No upstream ownership or implementation is duplicated |
+
+No Paper, GUI, command, staff-tool or M19 implementation is introduced by this checkpoint.
