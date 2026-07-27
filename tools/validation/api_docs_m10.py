@@ -10,8 +10,19 @@ MODERN_MODULES = api_docs.MODERN_MODULES + ("command/zbw-command-paper", "ui/zbw
 CURRENT_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "scripting/zbw-scripting-api", "shop/zbw-shop", "content/zbw-content",
     "progression/zbw-progression", "statistics/zbw-statistics",
-    "integrations/placeholderapi/zbw-integration-placeholderapi",
-    "replay/zbw-replay-api", "replay/zbw-replay")
+    "integrations/placeholderapi/zbw-integration-placeholderapi")
+REPLAY_CLASSPATH_MODULES = ("replay/zbw-replay-api", "replay/zbw-replay")
+
+def materialized_artifacts(modules: tuple[str, ...]) -> list[Path]:
+    """Resolve both reactor class directories and packaged jars."""
+    result: list[Path] = []
+    for module in modules:
+        classes = ROOT / module / "target/classes"
+        if not classes.is_dir():
+            raise SystemExit(f"Missing reactor classes for strict JavaDoc: {classes}")
+        result.append(classes)
+    result.extend(api_docs.artifacts(modules))
+    return result
 
 def main() -> int:
     neutral = api_docs.sources(NEUTRAL_MODULES)
@@ -29,7 +40,7 @@ def main() -> int:
     api_docs.archive(ROOT / "target/apidocs-m10-neutral", ROOT / "target/zartrabedwars-m10-neutral-javadoc.zip")
     modern = api_docs.sources(MODERN_MODULES)
     result = api_docs.generate(api_docs.executable("21", "21.0.6"), "21", modern,
-            ROOT / "target/apidocs-m10-modern", [ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar", *api_docs.artifacts(CURRENT_CLASSPATH_MODULES)])
+            ROOT / "target/apidocs-m10-modern", [ROOT / ".m2/repository/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar", *api_docs.artifacts(CURRENT_CLASSPATH_MODULES), *materialized_artifacts(REPLAY_CLASSPATH_MODULES)])
     if result:
         return result
     api_docs.archive(ROOT / "target/apidocs-m10-modern", ROOT / "target/zartrabedwars-m10-modern-javadoc.zip")
