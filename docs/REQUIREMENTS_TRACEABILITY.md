@@ -903,3 +903,7 @@ and anticheat adapters remain M21, compatibility remains M22 and web presentatio
 The M17 replay module retains evidence ownership: Atlas stores only typed references and bounded
 offsets. M08-M16 behavior is unchanged. This checkpoint creates neither `zbw-atlas`,
 `zbw-atlas-sql` nor any Paper/runtime implementation.
+
+### M18 Phase 3A Atlas core domain
+
+`zbw-atlas` materializes ZBW-ATLAS-001/002/003/005/006/012 lifecycle, reference-only evidence, eligibility/conflict, atomic single-node reservation, duplicate-review prevention, advisory verdict aggregation and immutable audit policies. Community consensus always returns staff-pending advice and never authorizes permanent punishment. SQL, Paper, GUI, commands, PlaceholderAPI and staff tools remain unimplemented.

@@ -194,6 +194,12 @@
             "responsibility": "Java 8 immutable Atlas case, evidence, review, privacy, event and asynchronous repository contracts"
         },
         {
+            "id": "zbw-atlas",
+            "path": "atlas/zbw-atlas/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 Paper-independent Atlas lifecycle, eligibility, reservation, verdict and audit domain"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -607,6 +613,12 @@
             "depends_on": [
                 "zbw-compat-api"
             ]
+        },
+        {
+            "id": "zbw-atlas",
+            "path": "atlas/zbw-atlas/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 Paper-independent Atlas lifecycle, eligibility, reservation, verdict and audit domain"
         },
         {
             "id": "zbw-compat-v1_20-v1_21",

@@ -34,9 +34,14 @@ FIELD io.zartra.bedwars.atlas.api.AtlasCaseSource REPORT Lio/zartra/bedwars/atla
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus ARCHIVED Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus AWAITING_STAFF Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus CLOSED Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
+FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus CREATED Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
+FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus INVALID Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus OPEN Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus RESERVED Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
+FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus RESOLVED Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
+FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus REVIEWING Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus UNDER_REVIEW Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
+FIELD io.zartra.bedwars.atlas.api.AtlasCaseStatus VERDICT_PENDING Lio/zartra/bedwars/atlas/api/AtlasCaseStatus; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasEvidenceReference$Type INTERNAL_SIGNAL Lio/zartra/bedwars/atlas/api/AtlasEvidenceReference$Type; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasEvidenceReference$Type REPLAY_SEGMENT Lio/zartra/bedwars/atlas/api/AtlasEvidenceReference$Type; access=0x4019
 FIELD io.zartra.bedwars.atlas.api.AtlasEvidenceReference$Type REPORT Lio/zartra/bedwars/atlas/api/AtlasEvidenceReference$Type; access=0x4019

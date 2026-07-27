@@ -7,8 +7,8 @@ import api_docs
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ATLAS_MODULES = ("atlas/zbw-atlas-api",)
-ATLAS_CLASSPATH_MODULES = ("api/zbw-api", "replay/zbw-replay-api")
+ATLAS_MODULES = ("atlas/zbw-atlas-api", "atlas/zbw-atlas")
+ATLAS_CLASSPATH_MODULES = ("api/zbw-api", "replay/zbw-replay-api", "atlas/zbw-atlas-api")
 
 
 def main() -> int:
