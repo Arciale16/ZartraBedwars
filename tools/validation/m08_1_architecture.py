@@ -11,15 +11,24 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _normalize(text: str) -> str:
+    return (
+        text
+        .replace("â€“", "–")
+        .replace("â€”", "—")
+        .replace("â†’", "→")
+    )
+
+
 def require_text(relative: str, values: tuple[str, ...], errors: list[str]) -> None:
     """Require every value in one UTF-8 repository document."""
     path = ROOT / relative
     if not path.is_file():
         errors.append(f"M08.1 required file is missing: {relative}")
         return
-    content = path.read_text(encoding="utf-8")
+    content = _normalize(path.read_text(encoding="utf-8"))
     for value in values:
-        if value not in content:
+        if _normalize(value) not in content:
             errors.append(f"{relative} lacks M08.1 assertion: {value}")
 
 

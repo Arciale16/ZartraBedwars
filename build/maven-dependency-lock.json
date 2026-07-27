@@ -931,6 +931,18 @@
       "source": "https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.pom"
     },
     {
+      "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
+      "sha256": "8bc0de0e79ff04b4674efb058d69a5b7ec9e03929bca501aa1ca4764b2a39b11",
+      "size": 153719,
+      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
+    },
+    {
+      "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom",
+      "sha256": "7fdf7ef60105d76fa9484255aef8311b62c96a63cdf248fb69731b45d6de3bf2",
+      "size": 396,
+      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
+    },
+    {
       "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar",
       "sha256": "474d7b88f6e97009b6ec1d98c3024dd95c23187c65dabfbc35331bcac3d173dd",
       "size": 1363209,
@@ -3967,7 +3979,7 @@
       "source": "https://repo.maven.apache.org/maven2/software/amazon/awssdk/bom/2.21.1/bom-2.21.1.pom"
     }
   ],
-  "baseline_date": "2026-07-15",
+  "baseline_date": "2026-07-26",
   "components": [
     {
       "artifact": "jackson-annotations",
@@ -5898,6 +5910,36 @@
       "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "4.13.2"
+    },
+    {
+      "artifact": "placeholderapi",
+      "commercial_use": true,
+      "files": [
+        "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
+        "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
+      ],
+      "group": "me.clip",
+      "id": "maven:me.clip:placeholderapi:2.12.2",
+      "licenses": [
+        {
+          "declared_name": "GNU General Public License v3.0",
+          "declared_url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+          "spdx_expression": "GPL-3.0-only",
+          "text_evidence": [
+            {
+              "sha256": "3972DC9744F6499F0F9B2DBF76696F2AE7AD8AF9B23DDE66D6AF86C9DFB36986",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/GPL-3.0-only.txt",
+              "spdx": "GPL-3.0-only"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "2.12.2"
     },
     {
       "artifact": "jna-platform",

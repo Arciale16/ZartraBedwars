@@ -28,9 +28,19 @@ def read(relative: str) -> str:
     return (ROOT / relative).read_text(encoding="utf-8")
 
 
+def _normalize(text: str) -> str:
+    """Normalize mojibake/UTF-8 variant punctuation for stable checks."""
+    return (
+        text
+        .replace("â€“", "–")
+        .replace("â€”", "—")
+        .replace("â†’", "→")
+    )
+
+
 def require(text: str, token: str, location: str, errors: list[str]) -> None:
     """Record a missing normative assertion."""
-    if token not in text:
+    if _normalize(token) not in _normalize(text):
         errors.append(f"{location}: missing allocation assertion: {token}")
 
 
@@ -49,7 +59,8 @@ def validate() -> list[str]:
             "M06",
             ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
              "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content",
-             "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression"],
+             "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression",
+             "zbw-integration-placeholderapi", "zbw-replay-api", "zbw-replay"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -70,10 +81,13 @@ def validate() -> list[str]:
             "zbw-scripting-api": "M11",
             "zbw-scripting-engine": "M11",
             "zbw-progression": "M12",
+            "zbw-integration-placeholderapi": "M16",
+            "zbw-replay-api": "M17",
+            "zbw-replay": "M17",
     }:
         errors.append(
             "zbw-paper-modern: later dependencies must activate only in their "
-            "declared M08/M09/M11/M12 milestones")
+            "declared M08/M09/M11/M12/M16/M17 milestones")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)

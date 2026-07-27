@@ -31,14 +31,24 @@ M11_ONLY_RANGES = (
 )
 
 
+def _normalize(text: str) -> str:
+    """Normalize mojibake/UTF-8 variant punctuation for stable checks."""
+    return (
+        text
+        .replace("â€“", "–")
+        .replace("â€”", "—")
+        .replace("â†’", "→")
+    )
+
+
 def read(relative: str) -> str:
     """Read a normative UTF-8 repository file."""
-    return (ROOT / relative).read_text(encoding="utf-8")
+    return _normalize((ROOT / relative).read_text(encoding="utf-8"))
 
 
 def require(text: str, token: str, location: str, errors: list[str]) -> None:
     """Record a missing normative assertion."""
-    if token not in text:
+    if _normalize(token) not in text:
         errors.append(f"{location}: missing M11 allocation assertion: {token}")
 
 

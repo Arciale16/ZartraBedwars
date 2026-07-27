@@ -24,6 +24,8 @@
     <module>storage/zbw-storage-sql</module>
     <module>sdk/zbw-sdk</module>
     <module>integrations/discord/zbw-integration-discord-api</module>
+    <module>integrations/placeholderapi/zbw-integration-placeholderapi-api</module>
+    <module>integrations/placeholderapi/zbw-integration-placeholderapi</module>
     <module>compatibility/zbw-compat-api</module>
     <module>world/zbw-world</module>
     <module>arena/zbw-arena</module>
@@ -35,6 +37,10 @@
     <module>shop/zbw-shop</module>
     <module>content/zbw-content</module>
     <module>progression/zbw-progression</module>
+    <module>statistics/zbw-statistics</module>
+    <module>replay/zbw-replay-api</module>
+    <module>replay/zbw-replay</module>
+    <module>replay/zbw-replay-sql</module>
   </modules>
 
   <properties>
@@ -44,7 +50,8 @@
     <maven.compiler.target>8</maven.compiler.target>
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <junit.version>5.11.4</junit.version>
-    <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
+    <placeholderapi.version>2.12.2</placeholderapi.version>
+<maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.jar.plugin.version>3.4.1</maven.jar.plugin.version>
     <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
@@ -204,6 +211,12 @@
         <module>command/zbw-command-paper</module>
         <module>ui/zbw-ui-paper</module>
         <module>platform/paper/zbw-paper-modern</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>placeholderapi-runtime</id>
+      <modules>
+        <module>integrations/placeholderapi/zbw-integration-placeholderapi-runtime</module>
       </modules>
     </profile>
     <profile>
