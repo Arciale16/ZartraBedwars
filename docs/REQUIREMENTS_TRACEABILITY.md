@@ -889,3 +889,17 @@ directory, production class, schema or runtime integration. M15 statistics, M16 
 M17 replay remain authoritative for their data and behavior; M18 may consume only their public
 contracts or injected query ports. Redis/distributed reservations remain M19, provider punishment
 and anticheat adapters remain M21, compatibility remains M22 and web presentation remains M23.
+
+### M18 Phase 2 Atlas API foundation
+
+| Requirement evidence | Materialized API evidence | Boundary and remaining owner |
+|---|---|---|
+| `ZBW-ATLAS-001`, `ZBW-ATLAS-003` | Immutable `AtlasCaseId`, `AtlasCase`, status/source/metadata, evidence references, case repository port and case-created event | Contract only; `zbw-atlas` owns workflow and `zbw-atlas-sql` owns persistence |
+| `ZBW-ATLAS-004`, `ZBW-READY-010/018` | Anonymous-by-default `IdentityProjection`, stable `AnonymizedIdentity` and explicitly authorized `IdentityRevealRequest` using opaque vault references | No raw identity or sensitive replay payload is stored; authorization policy, audit persistence and restricted Paper projection remain later M18 phases |
+| `ZBW-ATLAS-005`, `ZBW-ATLAS-006` | Immutable review IDs/models, decisions, verdicts/reasons, review repository port and review/verdict events | Reservation workflow, conflict control and catalogue policy remain `zbw-atlas`; Redis ownership remains M19 |
+| `ZBW-ATLAS-011`, `ZBW-ARC-003/004/009` | Java 8 public repository/event contracts with deterministic equality and M17 `ReplayId` references | No command, GUI, PlaceholderAPI, Paper or provider surface is introduced |
+| `ZBW-QA-001/003` | Invalid-state, immutability, privacy, duplicate-evidence, deterministic equality, event and serialization-boundary tests plus strict JavaDoc/API baselines | Core, SQL, Paper and end-to-end acceptance remain future M18 phases |
+
+The M17 replay module retains evidence ownership: Atlas stores only typed references and bounded
+offsets. M08-M16 behavior is unchanged. This checkpoint creates neither `zbw-atlas`,
+`zbw-atlas-sql` nor any Paper/runtime implementation.

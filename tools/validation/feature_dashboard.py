@@ -42,6 +42,11 @@ M17_REQUIREMENTS = {
     "ZBW-REPLAY-009", "ZBW-REPLAY-010",
 }
 
+M18_API_REQUIREMENTS = {
+    "ZBW-ATLAS-001", "ZBW-ATLAS-003", "ZBW-ATLAS-004",
+    "ZBW-ATLAS-005", "ZBW-ATLAS-006", "ZBW-ATLAS-011",
+}
+
 
 def cells(line: str) -> list[str]:
     return [value.strip() for value in line.strip().strip("|").split("|")]
@@ -148,6 +153,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
     if identifier in M17_REQUIREMENTS:
         return "PARTIAL", "M17 replay allocation is complete; provider, distributed, compatibility and release qualification remain"
+    if identifier in M18_API_REQUIREMENTS:
+        return "PARTIAL", "M18 Atlas API contracts are materialized; core, persistence and Paper workflow remain"
     numbers = milestone_numbers(planned)
     if numbers and min(numbers) >= 10:
         return "DEFERRED", f"Owned by {planned}"
@@ -258,7 +265,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M17 and hardening M08.1 are complete; M18 governance allocation is active, with no Atlas implementation.",
+        "M00–M17 and hardening M08.1 are complete; M18 Atlas API foundation is active, without core, SQL or Paper implementation.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
