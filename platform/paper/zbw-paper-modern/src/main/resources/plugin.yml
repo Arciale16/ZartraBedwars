@@ -16,11 +16,14 @@ commands:
     usage: /deposit [hand|resources|all]
   replay:
     description: Open and control an authorized replay viewer session
-    usage: /replay <open|info|play|pause|speed|seek|stop>
+    usage: /replay <open|info|play|pause|speed|seek|stop|staff>
 permissions:
   zartrabedwars.replay.view:
     description: Open participant-authorized replay sessions
     default: true
   zartrabedwars.replay.staff:
-    description: Open protected staff-evidence replay sessions
+    description: Search and inspect protected replay evidence
+    default: op
+  zartrabedwars.replay.admin:
+    description: Mark, archive and remove invalid replay evidence
     default: op

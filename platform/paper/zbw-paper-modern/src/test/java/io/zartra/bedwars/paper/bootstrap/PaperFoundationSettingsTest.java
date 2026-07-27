@@ -42,10 +42,11 @@ final class PaperFoundationSettingsTest {
             assertTrue(descriptor.contains("  zbw:"));
             assertTrue(descriptor.contains("  deposit:"));
             assertTrue(descriptor.contains("\n  replay:\n"));
-            assertTrue(descriptor.contains("/replay <open|info|play|pause|speed|seek|stop>"));
+            assertTrue(descriptor.contains("/replay <open|info|play|pause|speed|seek|stop|staff>"));
             assertTrue(descriptor.contains("permissions:"));
             assertTrue(descriptor.contains("  zartrabedwars.replay.view:"));
             assertTrue(descriptor.contains("  zartrabedwars.replay.staff:"));
+            assertTrue(descriptor.contains("  zartrabedwars.replay.admin:"));
             assertTrue(descriptor.contains("    default: true"));
             assertTrue(descriptor.contains("    default: op"));
         }

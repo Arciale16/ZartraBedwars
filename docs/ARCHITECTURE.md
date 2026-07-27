@@ -534,3 +534,7 @@ cameras, cinematics, advanced effects, complex GUI, web, Redis and external host
 ### M17 Phase 8 replay UX boundary
 
 The Paper-only UX projects each authorized spectator session into a bounded immutable menu with current/duration timing, participants, important events and exact 0.25x/0.5x/1x/2x/4x controls. Commands delegate to the existing Phase 5 runtime and Phase 4 playback engine; no replay ordering, lifecycle, persistence or access policy is duplicated. Viewer-owned projections are isolated by UUID and removed on stop, disconnect and shutdown. (ZBW-REPLAY-004/005/007/010)
+
+### M17 Phase 9 replay staff-tools boundary
+
+Phase 9 remains inside `zbw-paper-modern`. `ReplayStaffService` accepts only asynchronous injected search/moderation and audit ports, reuses `ReplaySessionRepository` compare-state persistence for archive, and delegates replay opening to the existing viewer adapter. Search results are bounded to 100 rows and normalized by creation instant then replay ID; participant, match, inclusive date and duration filters are revalidated before presentation. `replay.staff` gates evidence search/inspection/open while `replay.admin` separately gates mark, archive and invalid-only removal. Every allowed or denied action emits an immutable monotonically sequenced sanitized audit record. No replay core, playback, M08-M16, SQL, web, Redis or provider implementation changes. (ZBW-REPLAY-001/005/006/007/008/009/010; ZBW-READY-010/011/018)

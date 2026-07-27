@@ -853,3 +853,13 @@ distributed replay behavior is introduced.
 | `ZBW-REPLAY-007`, `ZBW-REPLAY-010`, `ZBW-READY-010`, `ZBW-READY-018` | All UX admission remains behind the existing participant/staff access policy; information is restricted to the caller's active viewer UUID and cleanup removes its session/menu projection | Permission, invalid/missing replay, failed load, session isolation and sanitized failure suites pass; export/deletion/audit workflows remain M17/M18 |
 
 Phase 8 changes only `zbw-paper-modern` and documentation; replay core, M08, M11, M12, M15 and M16 remain unchanged.
+
+### M17 Phase 9 replay staff-tools evidence
+
+| Requirement | Implemented Phase 9 portion | Verification / retained ownership |
+|---|---|---|
+| `ZBW-REPLAY-001`, `ZBW-REPLAY-005` | Bounded asynchronous staff search supports participant, match, inclusive creation-date and duration filters; results are deterministically ordered by creation time and replay ID, and inspection exposes immutable metadata and ordered events | Filter, ordering, bounds, malformed query, player/match lookup and invalid replay tests pass; persistent index/provider implementation remains behind the injected port |
+| `ZBW-REPLAY-006`, `ZBW-GAME-009` | Existing viewer open is reused for staff evidence; inspect, mark/unmark, compare-state archive and failed-only removal are exposed through a strict staff router without duplicating playback or lifecycle logic | Permission, inspect, mark, archive, conflict/invalid-state, failed-only removal and cleanup regressions pass |
+| `ZBW-REPLAY-007/008/009/010`, `ZBW-READY-010/011/018` | `replay.staff` gates protected search/inspection/open and `replay.admin` independently gates mutations; every success, denial and sanitized failure emits an immutable monotonic audit record through a non-blocking authoritative sink | Least-privilege, deterministic timestamp/sequence, denied-action and audit-sink failure tests pass; retention scheduler, legal-hold workflow and durable provider implementation remain later M17/M18 ownership |
+
+Phase 9 changes only the Paper replay adapter, descriptor/tests and M17 documentation. Replay core/playback and M08-M16 behavior remain unchanged.

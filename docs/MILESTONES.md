@@ -282,3 +282,7 @@ Parallel work is allowed only where this graph and module boundaries show no unm
 #### M17 Phase 8 checkpoint
 
 Replay UX and controls now provide the Paper command/menu foundation, exact bounded speed choices, synchronized timeline information, permission-preserving inspection and viewer-isolated cleanup for ZBW-REPLAY-004/005/007/010. Web replay, Redis, external providers, advanced GUI and cinematics remain outside this checkpoint.
+
+#### M17 Phase 9 checkpoint
+
+Replay staff tools add bounded metadata/event search and inspection, player/match/date/duration filters, least-privilege `replay.staff`/`replay.admin` actions, mark/archive/failed-only removal and deterministic asynchronous audit for ZBW-REPLAY-001/005/006/007/008/009/010. Durable provider implementations, web replay, Redis, external providers and M17 closure remain outside this checkpoint.

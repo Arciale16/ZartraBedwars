@@ -8,6 +8,10 @@ import io.zartra.bedwars.paper.replay.BukkitReplayRuntimeAdapter;
 import io.zartra.bedwars.paper.replay.PaperReplayCommands;
 import io.zartra.bedwars.paper.replay.PaperReplayService;
 import io.zartra.bedwars.paper.replay.ReplayRuntimeBootstrap;
+import io.zartra.bedwars.paper.replay.staff.ReplayStaffAuditSink;
+import io.zartra.bedwars.paper.replay.staff.ReplayStaffCommandRouter;
+import io.zartra.bedwars.paper.replay.staff.ReplayStaffService;
+import io.zartra.bedwars.paper.replay.staff.ReplayStaffStore;
 import io.zartra.bedwars.paper.replay.viewer.BukkitReplayViewerPresentation;
 import io.zartra.bedwars.paper.replay.viewer.ReplayViewerAdapter;
 import io.zartra.bedwars.paper.replay.viewer.ReplayViewerBootstrap;
@@ -18,7 +22,9 @@ import io.zartra.bedwars.paper.replay.visual.ReplayVisualEngine;
 import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
+import java.time.Instant;
 import java.util.Optional;
+import java.util.function.Supplier;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +35,9 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     private ReplayRuntimeBootstrap replayRuntime;
     private ReplayViewerBootstrap replayViewerRuntime;
     private ReplayViewerCommandRouter replayViewerCommands;
+    private ReplayViewerAdapter replayViewerAdapter;
+    private ReplayStaffCommandRouter replayStaffCommands;
+    private ReplaySessionRepository replayRepository;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -53,6 +62,9 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
             replayViewerRuntime.stop();
             replayViewerRuntime = null;
             replayViewerCommands = null;
+            replayViewerAdapter = null;
+            replayStaffCommands = null;
+            replayRepository = null;
             getLogger().info("M17 replay viewer cleanup complete");
         }
         if (replayRuntime != null) {
@@ -101,12 +113,42 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
             throw failure;
         }
         replayRuntime = candidate;
+        replayRepository = repository;
         replayViewerRuntime = viewerCandidate;
+        replayViewerAdapter = viewer;
         replayViewerCommands = new ReplayViewerCommandRouter(viewer);
         getLogger().info("M17 Paper replay runtime and viewer foundation installed");
         return commands;
     }
 
+    /**
+     * Installs M17 staff tools after the replay viewer runtime is composed.
+     *
+     * @param store asynchronous replay search/moderation provider
+     * @param audit authoritative non-blocking audit sink
+     * @param time injected audit time source
+     * @return strict staff command router
+     */
+    public synchronized ReplayStaffCommandRouter installReplayStaffTools(
+            final ReplayStaffStore store, final ReplayStaffAuditSink audit,
+            final Supplier<Instant> time) {
+        if (replayViewerAdapter == null) {
+            throw new IllegalStateException("M17 replay viewer runtime is not installed");
+        }
+        if (replayStaffCommands != null) {
+            throw new IllegalStateException("M17 replay staff tools already installed");
+        }
+        final ReplayStaffService service = new ReplayStaffService(
+                store, replayRepository, audit, time);
+        replayStaffCommands = new ReplayStaffCommandRouter(service, replayViewerAdapter);
+        getLogger().info("M17 Paper replay staff tools installed");
+        return replayStaffCommands;
+    }
+
+    /** @return installed `/replay staff` router when staff ports are composed */
+    public synchronized Optional<ReplayStaffCommandRouter> replayStaffCommands() {
+        return Optional.ofNullable(replayStaffCommands);
+    }
     /** @return installed `/replay` viewer router when replay storage is composed */
     public synchronized Optional<ReplayViewerCommandRouter> replayViewerCommands() {
         return Optional.ofNullable(replayViewerCommands);
