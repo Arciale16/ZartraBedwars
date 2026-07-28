@@ -265,8 +265,17 @@ def capture(repository: Path) -> int:
         relative = path.relative_to(repository)
         group, artifact, version = coordinate(relative)
         identifier = f"maven:{group}:{artifact}:{version}"
-        artifacts.append({"relative_path": relative.as_posix(), "sha256": digest(path),
-                          "size": path.stat().st_size, "source": CENTRAL + relative.as_posix()})
+        relative_text = relative.as_posix()
+        source = CENTRAL + relative_text
+        if relative_text.startswith("me/clip/placeholderapi/"):
+            source = EXTENDEDCLIP + relative_text
+        if relative_text.startswith(PAPER_PREFIX):
+            if path.suffix == ".jar":
+                source = json.loads(PAPER_LOCK.read_text(encoding="utf-8"))["paper"]["api"]["url"]
+            else:
+                source = PAPER_GENERATED_POM
+        artifacts.append({"relative_path": relative_text, "sha256": digest(path),
+                          "size": path.stat().st_size, "source": source})
         if path.suffix != ".jar":
             continue
         declarations = pom_licenses(matching_pom(path, repository), repository)

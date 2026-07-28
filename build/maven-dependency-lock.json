@@ -958,13 +958,13 @@
       "relative_path": "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar",
       "sha256": "b8df3e7f2739e21072a5263e41b307bd30cfa8d8f72258ce27973167f8ad07c0",
       "size": 2344886,
-      "source": "https://repo.maven.apache.org/maven2/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar"
+      "source": "https://repo.papermc.io/repository/maven-public/io/papermc/paper/paper-api/1.21.1-R0.1-SNAPSHOT/paper-api-1.21.1-R0.1-20250328.161643-128.jar"
     },
     {
       "relative_path": "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.pom",
       "sha256": "1cd45f1b6cddd2acb48109cb6defe0611cfb6d4a21489a129c9cd5bb0da735a9",
       "size": 510,
-      "source": "https://repo.maven.apache.org/maven2/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.pom"
+      "source": "generated:tools/dependencies/acquire_m06_paper.py"
     },
     {
       "relative_path": "jakarta/platform/jakarta.jakartaee-bom/9.1.0/jakarta.jakartaee-bom-9.1.0.pom",
@@ -1054,13 +1054,13 @@
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
       "sha256": "8bc0de0e79ff04b4674efb058d69a5b7ec9e03929bca501aa1ca4764b2a39b11",
       "size": 153719,
-      "source": "https://repo.maven.apache.org/maven2/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
+      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
     },
     {
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom",
       "sha256": "7fdf7ef60105d76fa9484255aef8311b62c96a63cdf248fb69731b45d6de3bf2",
       "size": 396,
-      "source": "https://repo.maven.apache.org/maven2/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
+      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
     },
     {
       "relative_path": "net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar",
