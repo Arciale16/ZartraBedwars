@@ -942,3 +942,12 @@ M18 is complete in `build/milestone-state.json`. No milestone is active; M19 is 
 | M19 / ZBW-DEPLOY-006/008/009 | zbw-redis Lettuce lifecycle, fixed bounded connections/queue, namespace/schema guards, disposable Pub/Sub, deterministic stream processor, 24h dedupe, fenced lease Lua, finite reconnect/circuit/degradation | Later M19 domain bridges and partition/container/load certification |
 | M19 / ZBW-READY-013/014 | HMAC-SHA-256 key IDs/rotation, 128-bit nonce replay cache, deadline/skew, 256KiB payload, 100/s burst-200 peer rate limits; SQL authority explicitly retained | M20 authenticated proxy transport and multi-node E2E |
 | M19 / ZBW-ADDON-387 | Adapter coordination primitives exist without importing or mutating M11 item-rotation ownership | Later M19 bridge and M20 distribution |
+
+## M19 Phase 3 domain coordination bridges
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-STATS-005/008, ZBW-DEPLOY-006/008/009 | `CoordinationEvent`, deterministic schema codec, bounded `VersionedCoordinationBridge`, M04-envelope/M19-stream consumer and tests for ordering, duplicates, stale versions, cache rebuild and Redis-loss recovery | M15 SQL/statistics and leaderboard runtimes remain authoritative; M20 owns proxy transport |
+| M19 / ZBW-ATLAS-005/013, ZBW-READY-014 | `AtlasReservationCoordinator` pauses cross-node assignment during degradation and accepts/renews only the latest bounded fencing epoch; tests cover conflicts, races, stale epochs and unavailable Redis | M18 SQL reservation/case workflow remains authoritative; verdict logic is absent |
+| M19 / ZBW-ADDON-387 | Item-rotation invalidation carries only opaque rotation identity and monotonic version through the neutral bridge; bounded eviction forces rebuild from M11 durable state | M11 owns schedule/state and M20 owns proxy/server distribution |
+| M19 / ZBW-GAME-007, ZBW-REPLAY-001, ZBW-DEPLOY-009 | Opaque player-presence, arena-availability, queue, replay-metadata and announcement notification families contain no duplicated domain model or calculation | Respective M08/M10/M17 owners retain state; M20 owns network delivery |
