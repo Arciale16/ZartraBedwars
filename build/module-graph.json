@@ -212,6 +212,12 @@
             "responsibility": "Java 8 neutral Redis coordination contracts"
         },
         {
+            "id": "zbw-redis",
+            "path": "redis/zbw-redis/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 bounded authenticated Lettuce coordination adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",

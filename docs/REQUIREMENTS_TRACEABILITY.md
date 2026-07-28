@@ -934,3 +934,11 @@ M18 is complete in `build/milestone-state.json`. No milestone is active; M19 is 
 | M19 / ZBW-DEPLOY-006, ZBW-DEPLOY-008, ZBW-DEPLOY-009 | zbw-redis-api: installation/environment/schema-isolated keys, M04 MessageEnvelope stream references, invalidation, idempotency, reservations, monotonic fencing and sanitized degradation contracts; immutable/invalid/order/privacy tests | M19 later phases own the Redis adapter, partition/reconnect/load certification and runtime operations |
 | M19 / ZBW-READY-013, ZBW-READY-014 | opaque identifiers, no secret/endpoint health disclosure, stale fencing rejection, SQL/M04 envelope authority retained | M19/M20 own authenticated transport, leases and distributed topology |
 | M19 / ZBW-ADDON-387 | neutral coordination primitives are available without importing or owning M11 item-rotation state | M19 adapter and M20 distribution remain unimplemented |
+
+## M19 Phase 2 Redis adapter and security
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-DEPLOY-006/008/009 | zbw-redis Lettuce lifecycle, fixed bounded connections/queue, namespace/schema guards, disposable Pub/Sub, deterministic stream processor, 24h dedupe, fenced lease Lua, finite reconnect/circuit/degradation | Later M19 domain bridges and partition/container/load certification |
+| M19 / ZBW-READY-013/014 | HMAC-SHA-256 key IDs/rotation, 128-bit nonce replay cache, deadline/skew, 256KiB payload, 100/s burst-200 peer rate limits; SQL authority explicitly retained | M20 authenticated proxy transport and multi-node E2E |
+| M19 / ZBW-ADDON-387 | Adapter coordination primitives exist without importing or mutating M11 item-rotation ownership | Later M19 bridge and M20 distribution |

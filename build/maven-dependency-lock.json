@@ -175,18 +175,6 @@
       "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-parent/3.4.0/docker-java-parent-3.4.0.pom"
     },
     {
-      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar",
-      "sha256": "aac3ba9ed78c73961d13d7b7dac51ba51fe9089629efd4f77ffa4e6e8c6e4048",
-      "size": 2278842,
-      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar"
-    },
-    {
-      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom",
-      "sha256": "63a381030f3d7c7b236ebdb2c49be1c9ed377cb0e4ef1a945f21565abc7c4823",
-      "size": 4085,
-      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom"
-    },
-    {
       "relative_path": "com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.jar",
       "sha256": "a1a8ce872dbf92423a948443b88b9417283ead5d56cb5ed77803353658b97b34",
       "size": 38547,
@@ -197,6 +185,18 @@
       "sha256": "56953cb59d2b5f3288d9ba2dbc6545fecb6f4012cc2216f1e4140cf6bd8137d4",
       "size": 1642,
       "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport/3.4.0/docker-java-transport-3.4.0.pom"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar",
+      "sha256": "aac3ba9ed78c73961d13d7b7dac51ba51fe9089629efd4f77ffa4e6e8c6e4048",
+      "size": 2278842,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.jar"
+    },
+    {
+      "relative_path": "com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom",
+      "sha256": "63a381030f3d7c7b236ebdb2c49be1c9ed377cb0e4ef1a945f21565abc7c4823",
+      "size": 4085,
+      "source": "https://repo.maven.apache.org/maven2/com/github/docker-java/docker-java-transport-zerodep/3.4.0/docker-java-transport-zerodep-3.4.0.pom"
     },
     {
       "relative_path": "com/github/hazendaz/base-parent/51/base-parent-51.pom",
@@ -235,6 +235,18 @@
       "source": "https://repo.maven.apache.org/maven2/com/github/luben/zstd-jni/1.5.5-11/zstd-jni-1.5.5-11.pom"
     },
     {
+      "relative_path": "com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.jar",
+      "sha256": "7a75726e9da4c99d767813f5e9e65cf2a367a17e58f68befe009d05568ec8932",
+      "size": 3908149,
+      "source": "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.jar"
+    },
+    {
+      "relative_path": "com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.pom",
+      "sha256": "3cc1a8328d7e82c75bca935a3061477a2e5de1be6d2f0023b1375dbb9ddc88c1",
+      "size": 6682,
+      "source": "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.pom"
+    },
+    {
       "relative_path": "com/github/spotbugs/spotbugs-annotations/4.9.2/spotbugs-annotations-4.9.2.jar",
       "sha256": "d5bef4678385fa052040bc7a5deeb8f2e06902189dea1a8dd818a5680ac0f015",
       "size": 16160,
@@ -257,18 +269,6 @@
       "sha256": "0f7aa01b52f919ab38aaf0368751fa78678224fe1e463205c7a5d017393f36ec",
       "size": 43617,
       "source": "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs-maven-plugin/4.9.2.0/spotbugs-maven-plugin-4.9.2.0.pom"
-    },
-    {
-      "relative_path": "com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.jar",
-      "sha256": "7a75726e9da4c99d767813f5e9e65cf2a367a17e58f68befe009d05568ec8932",
-      "size": 3908149,
-      "source": "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.jar"
-    },
-    {
-      "relative_path": "com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.pom",
-      "sha256": "3cc1a8328d7e82c75bca935a3061477a2e5de1be6d2f0023b1375dbb9ddc88c1",
-      "size": 6682,
-      "source": "https://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/4.9.2/spotbugs-4.9.2.pom"
     },
     {
       "relative_path": "com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar",
@@ -313,12 +313,6 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom"
     },
     {
-      "relative_path": "com/google/code/gson/gson-parent/2.12.1/gson-parent-2.12.1.pom",
-      "sha256": "c9e7b0b7e31be7be22684979c068001c652cb113c4e6ed894e39b643dee07fc1",
-      "size": 26657,
-      "source": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.12.1/gson-parent-2.12.1.pom"
-    },
-    {
       "relative_path": "com/google/code/gson/gson/2.12.1/gson-2.12.1.jar",
       "sha256": "ebee13d5fb7477cd7f1cc010e0c356df8ca80709715248da97f79e35ccb4fbec",
       "size": 285943,
@@ -329,6 +323,12 @@
       "sha256": "0b5735ec85f45282f1e2c769779800427b150a8163f405093a9280b71cab1978",
       "size": 13489,
       "source": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.12.1/gson-2.12.1.pom"
+    },
+    {
+      "relative_path": "com/google/code/gson/gson-parent/2.12.1/gson-parent-2.12.1.pom",
+      "sha256": "c9e7b0b7e31be7be22684979c068001c652cb113c4e6ed894e39b643dee07fc1",
+      "size": 26657,
+      "source": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.12.1/gson-parent-2.12.1.pom"
     },
     {
       "relative_path": "com/google/errorprone/error_prone_annotations/2.10.0/error_prone_annotations-2.10.0.jar",
@@ -409,24 +409,6 @@
       "source": "https://repo.maven.apache.org/maven2/com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.pom"
     },
     {
-      "relative_path": "com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom",
-      "sha256": "f8698ab46ca996ce889c1afc8ca4f25eb8ac6b034dc898d4583742360016cc04",
-      "size": 10180,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom"
-    },
-    {
-      "relative_path": "com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom",
-      "sha256": "b3b6b6aa7099c11817acee85b322fd91f7ee32aea69fe083ee36c8735ec06788",
-      "size": 13829,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom"
-    },
-    {
-      "relative_path": "com/google/guava/guava-parent/33.4.0-jre/guava-parent-33.4.0-jre.pom",
-      "sha256": "3a499ed34a0d9ee0f1bcc39230021a1cd4e2f7dd0426ab6844f585465d41dcd7",
-      "size": 21100,
-      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/33.4.0-jre/guava-parent-33.4.0-jre.pom"
-    },
-    {
       "relative_path": "com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar",
       "sha256": "d5be94d65e87bd219fb3193ad1517baa55a3b88fc91d21cf735826ab5af087b9",
       "size": 2974216,
@@ -449,6 +431,24 @@
       "sha256": "fa94db40022ddfc775af9ecfb130cce515b96f740daf82f20af846d95054134b",
       "size": 8785,
       "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.pom"
+    },
+    {
+      "relative_path": "com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom",
+      "sha256": "f8698ab46ca996ce889c1afc8ca4f25eb8ac6b034dc898d4583742360016cc04",
+      "size": 10180,
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/26.0-android/guava-parent-26.0-android.pom"
+    },
+    {
+      "relative_path": "com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom",
+      "sha256": "b3b6b6aa7099c11817acee85b322fd91f7ee32aea69fe083ee36c8735ec06788",
+      "size": 13829,
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/31.0.1-jre/guava-parent-31.0.1-jre.pom"
+    },
+    {
+      "relative_path": "com/google/guava/guava-parent/33.4.0-jre/guava-parent-33.4.0-jre.pom",
+      "sha256": "3a499ed34a0d9ee0f1bcc39230021a1cd4e2f7dd0426ab6844f585465d41dcd7",
+      "size": 21100,
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava-parent/33.4.0-jre/guava-parent-33.4.0-jre.pom"
     },
     {
       "relative_path": "com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
@@ -835,22 +835,136 @@
       "source": "https://repo.maven.apache.org/maven2/info/picocli/picocli/4.7.6/picocli-4.7.6.pom"
     },
     {
+      "relative_path": "io/lettuce/lettuce-core/6.3.2.RELEASE/lettuce-core-6.3.2.RELEASE.jar",
+      "sha256": "96c28d1152bc6970904ce1e3eaa22e90f09aaadef52c79805da725135859406b",
+      "size": 1985549,
+      "source": "https://repo.maven.apache.org/maven2/io/lettuce/lettuce-core/6.3.2.RELEASE/lettuce-core-6.3.2.RELEASE.jar"
+    },
+    {
+      "relative_path": "io/lettuce/lettuce-core/6.3.2.RELEASE/lettuce-core-6.3.2.RELEASE.pom",
+      "sha256": "a42eadc005cefba6a1cbe4373d97bf382c426d42731b4770cc9235d5f7fcb6fe",
+      "size": 7369,
+      "source": "https://repo.maven.apache.org/maven2/io/lettuce/lettuce-core/6.3.2.RELEASE/lettuce-core-6.3.2.RELEASE.pom"
+    },
+    {
       "relative_path": "io/netty/netty-bom/4.2.1.Final/netty-bom-4.2.1.Final.pom",
       "sha256": "0558ec5e376752d90fe9a35f9746768f3d08679e8396e1671052850917051737",
       "size": 17162,
       "source": "https://repo.maven.apache.org/maven2/io/netty/netty-bom/4.2.1.Final/netty-bom-4.2.1.Final.pom"
     },
     {
+      "relative_path": "io/netty/netty-buffer/4.1.107.Final/netty-buffer-4.1.107.Final.jar",
+      "sha256": "04eb1231c86a7011c48cd443a25dc2f397137e5ee0aac2f12f1c503f11f09e2a",
+      "size": 307724,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-buffer/4.1.107.Final/netty-buffer-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-buffer/4.1.107.Final/netty-buffer-4.1.107.Final.pom",
+      "sha256": "fcaf25420ba99a6701cf74718677411498fdb1fad4d75734d35fd8ef4a6ee945",
+      "size": 1581,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-buffer/4.1.107.Final/netty-buffer-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-codec/4.1.107.Final/netty-codec-4.1.107.Final.jar",
+      "sha256": "3a1f361b405f9ea30fe6aabe1907d719c0c99fe30c03932fee558214dbd638cc",
+      "size": 346310,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-codec/4.1.107.Final/netty-codec-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-codec/4.1.107.Final/netty-codec-4.1.107.Final.pom",
+      "sha256": "f6fc4019ce6e5c75d9ced34a6b6dccf23f283b9bb3622e14d9826d62bbeef71c",
+      "size": 5473,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-codec/4.1.107.Final/netty-codec-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-common/4.1.107.Final/netty-common-4.1.107.Final.jar",
+      "sha256": "1231e7bd5f523d97280b89adefb3521132d45c22791318b9e0d462bd3ba1b8e9",
+      "size": 660530,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-common/4.1.107.Final/netty-common-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-common/4.1.107.Final/netty-common-4.1.107.Final.pom",
+      "sha256": "fa55bbee48c7b3b4e62da28a278ea5c45558719991519b7b9da79a27e1107e4b",
+      "size": 11792,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-common/4.1.107.Final/netty-common-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-handler/4.1.107.Final/netty-handler-4.1.107.Final.jar",
+      "sha256": "ce135be15a4afe717db7c5a1d5bf1d10bdfdee50c8ce77a5a39e4694b97071db",
+      "size": 562879,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-handler/4.1.107.Final/netty-handler-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-handler/4.1.107.Final/netty-handler-4.1.107.Final.pom",
+      "sha256": "c6c59fd6f0f70a043a50a5826de7ad68dbb95d341e03bd1bbe179038e48b845e",
+      "size": 4621,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-handler/4.1.107.Final/netty-handler-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-parent/4.1.107.Final/netty-parent-4.1.107.Final.pom",
+      "sha256": "9825c420d8c47c9c921dbc9caa8acafc3075129353fb1b07c8cec1b5b8fb1eb1",
+      "size": 85174,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-parent/4.1.107.Final/netty-parent-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-resolver/4.1.107.Final/netty-resolver-4.1.107.Final.jar",
+      "sha256": "303244791c040229315845e2236bb7b75249cffb308f99d48b0bab199bc6be63",
+      "size": 37814,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-resolver/4.1.107.Final/netty-resolver-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-resolver/4.1.107.Final/netty-resolver-4.1.107.Final.pom",
+      "sha256": "5309429ef003f480a5af7fba7d2d3e55f945bb252f218cbaaac68d0e70d7a885",
+      "size": 1588,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-resolver/4.1.107.Final/netty-resolver-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-transport/4.1.107.Final/netty-transport-4.1.107.Final.jar",
+      "sha256": "8b3107c684c5fcf53bc437e78db9f186008184210fdb96798efb835c073cfa86",
+      "size": 497249,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-transport/4.1.107.Final/netty-transport-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-transport/4.1.107.Final/netty-transport-4.1.107.Final.pom",
+      "sha256": "7910d69667fb38b3b4a004715806508edbb905cc8175030ca230ec5b44f6fc0b",
+      "size": 2164,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-transport/4.1.107.Final/netty-transport-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/netty/netty-transport-native-unix-common/4.1.107.Final/netty-transport-native-unix-common-4.1.107.Final.jar",
+      "sha256": "40eb2e471d88f9e7d09d59284297d1d46de37fb1441215b1b73e9b8691061e27",
+      "size": 44063,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-transport-native-unix-common/4.1.107.Final/netty-transport-native-unix-common-4.1.107.Final.jar"
+    },
+    {
+      "relative_path": "io/netty/netty-transport-native-unix-common/4.1.107.Final/netty-transport-native-unix-common-4.1.107.Final.pom",
+      "sha256": "900b7f63a18b30feb4fb058decb328c0dc7e5a0af31bb32d6cc4fd9273f846b7",
+      "size": 33099,
+      "source": "https://repo.maven.apache.org/maven2/io/netty/netty-transport-native-unix-common/4.1.107.Final/netty-transport-native-unix-common-4.1.107.Final.pom"
+    },
+    {
+      "relative_path": "io/projectreactor/reactor-core/3.6.4/reactor-core-3.6.4.jar",
+      "sha256": "46ab18fce8c4834da85985bc01e6d37a52ec1c70d71946f1d66680abba304287",
+      "size": 1868826,
+      "source": "https://repo.maven.apache.org/maven2/io/projectreactor/reactor-core/3.6.4/reactor-core-3.6.4.jar"
+    },
+    {
+      "relative_path": "io/projectreactor/reactor-core/3.6.4/reactor-core-3.6.4.pom",
+      "sha256": "9a90e5e1845c7748054aadd17af2551b2750804fad2d49d1b0c3a66a40c79757",
+      "size": 2146,
+      "source": "https://repo.maven.apache.org/maven2/io/projectreactor/reactor-core/3.6.4/reactor-core-3.6.4.pom"
+    },
+    {
       "relative_path": "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar",
       "sha256": "b8df3e7f2739e21072a5263e41b307bd30cfa8d8f72258ce27973167f8ad07c0",
       "size": 2344886,
-      "source": "https://repo.papermc.io/repository/maven-public/io/papermc/paper/paper-api/1.21.1-R0.1-SNAPSHOT/paper-api-1.21.1-R0.1-20250328.161643-128.jar"
+      "source": "https://repo.maven.apache.org/maven2/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar"
     },
     {
       "relative_path": "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.pom",
       "sha256": "1cd45f1b6cddd2acb48109cb6defe0611cfb6d4a21489a129c9cd5bb0da735a9",
       "size": 510,
-      "source": "generated:tools/dependencies/acquire_m06_paper.py"
+      "source": "https://repo.maven.apache.org/maven2/io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.pom"
     },
     {
       "relative_path": "jakarta/platform/jakarta.jakartaee-bom/9.1.0/jakarta.jakartaee-bom-9.1.0.pom",
@@ -889,12 +1003,6 @@
       "source": "https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.pom"
     },
     {
-      "relative_path": "javax/xml/bind/jaxb-api-parent/2.3.1/jaxb-api-parent-2.3.1.pom",
-      "sha256": "cd1beaa4560dc4dfdb826b9d809e464db22526dfb54264bae78a6ff7efb08e1f",
-      "size": 8106,
-      "source": "https://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api-parent/2.3.1/jaxb-api-parent-2.3.1.pom"
-    },
-    {
       "relative_path": "javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar",
       "sha256": "88b955a0df57880a26a74708bc34f74dcaf8ebf4e78843a28b50eae945732b06",
       "size": 128076,
@@ -907,10 +1015,10 @@
       "source": "https://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.pom"
     },
     {
-      "relative_path": "jaxen/jaxen-parent/2.0.0/jaxen-parent-2.0.0.pom",
-      "sha256": "263387fed91cc35813bffcd51efc60d5122d2043124ff49f94e35118169857e2",
-      "size": 14839,
-      "source": "https://repo.maven.apache.org/maven2/jaxen/jaxen-parent/2.0.0/jaxen-parent-2.0.0.pom"
+      "relative_path": "javax/xml/bind/jaxb-api-parent/2.3.1/jaxb-api-parent-2.3.1.pom",
+      "sha256": "cd1beaa4560dc4dfdb826b9d809e464db22526dfb54264bae78a6ff7efb08e1f",
+      "size": 8106,
+      "source": "https://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api-parent/2.3.1/jaxb-api-parent-2.3.1.pom"
     },
     {
       "relative_path": "jaxen/jaxen/2.0.0/jaxen-2.0.0.jar",
@@ -923,6 +1031,12 @@
       "sha256": "3c507f5b485842374cefa5148b46f99850f692900e16adc22fa04e75340c6dff",
       "size": 1685,
       "source": "https://repo.maven.apache.org/maven2/jaxen/jaxen/2.0.0/jaxen-2.0.0.pom"
+    },
+    {
+      "relative_path": "jaxen/jaxen-parent/2.0.0/jaxen-parent-2.0.0.pom",
+      "sha256": "263387fed91cc35813bffcd51efc60d5122d2043124ff49f94e35118169857e2",
+      "size": 14839,
+      "source": "https://repo.maven.apache.org/maven2/jaxen/jaxen-parent/2.0.0/jaxen-parent-2.0.0.pom"
     },
     {
       "relative_path": "junit/junit/4.13.2/junit-4.13.2.jar",
@@ -940,25 +1054,13 @@
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
       "sha256": "8bc0de0e79ff04b4674efb058d69a5b7ec9e03929bca501aa1ca4764b2a39b11",
       "size": 153719,
-      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
+      "source": "https://repo.maven.apache.org/maven2/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
     },
     {
       "relative_path": "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom",
       "sha256": "7fdf7ef60105d76fa9484255aef8311b62c96a63cdf248fb69731b45d6de3bf2",
       "size": 396,
-      "source": "https://repo.extendedclip.com/content/repositories/placeholderapi/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
-    },
-    {
-      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar",
-      "sha256": "474d7b88f6e97009b6ec1d98c3024dd95c23187c65dabfbc35331bcac3d173dd",
-      "size": 1363209,
-      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar"
-    },
-    {
-      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom",
-      "sha256": "63b20c8af057c98196f8789e1a21a6dddf02aa8f385e6b04b4b4f9f0df257066",
-      "size": 2251,
-      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom"
+      "source": "https://repo.maven.apache.org/maven2/me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
     },
     {
       "relative_path": "net/java/dev/jna/jna/5.13.0/jna-5.13.0.jar",
@@ -971,6 +1073,18 @@
       "sha256": "f515c2578178f45247ecca7a9e1db109531b1c42f2424e253ceeb0f6b8d42374",
       "size": 2030,
       "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna/5.13.0/jna-5.13.0.pom"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar",
+      "sha256": "474d7b88f6e97009b6ec1d98c3024dd95c23187c65dabfbc35331bcac3d173dd",
+      "size": 1363209,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.jar"
+    },
+    {
+      "relative_path": "net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom",
+      "sha256": "63b20c8af057c98196f8789e1a21a6dddf02aa8f385e6b04b4b4f9f0df257066",
+      "size": 2251,
+      "source": "https://repo.maven.apache.org/maven2/net/java/dev/jna/jna-platform/5.13.0/jna-platform-5.13.0.pom"
     },
     {
       "relative_path": "net/java/jvnet-parent/1/jvnet-parent-1.pom",
@@ -1117,16 +1231,16 @@
       "source": "https://repo.maven.apache.org/maven2/org/antlr/antlr4-runtime/4.9.3/antlr4-runtime-4.9.3.pom"
     },
     {
-      "relative_path": "org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar",
-      "sha256": "a17955976070c0573235ee662f2794a78082758b61accffce8d3f8aedcd91047",
-      "size": 389033,
-      "source": "https://repo.maven.apache.org/maven2/org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar"
+      "relative_path": "org/apache/ant/ant/1.10.15/ant-1.10.15.jar",
+      "sha256": "763acda4a69588c9ea8817a952851ff0c2fc4bffa1d081c2565dc407f29d5794",
+      "size": 2304360,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/ant/ant/1.10.15/ant-1.10.15.jar"
     },
     {
-      "relative_path": "org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.pom",
-      "sha256": "679be8f12aa2864f7c286f7f5bcbac8365851c01821de5b99a12d6f772f521e6",
-      "size": 4989,
-      "source": "https://repo.maven.apache.org/maven2/org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.pom"
+      "relative_path": "org/apache/ant/ant/1.10.15/ant-1.10.15.pom",
+      "sha256": "4780e61e87816eee1f21d184ec997b65f93db5f4b9042c178adb29e23e7425d6",
+      "size": 16518,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/ant/ant/1.10.15/ant-1.10.15.pom"
     },
     {
       "relative_path": "org/apache/ant/ant-launcher/1.10.15/ant-launcher-1.10.15.jar",
@@ -1145,18 +1259,6 @@
       "sha256": "49884f1873c5107cc237f4285c4477479bb0804bf0737394801b08d75e2bbeb0",
       "size": 6559,
       "source": "https://repo.maven.apache.org/maven2/org/apache/ant/ant-parent/1.10.15/ant-parent-1.10.15.pom"
-    },
-    {
-      "relative_path": "org/apache/ant/ant/1.10.15/ant-1.10.15.jar",
-      "sha256": "763acda4a69588c9ea8817a952851ff0c2fc4bffa1d081c2565dc407f29d5794",
-      "size": 2304360,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/ant/ant/1.10.15/ant-1.10.15.jar"
-    },
-    {
-      "relative_path": "org/apache/ant/ant/1.10.15/ant-1.10.15.pom",
-      "sha256": "4780e61e87816eee1f21d184ec997b65f93db5f4b9042c178adb29e23e7425d6",
-      "size": 16518,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/ant/ant/1.10.15/ant-1.10.15.pom"
     },
     {
       "relative_path": "org/apache/apache/13/apache-13.pom",
@@ -1573,6 +1675,12 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-text/1.3/commons-text-1.3.pom"
     },
     {
+      "relative_path": "org/apache/geronimo/genesis/genesis/2.0/genesis-2.0.pom",
+      "sha256": "b9ed2f9dd434631158d77308ee5648622c229ccece1722c5e377a4296923dae6",
+      "size": 18418,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/geronimo/genesis/genesis/2.0/genesis-2.0.pom"
+    },
+    {
       "relative_path": "org/apache/geronimo/genesis/genesis-default-flava/2.0/genesis-default-flava-2.0.pom",
       "sha256": "08e6e146f4e245266dff9dd800b12875dd2367d3f67a34ab660a126c811215f8",
       "size": 17810,
@@ -1585,10 +1693,16 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/geronimo/genesis/genesis-java5-flava/2.0/genesis-java5-flava-2.0.pom"
     },
     {
-      "relative_path": "org/apache/geronimo/genesis/genesis/2.0/genesis-2.0.pom",
-      "sha256": "b9ed2f9dd434631158d77308ee5648622c229ccece1722c5e377a4296923dae6",
-      "size": 18418,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/geronimo/genesis/genesis/2.0/genesis-2.0.pom"
+      "relative_path": "org/apache/groovy/groovy/4.0.26/groovy-4.0.26.jar",
+      "sha256": "ae3196ed31fa11e8506f9c40a6b34fdaff06a8eeda78a8a6ebaeb1a2a0ad35dc",
+      "size": 7617240,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy/4.0.26/groovy-4.0.26.jar"
+    },
+    {
+      "relative_path": "org/apache/groovy/groovy/4.0.26/groovy-4.0.26.pom",
+      "sha256": "53bccf48523f5a0de5edc7b8fcaa87e4fd37c5439ce6ed0da2d16e43e1c5a197",
+      "size": 24114,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy/4.0.26/groovy-4.0.26.pom"
     },
     {
       "relative_path": "org/apache/groovy/groovy-ant/4.0.26/groovy-ant-4.0.26.jar",
@@ -1675,24 +1789,6 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy-xml/4.0.26/groovy-xml-4.0.26.pom"
     },
     {
-      "relative_path": "org/apache/groovy/groovy/4.0.26/groovy-4.0.26.jar",
-      "sha256": "ae3196ed31fa11e8506f9c40a6b34fdaff06a8eeda78a8a6ebaeb1a2a0ad35dc",
-      "size": 7617240,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy/4.0.26/groovy-4.0.26.jar"
-    },
-    {
-      "relative_path": "org/apache/groovy/groovy/4.0.26/groovy-4.0.26.pom",
-      "sha256": "53bccf48523f5a0de5edc7b8fcaa87e4fd37c5439ce6ed0da2d16e43e1c5a197",
-      "size": 24114,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy/4.0.26/groovy-4.0.26.pom"
-    },
-    {
-      "relative_path": "org/apache/httpcomponents/client5/httpclient5-parent/5.1.3/httpclient5-parent-5.1.3.pom",
-      "sha256": "a27b1413aece92a3aa4774915f7589e0c6179d728d2ac6a295d758ee4fa24cc5",
-      "size": 14496,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/client5/httpclient5-parent/5.1.3/httpclient5-parent-5.1.3.pom"
-    },
-    {
       "relative_path": "org/apache/httpcomponents/client5/httpclient5/5.1.3/httpclient5-5.1.3.jar",
       "sha256": "28c759254f4e35319e078bb6ffea75676608dc12cb243b24fb3c8732522977fe",
       "size": 797934,
@@ -1703,6 +1799,24 @@
       "sha256": "1988ab3d1bdae0f51f22c83dc97b88fa07561adb6244679d8b8f7146cdd13aaf",
       "size": 5784,
       "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/client5/httpclient5/5.1.3/httpclient5-5.1.3.pom"
+    },
+    {
+      "relative_path": "org/apache/httpcomponents/client5/httpclient5-parent/5.1.3/httpclient5-parent-5.1.3.pom",
+      "sha256": "a27b1413aece92a3aa4774915f7589e0c6179d728d2ac6a295d758ee4fa24cc5",
+      "size": 14496,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/client5/httpclient5-parent/5.1.3/httpclient5-parent-5.1.3.pom"
+    },
+    {
+      "relative_path": "org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.jar",
+      "sha256": "f2bf2f2c7772169c9e30699719667ad30f9b46c4e9d7841907deb2d12d9923fe",
+      "size": 850808,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.jar"
+    },
+    {
+      "relative_path": "org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.pom",
+      "sha256": "7fc2b8045809f3f27ac9d4d9e99b9d34621b6371cf93c7313ecd84a5af0e9bae",
+      "size": 3787,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.pom"
     },
     {
       "relative_path": "org/apache/httpcomponents/core5/httpcore5-h2/5.1.3/httpcore5-h2-5.1.3.jar",
@@ -1721,18 +1835,6 @@
       "sha256": "a67538865ae0f3744b21e91ca47d461054737c552d1ff29da714c860c992d5bb",
       "size": 10271,
       "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5-parent/5.1.3/httpcore5-parent-5.1.3.pom"
-    },
-    {
-      "relative_path": "org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.jar",
-      "sha256": "f2bf2f2c7772169c9e30699719667ad30f9b46c4e9d7841907deb2d12d9923fe",
-      "size": 850808,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.jar"
-    },
-    {
-      "relative_path": "org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.pom",
-      "sha256": "7fc2b8045809f3f27ac9d4d9e99b9d34621b6371cf93c7313ecd84a5af0e9bae",
-      "size": 3787,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/core5/httpcore5/5.1.3/httpcore5-5.1.3.pom"
     },
     {
       "relative_path": "org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.pom",
@@ -1783,6 +1885,12 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpcore/4.4.14/httpcore-4.4.14.pom"
     },
     {
+      "relative_path": "org/apache/logging/log4j/log4j/2.24.3/log4j-2.24.3.pom",
+      "sha256": "c141b4863fc0ceab583894a13e1f9e52c01fc2d758727d6747f6b99d5040f3b1",
+      "size": 35051,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j/2.24.3/log4j-2.24.3.pom"
+    },
+    {
       "relative_path": "org/apache/logging/log4j/log4j-api/2.24.3/log4j-api-2.24.3.jar",
       "sha256": "5b4a0a0cd0e751ded431c162442bdbdd53328d1f8bb2bae5fc1bbeee0f66d80f",
       "size": 348513,
@@ -1813,16 +1921,28 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-to-slf4j/2.24.3/log4j-to-slf4j-2.24.3.pom"
     },
     {
-      "relative_path": "org/apache/logging/log4j/log4j/2.24.3/log4j-2.24.3.pom",
-      "sha256": "c141b4863fc0ceab583894a13e1f9e52c01fc2d758727d6747f6b99d5040f3b1",
-      "size": 35051,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j/2.24.3/log4j-2.24.3.pom"
-    },
-    {
       "relative_path": "org/apache/logging/logging-parent/11.3.0/logging-parent-11.3.0.pom",
       "sha256": "a5c985b56fe1c58433393b5091a6f39e5b9f78518dd8fc92134690599b64d7d0",
       "size": 53247,
       "source": "https://repo.maven.apache.org/maven2/org/apache/logging/logging-parent/11.3.0/logging-parent-11.3.0.pom"
+    },
+    {
+      "relative_path": "org/apache/maven/doxia/doxia/1.0/doxia-1.0.pom",
+      "sha256": "38246291439393fd08f54c6d7fedde2db0fd5c94d0910f17b99e8d59a2858e98",
+      "size": 9644,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0/doxia-1.0.pom"
+    },
+    {
+      "relative_path": "org/apache/maven/doxia/doxia/1.12.0/doxia-1.12.0.pom",
+      "sha256": "2d02a0bd64f331b767cee7455b3193c6fb82110143a119858abc968798a5fc29",
+      "size": 17576,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.12.0/doxia-1.12.0.pom"
+    },
+    {
+      "relative_path": "org/apache/maven/doxia/doxia/2.0.0/doxia-2.0.0.pom",
+      "sha256": "59f40c92b9f525bb6ca6f8845ec63b13dab18c3c1da93d17620cb8d2ea4c61b8",
+      "size": 17220,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/2.0.0/doxia-2.0.0.pom"
     },
     {
       "relative_path": "org/apache/maven/doxia/doxia-core/1.12.0/doxia-core-1.12.0.pom",
@@ -1993,22 +2113,10 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-skin-model/2.0.0/doxia-skin-model-2.0.0.pom"
     },
     {
-      "relative_path": "org/apache/maven/doxia/doxia/1.0/doxia-1.0.pom",
-      "sha256": "38246291439393fd08f54c6d7fedde2db0fd5c94d0910f17b99e8d59a2858e98",
-      "size": 9644,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0/doxia-1.0.pom"
-    },
-    {
-      "relative_path": "org/apache/maven/doxia/doxia/1.12.0/doxia-1.12.0.pom",
-      "sha256": "2d02a0bd64f331b767cee7455b3193c6fb82110143a119858abc968798a5fc29",
-      "size": 17576,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.12.0/doxia-1.12.0.pom"
-    },
-    {
-      "relative_path": "org/apache/maven/doxia/doxia/2.0.0/doxia-2.0.0.pom",
-      "sha256": "59f40c92b9f525bb6ca6f8845ec63b13dab18c3c1da93d17620cb8d2ea4c61b8",
-      "size": 17220,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/2.0.0/doxia-2.0.0.pom"
+      "relative_path": "org/apache/maven/enforcer/enforcer/3.6.1/enforcer-3.6.1.pom",
+      "sha256": "67acf381521a62c2fb44516073f22eb274cdab965b8ae225e8286f6cd298b34e",
+      "size": 9064,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/enforcer/enforcer/3.6.1/enforcer-3.6.1.pom"
     },
     {
       "relative_path": "org/apache/maven/enforcer/enforcer-api/3.6.1/enforcer-api-3.6.1.jar",
@@ -2033,12 +2141,6 @@
       "sha256": "849e5b5a4a45ef9f18bb1569c31af50632d512e0b9f1c7564ab5d195105f96a2",
       "size": 5193,
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/enforcer/enforcer-rules/3.6.1/enforcer-rules-3.6.1.pom"
-    },
-    {
-      "relative_path": "org/apache/maven/enforcer/enforcer/3.6.1/enforcer-3.6.1.pom",
-      "sha256": "67acf381521a62c2fb44516073f22eb274cdab965b8ae225e8286f6cd298b34e",
-      "size": 9064,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/enforcer/enforcer/3.6.1/enforcer-3.6.1.pom"
     },
     {
       "relative_path": "org/apache/maven/maven-archiver/3.6.2/maven-archiver-3.6.2.jar",
@@ -2293,6 +2395,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-impl/4.0.0/maven-reporting-impl-4.0.0.pom"
     },
     {
+      "relative_path": "org/apache/maven/resolver/maven-resolver/1.4.1/maven-resolver-1.4.1.pom",
+      "sha256": "831c3849751101226495acfe9119582feb734a4539b070e0fbd9e85b03b501ce",
+      "size": 18177,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.4.1/maven-resolver-1.4.1.pom"
+    },
+    {
+      "relative_path": "org/apache/maven/resolver/maven-resolver/1.9.23/maven-resolver-1.9.23.pom",
+      "sha256": "65da85f16b9a31cb3db26d1b3f0aa8f6fde0b9b2170ed725a9bf2f8267690508",
+      "size": 23493,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.9.23/maven-resolver-1.9.23.pom"
+    },
+    {
       "relative_path": "org/apache/maven/resolver/maven-resolver-api/1.4.1/maven-resolver-api-1.4.1.jar",
       "sha256": "33dc67306cc95da14e5444e8b494d967924abf1d01bae1894676164cbd3f6112",
       "size": 148983,
@@ -2333,18 +2447,6 @@
       "sha256": "ecc014d22b31def225b5ae4e1e715d2350cfe959b05f98d4df0c39a741918c2f",
       "size": 2230,
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver-util/1.9.23/maven-resolver-util-1.9.23.pom"
-    },
-    {
-      "relative_path": "org/apache/maven/resolver/maven-resolver/1.4.1/maven-resolver-1.4.1.pom",
-      "sha256": "831c3849751101226495acfe9119582feb734a4539b070e0fbd9e85b03b501ce",
-      "size": 18177,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.4.1/maven-resolver-1.4.1.pom"
-    },
-    {
-      "relative_path": "org/apache/maven/resolver/maven-resolver/1.9.23/maven-resolver-1.9.23.pom",
-      "sha256": "65da85f16b9a31cb3db26d1b3f0aa8f6fde0b9b2170ed725a9bf2f8267690508",
-      "size": 23493,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/resolver/maven-resolver/1.9.23/maven-resolver-1.9.23.pom"
     },
     {
       "relative_path": "org/apache/maven/shared/file-management/3.1.0/file-management-3.1.0.jar",
@@ -2509,6 +2611,12 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/maven-surefire-common/3.5.4/maven-surefire-common-3.5.4.pom"
     },
     {
+      "relative_path": "org/apache/maven/surefire/surefire/3.5.4/surefire-3.5.4.pom",
+      "sha256": "d4886a0ce0d92d0de0f41f6a5309d4b53559080c4b2cb0bba47db548a7efe292",
+      "size": 19157,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/3.5.4/surefire-3.5.4.pom"
+    },
+    {
       "relative_path": "org/apache/maven/surefire/surefire-api/3.5.4/surefire-api-3.5.4.jar",
       "sha256": "dbd7aa157b556cc3d76e0fd0a13793b789358117975565ad5c755e00e32e5619",
       "size": 173807,
@@ -2599,12 +2707,6 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-shared-utils/3.5.4/surefire-shared-utils-3.5.4.pom"
     },
     {
-      "relative_path": "org/apache/maven/surefire/surefire/3.5.4/surefire-3.5.4.pom",
-      "sha256": "d4886a0ce0d92d0de0f41f6a5309d4b53559080c4b2cb0bba47db548a7efe292",
-      "size": 19157,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/3.5.4/surefire-3.5.4.pom"
-    },
-    {
       "relative_path": "org/apache/velocity/tools/velocity-tools-generic/3.1/velocity-tools-generic-3.1.jar",
       "sha256": "8258cfdcaa16127f35ffe610a3fa4f76b7ebe51b88922c73c4ee39ce8f378ce5",
       "size": 216933,
@@ -2665,16 +2767,28 @@
       "source": "https://repo.maven.apache.org/maven2/org/apache/velocity/velocity-master/7/velocity-master-7.pom"
     },
     {
+      "relative_path": "org/apache/xbean/xbean/3.7/xbean-3.7.pom",
+      "sha256": "ea717132de8404b62fc9097a1f3215c705d525d457be9a5f12653adc68c33ab7",
+      "size": 15438,
+      "source": "https://repo.maven.apache.org/maven2/org/apache/xbean/xbean/3.7/xbean-3.7.pom"
+    },
+    {
       "relative_path": "org/apache/xbean/xbean-reflect/3.7/xbean-reflect-3.7.pom",
       "sha256": "9795c15322c5d19af336eebd9e164fa7d5897c4b004a7d66e21635a173e748a9",
       "size": 5092,
       "source": "https://repo.maven.apache.org/maven2/org/apache/xbean/xbean-reflect/3.7/xbean-reflect-3.7.pom"
     },
     {
-      "relative_path": "org/apache/xbean/xbean/3.7/xbean-3.7.pom",
-      "sha256": "ea717132de8404b62fc9097a1f3215c705d525d457be9a5f12653adc68c33ab7",
-      "size": 15438,
-      "source": "https://repo.maven.apache.org/maven2/org/apache/xbean/xbean/3.7/xbean-3.7.pom"
+      "relative_path": "org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar",
+      "sha256": "a17955976070c0573235ee662f2794a78082758b61accffce8d3f8aedcd91047",
+      "size": 389033,
+      "source": "https://repo.maven.apache.org/maven2/org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.jar"
+    },
+    {
+      "relative_path": "org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.pom",
+      "sha256": "679be8f12aa2864f7c286f7f5bcbac8365851c01821de5b99a12d6f772f521e6",
+      "size": 4989,
+      "source": "https://repo.maven.apache.org/maven2/org/apache-extras/beanshell/bsh/2.0b6/bsh-2.0b6.pom"
     },
     {
       "relative_path": "org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar",
@@ -2749,6 +2863,78 @@
       "source": "https://repo.maven.apache.org/maven2/org/codehaus/codehaus-parent/4/codehaus-parent-4.pom"
     },
     {
+      "relative_path": "org/codehaus/plexus/plexus/1.0.10/plexus-1.0.10.pom",
+      "sha256": "09b999a969e73525a6cc3ad2868ea744766e1d93b25c6c656d61a5ff9c881da9",
+      "size": 8250,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.10/plexus-1.0.10.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom",
+      "sha256": "5197630dcd2336f5b4ab8e6d26e5b8675f5ebd83bd8c91d6aba431b09627d626",
+      "size": 8969,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/10/plexus-10.pom",
+      "sha256": "bba9c521064b9ca132ce97cc1cc7eb4afc2dbe32bc88cb872c88e99f6162301f",
+      "size": 25398,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/10/plexus-10.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/13/plexus-13.pom",
+      "sha256": "575945dc08966c66eb03d5bae9135bd22ca3920a1865bb99d3ecd93bef55abd3",
+      "size": 27377,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/13/plexus-13.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/16/plexus-16.pom",
+      "sha256": "68d4eed65a3dbbc342ed80dd138fbe9c67cb7fb4c2abc4f5201cdb5b9f645868",
+      "size": 27638,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/16/plexus-16.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/17/plexus-17.pom",
+      "sha256": "91526ee66327c7f50fbb25bd41bfcb916e284414b868e31d50a23004bd7deea7",
+      "size": 28184,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/17/plexus-17.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/18/plexus-18.pom",
+      "sha256": "b43ee89c8890b9e5bc48d079fcb4c44f082b5139253356dc455806a33c3dd8fd",
+      "size": 29238,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/18/plexus-18.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/19/plexus-19.pom",
+      "sha256": "8d3e51c3902fd7596e548eab121ebf6b0d4aa73857077f26a24fc86f9b8455b4",
+      "size": 25385,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/19/plexus-19.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/20/plexus-20.pom",
+      "sha256": "a7b594b002fc791733c8e94470d09045f4fd69a93ad5c375752f2057f84633b4",
+      "size": 29186,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/20/plexus-20.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/4.0/plexus-4.0.pom",
+      "sha256": "0a1b692d7fcc90d6a45dae2e50f4660d48f7a44504f174aa60ef34fbe1327f6a",
+      "size": 21500,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/4.0/plexus-4.0.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/5.1/plexus-5.1.pom",
+      "sha256": "a343e44ff5796aed0ea60be11454c935ce20ab1c5f164acc8da574482dcbc7e9",
+      "size": 22504,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/5.1/plexus-5.1.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus/8/plexus-8.pom",
+      "sha256": "ffa349db04e7abf65885bdc5a2062f4197c0ff9d3f1f4e2aa5720b77233f742c",
+      "size": 25441,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/8/plexus-8.pom"
+    },
+    {
       "relative_path": "org/codehaus/plexus/plexus-archiver/4.9.2/plexus-archiver-4.9.2.jar",
       "sha256": "a837bd7d73291564dc8e8c826de0fede75896527a35bdcddb77b0545ee656a4c",
       "size": 224755,
@@ -2771,6 +2957,12 @@
       "sha256": "469a6c59f92effa62c0797ce7d52d2c03cf8ee1034b923c360dd78a9f505a7ba",
       "size": 7911,
       "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-classworlds/2.6.0/plexus-classworlds-2.6.0.pom"
+    },
+    {
+      "relative_path": "org/codehaus/plexus/plexus-compiler/2.15.0/plexus-compiler-2.15.0.pom",
+      "sha256": "9c9b62a7703d4994b60fb7f9e42805f9abc798d1397e4d22c1118cd12aa678d8",
+      "size": 7600,
+      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.15.0/plexus-compiler-2.15.0.pom"
     },
     {
       "relative_path": "org/codehaus/plexus/plexus-compiler-api/2.15.0/plexus-compiler-api-2.15.0.jar",
@@ -2807,12 +2999,6 @@
       "sha256": "12bd3bfb803d2004ed8318583ac7b272115a8b9303eabcd100808c54d44d2017",
       "size": 1348,
       "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/2.15.0/plexus-compiler-manager-2.15.0.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus-compiler/2.15.0/plexus-compiler-2.15.0.pom",
-      "sha256": "9c9b62a7703d4994b60fb7f9e42805f9abc798d1397e4d22c1118cd12aa678d8",
-      "size": 7600,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/2.15.0/plexus-compiler-2.15.0.pom"
     },
     {
       "relative_path": "org/codehaus/plexus/plexus-compilers/2.15.0/plexus-compilers-2.15.0.pom",
@@ -3035,78 +3221,6 @@
       "sha256": "3242ddc20873f71b381c333b22afb9cf3596d6a63b6683036a16bd51bc8721a4",
       "size": 3694,
       "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-xml/3.0.1/plexus-xml-3.0.1.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/1.0.10/plexus-1.0.10.pom",
-      "sha256": "09b999a969e73525a6cc3ad2868ea744766e1d93b25c6c656d61a5ff9c881da9",
-      "size": 8250,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.10/plexus-1.0.10.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom",
-      "sha256": "5197630dcd2336f5b4ab8e6d26e5b8675f5ebd83bd8c91d6aba431b09627d626",
-      "size": 8969,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/10/plexus-10.pom",
-      "sha256": "bba9c521064b9ca132ce97cc1cc7eb4afc2dbe32bc88cb872c88e99f6162301f",
-      "size": 25398,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/10/plexus-10.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/13/plexus-13.pom",
-      "sha256": "575945dc08966c66eb03d5bae9135bd22ca3920a1865bb99d3ecd93bef55abd3",
-      "size": 27377,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/13/plexus-13.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/16/plexus-16.pom",
-      "sha256": "68d4eed65a3dbbc342ed80dd138fbe9c67cb7fb4c2abc4f5201cdb5b9f645868",
-      "size": 27638,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/16/plexus-16.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/17/plexus-17.pom",
-      "sha256": "91526ee66327c7f50fbb25bd41bfcb916e284414b868e31d50a23004bd7deea7",
-      "size": 28184,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/17/plexus-17.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/18/plexus-18.pom",
-      "sha256": "b43ee89c8890b9e5bc48d079fcb4c44f082b5139253356dc455806a33c3dd8fd",
-      "size": 29238,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/18/plexus-18.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/19/plexus-19.pom",
-      "sha256": "8d3e51c3902fd7596e548eab121ebf6b0d4aa73857077f26a24fc86f9b8455b4",
-      "size": 25385,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/19/plexus-19.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/20/plexus-20.pom",
-      "sha256": "a7b594b002fc791733c8e94470d09045f4fd69a93ad5c375752f2057f84633b4",
-      "size": 29186,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/20/plexus-20.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/4.0/plexus-4.0.pom",
-      "sha256": "0a1b692d7fcc90d6a45dae2e50f4660d48f7a44504f174aa60ef34fbe1327f6a",
-      "size": 21500,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/4.0/plexus-4.0.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/5.1/plexus-5.1.pom",
-      "sha256": "a343e44ff5796aed0ea60be11454c935ce20ab1c5f164acc8da574482dcbc7e9",
-      "size": 22504,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/5.1/plexus-5.1.pom"
-    },
-    {
-      "relative_path": "org/codehaus/plexus/plexus/8/plexus-8.pom",
-      "sha256": "ffa349db04e7abf65885bdc5a2062f4197c0ff9d3f1f4e2aa5720b77233f742c",
-      "size": 25441,
-      "source": "https://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/8/plexus-8.pom"
     },
     {
       "relative_path": "org/dom4j/dom4j/2.1.4/dom4j-2.1.4.jar",
@@ -3337,16 +3451,16 @@
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.10.3/junit-bom-5.10.3.pom"
     },
     {
-      "relative_path": "org/junit/junit-bom/5.11.0-M2/junit-bom-5.11.0-M2.pom",
-      "sha256": "4a3ffc4a4edcfec2cb5d619922706a9407161798571939f854dfda73e4e17cc8",
-      "size": 5706,
-      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.0-M2/junit-bom-5.11.0-M2.pom"
-    },
-    {
       "relative_path": "org/junit/junit-bom/5.11.0/junit-bom-5.11.0.pom",
       "sha256": "e67459d4882424ac6374f40db1c8f4a2e88946b340ba072c80be932a2be4644d",
       "size": 5649,
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.0/junit-bom-5.11.0.pom"
+    },
+    {
+      "relative_path": "org/junit/junit-bom/5.11.0-M2/junit-bom-5.11.0-M2.pom",
+      "sha256": "4a3ffc4a4edcfec2cb5d619922706a9407161798571939f854dfda73e4e17cc8",
+      "size": 5706,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.0-M2/junit-bom-5.11.0-M2.pom"
     },
     {
       "relative_path": "org/junit/junit-bom/5.11.1/junit-bom-5.11.1.pom",
@@ -3409,6 +3523,18 @@
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.3/junit-bom-5.9.3.pom"
     },
     {
+      "relative_path": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar",
+      "sha256": "aa880e4afba87d447357e4c1fc098c5cb1d200cb9403496c00d3b35a5bd0e8db",
+      "size": 6367,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar"
+    },
+    {
+      "relative_path": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom",
+      "sha256": "a862df11ee539982efcb141d9c0ade7037bba0265d0b589d5fb84db0d212f1d9",
+      "size": 3205,
+      "source": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom"
+    },
+    {
       "relative_path": "org/junit/jupiter/junit-jupiter-api/5.11.4/junit-jupiter-api-5.11.4.jar",
       "sha256": "ab83ef9e51ac4597d59d26b4b58812129550e2f579a404c8af7d09f5ce5b4293",
       "size": 216413,
@@ -3443,18 +3569,6 @@
       "sha256": "8c359bbea07c64a6acdd8c1e13b4f77058b2432b35e86e9a95ddc63249a0ad54",
       "size": 3010,
       "source": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter-params/5.11.4/junit-jupiter-params-5.11.4.pom"
-    },
-    {
-      "relative_path": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar",
-      "sha256": "aa880e4afba87d447357e4c1fc098c5cb1d200cb9403496c00d3b35a5bd0e8db",
-      "size": 6367,
-      "source": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.jar"
-    },
-    {
-      "relative_path": "org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom",
-      "sha256": "a862df11ee539982efcb141d9c0ade7037bba0265d0b589d5fb84db0d212f1d9",
-      "size": 3205,
-      "source": "https://repo.maven.apache.org/maven2/org/junit/jupiter/junit-jupiter/5.11.4/junit-jupiter-5.11.4.pom"
     },
     {
       "relative_path": "org/junit/platform/junit-platform-commons/1.11.4/junit-platform-commons-1.11.4.jar",
@@ -3559,6 +3673,30 @@
       "source": "https://repo.maven.apache.org/maven2/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.pom"
     },
     {
+      "relative_path": "org/ow2/asm/asm/9.7.1/asm-9.7.1.jar",
+      "sha256": "8cadd43ac5eb6d09de05faecca38b917a040bb9139c7edeb4cc81c740b713281",
+      "size": 126093,
+      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar"
+    },
+    {
+      "relative_path": "org/ow2/asm/asm/9.7.1/asm-9.7.1.pom",
+      "sha256": "7229b03b30a73ee91008072d9e4569a51d8547fae8c50f527841aef4c1b0baa8",
+      "size": 2372,
+      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.pom"
+    },
+    {
+      "relative_path": "org/ow2/asm/asm/9.8/asm-9.8.jar",
+      "sha256": "876eab6a83daecad5ca67eb9fcabb063c97b5aeb8cf1fca7a989ecde17522051",
+      "size": 126113,
+      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.8/asm-9.8.jar"
+    },
+    {
+      "relative_path": "org/ow2/asm/asm/9.8/asm-9.8.pom",
+      "sha256": "c1367c3bb383d7619e7f797e38df7513885f2eef04ae7b5908f68222657b5baa",
+      "size": 2370,
+      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.8/asm-9.8.pom"
+    },
+    {
       "relative_path": "org/ow2/asm/asm-analysis/9.7.1/asm-analysis-9.7.1.jar",
       "sha256": "85b29371884ba31bb76edf22323c2c24e172c3267a67152eba3d1ccc2e041ef2",
       "size": 35126,
@@ -3643,34 +3781,22 @@
       "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm-util/9.7.1/asm-util-9.7.1.pom"
     },
     {
-      "relative_path": "org/ow2/asm/asm/9.7.1/asm-9.7.1.jar",
-      "sha256": "8cadd43ac5eb6d09de05faecca38b917a040bb9139c7edeb4cc81c740b713281",
-      "size": 126093,
-      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar"
-    },
-    {
-      "relative_path": "org/ow2/asm/asm/9.7.1/asm-9.7.1.pom",
-      "sha256": "7229b03b30a73ee91008072d9e4569a51d8547fae8c50f527841aef4c1b0baa8",
-      "size": 2372,
-      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.7.1/asm-9.7.1.pom"
-    },
-    {
-      "relative_path": "org/ow2/asm/asm/9.8/asm-9.8.jar",
-      "sha256": "876eab6a83daecad5ca67eb9fcabb063c97b5aeb8cf1fca7a989ecde17522051",
-      "size": 126113,
-      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.8/asm-9.8.jar"
-    },
-    {
-      "relative_path": "org/ow2/asm/asm/9.8/asm-9.8.pom",
-      "sha256": "c1367c3bb383d7619e7f797e38df7513885f2eef04ae7b5908f68222657b5baa",
-      "size": 2370,
-      "source": "https://repo.maven.apache.org/maven2/org/ow2/asm/asm/9.8/asm-9.8.pom"
-    },
-    {
       "relative_path": "org/ow2/ow2/1.5.1/ow2-1.5.1.pom",
       "sha256": "321ddbb7ee6fe4f53dea6b4cd6db74154d6bfa42391c1f763b361b9f485acf05",
       "size": 11290,
       "source": "https://repo.maven.apache.org/maven2/org/ow2/ow2/1.5.1/ow2-1.5.1.pom"
+    },
+    {
+      "relative_path": "org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar",
+      "sha256": "f75ca597789b3dac58f61857b9ac2e1034a68fa672db35055a8fb4509e325f28",
+      "size": 11640,
+      "source": "https://repo.maven.apache.org/maven2/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar"
+    },
+    {
+      "relative_path": "org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.pom",
+      "sha256": "54ba23d87a2d438540c99ef8794a0856fc573a256b498678283c3c67ef18ada8",
+      "size": 1148,
+      "source": "https://repo.maven.apache.org/maven2/org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.pom"
     },
     {
       "relative_path": "org/reflections/reflections/0.10.2/reflections-0.10.2.jar",
@@ -4009,7 +4135,7 @@
       "source": "https://repo.maven.apache.org/maven2/software/amazon/awssdk/bom/2.21.1/bom-2.21.1.pom"
     }
   ],
-  "baseline_date": "2026-07-27",
+  "baseline_date": "2026-07-14",
   "components": [
     {
       "artifact": "jackson-annotations",
@@ -4413,6 +4539,9 @@
         {
           "declared_name": "GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1",
           "declared_url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html",
+          "evidence_ids": [
+            "LGPL-2.1-or-later"
+          ],
           "spdx_expression": "LGPL-2.1-or-later",
           "text_evidence": [
             {
@@ -4474,9 +4603,6 @@
         {
           "declared_name": "GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1",
           "declared_url": "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html",
-          "evidence_ids": [
-            "LGPL-2.1-or-later"
-          ],
           "spdx_expression": "LGPL-2.1-or-later",
           "text_evidence": [
             {
@@ -5734,11 +5860,298 @@
       "version": "4.7.6"
     },
     {
+      "artifact": "lettuce-core",
+      "commercial_use": true,
+      "files": [
+        "io/lettuce/lettuce-core/6.3.2.RELEASE/lettuce-core-6.3.2.RELEASE.jar"
+      ],
+      "group": "io.lettuce",
+      "id": "maven:io.lettuce:lettuce-core:6.3.2.RELEASE",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "6.3.2.RELEASE"
+    },
+    {
+      "artifact": "netty-buffer",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-buffer/4.1.107.Final/netty-buffer-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-buffer:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-codec",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-codec/4.1.107.Final/netty-codec-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-codec:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-common",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-common/4.1.107.Final/netty-common-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-common:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-handler",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-handler/4.1.107.Final/netty-handler-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-handler:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-resolver",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-resolver/4.1.107.Final/netty-resolver-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-resolver:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-transport-native-unix-common",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-transport-native-unix-common/4.1.107.Final/netty-transport-native-unix-common-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-transport-native-unix-common:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "netty-transport",
+      "commercial_use": true,
+      "files": [
+        "io/netty/netty-transport/4.1.107.Final/netty-transport-4.1.107.Final.jar"
+      ],
+      "group": "io.netty",
+      "id": "maven:io.netty:netty-transport:4.1.107.Final",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "4.1.107.Final"
+    },
+    {
+      "artifact": "reactor-core",
+      "commercial_use": true,
+      "files": [
+        "io/projectreactor/reactor-core/3.6.4/reactor-core-3.6.4.jar"
+      ],
+      "group": "io.projectreactor",
+      "id": "maven:io.projectreactor:reactor-core:3.6.4",
+      "licenses": [
+        {
+          "declared_name": "Apache License, Version 2.0",
+          "declared_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "evidence_ids": [
+            "Apache-2.0"
+          ],
+          "spdx_expression": "Apache-2.0",
+          "text_evidence": [
+            {
+              "sha256": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/Apache-2.0.txt",
+              "spdx": "Apache-2.0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "3.6.4"
+    },
+    {
       "artifact": "paper-api",
       "commercial_use": true,
       "files": [
-        "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar",
-        "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.pom"
+        "io/zartra/mirror/paper/paper-api/1.21.1-build133/paper-api-1.21.1-build133.jar"
       ],
       "group": "io.zartra.mirror.paper",
       "id": "maven:io.zartra.mirror.paper:paper-api:1.21.1-build133",
@@ -5759,7 +6172,7 @@
       "modification": false,
       "product_bundled": false,
       "redistribution": false,
-      "scope": "COMPILE_ONLY_PLATFORM_PROVIDED_NOT_BUNDLED",
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "1.21.1-build133"
     },
@@ -5945,8 +6358,7 @@
       "artifact": "placeholderapi",
       "commercial_use": true,
       "files": [
-        "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar",
-        "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.pom"
+        "me/clip/placeholderapi/2.12.2/placeholderapi-2.12.2.jar"
       ],
       "group": "me.clip",
       "id": "maven:me.clip:placeholderapi:2.12.2",
@@ -5954,10 +6366,13 @@
         {
           "declared_name": "GNU General Public License v3.0",
           "declared_url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+          "evidence_ids": [
+            "GPL-3.0-only"
+          ],
           "spdx_expression": "GPL-3.0-only",
           "text_evidence": [
             {
-              "sha256": "3972DC9744F6499F0F9B2DBF76696F2AE7AD8AF9B23DDE66D6AF86C9DFB36986",
+              "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0",
               "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/GPL-3.0-only.txt",
               "spdx": "GPL-3.0-only"
             }
@@ -6205,6 +6620,9 @@
         {
           "declared_name": "Modified BSD 3-Clause License",
           "declared_url": "https://github.com/SpigotMC/BungeeCord/blob/master/LICENSE",
+          "evidence_ids": [
+            "BSD-3-Clause"
+          ],
           "spdx_expression": "BSD-3-Clause",
           "text_evidence": [
             {
@@ -10486,6 +10904,35 @@
       "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
       "shading": false,
       "version": "9.8"
+    },
+    {
+      "artifact": "reactive-streams",
+      "commercial_use": true,
+      "files": [
+        "org/reactivestreams/reactive-streams/1.0.4/reactive-streams-1.0.4.jar"
+      ],
+      "group": "org.reactivestreams",
+      "id": "maven:org.reactivestreams:reactive-streams:1.0.4",
+      "licenses": [
+        {
+          "declared_name": "MIT-0",
+          "declared_url": "https://spdx.org/licenses/MIT-0.html",
+          "spdx_expression": "MIT-0",
+          "text_evidence": [
+            {
+              "sha256": "59746d6285ffa44bfc7ecada352aa5d6a20dc8eab418a60ce091cc739012c135",
+              "source": "https://raw.githubusercontent.com/spdx/license-list-data/c4a7237ec8f4654e867546f9f409749300f1bf4c/text/MIT-0.txt",
+              "spdx": "MIT-0"
+            }
+          ]
+        }
+      ],
+      "modification": false,
+      "product_bundled": false,
+      "redistribution": false,
+      "scope": "RUNTIME_OR_BUILD_NOT_BUNDLED",
+      "shading": false,
+      "version": "1.0.4"
     },
     {
       "artifact": "reflections",

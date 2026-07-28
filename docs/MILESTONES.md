@@ -193,6 +193,7 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 ### M19 â€” Redis and distributed consistency
 
 - **M19 Phase 1 status:** IN PROGRESS — zbw-redis-api is materialized as a Java 8 neutral API; zbw-redis remains planned. ZBW-DEPLOY-006/008/009 and ZBW-READY-013/014 receive immutable key, M04-envelope stream, invalidation, deduplication, reservation, monotonic fencing, and sanitized degradation contracts. No Redis client, adapter, Paper/proxy integration, or M20 behavior exists.
+- **M19 Phase 2 status:** COMPLETE — zbw-redis provides a Java 8 nonblocking Lettuce adapter with at most 16 connections, a 5,000-operation bounded queue, namespace/schema fail-closed guards, Pub/Sub invalidation, ordered duplicate-safe stream processing, 24-hour/250,000-entry dedupe, fenced leases, HMAC-SHA-256 rotation/nonces/deadlines/size/rate checks, finite jittered reconnect policy, circuit breaking and sanitized degradation health. Redis remains ephemeral; durable exactly-once business effects remain SQL-owned. No Paper, proxy, domain bridge or M20 implementation is introduced.
 
 - **Requirements:** DEPLOY-006/008/009.
 - **Entry:** M04 outbox, M12/15/17/18 durable semantics complete; Redis ADR accepted.

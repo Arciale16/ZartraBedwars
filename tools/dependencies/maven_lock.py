@@ -64,6 +64,8 @@ def normalize_license(name: str, url: str = "") -> tuple[str, list[str]]:
         return "Apache-2.0", ["Apache-2.0"]
     if "eclipse public license" in lowered or lowered == "epl-2.0":
         return "EPL-2.0", ["EPL-2.0"]
+    if lowered == "mit-0":
+        return "MIT-0", ["MIT-0"]
     if lowered in {"mit", "mit license", "the mit license"}:
         return "MIT", ["MIT"]
     if "mozilla public license version 2" in lowered:
@@ -76,7 +78,7 @@ def normalize_license(name: str, url: str = "") -> tuple[str, list[str]]:
         return "LGPL-2.1-or-later", ["LGPL-2.1-or-later"]
     if "general public license v3.0" in lowered or lowered in {"gpl-3.0", "gpl-3.0-only"}:
         return "GPL-3.0-only", ["GPL-3.0-only"]
-    if lowered in {"bsd-3-clause", "the bsd license", "new bsd license"}:
+    if lowered in {"bsd-3-clause", "the bsd license", "new bsd license", "modified bsd 3-clause license"}:
         return "BSD-3-Clause", ["BSD-3-Clause"]
     if "bsd" in lowered and ("2-clause" in lowered or "2.0" in lowered):
         return "BSD-2-Clause", ["BSD-2-Clause"]
@@ -119,6 +121,10 @@ def license_evidence(spdx_ids: list[str]) -> list[dict[str, str]]:
 
 
 def license_override(identifier: str) -> list[dict[str, object]]:
+    if identifier == "maven:me.clip:placeholderapi:2.12.2":
+        return [{"declared_name": "GNU General Public License v3.0",
+                 "declared_url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+                 "spdx_expression": "GPL-3.0-only", "evidence_ids": ["GPL-3.0-only"]}]
     if identifier != "maven:org.codehaus.plexus:plexus-i18n:1.0-beta-10":
         return []
     source = fetch_bytes(PLEXUS_I18N_SOURCE)
