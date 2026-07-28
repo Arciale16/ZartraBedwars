@@ -1,0 +1,137 @@
+package io.zartra.bedwars.redis.api;
+import org.junit.jupiter.api.Assertions;
+import java.time.Instant;
+import java.util.UUID;
+import io.zartra.bedwars.api.identity.EventId;
+import io.zartra.bedwars.api.event.EventMetadata;
+import io.zartra.bedwars.api.identity.EventTypeId;
+import io.zartra.bedwars.api.identity.CorrelationId;
+import io.zartra.bedwars.api.identity.IdempotencyKey;
+import io.zartra.bedwars.storage.api.MessageEnvelope;
+import org.junit.jupiter.api.Test;
+class RedisCoverageTest {
+private final RedisNamespace ns=RedisNamespace.of("install","test","redis",SchemaVersion.of(1,2));
+@Test void coversValueObjectBranchesAndAccessors(){
+SchemaVersion schema=SchemaVersion.of(1,2);
+Assertions.assertEquals(1,schema.major());
+Assertions.assertEquals(2,schema.minor());
+Assertions.assertEquals("1.2",schema.toString());
+Assertions.assertNotEquals(schema,SchemaVersion.of(1,3));
+Assertions.assertNotEquals(schema,"x");
+Assertions.assertEquals("install",ns.installation());
+Assertions.assertEquals("test",ns.environment());
+Assertions.assertEquals("redis",ns.name());
+Assertions.assertEquals(schema,ns.schema());
+Assertions.assertNotEquals(ns,"x");
+Assertions.assertNotEquals(ns,RedisNamespace.of("other","test","redis",schema));
+RedisKey key=RedisKey.of(ns,"cache","value-1");
+Assertions.assertEquals(ns,key.namespace());
+Assertions.assertEquals("cache",key.category());
+Assertions.assertEquals("value-1",key.identity());
+Assertions.assertEquals(0,key.compareTo(key));
+Assertions.assertNotEquals(key,"x");
+OperationId op=OperationId.random();
+Assertions.assertEquals(op.value(),OperationId.parse(op.toString()).value());
+Assertions.assertNotEquals(op,"x");
+DeduplicationKey dedupe=DeduplicationKey.of(ns,op);
+Assertions.assertEquals(ns,dedupe.namespace());
+Assertions.assertEquals(op,dedupe.operation());
+Assertions.assertEquals("dedupe",dedupe.asRedisKey().category());
+Assertions.assertNotEquals(dedupe,"x");
+}
+@Test void coversStreamAndInvalidationBranches(){
+Assertions.assertThrows(IllegalArgumentException.class,()->InvalidationVersion.of(0));
+InvalidationVersion version=InvalidationVersion.of(1);
+Assertions.assertEquals(1,version.value());
+Assertions.assertEquals("1",version.toString());
+Assertions.assertEquals(version,InvalidationVersion.of(1));
+Assertions.assertNotEquals(version,"x");
+Assertions.assertThrows(IllegalArgumentException.class,()->StreamId.of(-1,0));
+Assertions.assertThrows(IllegalArgumentException.class,()->StreamId.of(0,-1));
+Assertions.assertThrows(IllegalArgumentException.class,()->StreamId.parse("1-x"));
+StreamId id=StreamId.of(1,2);
+Assertions.assertEquals(1,id.epochMillis());
+Assertions.assertEquals(2,id.sequence());
+Assertions.assertEquals("1-2",id.toString());
+Assertions.assertNotEquals(id,StreamId.of(1,3));
+Assertions.assertNotEquals(id,"x");
+RedisKey stream=RedisKey.of(ns,"stream","events");
+StreamCursor cursor=StreamCursor.after(stream,id);
+Assertions.assertEquals(stream,cursor.stream());
+Assertions.assertNotEquals(cursor,"x");
+CacheInvalidation invalidation=CacheInvalidation.of(stream,version,OperationId.random(),Instant.EPOCH);
+Assertions.assertEquals(stream,invalidation.key());
+Assertions.assertNotNull(invalidation.operation());
+Assertions.assertEquals(Instant.EPOCH,invalidation.occurredAt());
+Assertions.assertEquals(invalidation,CacheInvalidation.of(stream,version,invalidation.operation(),Instant.EPOCH));
+Assertions.assertNotEquals(invalidation,"x");
+}
+@Test void coversReservationLeaseAndHealthBranches(){
+Instant start=Instant.EPOCH;
+Instant end=start.plusSeconds(1);
+ReservationId rid=ReservationId.random();
+ReservationRequest request=ReservationRequest.of(rid,OperationId.random(),RedisKey.of(ns,"lease","r1"),"node-1",start,end);
+Assertions.assertEquals(request.operation(),request.operation());
+Assertions.assertEquals("node-1",request.requester());
+Assertions.assertEquals(start,request.requestedAt());
+Assertions.assertEquals(end,request.expiresAt());
+Assertions.assertNotEquals(request,"x");
+ReservationResult fail=ReservationResult.failed(rid,ReservationResult.Status.REJECTED);
+Assertions.assertEquals(rid,fail.id());
+Assertions.assertEquals(ReservationResult.Status.REJECTED,fail.status());
+Assertions.assertEquals(fail,ReservationResult.failed(rid,ReservationResult.Status.REJECTED));
+Assertions.assertNotEquals(fail,"x");
+Assertions.assertThrows(IllegalArgumentException.class,()->ReservationResult.acquired(rid,null,FencingToken.of(1)));
+LeaseId lid=LeaseId.random();
+LeaseState lease=LeaseState.of(lid,"node-1",FencingToken.of(1),start,end,LeaseState.Status.RELEASED);
+Assertions.assertEquals(lid,lease.id());
+Assertions.assertEquals("node-1",lease.holder());
+Assertions.assertEquals(start,lease.acquiredAt());
+Assertions.assertEquals(end,lease.expiresAt());
+Assertions.assertEquals(LeaseState.Status.RELEASED,lease.status());
+Assertions.assertNotEquals(lease,"x");
+Assertions.assertThrows(IllegalArgumentException.class,()->LeaseState.of(lid,"node",FencingToken.of(1),end,start,LeaseState.Status.ACTIVE));
+RedisHealth health=RedisHealth.of(RedisAvailability.UNAVAILABLE,DegradationMode.CROSS_NODE_PAUSED,"offline",0,start);
+Assertions.assertEquals(RedisAvailability.UNAVAILABLE,health.availability());
+Assertions.assertEquals(DegradationMode.CROSS_NODE_PAUSED,health.mode());
+Assertions.assertEquals(0,health.pendingOperations());
+Assertions.assertEquals(start,health.observedAt());
+Assertions.assertEquals(health,RedisHealth.of(RedisAvailability.UNAVAILABLE,DegradationMode.CROSS_NODE_PAUSED,"offline",0,start));
+Assertions.assertNotEquals(health,"x");
+Assertions.assertThrows(IllegalArgumentException.class,()->RedisHealth.of(RedisAvailability.DEGRADED,DegradationMode.LOCAL_ONLY,"ok",-1,start));
+}
+@Test void coversCompoundEqualityAndEnvelopeReference(){
+Instant a=Instant.EPOCH,e=a.plusSeconds(2);
+RedisKey key=RedisKey.of(ns,"lease","r1");
+ReservationId id=ReservationId.random();
+OperationId op=OperationId.random();
+ReservationRequest base=ReservationRequest.of(id,op,key,"node-1",a,e);
+Assertions.assertNotEquals(base,ReservationRequest.of(ReservationId.random(),op,key,"node-1",a,e));
+Assertions.assertNotEquals(base,ReservationRequest.of(id,OperationId.random(),key,"node-1",a,e));
+Assertions.assertNotEquals(base,ReservationRequest.of(id,op,RedisKey.of(ns,"lease","r2"),"node-1",a,e));
+Assertions.assertNotEquals(base,ReservationRequest.of(id,op,key,"node-2",a,e));
+Assertions.assertNotEquals(base,ReservationRequest.of(id,op,key,"node-1",a.plusMillis(1),e));
+Assertions.assertNotEquals(base,ReservationRequest.of(id,op,key,"node-1",a,e.plusMillis(1)));
+LeaseId lid=LeaseId.random();
+FencingToken token=FencingToken.of(2);
+LeaseState lease=LeaseState.of(lid,"node-1",token,a,e,LeaseState.Status.ACTIVE);
+Assertions.assertNotEquals(lease,LeaseState.of(LeaseId.random(),"node-1",token,a,e,LeaseState.Status.ACTIVE));
+Assertions.assertNotEquals(lease,LeaseState.of(lid,"node-2",token,a,e,LeaseState.Status.ACTIVE));
+Assertions.assertNotEquals(lease,LeaseState.of(lid,"node-1",FencingToken.of(3),a,e,LeaseState.Status.ACTIVE));
+Assertions.assertNotEquals(lease,LeaseState.of(lid,"node-1",token,a.plusMillis(1),e,LeaseState.Status.ACTIVE));
+Assertions.assertNotEquals(lease,LeaseState.of(lid,"node-1",token,a,e.plusMillis(1),LeaseState.Status.ACTIVE));
+Assertions.assertNotEquals(lease,LeaseState.of(lid,"node-1",token,a,e,LeaseState.Status.EXPIRED));
+UUID event=UUID.randomUUID(),correlation=UUID.randomUUID();
+MessageEnvelope envelope=MessageEnvelope.of(IdempotencyKey.of("zartra","op-1"),EventMetadata.of(EventId.of(event),EventTypeId.of("zartra","redis"),CorrelationId.of(correlation),a,1,1,EventMetadata.ThreadContext.APPLICATION_WORKER),new byte[]{
+1}
+,a);
+StreamRecord record=StreamRecord.of(StreamId.of(1,0),envelope);
+Assertions.assertEquals(envelope,record.envelope());
+Assertions.assertEquals(StreamId.of(1,0),record.id());
+Assertions.assertEquals(record,StreamRecord.of(StreamId.of(1,0),envelope));
+Assertions.assertNotEquals(record,StreamRecord.of(StreamId.of(2,0),envelope));
+Assertions.assertNotEquals(record,"x");
+Assertions.assertThrows(NullPointerException.class,()->StreamRecord.of(null,envelope));
+Assertions.assertThrows(NullPointerException.class,()->StreamRecord.of(StreamId.of(1,0),null));
+}
+}

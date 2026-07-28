@@ -58,7 +58,16 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `commons-logging:commons-logging:1.3.5` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `info.picocli:picocli:4.6.2` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `info.picocli:picocli:4.7.6` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
-| `io.zartra.mirror.paper:paper-api:1.21.1-build133` | GPL-3.0-only | COMPILE_ONLY_PLATFORM_PROVIDED_NOT_BUNDLED | NO |
+| `io.lettuce:lettuce-core:6.3.2.RELEASE` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-buffer:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-codec:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-common:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-handler:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-resolver:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-transport-native-unix-common:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.netty:netty-transport:4.1.107.Final` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.projectreactor:reactor-core:3.6.4` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `io.zartra.mirror.paper:paper-api:1.21.1-build133` | GPL-3.0-only | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `javax.activation:javax.activation-api:1.2.0` | CDDL-1.1 OR GPL-2.0-only WITH Classpath-exception-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `javax.inject:javax.inject:1` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `javax.xml.bind:jaxb-api:2.3.1` | CDDL-1.1; GPL-2.0-only WITH Classpath-exception-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
@@ -205,6 +214,7 @@ These components are resolved for the M06 thin-artifact build, runtime adapters 
 | `org.ow2.asm:asm-util:9.7.1` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.ow2.asm:asm:9.7.1` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.ow2.asm:asm:9.8` | BSD-3-Clause | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
+| `org.reactivestreams:reactive-streams:1.0.4` | MIT-0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.reflections:reflections:0.10.2` | WTFPL; Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.rnorth.duct-tape:duct-tape:1.0.8` | MIT | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |
 | `org.slf4j:jcl-over-slf4j:2.0.7` | Apache-2.0 | RUNTIME_OR_BUILD_NOT_BUNDLED | NO |

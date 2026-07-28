@@ -926,4 +926,36 @@ No Paper, GUI, command, staff-tool or M19 implementation is introduced by this c
 | `ZBW-ADDON-323..333`, `ZBW-GAME-009`, `ZBW-OPS-004/005`, `ZBW-UX-002` | `ControlledStaffOperations` typed operation catalogue, exact dotted permissions, mandatory opaque actor/target/reason, confirmation, target immunity, before/after audit and opaque rollback token | The game-owned backend remains the only mutation authority; Atlas and Paper never receive raw game mutation access |
 | `ZBW-QA-001/003` | Permission, routing, GUI immutability/privacy, owner-executor, cleanup, denial, audit and rollback tests plus module graph/dashboard/governance evidence | JDK/provider/distributed/release certification stays in its allocated later milestone |
 
-M18 is complete in `build/milestone-state.json`. No milestone is active; M19 is recorded only as the next unstarted milestone, and this checkpoint contains no M19 implementation.
+The M18 closure originally handed ownership to M19 without implementing Redis; the M19 phase records below supersede that historical handoff state.
+## M19 Phase 1 Redis API foundation
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-DEPLOY-006, ZBW-DEPLOY-008, ZBW-DEPLOY-009 | zbw-redis-api: installation/environment/schema-isolated keys, M04 MessageEnvelope stream references, invalidation, idempotency, reservations, monotonic fencing and sanitized degradation contracts; immutable/invalid/order/privacy tests | M19 later phases own the Redis adapter, partition/reconnect/load certification and runtime operations |
+| M19 / ZBW-READY-013, ZBW-READY-014 | opaque identifiers, no secret/endpoint health disclosure, stale fencing rejection, SQL/M04 envelope authority retained | M19/M20 own authenticated transport, leases and distributed topology |
+| M19 / ZBW-ADDON-387 | neutral coordination primitives are available without importing or owning M11 item-rotation state | M19 adapter and M20 distribution remain unimplemented |
+
+## M19 Phase 2 Redis adapter and security
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-DEPLOY-006/008/009 | zbw-redis Lettuce lifecycle, fixed bounded connections/queue, namespace/schema guards, disposable Pub/Sub, deterministic stream processor, 24h dedupe, fenced lease Lua, finite reconnect/circuit/degradation | Later M19 domain bridges and partition/container/load certification |
+| M19 / ZBW-READY-013/014 | HMAC-SHA-256 key IDs/rotation, 128-bit nonce replay cache, deadline/skew, 256KiB payload, 100/s burst-200 peer rate limits; SQL authority explicitly retained | M20 authenticated proxy transport and multi-node E2E |
+| M19 / ZBW-ADDON-387 | Adapter coordination primitives exist without importing or mutating M11 item-rotation ownership | Later M19 bridge and M20 distribution |
+
+## M19 Phase 3 domain coordination bridges
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-STATS-005/008, ZBW-DEPLOY-006/008/009 | `CoordinationEvent`, deterministic schema codec, bounded `VersionedCoordinationBridge`, M04-envelope/M19-stream consumer and tests for ordering, duplicates, stale versions, cache rebuild and Redis-loss recovery | M15 SQL/statistics and leaderboard runtimes remain authoritative; M20 owns proxy transport |
+| M19 / ZBW-ATLAS-005/013, ZBW-READY-014 | `AtlasReservationCoordinator` pauses cross-node assignment during degradation and accepts/renews only the latest bounded fencing epoch; tests cover conflicts, races, stale epochs and unavailable Redis | M18 SQL reservation/case workflow remains authoritative; verdict logic is absent |
+| M19 / ZBW-ADDON-387 | Item-rotation invalidation carries only opaque rotation identity and monotonic version through the neutral bridge; bounded eviction forces rebuild from M11 durable state | M11 owns schedule/state and M20 owns proxy/server distribution |
+| M19 / ZBW-GAME-007, ZBW-REPLAY-001, ZBW-DEPLOY-009 | Opaque player-presence, arena-availability, queue, replay-metadata and announcement notification families contain no duplicated domain model or calculation | Respective M08/M10/M17 owners retain state; M20 owns network delivery |
+
+## M19 Phase 4 failure, performance and closure
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-DEPLOY-006/008/009, ZBW-READY-013/014 | `RedisFailureRecoveryTest`, existing adapter/security/coordination suites, sanitized `RedisDiagnostics`, five-minute `RedisRecoveryTracker`, bounded queue/cache/connection limits and `REDIS_M19.md` prove fail-closed partition behavior, cache-loss rebuild, restart recovery and no Redis-owned finalization | M20 owns proxy topology and transfer semantics; production Redis/TLS latency evidence is a deployment rollout gate |
+| M19 / ZBW-STATS-005/008, ZBW-ATLAS-005/013, ZBW-ADDON-387 | SHARED_40 and PROXY_4-equivalent adapter benchmarks enforce p95 ≤5 ms, p99 ≤15 ms and bounded metadata; duplicates/stale versions/fences cannot authorize durable effects | SQL and M11/M15/M18 owners retain compare/idempotency authority; M20 owns cross-proxy delivery |
+| M19 closure | `zbw-redis-api` and `zbw-redis` pass Java 8/21 compilation, tests, Checkstyle, SpotBugs, JaCoCo, strict JavaDoc, API compatibility, dependency/SBOM and deterministic governance validators | M20 is next and remains unstarted |
