@@ -215,7 +215,7 @@
             "id": "zbw-redis",
             "path": "redis/zbw-redis/pom.xml",
             "packaging": "jar",
-            "responsibility": "Java 8 bounded authenticated Lettuce coordination adapter"
+            "responsibility": "Java 8 bounded authenticated Lettuce coordination, recovery and domain-neutral bridge adapter"
         },
         {
             "id": "zbw-compat-v1_20-v1_21",

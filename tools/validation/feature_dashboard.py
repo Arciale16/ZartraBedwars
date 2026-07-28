@@ -159,8 +159,10 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
     if identifier in M17_REQUIREMENTS:
         return "PARTIAL", "M17 replay allocation is complete; provider, distributed, compatibility and release qualification remain"
+    if identifier == "ZBW-DEPLOY-006":
+        return "VERIFIED", "M19 Redis contracts, adapter, security, bridges, recovery, performance and operations evidence complete"
     if identifier in M19_REQUIREMENTS:
-        return "PARTIAL", "M19 Phase 1 neutral Redis contracts implemented; runtime adapter and distributed certification remain"
+        return "PARTIAL", "M19 Redis allocation complete; M20 proxy topology and delivery allocation remains"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
