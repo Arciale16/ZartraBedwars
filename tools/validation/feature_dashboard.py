@@ -42,10 +42,13 @@ M17_REQUIREMENTS = {
     "ZBW-REPLAY-009", "ZBW-REPLAY-010",
 }
 
+<<<<<<< HEAD
 M19_REQUIREMENTS = {
     "ZBW-DEPLOY-006", "ZBW-DEPLOY-008", "ZBW-DEPLOY-009",
 }
 
+=======
+>>>>>>> origin/main
 M18_REQUIREMENTS = {
     "ZBW-ATLAS-001", "ZBW-ATLAS-003", "ZBW-ATLAS-004",
     "ZBW-ATLAS-005", "ZBW-ATLAS-006", "ZBW-ATLAS-011",
@@ -159,10 +162,13 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "VERIFIED", "M15 statistics/runtime/leaderboard/adapters implementation is complete; later owners remain visible"
     if identifier in M17_REQUIREMENTS:
         return "PARTIAL", "M17 replay allocation is complete; provider, distributed, compatibility and release qualification remain"
+<<<<<<< HEAD
     if identifier == "ZBW-DEPLOY-006":
         return "VERIFIED", "M19 Redis contracts, adapter, security, bridges, recovery, performance and operations evidence complete"
     if identifier in M19_REQUIREMENTS:
         return "PARTIAL", "M19 Redis allocation complete; M20 proxy topology and delivery allocation remains"
+=======
+>>>>>>> origin/main
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
