@@ -206,6 +206,12 @@
             "responsibility": "Java 8 transactional Atlas persistence, checksum migration and isolated identity vault adapter"
         },
         {
+            "id": "zbw-redis-api",
+            "path": "redis/zbw-redis-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 neutral Redis coordination contracts"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -555,6 +561,24 @@
             "depends_on": [
                 "zbw-atlas-api",
                 "zbw-storage-api"
+            ]
+        },
+        {
+            "id": "zbw-redis-api",
+            "layer": "api",
+            "bytecode": 8,
+            "first_milestone": "M19",
+            "depends_on": [
+                "zbw-storage-api"
+            ]
+        },
+        {
+            "id": "zbw-redis",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M19",
+            "depends_on": [
+                "zbw-redis-api"
             ]
         },
         {

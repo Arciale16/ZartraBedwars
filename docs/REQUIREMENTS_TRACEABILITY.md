@@ -927,3 +927,10 @@ No Paper, GUI, command, staff-tool or M19 implementation is introduced by this c
 | `ZBW-QA-001/003` | Permission, routing, GUI immutability/privacy, owner-executor, cleanup, denial, audit and rollback tests plus module graph/dashboard/governance evidence | JDK/provider/distributed/release certification stays in its allocated later milestone |
 
 M18 is complete in `build/milestone-state.json`. No milestone is active; M19 is recorded only as the next unstarted milestone, and this checkpoint contains no M19 implementation.
+## M19 Phase 1 Redis API foundation
+
+| Allocation | Evidence | Remaining owner |
+|---|---|---|
+| M19 / ZBW-DEPLOY-006, ZBW-DEPLOY-008, ZBW-DEPLOY-009 | zbw-redis-api: installation/environment/schema-isolated keys, M04 MessageEnvelope stream references, invalidation, idempotency, reservations, monotonic fencing and sanitized degradation contracts; immutable/invalid/order/privacy tests | M19 later phases own the Redis adapter, partition/reconnect/load certification and runtime operations |
+| M19 / ZBW-READY-013, ZBW-READY-014 | opaque identifiers, no secret/endpoint health disclosure, stale fencing rejection, SQL/M04 envelope authority retained | M19/M20 own authenticated transport, leases and distributed topology |
+| M19 / ZBW-ADDON-387 | neutral coordination primitives are available without importing or owning M11 item-rotation state | M19 adapter and M20 distribution remain unimplemented |
