@@ -16,6 +16,8 @@ public final class ProxyMessageSecurity {
     /** Maximum retained nonce records. */ public static final int MAX_NONCES = 10000;
     /** Sustained authenticated message rate per peer. */ public static final int RATE_PER_SECOND = 100;
     /** Short authenticated-message burst per peer. */ public static final int BURST = 200;
+    /** Maximum accepted sender/receiver clock difference. */
+    public static final long MAX_CLOCK_SKEW_SECONDS = 30L;
     private final ProtocolVersion protocol;
     private final String environment;
     private final String audience;
@@ -57,6 +59,10 @@ public final class ProxyMessageSecurity {
         if (!protocol.compatibleWith(message.protocol()) || !environment.equals(message.environment())
                 || !audience.equals(message.audience()) || !now.isBefore(message.deadline())) {
             throw new SecurityException("message context rejected");
+        }
+        if (message.issuedAt().isBefore(now.minusSeconds(MAX_CLOCK_SKEW_SECONDS))
+                || message.issuedAt().isAfter(now.plusSeconds(MAX_CLOCK_SKEW_SECONDS))) {
+            throw new SecurityException("message clock skew rejected");
         }
         rate(now);
         cleanup(now);

@@ -24,6 +24,11 @@ public final class CrossServerWorkflow {
             return CrossServerTransferResult.failed(intent.operationId(), intent.type(),
                     CrossServerTransferResult.Status.OWNER_REJECTED, "owner-rejected");
         }
+        if (!runtime.reservationsAllowed()) {
+            return CrossServerTransferResult.failed(intent.operationId(), intent.type(),
+                    CrossServerTransferResult.Status.RESERVATION_FAILED,
+                    "coordination-unavailable");
+        }
         RoutingRequest routingRequest = RoutingRequest.of(intent.operationId(),
                 intent.subjectReference(), intent.audience(), handoff.requiredCapabilities(),
                 intent.requestedAt(), intent.deadline());

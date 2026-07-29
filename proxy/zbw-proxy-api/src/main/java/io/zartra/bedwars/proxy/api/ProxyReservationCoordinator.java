@@ -2,19 +2,20 @@ package io.zartra.bedwars.proxy.api;
 
 import java.time.Instant;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
 
 /** Atomic bounded reservation and transfer-token coordinator for one proxy process. */
 public final class ProxyReservationCoordinator {
     /** Maximum in-flight reservations. */
     public static final int MAX_RESERVATIONS = 5000;
+    /** Maximum retained single-use token records. */
+    public static final int MAX_CONSUMED_TOKENS = 10000;
     private final Map<ProxyReservationId, ReservationRequest> reservations = new HashMap<ProxyReservationId, ReservationRequest>();
     private final Map<String, ProxyReservationId> subjects = new HashMap<String, ProxyReservationId>();
-    private final Set<UUID> consumed = new HashSet<UUID>();
+    private final Map<UUID, Instant> consumed = new LinkedHashMap<UUID, Instant>();
 
     /** Atomically reserves a subject against the current backend epoch. */
     public synchronized ReservationResult reserve(final ReservationRequest request,
@@ -55,17 +56,31 @@ public final class ProxyReservationCoordinator {
     public synchronized TokenConsumptionResult consume(final TransferToken token,
             final String audience, final InstanceEpoch epoch, final Instant now) {
         Objects.requireNonNull(token, "token");
-        boolean duplicate = consumed.contains(token.tokenId());
+        cleanup(Objects.requireNonNull(now, "now"));
+        boolean duplicate = consumed.containsKey(token.tokenId());
         TokenConsumptionResult result = token.evaluateConsumption(audience, epoch, now, duplicate);
         if (result.consumed()) {
+            if (consumed.size() >= MAX_CONSUMED_TOKENS) {
+                return TokenConsumptionResult.of(token.tokenId(), TokenConsumptionResult.Status.INVALID);
+            }
             ReservationRequest request = reservations.remove(token.reservationId());
             if (request == null) {
                 return TokenConsumptionResult.of(token.tokenId(), TokenConsumptionResult.Status.INVALID);
             }
             subjects.remove(request.subjectReference());
-            consumed.add(token.tokenId());
+            consumed.put(token.tokenId(), token.expiresAt());
         }
         return result;
+    }
+
+    /** Returns bounded in-flight reservation metadata count. */
+    public synchronized int pendingReservations() {
+        return reservations.size();
+    }
+
+    /** Returns bounded recently consumed token metadata count. */
+    public synchronized int consumedTokens() {
+        return consumed.size();
     }
 
     private void cleanup(final Instant now) {
@@ -73,6 +88,12 @@ public final class ProxyReservationCoordinator {
             if (!now.isBefore(request.expiresAt())) {
                 reservations.remove(request.id());
                 subjects.remove(request.subjectReference());
+            }
+        }
+        for (Map.Entry<UUID, Instant> token
+                : new LinkedHashMap<UUID, Instant>(consumed).entrySet()) {
+            if (!now.isBefore(token.getValue())) {
+                consumed.remove(token.getKey());
             }
         }
     }

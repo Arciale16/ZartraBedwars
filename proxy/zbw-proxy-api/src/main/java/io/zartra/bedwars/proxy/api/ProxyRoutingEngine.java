@@ -23,6 +23,7 @@ public final class ProxyRoutingEngine {
         if (!Objects.requireNonNull(now, "now").isBefore(request.deadline())) {
             return RoutingResult.failed(request.requestId(), RoutingResult.Status.REJECTED, "deadline-expired");
         }
+        registry.expire(now);
         List<BackendRegistration> values = registry.registrations();
         int attempts = 0;
         for (BackendRegistration backend : values) {
