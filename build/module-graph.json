@@ -104,6 +104,12 @@
             "responsibility": "Java 8 platform-neutral semantic capability and fallback contracts"
         },
         {
+            "id": "zbw-compat-client",
+            "path": "compatibility/zbw-compat-client/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 vendor-isolated client translation and feature parity adapters"
+        },
+        {
             "id": "zbw-world",
             "path": "world/zbw-world/pom.xml",
             "packaging": "jar",
@@ -506,6 +512,18 @@
             "depends_on": [
                 "zbw-api"
             ]
+        },
+        {
+            "id": "zbw-compat-client",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M22",
+            "depends_on": [
+                "zbw-compat-api"
+            ],
+            "dependency_since": {
+                "zbw-compat-api": "M22"
+            }
         },
         {
             "id": "zbw-world",

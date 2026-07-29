@@ -17,9 +17,12 @@
     "ZBW-READY-002",
     "ZBW-READY-006"
   ],
-  "phase": "M22_PHASE_2_SERVER_ADAPTERS",
+  "phase": "M22_PHASE_3_CLIENT_TRANSLATION",
   "policy": {
     "adapter_implementation_started": true,
+    "client_translation_implementation_started": true,
+    "provider_resolution_blocked": true,
+    "expected_client_feature_count": 10,
     "support_claim_allowed": false,
     "server_runtime_and_client_translation_are_independent": true,
     "unknown_runtime_fails_closed": true,
@@ -109,10 +112,10 @@
     }
   ],
   "client_paths": [
-    {"id": "NATIVE", "provider": null, "version": null, "status": "CERTIFICATION_PENDING"},
-    {"id": "VIAVERSION", "provider": "ViaVersion", "version": "5.4.2", "status": "LOCK_REQUIRED"},
-    {"id": "VIABACKWARDS", "provider": "ViaBackwards", "version": "5.4.2", "status": "LOCK_REQUIRED"},
-    {"id": "VIAREWIND", "provider": "ViaRewind", "version": "4.0.6", "status": "LOCK_REQUIRED"},
-    {"id": "GEYSER_FLOODGATE", "provider": "Geyser/Floodgate", "version": "2.7.0/2.2.4", "status": "LOCK_REQUIRED"}
+    {"id": "NATIVE", "provider": null, "version": null, "status": "PARITY_IMPLEMENTED_CERTIFICATION_PENDING"},
+    {"id": "VIAVERSION", "provider": "ViaVersion", "version": "5.4.2", "status": "ADAPTER_IMPLEMENTED_LOCK_PENDING"},
+    {"id": "VIABACKWARDS", "provider": "ViaBackwards", "version": "5.4.2", "status": "ADAPTER_IMPLEMENTED_LOCK_PENDING"},
+    {"id": "VIAREWIND", "provider": "ViaRewind", "version": "4.0.6", "status": "ADAPTER_IMPLEMENTED_LOCK_PENDING"},
+    {"id": "GEYSER_FLOODGATE", "provider": "Geyser/Floodgate", "version": "2.7.0/2.2.4", "status": "ADAPTER_IMPLEMENTED_LOCK_PENDING"}
   ]
 }

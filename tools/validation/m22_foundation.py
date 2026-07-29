@@ -11,6 +11,8 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 MAVEN = {"m": "http://maven.apache.org/POM/4.0.0"}
 MODULES = {
+    "zbw-compat-client": (
+        8, ["zbw-compat-api"], "compatibility/zbw-compat-client/pom.xml"),
     "zbw-compat-v1_8": (8, ["zbw-compat-api"], "compatibility/zbw-compat-v1_8/pom.xml"),
     "zbw-compat-v1_9": (8, ["zbw-compat-api"], "compatibility/zbw-compat-v1_9/pom.xml"),
     "zbw-compat-v1_10": (8, ["zbw-compat-api"], "compatibility/zbw-compat-v1_10/pom.xml"),
@@ -108,8 +110,8 @@ def validate() -> list[str]:
     matrix = read_json("build/m22-compatibility-matrix.json")
     families = matrix["server_families"]
     clients = matrix["client_paths"]
-    if matrix["phase"] != "M22_PHASE_2_SERVER_ADAPTERS":
-        errors.append("M22 matrix must record the Phase 2 server-adapter checkpoint")
+    if matrix["phase"] != "M22_PHASE_3_CLIENT_TRANSLATION":
+        errors.append("M22 matrix must record the Phase 3 client-translation checkpoint")
     if any(row["status"] != "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
            for row in families):
         errors.append("every server family must retain certification-pending status")
@@ -127,8 +129,20 @@ def validate() -> list[str]:
     }
     if actual_clients != CLIENTS:
         errors.append("M22 client-path inventory/version drift")
+    expected_client_status = {
+        "NATIVE": "PARITY_IMPLEMENTED_CERTIFICATION_PENDING",
+        "VIAVERSION": "ADAPTER_IMPLEMENTED_LOCK_PENDING",
+        "VIABACKWARDS": "ADAPTER_IMPLEMENTED_LOCK_PENDING",
+        "VIAREWIND": "ADAPTER_IMPLEMENTED_LOCK_PENDING",
+        "GEYSER_FLOODGATE": "ADAPTER_IMPLEMENTED_LOCK_PENDING",
+    }
+    if {row["id"]: row["status"] for row in clients} != expected_client_status:
+        errors.append("M22 Phase 3 client adapter status drift")
     if matrix["policy"] != {
             "adapter_implementation_started": True,
+            "client_translation_implementation_started": True,
+            "provider_resolution_blocked": True,
+            "expected_client_feature_count": 10,
             "support_claim_allowed": False,
             "server_runtime_and_client_translation_are_independent": True,
             "unknown_runtime_fails_closed": True,
@@ -136,7 +150,7 @@ def validate() -> list[str]:
             "expected_client_path_count": 5,
             "expected_matrix_cell_count": 45,
     }:
-        errors.append("M22 Phase 2 no-claim policy drift")
+        errors.append("M22 Phase 3 no-claim policy drift")
 
     lock = read_json("build/m22-provider-lock-requirements.json")
     actual_providers = {
@@ -166,8 +180,8 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
     print(
-        "M22 Phase 2 PASS: 11 source modules, 22 fixtures, exact fail-closed "
-        "server adapter/bootstrap boundaries; client provider resolution blocked.")
+        "M22 Phase 3 PASS: 12 source modules, 22 fixtures, exact fail-closed "
+        "server/client adapter boundaries; provider binary resolution remains blocked.")
     return 0
 
 

@@ -200,7 +200,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in M21_REQUIREMENTS:
         return "PARTIAL", "M21 Phase 4 provider lifecycle/Plugin Doctor and focused failure certification complete; full per-requirement presentation and release qualification remain"
     if identifier in M22_REQUIREMENTS:
-        return "PARTIAL", "M22 Phase 1 governance, POM boundaries and deterministic matrix are complete; adapter and exact-fixture certification remain"
+        return "PARTIAL", "M22 Phase 3 server/client adapters and deterministic parity evidence are complete; exact provider/runtime certification remains"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
@@ -209,7 +209,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if match and (41 <= int(match.group(1)) <= 60 or 102 <= int(match.group(1)) <= 107 or 252 <= int(match.group(1)) <= 259 or 291 <= int(match.group(1)) <= 299 or int(match.group(1)) == 387 or 464 <= int(match.group(1)) <= 473):
         return "PARTIAL", "M20 proxy coordination allocation complete; owner-side feature and M21/M22 provider/compatibility work remain"
     if match and int(match.group(1)) in M22_ADDONS:
-        return "PARTIAL", "M22 Phase 1 matrix allocation is active; cross-version adapter and fixture evidence remain"
+        return "PARTIAL", "M22 Phase 3 server/client adapter allocation is active; exact runtime/client fixture certification remains"
     if match and 323 <= int(match.group(1)) <= 333:
         return "VERIFIED", "M18 guarded staff operation, permission, confirmation, audit and rollback evidence complete"
     numbers = milestone_numbers(planned)
@@ -322,7 +322,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M21 and hardening M08.1 are complete; M22 Phase 1 is active with governance, POM-only module boundaries and a deterministic compatibility matrix; no adapter implementation or support certification is claimed.",
+        "M00-M21 and hardening M08.1 are complete; M22 Phase 3 is active with server adapters, fail-closed bootstraps and a vendor-isolated client parity layer; exact runtime/provider certification and support claims remain blocked.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

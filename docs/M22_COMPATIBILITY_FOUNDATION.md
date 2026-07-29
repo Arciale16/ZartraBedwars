@@ -1,73 +1,86 @@
 # M22 compatibility foundation
 
-**Status:** Phase 2 server adapters and legacy bootstrap implemented; runtime certification pending
+**Status:** Phase 3 client translation and feature parity implemented; exact runtime/provider certification pending
 **Requirements:** `ZBW-ARC-002`, `ZBW-INT-004`, `ZBW-INT-010`,
 `ZBW-COMPAT-001..009`, `ZBW-READY-001`, `ZBW-READY-002`,
 `ZBW-READY-005`, `ZBW-READY-006`, `ZBW-LICENSE-001/002/005`
 
-## Scope
+## Scope and ownership
 
-M22 is active. This checkpoint materializes eleven empty Maven artifact
-boundaries and a deterministic compatibility model. It adds no Java source,
-version mapping, NMS access, server API dependency, legacy Paper bootstrap or
-support certification. Paper 1.21.1 build 133 retains only its completed M06
-foundation evidence.
+M22 remains active. Phase 2 supplied exact-runtime server adapters and fail-closed
+Java 8/11/16/17 bootstraps. Phase 3 adds the Java 8
+`zbw-compat-client` adapter boundary. Client translation is evaluated only after
+an exact server `CompatibilityAdapter` has been selected; it cannot wrap,
+replace or mutate that adapter. Domain, game, shop, progression, replay, Atlas,
+Redis, proxy and provider ownership remain unchanged.
 
-The canonical machine model is
-`build/m22-compatibility-matrix.json`. It binds all 22 exact server fixtures to
-nine artifact families, five exact JDK toolchains and five independent client
-paths. Its 45 server-family/client-path cells remain uncertified.
+The canonical machine model is `build/m22-compatibility-matrix.json`. It binds
+22 exact server fixtures to nine server families, five JDK toolchains and five
+independent client paths. Phase 3 implements deterministic parity decisions for
+all ten required client surfaces. The 45 runtime/client cells remain
+certification-pending until the exact private/public server fixtures and locked
+provider binaries can be exercised.
 
-## Module grouping
+## Client adapter boundary
 
-| Reactor profile | JDK | Compatibility boundaries | Paper boundary |
-|---|---:|---|---|
-| `legacy-paper-platform` | 8 | `zbw-compat-v1_8`, `zbw-compat-v1_9`, `zbw-compat-v1_10`, `zbw-compat-v1_11` | `zbw-paper-legacy` |
-| `j11-paper-platform` | 11 | `zbw-compat-v1_12-v1_16_4` | `zbw-paper-j11` |
-| `j16-paper-platform` | 16 | `zbw-compat-v1_16_5` | `zbw-paper-j16` |
-| `j17-paper-platform` | 17 | `zbw-compat-v1_17-v1_19` | `zbw-paper-j17` |
-| `modern-paper-platform` | 21 | `zbw-compat-v1_20-v1_21` | `zbw-paper-modern` |
+`zbw-compat-client` depends only on `zbw-compat-api` and compiles for Java 8.
+It contains no ViaVersion, ViaBackwards, ViaRewind, Geyser, Floodgate, Bukkit,
+Paper, NMS or packet implementation import. An operator runtime supplies the
+nonblocking `ClientTranslationGateway` against independently installed plugins.
+The gateway returns only an opaque session key, protocol number, client edition,
+input family and a complete provider inventory; no player name, address, device
+identifier or vendor object crosses the boundary.
 
-Each compatibility boundary depends only on `zbw-compat-api`. Each new Paper
-assembly boundary depends only on `zbw-application` and its matching
-compatibility boundary. The legacy assemblies cannot link the Java 21 command,
-GUI or modern Paper artifacts. Domain, API and application modules have no
-reverse dependency on a compatibility or Paper adapter.
+Provider paths require these exact chains:
 
-The broad `1.12-1.16.4` and `1.17-1.19` build boundaries are allocation units,
-not proof that one server API binary safely serves every included minor. Phase
-2 must prove public-API linkage per exact fixture or split a boundary before
-introducing platform source. Grouping convenience cannot override the exact
-fixture matrix.
+| Client path | Exact prerequisites | Behavior when absent, incompatible or duplicate |
+|---|---|---|
+| Native Java | none | remains available when optional providers are absent |
+| ViaVersion | ViaVersion 5.4.2 | translated path blocked; native path unaffected |
+| ViaBackwards | ViaVersion 5.4.2 + ViaBackwards 5.4.2 | translated path blocked |
+| ViaRewind | ViaVersion 5.4.2 + ViaBackwards 5.4.2 + ViaRewind 4.0.6 | legacy translated path blocked |
+| Bedrock | Geyser 2.7.0 + Floodgate 2.2.4 | Bedrock path blocked |
 
-## Provider acquisition gate
+Discovery, inspection and cleanup are asynchronous. Sessions are bounded to
+4,096, duplicate opens are idempotent, every close releases its gateway state
+and shutdown drains all tracked sessions. A discovery or inspection failure
+fails closed without blocking an owner/tick thread.
 
-`build/m22-provider-lock-requirements.json` records the exact selected versions,
-provided-only scope, SPDX licence and upstream provenance for ProtocolLib,
-ViaVersion, ViaBackwards, ViaRewind, Geyser and Floodgate. Artifact and exact
-licence-text SHA-256 values are deliberately unset and marked
-`REQUIRED_BEFORE_RESOLUTION`; Maven declarations and downloads remain forbidden
-until those values, exact coordinates/sources and the complete transitive graph
-are captured through the existing immutable lock/SBOM process.
+## Feature parity policy
 
-This is not a dependency waiver. A null digest blocks resolution and Phase 2;
-it cannot be interpreted as approval, substituted with another version or
-converted into a floating dependency.
+Every report contains exactly one outcome for GUI, shop, spectator, replay
+access, hotbar, text, sound, particles, entity display and input. Each outcome
+is native, translated, equivalent fallback, explicitly degraded decoration or
+blocked. Activation is permitted only when every gameplay-information surface
+is preserved. A decorative reduction is legal only with an equivalent visible
+or textual cue and an explicit diagnostic reason.
 
-## Validation contract
+The evaluator first proves that the already-selected server adapter exposes the
+required semantic kinds. A missing server capability blocks the affected client
+feature; a client translator can never manufacture or conceal an unsupported
+server semantic. `docs/COMPATIBILITY_FALLBACKS.md` owns the complete Phase 3
+fallback rows.
 
-`tools/validation/m22_foundation.py` rejects module/POM drift, Java sources in
-the Phase 1 modules, core-to-adapter dependencies, fixture or JDK drift,
-non-deterministic matrix dimensions, changed provider versions/licences and any
-attempt to enable provider resolution before the exact lock is complete.
+## Dependency acquisition gate
 
-Subsequent phases must add adapter behavior and certification without changing
-M08-M21 ownership. M22 translates existing neutral semantics only.
+`build/m22-provider-lock-requirements.json` still blocks Maven declarations and
+artifact downloads for ProtocolLib, ViaVersion, ViaBackwards, ViaRewind, Geyser
+and Floodgate. Exact upstream coordinates, artifact and licence-text SHA-256,
+provenance and complete transitive graphs remain prerequisites. Phase 3 therefore
+uses vendor-neutral gateways and introduces no unlocked dependency, repository,
+binary, lock row or SBOM component. This is an enforced acquisition gate, not a
+waiver or support claim.
 
-## Phase 2 server adapter evidence
+## Phase 3 evidence
 
-The compatibility API now provides an exact-runtime selector, a lifecycle implementation, a complete ten-category mapping builder and a presentation bootstrap. Version modules expose only safe symbolic platform values; they import no Bukkit, Paper or NMS class. Every fallback returns an explicit stable reason. Decorative particle degradation is the only suppressed outcome.
+`ClientModelTest`, `ClientAdapterMatrixTest` and
+`ClientCompatibilityLayerTest` cover immutable/privacy-safe models, exact
+provider chains, absence, incompatibility, duplicates, all five client paths,
+all ten feature surfaces, packet/input semantic requirements, decorative
+fallbacks, missing server capability, classloading isolation, bounded sessions,
+idempotent open, failed discovery/inspection and cleanup.
 
-The Java 8 legacy bootstrap requires operator-generated SHA-256 values for the private BuildTools 1.8.8, 1.9.4, 1.10.2 and 1.11.2 fixtures. Public Paper fixtures use the exact build and digest rows from `build/private-runtime-fixtures.json`. A platform/version/build/digest mismatch, duplicate adapter or missing adapter fails before command/UI presentation activation. Shutdown deactivates presentation before stopping and releasing the selected adapter.
-
-This checkpoint implements `ZBW-ARC-002`, `ZBW-INT-004`, `ZBW-INT-010` and the adapter/fallback portions of `ZBW-COMPAT-001..009`, `ZBW-READY-001`, `ZBW-READY-002` and `ZBW-READY-006`. It does not certify server startup/gameplay, client translation, Via/Geyser providers or full matrix support; those gates remain pending M22 work.
+This checkpoint implements the client-adapter and deterministic parity portions
+of `ZBW-INT-010` and `ZBW-COMPAT-004..008`. Exact provider binary linkage,
+server startup/gameplay execution and the full 45-cell certification remain M22
+closure gates. No release support claim is made.
