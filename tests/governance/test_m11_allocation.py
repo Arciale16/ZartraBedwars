@@ -33,17 +33,17 @@ class M11AllocationTest(unittest.TestCase):
         completed_m12 = [f"M{value:02d}" for value in range(13)]
         self.assertTrue(validator.is_active_or_closed_m11_state({
             "active_milestone": "M11",
-            "next_milestone": "M11",
+            "next_milestone": "M12",
             "completed_milestones": active_m11,
         }))
         self.assertTrue(validator.is_active_or_closed_m11_state({
             "active_milestone": "M13",
-            "next_milestone": "M13",
+            "next_milestone": "M14",
             "completed_milestones": completed_m12,
         }))
         self.assertFalse(validator.is_active_or_closed_m11_state({
             "active_milestone": "M13",
-            "next_milestone": "M13",
+            "next_milestone": "M14",
             "completed_milestones": completed_m12[:11] + completed_m12[12:],
         }))
 

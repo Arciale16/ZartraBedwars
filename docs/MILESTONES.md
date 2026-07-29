@@ -231,6 +231,7 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 ### M22 â€” Full 1.8â€“1.21.x and Bedrock compatibility matrix
 
+- **Implementation status:** IN PROGRESS. Phase 1 materializes only deterministic governance, POM-only artifact boundaries and pre-resolution provider lock requirements. No compatibility adapter, NMS/version implementation, legacy Paper bootstrap or new support claim exists yet.
 - **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance, including every legacy/fallback cell retained from M11 shop, item, generator and named-mode mappings. M06 foundations remain explicit and are not reclassified as full completion.
 - **Entry:** M06 compatibility/world-provider contracts and primary 1.21.1 foundation certification pass; all feature semantics and their required fallback rows/fixtures are stable; exact legacy/private and maintained runtime fixtures are lawfully acquired and hash-locked.
 - **Deliver:** `zbw-compat-v1_8`, all other legacy/intermediate compatibility modules, matching Java 8/11/16/17 Paper bootstraps, complete legacy mappings/fallbacks, extensions to the modern adapter for every declared modern row, ViaVersion/ViaBackwards/ViaRewind integration and Geyser/Floodgate alternatives.

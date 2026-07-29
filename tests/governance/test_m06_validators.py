@@ -27,8 +27,11 @@ class M06GovernanceTest(unittest.TestCase):
     def test_architecture_validator_passes(self) -> None:
         self.assertEqual([], load_validator().validate())
 
-    def test_legacy_adapter_remains_absent(self) -> None:
-        self.assertFalse((ROOT / "compatibility/zbw-compat-v1_8").exists())
+    def test_m22_legacy_boundaries_are_pom_only(self) -> None:
+        for relative in load_validator().LEGACY_PATHS:
+            module = ROOT / relative
+            self.assertTrue((module / "pom.xml").is_file())
+            self.assertEqual([], list(module.rglob("*.java")))
 
     def test_primary_runtime_lock_is_exact(self) -> None:
         content = (ROOT / "build/m06-paper-runtime-lock.json").read_text(encoding="utf-8")

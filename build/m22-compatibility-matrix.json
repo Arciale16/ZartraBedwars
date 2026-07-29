@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    "ZBW-ARC-002",
+    "ZBW-INT-004",
+    "ZBW-INT-010",
+    "ZBW-COMPAT-001",
+    "ZBW-COMPAT-002",
+    "ZBW-COMPAT-003",
+    "ZBW-COMPAT-004",
+    "ZBW-COMPAT-005",
+    "ZBW-COMPAT-006",
+    "ZBW-COMPAT-007",
+    "ZBW-COMPAT-008",
+    "ZBW-COMPAT-009",
+    "ZBW-READY-001",
+    "ZBW-READY-002",
+    "ZBW-READY-006"
+  ],
+  "phase": "M22_PHASE_1_FOUNDATION",
+  "policy": {
+    "adapter_implementation_started": false,
+    "support_claim_allowed": false,
+    "server_runtime_and_client_translation_are_independent": true,
+    "unknown_runtime_fails_closed": true,
+    "expected_server_family_count": 9,
+    "expected_client_path_count": 5,
+    "expected_matrix_cell_count": 45
+  },
+  "jdks": [
+    {"id": "8", "release": "8u442-b06", "class_major": 52},
+    {"id": "11", "release": "11.0.26+4", "class_major": 55},
+    {"id": "16", "release": "16.0.2+7", "class_major": 60},
+    {"id": "17", "release": "17.0.14+7", "class_major": 61},
+    {"id": "21", "release": "21.0.6+7", "class_major": 65}
+  ],
+  "server_families": [
+    {
+      "id": "MC_1_8_8",
+      "fixtures": ["1.8.8"],
+      "jdk": "8",
+      "compatibility_module": "zbw-compat-v1_8",
+      "paper_module": "zbw-paper-legacy",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_9",
+      "fixtures": ["1.9.4"],
+      "jdk": "8",
+      "compatibility_module": "zbw-compat-v1_9",
+      "paper_module": "zbw-paper-legacy",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_10",
+      "fixtures": ["1.10.2"],
+      "jdk": "8",
+      "compatibility_module": "zbw-compat-v1_10",
+      "paper_module": "zbw-paper-legacy",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_11",
+      "fixtures": ["1.11.2"],
+      "jdk": "8",
+      "compatibility_module": "zbw-compat-v1_11",
+      "paper_module": "zbw-paper-legacy",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_12_TO_1_16_4",
+      "fixtures": ["1.12.2", "1.13.2", "1.14.4", "1.15.2"],
+      "jdk": "11",
+      "compatibility_module": "zbw-compat-v1_12-v1_16_4",
+      "paper_module": "zbw-paper-j11",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_16_5",
+      "fixtures": ["1.16.5"],
+      "jdk": "16",
+      "compatibility_module": "zbw-compat-v1_16_5",
+      "paper_module": "zbw-paper-j16",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_17_TO_1_19",
+      "fixtures": ["1.17.1", "1.18.2", "1.19.4"],
+      "jdk": "17",
+      "compatibility_module": "zbw-compat-v1_17-v1_19",
+      "paper_module": "zbw-paper-j17",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_20_X",
+      "fixtures": ["1.20.1", "1.20.2", "1.20.4", "1.20.6"],
+      "jdk": "21",
+      "compatibility_module": "zbw-compat-v1_20-v1_21",
+      "paper_module": "zbw-paper-modern",
+      "status": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "MC_1_21_X",
+      "fixtures": ["1.21.1", "1.21.3", "1.21.4", "1.21.8", "1.21.10", "1.21.11"],
+      "jdk": "21",
+      "compatibility_module": "zbw-compat-v1_20-v1_21",
+      "paper_module": "zbw-paper-modern",
+      "status": "M06_PRIMARY_FOUNDATION_ONLY"
+    }
+  ],
+  "client_paths": [
+    {"id": "NATIVE", "provider": null, "version": null, "status": "CERTIFICATION_PENDING"},
+    {"id": "VIAVERSION", "provider": "ViaVersion", "version": "5.4.2", "status": "LOCK_REQUIRED"},
+    {"id": "VIABACKWARDS", "provider": "ViaBackwards", "version": "5.4.2", "status": "LOCK_REQUIRED"},
+    {"id": "VIAREWIND", "provider": "ViaRewind", "version": "4.0.6", "status": "LOCK_REQUIRED"},
+    {"id": "GEYSER_FLOODGATE", "provider": "Geyser/Floodgate", "version": "2.7.0/2.2.4", "status": "LOCK_REQUIRED"}
+  ]
+}

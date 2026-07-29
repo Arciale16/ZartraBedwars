@@ -30,9 +30,10 @@ class M10GovernanceTest(unittest.TestCase):
 
     def test_historical_state_requires_ordered_completion(self) -> None:
         completed = self._ordered_completed()
-        next_milestone = f"M{len(completed):02d}"
+        active_milestone = f"M{len(completed):02d}"
+        next_milestone = f"M{len(completed) + 1:02d}"
         expected = {
-            "active_milestone": next_milestone,
+            "active_milestone": active_milestone,
             "next_milestone": next_milestone,
             "completed_milestones": completed,
         }

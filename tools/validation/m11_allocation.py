@@ -84,13 +84,14 @@ def is_active_or_closed_m11_state(state: dict[str, object]) -> bool:
     active = state.get("active_milestone")
     next_milestone = state.get("next_milestone")
     if len(completed) == 11:
-        return active == "M11" and next_milestone == "M11"
+        return active == "M11" and next_milestone == "M12"
     if len(completed) < 12:
         return False
     if active is None:
         return next_milestone == f"M{len(completed):02d}"
     expected_active = f"M{len(completed):02d}"
-    return active == expected_active and next_milestone == expected_active
+    expected_next = f"M{len(completed) + 1:02d}"
+    return active == expected_active and next_milestone == expected_next
 
 
 def validate() -> list[str]:

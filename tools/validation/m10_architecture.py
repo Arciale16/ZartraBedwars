@@ -18,9 +18,11 @@ def is_closed_m10_state(state: dict[str, object]) -> bool:
         return False
     active = state.get("active_milestone")
     if active is None:
-        return True
+        return state.get("next_milestone") == f"M{len(completed):02d}"
     expected_active = f"M{len(completed):02d}"
-    return active == expected_active and state.get("next_milestone") == expected_active
+    expected_next = f"M{len(completed) + 1:02d}"
+    return active == expected_active and state.get("next_milestone") == expected_next
+
 
 def validate() -> list[str]:
     errors: list[str] = []

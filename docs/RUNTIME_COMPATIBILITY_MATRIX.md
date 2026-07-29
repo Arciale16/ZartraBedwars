@@ -6,6 +6,8 @@
 
 The distribution spans **Java 8**, Java 11, Java 16, Java 17 and **Java 21** toolchains; no Java 21-only bytecode may enter a Java 8 artifact.
 
+M22 Phase 1 is active. `build/m22-compatibility-matrix.json` is the deterministic machine model for the 22 locked fixtures, nine server families, five JDKs and five independent client paths (45 family/path cells). All M22 cells remain uncertified; the new modules are POM-only boundaries and do not create a support claim.
+
 ## Artifact and toolchain contract
 
 | Artifact | Bytecode | Compile JDK | Runtime JDK | Platform boundary |

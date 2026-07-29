@@ -302,6 +302,72 @@
             "responsibility": "Java 8 optional CloudNet discovery, lifecycle, fenced scaling and proxy registry projection adapter"
         },
         {
+            "id": "zbw-compat-v1_8",
+            "path": "compatibility/zbw-compat-v1_8/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.8 adapter"
+        },
+        {
+            "id": "zbw-compat-v1_9",
+            "path": "compatibility/zbw-compat-v1_9/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.9 adapter"
+        },
+        {
+            "id": "zbw-compat-v1_10",
+            "path": "compatibility/zbw-compat-v1_10/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.10 adapter"
+        },
+        {
+            "id": "zbw-compat-v1_11",
+            "path": "compatibility/zbw-compat-v1_11/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.11 adapter"
+        },
+        {
+            "id": "zbw-paper-legacy",
+            "path": "platform/paper/zbw-paper-legacy/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 8 assembly boundary for future 1.8 through 1.11 Paper bootstraps"
+        },
+        {
+            "id": "zbw-compat-v1_12-v1_16_4",
+            "path": "compatibility/zbw-compat-v1_12-v1_16_4/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 11 build boundary for future Minecraft 1.12 through 1.16.4 adapters"
+        },
+        {
+            "id": "zbw-paper-j11",
+            "path": "platform/paper/zbw-paper-j11/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 11 assembly boundary for future 1.12 through 1.16.4 Paper bootstraps"
+        },
+        {
+            "id": "zbw-compat-v1_16_5",
+            "path": "compatibility/zbw-compat-v1_16_5/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 16 build boundary for the future Minecraft 1.16.5 adapter"
+        },
+        {
+            "id": "zbw-paper-j16",
+            "path": "platform/paper/zbw-paper-j16/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 16 assembly boundary for the future 1.16.5 Paper bootstrap"
+        },
+        {
+            "id": "zbw-compat-v1_17-v1_19",
+            "path": "compatibility/zbw-compat-v1_17-v1_19/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 17 build boundary for future Minecraft 1.17 through 1.19 adapters"
+        },
+        {
+            "id": "zbw-paper-j17",
+            "path": "platform/paper/zbw-paper-j17/pom.xml",
+            "packaging": "jar",
+            "responsibility": "M22 Java 17 assembly boundary for future 1.17 through 1.19 Paper bootstraps"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",

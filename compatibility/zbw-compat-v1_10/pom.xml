@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.zartra.bedwars</groupId>
+    <artifactId>zartrabedwars-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  <artifactId>zbw-compat-v1_10</artifactId>
+  <name>ZartraBedWars Minecraft 1.10 Compatibility Boundary</name>
+  <description>M22 Java 8 build boundary for the future Minecraft 1.10 adapter.</description>
+  <dependencies>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-compat-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+</project>

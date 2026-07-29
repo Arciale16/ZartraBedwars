@@ -224,6 +224,41 @@
 
   <profiles>
     <profile>
+      <id>legacy-paper-platform</id>
+      <activation><jdk>[1.8,9)</jdk></activation>
+      <modules>
+        <module>compatibility/zbw-compat-v1_8</module>
+        <module>compatibility/zbw-compat-v1_9</module>
+        <module>compatibility/zbw-compat-v1_10</module>
+        <module>compatibility/zbw-compat-v1_11</module>
+        <module>platform/paper/zbw-paper-legacy</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>j11-paper-platform</id>
+      <activation><jdk>[11,12)</jdk></activation>
+      <modules>
+        <module>compatibility/zbw-compat-v1_12-v1_16_4</module>
+        <module>platform/paper/zbw-paper-j11</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>j16-paper-platform</id>
+      <activation><jdk>[16,17)</jdk></activation>
+      <modules>
+        <module>compatibility/zbw-compat-v1_16_5</module>
+        <module>platform/paper/zbw-paper-j16</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>j17-paper-platform</id>
+      <activation><jdk>[17,18)</jdk></activation>
+      <modules>
+        <module>compatibility/zbw-compat-v1_17-v1_19</module>
+        <module>platform/paper/zbw-paper-j17</module>
+      </modules>
+    </profile>
+    <profile>
       <id>modern-paper-platform</id>
       <activation><jdk>[21,22)</jdk></activation>
       <modules>

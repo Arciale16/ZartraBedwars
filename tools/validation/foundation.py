@@ -15,6 +15,13 @@ ROOT = Path(__file__).resolve().parents[2]
 EXCLUDED_PARTS = {".git", ".tools", ".m2", "target"}
 MAVEN_NAMESPACE = {"m": "http://maven.apache.org/POM/4.0.0"}
 MASTER_PROMPT_SHA256 = "afce1250079945a7543f027bb23df14cedee7913ac52f8cb0775da784b280afa"
+PLATFORM_PROFILE_ORDER = (
+    "legacy-paper-platform",
+    "j11-paper-platform",
+    "j16-paper-platform",
+    "j17-paper-platform",
+    "modern-paper-platform",
+)
 
 
 def read_json(relative: str) -> dict[str, object]:
@@ -82,10 +89,17 @@ def validate_module_graph() -> list[str]:
                 errors.append(f"{row['id']}: packaging differs from module graph")
     root_pom = ET.parse(ROOT / "pom.xml").getroot()
     reactor_modules = [value.text for value in root_pom.findall("m:modules/m:module", MAVEN_NAMESPACE)]
-    for profile in root_pom.findall("m:profiles/m:profile", MAVEN_NAMESPACE):
-        if profile.findtext("m:id", default="", namespaces=MAVEN_NAMESPACE) == "modern-paper-platform":
-            reactor_modules.extend(
-                value.text for value in profile.findall("m:modules/m:module", MAVEN_NAMESPACE))
+    profiles = {
+        profile.findtext("m:id", default="", namespaces=MAVEN_NAMESPACE): profile
+        for profile in root_pom.findall("m:profiles/m:profile", MAVEN_NAMESPACE)
+    }
+    for profile_id in PLATFORM_PROFILE_ORDER:
+        profile = profiles.get(profile_id)
+        if profile is None:
+            errors.append(f"missing platform reactor profile: {profile_id}")
+            continue
+        reactor_modules.extend(
+            value.text for value in profile.findall("m:modules/m:module", MAVEN_NAMESPACE))
     expected_reactor = [
         str(row["path"]).removesuffix("/pom.xml")
         for row in materialized
