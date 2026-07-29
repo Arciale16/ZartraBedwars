@@ -1,7 +1,7 @@
 {
     "schema_version":  1,
     "active_milestone":  null,
-    "next_milestone":  "M20",
+    "next_milestone":  "M21",
     "completed_milestones":  [
                                  "M00",
                                  "M01",
@@ -22,7 +22,8 @@
                                  "M16",
                                  "M17",
                                  "M18",
-                                 "M19"
+                                 "M19",
+                                 "M20"
                              ],
     "completed_hardening_milestones":  [
                                            "M08.1"

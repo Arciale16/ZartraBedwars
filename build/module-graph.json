@@ -218,6 +218,18 @@
             "responsibility": "Java 8 bounded authenticated Lettuce coordination, recovery and domain-neutral bridge adapter"
         },
         {
+            "id": "zbw-proxy-api",
+            "path": "proxy/zbw-proxy-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable registry, routing, bounded admission, secure transfer, failure recovery and proxy diagnostics runtime"
+        },
+        {
+            "id": "zbw-bungeecord",
+            "path": "proxy/zbw-bungeecord/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 BungeeCord lifecycle, authenticated nonblocking messaging and cross-server transfer adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -240,6 +252,12 @@
             "path": "platform/paper/zbw-paper-modern/pom.xml",
             "packaging": "jar",
             "responsibility": "Java 21 primary Paper bootstrap, native world provider, bounded replay viewer/visual/staff runtime, closed game projections and presentation adapters"
+        },
+        {
+            "id": "zbw-velocity",
+            "path": "proxy/zbw-velocity/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 Velocity lifecycle, authenticated nonblocking messaging and cross-server transfer adapter"
         }
     ],
     "planned_production_modules": [

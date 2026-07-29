@@ -46,6 +46,8 @@
     <module>atlas/zbw-atlas-sql</module>
     <module>redis/zbw-redis-api</module>
     <module>redis/zbw-redis</module>
+    <module>proxy/zbw-proxy-api</module>
+    <module>proxy/zbw-bungeecord</module>
   </modules>
 
   <properties>
@@ -217,6 +219,7 @@
         <module>command/zbw-command-paper</module>
         <module>ui/zbw-ui-paper</module>
         <module>platform/paper/zbw-paper-modern</module>
+        <module>proxy/zbw-velocity</module>
       </modules>
     </profile>
     <profile>
