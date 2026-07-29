@@ -50,9 +50,9 @@ M20_REQUIREMENTS = {
     "ZBW-DEPLOY-002", "ZBW-DEPLOY-003", "ZBW-DEPLOY-004",
 }
 
-M21_PHASE1_REQUIREMENTS = {
+M21_REQUIREMENTS = {
     "ZBW-DEPLOY-005", "ZBW-INT-002", "ZBW-INT-003", "ZBW-INT-005",
-    "ZBW-INT-006", "ZBW-INT-007", "ZBW-INT-009",
+    "ZBW-INT-006", "ZBW-INT-007", "ZBW-INT-008", "ZBW-INT-009",
 }
 
 M18_REQUIREMENTS = {
@@ -174,8 +174,8 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M19 Redis allocation complete; M20 proxy topology and delivery allocation remains"
     if identifier in M20_REQUIREMENTS:
         return "PARTIAL", "M20 proxy networking allocation complete; provider, compatibility and release qualification remain"
-    if identifier in M21_PHASE1_REQUIREMENTS:
-        return "PARTIAL", "M21 Phase 1 neutral provider SPI or native party foundation is complete; every vendor adapter and CloudNet remain"
+    if identifier in M21_REQUIREMENTS:
+        return "PARTIAL", "M21 Phase 2 isolated provider adapter boundary is complete; CloudNet, world providers, dashboards and release qualification remain"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
@@ -293,7 +293,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M20 and hardening M08.1 are complete; M21 Phase 1 provider SPI/native party foundation is active.",
+        "M00-M20 and hardening M08.1 are complete; M21 Phase 2 provider adapters are active.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

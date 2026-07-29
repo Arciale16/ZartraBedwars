@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate or verify the exact M21 provider SPI and native party checkpoint."""
+"""Generate or verify the exact M21 provider and party checkpoint."""
 
 from pathlib import Path
 import argparse
@@ -14,6 +14,14 @@ ROOTS = (
     "api/zbw-api/target/classes",
     "party/zbw-party/target/classes",
     "party/zbw-party-sql/target/classes",
+    "integrations/vault/zbw-integration-vault/target/classes",
+    "integrations/luckperms/zbw-integration-luckperms/target/classes",
+    "integrations/citizens/zbw-integration-citizens/target/classes",
+    "integrations/znpcs/zbw-integration-znpcsplus/target/classes",
+    "integrations/hologram/zbw-integration-decentholograms/target/classes",
+    "integrations/party/zbw-integration-alessiopdp/target/classes",
+    "integrations/anticheat/zbw-integration-grim/target/classes",
+    "integrations/anticheat/zbw-integration-vulcan/target/classes",
 )
 
 
@@ -31,9 +39,9 @@ def observed() -> str:
                 count += 1
                 signatures.extend(lines)
     if not count:
-        raise ValueError("No M21 provider/party public classes found")
+        raise ValueError("No M21 provider/party/adapter public classes found")
     return "\n".join((
-        "# ZartraBedWars M21 provider SPI/native party baseline",
+        "# ZartraBedWars M21 provider SPI/native party/adapter baseline",
         "# class-major=52",
         *sorted(signatures),
         "",
@@ -48,13 +56,13 @@ def main() -> int:
     current = observed()
     if command == "generate":
         BASELINE.write_text(current, encoding="utf-8", newline="\n")
-        print("Generated M21 provider SPI/native party API baseline")
+        print("Generated M21 provider SPI/native party/adapter API baseline")
         return 0
     if not BASELINE.is_file() or BASELINE.read_text(encoding="utf-8") != current:
         print("ERROR: M21 provider SPI/native party API differs from checkpoint",
               file=sys.stderr)
         return 1
-    print("M21 provider SPI/native party API compatibility PASS")
+    print("M21 provider SPI/native party/adapter API compatibility PASS")
     return 0
 
 

@@ -136,3 +136,12 @@ One legacy SpotBugs-reporting transitive, `org.codehaus.plexus:plexus-i18n:1.0-b
 The architecture/library/version choices for RC-021/024/027 are resolved. Artifact checksum and exact licence-text acquisition is an automated pre-resolution fact check; until it passes, that artifact cannot be downloaded by the build. It is not an open design decision and never permits a floating replacement.
 
 M03 adds no external production, test or build dependency. `zbw-config` compiles only against the internal `zbw-api` and `zbw-application` artifacts and reuses the exact M02 Maven lock, SBOM and notices. The M03 dependency gate rejects graph drift before any online resolution; no dependency is shaded, bundled, modified or redistributed by an M03 artifact.
+
+## M21 Phase 2 adapter dependency result
+
+The eight isolated provider adapter modules add no Maven component. They compile against internal
+neutral SPIs and accept operator-supplied gateways, so the exact M02 Maven lock, build SBOM and
+notices remain unchanged. Vault, LuckPerms, Citizens, ZNPCsPlus, DecentHolograms, AlessioDP
+Parties, Grim and Vulcan runtime artifacts remain operator-side acquisition gates under the exact
+selection rows above; no proprietary, snapshot or server binary is stored, resolved, shaded or
+redistributed by this reactor. (ZBW-INT-002/003/006/007/008/009; ZBW-LICENSE-005)

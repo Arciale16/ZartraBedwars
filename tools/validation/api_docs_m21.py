@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate strict deterministic Java 8 documentation for M21 Phase 1."""
+"""Generate strict deterministic Java 8 documentation for M21 provider boundaries."""
 
 from pathlib import Path
 
@@ -7,11 +7,21 @@ import api_docs
 
 
 ROOT = Path(__file__).resolve().parents[2]
+ADAPTER_MODULES = (
+    "integrations/vault/zbw-integration-vault",
+    "integrations/luckperms/zbw-integration-luckperms",
+    "integrations/citizens/zbw-integration-citizens",
+    "integrations/znpcs/zbw-integration-znpcsplus",
+    "integrations/hologram/zbw-integration-decentholograms",
+    "integrations/party/zbw-integration-alessiopdp",
+    "integrations/anticheat/zbw-integration-grim",
+    "integrations/anticheat/zbw-integration-vulcan",
+)
 
 
 def main() -> int:
-    """Document the provider SPI and native party core/SQL boundary."""
-    modules = ("api/zbw-api", "party/zbw-party", "party/zbw-party-sql")
+    """Document provider SPI, native party, and isolated adapter boundaries."""
+    modules = ("api/zbw-api", "party/zbw-party", "party/zbw-party-sql", *ADAPTER_MODULES)
     sources = api_docs.sources(modules)
     output = ROOT / "target/apidocs-m21-party-provider-java8"
     classpath = api_docs.artifacts((
@@ -19,6 +29,7 @@ def main() -> int:
         "storage/zbw-storage-api",
         "party/zbw-party",
         "party/zbw-party-sql",
+        *ADAPTER_MODULES,
     ))
     result = api_docs.generate(
         api_docs.executable("8", "1.8.0_442"), "8", sources, output, classpath)

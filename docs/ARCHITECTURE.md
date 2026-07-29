@@ -543,3 +543,14 @@ Phase 9 remains inside `zbw-paper-modern`. `ReplayStaffService` accepts only asy
 ### M17 Phase 10 replay closure boundary
 
 The closed M17 runtime keeps replay ownership split across Java 8 API/engine/SQL modules and the Java 21 Paper adapter. Paper viewer admission is atomic and capped at 256; visual projections retain at most 128 entities and 256 important events, menu projections retain at most 128 participants and 64 events, and staff normalization rejects provider responses above 100 rows. Repository completion crosses the explicit owner-thread boundary once, while rendering consumes immutable playback projections only. Stop, disconnect, shutdown, failed presentation and corrupt rendering all detach menus/entities and restore captured spectator state. Archived sessions remain immutable and playable; failed sessions are rejected and can be removed only through audited administration. See `REPLAY_M17.md`. (ZBW-REPLAY-001..010; ZBW-READY-009/010/011/016/017/018)
+
+### M21 Phase 2 provider adapter boundary
+
+Eight Java 8 adapter modules implement the vendor-neutral `zbw-api` SPIs through
+operator-supplied gateway interfaces. Vendor APIs never cross module signatures and Paper
+only composes asynchronous optional lifecycles. Missing, incompatible and duplicate providers
+fail closed without preventing server startup. Vault delegates without ledger ownership; LuckPerms
+projects permission/meta without profile ownership; NPC and hologram adapters are presentation-only;
+AlessioDP is migration-only with native SQL authority; Grim and Vulcan normalize signals while
+Atlas alone owns cases and verdicts. No vendor artifact is resolved or packaged by this phase.
+(ZBW-INT-002/003/006/007/008/009; ZBW-READY-007; ZBW-ARC-007)

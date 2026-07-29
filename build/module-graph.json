@@ -242,6 +242,54 @@
             "responsibility": "Java 8 transactional native party persistence, migration and restart recovery"
         },
         {
+            "id": "zbw-integration-vault",
+            "path": "integrations/vault/zbw-integration-vault/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional Vault economy adapter without ledger ownership"
+        },
+        {
+            "id": "zbw-integration-luckperms",
+            "path": "integrations/luckperms/zbw-integration-luckperms/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional LuckPerms permission and metadata adapter"
+        },
+        {
+            "id": "zbw-integration-citizens",
+            "path": "integrations/citizens/zbw-integration-citizens/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional Citizens NPC presentation adapter"
+        },
+        {
+            "id": "zbw-integration-znpcsplus",
+            "path": "integrations/znpcs/zbw-integration-znpcsplus/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional ZNPCsPlus NPC presentation adapter"
+        },
+        {
+            "id": "zbw-integration-decentholograms",
+            "path": "integrations/hologram/zbw-integration-decentholograms/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional DecentHolograms presentation adapter"
+        },
+        {
+            "id": "zbw-integration-alessiopdp",
+            "path": "integrations/party/zbw-integration-alessiopdp/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 migration-only AlessioDP Parties adapter"
+        },
+        {
+            "id": "zbw-integration-grim",
+            "path": "integrations/anticheat/zbw-integration-grim/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 event-driven Grim alert normalization adapter"
+        },
+        {
+            "id": "zbw-integration-vulcan",
+            "path": "integrations/anticheat/zbw-integration-vulcan/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 operator-licensed Vulcan alert normalization adapter without vendor binary"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -750,7 +798,15 @@
                 "zbw-replay-api",
                 "zbw-replay",
                 "zbw-atlas-api",
-                "zbw-atlas"
+                "zbw-atlas",
+                "zbw-integration-vault",
+                "zbw-integration-luckperms",
+                "zbw-integration-citizens",
+                "zbw-integration-znpcsplus",
+                "zbw-integration-decentholograms",
+                "zbw-integration-alessiopdp",
+                "zbw-integration-grim",
+                "zbw-integration-vulcan"
             ],
             "dependency_since": {
                 "zbw-game": "M08",
@@ -765,7 +821,15 @@
                 "zbw-replay-api": "M17",
                 "zbw-replay": "M17",
                 "zbw-atlas-api": "M18",
-                "zbw-atlas": "M18"
+                "zbw-atlas": "M18",
+                "zbw-integration-vault": "M21",
+                "zbw-integration-luckperms": "M21",
+                "zbw-integration-citizens": "M21",
+                "zbw-integration-znpcsplus": "M21",
+                "zbw-integration-decentholograms": "M21",
+                "zbw-integration-alessiopdp": "M21",
+                "zbw-integration-grim": "M21",
+                "zbw-integration-vulcan": "M21"
             }
         },
         {
@@ -809,6 +873,104 @@
                 "zbw-api": "M21",
                 "zbw-storage-api": "M21",
                 "zbw-party": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-vault",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-luckperms",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-citizens",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-znpcsplus",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-decentholograms",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-alessiopdp",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api",
+                "zbw-party"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21",
+                "zbw-party": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-grim",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-integration-vulcan",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21"
             }
         },
         {

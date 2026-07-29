@@ -50,6 +50,14 @@
     <module>proxy/zbw-bungeecord</module>
     <module>party/zbw-party</module>
     <module>party/zbw-party-sql</module>
+    <module>integrations/vault/zbw-integration-vault</module>
+    <module>integrations/luckperms/zbw-integration-luckperms</module>
+    <module>integrations/citizens/zbw-integration-citizens</module>
+    <module>integrations/znpcs/zbw-integration-znpcsplus</module>
+    <module>integrations/hologram/zbw-integration-decentholograms</module>
+    <module>integrations/party/zbw-integration-alessiopdp</module>
+    <module>integrations/anticheat/zbw-integration-grim</module>
+    <module>integrations/anticheat/zbw-integration-vulcan</module>
   </modules>
 
   <properties>

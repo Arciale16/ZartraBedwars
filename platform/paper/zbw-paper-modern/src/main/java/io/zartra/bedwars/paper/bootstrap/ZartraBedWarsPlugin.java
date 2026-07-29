@@ -1,5 +1,7 @@
 package io.zartra.bedwars.paper.bootstrap;
 
+import io.zartra.bedwars.api.provider.Provider;
+import io.zartra.bedwars.api.result.Result;
 import io.zartra.bedwars.api.time.TimeSource;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiIntegration;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiLifecycle;
@@ -32,6 +34,7 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletionStage;
 import java.util.function.Supplier;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +51,7 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     private ReplaySessionRepository replayRepository;
     private AtlasRuntimeBootstrap atlasRuntime;
     private AtlasCommandRouter atlasCommands;
+    private PaperProviderIntegrationRuntime providerIntegrations;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -56,6 +60,8 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
             runtime = new PaperFoundationRuntime(this, Bukkit.getWorldContainer().toPath(),
                     settings, TimeSource.SystemTimeSource.INSTANCE);
             runtime.start();
+            providerIntegrations = new PaperProviderIntegrationRuntime();
+            providerIntegrations.start();
             initializePlaceholderApi();
             getLogger().info("M06 compatibility and world-provider foundation enabled");
             if ("true".equalsIgnoreCase(System.getenv("ZBW_M06_CERTIFY"))) {
@@ -68,6 +74,11 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        if (providerIntegrations != null) {
+            providerIntegrations.close();
+            providerIntegrations = null;
+            getLogger().info("M21 optional provider integrations cleanup scheduled");
+        }
         if (atlasRuntime != null) {
             atlasRuntime.stop();
             atlasRuntime = null;
@@ -202,6 +213,20 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
                 });
         getLogger().info("M18 Atlas Paper adapter installed");
         return atlasCommands;
+    }
+
+    /**
+     * Installs one optional M21 provider through manual constructor composition.
+     *
+     * @param provider isolated adapter backed by an operator-installed plugin
+     * @return asynchronous adapter lifecycle result
+     */
+    public synchronized CompletionStage<Result<Provider.LifecycleState>>
+            installProviderIntegration(final Provider provider) {
+        if (providerIntegrations == null) {
+            throw new IllegalStateException("M21 provider runtime is not active");
+        }
+        return providerIntegrations.install(provider);
     }
 
     /** @return installed `/atlas` router when Atlas ports are composed */
