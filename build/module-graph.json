@@ -224,6 +224,12 @@
             "responsibility": "Java 8 immutable backend registry, routing, reservation, transfer and proxy diagnostics contracts"
         },
         {
+            "id": "zbw-bungeecord",
+            "path": "proxy/zbw-bungeecord/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 BungeeCord lifecycle and authenticated plugin-message adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -246,6 +252,12 @@
             "path": "platform/paper/zbw-paper-modern/pom.xml",
             "packaging": "jar",
             "responsibility": "Java 21 primary Paper bootstrap, native world provider, bounded replay viewer/visual/staff runtime, closed game projections and presentation adapters"
+        },
+        {
+            "id": "zbw-velocity",
+            "path": "proxy/zbw-velocity/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 21 Velocity lifecycle and authenticated plugin-message adapter"
         }
     ],
     "planned_production_modules": [

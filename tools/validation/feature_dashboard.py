@@ -168,7 +168,7 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in M19_REQUIREMENTS:
         return "PARTIAL", "M19 Redis allocation complete; M20 proxy topology and delivery allocation remains"
     if identifier in M20_REQUIREMENTS:
-        return "PARTIAL", "M20 Phase 1 neutral proxy contracts implemented; proxy adapters and distributed flows remain"
+        return "PARTIAL", "M20 Phase 2 proxy routing/adapters implemented; cross-server feature flows remain"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
@@ -284,7 +284,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00–M19 and hardening M08.1 are complete; M20 Phase 1 proxy API foundation is active.",
+        "M00–M19 and hardening M08.1 are complete; M20 Phase 2 routing and proxy adapters are active.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
@@ -293,7 +293,7 @@ def render() -> str:
         "contracts, deterministic runtime, SQL persistence and M09/Paper presentation. M14 Phase 1 adds",
         "neutral cosmetic/profile/calendar models and ports. M15/M16 are complete. M17 closes replay",
         "contracts, ingestion, SQL persistence, playback, bounded Paper viewer/visuals and staff tools;",
-        "provider/distributed/compatibility and final release qualification remain with M20-M24. M19 closes Redis coordination; M20 Phase 1 materializes neutral proxy contracts without adapters or distributed feature behavior.",
+        "provider/distributed/compatibility and final release qualification remain with M20-M24. M19 closes Redis coordination; M20 Phase 2 materializes bounded authenticated routing and equivalent proxy adapters; cross-server feature flows remain.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

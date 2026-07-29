@@ -22,10 +22,12 @@ NEUTRAL_MODULES = (
     "integrations/placeholderapi/zbw-integration-placeholderapi-api", "configuration/zbw-config",
     "storage/zbw-storage-api", "storage/zbw-storage-sql", "observability/zbw-observability",
     "compatibility/zbw-compat-api", "world/zbw-world", "proxy/zbw-proxy-api",
+    "proxy/zbw-bungeecord",
 )
 MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",
     "platform/paper/zbw-paper-modern",
+    "proxy/zbw-velocity",
 )
 NEUTRAL_CLASSPATH_MODULES = (
     "shop/zbw-shop",
