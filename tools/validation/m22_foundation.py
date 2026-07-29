@@ -22,16 +22,20 @@ MODULES = {
     "zbw-compat-v1_17-v1_19": (
         17, ["zbw-compat-api"], "compatibility/zbw-compat-v1_17-v1_19/pom.xml"),
     "zbw-paper-legacy": (
-        8, ["zbw-application", "zbw-compat-v1_8"],
+        8, ["zbw-application", "zbw-compat-v1_8", "zbw-compat-v1_9",
+            "zbw-compat-v1_10", "zbw-compat-v1_11", "zbw-command-api", "zbw-ui-api"],
         "platform/paper/zbw-paper-legacy/pom.xml"),
     "zbw-paper-j11": (
-        11, ["zbw-application", "zbw-compat-v1_12-v1_16_4"],
+        11, ["zbw-application", "zbw-compat-v1_12-v1_16_4",
+             "zbw-command-api", "zbw-ui-api"],
         "platform/paper/zbw-paper-j11/pom.xml"),
     "zbw-paper-j16": (
-        16, ["zbw-application", "zbw-compat-v1_16_5"],
+        16, ["zbw-application", "zbw-compat-v1_16_5",
+             "zbw-command-api", "zbw-ui-api"],
         "platform/paper/zbw-paper-j16/pom.xml"),
     "zbw-paper-j17": (
-        17, ["zbw-application", "zbw-compat-v1_17-v1_19"],
+        17, ["zbw-application", "zbw-compat-v1_17-v1_19",
+             "zbw-command-api", "zbw-ui-api"],
         "platform/paper/zbw-paper-j17/pom.xml"),
 }
 CLIENTS = {
@@ -77,13 +81,19 @@ def validate() -> list[str]:
             errors.append(f"{identifier}: missing POM-only materialization")
             continue
         module_root = ROOT / Path(path).parent
-        if list(module_root.rglob("*.java")):
-            errors.append(f"{identifier}: Phase 1 must not contain Java sources")
+        production_sources = list((module_root / "src/main/java").rglob("*.java"))
+        if not production_sources:
+            errors.append(f"{identifier}: Phase 2 production sources are missing")
+        for source in production_sources:
+            text = source.read_text(encoding="utf-8")
+            if any(name in text for name in ("org.bukkit", "io.papermc", "net.minecraft")):
+                errors.append(f"{identifier}: platform implementation type leaked into {source.name}")
         pom = ET.parse(ROOT / path).getroot()
         artifact = pom.findtext("m:artifactId", namespaces=MAVEN)
         pom_dependencies = [
             node.findtext("m:artifactId", namespaces=MAVEN)
             for node in pom.findall("m:dependencies/m:dependency", MAVEN)
+            if node.findtext("m:groupId", namespaces=MAVEN) == "io.zartra.bedwars"
         ]
         if artifact != identifier or pom_dependencies != dependencies:
             errors.append(f"{identifier}: POM dependency boundary differs from graph")
@@ -98,6 +108,11 @@ def validate() -> list[str]:
     matrix = read_json("build/m22-compatibility-matrix.json")
     families = matrix["server_families"]
     clients = matrix["client_paths"]
+    if matrix["phase"] != "M22_PHASE_2_SERVER_ADAPTERS":
+        errors.append("M22 matrix must record the Phase 2 server-adapter checkpoint")
+    if any(row["status"] != "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
+           for row in families):
+        errors.append("every server family must retain certification-pending status")
     fixtures = read_json("build/private-runtime-fixtures.json")["fixtures"]
     matrix_versions = [
         version for family in families for version in family["fixtures"]
@@ -113,7 +128,7 @@ def validate() -> list[str]:
     if actual_clients != CLIENTS:
         errors.append("M22 client-path inventory/version drift")
     if matrix["policy"] != {
-            "adapter_implementation_started": False,
+            "adapter_implementation_started": True,
             "support_claim_allowed": False,
             "server_runtime_and_client_translation_are_independent": True,
             "unknown_runtime_fails_closed": True,
@@ -121,7 +136,7 @@ def validate() -> list[str]:
             "expected_client_path_count": 5,
             "expected_matrix_cell_count": 45,
     }:
-        errors.append("M22 Phase 1 no-claim policy drift")
+        errors.append("M22 Phase 2 no-claim policy drift")
 
     lock = read_json("build/m22-provider-lock-requirements.json")
     actual_providers = {
@@ -151,8 +166,8 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
     print(
-        "M22 foundation PASS: 11 POM-only modules, 22 fixtures, "
-        "9 server families x 5 client paths, provider resolution blocked.")
+        "M22 Phase 2 PASS: 11 source modules, 22 fixtures, exact fail-closed "
+        "server adapter/bootstrap boundaries; client provider resolution blocked.")
     return 0
 
 

@@ -11,7 +11,7 @@
   </parent>
   <artifactId>zbw-paper-j11</artifactId>
   <name>ZartraBedWars Java 11 Paper Bootstrap Boundary</name>
-  <description>M22 Java 11 assembly boundary for future 1.12 through 1.16.4 bootstraps.</description>
+  <description>M22 Java 11 fail-closed bootstrap for 1.12 through 1.16.4 bootstraps.</description>
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
@@ -26,6 +26,22 @@
       <groupId>io.zartra.bedwars</groupId>
       <artifactId>zbw-compat-v1_12-v1_16_4</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-command-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-ui-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

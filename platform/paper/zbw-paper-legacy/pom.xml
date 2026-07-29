@@ -11,7 +11,7 @@
   </parent>
   <artifactId>zbw-paper-legacy</artifactId>
   <name>ZartraBedWars Legacy Paper Bootstrap Boundary</name>
-  <description>M22 Java 8 assembly boundary for future 1.8 through 1.11 bootstraps.</description>
+  <description>M22 Java 8 fail-closed bootstrap for 1.8 through 1.11 bootstraps.</description>
   <dependencies>
     <dependency>
       <groupId>io.zartra.bedwars</groupId>
@@ -22,6 +22,37 @@
       <groupId>io.zartra.bedwars</groupId>
       <artifactId>zbw-compat-v1_8</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-compat-v1_9</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-compat-v1_10</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-compat-v1_11</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-command-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-ui-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

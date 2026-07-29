@@ -1,6 +1,6 @@
 # M22 compatibility foundation
 
-**Status:** Phase 1 governance and build boundaries only
+**Status:** Phase 2 server adapters and legacy bootstrap implemented; runtime certification pending
 **Requirements:** `ZBW-ARC-002`, `ZBW-INT-004`, `ZBW-INT-010`,
 `ZBW-COMPAT-001..009`, `ZBW-READY-001`, `ZBW-READY-002`,
 `ZBW-READY-005`, `ZBW-READY-006`, `ZBW-LICENSE-001/002/005`
@@ -63,3 +63,11 @@ attempt to enable provider resolution before the exact lock is complete.
 
 Subsequent phases must add adapter behavior and certification without changing
 M08-M21 ownership. M22 translates existing neutral semantics only.
+
+## Phase 2 server adapter evidence
+
+The compatibility API now provides an exact-runtime selector, a lifecycle implementation, a complete ten-category mapping builder and a presentation bootstrap. Version modules expose only safe symbolic platform values; they import no Bukkit, Paper or NMS class. Every fallback returns an explicit stable reason. Decorative particle degradation is the only suppressed outcome.
+
+The Java 8 legacy bootstrap requires operator-generated SHA-256 values for the private BuildTools 1.8.8, 1.9.4, 1.10.2 and 1.11.2 fixtures. Public Paper fixtures use the exact build and digest rows from `build/private-runtime-fixtures.json`. A platform/version/build/digest mismatch, duplicate adapter or missing adapter fails before command/UI presentation activation. Shutdown deactivates presentation before stopping and releasing the selected adapter.
+
+This checkpoint implements `ZBW-ARC-002`, `ZBW-INT-004`, `ZBW-INT-010` and the adapter/fallback portions of `ZBW-COMPAT-001..009`, `ZBW-READY-001`, `ZBW-READY-002` and `ZBW-READY-006`. It does not certify server startup/gameplay, client translation, Via/Geyser providers or full matrix support; those gates remain pending M22 work.

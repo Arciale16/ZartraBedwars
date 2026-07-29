@@ -11,7 +11,7 @@
   </parent>
   <artifactId>zbw-paper-j17</artifactId>
   <name>ZartraBedWars Java 17 Paper Bootstrap Boundary</name>
-  <description>M22 Java 17 assembly boundary for future 1.17 through 1.19 bootstraps.</description>
+  <description>M22 Java 17 fail-closed bootstrap for 1.17 through 1.19 bootstraps.</description>
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
@@ -26,6 +26,22 @@
       <groupId>io.zartra.bedwars</groupId>
       <artifactId>zbw-compat-v1_17-v1_19</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-command-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.zartra.bedwars</groupId>
+      <artifactId>zbw-ui-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

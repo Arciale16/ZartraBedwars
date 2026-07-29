@@ -17,9 +17,9 @@
     "ZBW-READY-002",
     "ZBW-READY-006"
   ],
-  "phase": "M22_PHASE_1_FOUNDATION",
+  "phase": "M22_PHASE_2_SERVER_ADAPTERS",
   "policy": {
-    "adapter_implementation_started": false,
+    "adapter_implementation_started": true,
     "support_claim_allowed": false,
     "server_runtime_and_client_translation_are_independent": true,
     "unknown_runtime_fails_closed": true,
@@ -41,7 +41,7 @@
       "jdk": "8",
       "compatibility_module": "zbw-compat-v1_8",
       "paper_module": "zbw-paper-legacy",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_9",
@@ -49,7 +49,7 @@
       "jdk": "8",
       "compatibility_module": "zbw-compat-v1_9",
       "paper_module": "zbw-paper-legacy",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_10",
@@ -57,7 +57,7 @@
       "jdk": "8",
       "compatibility_module": "zbw-compat-v1_10",
       "paper_module": "zbw-paper-legacy",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_11",
@@ -65,7 +65,7 @@
       "jdk": "8",
       "compatibility_module": "zbw-compat-v1_11",
       "paper_module": "zbw-paper-legacy",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_12_TO_1_16_4",
@@ -73,7 +73,7 @@
       "jdk": "11",
       "compatibility_module": "zbw-compat-v1_12-v1_16_4",
       "paper_module": "zbw-paper-j11",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_16_5",
@@ -81,7 +81,7 @@
       "jdk": "16",
       "compatibility_module": "zbw-compat-v1_16_5",
       "paper_module": "zbw-paper-j16",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_17_TO_1_19",
@@ -89,7 +89,7 @@
       "jdk": "17",
       "compatibility_module": "zbw-compat-v1_17-v1_19",
       "paper_module": "zbw-paper-j17",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_20_X",
@@ -97,7 +97,7 @@
       "jdk": "21",
       "compatibility_module": "zbw-compat-v1_20-v1_21",
       "paper_module": "zbw-paper-modern",
-      "status": "NOT_IMPLEMENTED"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     },
     {
       "id": "MC_1_21_X",
@@ -105,7 +105,7 @@
       "jdk": "21",
       "compatibility_module": "zbw-compat-v1_20-v1_21",
       "paper_module": "zbw-paper-modern",
-      "status": "M06_PRIMARY_FOUNDATION_ONLY"
+      "status": "ADAPTER_IMPLEMENTED_CERTIFICATION_PENDING"
     }
   ],
   "client_paths": [

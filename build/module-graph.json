@@ -305,67 +305,67 @@
             "id": "zbw-compat-v1_8",
             "path": "compatibility/zbw-compat-v1_8/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.8 adapter"
+            "responsibility": "M22 Java 8 exact symbolic server adapter for Minecraft 1.8.8"
         },
         {
             "id": "zbw-compat-v1_9",
             "path": "compatibility/zbw-compat-v1_9/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.9 adapter"
+            "responsibility": "M22 Java 8 exact symbolic server adapter for Minecraft 1.9.4"
         },
         {
             "id": "zbw-compat-v1_10",
             "path": "compatibility/zbw-compat-v1_10/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.10 adapter"
+            "responsibility": "M22 Java 8 exact symbolic server adapter for Minecraft 1.10.2"
         },
         {
             "id": "zbw-compat-v1_11",
             "path": "compatibility/zbw-compat-v1_11/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 8 build boundary for the future Minecraft 1.11 adapter"
+            "responsibility": "M22 Java 8 exact symbolic server adapter for Minecraft 1.11.2"
         },
         {
             "id": "zbw-paper-legacy",
             "path": "platform/paper/zbw-paper-legacy/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 8 assembly boundary for future 1.8 through 1.11 Paper bootstraps"
+            "responsibility": "M22 Java 8 fail-closed Paper bootstrap for 1.8.8 through 1.11.2"
         },
         {
             "id": "zbw-compat-v1_12-v1_16_4",
             "path": "compatibility/zbw-compat-v1_12-v1_16_4/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 11 build boundary for future Minecraft 1.12 through 1.16.4 adapters"
+            "responsibility": "M22 Java 11 exact symbolic server adapters for Minecraft 1.12.2 through 1.15.2"
         },
         {
             "id": "zbw-paper-j11",
             "path": "platform/paper/zbw-paper-j11/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 11 assembly boundary for future 1.12 through 1.16.4 Paper bootstraps"
+            "responsibility": "M22 Java 11 fail-closed Paper bootstrap for 1.12.2 through 1.15.2"
         },
         {
             "id": "zbw-compat-v1_16_5",
             "path": "compatibility/zbw-compat-v1_16_5/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 16 build boundary for the future Minecraft 1.16.5 adapter"
+            "responsibility": "M22 Java 16 exact symbolic server adapter for Minecraft 1.16.5"
         },
         {
             "id": "zbw-paper-j16",
             "path": "platform/paper/zbw-paper-j16/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 16 assembly boundary for the future 1.16.5 Paper bootstrap"
+            "responsibility": "M22 Java 16 fail-closed Paper bootstrap for 1.16.5"
         },
         {
             "id": "zbw-compat-v1_17-v1_19",
             "path": "compatibility/zbw-compat-v1_17-v1_19/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 17 build boundary for future Minecraft 1.17 through 1.19 adapters"
+            "responsibility": "M22 Java 17 exact symbolic server adapters for Minecraft 1.17.1 through 1.19.4"
         },
         {
             "id": "zbw-paper-j17",
             "path": "platform/paper/zbw-paper-j17/pom.xml",
             "packaging": "jar",
-            "responsibility": "M22 Java 17 assembly boundary for future 1.17 through 1.19 Paper bootstraps"
+            "responsibility": "M22 Java 17 fail-closed Paper bootstrap for 1.17.1 through 1.19.4"
         },
         {
             "id": "zbw-compat-v1_20-v1_21",
@@ -836,8 +836,21 @@
             "first_milestone": "M22",
             "depends_on": [
                 "zbw-application",
-                "zbw-compat-v1_8"
-            ]
+                "zbw-compat-v1_8",
+                "zbw-compat-v1_9",
+                "zbw-compat-v1_10",
+                "zbw-compat-v1_11",
+                "zbw-command-api",
+                "zbw-ui-api"
+            ],
+            "dependency_since": {
+                "zbw-compat-v1_8": "M22",
+                "zbw-compat-v1_9": "M22",
+                "zbw-compat-v1_10": "M22",
+                "zbw-compat-v1_11": "M22",
+                "zbw-command-api": "M22",
+                "zbw-ui-api": "M22"
+            }
         },
         {
             "id": "zbw-paper-j11",
@@ -846,8 +859,15 @@
             "first_milestone": "M22",
             "depends_on": [
                 "zbw-application",
-                "zbw-compat-v1_12-v1_16_4"
-            ]
+                "zbw-compat-v1_12-v1_16_4",
+                "zbw-command-api",
+                "zbw-ui-api"
+            ],
+            "dependency_since": {
+                "zbw-compat-v1_12-v1_16_4": "M22",
+                "zbw-command-api": "M22",
+                "zbw-ui-api": "M22"
+            }
         },
         {
             "id": "zbw-paper-j16",
@@ -856,8 +876,15 @@
             "first_milestone": "M22",
             "depends_on": [
                 "zbw-application",
-                "zbw-compat-v1_16_5"
-            ]
+                "zbw-compat-v1_16_5",
+                "zbw-command-api",
+                "zbw-ui-api"
+            ],
+            "dependency_since": {
+                "zbw-compat-v1_16_5": "M22",
+                "zbw-command-api": "M22",
+                "zbw-ui-api": "M22"
+            }
         },
         {
             "id": "zbw-paper-j17",
@@ -866,8 +893,15 @@
             "first_milestone": "M22",
             "depends_on": [
                 "zbw-application",
-                "zbw-compat-v1_17-v1_19"
-            ]
+                "zbw-compat-v1_17-v1_19",
+                "zbw-command-api",
+                "zbw-ui-api"
+            ],
+            "dependency_since": {
+                "zbw-compat-v1_17-v1_19": "M22",
+                "zbw-command-api": "M22",
+                "zbw-ui-api": "M22"
+            }
         },
         {
             "id": "zbw-paper-modern",

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 import unittest
 
@@ -27,11 +28,23 @@ class M06GovernanceTest(unittest.TestCase):
     def test_architecture_validator_passes(self) -> None:
         self.assertEqual([], load_validator().validate())
 
-    def test_m22_legacy_boundaries_are_pom_only(self) -> None:
+    def test_m22_legacy_boundaries_are_isolated(self) -> None:
+        state = json.loads(
+            (ROOT / "build/milestone-state.json").read_text(encoding="utf-8")
+        )
         for relative in load_validator().LEGACY_PATHS:
             module = ROOT / relative
             self.assertTrue((module / "pom.xml").is_file())
-            self.assertEqual([], list(module.rglob("*.java")))
+            sources = list(module.rglob("*.java"))
+            if state["active_milestone"] < "M22":
+                self.assertEqual([], sources)
+            else:
+                self.assertTrue(sources)
+                for source in sources:
+                    content = source.read_text(encoding="utf-8")
+                    self.assertNotIn("org.bukkit", content)
+                    self.assertNotIn("io.papermc", content)
+                    self.assertNotIn("net.minecraft", content)
 
     def test_primary_runtime_lock_is_exact(self) -> None:
         content = (ROOT / "build/m06-paper-runtime-lock.json").read_text(encoding="utf-8")
