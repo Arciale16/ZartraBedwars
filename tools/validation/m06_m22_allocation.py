@@ -57,11 +57,17 @@ def validate() -> list[str]:
         "zbw-paper-modern": (
             21,
             "M06",
-            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
+            ["zbw-application", "zbw-observability", "zbw-world",
+             "zbw-integration-world-providers",
+             "zbw-compat-v1_20-v1_21", "zbw-game",
              "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content",
              "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression",
              "zbw-integration-placeholderapi", "zbw-replay-api", "zbw-replay",
-             "zbw-atlas-api", "zbw-atlas"],
+             "zbw-atlas-api", "zbw-atlas", "zbw-integration-vault",
+             "zbw-integration-luckperms", "zbw-integration-citizens",
+             "zbw-integration-znpcsplus", "zbw-integration-decentholograms",
+             "zbw-integration-alessiopdp", "zbw-integration-grim",
+             "zbw-integration-vulcan"],
         ),
     }
     for identifier, (bytecode, milestone, dependencies) in expected.items():
@@ -87,10 +93,20 @@ def validate() -> list[str]:
             "zbw-replay": "M17",
             "zbw-atlas-api": "M18",
             "zbw-atlas": "M18",
+            "zbw-integration-vault": "M21",
+            "zbw-integration-luckperms": "M21",
+            "zbw-integration-citizens": "M21",
+            "zbw-integration-znpcsplus": "M21",
+            "zbw-integration-decentholograms": "M21",
+            "zbw-integration-alessiopdp": "M21",
+            "zbw-integration-grim": "M21",
+            "zbw-integration-vulcan": "M21",
+            "zbw-observability": "M21",
+            "zbw-integration-world-providers": "M21",
     }:
         errors.append(
             "zbw-paper-modern: later dependencies must activate only in their "
-            "declared M08/M09/M11/M12/M16/M17/M18 milestones")
+            "declared M08/M09/M11/M12/M16/M17/M18/M21 milestones")
 
     for identifier in sorted(LEGACY_MODULES):
         row = modules.get(identifier)

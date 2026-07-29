@@ -23,6 +23,18 @@ NEUTRAL_MODULES = (
     "storage/zbw-storage-api", "storage/zbw-storage-sql", "observability/zbw-observability",
     "compatibility/zbw-compat-api", "world/zbw-world", "proxy/zbw-proxy-api",
     "proxy/zbw-bungeecord",
+    "redis/zbw-redis-api",
+    "party/zbw-party", "party/zbw-party-sql",
+    "integrations/vault/zbw-integration-vault",
+    "integrations/luckperms/zbw-integration-luckperms",
+    "integrations/citizens/zbw-integration-citizens",
+    "integrations/znpcs/zbw-integration-znpcsplus",
+    "integrations/hologram/zbw-integration-decentholograms",
+    "integrations/party/zbw-integration-alessiopdp",
+    "integrations/anticheat/zbw-integration-grim",
+    "integrations/anticheat/zbw-integration-vulcan",
+    "cloud/zbw-cloudnet",
+    "integrations/world/zbw-integration-world-providers",
 )
 MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",
