@@ -216,9 +216,11 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 ### M21 â€” CloudNet, parties and remaining providers
 
-- **Requirements:** DEPLOY-005, INT-001..003/006..009; ZBW-ADDON-226..235.
+- **Phase 1 status:** IN PROGRESS - governance explicitly retains optional world-provider completion in M21; neutral provider SPIs plus native party core/SQL are materialized without vendor adapters, CloudNet or Paper implementation.
+- **Requirements:** DEPLOY-005, INT-001..003/005..009; ZBW-ADDON-226..235. `INT-005` retains the optional WorldEdit/FAWE/WorldGuard/Slime/Multiverse adapters already assigned to M21 by traceability; M06 remains owner of the native primary provider.
 - **Entry:** M20 scalable routing and relevant feature APIs stable.
 - **Deliver:** CloudNet scaling; native/external parties; Placeholder/Vault/LuckPerms/NPC/hologram/Grim/Vulcan adapters and dashboards. Vault tender, shopkeeper/NPC and generator-hologram providers consume M11 ports and remain M21 implementations.
+- **Phase 1 boundary:** `zbw-api` owns only vendor-neutral immutable economy, permission/meta, party, NPC, hologram and service-discovery contracts. `zbw-party` owns native party lifecycle/privacy/invitation/migration policy and transport intents; `zbw-party-sql` owns durable authority. Redis remains coordination, M20 remains transport, and every vendor/world adapter remains deferred.
 - **Exit:** every pinned supported provider passes shared contract/failure/version tests; both anticheats can run together without duplicate cases; scale/drain/crash replacement works.
 
 ### M22 â€” Full 1.8â€“1.21.x and Bedrock compatibility matrix

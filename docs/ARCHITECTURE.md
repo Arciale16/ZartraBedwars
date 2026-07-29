@@ -70,6 +70,7 @@ Architecture tests reject cycles, adapter imports from domain, direct SQL outsid
 | `zbw-scripting-api`, `zbw-scripting-engine` | Declarative action graph, capability/scopes, compiler/interpreter, quotas and audit | API/application immutable snapshots | General JVM code, host/file/process/network access or main-thread evaluation |
 | `zbw-replay-api`, `zbw-replay-engine` | Replay model, capture/codec/playback/retention ports | application/domain | NMS packet code/storage backend specifics |
 | `zbw-atlas` | Cases, anonymization, reservation, verdict/reputation/abuse policies | replay API, progression/reward ports | Punishment-provider implementation |
+| `zbw-party`, `zbw-party-sql` | M21 native party lifecycle, privacy, invitations and migration policy plus its durable SQL adapter | `zbw-api`; SQL adapter additionally uses neutral storage contracts | Paper/vendor imports, matchmaking rules, Redis authority or proxy routing |
 | `zbw-ui-api`, `zbw-ui-paper` | M09 page model, editor/confirmation contracts and Paper inventory renderer | API/application and completed feature use cases | Feature rules or synchronous DB access |
 | `zbw-command-api`, `zbw-command-paper` | M09 command tree, validation/help/audit contracts and Paper adapter | API/application and completed feature use cases | Feature rules |
 | `zbw-observability` | Health, metrics, Plugin Doctor, sanitized diagnostics | All health ports | Secrets or mutable domain state |

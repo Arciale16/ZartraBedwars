@@ -23,6 +23,7 @@ NEUTRAL_MODULES = (
     "storage/zbw-storage-api", "storage/zbw-storage-sql", "observability/zbw-observability",
     "compatibility/zbw-compat-api", "world/zbw-world", "proxy/zbw-proxy-api",
     "proxy/zbw-bungeecord",
+    "party/zbw-party", "party/zbw-party-sql",
 )
 MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",

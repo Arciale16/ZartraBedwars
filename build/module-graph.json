@@ -230,6 +230,18 @@
             "responsibility": "Java 8 BungeeCord lifecycle, authenticated nonblocking messaging and cross-server transfer adapter"
         },
         {
+            "id": "zbw-party",
+            "path": "party/zbw-party/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 native party lifecycle, privacy, invitations, migration and transport intents"
+        },
+        {
+            "id": "zbw-party-sql",
+            "path": "party/zbw-party-sql/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 transactional native party persistence, migration and restart recovery"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -773,6 +785,31 @@
             "depends_on": [
                 "zbw-proxy-api"
             ]
+        },
+        {
+            "id": "zbw-party",
+            "layer": "application",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api"
+            ]
+        },
+        {
+            "id": "zbw-party-sql",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api",
+                "zbw-storage-api",
+                "zbw-party"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21",
+                "zbw-storage-api": "M21",
+                "zbw-party": "M21"
+            }
         },
         {
             "id": "zbw-velocity",

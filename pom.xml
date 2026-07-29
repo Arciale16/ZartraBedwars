@@ -48,6 +48,8 @@
     <module>redis/zbw-redis</module>
     <module>proxy/zbw-proxy-api</module>
     <module>proxy/zbw-bungeecord</module>
+    <module>party/zbw-party</module>
+    <module>party/zbw-party-sql</module>
   </modules>
 
   <properties>
