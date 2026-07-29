@@ -176,13 +176,17 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M19 Redis allocation complete; M20 proxy topology and delivery allocation remains"
     if identifier in M20_REQUIREMENTS:
         return "PARTIAL", "M20 proxy networking allocation complete; provider, compatibility and release qualification remain"
+    if identifier == "ZBW-DEPLOY-005":
+        return "PARTIAL", "M21 Phase 4 CloudNet failure/race/restart certification and runbook complete; command/GUI/metrics and release qualification remain"
+    if identifier == "ZBW-INT-005":
+        return "PARTIAL", "M06 native provider exists; M21 optional WorldEdit/FAWE/WorldGuard/Slime/Multiverse adapters remain unmaterialized and block M21 closure"
     if identifier in M21_REQUIREMENTS:
-        return "PARTIAL", "M21 Phase 3 CloudNet lifecycle/scaling boundary is complete; world providers, dashboards and release qualification remain"
+        return "PARTIAL", "M21 Phase 4 provider lifecycle/Plugin Doctor and focused failure certification complete; full per-requirement presentation and release qualification remain"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
     if match and int(match.group(1)) in M21_CLOUDNET_ADDONS:
-        return "PARTIAL", "M21 CloudNet discovery, lifecycle, bounded scaling, failure and coordination evidence complete; command/dashboard and release qualification remain"
+        return "PARTIAL", "M21 CloudNet discovery, bounded lifecycle, failure/race/restart certification and operations evidence complete; command/dashboard and release qualification remain"
     if match and (41 <= int(match.group(1)) <= 60 or 102 <= int(match.group(1)) <= 107 or 252 <= int(match.group(1)) <= 259 or 291 <= int(match.group(1)) <= 299 or int(match.group(1)) == 387 or 464 <= int(match.group(1)) <= 473):
         return "PARTIAL", "M20 proxy coordination allocation complete; owner-side feature and M21/M22 provider/compatibility work remain"
     if match and 323 <= int(match.group(1)) <= 333:
@@ -297,7 +301,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M20 and hardening M08.1 are complete; M21 Phase 3 CloudNet integration is active.",
+        "M00-M20 and hardening M08.1 are complete; M21 Phase 4 certification is complete for materialized providers and CloudNet, while ZBW-INT-005 keeps M21 active.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

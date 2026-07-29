@@ -23,6 +23,7 @@ ROOTS = (
     "integrations/anticheat/zbw-integration-grim/target/classes",
     "integrations/anticheat/zbw-integration-vulcan/target/classes",
     "cloud/zbw-cloudnet/target/classes",
+    "observability/zbw-observability/target/classes",
 )
 
 

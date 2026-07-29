@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Coordinates CloudNet lifecycle with M19 fencing and M20 backend projections.
@@ -36,12 +37,15 @@ public final class CloudNetServiceCoordinator {
     private static final int MAX_OBSERVED_SERVICES = 4096;
     private static final DefinitionId DEGRADED =
             DefinitionId.of("zartra", "cloudnet/distributed-degraded");
+    private static final DefinitionId RECONCILIATION_BUSY =
+            DefinitionId.of("zartra", "cloudnet/reconciliation-in-progress");
     private final CloudNetServiceAdapter adapter;
     private final CloudNetCoordinationPort.Redis redis;
     private final CloudNetCoordinationPort.Proxy proxy;
     private final TimeSource timeSource;
     private final Map<DefinitionId, CloudNetServiceMetadata> observed =
             new LinkedHashMap<DefinitionId, CloudNetServiceMetadata>();
+    private final AtomicBoolean reconciliation = new AtomicBoolean();
     private FencingToken lastFence;
     private long operationSequence;
 
@@ -90,7 +94,13 @@ public final class CloudNetServiceCoordinator {
         if (serviceCapacity < 1 || serviceCapacity > 4096) {
             throw new IllegalArgumentException("serviceCapacity must be 1..4096");
         }
-        return adapter.discoverMetadata().thenCompose(result -> {
+        if (!reconciliation.compareAndSet(false, true)) {
+            return CompletableFuture.completedFuture(Result.failure(ApiError.of(
+                    RECONCILIATION_BUSY, "cloudnet.reconciliation_in_progress",
+                    ApiError.RetryDisposition.RETRYABLE)));
+        }
+        final CompletionStage<Result<Reconciliation>> stage =
+                adapter.discoverMetadata().thenCompose(result -> {
             if (result.isFailure()) {
                 return CompletableFuture.completedFuture(Result.failure(
                         result.error().get()));
@@ -123,6 +133,7 @@ public final class CloudNetServiceCoordinator {
                 return drainServices(evaluation, selected, deadline);
             });
         });
+        return stage.whenComplete((ignored, failure) -> reconciliation.set(false));
     }
 
     /**

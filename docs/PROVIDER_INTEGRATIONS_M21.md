@@ -58,3 +58,8 @@ waits on the Minecraft owner thread.
 
 CloudNet, service discovery runtime, optional world providers, dashboards and
 M22 compatibility certification remain outside this phase.
+## Phase 4 certification
+
+`ProviderCompatibilityCheck` supplies the existing bounded Plugin Doctor engine with one deterministic, secret-safe result for each of the nine materialized M21 providers. `PaperProviderIntegrationRuntime` records rejected duplicate identities so diagnostics distinguish `PRESENT`, `ABSENT`, `INCOMPATIBLE` and `DUPLICATE` without loading vendor classes. Cross-adapter tests certify Grim-only, Vulcan-only and concurrent Grim/Vulcan signal normalization; no anticheat adapter depends on Atlas or owns decisions. Native-to-AlessioDP tests require the explicit migration fence, preserve private projection and disband native authority only after successful external transfer.
+
+Operational recovery and degradation procedures are defined in `RUNBOOK_M21_PROVIDERS_CLOUDNET.md`.

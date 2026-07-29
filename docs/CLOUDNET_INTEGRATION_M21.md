@@ -53,3 +53,8 @@ Standalone fallback is the operator's static M20 backend registry with autoscali
 Operators must acquire and audit the exact supported CloudNet runtime independently before
 installing a gateway binding; no CloudNet or server binary is resolved, stored, shaded or
 redistributed by this repository.
+## Phase 4 failure certification
+
+The lifecycle coordinator permits exactly one reconciliation in flight. A concurrent request fails with the retryable, stable `cloudnet.reconciliation_in_progress` result, which prevents duplicate scale/drain actions without blocking a caller. Deterministic tests cover drain, restart discovery without duplicate start, duplicate crash callback, stale metadata, repeated fencing token, Redis degradation and concurrent scaling races. The guard is released on successful and exceptional completion.
+
+Operator diagnosis, standalone fallback and recovery order are defined in `RUNBOOK_M21_PROVIDERS_CLOUDNET.md`.

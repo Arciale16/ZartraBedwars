@@ -3,6 +3,7 @@ package io.zartra.bedwars.paper.bootstrap;
 import io.zartra.bedwars.api.identity.ProviderId;
 import io.zartra.bedwars.api.provider.Provider;
 import io.zartra.bedwars.api.result.Result;
+import io.zartra.bedwars.observability.doctor.ProviderCompatibilityCheck;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -18,6 +21,7 @@ public final class PaperProviderIntegrationRuntime {
     private static final Duration DRAIN_DEADLINE = Duration.ofSeconds(2);
     private final Map<ProviderId, Provider> providers =
             new LinkedHashMap<ProviderId, Provider>();
+    private final Set<ProviderId> rejectedDuplicates = new TreeSet<ProviderId>();
     private boolean started;
     private boolean closed;
 
@@ -33,6 +37,7 @@ public final class PaperProviderIntegrationRuntime {
         if (closed) { throw new IllegalStateException("provider runtime is closed"); }
         ProviderId id = provider.descriptor().id();
         if (providers.putIfAbsent(id, provider) != null) {
+            rejectedDuplicates.add(id);
             throw new IllegalStateException("duplicate provider ID: " + id);
         }
         return started ? provider.start() : CompletableFuture.completedFuture(
@@ -75,6 +80,16 @@ public final class PaperProviderIntegrationRuntime {
                 new ArrayList<ProviderId>(providers.keySet()));
     }
 
+    /**
+     * Creates the secret-safe M21 provider compatibility check for Plugin Doctor.
+     *
+     * @return deterministic compatibility check over the current provider registry
+     */
+    public synchronized ProviderCompatibilityCheck compatibilityCheck() {
+        return new ProviderCompatibilityCheck(
+                ProviderCompatibilityCheck.m21ProviderIds(),
+                providers.values(), rejectedDuplicates);
+    }
     private static CompletionStage<List<Result<Provider.LifecycleState>>> collect(
             final List<Provider> values, final boolean stopping) {
         List<CompletableFuture<Result<Provider.LifecycleState>>> futures =

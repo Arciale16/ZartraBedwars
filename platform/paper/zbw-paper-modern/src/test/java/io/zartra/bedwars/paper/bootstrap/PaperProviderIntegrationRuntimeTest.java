@@ -11,6 +11,7 @@ import io.zartra.bedwars.api.provider.Provider;
 import io.zartra.bedwars.api.result.Result;
 import io.zartra.bedwars.api.time.TimeSource;
 import io.zartra.bedwars.api.version.SemanticVersion;
+import io.zartra.bedwars.observability.doctor.ProviderCompatibilityCheck;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.CompletionStage;
@@ -39,6 +40,15 @@ final class PaperProviderIntegrationRuntimeTest {
                 provider("duplicate", OptionalProviderLifecycle.Probe.AVAILABLE)));
     }
 
+    @Test void duplicateRejectionIsVisibleToPluginDoctor() {
+        PaperProviderIntegrationRuntime runtime = new PaperProviderIntegrationRuntime();
+        runtime.install(provider("grim", OptionalProviderLifecycle.Probe.AVAILABLE));
+        assertThrows(IllegalStateException.class, () -> runtime.install(
+                provider("grim", OptionalProviderLifecycle.Probe.AVAILABLE)));
+        assertEquals(ProviderCompatibilityCheck.State.DUPLICATE,
+                runtime.compatibilityCheck().state(ProviderId.of("test", "grim")));
+        assertEquals(9, ProviderCompatibilityCheck.m21ProviderIds().size());
+    }
     private static Provider provider(final String id,
                                      final OptionalProviderLifecycle.Probe probe) {
         OptionalProviderLifecycle lifecycle = new OptionalProviderLifecycle(

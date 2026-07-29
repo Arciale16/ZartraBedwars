@@ -22,12 +22,15 @@ ADAPTER_MODULES = (
 
 def main() -> int:
     """Document provider SPI, native party, and isolated adapter boundaries."""
-    modules = ("api/zbw-api", "party/zbw-party", "party/zbw-party-sql", *ADAPTER_MODULES)
+    modules = ("api/zbw-api", "observability/zbw-observability",
+               "party/zbw-party", "party/zbw-party-sql", *ADAPTER_MODULES)
     sources = api_docs.sources(modules)
     output = ROOT / "target/apidocs-m21-party-provider-java8"
     classpath = api_docs.artifacts((
         "api/zbw-api",
         "storage/zbw-storage-api",
+        "application/zbw-application",
+        "observability/zbw-observability",
         "redis/zbw-redis-api",
         "proxy/zbw-proxy-api",
         "party/zbw-party",

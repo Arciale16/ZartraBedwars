@@ -57,7 +57,8 @@ def validate() -> list[str]:
         "zbw-paper-modern": (
             21,
             "M06",
-            ["zbw-application", "zbw-world", "zbw-compat-v1_20-v1_21", "zbw-game",
+            ["zbw-application", "zbw-observability", "zbw-world",
+             "zbw-compat-v1_20-v1_21", "zbw-game",
              "zbw-command-paper", "zbw-ui-paper", "zbw-shop", "zbw-content",
              "zbw-scripting-api", "zbw-scripting-engine", "zbw-progression",
              "zbw-integration-placeholderapi", "zbw-replay-api", "zbw-replay",
@@ -99,6 +100,7 @@ def validate() -> list[str]:
             "zbw-integration-alessiopdp": "M21",
             "zbw-integration-grim": "M21",
             "zbw-integration-vulcan": "M21",
+            "zbw-observability": "M21",
     }:
         errors.append(
             "zbw-paper-modern: later dependencies must activate only in their "

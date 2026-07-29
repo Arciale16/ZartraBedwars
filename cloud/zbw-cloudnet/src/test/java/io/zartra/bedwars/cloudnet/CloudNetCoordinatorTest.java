@@ -136,6 +136,96 @@ final class CloudNetCoordinatorTest {
             assertEquals(1, gateway.starts.get());
         }
     }
+    @Test
+    void drainsOnlyIdleServiceWithFencedAction() {
+        final FakeGateway gateway = new FakeGateway(new ArrayList<CloudNetServiceMetadata>(
+                java.util.Arrays.asList(
+                        metadata("idle-a", ServiceDiscoveryProvider.ServiceState.ONLINE, 0, 1),
+                        metadata("idle-b", ServiceDiscoveryProvider.ServiceState.ONLINE, 0, 1))));
+        try (CloudNetServiceAdapter adapter = adapter(gateway)) {
+            adapter.start().toCompletableFuture().join();
+            final CloudNetServiceCoordinator coordinator = new CloudNetServiceCoordinator(
+                    adapter, new FakeRedis(), new FakeProxy(), clock());
+            final CloudNetScalingPolicy policy =
+                    new CloudNetScalingPolicy(1, 3, 0, 80, 20, 1, 1, Duration.ZERO);
+            final Result<CloudNetServiceCoordinator.Reconciliation> result =
+                    coordinator.reconcile(policy, state(),
+                            ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                            NOW.plusSeconds(10)).toCompletableFuture().join();
+            assertTrue(result.isSuccess());
+            assertEquals(1, result.requireValue().actions());
+            assertEquals(1, gateway.drains.get());
+        }
+    }
+
+    @Test
+    void restartRecoversExistingServiceWithoutDuplicateStart() {
+        final FakeGateway gateway = new FakeGateway(Collections.singletonList(
+                metadata("existing", ServiceDiscoveryProvider.ServiceState.ONLINE, 8, 1)));
+        final FakeProxy proxy = new FakeProxy();
+        try (CloudNetServiceAdapter adapter = adapter(gateway)) {
+            adapter.start().toCompletableFuture().join();
+            final CloudNetServiceCoordinator restarted = new CloudNetServiceCoordinator(
+                    adapter, new FakeRedis(), proxy, clock());
+            final CloudNetScalingPolicy policy =
+                    new CloudNetScalingPolicy(1, 2, 0, 80, 20, 1, 1, Duration.ZERO);
+            assertTrue(restarted.reconcile(policy, state(),
+                    ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                    NOW.plusSeconds(10)).toCompletableFuture().join().isSuccess());
+            assertEquals(0, gateway.starts.get());
+            assertEquals(1, proxy.published.size());
+        }
+    }
+
+    @Test
+    void concurrentReconciliationRejectsDuplicateScalingRace() {
+        final FakeGateway gateway = new FakeGateway(Collections.emptyList());
+        gateway.heldDiscovery = new CompletableFuture<List<CloudNetServiceMetadata>>();
+        try (CloudNetServiceAdapter adapter = adapter(gateway)) {
+            adapter.start().toCompletableFuture().join();
+            final CloudNetServiceCoordinator coordinator = new CloudNetServiceCoordinator(
+                    adapter, new FakeRedis(), new FakeProxy(), clock());
+            final CloudNetScalingPolicy policy =
+                    new CloudNetScalingPolicy(1, 2, 0, 80, 20, 1, 1, Duration.ZERO);
+            final CompletionStage<Result<CloudNetServiceCoordinator.Reconciliation>> first =
+                    coordinator.reconcile(policy, state(),
+                            ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                            NOW.plusSeconds(10));
+            final Result<CloudNetServiceCoordinator.Reconciliation> duplicate =
+                    coordinator.reconcile(policy, state(),
+                            ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                            NOW.plusSeconds(10)).toCompletableFuture().join();
+            assertTrue(duplicate.isFailure());
+            gateway.heldDiscovery.complete(Collections.emptyList());
+            assertTrue(first.toCompletableFuture().join().isSuccess());
+            assertEquals(1, gateway.starts.get());
+        }
+    }
+
+    @Test
+    void staleMetadataCallbackIsNotRepublished() {
+        final List<CloudNetServiceMetadata> services =
+                new ArrayList<CloudNetServiceMetadata>();
+        services.add(metadata("stable", ServiceDiscoveryProvider.ServiceState.ONLINE, 8, 2));
+        final FakeGateway gateway = new FakeGateway(services);
+        final FakeProxy proxy = new FakeProxy();
+        try (CloudNetServiceAdapter adapter = adapter(gateway)) {
+            adapter.start().toCompletableFuture().join();
+            final CloudNetServiceCoordinator coordinator = new CloudNetServiceCoordinator(
+                    adapter, new FakeRedis(), proxy, clock());
+            final CloudNetScalingPolicy policy =
+                    new CloudNetScalingPolicy(1, 2, 0, 80, 20, 1, 1, Duration.ZERO);
+            assertTrue(coordinator.reconcile(policy, state(),
+                    ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                    NOW.plusSeconds(10)).toCompletableFuture().join().isSuccess());
+            services.clear();
+            services.add(metadata("stable", ServiceDiscoveryProvider.ServiceState.ONLINE, 8, 1));
+            assertTrue(coordinator.reconcile(policy, state(),
+                    ServiceDiscoveryProvider.ServiceKind.ARENA, TEMPLATE, 16,
+                    NOW.plusSeconds(10)).toCompletableFuture().join().isSuccess());
+            assertEquals(1, proxy.published.size());
+        }
+    }
     private static CloudNetScalingPolicy.State state() {
         return new CloudNetScalingPolicy.State(
                 CloudNetScalingPolicy.Direction.NONE, 0, NOW.minusSeconds(60));
@@ -162,11 +252,14 @@ final class CloudNetCoordinatorTest {
     private static final class FakeGateway implements CloudNetGateway {
         private final List<CloudNetServiceMetadata> services;
         private final AtomicInteger starts = new AtomicInteger();
+        private final AtomicInteger drains = new AtomicInteger();
+        private CompletableFuture<List<CloudNetServiceMetadata>> heldDiscovery;
         private FakeGateway(final List<CloudNetServiceMetadata> services) {
             this.services = services;
         }
         @Override public CompletionStage<List<CloudNetServiceMetadata>> discover() {
-            return CompletableFuture.completedFuture(services);
+            return heldDiscovery == null
+                    ? CompletableFuture.completedFuture(services) : heldDiscovery;
         }
         @Override public CompletionStage<CloudNetServiceMetadata> start(
                 final ServiceDiscoveryProvider.ServiceRequest request) {
@@ -177,6 +270,7 @@ final class CloudNetCoordinatorTest {
         }
         @Override public CompletionStage<Boolean> drain(
                 final DefinitionId serviceId, final Instant deadline) {
+            drains.incrementAndGet();
             return CompletableFuture.completedFuture(Boolean.TRUE);
         }
         @Override public CompletionStage<Boolean> stop(

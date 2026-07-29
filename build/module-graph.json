@@ -790,6 +790,7 @@
             "first_milestone": "M06",
             "depends_on": [
                 "zbw-application",
+                "zbw-observability",
                 "zbw-world",
                 "zbw-compat-v1_20-v1_21",
                 "zbw-game",
@@ -835,7 +836,8 @@
                 "zbw-integration-decentholograms": "M21",
                 "zbw-integration-alessiopdp": "M21",
                 "zbw-integration-grim": "M21",
-                "zbw-integration-vulcan": "M21"
+                "zbw-integration-vulcan": "M21",
+                "zbw-observability": "M21"
             }
         },
         {

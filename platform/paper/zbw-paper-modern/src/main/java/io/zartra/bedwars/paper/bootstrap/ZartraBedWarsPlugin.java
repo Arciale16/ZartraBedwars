@@ -29,6 +29,7 @@ import io.zartra.bedwars.paper.replay.visual.ReplayVisualEngine;
 import io.zartra.bedwars.replay.api.ReplayAccessPolicy;
 import io.zartra.bedwars.replay.api.ReplaySessionRepository;
 import io.zartra.bedwars.replay.playback.ReplayPlaybackEngine;
+import io.zartra.bedwars.api.doctor.PluginDoctor;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Objects;
@@ -229,6 +230,13 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
         return providerIntegrations.install(provider);
     }
 
+    /** @return M21 provider compatibility check for registration with Plugin Doctor */
+    public synchronized PluginDoctor.Check providerCompatibilityCheck() {
+        if (providerIntegrations == null) {
+            throw new IllegalStateException("M21 provider runtime is not active");
+        }
+        return providerIntegrations.compatibilityCheck();
+    }
     /** @return installed `/atlas` router when Atlas ports are composed */
     public synchronized Optional<AtlasCommandRouter> atlasCommands() {
         return Optional.ofNullable(atlasCommands);
