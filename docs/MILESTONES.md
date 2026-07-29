@@ -204,6 +204,8 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 ### M20 â€” Proxy networking and scalable deployment
 
+- **M20 Phase 1 status:** IN PROGRESS — `zbw-proxy-api` is materialized as a Java 8 neutral API; `zbw-bungeecord` and `zbw-velocity` remain planned only. ZBW-DEPLOY-002..004 receive immutable backend identity/epoch/capability, registry, heartbeat/capacity/health, deterministic routing, bounded reservation, single-use transfer-token outcome, protocol/degradation and sanitized diagnostic contracts. M04/M19 envelope, authentication, dedupe, lease and fencing ownership is reused rather than duplicated. No proxy adapter, Paper integration, Redis runtime change or M21 behavior exists.
+
 - **Requirements:** DEPLOY-002..004, distributed portions of GAME/PROG/STATS/REPLAY/ATLAS/INT-009; CONTENT-008; ZBW-ADDON-041..060, 102..107, 164..173, 252..259, 291..299, 464..473.
 - **Entry:** M19 complete and M10 routing contracts stable.
 - **Deliver:** Velocity and Bungee adapters, backend registry/reservations/transfers/failover/drain and cross-server user flows, including proxy/server distribution of the M11 item-rotation state after M19 coordination is available.

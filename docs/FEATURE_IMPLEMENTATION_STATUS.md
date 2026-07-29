@@ -10,11 +10,11 @@ identifies remaining ownership. Completed M13 scope never implies completion of 
 | Status | Count |
 |---|---:|
 | BLOCKED | 0 |
-| DEFERRED | 164 |
+| DEFERRED | 162 |
 | IMPLEMENTED | 0 |
 | IN_PROGRESS | 0 |
 | NOT_STARTED | 0 |
-| PARTIAL | 454 |
+| PARTIAL | 456 |
 | VERIFIED | 54 |
 
 Total requirements: **672**.
@@ -41,7 +41,7 @@ Total requirements: **672**.
 
 ## Milestone and evidence summary
 
-M00–M18 and hardening M08.1 are complete; M19 remains the next unstarted milestone.
+M00–M19 and hardening M08.1 are complete; M20 Phase 1 proxy API foundation is active.
 M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,
 with deterministic 115-action inventories and strict quality/API/runtime evidence.
 Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective
@@ -50,7 +50,7 @@ persistence, rewards and primary presentation. M13 Phases 1–3 complete neutral
 contracts, deterministic runtime, SQL persistence and M09/Paper presentation. M14 Phase 1 adds
 neutral cosmetic/profile/calendar models and ports. M15/M16 are complete. M17 closes replay
 contracts, ingestion, SQL persistence, playback, bounded Paper viewer/visuals and staff tools;
-provider/distributed/compatibility and final release qualification remain with M19-M24. M18 closes Atlas API, core, SQL, privacy-preserving Paper staff surfaces and guarded ZBW-ADDON-323..333 operations.
+provider/distributed/compatibility and final release qualification remain with M20-M24. M19 closes Redis coordination; M20 Phase 1 materializes neutral proxy contracts without adapters or distributed feature behavior.
 
 ## Feature rows
 
@@ -155,9 +155,9 @@ provider/distributed/compatibility and final release qualification remain with M
 | Evaluation performs zero synchronous DB/Redis/network/filesystem operations, uses cached/precomputed/batched/per-tick-deduplicated values with bounded expiry, safe configurable fallback, slow-call metrics and the §3 latency budget. | ZBW-PAPI-005 | PlaceholderAPI | M16 | DEFERRED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Owned by M16 | Scope is not advanced beyond completed milestones |
 | Provide raw/formatted/compact/duration/percentage/precision/locale/color/null/unknown formatting; list/search/test/debug/performance/cache/reload/docs commands and developer registration/unregistration/family/formatter/context/metadata/error APIs. | ZBW-PAPI-006 | PlaceholderAPI | M16 | DEFERRED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Owned by M16 | Scope is not advanced beyond completed milestones |
 | `SHARED_SERVER` runs multiple arenas on one Paper server with native/template/slime/multiverse worlds and at least 40 managed worlds/100 configured arenas under explicit load/unload/chunk/entity/reset budgets. | ZBW-DEPLOY-001 | Database/deployment | M08/M09/M21/M16/M24 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Foundation exists; remaining allocations are recorded in traceability | Scope is not advanced beyond completed milestones |
-| `SCALABLE_PROXY` supports one/many arenas and one/many groups per backend, static/dynamic registration, health, synchronized state and cross-server queues/parties/private games/rejoin/play-again/stats/punishments/Atlas/replays/maintenance/announcements. | ZBW-DEPLOY-002 | Database/deployment | M20 | DEFERRED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Owned by M20 | Scope is not advanced beyond completed milestones |
-| Deployment/provider config validates required services at startup and manual/GUI validation; changing mode does not rewrite arena definitions and failed dependencies enter an explicit safe state. | ZBW-DEPLOY-003 | Database/deployment | M03/M20 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Foundation exists; remaining allocations are recorded in traceability | Scope is not advanced beyond completed milestones |
-| Dedicated Velocity and BungeeCord adapters share one proxy domain and provide equivalent registration/status/transfer/queue/rejoin/play-again/maintenance, signed/versioned messaging, heartbeat/failover/drain/retry/fallback/duplicate-player protection, commands/permissions/events/API/diagnostics. | ZBW-DEPLOY-004 | Database/deployment | M20 | DEFERRED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Owned by M20 | Scope is not advanced beyond completed milestones |
+| `SCALABLE_PROXY` supports one/many arenas and one/many groups per backend, static/dynamic registration, health, synchronized state and cross-server queues/parties/private games/rejoin/play-again/stats/punishments/Atlas/replays/maintenance/announcements. | ZBW-DEPLOY-002 | Database/deployment | M20 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | M20 Phase 1 neutral proxy contracts implemented; proxy adapters and distributed flows remain | Scope is not advanced beyond completed milestones |
+| Deployment/provider config validates required services at startup and manual/GUI validation; changing mode does not rewrite arena definitions and failed dependencies enter an explicit safe state. | ZBW-DEPLOY-003 | Database/deployment | M03/M20 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | M20 Phase 1 neutral proxy contracts implemented; proxy adapters and distributed flows remain | Scope is not advanced beyond completed milestones |
+| Dedicated Velocity and BungeeCord adapters share one proxy domain and provide equivalent registration/status/transfer/queue/rejoin/play-again/maintenance, signed/versioned messaging, heartbeat/failover/drain/retry/fallback/duplicate-player protection, commands/permissions/events/API/diagnostics. | ZBW-DEPLOY-004 | Database/deployment | M20 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | M20 Phase 1 neutral proxy contracts implemented; proxy adapters and distributed flows remain | Scope is not advanced beyond completed milestones |
 | CloudNet adapter supplies dynamic create/shutdown, template/group deploy, metadata/health/capacity, min/max/warm-pool/idle/crash replacement/allocation/queue auto-scaling, private/replay services, events/commands/permissions/GUI/diagnostics. | ZBW-DEPLOY-005 | Database/deployment | M21 | DEFERRED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Owned by M21 | Scope is not advanced beyond completed milestones |
 | Redis synchronizes all listed player/arena/queue/party/private/server/streak/cache/punishment/Atlas/replay/announcement state using versioned deduplicated pub/sub/streams, locks/leader election only where required, expiry/namespaces/pools/reconnect/circuit-breaker/backpressure/auth/TLS/health/cleanup; no unbounded polling. | ZBW-DEPLOY-006 | Database/deployment | M19 | VERIFIED | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | M19 Redis contracts, adapter, security, bridges, recovery, performance and operations evidence complete | Scope is not advanced beyond completed milestones |
 | Repositories support SQLite, MySQL and MariaDB through HikariCP where applicable with versioned automatic validated migrations, restore-based rollback where DDL rollback is unsafe, metrics, optional read/write routing, transactions/retry/deadlock/timeout/prepared/batch/index/constraints/backup/restore/import/export/repair/delete/conflict consistency and health surfaces. | ZBW-DEPLOY-007 | Database/deployment | M04/M09 | PARTIAL | See traceability | See traceability | See traceability | See traceability | See traceability | Milestone evidence | PRD + traceability | Per requirement | Foundation exists; remaining allocations are recorded in traceability | Scope is not advanced beyond completed milestones |

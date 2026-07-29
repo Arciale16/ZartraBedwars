@@ -46,6 +46,7 @@
     <module>atlas/zbw-atlas-sql</module>
     <module>redis/zbw-redis-api</module>
     <module>redis/zbw-redis</module>
+    <module>proxy/zbw-proxy-api</module>
   </modules>
 
   <properties>

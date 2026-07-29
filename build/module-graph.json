@@ -218,6 +218,12 @@
             "responsibility": "Java 8 bounded authenticated Lettuce coordination, recovery and domain-neutral bridge adapter"
         },
         {
+            "id": "zbw-proxy-api",
+            "path": "proxy/zbw-proxy-api/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 immutable backend registry, routing, reservation, transfer and proxy diagnostics contracts"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",

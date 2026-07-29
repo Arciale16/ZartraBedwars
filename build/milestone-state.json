@@ -1,6 +1,6 @@
 {
     "schema_version":  1,
-    "active_milestone":  null,
+    "active_milestone":  "M20",
     "next_milestone":  "M20",
     "completed_milestones":  [
                                  "M00",
