@@ -17,6 +17,7 @@ ADAPTER_MODULES = (
     "integrations/anticheat/zbw-integration-grim",
     "integrations/anticheat/zbw-integration-vulcan",
     "cloud/zbw-cloudnet",
+    "integrations/world/zbw-integration-world-providers",
 )
 
 
@@ -30,6 +31,7 @@ def main() -> int:
         "api/zbw-api",
         "storage/zbw-storage-api",
         "application/zbw-application",
+        "world/zbw-world",
         "observability/zbw-observability",
         "redis/zbw-redis-api",
         "proxy/zbw-proxy-api",

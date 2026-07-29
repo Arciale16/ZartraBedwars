@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 import org.junit.jupiter.api.Test;
 
-/** ZBW-INT-002/003/006/007/008/009 provider certification state coverage. */
+/** ZBW-INT-002/003/005/006/007/008/009 provider certification state coverage. */
 final class ProviderCompatibilityCheckTest {
     private static final Instant NOW = Instant.parse("2026-07-29T10:00:00Z");
 
@@ -60,9 +60,9 @@ final class ProviderCompatibilityCheckTest {
     @Test
     void canonicalInventoryContainsEveryCertifiedProvider() {
         final List<ProviderId> ids = ProviderCompatibilityCheck.m21ProviderIds();
-        assertEquals(9, ids.size());
+        assertEquals(14, ids.size());
         assertEquals(id("alessiodp-parties"), ids.get(0));
-        assertEquals(id("znpcsplus"), ids.get(8));
+        assertEquals(id("znpcsplus"), ids.get(13));
     }
 
     private static TaskContext context() {

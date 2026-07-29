@@ -38,6 +38,7 @@ world. Unload detaches without synchronous filesystem deletion.
 
 Provider implementations must build plans without I/O, enforce affinity,
 return non-null typed step results, make rollback idempotent and expose fast
-secret-safe snapshots. Optional WorldEdit, FAWE, WorldGuard, Slime and
-Multiverse providers remain M21; arena ownership/concurrency integration is
-M07. No optional provider is implied by the native M06 implementation.
+secret-safe snapshots. Optional WorldEdit, FAWE, WorldGuard, Slime and Multiverse adapters are
+materialized by M21 over this unchanged SPI; arena ownership/concurrency remains
+M07. The native M06 implementation remains the safe fallback and no optional
+provider receives world or lifecycle ownership. See `WORLD_PROVIDERS_M21.md`.

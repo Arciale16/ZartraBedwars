@@ -10,6 +10,7 @@
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-application</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-observability</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-world</artifactId><version>${project.version}</version></dependency>
+    <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-integration-world-providers</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-compat-v1_20-v1_21</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-game</artifactId><version>${project.version}</version></dependency>
     <dependency><groupId>io.zartra.bedwars</groupId><artifactId>zbw-command-paper</artifactId><version>${project.version}</version></dependency>

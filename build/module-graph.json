@@ -140,6 +140,12 @@
             "responsibility": "Java 8 typed references for versioned declarative action graphs"
         },
         {
+            "id": "zbw-integration-world-providers",
+            "path": "integrations/world/zbw-integration-world-providers/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 vendor-isolated optional world-provider adapters"
+        },
+        {
             "id": "zbw-scripting-engine",
             "path": "scripting/zbw-scripting-engine/pom.xml",
             "packaging": "jar",
@@ -444,6 +450,20 @@
                 "zbw-api",
                 "zbw-application"
             ]
+        },
+        {
+            "id": "zbw-integration-world-providers",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api",
+                "zbw-world"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21",
+                "zbw-world": "M21"
+            }
         },
         {
             "id": "zbw-arena",
@@ -792,6 +812,7 @@
                 "zbw-application",
                 "zbw-observability",
                 "zbw-world",
+                "zbw-integration-world-providers",
                 "zbw-compat-v1_20-v1_21",
                 "zbw-game",
                 "zbw-command-paper",
@@ -837,7 +858,8 @@
                 "zbw-integration-alessiopdp": "M21",
                 "zbw-integration-grim": "M21",
                 "zbw-integration-vulcan": "M21",
-                "zbw-observability": "M21"
+                "zbw-observability": "M21",
+                "zbw-integration-world-providers": "M21"
             }
         },
         {

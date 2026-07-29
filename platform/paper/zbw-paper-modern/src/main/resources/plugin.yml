@@ -5,7 +5,7 @@ api-version: '1.21'
 load: STARTUP
 authors: [Zartra]
 description: ZartraBedWars M09 unified command and GUI framework foundation
-softdepend: [PlaceholderAPI, Vault, LuckPerms, Citizens, ZNPCsPlus, DecentHolograms, Parties, GrimAC, Vulcan]
+softdepend: [PlaceholderAPI, Vault, LuckPerms, Citizens, ZNPCsPlus, DecentHolograms, Parties, GrimAC, Vulcan, WorldEdit, FastAsyncWorldEdit, WorldGuard, SlimeWorldManager, Multiverse-Core]
 commands:
   zbw:
     description: ZartraBedWars unified command tree

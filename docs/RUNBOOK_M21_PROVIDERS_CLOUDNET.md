@@ -1,6 +1,6 @@
 # M21 provider and CloudNet operations runbook
 
-Scope: `ZBW-DEPLOY-005`, `ZBW-INT-002/003/006/007/008/009`,
+Scope: `ZBW-DEPLOY-005`, `ZBW-INT-002/003/005/006/007/008/009`,
 `ZBW-OPS-006` and `ZBW-ADDON-226..235`.
 
 ## Plugin Doctor
@@ -9,8 +9,8 @@ Register the check returned by
 `ZartraBedWarsPlugin.providerCompatibilityCheck()` with the existing bounded
 Plugin Doctor engine. The check is nonblocking, reads only cached lifecycle
 health and emits public stable fields for the canonical Vault, LuckPerms,
-Citizens, ZNPCsPlus, DecentHolograms, AlessioDP Parties, Grim, Vulcan and
-CloudNet provider identities.
+Citizens, ZNPCsPlus, DecentHolograms, AlessioDP Parties, Grim, Vulcan, CloudNet,
+WorldEdit, FAWE, WorldGuard, SlimeWorldManager and Multiverse provider identities.
 
 Interpret each provider result as follows:
 
@@ -89,10 +89,14 @@ After recovery:
 Escalate if metadata remains stale, a fresh fence cannot be acquired or the
 bounded callback executor rejects work. Do not bypass these guards.
 
-## Closure limitation
+## World-provider recovery and closure
 
-This runbook certifies the materialized provider and CloudNet scope above. The
-M21 milestone itself cannot be marked complete while the separately allocated
-`ZBW-INT-005` optional WorldEdit/FAWE/WorldGuard/SlimeWorldManager/Multiverse
-adapters remain unmaterialized. That allocation must be implemented or changed
-through explicit owner-approved PRD/ADR/traceability governance.
+WorldEdit, FAWE, WorldGuard, SlimeWorldManager and Multiverse use the same
+PRESENT/ABSENT/INCOMPATIBLE/DUPLICATE lifecycle. When any optional binding is
+unavailable, retain the M06 native provider and do not bypass its owner-thread,
+rollback or admission controls. Validate the exact baseline, restart only the
+isolated adapter and require a non-mutating plan/snapshot check before use.
+
+M21 is complete with the world-provider adapter evidence in
+`WORLD_PROVIDERS_M21.md`. M22 remains the owner of the full 1.8–1.21.x runtime
+matrix and is not started by this closure.

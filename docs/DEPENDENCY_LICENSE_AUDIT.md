@@ -149,3 +149,7 @@ redistributed by this reactor. (ZBW-INT-002/003/006/007/008/009; ZBW-LICENSE-005
 ## M21 Phase 3 CloudNet dependency result
 
 `zbw-cloudnet` adds no Maven component. It compiles against internal neutral contracts and accepts an operator-supplied `CloudNetGateway`, so the immutable Maven lock, build SBOM and notices remain unchanged. CloudNet `4.0.0-RC14` remains an operator-side provided runtime selection under the approved row above; no CloudNet, proprietary or server binary is stored, resolved, shaded or redistributed by this reactor. Standalone fallback uses the static M20 backend registry with autoscaling disabled. (`ZBW-DEPLOY-005`, `ZBW-ADDON-226..235`, `ZBW-LICENSE-005`)
+
+## M21 Phase 5 world-provider dependency result
+
+`zbw-integration-world-providers` adds no Maven component. It compiles only against internal `zbw-api` and `zbw-world` contracts and accepts operator-supplied gateways. WorldEdit `7.3.16`, FAWE `2.15.1`, WorldGuard `7.0.17`, AdvancedSlimePaper/SlimeWorldManager `5.1.0` and Multiverse-Core `5.3.3` remain provided operator runtime selections under the approved rows above. No vendor/server binary is stored, resolved, shaded or redistributed; the immutable Maven lock, build SBOM and notices remain unchanged. Native M06 fallback remains available. (`ZBW-INT-005`, `ZBW-LICENSE-005`)

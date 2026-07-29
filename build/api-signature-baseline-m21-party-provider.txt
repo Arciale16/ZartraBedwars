@@ -194,6 +194,12 @@ CLASS io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawAlert access=0x
 CLASS io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawSink access=0x0601 extends=java.lang.Object implements=
 CLASS io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawSubscription access=0x0601 extends=java.lang.Object implements=
 CLASS io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$Source access=0x0601 extends=java.lang.Object implements=
+CLASS io.zartra.bedwars.integration.world.FaweWorldProvider access=0x0031 extends=io.zartra.bedwars.integration.world.AbstractOptionalWorldProvider implements=
+CLASS io.zartra.bedwars.integration.world.MultiverseWorldProvider access=0x0031 extends=io.zartra.bedwars.integration.world.AbstractOptionalWorldProvider implements=
+CLASS io.zartra.bedwars.integration.world.SlimeWorldManagerWorldProvider access=0x0031 extends=io.zartra.bedwars.integration.world.AbstractOptionalWorldProvider implements=
+CLASS io.zartra.bedwars.integration.world.WorldEditWorldProvider access=0x0031 extends=io.zartra.bedwars.integration.world.AbstractOptionalWorldProvider implements=
+CLASS io.zartra.bedwars.integration.world.WorldGuardWorldProvider access=0x0031 extends=io.zartra.bedwars.integration.world.AbstractOptionalWorldProvider implements=
+CLASS io.zartra.bedwars.integration.world.WorldProviderGateway access=0x0601 extends=java.lang.Object implements=
 CLASS io.zartra.bedwars.integration.znpcsplus.ZnpcsPlusNpcAdapter access=0x0031 extends=java.lang.Object implements=io.zartra.bedwars.api.integration.npc.NpcProvider
 CLASS io.zartra.bedwars.integration.znpcsplus.ZnpcsPlusNpcAdapter$Gateway access=0x0601 extends=java.lang.Object implements=
 CLASS io.zartra.bedwars.observability.diagnostic.SafeDiagnosticExporter access=0x0031 extends=java.lang.Object implements=
@@ -1086,6 +1092,14 @@ METHOD io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawAlert violatio
 METHOD io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawSink onAlert (Lio/zartra/bedwars/integration/vulcan/VulcanAlertAdapter$RawAlert;)V access=0x0401
 METHOD io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$RawSubscription close ()V access=0x0401
 METHOD io.zartra.bedwars.integration.vulcan.VulcanAlertAdapter$Source subscribe (Lio/zartra/bedwars/integration/vulcan/VulcanAlertAdapter$RawSink;)Lio/zartra/bedwars/integration/vulcan/VulcanAlertAdapter$RawSubscription; access=0x0401
+METHOD io.zartra.bedwars.integration.world.FaweWorldProvider <init> (Lio/zartra/bedwars/integration/world/WorldProviderGateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/world/api/WorldProvider;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
+METHOD io.zartra.bedwars.integration.world.MultiverseWorldProvider <init> (Lio/zartra/bedwars/integration/world/WorldProviderGateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/world/api/WorldProvider;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
+METHOD io.zartra.bedwars.integration.world.SlimeWorldManagerWorldProvider <init> (Lio/zartra/bedwars/integration/world/WorldProviderGateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/world/api/WorldProvider;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
+METHOD io.zartra.bedwars.integration.world.WorldEditWorldProvider <init> (Lio/zartra/bedwars/integration/world/WorldProviderGateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/world/api/WorldProvider;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
+METHOD io.zartra.bedwars.integration.world.WorldGuardWorldProvider <init> (Lio/zartra/bedwars/integration/world/WorldProviderGateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/world/api/WorldProvider;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
+METHOD io.zartra.bedwars.integration.world.WorldProviderGateway compatible ()Ljava/util/concurrent/CompletionStage; access=0x0401
+METHOD io.zartra.bedwars.integration.world.WorldProviderGateway plan (Lio/zartra/bedwars/world/api/WorldOperation;)Lio/zartra/bedwars/world/api/WorldProvider$Plan; access=0x0401
+METHOD io.zartra.bedwars.integration.world.WorldProviderGateway snapshot (Lio/zartra/bedwars/world/api/WorldKey;)Lio/zartra/bedwars/world/api/WorldProvider$ResourceSnapshot; access=0x0401
 METHOD io.zartra.bedwars.integration.znpcsplus.ZnpcsPlusNpcAdapter <init> (Lio/zartra/bedwars/integration/znpcsplus/ZnpcsPlusNpcAdapter$Gateway;Lio/zartra/bedwars/api/provider/OptionalProviderLifecycle$Probe;Lio/zartra/bedwars/api/time/TimeSource;)V access=0x0001
 METHOD io.zartra.bedwars.integration.znpcsplus.ZnpcsPlusNpcAdapter descriptor ()Lio/zartra/bedwars/api/provider/Provider$Descriptor; access=0x0001
 METHOD io.zartra.bedwars.integration.znpcsplus.ZnpcsPlusNpcAdapter drain (Ljava/time/Duration;)Ljava/util/concurrent/CompletionStage; access=0x0001

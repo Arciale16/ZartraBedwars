@@ -47,7 +47,7 @@ final class PaperProviderIntegrationRuntimeTest {
                 provider("grim", OptionalProviderLifecycle.Probe.AVAILABLE)));
         assertEquals(ProviderCompatibilityCheck.State.DUPLICATE,
                 runtime.compatibilityCheck().state(ProviderId.of("test", "grim")));
-        assertEquals(9, ProviderCompatibilityCheck.m21ProviderIds().size());
+        assertEquals(14, ProviderCompatibilityCheck.m21ProviderIds().size());
     }
     private static Provider provider(final String id,
                                      final OptionalProviderLifecycle.Probe probe) {

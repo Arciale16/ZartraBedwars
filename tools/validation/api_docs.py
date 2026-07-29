@@ -34,6 +34,7 @@ NEUTRAL_MODULES = (
     "integrations/anticheat/zbw-integration-grim",
     "integrations/anticheat/zbw-integration-vulcan",
     "cloud/zbw-cloudnet",
+    "integrations/world/zbw-integration-world-providers",
 )
 MODERN_MODULES = (
     "compatibility/zbw-compat-v1_20-v1_21",

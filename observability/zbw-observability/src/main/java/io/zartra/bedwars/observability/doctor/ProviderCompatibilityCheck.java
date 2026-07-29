@@ -21,7 +21,7 @@ import java.util.TreeSet;
 /**
  * Secret-safe Plugin Doctor check for the materialized M21 provider boundary.
  *
- * <p>ZBW-INT-002/003/006/007/008/009 and ZBW-DEPLOY-005: this check observes lifecycle
+ * <p>ZBW-INT-002/003/005/006/007/008/009 and ZBW-DEPLOY-005: this check observes lifecycle
  * compatibility only. It neither loads vendor classes nor invokes feature or domain behavior.</p>
  */
 public final class ProviderCompatibilityCheck implements PluginDoctor.Check {
@@ -78,7 +78,7 @@ public final class ProviderCompatibilityCheck implements PluginDoctor.Check {
      * Returns the canonical M21 provider certification inventory.
      *
      * @return Vault, LuckPerms, Citizens, ZNPCsPlus, DecentHolograms, AlessioDP, Grim,
-     *         Vulcan and CloudNet identities
+     *         Vulcan, CloudNet, WorldEdit, FAWE, WorldGuard, SlimeWorldManager and Multiverse-Core identities
      */
     public static List<ProviderId> m21ProviderIds() {
         final List<ProviderId> result = new ArrayList<ProviderId>();
@@ -91,6 +91,11 @@ public final class ProviderCompatibilityCheck implements PluginDoctor.Check {
         result.add(ProviderId.of("zartra", "grim"));
         result.add(ProviderId.of("zartra", "vulcan"));
         result.add(ProviderId.of("zartra", "cloudnet"));
+        result.add(ProviderId.of("zartra", "worldedit"));
+        result.add(ProviderId.of("zartra", "fawe"));
+        result.add(ProviderId.of("zartra", "worldguard"));
+        result.add(ProviderId.of("zartra", "slimeworldmanager"));
+        result.add(ProviderId.of("zartra", "multiverse-core"));
         Collections.sort(result);
         return Collections.unmodifiableList(result);
     }
