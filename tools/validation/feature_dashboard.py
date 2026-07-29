@@ -50,6 +50,8 @@ M20_REQUIREMENTS = {
     "ZBW-DEPLOY-002", "ZBW-DEPLOY-003", "ZBW-DEPLOY-004",
 }
 
+M21_CLOUDNET_ADDONS = tuple(range(226, 236))
+
 M21_REQUIREMENTS = {
     "ZBW-DEPLOY-005", "ZBW-INT-002", "ZBW-INT-003", "ZBW-INT-005",
     "ZBW-INT-006", "ZBW-INT-007", "ZBW-INT-008", "ZBW-INT-009",
@@ -175,10 +177,12 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
     if identifier in M20_REQUIREMENTS:
         return "PARTIAL", "M20 proxy networking allocation complete; provider, compatibility and release qualification remain"
     if identifier in M21_REQUIREMENTS:
-        return "PARTIAL", "M21 Phase 2 isolated provider adapter boundary is complete; CloudNet, world providers, dashboards and release qualification remain"
+        return "PARTIAL", "M21 Phase 3 CloudNet lifecycle/scaling boundary is complete; world providers, dashboards and release qualification remain"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
+    if match and int(match.group(1)) in M21_CLOUDNET_ADDONS:
+        return "PARTIAL", "M21 CloudNet discovery, lifecycle, bounded scaling, failure and coordination evidence complete; command/dashboard and release qualification remain"
     if match and (41 <= int(match.group(1)) <= 60 or 102 <= int(match.group(1)) <= 107 or 252 <= int(match.group(1)) <= 259 or 291 <= int(match.group(1)) <= 299 or int(match.group(1)) == 387 or 464 <= int(match.group(1)) <= 473):
         return "PARTIAL", "M20 proxy coordination allocation complete; owner-side feature and M21/M22 provider/compatibility work remain"
     if match and 323 <= int(match.group(1)) <= 333:
@@ -293,7 +297,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M20 and hardening M08.1 are complete; M21 Phase 2 provider adapters are active.",
+        "M00-M20 and hardening M08.1 are complete; M21 Phase 3 CloudNet integration is active.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",
@@ -302,7 +306,7 @@ def render() -> str:
         "contracts, deterministic runtime, SQL persistence and M09/Paper presentation. M14 Phase 1 adds",
         "neutral cosmetic/profile/calendar models and ports. M15/M16 are complete. M17 closes replay",
         "contracts, ingestion, SQL persistence, playback, bounded Paper viewer/visuals and staff tools;",
-        "provider/distributed/compatibility and final release qualification remain with M21-M24. M19 closes Redis coordination; M20 closes proxy routing, cross-server flows, failure/security testing and operations without taking domain ownership.",
+        "world-provider/compatibility and final release qualification remain with M21-M24. M19 closes Redis coordination; M20 closes proxy routing, cross-server flows, failure/security testing and operations without taking domain ownership.",
         "", "## Feature rows", "",
     ])
     columns = list(rows[0])

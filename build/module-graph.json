@@ -290,6 +290,12 @@
             "responsibility": "Java 8 operator-licensed Vulcan alert normalization adapter without vendor binary"
         },
         {
+            "id": "zbw-cloudnet",
+            "path": "cloud/zbw-cloudnet/pom.xml",
+            "packaging": "jar",
+            "responsibility": "Java 8 optional CloudNet discovery, lifecycle, fenced scaling and proxy registry projection adapter"
+        },
+        {
             "id": "zbw-compat-v1_20-v1_21",
             "path": "compatibility/zbw-compat-v1_20-v1_21/pom.xml",
             "packaging": "jar",
@@ -971,6 +977,22 @@
             ],
             "dependency_since": {
                 "zbw-api": "M21"
+            }
+        },
+        {
+            "id": "zbw-cloudnet",
+            "layer": "adapter",
+            "bytecode": 8,
+            "first_milestone": "M21",
+            "depends_on": [
+                "zbw-api",
+                "zbw-redis-api",
+                "zbw-proxy-api"
+            ],
+            "dependency_since": {
+                "zbw-api": "M21",
+                "zbw-redis-api": "M21",
+                "zbw-proxy-api": "M21"
             }
         },
         {

@@ -16,6 +16,7 @@ ADAPTER_MODULES = (
     "integrations/party/zbw-integration-alessiopdp",
     "integrations/anticheat/zbw-integration-grim",
     "integrations/anticheat/zbw-integration-vulcan",
+    "cloud/zbw-cloudnet",
 )
 
 
@@ -27,6 +28,8 @@ def main() -> int:
     classpath = api_docs.artifacts((
         "api/zbw-api",
         "storage/zbw-storage-api",
+        "redis/zbw-redis-api",
+        "proxy/zbw-proxy-api",
         "party/zbw-party",
         "party/zbw-party-sql",
         *ADAPTER_MODULES,

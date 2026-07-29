@@ -22,6 +22,7 @@ ROOTS = (
     "integrations/party/zbw-integration-alessiopdp/target/classes",
     "integrations/anticheat/zbw-integration-grim/target/classes",
     "integrations/anticheat/zbw-integration-vulcan/target/classes",
+    "cloud/zbw-cloudnet/target/classes",
 )
 
 

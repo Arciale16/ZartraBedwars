@@ -544,6 +544,9 @@ Phase 9 remains inside `zbw-paper-modern`. `ReplayStaffService` accepts only asy
 
 The closed M17 runtime keeps replay ownership split across Java 8 API/engine/SQL modules and the Java 21 Paper adapter. Paper viewer admission is atomic and capped at 256; visual projections retain at most 128 entities and 256 important events, menu projections retain at most 128 participants and 64 events, and staff normalization rejects provider responses above 100 rows. Repository completion crosses the explicit owner-thread boundary once, while rendering consumes immutable playback projections only. Stop, disconnect, shutdown, failed presentation and corrupt rendering all detach menus/entities and restore captured spectator state. Archived sessions remain immutable and playable; failed sessions are rejected and can be removed only through audited administration. See `REPLAY_M17.md`. (ZBW-REPLAY-001..010; ZBW-READY-009/010/011/016/017/018)
 
+### M21 Phase 3 CloudNet boundary
+
+`zbw-cloudnet` depends only on neutral API, Redis API and proxy API contracts. An operator-supplied gateway isolates the CloudNet runtime; the adapter owns discovery and service lifecycle only. Scaling is bounded by warm-pool limits, hysteresis, cooldown and action caps, while M19 lease/fencing and degradation state prevent unsafe cross-node actions. M20 receives backend lifecycle/capacity/health projections but retains all routing, transfer and reservation ownership. CloudNet callbacks execute exclusively through a bounded worker with rejection, never on a Paper owner thread. (`ZBW-DEPLOY-003/005`, `ZBW-OPS-006`, `ZBW-ADDON-226..235`)
 ### M21 Phase 2 provider adapter boundary
 
 Eight Java 8 adapter modules implement the vendor-neutral `zbw-api` SPIs through

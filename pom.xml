@@ -58,6 +58,7 @@
     <module>integrations/party/zbw-integration-alessiopdp</module>
     <module>integrations/anticheat/zbw-integration-grim</module>
     <module>integrations/anticheat/zbw-integration-vulcan</module>
+    <module>cloud/zbw-cloudnet</module>
   </modules>
 
   <properties>
