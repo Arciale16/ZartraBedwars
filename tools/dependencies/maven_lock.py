@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -36,6 +38,8 @@ PLEXUS_I18N_SOURCE = (
 PAPER_LOCK = ROOT / "build" / "m06-paper-runtime-lock.json"
 PAPER_PREFIX = "io/zartra/mirror/paper/paper-api/1.21.1-build133/"
 PAPER_GENERATED_POM = "generated:tools/dependencies/acquire_m06_paper.py"
+FETCH_RETRY_DELAYS = (1.0, 2.0, 4.0)
+RETRYABLE_HTTP_STATUS = frozenset({408, 429, 500, 502, 503, 504})
 
 
 def digest(path: Path) -> str:
@@ -106,8 +110,28 @@ def normalize_license(name: str, url: str = "") -> tuple[str, list[str]]:
 
 def fetch_bytes(url: str) -> bytes:
     request = urllib.request.Request(url, headers={"User-Agent": "ZartraBedWars-M04/1"})
-    with urllib.request.urlopen(request, timeout=90) as response:
-        return response.read()
+    attempts = len(FETCH_RETRY_DELAYS) + 1
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(request, timeout=90) as response:
+                return response.read()
+        except urllib.error.HTTPError as error:
+            retryable = error.code in RETRYABLE_HTTP_STATUS
+            if not retryable or attempt == attempts - 1:
+                raise RuntimeError(
+                    f"Failed to fetch locked artifact URL after {attempt + 1} "
+                    f"attempt(s): {url} (HTTP {error.code})") from error
+        except (urllib.error.URLError, ConnectionError, TimeoutError) as error:
+            if attempt == attempts - 1:
+                raise RuntimeError(
+                    f"Failed to fetch locked artifact URL after {attempt + 1} "
+                    f"attempt(s): {url} ({type(error).__name__})") from error
+        delay = FETCH_RETRY_DELAYS[attempt]
+        print(
+            f"Transient fetch failure; retrying locked artifact in {delay:g}s "
+            f"({attempt + 2}/{attempts}): {url}")
+        time.sleep(delay)
+    raise AssertionError("unreachable fetch retry state")
 
 
 def license_evidence(spdx_ids: list[str]) -> list[dict[str, str]]:
