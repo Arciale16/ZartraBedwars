@@ -38,7 +38,7 @@ PLEXUS_I18N_SOURCE = (
 PAPER_LOCK = ROOT / "build" / "m06-paper-runtime-lock.json"
 PAPER_PREFIX = "io/zartra/mirror/paper/paper-api/1.21.1-build133/"
 PAPER_GENERATED_POM = "generated:tools/dependencies/acquire_m06_paper.py"
-FETCH_RETRY_DELAYS = (1.0, 2.0, 4.0)
+FETCH_RETRY_DELAYS = (5.0, 10.0, 20.0, 40.0, 80.0)
 RETRYABLE_HTTP_STATUS = frozenset({408, 429, 500, 502, 503, 504})
 
 
