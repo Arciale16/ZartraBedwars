@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    "ZBW-QA-001..007",
+    "ZBW-GOV-007",
+    "ZBW-GOV-011",
+    "ZBW-OPS-008",
+    "ZBW-CONTENT-001",
+    "ZBW-CONTENT-011",
+    "ZBW-LICENSE-001..007",
+    "ZBW-READY-001..020"
+  ],
+  "overall_status": "LOCAL_QUALIFICATION_COMPLETE_EXTERNAL_GATES_PENDING",
+  "release_ready": false,
+  "support_claim_allowed": false,
+  "security": {
+    "status": "REPOSITORY_EVIDENCE_VERIFIED",
+    "checks": [
+      {"id": "THREAT_MODEL", "status": "VERIFIED", "evidence": "docs/THREAT_MODEL_M24.md"},
+      {"id": "PERMISSION_AUDIT", "status": "VERIFIED_STATIC", "evidence": "tools/validation/m24_qualification.py"},
+      {"id": "PRIVACY_REVIEW", "status": "VERIFIED_DESIGN", "evidence": "docs/PRIVACY_AND_RETENTION.md"},
+      {"id": "DEPENDENCY_POLICY", "status": "VERIFIED_LOCKED", "evidence": "build/maven-dependency-lock.json"},
+      {"id": "PROVIDER_ISOLATION", "status": "VERIFIED_STATIC", "evidence": "tools/validation/m24_qualification.py"}
+    ]
+  },
+  "performance": {
+    "status": "HARNESS_VERIFIED_RUNTIME_BENCHMARK_PENDING",
+    "blocking_io_status": "VERIFIED_STATIC",
+    "profiles": [
+      {"id": "SMALL", "status": "PENDING_NORMATIVE_ENVIRONMENT"},
+      {"id": "SHARED_40", "status": "PENDING_NORMATIVE_ENVIRONMENT"},
+      {"id": "PROXY_4", "status": "PENDING_NORMATIVE_ENVIRONMENT"}
+    ]
+  },
+  "recovery": {
+    "status": "CONTRACT_AND_PROCEDURE_VERIFIED_RUNTIME_DRILLS_PENDING",
+    "sql": "PENDING_EXTERNAL_DRILL",
+    "redis": "PENDING_EXTERNAL_DRILL",
+    "crash": "PENDING_EXTERNAL_DRILL",
+    "rollback": "VERIFIED_BY_OWNER_MODULE_TESTS"
+  },
+  "release": {
+    "status": "REPOSITORY_INPUTS_VERIFIED_RELEASE_CANDIDATE_PENDING",
+    "reproducible_build": "CHECK_IMPLEMENTED",
+    "artifact_checksums": "GENERATOR_IMPLEMENTED",
+    "sbom_notices": "VERIFIED",
+    "compatibility_report": "M22_CERTIFICATION_PENDING"
+  },
+  "external_gates": [
+    {"id": "M22_RUNTIME_CERTIFICATION", "status": "PENDING_EXTERNAL"},
+    {"id": "PROVIDER_PROVENANCE", "status": "PENDING"},
+    {"id": "CERTIFIED_TOOLCHAINS", "status": "PENDING_EXTERNAL"},
+    {"id": "BENCHMARK_ENVIRONMENT", "status": "PENDING_EXTERNAL"},
+    {"id": "SECURITY_EVIDENCE", "status": "PENDING_EXTERNAL"}
+  ]
+}

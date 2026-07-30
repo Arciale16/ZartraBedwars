@@ -34,7 +34,8 @@
                                              "M11_POST_MERGE_AUDIT_M12_ALLOCATION",
                                              "M11_FINAL_CLOSURE_M12_PREPARATION",
                                              "M23_IMPLEMENTATION_CLOSURE",
-                                             "M24_QUALIFICATION_PREPARATION"
+                                             "M24_QUALIFICATION_PREPARATION",
+                                             "M24_LOCAL_QUALIFICATION"
                                          ],
     "qualification_governance":  {
                                          "M22":  {
@@ -47,7 +48,7 @@
                                                      "formal_sequence_advancement":  "BLOCKED_BY_M22_CERTIFICATION"
                                                  },
                                          "M24":  {
-                                                     "status":  "PREPARATION_ONLY",
+                                                     "status":  "QUALIFICATION_IMPLEMENTED_EXTERNAL_GATES_PENDING",
                                                      "activation_status":  "BLOCKED",
                                                      "activation_prerequisites":  [
                                                                                      "M22_RUNTIME_CERTIFICATION",
