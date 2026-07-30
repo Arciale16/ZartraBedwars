@@ -32,8 +32,32 @@
     "completed_governance_checkpoints":  [
                                              "M11_SCOPE_RECONCILIATION",
                                              "M11_POST_MERGE_AUDIT_M12_ALLOCATION",
-                                             "M11_FINAL_CLOSURE_M12_PREPARATION"
+                                             "M11_FINAL_CLOSURE_M12_PREPARATION",
+                                             "M23_IMPLEMENTATION_CLOSURE",
+                                             "M24_QUALIFICATION_PREPARATION"
                                          ],
+    "qualification_governance":  {
+                                         "M22":  {
+                                                     "implementation_status":  "COMPLETE",
+                                                     "certification_status":  "PENDING_EXTERNAL",
+                                                     "support_claim_allowed":  false
+                                                 },
+                                         "M23":  {
+                                                     "implementation_status":  "CLOSED",
+                                                     "formal_sequence_advancement":  "BLOCKED_BY_M22_CERTIFICATION"
+                                                 },
+                                         "M24":  {
+                                                     "status":  "PREPARATION_ONLY",
+                                                     "activation_status":  "BLOCKED",
+                                                     "activation_prerequisites":  [
+                                                                                     "M22_RUNTIME_CERTIFICATION",
+                                                                                     "PROVIDER_PROVENANCE",
+                                                                                     "CERTIFIED_TOOLCHAINS",
+                                                                                     "BENCHMARK_ENVIRONMENT",
+                                                                                     "SECURITY_EVIDENCE"
+                                                                                 ]
+                                                 }
+                                     },
     "functional_production_path":  true,
     "java_implementation_started":  true,
     "runtime_behavior_started":  true

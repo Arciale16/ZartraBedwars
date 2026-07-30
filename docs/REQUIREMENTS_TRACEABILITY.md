@@ -1026,7 +1026,28 @@ The M18 closure originally handed ownership to M19 without implementing Redis; t
 | `ZBW-OPS-006/009` | Five-category `OperationalReadinessCheck`, migration/SDK/operator/troubleshooting documentation and sanitized bounded evidence | Existing M05 observability owns execution/sanitization; final dashboards, benchmarks and release inventory remain M24 |
 | M23 tests | Immutability, malformed input, deterministic ordering, duplicates, conflicts, dry-run, backup, failed-apply restore, rollback, layout validation/loss, Doctor severity and SDK lifecycle/conversion tests | Exact M22 runtime/provider acquisition and certification remain external and active |
 
-M23 implementation is complete without changing the durable authority of progression, statistics,
-permissions, shop, replay or any provider. `build/milestone-state.json` remains on M22 because the
-deterministic milestone validator prohibits advancing past its still-pending external certification
-gate. M24 has not started.
+M23 implementation is formally closed without changing the durable authority of progression,
+statistics, permissions, shop, replay or any provider. Ordered milestone advancement remains on M22
+because the deterministic milestone validator prohibits advancing past its still-pending external
+certification gate. M24 has not started.
+
+## M24 qualification preparation governance
+
+This checkpoint allocates no production behavior and changes no M11-M23 ownership. It records the
+evidence gates that must pass before M24 can become the active milestone for `ZBW-QA-001..007`,
+`ZBW-GOV-007/011`, `ZBW-OPS-008`, `ZBW-CONTENT-001/011`, `ZBW-LICENSE-001..007`,
+`ZBW-READY-001..020` and final acceptance of all 672 semantic requirements and their atomic
+children.
+
+| Pending gate | Required evidence before M24 activation | Status / retained owner |
+|---|---|---|
+| M22 runtime certification | Exact locked server/JDK/client cells pass startup, lifecycle, gameplay, GUI, item, packet, replay, provider and fallback suites | `PENDING_EXTERNAL`; M22 remains active and no compatibility support claim is allowed |
+| Provider provenance | Exact coordinates, sources, artifact and licence-text SHA-256 values, redistribution decision and complete transitive lock/SBOM | `PENDING`; M22 dependency governance retains ownership |
+| Toolchains and fixtures | Checksum-locked JDK 8/11/16/17/21 toolchains and lawfully acquired exact runtime/client fixtures | `PENDING_EXTERNAL`; proprietary binaries remain outside the repository |
+| Benchmark environment | Normative hardware, workload fixtures, warm-up, repeated-run protocol and raw telemetry storage are available | `PENDING`; M24 may execute qualification only after activation |
+| Security evidence | Network, scripting, privacy, retention, recovery and threat-model inputs are complete and reviewable | `PENDING`; no security or release claim is made by this checkpoint |
+
+`build/milestone-state.json` therefore retains the ordered M22/M23 validator state, records M23
+implementation closure as a governance checkpoint and records M24 as blocked preparation. M24
+becomes active only after every prerequisite above is satisfied; this checkpoint neither certifies
+M22 nor marks the product release-ready.
