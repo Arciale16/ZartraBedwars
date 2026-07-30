@@ -118,9 +118,11 @@ def validate() -> list[str]:
     paper_dependencies = dependencies("platform/paper/zbw-paper-modern")
     if paper_dependencies.get("io.zartra.mirror.paper:paper-api") != "provided":
         errors.append("Paper API must remain exact, compile-only/provided, and unbundled")
-    for path in LEGACY_PATHS:
-        if (ROOT / path).exists():
-            errors.append(f"M22-only legacy adapter was materialized in M06: {path}")
+    m22_started = "M22" in completed or active == "M22"
+    if not m22_started:
+        for path in LEGACY_PATHS:
+            if (ROOT / path).exists():
+                errors.append(f"M22-only legacy adapter was materialized before M22: {path}")
 
     required_sources = (
         "compatibility/zbw-compat-api/src/main/java/io/zartra/bedwars/compat/api/CompatibilityAdapter.java",
@@ -205,7 +207,7 @@ def main() -> int:
         return 1
     print(
         "M06 architecture PASS: Java 8 neutral contracts, Java 21 primary adapter/bootstrap, "
-        "bounded world lifecycle, exact Paper evidence, and no M22 adapter.")
+        "bounded world lifecycle, exact Paper evidence, and preserved M22 isolation.")
     return 0
 
 

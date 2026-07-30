@@ -231,12 +231,15 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 ### M22 â€” Full 1.8â€“1.21.x and Bedrock compatibility matrix
 
+- **Implementation status:** IN PROGRESS. Phase 1 allocated deterministic governance and pre-resolution provider locks. Phase 2 materializes exact symbolic server adapters for all 22 locked fixtures and fail-closed Java 8/11/16/17 bootstraps over neutral command/UI APIs. Phase 3 adds the Java 8 vendor-isolated client layer, exact Via/Geyser/Floodgate prerequisite checks and deterministic parity outcomes for ten client surfaces. Provider binary linkage and exact 45-cell runtime certification remain pending; no support claim is made.
 - **Requirements:** completion of INT-010, COMPAT-001..009 and READY-001/002/006; remaining ARENA/SHOP/REPLAY/UX and feature compatibility acceptance, including every legacy/fallback cell retained from M11 shop, item, generator and named-mode mappings. M06 foundations remain explicit and are not reclassified as full completion.
 - **Entry:** M06 compatibility/world-provider contracts and primary 1.21.1 foundation certification pass; all feature semantics and their required fallback rows/fixtures are stable; exact legacy/private and maintained runtime fixtures are lawfully acquired and hash-locked.
 - **Deliver:** `zbw-compat-v1_8`, all other legacy/intermediate compatibility modules, matching Java 8/11/16/17 Paper bootstraps, complete legacy mappings/fallbacks, extensions to the modern adapter for every declared modern row, ViaVersion/ViaBackwards/ViaRewind integration and Geyser/Floodgate alternatives.
 - **Exit:** every declared 1.8.8â€“1.21.11 server row, including release-level revalidation of the M06 primary row, passes its required build/startup/lifecycle/gameplay/GUI/item/packet/replay/provider/fallback suite on the exact JDK/fixture; translated Java and Bedrock matrices pass independently; no unsupported platform type is exposed; limitations are explicit and only owner-approved alternatives are accepted. Full 1.8â€“1.21.x certification remains a release gate.
 
 ### M23 â€” Migration, ecosystem and operational completion
+
+- **Implementation status:** IMPLEMENTED. The Java 8 migration API and deterministic engine, lawful bounded layout adapter, compiled public-API-only SDK example and extensible operational Plugin Doctor probes are complete. Formal milestone advancement remains blocked by the active M22 external runtime/provider certification gate; this does not begin M24.
 
 - **Requirements:** ECO-001..005, OPS-006/009; ZBW-ADDON-283..290.
 - **Entry:** Feature schemas/APIs stable; source formats legally documented.

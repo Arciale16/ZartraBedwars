@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    "ZBW-INT-004",
+    "ZBW-INT-010",
+    "ZBW-READY-002",
+    "ZBW-READY-005",
+    "ZBW-LICENSE-001",
+    "ZBW-LICENSE-002",
+    "ZBW-LICENSE-005"
+  ],
+  "policy": {
+    "resolution_allowed": false,
+    "maven_dependency_declaration_allowed": false,
+    "dynamic_versions_allowed": false,
+    "product_bundling_allowed": false,
+    "checksum_algorithm": "SHA-256",
+    "required_before_resolution": [
+      "exact_coordinate",
+      "authoritative_artifact_source",
+      "artifact_sha256",
+      "upstream_release_or_commit",
+      "spdx_license",
+      "license_text_source",
+      "license_text_sha256",
+      "transitive_graph"
+    ]
+  },
+  "providers": [
+    {
+      "id": "protocollib",
+      "name": "ProtocolLib",
+      "version": "5.4.0",
+      "scope": "PROVIDED",
+      "spdx_license": "GPL-2.0-only",
+      "provenance": "dmulloy2/ProtocolLib official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    },
+    {
+      "id": "viaversion",
+      "name": "ViaVersion",
+      "version": "5.4.2",
+      "scope": "PROVIDED",
+      "spdx_license": "GPL-3.0-only",
+      "provenance": "ViaVersion/ViaVersion official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    },
+    {
+      "id": "viabackwards",
+      "name": "ViaBackwards",
+      "version": "5.4.2",
+      "scope": "PROVIDED",
+      "spdx_license": "GPL-3.0-only",
+      "provenance": "ViaVersion/ViaBackwards official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    },
+    {
+      "id": "viarewind",
+      "name": "ViaRewind",
+      "version": "4.0.6",
+      "scope": "PROVIDED",
+      "spdx_license": "GPL-3.0-only",
+      "provenance": "ViaVersion/ViaRewind official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    },
+    {
+      "id": "geyser",
+      "name": "Geyser",
+      "version": "2.7.0",
+      "scope": "PROVIDED",
+      "spdx_license": "MIT",
+      "provenance": "GeyserMC/Geyser official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    },
+    {
+      "id": "floodgate",
+      "name": "Floodgate",
+      "version": "2.2.4",
+      "scope": "PROVIDED",
+      "spdx_license": "MIT",
+      "provenance": "GeyserMC/Floodgate official release",
+      "artifact_sha256": null,
+      "license_text_sha256": null,
+      "lock_state": "REQUIRED_BEFORE_RESOLUTION"
+    }
+  ]
+}

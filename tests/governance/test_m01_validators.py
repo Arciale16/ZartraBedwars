@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
+import urllib.error
 
 import sys
 
@@ -15,6 +17,7 @@ sys.path.insert(0, str(ROOT / "tools" / "build"))
 
 import foundation
 import lock_dependencies
+import maven_lock
 import maven_wrapper
 
 
@@ -62,6 +65,51 @@ class FoundationValidationTests(unittest.TestCase):
     def test_direct_plugin_goal_is_default_denied(self) -> None:
         with self.assertRaises(SystemExit):
             maven_wrapper.validate_arguments(["compiler:compile"])
+
+    def test_maven_fetch_retries_connection_reset(self) -> None:
+        class Response:
+            def __enter__(self) -> "Response":
+                return self
+
+            def __exit__(self, *unused: object) -> None:
+                return None
+
+            def read(self) -> bytes:
+                return b"locked"
+
+        with mock.patch.object(
+                maven_lock.urllib.request, "urlopen",
+                side_effect=[ConnectionResetError("reset"), Response()]) as opener:
+            with mock.patch.object(maven_lock.time, "sleep") as sleeper:
+                self.assertEqual(
+                    b"locked", maven_lock.fetch_bytes(
+                        "https://repo.example/artifact.jar"))
+        self.assertEqual(2, opener.call_count)
+        sleeper.assert_called_once_with(1.0)
+
+    def test_maven_fetch_exhaustion_is_bounded_and_names_url(self) -> None:
+        url = "https://repo.example/reset.jar"
+        with mock.patch.object(
+                maven_lock.urllib.request, "urlopen",
+                side_effect=ConnectionResetError("reset")) as opener:
+            with mock.patch.object(maven_lock.time, "sleep") as sleeper:
+                with self.assertRaisesRegex(RuntimeError, url):
+                    maven_lock.fetch_bytes(url)
+        self.assertEqual(4, opener.call_count)
+        self.assertEqual(
+            [mock.call(1.0), mock.call(2.0), mock.call(4.0)],
+            sleeper.call_args_list)
+
+    def test_maven_fetch_does_not_retry_permanent_http_error(self) -> None:
+        url = "https://repo.example/missing.jar"
+        failure = urllib.error.HTTPError(url, 404, "not found", {}, None)
+        with mock.patch.object(
+                maven_lock.urllib.request, "urlopen", side_effect=failure) as opener:
+            with mock.patch.object(maven_lock.time, "sleep") as sleeper:
+                with self.assertRaisesRegex(RuntimeError, url):
+                    maven_lock.fetch_bytes(url)
+        self.assertEqual(1, opener.call_count)
+        sleeper.assert_not_called()
 
 
 if __name__ == "__main__":

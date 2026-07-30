@@ -3,7 +3,7 @@
 **Status:** accepted mandatory compatibility policy<br>
 **Decision:** RC-075<br>
 **Requirements:** `ZBW-COMPAT-001..009`<br>
-**Implementation status:** M06 neutral contracts and Paper 1.21.1 primary mappings VERIFIED; legacy/intermediate fallbacks pending M22
+**Implementation status:** M06 neutral contracts VERIFIED; M22 server adapters and client parity layer implemented; exact runtime/provider certification pending
 
 The exact server distributions, build hashes, JDKs, artifact families and client-protocol certification dimensions are normative in `RUNTIME_COMPATIBILITY_MATRIX.md`. This file owns semantic fallbacks; the runtime matrix owns which exact environments must prove them.
 
@@ -75,3 +75,29 @@ The generated compatibility report records exact server artifact/build/SHA-256/J
 RC-075 is resolved at policy/design level when this matrix is normative and traceable. M06 establishes only the Java-8-neutral fallback contracts and Paper 1.21.1 primary mappings and may certify only that foundation scope. M22 implements `zbw-compat-v1_8` and every other deferred legacy/intermediate fallback, then runs the complete startup, gameplay, GUI, item, packet, cleanup and migration matrix. A crash, unsupported enum/class exposure or loss of gameplay behavior is never an accepted fallback.
 
 M03 contributes only the strict `compatibility.yml` schema declaration and per-option compatibility metadata used by the generated reference. No Minecraft material, particle, sound, text, entity, packet or GUI adapter is present, and M03 therefore makes no new runtime-support claim. M06/M22 must consume these version-neutral declarations behind their adapters and preserve every fallback rule above. Full 1.8–1.21.x certification remains an M22 release gate; an M06 primary-row result is never evidence of 1.8 or complete 1.20–1.21 support.
+
+## 7. M22 client translation fallback matrix
+
+The following rows are implemented by `zbw-compat-client`. `N` is native Java,
+`V` ViaVersion 5.4.2, `B` ViaBackwards 5.4.2, `R` ViaRewind 4.0.6 and `G/F`
+Geyser 2.7.0 with Floodgate 2.2.4. Provider binaries remain operator-installed
+and pre-resolution locked; these rows are adapter behavior, not runtime
+certification.
+
+| Feature / semantic ID | Policy source | Preferred presentation | Actual fallback by client path | Gameplay impact | Decorative suppression | Adapter/version | Required tests |
+|---|---|---|---|---|---|---|---|
+| `client/gui` | M22 matrix + `USER_INTERFACE` | Native inventory/modal UI | N native; V translated; B translated; R legacy layout/action; G/F Bedrock-equivalent inventory/form action | Every action remains reachable or activation blocks | Separators only | client adapter + exact path versions above | matrix, input, blocked capability |
+| `client/shop` | M22 matrix + `USER_INTERFACE/ITEM/METADATA` | Native shop inventory | N native; V/B translated; R legacy item/NBT layout; G/F Bedrock-safe item/form action | Price, item identity and purchase action remain server-owned and visible | Appearance only | same | shop semantic completeness, tamper owner tests remain M11 |
+| `client/spectator` | M22 matrix + `USER_INTERFACE/ENTITY/PACKET` | Native spectator controls | N native; V/B translated; R safe follow/control fallback; G/F Bedrock-safe control action | Target, state and exit remain available | Camera animation only | same | packet/input/fallback/cleanup |
+| `client/replay-access` | M22 matrix + `USER_INTERFACE/ENTITY/PACKET` | Native replay controls | N native; V/B translated; R command/inventory controls; G/F Bedrock-safe controls | Replay access and control information remain available; M17 owns replay | Entity decoration only | same | replay semantic, input, cleanup |
+| `client/hotbar` | M22 matrix + `ITEM/METADATA/USER_INTERFACE` | Native hotbar | N native; V/B translated; R legacy item/NBT presentation; G/F Bedrock inventory action | Action identity and state remain visible | Model only | same | item/metadata/UI completeness |
+| `client/text` | M22 matrix + `TEXT` | Native rich text | N native; V/G/F translated; B/R equivalent legacy text/action | Warnings, choices and command hints remain readable | Gradient/hover decoration only | same | text parity and capability failure |
+| `client/sound` | M22 matrix + `SOUND` | Native semantic sound | N native; V translated; B equivalent sound; R/G/F visible informational cue | No informational signal is lost | Redundant sound may be suppressed | same | degraded cue and suppression reason |
+| `client/particle` | M22 matrix + `PARTICLE` | Native bounded particle | N native; V translated; B equivalent particle; R/G/F visible/text cue | Telegraph information remains non-colour-only and visible | Ambient particles may be suppressed | same | degraded cue and suppression reason |
+| `client/entity-display` | M22 matrix + `ENTITY/PACKET` | Native entity representation | N native; V translated; B equivalent entity; R/G/F safe entity/text marker | Interaction/state information remains available | Model/animation may be suppressed | same | entity/packet parity and cleanup |
+| `client/input` | M22 matrix + `USER_INTERFACE/PACKET` | Native Java input | N native; V translated; B equivalent legacy input; R command/inventory input; G/F keyboard/controller/touch-safe action | Equivalent action remains reachable; unknown input blocks activation | None | same | Java, legacy and Bedrock input matrix |
+
+`ClientCompatibilityReport.activationSafe()` rejects any row whose required
+server semantic is unsupported or whose exact provider chain is unavailable.
+The translator never replaces the selected server adapter and never treats a
+purely decorative success as evidence that gameplay information survived.

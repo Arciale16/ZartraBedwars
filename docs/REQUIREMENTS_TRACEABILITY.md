@@ -991,3 +991,42 @@ The M18 closure originally handed ownership to M19 without implementing Redis; t
 | M20 / ZBW-READY-013 | HMAC-SHA-256 tests reject forgery, nonce replay, destination substitution, deadline bypass, audience mismatch, ±30-second clock violations, 64 KiB overflow and burst excess before payload exposure | M03 owns secret references, M04 durable envelopes and M19 distributed security/coordination; tokens are not durable authorization |
 | M20 multi-node and performance | Two proxy runtimes share one admission authority, four backends route deterministically, minor rolling schemas interoperate, major schemas fail closed, and local PROXY_4 p95/p99 limits are 5/15 ms; BungeeCord and Velocity run the same adapter contract suite | Production proxy/backend/Redis/TLS chaos and latency evidence remains a deployment rollout gate documented in `PROXY_M20.md` |
 | M20 closure | `zbw-proxy-api`, `zbw-bungeecord` and `zbw-velocity` pass Java 8/21 compilation, tests, Checkstyle, SpotBugs, JaCoCo, strict JavaDoc, API compatibility, dependency/SBOM and governance validation | M21 CloudNet, parties and remaining providers are next and remain unstarted; M22 owns the full compatibility matrix |
+## M22 Phase 1 compatibility foundation
+
+| Allocation | Materialized evidence | Remaining owner |
+|---|---|---|
+| `ZBW-ARC-002`, `ZBW-COMPAT-001/002`, `ZBW-READY-001` | Eleven POM-only compatibility/Paper boundaries, five mutually exclusive JDK reactor profiles, graph/POM checks and zero Java sources | M22 Phase 2+ owns every adapter, platform dependency, mapping and bootstrap implementation |
+| `ZBW-INT-010`, `ZBW-COMPAT-003..009`, `ZBW-READY-002/006` | `build/m22-compatibility-matrix.json` deterministically maps 22 locked fixtures into nine server families, five JDKs and five client paths; 45 family/path cells retain explicit uncertified state | M22 later phases own native, translated Java and Bedrock behavior and exact-fixture certification; M06 remains only the 1.21.1 foundation claim |
+| `ZBW-INT-004/010`, `ZBW-READY-005`, `ZBW-LICENSE-001/002/005` | `build/m22-provider-lock-requirements.json` records versions, provided scope, SPDX licence and provenance while null SHA-256 values fail closed and prohibit resolution | Exact coordinate/source, artifact and licence-text hashes plus transitive lock/SBOM must be completed before any provider dependency is declared or downloaded |
+| M22 continuing compatibility cells | `docs/M22_COMPATIBILITY_FOUNDATION.md` preserves M08-M21 ownership and records grouped-module split criteria | No game, shop, progression, statistics, PlaceholderAPI, replay, Atlas, Redis, proxy, CloudNet or provider ownership is transferred to M22 |
+
+### M22 Phase 2 server-adapter evidence
+
+| Allocation | Implemented Phase 2 portion | Verification / remaining owner |
+|---|---|---|
+| `ZBW-ARC-002`; `ZBW-INT-004`; `ZBW-INT-010` | Seven legacy/intermediate version modules plus the modern inventory expose exact digest-bound adapters behind `zbw-compat-api`; Java 8/11/16/17 bootstraps consume neutral command/UI APIs and activate only after unique exact selection | selector, linkage, lifecycle and no-platform-import CT; exact server startup/gameplay and client translation remain M22 |
+| `ZBW-COMPAT-001..009` | Ten semantic categories cover material, item/data, metadata, sound, particle, text, entity, packet, GUI and scheduler outcomes; legacy fallbacks/degradation carry stable diagnostic reason IDs and packet values remain symbolic | mapping completeness, unsupported, duplicate, fallback, cleanup and fixture inventory CT; exact private/public runtime certification remains pending |
+| `ZBW-READY-001`; `ZBW-READY-002`; `ZBW-READY-006` | Runtime claims match the locked matrix and fail closed on platform/version/build/SHA mismatch before feature presentation | adapter implementation evidence only; no support row advances until exact fixture lifecycle/gameplay suites pass |
+## M22 Phase 3 client translation and feature parity
+
+| Allocation | Materialized evidence | Remaining owner |
+|---|---|---|
+| M22 / `ZBW-INT-010`, `ZBW-ARC-002` | Java 8 `zbw-compat-client` consumes only `zbw-compat-api`; exact ViaVersion 5.4.2, ViaBackwards 5.4.2, ViaRewind 4.0.6 and Geyser 2.7.0/Floodgate 2.2.4 paths are discovered through an async vendor-neutral gateway and never replace the selected server adapter | M22 closure owns exact provider acquisition/linkage and the 45-cell runtime/client certification; M21 provider and M06/M22 server adapter ownership is unchanged |
+| M22 / `ZBW-COMPAT-004..008` | Complete deterministic reports cover GUI, shop, spectator, replay access, hotbar, text, sound, particle, entity display and input; missing server semantics or provider chains block activation, while decorative reduction requires an explicit alternative cue and reason | Exact server/client packet, usability and gameplay E2E evidence remains M22 closure work |
+| M22 / `ZBW-COMPAT-009`, `ZBW-READY-001/002/006` | Matrix/status, module graph, fallback rows, bounded 4,096-session lifecycle, classloading isolation and model/adapter/lifecycle tests provide checkpoint evidence without a support claim | Private/public runtime fixture certification and release packaging remain later M22/M24 gates |
+| M22 dependency boundary / `ZBW-LICENSE-001/002/005` | No vendor dependency or repository was added; pre-resolution lock rows remain digest-incomplete and resolution-disabled while adapters compile against neutral ports | Exact checksums, licence text digests, provenance and transitive SBOM evidence must be approved before provider binaries are resolved |
+
+## M23 migration, ecosystem and operational implementation
+
+| Requirement | Materialized evidence | Retained boundary |
+|---|---|---|
+| `ZBW-ECO-001/004`, `ZBW-ADDON-283..290` | Java 8 `MigrationApi`, deterministic worker-executed planning/application engine, mandatory backup and journal ports, automatic failed-apply restore, explicit rollback, bounded neutral layout reader and shop/hotbar converter, audited `MigrationCommandWorkflow` and disabled-by-default `M23MigrationConfiguration` | Destination modules retain atomic mutation and durable ownership; source files are caller-confined, read-only and never executed |
+| `ZBW-ECO-002/003`, `ZBW-ARC-003/010` | Existing metadata/catalogue/extension-point contracts plus compiled `ExampleMigrationExtension` and marketplace descriptor using only `zbw-api` | No Bukkit, provider implementation, storage implementation or core edit is exposed to extensions |
+| `ZBW-ECO-005` | Advisory-only `SuggestionProvider` contract requires an explicit human request and owner-side validation; it provides no mutation or enforcement capability | Provider composition remains disabled and optional; no AI provider or M24 behavior is introduced |
+| `ZBW-OPS-006/009` | Five-category `OperationalReadinessCheck`, migration/SDK/operator/troubleshooting documentation and sanitized bounded evidence | Existing M05 observability owns execution/sanitization; final dashboards, benchmarks and release inventory remain M24 |
+| M23 tests | Immutability, malformed input, deterministic ordering, duplicates, conflicts, dry-run, backup, failed-apply restore, rollback, layout validation/loss, Doctor severity and SDK lifecycle/conversion tests | Exact M22 runtime/provider acquisition and certification remain external and active |
+
+M23 implementation is complete without changing the durable authority of progression, statistics,
+permissions, shop, replay or any provider. `build/milestone-state.json` remains on M22 because the
+deterministic milestone validator prohibits advancing past its still-pending external certification
+gate. M24 has not started.

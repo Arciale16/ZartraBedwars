@@ -295,6 +295,12 @@ Atlas stores real identity in restricted case data and a separate anonymized pro
 
 ## 12. Minecraft 1.8–1.21.x compatibility
 
+### M22 Phase 1 allocation boundary
+
+M22 Phase 1 adds only POM-level artifact boundaries and deterministic governance. The Java 8, 11, 16, 17 and 21 platform families are isolated in mutually exclusive JDK-activated reactor profiles. Each compatibility module depends only on `zbw-compat-api`; each new Paper assembly depends only on `zbw-application` and its matching compatibility boundary. No domain, API or application module may depend on these adapters, and `zbw-paper-modern` remains isolated in its existing Java 21 profile.
+
+`build/m22-compatibility-matrix.json` binds the 22 exact fixtures to nine server families and five client paths without claiming implementation. Grouped allocation modules do not authorize cross-minor API linkage: Phase 2 must prove each fixture or split the module before platform source is added. `build/m22-provider-lock-requirements.json` blocks ProtocolLib/Via/Geyser/Floodgate Maven declaration and resolution until exact coordinates, artifact and licence-text SHA-256 values, provenance and transitives are immutably locked.
+
 The exact distribution family is mandatory in `RUNTIME_COMPATIBILITY_MATRIX.md`. Paper 1.21.1/Java 21 is the primary behavior baseline and 1.21.11 the upper baseline. Supporting old server runtimes in one JAR is technically unsafe because JVM baselines and APIs differ. The architecture therefore uses:
 
 - shared platform-independent domain/protocol source and schemas at Java 8 bytecode;
