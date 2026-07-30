@@ -1015,3 +1015,18 @@ The M18 closure originally handed ownership to M19 without implementing Redis; t
 | M22 / `ZBW-COMPAT-004..008` | Complete deterministic reports cover GUI, shop, spectator, replay access, hotbar, text, sound, particle, entity display and input; missing server semantics or provider chains block activation, while decorative reduction requires an explicit alternative cue and reason | Exact server/client packet, usability and gameplay E2E evidence remains M22 closure work |
 | M22 / `ZBW-COMPAT-009`, `ZBW-READY-001/002/006` | Matrix/status, module graph, fallback rows, bounded 4,096-session lifecycle, classloading isolation and model/adapter/lifecycle tests provide checkpoint evidence without a support claim | Private/public runtime fixture certification and release packaging remain later M22/M24 gates |
 | M22 dependency boundary / `ZBW-LICENSE-001/002/005` | No vendor dependency or repository was added; pre-resolution lock rows remain digest-incomplete and resolution-disabled while adapters compile against neutral ports | Exact checksums, licence text digests, provenance and transitive SBOM evidence must be approved before provider binaries are resolved |
+
+## M23 migration, ecosystem and operational implementation
+
+| Requirement | Materialized evidence | Retained boundary |
+|---|---|---|
+| `ZBW-ECO-001/004`, `ZBW-ADDON-283..290` | Java 8 `MigrationApi`, deterministic worker-executed planning/application engine, mandatory backup and journal ports, automatic failed-apply restore, explicit rollback, bounded neutral layout reader and shop/hotbar converter, audited `MigrationCommandWorkflow` and disabled-by-default `M23MigrationConfiguration` | Destination modules retain atomic mutation and durable ownership; source files are caller-confined, read-only and never executed |
+| `ZBW-ECO-002/003`, `ZBW-ARC-003/010` | Existing metadata/catalogue/extension-point contracts plus compiled `ExampleMigrationExtension` and marketplace descriptor using only `zbw-api` | No Bukkit, provider implementation, storage implementation or core edit is exposed to extensions |
+| `ZBW-ECO-005` | Advisory-only `SuggestionProvider` contract requires an explicit human request and owner-side validation; it provides no mutation or enforcement capability | Provider composition remains disabled and optional; no AI provider or M24 behavior is introduced |
+| `ZBW-OPS-006/009` | Five-category `OperationalReadinessCheck`, migration/SDK/operator/troubleshooting documentation and sanitized bounded evidence | Existing M05 observability owns execution/sanitization; final dashboards, benchmarks and release inventory remain M24 |
+| M23 tests | Immutability, malformed input, deterministic ordering, duplicates, conflicts, dry-run, backup, failed-apply restore, rollback, layout validation/loss, Doctor severity and SDK lifecycle/conversion tests | Exact M22 runtime/provider acquisition and certification remain external and active |
+
+M23 implementation is complete without changing the durable authority of progression, statistics,
+permissions, shop, replay or any provider. `build/milestone-state.json` remains on M22 because the
+deterministic milestone validator prohibits advancing past its still-pending external certification
+gate. M24 has not started.

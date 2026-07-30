@@ -74,6 +74,10 @@ M22_REQUIREMENTS = {
     "ZBW-COMPAT-009", "ZBW-READY-001", "ZBW-READY-002", "ZBW-READY-006",
 }
 
+M23_REQUIREMENTS = {
+    "ZBW-ECO-001", "ZBW-ECO-002", "ZBW-ECO-003", "ZBW-ECO-004", "ZBW-ECO-005",
+}
+M23_ADDONS = tuple(range(283, 291))
 M18_REQUIREMENTS = {
     "ZBW-ATLAS-001", "ZBW-ATLAS-003", "ZBW-ATLAS-004",
     "ZBW-ATLAS-005", "ZBW-ATLAS-006", "ZBW-ATLAS-011",
@@ -201,9 +205,15 @@ def state(identifier: str, planned: str) -> tuple[str, str]:
         return "PARTIAL", "M21 Phase 4 provider lifecycle/Plugin Doctor and focused failure certification complete; full per-requirement presentation and release qualification remain"
     if identifier in M22_REQUIREMENTS:
         return "PARTIAL", "M22 Phase 3 server/client adapters and deterministic parity evidence are complete; exact provider/runtime certification remains"
+    if identifier in M23_REQUIREMENTS:
+        return "VERIFIED", "M23 migration, SDK and advisory contract implementation and evidence complete"
+    if identifier in {"ZBW-OPS-006", "ZBW-OPS-009"}:
+        return "PARTIAL", "M23 Doctor/documentation portion complete; M24 release surfaces and final inventory remain"
     if identifier in M18_REQUIREMENTS:
         return "PARTIAL", "M18 Atlas allocation is complete; M19 distributed and M21 provider/release qualification remain"
     match = re.match(r"ZBW-ADDON-(\d{3})$", identifier)
+    if match and int(match.group(1)) in M23_ADDONS:
+        return "VERIFIED", "M23 lawful layout migration, dry-run, backup, mapping, report and rollback evidence complete"
     if match and int(match.group(1)) in M21_CLOUDNET_ADDONS:
         return "PARTIAL", "M21 CloudNet discovery, bounded lifecycle, failure/race/restart certification and operations evidence complete; command/dashboard and release qualification remain"
     if match and (41 <= int(match.group(1)) <= 60 or 102 <= int(match.group(1)) <= 107 or 252 <= int(match.group(1)) <= 259 or 291 <= int(match.group(1)) <= 299 or int(match.group(1)) == 387 or 464 <= int(match.group(1)) <= 473):
@@ -322,7 +332,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M21 and hardening M08.1 are complete; M22 Phase 3 is active with server adapters, fail-closed bootstraps and a vendor-isolated client parity layer; exact runtime/provider certification and support claims remain blocked.",
+        "M00-M21 and hardening M08.1 are complete; M22 Phase 3 is active with exact runtime/provider certification blocked externally. M23 migration, SDK and operational implementation is complete without advancing formal milestone state or beginning M24.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

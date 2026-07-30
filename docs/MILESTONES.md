@@ -239,6 +239,8 @@ The master prompt's sequential â€œdocumentation/testing near the endâ€ 
 
 ### M23 â€” Migration, ecosystem and operational completion
 
+- **Implementation status:** IMPLEMENTED. The Java 8 migration API and deterministic engine, lawful bounded layout adapter, compiled public-API-only SDK example and extensible operational Plugin Doctor probes are complete. Formal milestone advancement remains blocked by the active M22 external runtime/provider certification gate; this does not begin M24.
+
 - **Requirements:** ECO-001..005, OPS-006/009; ZBW-ADDON-283..290.
 - **Entry:** Feature schemas/APIs stable; source formats legally documented.
 - **Deliver:** migration assistants, SDK/example, marketplace metadata, extensible doctor, complete operator/developer guides.
