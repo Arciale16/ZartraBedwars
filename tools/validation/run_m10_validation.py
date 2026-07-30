@@ -27,6 +27,7 @@ def main() -> int:
         ("governance tests", [sys.executable, "-m", "unittest", "discover", "-s", "tests/governance", "-v"]),
         ("M10 inventories", [sys.executable, "tools/validation/m10_inventories.py"]),
         ("feature dashboard", [sys.executable, "tools/validation/feature_dashboard.py"]),
+        ("M24 qualification", [sys.executable, "tools/validation/m24_qualification.py"]),
         ("M10 binary API", [sys.executable, "tools/validation/api_compatibility_m10.py", "check"]),
         ("M10 strict JavaDoc", [sys.executable, "tools/validation/api_docs_m10.py"]),
         ("dependency licence SBOM", [sys.executable, "tools/dependencies/lock_dependencies.py", "validate"]),

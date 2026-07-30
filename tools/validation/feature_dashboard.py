@@ -332,7 +332,7 @@ def render() -> str:
         lines.append(f"| {category} | {categories.get(category, 0)} |")
     lines.extend([
         "", "## Milestone and evidence summary", "",
-        "M00-M21 and hardening M08.1 are complete; M22 Phase 3 is active with exact runtime/provider certification blocked externally. M23 migration, SDK and operational implementation is complete without advancing formal milestone state or beginning M24.",
+        "M00-M21 and hardening M08.1 are complete; M22 implementation is complete while exact runtime/provider certification remains blocked externally. M23 implementation is closed. M24 local security, recovery and release qualification tooling/evidence is implemented without advancing formal milestone state or making compatibility, benchmark or release claims.",
         "M10 extends `zbw-game`, M09 presentation and primary Paper projection without a new module,",
         "with deterministic 115-action inventories and strict quality/API/runtime evidence.",
         "Merged PR #17 supplies M11 Phases 1-4; squash-merged PR #18 supplies M11.1 corrective",

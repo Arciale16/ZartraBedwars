@@ -1029,7 +1029,7 @@ The M18 closure originally handed ownership to M19 without implementing Redis; t
 M23 implementation is formally closed without changing the durable authority of progression,
 statistics, permissions, shop, replay or any provider. Ordered milestone advancement remains on M22
 because the deterministic milestone validator prohibits advancing past its still-pending external
-certification gate. M24 has not started.
+certification gate. M24 local qualification is implemented without a final release claim.
 
 ## M24 qualification preparation governance
 
@@ -1051,3 +1051,17 @@ children.
 implementation closure as a governance checkpoint and records M24 as blocked preparation. M24
 becomes active only after every prerequisite above is satisfied; this checkpoint neither certifies
 M22 nor marks the product release-ready.
+
+## M24 local qualification implementation
+
+| Allocation | Materialized qualification evidence | Remaining external gate |
+|---|---|---|
+| `ZBW-QA-003/005`, `ZBW-READY-005/010/011/013/018/019` | `THREAT_MODEL_M24.md` plus deterministic canonical-permission, privacy-boundary, dependency-policy and optional-provider isolation audits | live TLS/secrets/provider/runtime security exercise |
+| `ZBW-QA-002/004`, `ZBW-ARC-005/006`, `ZBW-DEPLOY-001`, `ZBW-READY-009/017` | exact SMALL/SHARED_40/PROXY_4 no-claim manifest, owner-thread blocking-I/O scanner and immutable benchmark procedure | normative hardware, datasets, bots, providers and five measured 30-minute runs per profile |
+| `ZBW-QA-001/003/005`, `ZBW-OPS-005/008`, `ZBW-READY-014/016/017` | owner-module SQL/Redis/proxy/replay/Atlas/migration recovery evidence inventory and binding backup/restore/rollback procedure | target-topology SQL, Redis, crash, partition, disk-full and evidence-restore drills |
+| `ZBW-GOV-007/011`, `ZBW-CONTENT-001/011`, `ZBW-LICENSE-001..007`, `ZBW-READY-001/002/005/006/008/012/017/019/020` | fixed Maven output timestamp, deterministic artifact SHA-256 report/comparison, lock/SBOM/notices/prohibited-binary validation and compatibility no-claim gate | complete provider provenance, M22 matrix, certified toolchains, legal approval and signed release candidate |
+
+`build/m24-qualification.json` records local qualification as complete while keeping
+`release_ready=false`, `support_claim_allowed=false`, every normative benchmark
+`PENDING_NORMATIVE_ENVIRONMENT` and all five activation gates pending. M24 adds no gameplay or
+domain ownership and does not advance the ordered milestone state beyond uncertified M22.
