@@ -85,7 +85,7 @@ class FoundationValidationTests(unittest.TestCase):
                     b"locked", maven_lock.fetch_bytes(
                         "https://repo.example/artifact.jar"))
         self.assertEqual(2, opener.call_count)
-        sleeper.assert_called_once_with(1.0)
+        sleeper.assert_called_once_with(5.0)
 
     def test_maven_fetch_exhaustion_is_bounded_and_names_url(self) -> None:
         url = "https://repo.example/reset.jar"
@@ -95,9 +95,33 @@ class FoundationValidationTests(unittest.TestCase):
             with mock.patch.object(maven_lock.time, "sleep") as sleeper:
                 with self.assertRaisesRegex(RuntimeError, url):
                     maven_lock.fetch_bytes(url)
-        self.assertEqual(4, opener.call_count)
+        self.assertEqual(6, opener.call_count)
         self.assertEqual(
-            [mock.call(1.0), mock.call(2.0), mock.call(4.0)],
+            [mock.call(5.0), mock.call(10.0), mock.call(20.0),
+             mock.call(40.0), mock.call(80.0)],
+            sleeper.call_args_list)
+
+    def test_maven_fetch_retries_http_rate_limit(self) -> None:
+        class Response:
+            def __enter__(self) -> "Response":
+                return self
+
+            def __exit__(self, *unused: object) -> None:
+                return None
+
+            def read(self) -> bytes:
+                return b"locked"
+
+        url = "https://repo.example/rate-limited.jar"
+        failure = urllib.error.HTTPError(url, 429, "too many requests", {}, None)
+        with mock.patch.object(
+                maven_lock.urllib.request, "urlopen",
+                side_effect=[failure, failure, Response()]) as opener:
+            with mock.patch.object(maven_lock.time, "sleep") as sleeper:
+                self.assertEqual(b"locked", maven_lock.fetch_bytes(url))
+        self.assertEqual(3, opener.call_count)
+        self.assertEqual(
+            [mock.call(5.0), mock.call(10.0)],
             sleeper.call_args_list)
 
     def test_maven_fetch_does_not_retry_permanent_http_error(self) -> None:
