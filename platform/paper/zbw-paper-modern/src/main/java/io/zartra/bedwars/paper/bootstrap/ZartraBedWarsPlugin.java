@@ -3,13 +3,31 @@ package io.zartra.bedwars.paper.bootstrap;
 import io.zartra.bedwars.api.authorization.AuthorizationDecision;
 import io.zartra.bedwars.api.authorization.AuthorizationRequest;
 import io.zartra.bedwars.api.authorization.AuthorizationSubject;
+import io.zartra.bedwars.api.event.ApiEvent;
+import io.zartra.bedwars.api.identity.ArenaId;
 import io.zartra.bedwars.api.identity.DefinitionId;
+import io.zartra.bedwars.api.identity.IdempotencyKey;
+import io.zartra.bedwars.api.identity.MatchId;
 import io.zartra.bedwars.api.identity.PlayerId;
 import io.zartra.bedwars.api.localization.LocaleId;
 import io.zartra.bedwars.api.localization.LocalizationService;
 import io.zartra.bedwars.api.provider.Provider;
+import io.zartra.bedwars.api.result.ApiError;
 import io.zartra.bedwars.api.result.Result;
 import io.zartra.bedwars.api.time.TimeSource;
+import io.zartra.bedwars.arena.application.ArenaApplicationService;
+import io.zartra.bedwars.arena.application.ArenaPolicy;
+import io.zartra.bedwars.arena.application.SetupApplicationService;
+import io.zartra.bedwars.arena.setup.MarkerProposal;
+import io.zartra.bedwars.arena.setup.SetupPreview;
+import io.zartra.bedwars.arena.setup.SetupSession;
+import io.zartra.bedwars.arena.setup.SetupSessionId;
+import io.zartra.bedwars.arena.spi.ArenaIdentityFactory;
+import io.zartra.bedwars.arena.spi.ArenaRepository;
+import io.zartra.bedwars.arena.spi.MarkerDiscoveryPort;
+import io.zartra.bedwars.arena.spi.SetupCommitPort;
+import io.zartra.bedwars.arena.spi.SetupSessionRepository;
+import io.zartra.bedwars.arena.validation.ArenaValidation;
 import io.zartra.bedwars.command.api.CommandFramework;
 import io.zartra.bedwars.command.api.CommandModel;
 import io.zartra.bedwars.command.api.PresentationActions;
@@ -19,11 +37,18 @@ import io.zartra.bedwars.command.paper.UnifiedCommandTreeFactory;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiIntegration;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiLifecycle;
 import io.zartra.bedwars.integration.placeholderapi.PlaceholderApiProviders;
+import io.zartra.bedwars.game.addon.DepositPolicy;
+import io.zartra.bedwars.game.addon.HotbarPolicy;
+import io.zartra.bedwars.game.application.GameEngineService;
+import io.zartra.bedwars.game.model.MatchSnapshot;
+import io.zartra.bedwars.game.model.PlayerStateSnapshot;
+import io.zartra.bedwars.game.spi.MatchRepository;
 import io.zartra.bedwars.paper.atlas.AtlasAudience;
 import io.zartra.bedwars.paper.atlas.AtlasCommandRouter;
 import io.zartra.bedwars.paper.atlas.AtlasPaperPort;
 import io.zartra.bedwars.paper.atlas.AtlasRuntimeBootstrap;
 import io.zartra.bedwars.paper.atlas.PaperAtlasService;
+import io.zartra.bedwars.paper.game.PaperPlayerProjection;
 import io.zartra.bedwars.paper.replay.BukkitReplayAudience;
 import io.zartra.bedwars.paper.replay.BukkitReplayRuntimeAdapter;
 import io.zartra.bedwars.paper.replay.PaperReplayCommands;
@@ -53,21 +78,27 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Supplier;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /** Primary Paper 1.21.1 application composition root. */
@@ -85,6 +116,9 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     private AtlasRuntimeBootstrap atlasRuntime;
     private AtlasCommandRouter atlasCommands;
     private PaperProviderIntegrationRuntime providerIntegrations;
+    private ArenaApplicationService bootstrapRuntime;
+    private SetupApplicationService editorRuntime;
+    private GameEngineService gameRuntime;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -96,6 +130,7 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
             providerIntegrations = new PaperProviderIntegrationRuntime();
             providerIntegrations.start();
             initializePlaceholderApi();
+            installApplicationRuntimes();
             installCommandRuntime();
             installAtlasRuntime(degradedAtlasPort());
             installReplayRuntime(degradedReplayRepository());
@@ -112,6 +147,9 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
     }
 
     @Override public void onDisable() {
+        bootstrapRuntime = null;
+        editorRuntime = null;
+        gameRuntime = null;
         if (commandSupervisor != null) {
             commandSupervisor.close(Duration.ZERO);
             commandSupervisor = null;
@@ -297,14 +335,371 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
             getLogger().warning("PlaceholderAPI integration disabled: " + failure.getClass().getSimpleName());
         }
     }
+    private void installApplicationRuntimes() {
+        final UnavailableApplicationPorts unavailable = new UnavailableApplicationPorts();
+        final ArenaPolicy arenaPolicy = ArenaPolicy.of(256, 32,
+                Duration.ofSeconds(30L), Duration.ofSeconds(10L));
+        bootstrapRuntime = new ArenaApplicationService(unavailable,
+                ArenaIdentityFactory.RandomIdentityFactory.INSTANCE,
+                new ArenaValidation.DefaultValidator(), arenaPolicy,
+                this::authorizePaperCommand,
+                record -> getLogger().fine("Arena audit " + record.operation()),
+                new io.zartra.bedwars.arena.spi.ArenaEventSink() {
+                    @Override public ApiEvent.Decision before(
+                            final io.zartra.bedwars.arena.application.ArenaEvents.BeforeChange event) {
+                        return ApiEvent.Decision.proceed();
+                    }
+                    @Override public void after(
+                            final io.zartra.bedwars.arena.application.ArenaEvents.Changed event) {
+                        getLogger().fine("Arena event " + event.operation());
+                    }
+                }, TimeSource.SystemTimeSource.INSTANCE);
+        editorRuntime = new SetupApplicationService(unavailable, unavailable, unavailable,
+                unavailable, new ArenaValidation.DefaultValidator(), arenaPolicy,
+                this::authorizePaperCommand,
+                record -> getLogger().fine("Setup audit " + record.operation()),
+                new io.zartra.bedwars.arena.spi.ArenaEventSink() {
+                    @Override public ApiEvent.Decision before(
+                            final io.zartra.bedwars.arena.application.ArenaEvents.BeforeChange event) {
+                        return ApiEvent.Decision.proceed();
+                    }
+                    @Override public void after(
+                            final io.zartra.bedwars.arena.application.ArenaEvents.Changed event) {
+                        getLogger().fine("Setup event " + event.operation());
+                    }
+                }, TimeSource.SystemTimeSource.INSTANCE);
+        gameRuntime = new GameEngineService(64, unavailableMatchRepository(), transition ->
+                getLogger().fine("Game transition revision " + transition.after().revision()));
+        getLogger().info("Bootstrap runtime installed");
+        getLogger().info("Deposit runtime installed");
+        getLogger().info("Editor runtime installed");
+        getLogger().info("Game runtime installed");
+    }
+
+    private PresentationActions.UseCase applicationBinding(
+            final PresentationActions.Definition definition) {
+        switch (applicationRuntime(definition.id())) {
+            case "bootstrap": return this::executeBootstrap;
+            case "editor": return this::executeEditor;
+            case "game": return this::executeGame;
+            case "deposit": return this::executeDeposit;
+            default: return request -> CompletableFuture.completedFuture(
+                    PresentationActions.Response.simple(
+                            PresentationActions.Response.Status.ERROR,
+                            "presentation.feature.not_composed", request.revision()));
+        }
+    }
+
+    static String applicationRuntime(final PresentationActions.ActionId action) {
+        final String path = Objects.requireNonNull(action, "action").value().path();
+        if (path.startsWith("action/arena/")) { return "bootstrap"; }
+        if (path.startsWith("action/setup/")) { return "editor"; }
+        if (path.startsWith("action/game/")) { return "game"; }
+        if (path.startsWith("action/deposit/")) { return "deposit"; }
+        return "uncomposed";
+    }
+
+    private CompletionStage<PresentationActions.Response> executeBootstrap(
+            final PresentationActions.Request request) {
+        final String operation = operation(request);
+        if (!Arrays.asList("list", "status", "health", "diagnostics").contains(operation)) {
+            return completedResponse(PresentationActions.Response.Status.INVALID,
+                    "bootstrap.command.requires_configured_storage", request.revision());
+        }
+        final Result<List<ArenaRepository.Record>> records = bootstrapRuntime.list(
+                request.actor(), request.correlationId());
+        return completedResponse(records.isSuccess()
+                        ? PresentationActions.Response.Status.SUCCESS
+                        : PresentationActions.Response.Status.ERROR,
+                records.isSuccess() ? "bootstrap.runtime.ready" : "bootstrap.storage.unavailable",
+                request.revision());
+    }
+
+    private CompletionStage<PresentationActions.Response> executeEditor(
+            final PresentationActions.Request request) {
+        final String operation = operation(request);
+        if (!(operation.equals("status") || operation.equals("progress")
+                || operation.equals("validate"))) {
+            return completedResponse(PresentationActions.Response.Status.INVALID,
+                    "editor.command.requires_session", request.revision());
+        }
+        final Optional<SetupSessionId> sessionId = setupSessionId(request.target());
+        if (!sessionId.isPresent()) {
+            return completedResponse(PresentationActions.Response.Status.INVALID,
+                    "editor.session.required", request.revision());
+        }
+        final Result<ArenaValidation.Report> validation = editorRuntime.validate(
+                sessionId.get(), request.revision(), request.actor(), request.correlationId());
+        return completedResponse(validation.isSuccess()
+                        ? PresentationActions.Response.Status.SUCCESS
+                        : PresentationActions.Response.Status.NOT_FOUND,
+                validation.isSuccess() ? "editor.runtime.ready" : "editor.session.not_found",
+                request.revision());
+    }
+
+    private CompletionStage<PresentationActions.Response> executeGame(
+            final PresentationActions.Request request) {
+        final String operation = operation(request);
+        if (operation.equals("health") || operation.equals("diagnostics")
+                || operation.equals("lobby-status")) {
+            gameRuntime.health();
+            return completedResponse(PresentationActions.Response.Status.SUCCESS,
+                    "game.runtime.ready", request.revision());
+        }
+        final Optional<MatchId> matchId = matchId(request.target());
+        if (!matchId.isPresent()) {
+            return completedResponse(PresentationActions.Response.Status.INVALID,
+                    "game.match.required", request.revision());
+        }
+        if (operation.equals("match-status")) {
+            final boolean present = gameRuntime.inspect(matchId.get()).isPresent();
+            return completedResponse(present
+                            ? PresentationActions.Response.Status.SUCCESS
+                            : PresentationActions.Response.Status.NOT_FOUND,
+                    present ? "game.match.ready" : "game.match.not_found",
+                    request.revision());
+        }
+        return completedResponse(PresentationActions.Response.Status.INVALID,
+                "game.command.requires_active_match", request.revision());
+    }
+
+    private CompletionStage<PresentationActions.Response> executeDeposit(
+            final PresentationActions.Request request) {
+        final String operation = operation(request);
+        if (operation.equals("reload") || operation.equals("inspect")) {
+            return completedResponse(PresentationActions.Response.Status.SUCCESS,
+                    "deposit.runtime.ready", request.revision());
+        }
+        final CompletableFuture<PresentationActions.Response> result =
+                new CompletableFuture<PresentationActions.Response>();
+        Bukkit.getScheduler().runTask(this, () -> {
+            try {
+                result.complete(depositOnOwner(request, operation));
+            } catch (RuntimeException failure) {
+                getLogger().warning("Deposit command failed: "
+                        + failure.getClass().getSimpleName());
+                result.complete(PresentationActions.Response.simple(
+                        PresentationActions.Response.Status.ERROR,
+                        "deposit.runtime.failed", request.revision()));
+            }
+        });
+        return result;
+    }
+
+    private PresentationActions.Response depositOnOwner(
+            final PresentationActions.Request request, final String operation) {
+        final Player player = player(request.actor()).orElse(null);
+        if (player == null) {
+            return PresentationActions.Response.simple(
+                    PresentationActions.Response.Status.NOT_FOUND,
+                    "deposit.player.not_online", request.revision());
+        }
+        final Map<PlayerStateSnapshot.Item, ItemStack> prototypes =
+                new LinkedHashMap<PlayerStateSnapshot.Item, ItemStack>();
+        PlayerStateSnapshot.Inventory source = snapshot(
+                player.getInventory(), "source", prototypes);
+        PlayerStateSnapshot.Inventory chest = snapshot(
+                player.getEnderChest(), "chest", prototypes);
+        final Set<DefinitionId> resources = depositResources();
+        final List<DefinitionId> requested = new ArrayList<DefinitionId>();
+        int handQuantity = 0;
+        if (operation.equals("hand")) {
+            final ItemStack hand = player.getInventory().getItemInMainHand();
+            final DefinitionId resource = resourceId(hand.getType());
+            if (resource == null) {
+                return PresentationActions.Response.simple(
+                        PresentationActions.Response.Status.INVALID,
+                        "deposit.resource.invalid", request.revision());
+            }
+            handQuantity = hand.getAmount();
+            source = prioritize(source, player.getInventory().getHeldItemSlot());
+            requested.add(resource);
+        } else if (operation.equals("resources") || operation.equals("all")) {
+            requested.addAll(resources);
+        } else {
+            return PresentationActions.Response.simple(
+                    PresentationActions.Response.Status.INVALID,
+                    "deposit.command.invalid", request.revision());
+        }
+        final DepositPolicy.Rules rules = new DepositPolicy.Rules(resources,
+                Collections.singleton(HotbarPolicy.State.PLAYING), Duration.ZERO, 100000);
+        final List<DepositPolicy.Outcome> accepted = new ArrayList<DepositPolicy.Outcome>();
+        DepositPolicy.Status terminal = DepositPolicy.Status.NO_CAPACITY;
+        for (DefinitionId resource : requested) {
+            final int quantity = operation.equals("hand") ? handQuantity : quantity(source, resource);
+            if (quantity == 0) { continue; }
+            final DepositPolicy.Outcome outcome = DepositPolicy.plan(
+                    new DepositPolicy.Request(resource, quantity,
+                            HotbarPolicy.State.PLAYING, Instant.EPOCH, 0),
+                    source, chest, rules, Instant.now());
+            terminal = outcome.status();
+            if (outcome.accepted()) {
+                accepted.add(outcome);
+                source = outcome.source();
+                chest = outcome.enderChest();
+            }
+        }
+        if (accepted.isEmpty()) {
+            return PresentationActions.Response.simple(
+                    PresentationActions.Response.Status.INVALID,
+                    "deposit." + terminal.name().toLowerCase(Locale.ROOT), request.revision());
+        }
+        final PaperPlayerProjection projection = new PaperPlayerProjection(world -> null,
+                item -> resolveItem(item, prototypes));
+        for (DepositPolicy.Outcome outcome : accepted) {
+            projection.applyDeposit(PlayerId.of(player.getUniqueId()), outcome);
+        }
+        return PresentationActions.Response.simple(PresentationActions.Response.Status.SUCCESS,
+                "deposit.complete", request.revision());
+    }
+
+    private static PlayerStateSnapshot.Inventory snapshot(
+            final Inventory inventory, final String owner,
+            final Map<PlayerStateSnapshot.Item, ItemStack> prototypes) {
+        final Map<Integer, PlayerStateSnapshot.Item> contents =
+                new LinkedHashMap<Integer, PlayerStateSnapshot.Item>();
+        for (int slot = 0; slot < inventory.getSize(); slot++) {
+            final ItemStack stack = inventory.getItem(slot);
+            if (stack == null || stack.getType().isAir()) { continue; }
+            final DefinitionId resource = resourceId(stack.getType());
+            final Map<String, String> metadata = new LinkedHashMap<String, String>();
+            if (resource == null || stack.hasItemMeta()) {
+                metadata.put("zartra.protected", "true");
+                metadata.put("zartra.prototype", owner + '-' + slot);
+            }
+            final DefinitionId itemId = resource == null
+                    ? DefinitionId.of("minecraft", "item/"
+                            + stack.getType().name().toLowerCase(Locale.ROOT))
+                    : resource;
+            final PlayerStateSnapshot.Item item = new PlayerStateSnapshot.Item(
+                    itemId, stack.getAmount(), metadata);
+            contents.put(Integer.valueOf(slot), item);
+            prototypes.put(item, stack.clone());
+        }
+        return new PlayerStateSnapshot.Inventory(inventory.getSize(), contents);
+    }
+
+    private static Object resolveItem(
+            final PlayerStateSnapshot.Item item,
+            final Map<PlayerStateSnapshot.Item, ItemStack> prototypes) {
+        final ItemStack prototype = prototypes.get(item);
+        if (prototype != null) {
+            final ItemStack copy = prototype.clone();
+            copy.setAmount(item.amount());
+            return copy;
+        }
+        final Material material = material(item.itemId());
+        return material == null ? null : new ItemStack(material, item.amount());
+    }
+
+    private static PlayerStateSnapshot.Inventory prioritize(
+            final PlayerStateSnapshot.Inventory inventory, final int slot) {
+        final PlayerStateSnapshot.Item selected = inventory.occupied().get(Integer.valueOf(slot));
+        if (selected == null) { return inventory; }
+        final Map<Integer, PlayerStateSnapshot.Item> ordered =
+                new LinkedHashMap<Integer, PlayerStateSnapshot.Item>();
+        ordered.put(Integer.valueOf(slot), selected);
+        for (Map.Entry<Integer, PlayerStateSnapshot.Item> entry
+                : inventory.occupied().entrySet()) {
+            if (entry.getKey().intValue() != slot) {
+                ordered.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return new PlayerStateSnapshot.Inventory(inventory.size(), ordered);
+    }
+    private static int quantity(final PlayerStateSnapshot.Inventory inventory,
+                                final DefinitionId resource) {
+        int result = 0;
+        for (PlayerStateSnapshot.Item item : inventory.items()) {
+            if (item.itemId().equals(resource) && item.metadata().isEmpty()) {
+                result += item.amount();
+            }
+        }
+        return result;
+    }
+
+    private static Set<DefinitionId> depositResources() {
+        final Set<DefinitionId> result = new LinkedHashSet<DefinitionId>();
+        for (Material material : Arrays.asList(Material.IRON_INGOT, Material.GOLD_INGOT,
+                Material.DIAMOND, Material.EMERALD)) {
+            result.add(Objects.requireNonNull(resourceId(material), "resource"));
+        }
+        return Collections.unmodifiableSet(result);
+    }
+
+    private static DefinitionId resourceId(final Material material) {
+        if (material == Material.IRON_INGOT) { return DefinitionId.of("zartra", "resource/iron"); }
+        if (material == Material.GOLD_INGOT) { return DefinitionId.of("zartra", "resource/gold"); }
+        if (material == Material.DIAMOND) { return DefinitionId.of("zartra", "resource/diamond"); }
+        if (material == Material.EMERALD) { return DefinitionId.of("zartra", "resource/emerald"); }
+        return null;
+    }
+
+    private static Material material(final DefinitionId resource) {
+        if (resource.equals(DefinitionId.of("zartra", "resource/iron"))) { return Material.IRON_INGOT; }
+        if (resource.equals(DefinitionId.of("zartra", "resource/gold"))) { return Material.GOLD_INGOT; }
+        if (resource.equals(DefinitionId.of("zartra", "resource/diamond"))) { return Material.DIAMOND; }
+        if (resource.equals(DefinitionId.of("zartra", "resource/emerald"))) { return Material.EMERALD; }
+        return null;
+    }
+
+    private static Optional<Player> player(final AuthorizationSubject actor) {
+        final String path = actor.id().path();
+        if (!path.startsWith("player/")) { return Optional.empty(); }
+        try { return Optional.ofNullable(Bukkit.getPlayer(UUID.fromString(path.substring(7)))); }
+        catch (IllegalArgumentException malformed) { return Optional.empty(); }
+    }
+
+    private static Optional<SetupSessionId> setupSessionId(final DefinitionId target) {
+        return uuidSuffix(target).map(value -> SetupSessionId.parse(value.toString()));
+    }
+
+    private static Optional<MatchId> matchId(final DefinitionId target) {
+        return uuidSuffix(target).map(MatchId::of);
+    }
+
+    private static Optional<UUID> uuidSuffix(final DefinitionId target) {
+        final String path = target.path();
+        final int separator = path.lastIndexOf('/');
+        final String value = separator < 0 ? path : path.substring(separator + 1);
+        try { return Optional.of(UUID.fromString(value)); }
+        catch (IllegalArgumentException malformed) { return Optional.empty(); }
+    }
+
+    private static String operation(final PresentationActions.Request request) {
+        final String path = request.action().value().path();
+        return path.substring(path.lastIndexOf('/') + 1);
+    }
+
+    private static CompletionStage<PresentationActions.Response> completedResponse(
+            final PresentationActions.Response.Status status,
+            final String message, final long revision) {
+        return CompletableFuture.completedFuture(
+                PresentationActions.Response.simple(status, message, revision));
+    }
+
+    private static MatchRepository unavailableMatchRepository() {
+        return new MatchRepository() {
+            @Override public CompletionStage<Optional<MatchSnapshot>> load(final MatchId matchId) {
+                return CompletableFuture.completedFuture(Optional.empty());
+            }
+            @Override public CompletionStage<Boolean> save(
+                    final long previousRevision, final MatchSnapshot snapshot) {
+                return CompletableFuture.completedFuture(Boolean.FALSE);
+            }
+            @Override public CompletionStage<Boolean> commitCompletion(
+                    final long previousRevision, final MatchSnapshot snapshot,
+                    final IdempotencyKey key) {
+                return CompletableFuture.completedFuture(Boolean.FALSE);
+            }
+        };
+    }
     private void installCommandRuntime() {
         final List<PresentationActions.Definition> catalogue = PresentationActions.Catalog.standard();
         final Map<PresentationActions.ActionId, PresentationActions.UseCase> bindings =
                 new LinkedHashMap<PresentationActions.ActionId, PresentationActions.UseCase>();
         for (PresentationActions.Definition definition : catalogue) {
-            bindings.put(definition.id(), request -> CompletableFuture.completedFuture(
-                    PresentationActions.Response.simple(PresentationActions.Response.Status.ERROR,
-                            "presentation.runtime.unavailable", request.revision())));
+            bindings.put(definition.id(), applicationBinding(definition));
         }
         final PresentationActions.Registry actions =
                 new PresentationActions.Registry(catalogue, bindings);
@@ -536,6 +931,52 @@ public final class ZartraBedWarsPlugin extends JavaPlugin {
         };
     }
 
+    private static final class UnavailableApplicationPorts implements ArenaRepository,
+            SetupSessionRepository, SetupCommitPort, MarkerDiscoveryPort {
+        private static final ApiError UNAVAILABLE = ApiError.of(
+                DefinitionId.of("zartra", "paper/application_storage_unavailable"),
+                "paper.application.storage_unavailable",
+                ApiError.RetryDisposition.RETRYABLE);
+
+        @Override public Result<Optional<Record>> find(final ArenaId id) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<List<Record>> listRecords() {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<Record> save(final SaveRequest request) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<Boolean> delete(final ArenaId id, final long expectedRevision) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<Record> restoreLastKnownGood(
+                final ArenaId id, final long expectedRevision) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<Optional<SetupSession>> find(final SetupSessionId id) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<List<SetupSession>> listSessions() {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<SetupSession> save(
+                final SetupSession session, final long expectedDraftRevision) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<Boolean> delete(
+                final SetupSessionId id, final long expectedDraftRevision) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<CommitResult> commit(
+                final SetupSession session, final SetupPreview preview,
+                final boolean promoteLastKnownGood) {
+            return Result.failure(UNAVAILABLE);
+        }
+        @Override public Result<MarkerProposal> discover(final SetupSession session) {
+            return Result.failure(UNAVAILABLE);
+        }
+    }
     private static LocalizationService fallbackLocalization() {
         return new LocalizationService() {
             @Override public Result<LocalizedMessage> render(
