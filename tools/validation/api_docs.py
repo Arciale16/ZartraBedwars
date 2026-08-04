@@ -57,6 +57,7 @@ MODERN_CLASSPATH_MODULES = NEUTRAL_MODULES + (
     "shop/zbw-shop",
     "content/zbw-content",
     "command/zbw-command-api",
+    "command/zbw-command-paper",
     "ui/zbw-ui-api",
     "integrations/placeholderapi/zbw-integration-placeholderapi-api",
     "integrations/placeholderapi/zbw-integration-placeholderapi",
