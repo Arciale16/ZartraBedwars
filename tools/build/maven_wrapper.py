@@ -21,6 +21,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 PROPERTIES = ROOT / ".mvn" / "wrapper" / "maven-wrapper.properties"
 TOOLCHAINS = ROOT / "build" / "toolchains.json"
+MAVEN_LOCK_TOOL = ROOT / "tools" / "dependencies" / "maven_lock.py"
 
 
 def fail(message: str) -> "NoReturn":
@@ -147,6 +148,18 @@ def validate_arguments(arguments: list[str]) -> None:
         fail(f"direct plugin goals are default-denied by the M1 lock: {', '.join(plugin_goals)}")
 
 
+def restore_locked_repository(repository: Path) -> None:
+    """Materialize the checksum-locked repository before Maven project collection."""
+    result = subprocess.run(
+        [sys.executable, str(MAVEN_LOCK_TOOL), "restore",
+         "--destination", str(repository)],
+        cwd=ROOT,
+        check=False,
+    )
+    if result.returncode != 0:
+        fail("checksum-locked Maven repository restore failed")
+
+
 def main(arguments: list[str]) -> int:
     properties = read_properties(PROPERTIES)
     toolchains = json.loads(TOOLCHAINS.read_text(encoding="utf-8"))
@@ -176,6 +189,8 @@ def main(arguments: list[str]) -> int:
     environment["ZBW_VERIFIED_COMPILE_JDK"] = verified_jdk
     repository = ROOT / ("target/m04-staging" if acquiring else ".m2/repository")
     repository.mkdir(parents=True, exist_ok=True)
+    if not acquiring:
+        restore_locked_repository(repository)
     mode = [] if acquiring else ["--offline"]
     command = [str(launcher), f"-Dmaven.repo.local={repository}", *mode, *arguments]
     return subprocess.run(command, cwd=ROOT, env=environment, check=False).returncode
